@@ -1,0 +1,168 @@
+---
+import img3 from './Index/bsdisplay-iboard-usecase-1.jpeg';
+import img2 from './Index/bsdisplay-iboard-usecase-2.jpeg';
+import img1 from './Index/bsdisplay-iboard-usecase-3.jpeg';
+---
+
+<div class="usecase-container">
+  <section class="usecase-section">
+    <div class="usecase-image">
+      <img src={img1.src} />
+    </div>
+    <div class="usecase-content">
+      <h3><span class="numbering">1</span> Classrooms</h3>
+      <p>
+        ➤ <strong>Touch-based learning</strong> helps students stay engaged during
+        lessons.<br />
+        ➤ <strong>Real-time whiteboarding</strong> lets teachers and students collaborate
+        easily.<br />
+        ➤ <strong>Screen mirroring</strong> from any device boosts participation
+        and interactivity.
+      </p>
+      <div class="models">
+        📌 Recommended Models: METZ 75", Infinity Pro 86"
+      </div>
+      <div class="cta-buttons">
+        <a class="button-ghost" href="#">Book a Demo</a>
+        <a class="button-ghost" href="#">Request Quote</a>
+        <a class="button-ghost" href="#">Ask Us Which Suits You</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="usecase-section">
+    <div class="usecase-image">
+      <img src={img2.src} />
+    </div>
+    <div class="usecase-content">
+      <h3><span class="numbering">2</span> Offices & Boardrooms</h3>
+      <p>
+        <strong>Video conferencing</strong> and <strong>hybrid meetings</strong>
+        run smoothly with built-in support.
+      </p>
+      <p>
+        <strong>Screen sharing</strong> and <strong
+          >on-screen annotations</strong
+        > improve collaboration.
+      </p>
+      <p>
+        <strong>Zoom, Teams</strong>, and other apps integrate directly for
+        convenience.
+      </p>
+      <div class="models">📌 Recommended Models: SMART 65", METZ 75"</div>
+      <div class="cta-buttons">
+        <a class="button-ghost" href="#">Book a Demo</a>
+        <a class="button-ghost" href="#">Request Quote</a>
+        <a class="button-ghost" href="#">Ask Us Which Suits You</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="usecase-section">
+    <div class="usecase-image">
+      <img src={img3.src} />
+    </div>
+    <div class="usecase-content">
+      <h2>Training Centers</h2>
+      <p>
+        <strong>Stylus-powered presentations</strong> make lessons more engaging
+        and flexible.
+      </p>
+      <p>
+        <strong>Screen recording</strong> lets learners review sessions anytime.
+      </p>
+      <p>
+        <strong>Multi-user support</strong> allows group activities and simultaneous
+        interactions.
+      </p>
+      <div class="models">
+        📌 Recommended Models: Infinity Pro 86", SMART 75"
+      </div>
+      <div class="cta-buttons">
+        <a class="button-ghost" href="#">Book a Demo</a>
+        <a class="button-ghost" href="#">Request Quote</a>
+        <a class="button-ghost" href="#">Ask Us Which Suits You</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial">
+    <p>
+      “Our classrooms have become more interactive and lively since installing
+      smart boards. It’s a game-changer for visual learners.”<br />— Principal,
+      Singapore Primary School
+    </p>
+    <p>
+      “Meetings now move faster, and everyone can annotate on-screen in
+      real-time—even remotely.”<br />— IT Manager, Johor Tech Firm
+    </p>
+  </section>
+
+  <section class="cta-banner">
+    <h3>Not Sure Which Use Case Fits You?</h3>
+    <p>Tell us your goals — we’ll recommend the right smart board.</p>
+    <a href="#">Get Free Consultation</a>
+    <a href="#">Book a Quick Demo</a>
+  </section>
+</div>
+<style>
+  .usecase-section {
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--padding-s1) * 2);
+    padding: var(--padding-s1) 0;
+  }
+  .usecase-image {
+    flex: 1;
+    img {
+      width: 100%;
+      border-radius: 10px;
+      border: 10px solid #eee;
+      box-shadow: var(--box-shadow-1);
+      box-sizing: border-box;
+    }
+  }
+  .usecase-section:nth-child(even) {
+    flex-flow: row-reverse;
+  }
+  .usecase-content {
+    flex: 1.5;
+    text-align: left;
+  }
+  .cta-buttons {
+    margin-top: 2rem;
+  }
+  h3 {
+    color: #444;
+    font-size: 30px;
+    text-transform: uppercase;
+    .numbering {
+      display: inline-block;
+      padding: 0.1em 0.4em;
+      background-color: #aaa;
+      border-radius: 2px;
+      color: #fff;
+      background-color: var(--color-accent-primary);
+    }
+  }
+
+  .testimonial {
+    font-style: italic;
+    margin: 2rem 0;
+  }
+  .cta-banner {
+    background: #f0f8ff;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .cta-banner a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+</style>

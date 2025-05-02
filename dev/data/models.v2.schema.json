@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SmartBoardModel",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "brand",
+      "model",
+      "size",
+      "resolution",
+      "os",
+      "touchTechnology",
+      "features",
+      "warranty",
+      "priceRange",
+      "image"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique ID slug for the model (e.g. 'metz-65-uhd')"
+      },
+      "brand": {
+        "type": "string",
+        "enum": ["METZ", "SMART", "Infinity Pro"],
+        "description": "Brand name"
+      },
+      "model": {
+        "type": "string",
+        "description": "Full marketing model name (e.g. '65” UHD Smart Board')"
+      },
+      "size": {
+        "type": "integer",
+        "description": "Diagonal screen size in inches"
+      },
+      "resolution": {
+        "type": "string",
+        "pattern": "^[0-9]+x[0-9]+$",
+        "description": "Screen resolution (e.g. '3840x2160')"
+      },
+      "os": {
+        "type": "string",
+        "description": "Operating system or systems supported (e.g. 'Android + Windows')"
+      },
+      "touchTechnology": {
+        "type": "string",
+        "enum": [
+          "Infrared",
+          "Capacitive",
+          "Optical Bonded",
+          "HyPr Touch (InGlass)"
+        ],
+        "description": "Touch input technology"
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Key marketing features and capabilities"
+      },
+      "warranty": {
+        "type": "string",
+        "pattern": "^[0-9]+\\s+years?$",
+        "description": "Warranty period (e.g. '3 years')"
+      },
+      "priceRange": {
+        "type": "string",
+        "pattern": "^\\$[0-9,]+\\s-\\s\\$[0-9,]+$",
+        "description": "Price range (e.g. '$2000 - $2500')"
+      },
+      "image": {
+        "type": "string",
+        "description": "Relative or absolute path to the product image"
+      },
+      "brightness": {
+        "type": "string",
+        "description": "Panel brightness (e.g. '450 cd/m²')"
+      },
+      "contrastRatio": {
+        "type": "string",
+        "description": "Contrast ratio (e.g. '5000:1')",
+        "pattern": "^([0-9]+:[0-9]+|Not specified)$"
+      },
+      "viewingAngle": {
+        "type": "string",
+        "description": "Viewing angle in degrees (e.g. '178°')"
+      },
+      "responseTime": {
+        "type": "string",
+        "description": "Response time in ms (e.g. '8 ms')"
+      },
+      "panelLife": {
+        "type": "string",
+        "description": "Panel lifespan in hours (e.g. '50000 hours')"
+      },
+      "audioOutput": {
+        "type": "string",
+        "description": "Speaker output details (e.g. '16W x2')"
+      },
+      "powerConsumption": {
+        "type": "string",
+        "description": "Typical power usage (e.g. '400W')",
+        "pattern": "^([0-9]+W|Not specified)$"
+      }
+    }
+  }
+}

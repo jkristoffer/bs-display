@@ -1,0 +1,81 @@
+---
+import Single from '../layouts/singleLayout.astro';
+import Brands from '../components/Index.Brands.astro';
+import Usecases from '../components/Index.Usecases.astro';
+console.log('This runs in your terminal, not the browser!');
+
+let title = 'Big Shine Display';
+let description = 'Interactive Smart Board & Accessories';
+---
+
+<!-- Below is your "component template." It's just HTML, but with
+    some magic sprinkled in to help you build great templates. -->
+<Single title={title} description={description}>
+  <section class="banner full-width-container">
+    <h1><span style="font-size: 87%;">BIG SHINE</span><br />DISPLAY</h1>
+    <img class="i-board" src="/assets/interactive-board.png" alt="" />
+    <div class="cta-holder">
+      <button class="button-ghost">Request Quote</button>
+      <button class="button-ghost">Book A Demo</button>
+    </div>
+  </section>
+  <section class="container">
+    <h2>Brands</h2>
+    <Brands />
+    <button class="button-faint">View all Brands</button>
+  </section>
+  <section class="usecase-container">
+    <div class="container">
+      <h2>Use Cases</h2>
+      <Usecases />
+    </div>
+  </section>
+</Single>
+<style>
+  .banner {
+    text-align: center;
+    background-image: url(/assets/abstract-bg-1.jpeg);
+    background-size: cover;
+    padding-bottom: 30px;
+  }
+  h1 {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 80px;
+    letter-spacing: -5px;
+    line-height: 0.8em;
+    margin: 0;
+    padding: 50px 0;
+    text-shadow: -4px 4px 2px rgba(255, 255, 255, 0.25);
+  }
+  h2 {
+    text-transform: uppercase;
+    position: relative;
+    font-size: var(--font-size-h2);
+    z-index: 1;
+    color: rgba(0, 0, 0, 0.7);
+    &:before {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 30px;
+      margin: 0 auto;
+      background-color: var(--color-accent-secondary);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      opacity: 0.61;
+      z-index: -1;
+    }
+  }
+  .i-board {
+    width: 600px;
+    margin: 0 auto;
+    max-width: 80%;
+  }
+  .cta-holder {
+    padding: 15px 0;
+  }
+  .usecase-container {
+    background-color: #fff;
+  }
+</style>

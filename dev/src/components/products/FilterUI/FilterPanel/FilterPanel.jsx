@@ -7,13 +7,11 @@ export default function FilterPanel({ allModels, onFilterChange }) {
   const [sizes, setSizes] = useState([]);
   const [touchTechs, setTouchTechs] = useState([]);
   const [contrastRatios, setContrastRatios] = useState([]);
-  const [priceRanges, setPriceRanges] = useState([]);
   const [isExpanded, setIsExpanded] = useState({
     brands: true,
     sizes: true,
     touchTech: false,
-    contrastRatio: false,
-    priceRange: false
+    contrastRatio: false
   });
 
   // Count models for each filter option
@@ -31,10 +29,9 @@ export default function FilterPanel({ allModels, onFilterChange }) {
       brands,
       sizes,
       touchTechs,
-      contrastRatios,
-      priceRanges
+      contrastRatios
     });
-  }, [brands, sizes, touchTechs, contrastRatios, priceRanges]);
+  }, [brands, sizes, touchTechs, contrastRatios]);
 
   const toggle = (item, list, setList) => {
     setList(
@@ -69,13 +66,6 @@ export default function FilterPanel({ allModels, onFilterChange }) {
     ...new Set(allModels.map((m) => m.contrastRatio))
   ].filter(Boolean);
 
-  // Define price ranges
-  const definedPriceRanges = [
-    { id: 'budget', label: 'Budget ($1,000 - $2,000)' },
-    { id: 'midrange', label: 'Mid-range ($2,000 - $3,000)' },
-    { id: 'premium', label: 'Premium ($3,000+)' }
-  ];
-
   return (
     <aside className={styles.panel}>
       <div className={styles.header}>
@@ -83,8 +73,7 @@ export default function FilterPanel({ allModels, onFilterChange }) {
         {(brands.length > 0 ||
           sizes.length > 0 ||
           touchTechs.length > 0 ||
-          contrastRatios.length > 0 ||
-          priceRanges.length > 0) && (
+          contrastRatios.length > 0) && (
           <button className={styles.clearButton} onClick={clearFilters}>
             Clear All
           </button>
@@ -191,31 +180,6 @@ export default function FilterPanel({ allModels, onFilterChange }) {
                   toggle(ratio, contrastRatios, setContrastRatios)
                 }
                 count={getContrastRatioCount(ratio)}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <div
-          className={styles.sectionHeader}
-          onClick={() => toggleSection('priceRange')}
-        >
-          <h3 className={styles.sectionTitle}>Price Range</h3>
-          <span className={styles.expandIcon}>
-            {isExpanded.priceRange ? '−' : '+'}
-          </span>
-        </div>
-
-        {isExpanded.priceRange && (
-          <div className={styles.optionsContainer}>
-            {definedPriceRanges.map((range) => (
-              <FilterOption
-                key={range.id}
-                label={range.label}
-                checked={priceRanges.includes(range.id)}
-                onChange={() => toggle(range.id, priceRanges, setPriceRanges)}
               />
             ))}
           </div>

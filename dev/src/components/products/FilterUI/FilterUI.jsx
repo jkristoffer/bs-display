@@ -28,29 +28,7 @@ export default function FilterUI({ allModels }) {
       filters.contrastRatios.length === 0 ||
       filters.contrastRatios.includes(model.contrastRatio);
 
-    const matchPriceRange =
-      filters.priceRanges.length === 0 ||
-      filters.priceRanges.some((range) => {
-        const price = parseInt(model.priceRange.replace(/[^0-9]/g, ''));
-        switch (range) {
-          case 'budget':
-            return price >= 1000 && price <= 2000;
-          case 'midrange':
-            return price > 2000 && price <= 3000;
-          case 'premium':
-            return price > 3000;
-          default:
-            return true;
-        }
-      });
-
-    return (
-      matchBrand &&
-      matchSize &&
-      matchTouchTech &&
-      matchContrastRatio &&
-      matchPriceRange
-    );
+    return matchBrand && matchSize && matchTouchTech && matchContrastRatio;
   });
 
   const toggleMobileFilters = () => {

@@ -20,7 +20,6 @@ const ProductDetails = ({ model }) => {
     touchTechnology,
     features,
     warranty,
-    priceRange,
     image,
     brightness,
     contrastRatio,
@@ -55,10 +54,7 @@ const ProductDetails = ({ model }) => {
               alt={modelName}
             />
           </div>
-          <div className={styles.priceTag}>
-            <span className={styles.priceLabel}>Price Range:</span>
-            <span className={styles.price}>{priceRange}</span>
-          </div>
+
           <div className={styles.actions}>
             <button className={styles.primaryButton}>Request Quote</button>
             <button className={styles.secondaryButton}>Book a Demo</button>

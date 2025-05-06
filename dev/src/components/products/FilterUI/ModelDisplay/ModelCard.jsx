@@ -8,7 +8,6 @@ const ModelCard = ({ model }) => {
     size,
     os,
     touchTechnology,
-    priceRange,
     features,
     image
   } = model;
@@ -41,7 +40,6 @@ const ModelCard = ({ model }) => {
           <span className={styles.spec}>{size}"</span>
           <span className={styles.spec}>{os}</span>
           <span className={styles.spec}>{touchTechnology}</span>
-          <span className={styles.price}>{priceRange}</span>
         </div>
 
         <div className={styles.featuresContainer}>

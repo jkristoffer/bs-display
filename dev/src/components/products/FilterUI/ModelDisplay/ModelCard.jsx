@@ -27,6 +27,7 @@ const ModelCard = ({ model }) => {
           src={image || '/assets/iboard-placeholder.jpeg'}
           alt={modelName}
           className={styles.image}
+          loading="lazy"
         />
         <div className={styles.brandBadge}>{brand}</div>
       </div>

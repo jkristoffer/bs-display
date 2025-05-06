@@ -1,0 +1,92 @@
+---
+import Button from '../../common/Button/Button.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="banner full-width-container">
+  <div class="content">
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    <img
+      class="i-board"
+      src="/assets/interactive-board.png"
+      alt="Interactive Board"
+    />
+    <div class="cta-holder">
+      <Button variant="ghost" href="#">Request Quote</Button>
+      <Button variant="ghost" href="#">Book A Demo</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .banner {
+    text-align: center;
+    background-image: url(/assets/abstract-bg-1.jpeg);
+    background-size: cover;
+    padding-bottom: 30px;
+    position: relative;
+  }
+
+  .content {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 80px;
+    letter-spacing: -5px;
+    line-height: 0.8em;
+    margin: 0;
+    padding: 50px 0 20px;
+    text-shadow: -4px 4px 2px rgba(255, 255, 255, 0.25);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-body-large);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .i-board {
+    width: 600px;
+    margin: 0 auto;
+    max-width: 80%;
+    transition: transform 0.5s ease;
+  }
+
+  .i-board:hover {
+    transform: scale(1.02);
+  }
+
+  .cta-holder {
+    padding: 15px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: var(--breakpoint-md)) {
+    h1 {
+      font-size: 60px;
+    }
+  }
+
+  @media (max-width: var(--breakpoint-sm)) {
+    h1 {
+      font-size: 48px;
+      letter-spacing: -2px;
+    }
+  }
+</style>

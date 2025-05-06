@@ -1,0 +1,85 @@
+---
+import BrandCard from './BrandCard.astro';
+import Button from '../../common/Button/Button.astro';
+
+const brands = [
+  {
+    name: 'METZ',
+    logoSrc: 'brands/metz_logo.png'
+  },
+  {
+    name: 'SMART Board',
+    logoSrc: 'brands/smart_screen_logo.png'
+  },
+  {
+    name: 'Promethean',
+    logoSrc: 'brands/promethean_logo.png'
+  }
+];
+---
+
+<section class="brands-section">
+  <h2>Brands</h2>
+  <div class="brand-container">
+    {
+      brands.map((brand) => (
+        <BrandCard name={brand.name} logoSrc={brand.logoSrc} />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .brands-section {
+    padding: var(--padding-s1) 0;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    position: relative;
+    font-size: var(--font-size-h2);
+    z-index: 1;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  h2:before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: var(--color-accent-secondary);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.61;
+    z-index: -1;
+  }
+
+  .brand-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--padding-s1);
+    padding: var(--padding-s1) 0;
+  }
+
+  .view-all {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+  }
+
+  @media (max-width: var(--breakpoint-md)) {
+    .brand-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: var(--breakpoint-sm)) {
+    .brand-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

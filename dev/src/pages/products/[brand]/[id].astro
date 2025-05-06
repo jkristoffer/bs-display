@@ -1,0 +1,25 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import ProductDetails from '../../../components/products/ProductDetails/ProductDetails.jsx';
+import allModels from '../../../data/models.all.json';
+
+export function getStaticPaths() {
+  return allModels.map((model) => ({
+    params: {
+      brand: model.brand.toLowerCase().replace(/\s+/g, '-'),
+      id: model.id
+    },
+    props: { model }
+  }));
+}
+
+const { model } = Astro.props;
+const { brand, model: modelName } = model;
+
+const title = `${brand} ${modelName} | Big Shine Display`;
+const description = `Learn more about the ${brand} ${modelName} interactive smart board. View specifications, features, and request a quote.`;
+---
+
+<ProductLayout title={title} description={description}>
+  <ProductDetails model={model} client:visible />
+</ProductLayout>

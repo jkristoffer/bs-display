@@ -1,0 +1,57 @@
+.wrapper {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  position: relative;
+}
+
+.filterPanel {
+  flex: 0 0 300px;
+}
+
+.modelDisplay {
+  flex: 1;
+}
+
+.mobileFilterToggle {
+  display: none;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.mobileFilterToggle button {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.mobileFilterToggle button:hover {
+  background-color: #007f75;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .mobileFilterToggle {
+    display: block;
+  }
+
+  .filterPanel {
+    display: none;
+    flex: none;
+    width: 100%;
+  }
+
+  .filterPanel.visible {
+    display: block;
+  }
+}

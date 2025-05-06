@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: 'primary' | 'ghost' | 'faint';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  class: className = ''
+} = Astro.props;
+
+// Determine the CSS class based on variant
+const variantClass = `button-${variant}`;
+
+// Determine size class
+const sizeClass = size !== 'md' ? size : '';
+
+// Combine all classes
+const classes = [variantClass, sizeClass, className].filter(Boolean).join(' ');
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  /* Base styles are in global.css */
+  /* Component-specific styles can be added here */
+  .lg {
+    font-size: 1.2rem;
+    padding: 14px 28px;
+  }
+</style>

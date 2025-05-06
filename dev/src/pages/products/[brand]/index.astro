@@ -1,0 +1,92 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import FilterUI from '../../../components/products/FilterUI/FilterUI.jsx';
+import allModels from '../../../data/models.all.json';
+
+export function getStaticPaths() {
+  const brands = [...new Set(allModels.map((model) => model.brand))];
+
+  return brands.map((brand) => {
+    const brandModels = allModels.filter((model) => model.brand === brand);
+    const brandSlug = brand.toLowerCase().replace(/\s+/g, '-');
+
+    return {
+      params: { brand: brandSlug },
+      props: { brand, models: brandModels }
+    };
+  });
+}
+
+const { brand, models } = Astro.props;
+
+const title = `${brand} Interactive Boards | Big Shine Display`;
+const description = `Browse our selection of ${brand} interactive smart boards. Find the perfect ${brand} display for your classroom, office, or training center.`;
+---
+
+<ProductLayout title={title} description={description}>
+  <div class="brand-header">
+    <h1>{brand} Interactive Smart Boards</h1>
+    <p>
+      Explore our selection of {brand} interactive displays.
+      {
+        brand === 'SMART' &&
+          'SMART Boards are known for their intuitive touch technology and robust educational software.'
+      }
+      {
+        brand === 'METZ' &&
+          'METZ displays offer excellent value with high-quality panels and versatile connectivity options.'
+      }
+      {
+        brand === 'Infinity Pro' &&
+          'Infinity Pro boards feature cutting-edge technology with seamless integration for modern classrooms and offices.'
+      }
+      {
+        brand === 'Promethean' &&
+          'Promethean interactive displays are designed with educators in mind, offering powerful teaching tools and durable construction.'
+      }
+    </p>
+  </div>
+
+  <FilterUI allModels={models} client:visible />
+</ProductLayout>
+
+<style>
+  .brand-header {
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  p {
+    max-width: 800px;
+    color: #666;
+    font-size: var(--font-size-body-large);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+</style>

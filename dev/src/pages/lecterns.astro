@@ -1,0 +1,219 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/common/Button/Button.astro';
+
+const title = 'Lecterns | Big Shine Display';
+const description =
+  'Explore our range of modern lecterns and podiums for classrooms, conference rooms, and auditoriums. Coming soon!';
+---
+
+<MainLayout title={title} description={description}>
+  <div class="lecterns-container">
+    <div class="lecterns-header">
+      <h1>Lecterns & Podiums</h1>
+      <p class="subtitle">
+        Our collection of modern lecterns and podiums is coming soon. Perfect
+        for classrooms, conference rooms, and auditoriums.
+      </p>
+    </div>
+
+    <div class="coming-soon">
+      <div class="coming-soon-content">
+        <h2>Coming Soon</h2>
+        <p>
+          We're currently expanding our product line to include high-quality
+          lecterns and podiums. These will complement our interactive displays
+          perfectly for educational and business environments.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <h3>Modern Design</h3>
+            <p>Sleek, contemporary designs that enhance any space</p>
+          </div>
+
+          <div class="feature">
+            <h3>Integrated Technology</h3>
+            <p>
+              Built-in connectivity for seamless integration with our displays
+            </p>
+          </div>
+
+          <div class="feature">
+            <h3>Adjustable Height</h3>
+            <p>Ergonomic options for presenters of all heights</p>
+          </div>
+
+          <div class="feature">
+            <h3>Durable Construction</h3>
+            <p>Built to last with high-quality materials</p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <p>Want to be notified when our lecterns become available?</p>
+          <Button variant="primary" href="/contact">Contact Us</Button>
+        </div>
+      </div>
+
+      <div class="placeholder-image">
+        <div class="image-placeholder">
+          <span>Lectern Preview Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .lecterns-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .lecterns-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  .subtitle {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: var(--font-size-body-large);
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .coming-soon {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: var(--box-shadow-1);
+  }
+
+  .coming-soon-content {
+    flex: 1;
+  }
+
+  h2 {
+    font-size: 32px;
+    color: var(--color-accent-primary);
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .coming-soon-content > p {
+    margin-bottom: 30px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .feature h3 {
+    font-size: 18px;
+    color: var(--color-text-primary);
+    margin: 0 0 10px 0;
+  }
+
+  .feature p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .cta {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta p {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+
+  .placeholder-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+  }
+
+  @media (max-width: 992px) {
+    .coming-soon {
+      flex-direction: column;
+    }
+
+    .placeholder-image {
+      width: 100%;
+    }
+
+    .image-placeholder {
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+
+    .subtitle {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+</style>

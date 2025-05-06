@@ -1,0 +1,28 @@
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.optimized-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.3s ease;
+  filter: blur(20px);
+}
+
+.optimized-image.with-blur {
+  filter: blur(20px);
+}
+
+.optimized-image.loaded {
+  filter: blur(0);
+}
+
+.blur-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #eee;
+  z-index: 0;
+}

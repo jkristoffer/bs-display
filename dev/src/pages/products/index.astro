@@ -1,0 +1,66 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import FilterUI from '../../components/products/FilterUI/FilterUI.jsx';
+import models from '../../data/models.all.json';
+
+const title = 'Interactive Boards | Big Shine Display';
+const description =
+  'Browse our selection of interactive smart boards from top brands like SMART, METZ, and more.';
+---
+
+<ProductLayout title={title} description={description}>
+  <div class="products-header">
+    <h1>Interactive Smart Boards</h1>
+    <p>
+      Find the perfect interactive display for your classroom, office, or
+      training center. Our selection includes top brands with various sizes and
+      features to meet your needs.
+    </p>
+  </div>
+
+  <FilterUI allModels={models} client:visible />
+</ProductLayout>
+
+<style>
+  .products-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+    font-size: var(--font-size-body-large);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+import Button from '../../common/Button/Button.astro';
+
+interface Props {
+  name: string;
+  logoSrc: string;
+}
+
+const { name, logoSrc } = Astro.props;
+---
+
+<div class="brand-card card">
+  <header>{name}</header>
+  <img src={`/assets/${logoSrc}`} alt={`${name} logo`} />
+  <div class="actions">
+    <Button variant="faint" href="#">Learn More</Button>
+  </div>
+</div>
+
+<style>
+  .brand-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      var(--box-shadow-1),
+      0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  header {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body-large);
+  }
+
+  img {
+    width: 150px;
+    margin: var(--padding-s1) 0;
+    object-fit: contain;
+    height: 80px;
+  }
+
+  .actions {
+    margin-top: var(--spacing-md);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+// src/components/common/ImageWrapper/ImageWrapper.astro
+import { Image } from 'astro:assets';
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  aspectRatio = `${width} / ${height}`,
+  className = '', // used for wrapper
+  imageClass, // used for <Image />
+  style = '',
+  placeholder = true
+} = Astro.props;
+
+// Fallback: if only className is provided, apply it to the image as well
+const resolvedImageClass = imageClass ?? className;
+const wrapperStyle = `aspect-ratio: ${aspectRatio}; ${style}`;
+---
+
+<div class={`image-wrapper ${className}`} style={wrapperStyle}>
+  {placeholder && <div class="blur-placeholder" />}
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class:list={[
+      'optimized-image',
+      placeholder && 'with-blur',
+      resolvedImageClass
+    ]}
+  />
+</div>

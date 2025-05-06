@@ -1,0 +1,26 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/common/Nav/Nav.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <main>
+    <slot />
+  </main>
+  <style>
+    main {
+      min-height: 70vh;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+  </style>
+</BaseLayout>

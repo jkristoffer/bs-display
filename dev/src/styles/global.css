@@ -1,61 +1,33 @@
-/* ===== Color Palette ===== */
-:root {
-    --color-background: #ffffff;
-    --color-surface: #fafafa;
-    /* Light background for cards */
-    --color-text-primary: #333333;
-    --color-accent-primary: #009688;
-    /* Teal-Green */
-    --color-accent-secondary: #FFA726;
-    /* Playful Orange */
-    --color-border: #dddddd;
-    /* Optional light grey border color */
+/* Import CSS Variables and Mixins */
+@import './variables.css';
+@import './mixins.css';
 
-    /* Button Colors */
-    --color-button-ghost-border: var(--color-accent-primary);
-    --color-button-ghost-text: var(--color-accent-primary);
-    --color-button-primary-background: var(--color-accent-secondary);
-    --color-button-primary-text: var(--color-background);
-    --color-button-disabled-border: #cccccc;
-    --color-button-disabled-text: #999999;
-
-    --padding-s1: 15px;
-    --padding-s2: 50px;
-    --box-shadow-1: -1px 2px 3px 2px rgba(33, 33, 33, 0.15);
-}
-
-/* ===== Typography ===== */
-:root {
-    --font-primary: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-    --font-secondary: 'Poppins', 'Helvetica Neue', Arial, sans-serif --font-size-h1: 36px;
-    --font-size-h2: 50px;
-    --font-size-h3: 24px;
-    --font-size-body-large: 18px;
-    --font-size-body-regular: 16px;
-    --font-size-small: 14px;
-    --font-size-smaller: 12px;
-
-    --line-height-default: 1.4;
-    --font-weight-light: 300;
-    --font-weight-regular: 400;
-    --font-weight-bold: 700;
-}
-
-/* ===== Spacing ===== */
-:root {
-    --spacing-container-max-width: 1200px;
-    --spacing-card-padding: 24px;
-    --spacing-gap-between-blocks: 20px;
-}
-
+/* Base Styles */
 body {
     font-family: var(--font-primary);
     background-color: var(--color-surface);
     color: var(--color-text-primary);
     padding: 0;
     margin: 0;
+    line-height: var(--line-height-default);
 }
 
+a {
+    text-decoration: unset;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-primary);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Layout */
 .container {
     max-width: 1024px;
     margin: 0 auto;
@@ -67,12 +39,35 @@ body {
     width: 100%;
 }
 
-a {
-    text-decoration: unset;
-    color: inherit;
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    font-weight: var(--font-weight-bold);
 }
 
-/* ===== Buttons ===== */
+h1 {
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Buttons */
 .button-ghost {
     cursor: pointer;
     border: 2px solid var(--color-button-ghost-border);
@@ -80,7 +75,6 @@ a {
     background: rgba(255, 255, 255, 0.9);
     text-transform: uppercase;
     border-radius: 0;
-    /* Sharp edges */
     padding: 12px 24px;
     font-weight: var(--font-weight-bold);
     transition: all 0.3s ease;
@@ -112,7 +106,6 @@ a {
 
 .button-primary:hover {
     background-color: #fb8c00;
-    /* Slightly darker orange hover */
 }
 
 .button-faint {
@@ -121,7 +114,6 @@ a {
     text-transform: uppercase;
     font-size: var(--font-size-smaller);
     font-weight: 400;
-    text-transform: uppercase;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -142,10 +134,25 @@ a {
     border-radius: 20px;
 }
 
-/* ===== Cards ===== */
+/* Cards */
 .card {
     background: var(--color-surface);
     padding: calc(var(--padding-s1) * 2);
     box-shadow: var(--box-shadow-1);
     border-radius: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: var(--breakpoint-md)) {
+    .container {
+        padding: var(--padding-s1) var(--spacing-md);
+    }
+
+    h1 {
+        font-size: calc(var(--font-size-h1) * 0.8);
+    }
+
+    h2 {
+        font-size: calc(var(--font-size-h2) * 0.8);
+    }
 }

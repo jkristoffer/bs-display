@@ -1,0 +1,38 @@
+---
+// src/components/ModelCard/ModelCard.astro
+import styles from './ModelCard.module.css';
+const {
+  brand,
+  modelName,
+  size,
+  os,
+  touchTechnology,
+  priceRange,
+  features,
+  image
+} = Astro.props.model;
+---
+
+<article class={styles.card}>
+  <div class={styles.imageContainer}>
+    <img
+      src={image || '/assets/iboard-placeholder.jpeg'}
+      alt={modelName}
+      class={styles.image}
+    />
+    <span class={styles.brandBadge}>{brand}</span>
+  </div>
+  <div class={styles.content}>
+    <h4 class={styles.title}>{brand} – {modelName}</h4>
+    <div class={styles.specs}>
+      <span class={styles.spec}>{size}"</span>
+      <span class={styles.spec}>{os}</span>
+      <span class={styles.spec}>{touchTechnology}</span>
+      <span class={styles.price}>{priceRange}</span>
+    </div>
+    <ul class={styles.featureList}>
+      {features.slice(0, 5).map((f, i) => <li id={i}>{f}</li>)}
+      {features.length > 5 && <li>+{features.length - 5} more</li>}
+    </ul>
+  </div>
+</article>

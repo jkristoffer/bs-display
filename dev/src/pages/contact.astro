@@ -1,0 +1,290 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/common/Button/Button.astro';
+
+const title = 'Contact Us | Big Shine Display';
+const description =
+  'Get in touch with Big Shine Display for inquiries about interactive smart boards and accessories. Request a quote or book a demo.';
+---
+
+<MainLayout title={title} description={description}>
+  <div class="contact-container">
+    <div class="contact-header">
+      <h1>Contact Us</h1>
+      <p class="subtitle">
+        Have questions about our interactive displays? Need a quote or want to
+        book a demo? We're here to help you find the perfect solution for your
+        needs.
+      </p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-form-container">
+        <h2>Send Us a Message</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone (Optional)</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+
+          <div class="form-group">
+            <label for="organization">Organization</label>
+            <input type="text" id="organization" name="organization" />
+          </div>
+
+          <div class="form-group">
+            <label for="inquiry-type">Inquiry Type</label>
+            <select id="inquiry-type" name="inquiry-type" required>
+              <option value="">Select an option</option>
+              <option value="quote">Request a Quote</option>
+              <option value="demo">Book a Demo</option>
+              <option value="support">Technical Support</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <Button variant="primary" size="lg">Send Message</Button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+
+        <div class="info-item">
+          <h3>Address</h3>
+          <p>5 Harper Road #07-03 <br />Singapore 369673</p>
+        </div>
+
+        <div class="info-item">
+          <h3>Phone</h3>
+          <p>+65 6858 6597</p>
+        </div>
+
+        <div class="info-item">
+          <h3>Email</h3>
+          <p>info@bsdisplay.com</p>
+        </div>
+
+        <div class="info-item">
+          <h3>Business Hours</h3>
+          <p>
+            Monday - Friday: 9:00 AM - 6:00 PM<br />
+            Saturday: 10:00 AM - 2:00 PM<br />
+            Sunday: Closed
+          </p>
+        </div>
+
+        <!-- <div class="social-links">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">LinkedIn</a>
+            <a href="#" class="social-icon">Instagram</a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  .subtitle {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: var(--font-size-body-large);
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .contact-content {
+    display: flex;
+    gap: 40px;
+  }
+
+  .contact-form-container {
+    flex: 1.5;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: var(--box-shadow-1);
+  }
+
+  .contact-info {
+    flex: 1;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: var(--box-shadow-1);
+  }
+
+  h2 {
+    font-size: 24px;
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .form-group {
+    flex: 0 0 calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .full-width {
+    flex: 0 0 100%;
+  }
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    font-size: 16px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 150, 136, 0.2);
+  }
+
+  .form-actions {
+    flex: 0 0 100%;
+    margin-top: 10px;
+  }
+
+  .info-item {
+    margin-bottom: 25px;
+  }
+
+  .info-item h3 {
+    font-size: 18px;
+    color: var(--color-text-primary);
+    margin: 0 0 8px 0;
+  }
+
+  .info-item p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .social-links {
+    margin-top: 30px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-icon {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social-icon:hover {
+    color: var(--color-accent-secondary);
+  }
+
+  @media (max-width: 992px) {
+    .contact-content {
+      flex-direction: column;
+    }
+
+    .contact-form-container,
+    .contact-info {
+      flex: 1 1 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .form-group {
+      flex: 0 0 100%;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .subtitle {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+</style>

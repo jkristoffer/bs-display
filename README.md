@@ -59,7 +59,6 @@ This project is a website for "Big Shine Display," a company that sells interact
     - `pages/` - Website pages
     - `styles/` - CSS styles
   - `public/` - Static assets
-  - `data/` - JSON data files for product models
 
 ## License
 

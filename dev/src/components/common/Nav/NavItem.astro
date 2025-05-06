@@ -1,0 +1,49 @@
+---
+interface Props {
+  href: string;
+  active?: boolean;
+}
+
+const { href, active = false } = Astro.props;
+---
+
+<a href={href} class={active ? 'active' : ''}>
+  <slot />
+</a>
+
+<style>
+  a {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    padding: 8px 12px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--color-accent-primary);
+  }
+
+  a.active {
+    color: var(--color-accent-primary);
+  }
+
+  a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background-color: var(--color-accent-primary);
+  }
+
+  @media (max-width: var(--breakpoint-md)) {
+    a {
+      padding: 8px 6px;
+      font-size: 14px;
+    }
+  }
+</style>

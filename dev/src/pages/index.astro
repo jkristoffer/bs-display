@@ -26,14 +26,15 @@ const description =
   </section>
 </MainLayout>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .usecase-container {
     background-color: #fff;
     padding: 50px 0;
     margin-top: 30px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     .usecase-container {
       padding: 30px 0;
     }

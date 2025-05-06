@@ -1,3 +1,5 @@
+@use '@styles/_breakpoints.scss' as *;
+
 .panel {
   background-color: var(--color-surface);
   border-radius: 8px;
@@ -96,7 +98,7 @@
   background: #aaa;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-md) {
   .panel {
     max-width: 100%;
     position: relative;

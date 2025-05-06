@@ -1,82 +1,82 @@
 .optionLabel {
-    display: flex;
-    align-items: center;
-    padding: 8px 0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
 }
 
 .optionLabel:hover {
-    color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
 }
 
 .optionLabel.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .checkbox {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
 }
 
 .input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
 .checkmark {
-    position: relative;
-    height: 18px;
-    width: 18px;
-    background-color: #fff;
-    border: 2px solid var(--color-border);
-    border-radius: 3px;
-    transition: all 0.2s ease;
+  position: relative;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: 3px;
+  transition: all 0.2s ease;
 }
 
 .input:checked~.checkmark {
-    background-color: var(--color-accent-primary);
-    border-color: var(--color-accent-primary);
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
 }
 
 .input:checked~.checkmark:after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .labelText {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
 }
 
 .count {
-    color: #999;
-    font-size: 12px;
-    margin-left: 5px;
+  color: #999;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .disabled .checkmark {
-    background-color: #f0f0f0;
-    border-color: #ddd;
+  background-color: #f0f0f0;
+  border-color: #ddd;
 }
 
 .disabled .labelText {
-    color: #999;
+  color: #999;
 }

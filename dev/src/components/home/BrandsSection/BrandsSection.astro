@@ -29,7 +29,8 @@ const brands = [
   </div>
 </section>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .brands-section {
     padding: var(--padding-s1) 0;
   }
@@ -71,13 +72,13 @@ const brands = [
     margin-top: var(--spacing-lg);
   }
 
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: $breakpoint-md) {
     .brand-container {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: var(--breakpoint-sm)) {
+  @media (max-width: $breakpoint-sm) {
     .brand-container {
       grid-template-columns: 1fr;
     }

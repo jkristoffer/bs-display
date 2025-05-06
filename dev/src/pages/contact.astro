@@ -104,7 +104,8 @@ const description =
   </div>
 </MainLayout>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .contact-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -263,7 +264,7 @@ const description =
     color: var(--color-accent-secondary);
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: $breakpoint-lg) {
     .contact-content {
       flex-direction: column;
     }
@@ -274,7 +275,7 @@ const description =
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     .form-group {
       flex: 0 0 100%;
     }

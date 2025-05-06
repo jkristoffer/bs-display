@@ -25,7 +25,8 @@ const { title, subtitle } = Astro.props;
   </div>
 </section>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .banner {
     text-align: center;
     background-image: url(/assets/abstract-bg-1.jpeg);
@@ -77,13 +78,13 @@ const { title, subtitle } = Astro.props;
     flex-wrap: wrap;
   }
 
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: $breakpoint-md) {
     h1 {
       font-size: 60px;
     }
   }
 
-  @media (max-width: var(--breakpoint-sm)) {
+  @media (max-width: $breakpoint-sm) {
     h1 {
       font-size: 48px;
       letter-spacing: -2px;

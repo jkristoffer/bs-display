@@ -11,7 +11,8 @@ const { href, active = false } = Astro.props;
   <slot />
 </a>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   a {
     font-size: 16px;
     text-transform: uppercase;
@@ -40,7 +41,7 @@ const { href, active = false } = Astro.props;
     background-color: var(--color-accent-primary);
   }
 
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: $breakpoint-md) {
     a {
       padding: 8px 6px;
       font-size: 14px;

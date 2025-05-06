@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FilterPanel from './FilterPanel/FilterPanel';
 import ModelDisplay from './ModelDisplay/ModelDisplay';
-import styles from './FilterUI.module.css';
+import styles from './FilterUI.module.scss';
 
 export default function FilterUI({ allModels }) {
   const [filters, setFilters] = useState({

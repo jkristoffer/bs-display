@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ModelCard from './ModelCard';
-import styles from './ModelDisplay.module.css';
+import styles from './ModelDisplay.module.scss';
 
 export default function ModelDisplay({ models }) {
   const [sortBy, setSortBy] = useState('default');

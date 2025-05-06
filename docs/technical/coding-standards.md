@@ -262,7 +262,7 @@ return (
 ### 5.3 Responsive Design
 
 - Use mobile-first approach for responsive design
-- Use media queries with variables for breakpoints
+- Use media queries with variables for breakpoints, Using SCSS
 - Test on multiple screen sizes
 
 ```css
@@ -270,7 +270,7 @@ return (
   padding: 10px;
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: $breakpoint-md) {
   .container {
     padding: 20px;
   }

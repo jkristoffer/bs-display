@@ -65,7 +65,8 @@ const description =
   </div>
 </MainLayout>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .lecterns-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -185,7 +186,7 @@ const description =
     padding: 20px;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: $breakpoint-lg) {
     .coming-soon {
       flex-direction: column;
     }
@@ -199,7 +200,7 @@ const description =
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     .features {
       grid-template-columns: 1fr;
     }

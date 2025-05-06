@@ -1,4 +1,4 @@
-import styles from './ModelCard.module.css';
+import styles from './ModelCard.module.scss';
 
 const ModelCard = ({ model }) => {
   const {

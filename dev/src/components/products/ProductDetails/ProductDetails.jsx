@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProductDetails.module.css';
+import styles from './ProductDetails.module.scss';
 
 const ProductDetails = ({ model }) => {
   if (!model) {

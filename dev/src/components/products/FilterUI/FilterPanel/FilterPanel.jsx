@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FilterOption from './FilterOption';
-import styles from './FilterPanel.module.css';
+import styles from './FilterPanel.module.scss';
 
 export default function FilterPanel({ allModels, onFilterChange }) {
   const [brands, setBrands] = useState([]);

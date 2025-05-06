@@ -50,7 +50,8 @@ const description = `Browse our selection of ${brand} interactive smart boards. 
   <FilterUI allModels={models} client:visible />
 </ProductLayout>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .brand-header {
     margin-bottom: 30px;
   }
@@ -80,7 +81,7 @@ const description = `Browse our selection of ${brand} interactive smart boards. 
     line-height: 1.6;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-md) {
     h1 {
       font-size: 28px;
     }

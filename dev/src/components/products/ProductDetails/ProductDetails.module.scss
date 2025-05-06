@@ -1,0 +1,250 @@
+@use '@styles/_breakpoints.scss' as *;
+
+.productDetails {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.breadcrumbs a {
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.breadcrumbs a:first-child {
+  margin-left: 0;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 32px;
+  color: var(--color-text-primary);
+  margin: 0;
+  font-weight: 700;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.imageSection {
+  flex: 1;
+  max-width: 500px;
+}
+
+.mainImage {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--box-shadow-1);
+  margin-bottom: 20px;
+}
+
+.mainImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.priceTag {
+  background-color: var(--color-accent-secondary);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceLabel {
+  font-weight: 500;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border: none;
+}
+
+.secondaryButton {
+  background-color: white;
+  color: var(--color-accent-primary);
+  border: 2px solid var(--color-accent-primary);
+}
+
+.primaryButton:hover {
+  background-color: #007f75;
+}
+
+.secondaryButton:hover {
+  background-color: #f0f0f0;
+}
+
+.infoSection {
+  flex: 1.5;
+}
+
+.specTable {
+  margin-bottom: 30px;
+}
+
+.specTable h2,
+.features h2,
+.relatedProducts h2 {
+  font-size: 24px;
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.specTable h2::after,
+.features h2::after,
+.relatedProducts h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--color-accent-primary);
+}
+
+.specTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specTable th,
+.specTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.specTable th {
+  width: 40%;
+  font-weight: 600;
+  color: #555;
+}
+
+.specTable tr:last-child th,
+.specTable tr:last-child td {
+  border-bottom: none;
+}
+
+.featureList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureList li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 25px;
+}
+
+.featureList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+  font-weight: bold;
+}
+
+.featureList li:last-child {
+  border-bottom: none;
+}
+
+.relatedProducts {
+  margin-top: 50px;
+}
+
+.notFound {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.notFound h2 {
+  font-size: 28px;
+  color: var(--color-text-primary);
+  margin-bottom: 15px;
+}
+
+.notFound p {
+  color: #666;
+  font-size: 16px;
+}
+
+@media (max-width: 992px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .imageSection {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .title {
+    font-size: 28px;
+  }
+
+  .specTable th,
+  .specTable td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}

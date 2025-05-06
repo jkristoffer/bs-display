@@ -39,7 +39,8 @@ const {
   </div>
 </section>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .usecase-section {
     display: flex;
     flex-direction: row;
@@ -119,7 +120,7 @@ const {
     margin-top: var(--spacing-lg);
   }
 
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: $breakpoint-md) {
     .usecase-section,
     .usecase-section.reversed {
       flex-direction: column;

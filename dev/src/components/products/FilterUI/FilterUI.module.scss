@@ -1,3 +1,5 @@
+@use '@styles/breakpoints' as *;
+
 .wrapper {
   display: flex;
   gap: 30px;
@@ -36,7 +38,7 @@
   background-color: #007f75;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-md) {
   .wrapper {
     flex-direction: column;
   }

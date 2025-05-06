@@ -39,7 +39,8 @@ const navItems = [
   </div>
 </nav>
 
-<style>
+<style lang="scss">
+  @use '@styles/_breakpoints.scss' as *;
   .main-nav {
     width: 100%;
     background-color: #f7efeb;
@@ -93,14 +94,10 @@ const navItems = [
     margin: 5px 0;
     transition: all 0.3s ease;
   }
-
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: $breakpoint-md) {
     .nav-items {
       gap: 10px;
     }
-  }
-
-  @media (max-width: var(--breakpoint-sm)) {
     .nav-items {
       display: none;
     }

@@ -31,13 +31,25 @@ const navItems = [
         ))
       }
     </div>
-    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+    <button
+      id="mobile-menu-toggle"
+      class="mobile-menu-toggle"
+      aria-label="Toggle menu"
+    >
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
 </nav>
+
+<script>
+  const btn = document.getElementById('mobile-menu-toggle');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    document.querySelector('.nav-items').classList.toggle('active');
+  });
+</script>
 
 <style lang="scss">
   @use '@styles/_breakpoints.scss' as *;
@@ -96,12 +108,23 @@ const navItems = [
   }
   @media (max-width: $breakpoint-md) {
     .nav-items {
-      gap: 10px;
-    }
-    .nav-items {
       display: none;
     }
-
+    .nav-items.active {
+      gap: 10px;
+      flex-flow: column;
+      position: absolute;
+      left: 0;
+      top: 78px;
+      background: #eee;
+      width: 100%;
+      display: block;
+    }
+    .nav-items a {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
     .mobile-menu-toggle {
       display: block;
     }

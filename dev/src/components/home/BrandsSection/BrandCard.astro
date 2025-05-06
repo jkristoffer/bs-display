@@ -3,17 +3,22 @@ import Button from '../../common/Button/Button.astro';
 
 interface Props {
   name: string;
+  path: string;
   logoSrc: string;
 }
 
-const { name, logoSrc } = Astro.props;
+const { name, logoSrc, path } = Astro.props;
 ---
 
 <div class="brand-card card">
   <header>{name}</header>
   <img src={`/assets/${logoSrc}`} alt={`${name} logo`} />
   <div class="actions">
-    <Button variant="faint" href="#">Learn More</Button>
+    <Button
+      variant="faint"
+      href=`/products/${path.toLowerCase().replace(/\s+/g, '-')}`
+      `>Learn More</Button
+    >
   </div>
 </div>
 
@@ -27,6 +32,7 @@ const { name, logoSrc } = Astro.props;
       transform 0.3s ease,
       box-shadow 0.3s ease;
     height: 100%;
+    box-sizing: border-box;
   }
 
   .brand-card:hover {

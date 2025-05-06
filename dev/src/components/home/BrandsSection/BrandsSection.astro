@@ -5,14 +5,17 @@ import Button from '../../common/Button/Button.astro';
 const brands = [
   {
     name: 'METZ',
+    path: 'metz',
     logoSrc: 'brands/metz_logo.png'
   },
   {
     name: 'SMART Board',
+    path: 'smart',
     logoSrc: 'brands/smart_screen_logo.png'
   },
   {
     name: 'Promethean',
+    path: 'infinity-pro',
     logoSrc: 'brands/promethean_logo.png'
   }
 ];
@@ -23,7 +26,11 @@ const brands = [
   <div class="brand-container">
     {
       brands.map((brand) => (
-        <BrandCard name={brand.name} logoSrc={brand.logoSrc} />
+        <BrandCard
+          name={brand.name}
+          logoSrc={brand.logoSrc}
+          path={brand.path}
+        />
       ))
     }
   </div>

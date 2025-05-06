@@ -123,15 +123,29 @@ const {
   @media (max-width: $breakpoint-md) {
     .usecase-section,
     .usecase-section.reversed {
-      flex-direction: column;
+      flex-direction: column-reverse;
+      align-items: center;
     }
 
     .usecase-content {
       order: 1;
+      text-align: center;
     }
 
     .usecase-image {
       order: 2;
+      width: 80%;
+      border-radius: 50%;
+    }
+    .cta-buttons {
+      justify-content: center;
+    }
+
+    h3 {
+      padding: 0;
+    }
+    .points :global(strong) {
+      display: block;
     }
   }
 </style>

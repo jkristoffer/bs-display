@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import eslint from "vite-plugin-eslint";
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
@@ -23,5 +24,14 @@ export default defineConfig({
     experimentalLayout: "constrained", // Default layout for responsive images
     experimentalObjectFit: "cover", // Default object-fit value
     experimentalObjectPosition: "center", // Default object-position value
-  }
+  },
+  vite: {
+    plugins: [
+      eslint({
+        cache: false,
+        include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.astro'],
+        exclude: ['node_modules', 'dist', '.astro'],
+      }),
+    ],
+  },
 });

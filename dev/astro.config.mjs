@@ -1,12 +1,15 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import eslint from "vite-plugin-eslint";
+import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
+
   experimental: {
     responsiveImages: true,
   },
+
   image: {
     service: {
       entrypoint: "astro/assets/services/sharp", // Options: 'sharp' (default), 'squoosh', or a custom service
@@ -25,6 +28,7 @@ export default defineConfig({
     experimentalObjectFit: "cover", // Default object-fit value
     experimentalObjectPosition: "center", // Default object-position value
   },
+
   vite: {
     plugins: [
       eslint({
@@ -34,4 +38,6 @@ export default defineConfig({
       }),
     ],
   },
+
+  adapter: vercel(),
 });

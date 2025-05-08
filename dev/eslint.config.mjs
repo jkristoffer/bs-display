@@ -54,7 +54,7 @@ export default defineConfig([
       "no-undef": "error", // Disable "not defined" errors for specific Astro types that are globally available (ImageMetadata)
       "@typescript-eslint/no-explicit-any": "off", // you may want this as it can get annoying
       "astro/jsx-a11y/anchor-is-valid": "off",
-      // '@typescript-eslint/no-unused-vars': [
+      "astro/no-unused-css-selector": "warn",      // '@typescript-eslint/no-unused-vars': [
       //   'warn',
       //   {
       //     varsIgnorePattern: '^_',

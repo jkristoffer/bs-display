@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import FilterPanel from './FilterPanel/FilterPanel';
 import ModelDisplay from './ModelDisplay/ModelDisplay';
 import styles from './FilterUI.module.scss';

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/common/Nav/Nav.astro';
+import Footer from '../components/common/Footer/Footer.astro';
 
 interface Props {
   title: string;
@@ -15,12 +16,10 @@ const { title, description } = Astro.props;
   <main>
     <slot />
   </main>
+  <Footer />
   <style>
     main {
       min-height: 70vh;
-    }
-    h1 {
-      font-size: 2rem;
     }
   </style>
 </BaseLayout>

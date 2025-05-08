@@ -1,0 +1,212 @@
+---
+// Import any necessary dependencies here
+---
+
+<!-- dev/src/components/common/Footer/Footer.astro -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="/">
+          <span class="logo-text">BIG SHINE DISPLAY</span>
+          <p class="tagline">Premium Interactive Smart Boards</p>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="/brands/metz">METZ Boards</a></li>
+            <li><a href="/brands/smart">SMART Boards</a></li>
+            <li><a href="/brands/infinity-pro">Promethean Boards</a></li>
+            <li><a href="/accessories">Accessories</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="/solutions/classrooms">For Classrooms</a></li>
+            <li><a href="/solutions/offices">For Offices & Boardrooms</a></li>
+            <li><a href="/solutions/training">For Training Centers</a></li>
+            <li><a href="/consultation">Free Consultation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/demo">Book A Demo</a></li>
+            <li><a href="/support">Technical Support</a></li>
+            <li><a href="/faq">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; {new Date().getFullYear()} Big Shine Display. All rights reserved.
+      </div>
+      <div class="social-links">
+        <a href="https://facebook.com/bigshinedisplay" aria-label="Facebook"
+          ><i class="icon-facebook"></i></a
+        >
+        <a href="https://instagram.com/bigshinedisplay" aria-label="Instagram"
+          ><i class="icon-instagram"></i></a
+        >
+        <a
+          href="https://linkedin.com/company/bigshinedisplay"
+          aria-label="LinkedIn"><i class="icon-linkedin"></i></a
+        >
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: #f0f8ff;
+    padding: 4rem 0 2rem;
+    color: #333;
+    border-top: 4px solid var(--color-accent-secondary);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    flex: 0 0 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7);
+    letter-spacing: -1px;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    color: #555;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .footer-section {
+    flex: 1 1 200px;
+  }
+
+  .footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-accent-secondary);
+  }
+
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-section a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .footer-section a:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links a {
+    color: #555;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .social-links a:hover {
+    color: #fff;
+    background-color: var(--color-accent-primary);
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  h1 {
+    display: block;
+  }
+</style>

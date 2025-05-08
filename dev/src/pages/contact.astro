@@ -132,13 +132,24 @@ const description =
         loadingSpinner.style.display = 'inline-block';
 
         try {
-          // Create form data object from the form
+          // Create a data object from the form fields
           const formData = new FormData(form);
+          const formDataObject = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone') || '',
+            organization: formData.get('organization') || '',
+            'inquiry-type': formData.get('inquiry-type'),
+            message: formData.get('message')
+          };
 
-          // Send the form data to our API endpoint
+          // Send the data as JSON to our API endpoint
           const response = await fetch('/api/contact', {
             method: 'POST',
-            body: formData
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataObject)
           });
 
           const result = await response.json();

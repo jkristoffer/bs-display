@@ -21,7 +21,8 @@ const description =
     <div class="contact-content">
       <div class="contact-form-container">
         <h2>Send Us a Message</h2>
-        <form class="contact-form">
+        <form class="contact-form" id="contactForm">
+          <div id="formStatus" class="form-status" style="display: none;"></div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required />
@@ -59,7 +60,8 @@ const description =
           </div>
 
           <div class="form-actions">
-            <Button variant="primary" size="lg">Send Message</Button>
+            <Button variant="primary" size="lg" type="submit" id="submitButton">Send Message</Button>
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
           </div>
         </form>
       </div>
@@ -104,7 +106,95 @@ const description =
   </div>
 </MainLayout>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const formStatus = document.getElementById('formStatus');
+    const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    if (form && formStatus && submitButton && loadingSpinner) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Reset status and show loading
+        formStatus.style.display = 'none';
+        submitButton.disabled = true;
+        loadingSpinner.style.display = 'inline-block';
+        
+        try {
+          // Create form data object from the form
+          const formData = new FormData(form);
+          
+          // Send the form data to our API endpoint
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData,
+          });
+          
+          const result = await response.json();
+          
+          // Display response message
+          formStatus.textContent = result.message;
+          formStatus.className = `form-status ${
+            result.success ? 'success' : 'error'
+          }`;
+          formStatus.style.display = 'block';
+          
+          // If successful, reset the form
+          if (result.success) {
+            form.reset();
+          }
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          formStatus.textContent = 'There was an error sending your message. Please try again later.';
+          formStatus.className = 'form-status error';
+          formStatus.style.display = 'block';
+        } finally {
+          // Re-enable the submit button and hide loading spinner
+          submitButton.disabled = false;
+          loadingSpinner.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
+
 <style lang="scss">
+  .form-status {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  .form-status.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  .form-status.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #d32f2f;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+  }
+  
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
   @use '@styles/_breakpoints.scss' as *;
   .contact-container {
     max-width: 1200px;

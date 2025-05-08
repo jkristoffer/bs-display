@@ -4,13 +4,19 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  id?: string;
 }
 
 const {
   variant = 'primary',
   size = 'md',
   href,
-  class: className = ''
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  id
 } = Astro.props;
 
 // Determine the CSS class based on variant
@@ -25,11 +31,11 @@ const classes = [variantClass, sizeClass, className].filter(Boolean).join(' ');
 
 {
   href ? (
-    <a href={href} class={classes}>
+    <a href={href} class={classes} id={id}>
       <slot />
     </a>
   ) : (
-    <button class={classes}>
+    <button class={classes} type={type} disabled={disabled} id={id}>
       <slot />
     </button>
   )

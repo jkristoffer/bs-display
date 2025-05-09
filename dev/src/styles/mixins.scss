@@ -2,101 +2,100 @@
 
 /* Flexbox Layouts */
 .flex-row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flex-wrap {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 /* Grid Layouts */
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--spacing-md);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-md);
 }
 
 /* Typography */
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-primary {
-    color: var(--color-text-primary);
+  color: var(--color-text-primary);
 }
 
 .text-accent {
-    color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
 }
 
 /* Containers */
 .container {
-    max-width: var(--spacing-container-max-width);
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-    box-sizing: border-box;
+  max-width: var(--spacing-container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  box-sizing: border-box;
 }
 
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
 /* Cards */
 .card {
-    background-color: var(--color-surface);
-    border-radius: 4px;
-    padding: var(--spacing-card-padding);
-    box-shadow: var(--box-shadow-1);
+  background-color: var(--color-surface);
+  border-radius: 4px;
+  box-shadow: var(--box-shadow-1);
 }
 
 /* Responsive Utilities */
 @media (max-width: var(--breakpoint-sm)) {
-    .hide-sm {
-        display: none;
-    }
+  .hide-sm {
+    display: none;
+  }
 }
 
 @media (max-width: var(--breakpoint-md)) {
-    .hide-md {
-        display: none;
-    }
+  .hide-md {
+    display: none;
+  }
 }
 
 @media (min-width: var(--breakpoint-md)) {
-    .show-md {
-        display: block;
-    }
+  .show-md {
+    display: block;
+  }
 }
 
 /* Animations */
 .fade-in {
-    animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.5s ease-in;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }

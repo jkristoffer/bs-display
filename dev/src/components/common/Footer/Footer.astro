@@ -129,7 +129,8 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 40px;
     height: 3px;
     background-color: var(--color-accent-secondary);
@@ -167,11 +168,13 @@
   .copyright {
     font-size: 0.85rem;
     color: #777;
+    flex-grow: 1;
   }
 
   .social-links {
     display: flex;
     gap: 1rem;
+    display: none;
   }
 
   .social-links a {

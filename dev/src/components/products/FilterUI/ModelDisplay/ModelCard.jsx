@@ -39,8 +39,8 @@ const ModelCard = ({ model }) => {
 
         <div className={styles.specs}>
           <span className={styles.spec}>{size}"</span>
-          <span className={styles.spec}>{os}</span>
           <span className={styles.spec}>{touchTechnology}</span>
+          <span className={styles.spec}>{os}</span>
         </div>
 
         <div className={styles.featuresContainer}>

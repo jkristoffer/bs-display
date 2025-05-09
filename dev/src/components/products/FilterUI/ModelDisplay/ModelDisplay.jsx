@@ -84,7 +84,7 @@ export default function ModelDisplay({ models }) {
       <section className={`${styles.grid} ${styles[displayMode]}`}>
         {sortedModels.map((model) => (
           <div key={model.id} className={styles.cardWrapper}>
-            <ModelCard model={model} />
+            <ModelCard model={model} displayMode={displayMode} />
           </div>
         ))}
       </section>

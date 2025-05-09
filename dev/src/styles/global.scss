@@ -1,42 +1,38 @@
-/* Import CSS Variables and Mixins */
-@import './variables.css';
-@import './mixins.css';
-
 /* Base Styles */
 body {
-    font-family: var(--font-primary);
-    background-color: var(--color-surface);
-    color: var(--color-text-primary);
-    padding: 0;
-    margin: 0;
-    line-height: var(--line-height-default);
+  font-family: var(--font-primary);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  padding: 0;
+  margin: 0;
+  line-height: var(--line-height-default);
 }
 
 a {
-    text-decoration: unset;
-    color: inherit;
-    transition: color 0.3s ease;
+  text-decoration: unset;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Layout */
 .container {
-    max-width: 1024px;
-    margin: 0 auto;
-    text-align: center;
-    padding: var(--padding-s2) 0;
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--padding-s2) 0;
 }
 
 .full-width-container {
-    width: 100%;
+  width: 100%;
 }
 
 /* Typography */
@@ -46,113 +42,113 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 0;
-    font-weight: var(--font-weight-bold);
+  margin-top: 0;
+  font-weight: var(--font-weight-bold);
 }
 
 h1 {
-    font-size: var(--font-size-h1);
+  font-size: var(--font-size-h1);
 }
 
 h2 {
-    font-size: var(--font-size-h2);
+  font-size: var(--font-size-h2);
 }
 
 h3 {
-    font-size: var(--font-size-h3);
+  font-size: var(--font-size-h3);
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: var(--spacing-md);
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
 }
 
 /* Buttons */
 .button-ghost {
-    cursor: pointer;
-    border: 2px solid var(--color-button-ghost-border);
-    color: var(--color-button-ghost-text);
-    background: rgba(255, 255, 255, 0.9);
-    text-transform: uppercase;
-    border-radius: 0;
-    padding: 12px 24px;
-    font-weight: var(--font-weight-bold);
-    transition: all 0.3s ease;
-    display: inline-block;
-    margin-bottom: 5px;
+  cursor: pointer;
+  border: 2px solid var(--color-button-ghost-border);
+  color: var(--color-button-ghost-text);
+  background: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 12px 24px;
+  font-weight: var(--font-weight-bold);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 
 .button-ghost.sm {
-    font-size: 70%;
-    padding: 6px 12px;
+  font-size: 70%;
+  padding: 6px 12px;
 }
 
 .button-ghost:hover {
-    background-color: rgba(0, 150, 136, 0.8);
-    color: #FFF;
+  background-color: rgba(0, 150, 136, 0.8);
+  color: #fff;
 }
 
 .button-primary {
-    cursor: pointer;
-    background-color: var(--color-button-primary-background);
-    color: var(--color-button-primary-text);
-    border: none;
-    border-radius: 4px;
-    text-transform: uppercase;
-    padding: 12px 24px;
-    font-weight: var(--font-weight-bold);
-    transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: var(--color-button-primary-background);
+  color: var(--color-button-primary-text);
+  border: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  font-weight: var(--font-weight-bold);
+  transition: all 0.3s ease;
 }
 
 .button-primary:hover {
-    background-color: #fb8c00;
+  background-color: #fb8c00;
 }
 
 .button-faint {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 6px 18px;
-    text-transform: uppercase;
-    font-size: var(--font-size-smaller);
-    font-weight: 400;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: -1px -2px 5px rgba(200, 200, 200, 0.7) inset;
-    color: #606060;
-    transition: all .6s;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 6px 18px;
+  text-transform: uppercase;
+  font-size: var(--font-size-smaller);
+  font-weight: 400;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: -1px -2px 5px rgba(200, 200, 200, 0.7) inset;
+  color: #606060;
+  transition: all 0.6s;
 }
 
 .button-faint::after {
-    content: "→";
-    margin-left: 5px;
-    font-size: 150%;
+  content: '→';
+  margin-left: 5px;
+  font-size: 150%;
 }
 
 .button-faint:hover {
-    box-shadow: 0px 0px 5px rgba(100, 100, 100, 0.2) inset;
-    background-color: #eee;
-    border-radius: 20px;
+  box-shadow: 0px 0px 5px rgba(100, 100, 100, 0.2) inset;
+  background-color: #eee;
+  border-radius: 20px;
 }
 
 /* Cards */
 .card {
-    background: var(--color-surface);
-    padding: calc(var(--padding-s1) * 2);
-    box-shadow: var(--box-shadow-1);
-    border-radius: 3px;
+  background: var(--color-surface);
+  padding: calc(var(--padding-s1) * 2);
+  box-shadow: var(--box-shadow-1);
+  border-radius: 3px;
 }
 
 /* Responsive adjustments */
 @media (max-width: var(--breakpoint-md)) {
-    .container {
-        padding: var(--padding-s1) var(--spacing-md);
-    }
+  .container {
+    padding: var(--padding-s1) var(--spacing-md);
+  }
 
-    h1 {
-        font-size: calc(var(--font-size-h1) * 0.8);
-    }
+  h1 {
+    font-size: calc(var(--font-size-h1) * 0.8);
+  }
 
-    h2 {
-        font-size: calc(var(--font-size-h2) * 0.8);
-    }
+  h2 {
+    font-size: calc(var(--font-size-h2) * 0.8);
+  }
 }

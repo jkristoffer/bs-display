@@ -54,6 +54,7 @@ const description = `Browse our selection of ${brand} interactive smart boards. 
   @use '@styles/_breakpoints.scss' as *;
   .brand-header {
     margin-bottom: 30px;
+    text-align: center;
   }
 
   h1 {
@@ -68,7 +69,8 @@ const description = `Browse our selection of ${brand} interactive smart boards. 
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100px;
     height: 3px;
     background-color: var(--color-accent-primary);
@@ -79,6 +81,7 @@ const description = `Browse our selection of ${brand} interactive smart boards. 
     color: #666;
     font-size: var(--font-size-body-large);
     line-height: 1.6;
+    margin: 0 auto;
   }
 
   @media (max-width: $breakpoint-md) {

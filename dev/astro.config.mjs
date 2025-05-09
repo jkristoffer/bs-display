@@ -37,12 +37,11 @@ export default defineConfig({
         exclude: ['node_modules', 'dist', '.astro'],
       }),
     ],
-  },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "src/styles/index.scss" as *;`,
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "src/styles/index.scss" as *;`,
+        },
       },
     },
   },

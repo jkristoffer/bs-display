@@ -40,7 +40,10 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "src/styles/index.scss" as *;`,
+          additionalData: (source, filename) => {
+            if (filename.endsWith('index.scss')) return source;
+            return `@use "src/styles/index.scss" as *;\n${source}`;
+          },
         },
       },
     },

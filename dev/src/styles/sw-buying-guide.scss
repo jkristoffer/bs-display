@@ -309,5 +309,10 @@
       flex-direction: column;
       gap: var(--spacing-md);
     }
+
+    .why-choose-icon {
+      left: unset;
+      right: 130%;
+    }
   }
 }

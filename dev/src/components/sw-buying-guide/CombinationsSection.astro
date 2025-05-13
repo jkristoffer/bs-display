@@ -11,47 +11,52 @@ interface Props {
   ctaLink?: string;
 }
 
-const { 
+const {
   combinations = [
     {
-      title: "Education (Budget-Friendly)",
-      recommendation: "LED Display + IR Touch",
-      description: "Balances affordability with durability for classroom environments."
+      title: 'Education (Budget-Friendly)',
+      recommendation: 'LED Display + IR Touch',
+      description:
+        'Balances affordability with durability for classroom environments.'
     },
     {
-      title: "Creative Industries (High Precision)",
-      recommendation: "OLED Display + EMR Touch",
-      description: "Provides exceptional color accuracy and pen precision for detailed creative work."
+      title: 'Creative Industries (High Precision)',
+      recommendation: 'OLED Display + EMR Touch',
+      description:
+        'Provides exceptional color accuracy and pen precision for detailed creative work.'
     },
     {
-      title: "Corporate (Professional)",
-      recommendation: "LED/OLED + Capacitive Touch",
-      description: "Offers sleek aesthetics with responsive multi-touch for business environments."
+      title: 'Corporate (Professional)',
+      recommendation: 'LED/OLED + Capacitive Touch',
+      description:
+        'Offers sleek aesthetics with responsive multi-touch for business environments.'
     },
     {
-      title: "Budget Setups",
-      recommendation: "Projector + IR or Resistive Touch",
-      description: "Most cost-effective solution for basic interactive needs."
+      title: 'Budget Setups',
+      recommendation: 'Projector + IR or Resistive Touch',
+      description: 'Most cost-effective solution for basic interactive needs.'
     }
   ],
-  ctaText = "Find Your Perfect Whiteboard in 60 Seconds! →",
-  ctaLink = "#"
+  ctaText = 'Find Your Perfect Whiteboard in 60 Seconds! →',
+  ctaLink = '#'
 } = Astro.props;
 ---
 
 <section id="combinations" class="content-section">
   <div class="container">
-    <h2>💰 Best Combinations by Use Case & Budget</h2>
+    <h2>Best Combinations by Use Case & Budget</h2>
     <div class="combinations-grid">
-      {combinations.map(combo => (
-        <div class="combination-card">
-          <h3>{combo.title}</h3>
-          <p><strong>Recommended:</strong> {combo.recommendation}</p>
-          <p>
-            {combo.description}
-          </p>
-        </div>
-      ))}
+      {
+        combinations.map((combo) => (
+          <div class="combination-card">
+            <h3>{combo.title}</h3>
+            <p>
+              <strong>Recommended:</strong> {combo.recommendation}
+            </p>
+            <p>{combo.description}</p>
+          </div>
+        ))
+      }
     </div>
     <div class="cta-container">
       <a href={ctaLink} class="button-primary">{ctaText}</a>

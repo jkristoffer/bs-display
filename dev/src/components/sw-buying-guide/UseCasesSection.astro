@@ -11,28 +11,31 @@ interface Props {
   useCases: UseCase[];
 }
 
-const { 
+const {
   useCases = [
     {
-      title: "Classrooms & Education",
-      recommendation: "LED + IR (Affordable & Robust)",
-      description: "Ideal for educational environments where durability and cost-effectiveness are priorities while maintaining good interactivity.",
-      link: "/solutions/education",
-      linkText: "Learn more"
+      title: 'Classrooms & Education',
+      recommendation: 'LED + IR (Affordable & Robust)',
+      description:
+        'Ideal for educational environments where durability and cost-effectiveness are priorities while maintaining good interactivity.',
+      link: '/solutions/education',
+      linkText: 'Learn more'
     },
     {
-      title: "Creative Studios",
-      recommendation: "OLED + EMR (High Precision & Color Clarity)",
-      description: "Perfect for design professionals who need exceptional color accuracy and precise pen input for detailed work.",
-      link: "/solutions/design-studio",
-      linkText: "Learn more"
+      title: 'Creative Studios',
+      recommendation: 'OLED + EMR (High Precision & Color Clarity)',
+      description:
+        'Perfect for design professionals who need exceptional color accuracy and precise pen input for detailed work.',
+      link: '/solutions/design-studio',
+      linkText: 'Learn more'
     },
     {
-      title: "Corporate Environments",
-      recommendation: "LED/OLED + Capacitive (Professional & Responsive)",
-      description: "Suited for business settings requiring sleek aesthetics, reliable performance, and intuitive touch interaction.",
-      link: "/solutions/corporate",
-      linkText: "Learn more"
+      title: 'Corporate Environments',
+      recommendation: 'LED/OLED + Capacitive (Professional & Responsive)',
+      description:
+        'Suited for business settings requiring sleek aesthetics, reliable performance, and intuitive touch interaction.',
+      link: '/solutions/corporate',
+      linkText: 'Learn more'
     }
   ]
 } = Astro.props;
@@ -40,18 +43,22 @@ const {
 
 <section id="use-cases" class="content-section">
   <div class="container">
-    <h2>🏢 Use Case Scenarios</h2>
+    <h2>Use Case Scenarios</h2>
     <div class="use-case-grid">
-      {useCases.map(useCase => (
-        <div class="use-case-card">
-          <h3>{useCase.title}</h3>
-          <p><strong>Recommended:</strong> {useCase.recommendation}</p>
-          <p>
-            {useCase.description}
-          </p>
-          <a href={useCase.link} class="button-faint">{useCase.linkText}</a>
-        </div>
-      ))}
+      {
+        useCases.map((useCase) => (
+          <div class="use-case-card">
+            <h3>{useCase.title}</h3>
+            <p>
+              <strong>Recommended:</strong> {useCase.recommendation}
+            </p>
+            <p>{useCase.description}</p>
+            <a href={useCase.link} class="button-faint">
+              {useCase.linkText}
+            </a>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -8,23 +8,27 @@ interface Props {
   faqs: FaqItem[];
 }
 
-const { 
+const {
   faqs = [
     {
-      question: "Do smartboards work with gloves?",
-      answer: "It depends on the touch technology. Infrared (IR) and optical systems work with gloves, while capacitive screens typically don't unless they're specially designed for capacitive touch."
+      question: 'Do smartboards work with gloves?',
+      answer:
+        "It depends on the touch technology. Infrared (IR) and optical systems work with gloves, while capacitive screens typically don't unless they're specially designed for capacitive touch."
     },
     {
-      question: "Which technology is best for artists?",
-      answer: "Electromagnetic Resonance (EMR) technology paired with OLED displays offers the highest precision and pressure sensitivity, making it ideal for artists and designers who need detailed control."
+      question: 'Which technology is best for artists?',
+      answer:
+        'Electromagnetic Resonance (EMR) technology paired with OLED displays offers the highest precision and pressure sensitivity, making it ideal for artists and designers who need detailed control.'
     },
     {
       question: "What's the lifespan of a smartboard?",
-      answer: "Most quality smart whiteboards have a lifespan of 5-7 years with regular use. OLED displays may have shorter lifespans (3-5 years) while LED displays can last 7-10 years with proper care."
+      answer:
+        'Most quality smart whiteboards have a lifespan of 5-7 years with regular use. OLED displays may have shorter lifespans (3-5 years) while LED displays can last 7-10 years with proper care.'
     },
     {
-      question: "Is a special pen always required?",
-      answer: "No. IR, optical, and resistive technologies work with any object. EMR requires a special pen, while capacitive screens work with fingers and compatible styluses."
+      question: 'Is a special pen always required?',
+      answer:
+        'No. IR, optical, and resistive technologies work with any object. EMR requires a special pen, while capacitive screens work with fingers and compatible styluses.'
     }
   ]
 } = Astro.props;
@@ -32,16 +36,16 @@ const {
 
 <section id="faqs" class="content-section">
   <div class="container">
-    <h2>❓ FAQs</h2>
+    <h2>FAQs</h2>
     <div class="faq-container">
-      {faqs.map(faq => (
-        <div class="faq-item">
-          <h3>{faq.question}</h3>
-          <p>
-            {faq.answer}
-          </p>
-        </div>
-      ))}
+      {
+        faqs.map((faq) => (
+          <div class="faq-item">
+            <h3>{faq.question}</h3>
+            <p>{faq.answer}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

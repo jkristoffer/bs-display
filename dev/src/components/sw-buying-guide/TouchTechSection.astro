@@ -11,57 +11,59 @@ interface Props {
   internalLinkUrl?: string;
 }
 
-const { 
+const {
   technologies = [
     {
-      name: "Infrared (IR)",
-      pros: ["Works with any object", "Scalable, cost-effective"],
-      cons: ["Sensitive to external conditions (sunlight/dust)"]
+      name: 'Infrared (IR)',
+      pros: ['Works with any object', 'Scalable, cost-effective'],
+      cons: ['Sensitive to external conditions (sunlight/dust)']
     },
     {
-      name: "Electromagnetic (EMR)",
-      pros: ["Extremely precise, pressure-sensitive"],
-      cons: ["Requires special pen; expensive"]
+      name: 'Electromagnetic (EMR)',
+      pros: ['Extremely precise, pressure-sensitive'],
+      cons: ['Requires special pen; expensive']
     },
     {
-      name: "Capacitive",
-      pros: ["Highly responsive; sleek"],
-      cons: ["Not compatible with gloves; higher cost"]
+      name: 'Capacitive',
+      pros: ['Highly responsive; sleek'],
+      cons: ['Not compatible with gloves; higher cost']
     },
     {
-      name: "Optical Imaging",
-      pros: ["Easy to install, scalable"],
-      cons: ["Accuracy impacted by lighting/shadows"]
+      name: 'Optical Imaging',
+      pros: ['Easy to install, scalable'],
+      cons: ['Accuracy impacted by lighting/shadows']
     },
     {
-      name: "Resistive (Legacy)",
-      pros: ["Low cost, versatile input"],
-      cons: ["Poor clarity and durability; outdated"]
+      name: 'Resistive (Legacy)',
+      pros: ['Low cost, versatile input'],
+      cons: ['Poor clarity and durability; outdated']
     }
   ],
-  internalLinkText = "Capacitive vs Infrared Touch Screen →",
-  internalLinkUrl = "#"
+  internalLinkText = 'Capacitive vs Infrared Touch Screen →',
+  internalLinkUrl = '#'
 } = Astro.props;
 ---
 
 <section id="touch-tech" class="content-section">
   <div class="container">
-    <h2>✏️ Touch Technologies Breakdown</h2>
+    <h2>Touch Technologies Breakdown</h2>
 
     <div class="touch-tech-grid">
-      {technologies.map(tech => (
-        <div class="touch-tech-card">
-          <h3>{tech.name}</h3>
-          <ul class="pros-cons">
-            {tech.pros.map(pro => (
-              <li class="pro">✅ {pro}</li>
-            ))}
-            {tech.cons.map(con => (
-              <li class="con">❌ {con}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {
+        technologies.map((tech) => (
+          <div class="touch-tech-card">
+            <h3>{tech.name}</h3>
+            <ul class="pros-cons">
+              {tech.pros.map((pro) => (
+                <li class="pro">✅ {pro}</li>
+              ))}
+              {tech.cons.map((con) => (
+                <li class="con">❌ {con}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
     <div class="internal-link">

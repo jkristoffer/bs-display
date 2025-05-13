@@ -13,52 +13,52 @@ interface Props {
   internalLinkUrl?: string;
 }
 
-const { 
+const {
   technologies = [
     {
-      type: "LCD",
-      imageQuality: "Medium",
-      powerUse: "Medium",
-      cost: "Low",
-      idealFor: "General, classrooms"
+      type: 'LCD',
+      imageQuality: 'Medium',
+      powerUse: 'Medium',
+      cost: 'Low',
+      idealFor: 'General, classrooms'
     },
     {
-      type: "LED",
-      imageQuality: "High",
-      powerUse: "Low",
-      cost: "Medium",
-      idealFor: "Offices, modern classrooms"
+      type: 'LED',
+      imageQuality: 'High',
+      powerUse: 'Low',
+      cost: 'Medium',
+      idealFor: 'Offices, modern classrooms'
     },
     {
-      type: "OLED",
-      imageQuality: "Very High",
-      powerUse: "Low",
-      cost: "High",
-      idealFor: "Creative industries, premium setups"
+      type: 'OLED',
+      imageQuality: 'Very High',
+      powerUse: 'Low',
+      cost: 'High',
+      idealFor: 'Creative industries, premium setups'
     },
     {
-      type: "Projector",
-      imageQuality: "Low",
-      powerUse: "Low",
-      cost: "Very Low",
-      idealFor: "Budget, large scale settings"
+      type: 'Projector',
+      imageQuality: 'Low',
+      powerUse: 'Low',
+      cost: 'Very Low',
+      idealFor: 'Budget, large scale settings'
     },
     {
-      type: "E-Paper",
-      imageQuality: "Low",
-      powerUse: "Very Low",
-      cost: "Low",
-      idealFor: "Reading-focused applications"
+      type: 'E-Paper',
+      imageQuality: 'Low',
+      powerUse: 'Very Low',
+      cost: 'Low',
+      idealFor: 'Reading-focused applications'
     }
   ],
-  internalLinkText = "OLED vs LCD Comparison →",
-  internalLinkUrl = "#"
+  internalLinkText = 'OLED vs LCD Comparison →',
+  internalLinkUrl = '#'
 } = Astro.props;
 ---
 
 <section id="display-tech" class="content-section bg-light">
   <div class="container">
-    <h2>📺 Display Technologies Explained</h2>
+    <h2>Display Technologies Explained</h2>
     <div class="table-responsive">
       <table class="comparison-table">
         <thead>
@@ -71,15 +71,19 @@ const {
           </tr>
         </thead>
         <tbody>
-          {technologies.map(tech => (
-            <tr>
-              <td><strong>{tech.type}</strong></td>
-              <td>{tech.imageQuality}</td>
-              <td>{tech.powerUse}</td>
-              <td>{tech.cost}</td>
-              <td>{tech.idealFor}</td>
-            </tr>
-          ))}
+          {
+            technologies.map((tech) => (
+              <tr>
+                <td>
+                  <strong>{tech.type}</strong>
+                </td>
+                <td>{tech.imageQuality}</td>
+                <td>{tech.powerUse}</td>
+                <td>{tech.cost}</td>
+                <td>{tech.idealFor}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>

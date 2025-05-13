@@ -301,8 +301,7 @@
     }
 
     .table-of-contents .toc-nav ul {
-      flex-direction: column;
-      align-items: center;
+      max-width: 90%;
     }
 
     .cta-group {

@@ -10,44 +10,46 @@ interface Props {
   internalLinkUrl?: string;
 }
 
-const { 
+const {
   brands = [
     {
-      name: "LG",
-      description: "Best for OLED clarity"
+      name: 'LG',
+      description: 'Best for OLED clarity'
     },
     {
-      name: "Samsung",
-      description: "Premium QD-OLED technology"
+      name: 'Samsung',
+      description: 'Premium QD-OLED technology'
     },
     {
-      name: "MAXHUB",
-      description: "Enterprise-focused capacitive solutions"
+      name: 'MAXHUB',
+      description: 'Enterprise-focused capacitive solutions'
     },
     {
-      name: "ViewSonic",
-      description: "Reliable classroom displays"
+      name: 'ViewSonic',
+      description: 'Reliable classroom displays'
     },
     {
-      name: "Promethean",
-      description: "Robust education-focused products"
+      name: 'Promethean',
+      description: 'Robust education-focused products'
     }
   ],
-  internalLinkText = "Explore METZ IR Series →",
-  internalLinkUrl = "#"
+  internalLinkText = 'Explore METZ IR Series →',
+  internalLinkUrl = '#'
 } = Astro.props;
 ---
 
 <section id="brands" class="content-section bg-light">
   <div class="container">
-    <h2>🏷 Top Brands & Recommended Models</h2>
+    <h2>Top Brands & Recommended Models</h2>
     <div class="brands-grid">
-      {brands.map(brand => (
-        <div class="brand-card">
-          <h3>{brand.name}</h3>
-          <p>{brand.description}</p>
-        </div>
-      ))}
+      {
+        brands.map((brand) => (
+          <div class="brand-card">
+            <h3>{brand.name}</h3>
+            <p>{brand.description}</p>
+          </div>
+        ))
+      }
     </div>
     <div class="internal-link">
       <a href={internalLinkUrl} class="text-link">{internalLinkText}</a>

@@ -2,7 +2,9 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Banner from '../components/home/Banner/Banner.astro';
 import BrandsSection from '../components/home/BrandsSection/BrandsSection.astro';
+import BuyingGuideSection from '../components/home/BuyingGuideSection/BuyingGuideSection.astro';
 import UsecasesSection from '../components/home/UsecasesSection/UsecasesSection.astro';
+import Button from '../components/common/Button/Button.astro';
 
 const title = 'Big Shine Display';
 const description =
@@ -24,9 +26,46 @@ const description =
       <UsecasesSection />
     </div>
   </section>
+
+  <section class="buying-guide-container">
+    <div class="container">
+      <BuyingGuideSection />
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="testimonial">
+      <div class="testimonial-content">
+        <p>
+          "Our classrooms have become more interactive and lively since
+          installing smart boards. It's a game-changer for visual learners."<br
+          />— Principal, Singapore Primary School
+        </p>
+        <p>
+          "Meetings now move faster, and everyone can annotate on-screen in
+          real-time—even remotely."<br />— IT Manager, Johor Tech Firm
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <h3>Not Sure Which Use Case Fits You?</h3>
+      <p>Tell us your goals — we'll recommend the right smart board.</p>
+      <div class="cta-buttons">
+        <Button variant="primary" href="#">Get Free Consultation</Button>
+        <Button variant="ghost" href="#">Book a Quick Demo</Button>
+      </div>
+    </section>
+  </div>
 </MainLayout>
 
 <style lang="scss">
+  .buying-guide-container {
+    background-color: #f6f9fc;
+    padding: 50px 0;
+    margin-top: 30px;
+  }
+
   .usecase-container {
     background-color: #fff;
     padding: 50px 0;
@@ -34,8 +73,68 @@ const description =
   }
 
   @media (max-width: $breakpoint-md) {
+    .buying-guide-container,
     .usecase-container {
       padding: 30px 0;
     }
+  }
+
+  .testimonial {
+    background-color: var(--color-surface);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin: var(--spacing-xl) 0;
+    box-shadow: var(--box-shadow-1);
+  }
+
+  .testimonial-content {
+    font-style: italic;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .testimonial p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .testimonial p::before {
+    content: '"';
+    font-size: 40px;
+    color: var(--color-accent-primary);
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: -10px;
+  }
+
+  .cta-banner {
+    background: #f0f8ff;
+    padding: var(--spacing-xl);
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-1);
+  }
+
+  .cta-banner h3 {
+    margin-top: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h3);
+  }
+
+  .cta-banner p {
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-body-large);
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
   }
 </style>

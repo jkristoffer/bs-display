@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  image: ImageMetadata;
+  points: string[];
+}
+const { title, image, points } = Astro.props;
+---
+
+<div class="buying-guide-item">
+  <Image class="item-icon" src={image} alt={title} height={60} width={60} />
+
+  <h3 class="item-title">{title}</h3>
+  <ul class="item-points">
+    {points.map((point) => <li set:html={point} />)}
+  </ul>
+</div>
+
+<style lang="scss">
+  .buying-guide-item {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    box-shadow: var(--box-shadow-1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  .item-title {
+    color: var(--color-accent-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .item-points {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .item-points li {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+    position: relative;
+    padding-left: var(--spacing-md);
+  }
+
+  .item-points li:last-child {
+    margin-bottom: 0;
+  }
+
+  .item-icon {
+    margin: 0 auto;
+  }
+</style>

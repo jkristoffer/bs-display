@@ -1,0 +1,114 @@
+---
+import Button from '../../common/Button/Button.astro';
+import BuyingGuideItem from './BuyingGuideItem.astro';
+import screenResImage from './screen-res-184w.png';
+import touchTechImage from './touch-tech-184w.png';
+import useCasesImage from './match-usecase-184w.png';
+
+const guideItems = [
+  {
+    title: 'Screen Size & Resolution',
+    image: screenResImage,
+    points: [
+      'Find the right display size for your room dimensions.',
+      'Learn about 4K vs 1080p resolution and when each is appropriate.'
+      // 'Linked article: <a href="/blog/screen-size-guide">Screen Size Calculator</a>'
+    ]
+  },
+  {
+    title: 'Touch Technology',
+    image: touchTechImage,
+    points: [
+      'Compare infrared, capacitive, and electromagnetic touch systems.',
+      'Learn which technologies support pen input, multi-touch, and palm rejection.'
+      // 'Linked article: <a href="/blog/touch-technology-comparison">Touch Tech Comparison Table</a>'
+    ]
+  },
+  {
+    title: 'Matching Use Cases to Models',
+    image: useCasesImage,
+    points: [
+      'Discover the best boards for classrooms, meeting rooms, and training centers.',
+      'Quickly match your environment and needs to specific models.'
+      // 'Linked resource: <a href="/solutions/">Interactive Board Use Cases</a>'
+    ]
+  }
+];
+---
+
+<section class="buying-guide-section">
+  <h2>Buying Guide</h2>
+
+  <div class="buying-guide-container">
+    {
+      guideItems.map((item) => (
+        <BuyingGuideItem
+          title={item.title}
+          image={item.image}
+          points={item.points}
+        />
+      ))
+    }
+  </div>
+
+  <div class="cta-container">
+    <Button variant="primary" href="/smart-whiteboard-buying-guide"
+      >View Complete Buying Guide</Button
+    >
+  </div>
+</section>
+
+<style lang="scss">
+  .buying-guide-section {
+    padding: var(--padding-s1) 0;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    position: relative;
+    font-size: var(--font-size-h2);
+    z-index: 1;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  h2:before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: var(--color-accent-secondary);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.61;
+    z-index: -1;
+  }
+
+  .buying-guide-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .cta-container {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    .buying-guide-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    .buying-guide-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,59 +1,59 @@
 /* ===== Color Palette ===== */
 :root {
-    /* Colors */
-    --color-background: #ffffff;
-    --color-surface: #fafafa;
-    --color-text-primary: #333333;
-    --color-accent-primary: #009688;
-    --color-accent-primary-rgb: 0, 150, 136;
-    /* Teal-Green */
-    --color-accent-secondary: #FFA726;
-    /* Playful Orange */
-    --color-border: #dddddd;
-    /* Optional light grey border color */
+  /* Colors */
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-text-primary: #333333;
+  --color-accent-primary: #009688;
+  --color-accent-primary-rgb: 0, 150, 136;
+  /* Teal-Green */
+  --color-accent-secondary: #ffa726;
+  /* Playful Orange */
+  --color-border: #dddddd;
+  /* Optional light grey border color */
 
-    /* Button Colors */
-    --color-button-ghost-border: var(--color-accent-primary);
-    --color-button-ghost-text: var(--color-accent-primary);
-    --color-button-primary-background: var(--color-accent-secondary);
-    --color-button-primary-text: var(--color-background);
-    --color-button-disabled-border: #cccccc;
-    --color-button-disabled-text: #999999;
+  /* Button Colors */
+  --color-button-ghost-border: var(--color-accent-primary);
+  --color-button-ghost-text: var(--color-accent-primary);
+  --color-button-primary-background: var(--color-accent-secondary);
+  --color-button-primary-text: var(--color-background);
+  --color-button-disabled-border: #cccccc;
+  --color-button-disabled-text: #999999;
 
-    /* Typography */
-    --font-primary: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-    --font-secondary: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-    --font-size-h1: 36px;
-    --font-size-h2: 50px;
-    --font-size-h3: 24px;
-    --font-size-body-large: 18px;
-    --font-size-body-regular: 16px;
-    --font-size-small: 14px;
-    --font-size-smaller: 12px;
-    --line-height-default: 1.4;
-    --font-weight-light: 300;
-    --font-weight-regular: 400;
-    --font-weight-bold: 700;
+  /* Typography */
+  --font-primary: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-h1: 36px;
+  --font-size-h2: 50px;
+  --font-size-h3: 24px;
+  --font-size-body-large: 18px;
+  --font-size-body-regular: 16px;
+  --font-size-small: 14px;
+  --font-size-smaller: 12px;
+  --line-height-default: 1.4;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-    --spacing-xxl: 48px;
-    --padding-s1: 15px;
-    --padding-s2: 50px;
-    --spacing-container-max-width: 1200px;
-    --spacing-card-padding: 24px;
-    --spacing-gap-between-blocks: 20px;
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --padding-s1: 15px;
+  --padding-s2: 50px;
+  --spacing-container-max-width: 1200px;
+  --spacing-card-padding: 24px;
+  --spacing-gap-between-blocks: 20px;
 
-    /* Effects */
-    --box-shadow-1: -1px 2px 3px 2px rgba(33, 33, 33, 0.15);
+  /* Effects */
+  --box-shadow-1: -1px 2px 3px 2px rgba(33, 33, 33, 0.15);
 
-    /* Breakpoints */
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
+  /* Breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
 }

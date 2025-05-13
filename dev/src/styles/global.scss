@@ -75,7 +75,6 @@ p {
   font-weight: var(--font-weight-bold);
   transition: all 0.3s ease;
   display: inline-block;
-  margin-bottom: 5px;
 }
 
 .button-ghost.sm {
@@ -92,7 +91,7 @@ p {
   cursor: pointer;
   background-color: var(--color-button-primary-background);
   color: var(--color-button-primary-text);
-  border: none;
+  border: 2px solid #ffcdb1;
   border-radius: 4px;
   text-transform: uppercase;
   padding: 12px 24px;

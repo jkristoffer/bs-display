@@ -1,721 +1,291 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import '../styles/index.scss';
+import '../styles/sw-buying-guide.scss';
+
+// Import components
+import Header from '../components/sw-buying-guide/Header.astro';
+import TableOfContents from '../components/sw-buying-guide/TableOfContents.astro';
+import WhatIsSection from '../components/sw-buying-guide/WhatIsSection.astro';
+import WhyChooseSection from '../components/sw-buying-guide/WhyChooseSection.astro';
+import UseCasesSection from '../components/sw-buying-guide/UseCasesSection.astro';
+import DisplayTechSection from '../components/sw-buying-guide/DisplayTechSection.astro';
+import TouchTechSection from '../components/sw-buying-guide/TouchTechSection.astro';
+import ComparisonChartSection from '../components/sw-buying-guide/ComparisonChartSection.astro';
+import CombinationsSection from '../components/sw-buying-guide/CombinationsSection.astro';
+import BrandsSection from '../components/sw-buying-guide/BrandsSection.astro';
+import FaqsSection from '../components/sw-buying-guide/FaqsSection.astro';
+import ExpertAdviceSection from '../components/sw-buying-guide/ExpertAdviceSection.astro';
+import RelatedPostsSection from '../components/sw-buying-guide/RelatedPostsSection.astro';
 
 // Define metadata for the page
 const title = 'Smart Whiteboard Buying Guide | BS Display';
 const description =
   'Everything you need to know before choosing the right interactive display for your needs - from display technologies to touch capabilities and recommended models.';
+
+// Define table of contents items
+const tocItems = [
+  { href: '#what-is', text: 'What is a Smart Whiteboard?' },
+  { href: '#why-choose', text: 'Why Choose Interactive Whiteboards?' },
+  { href: '#use-cases', text: 'Use Case Scenarios' },
+  { href: '#display-tech', text: 'Display Technologies Explained' },
+  { href: '#touch-tech', text: 'Touch Technologies Breakdown' },
+  { href: '#comparison', text: 'Interactive Display Comparison Chart' },
+  { href: '#combinations', text: 'Best Combinations by Use Case & Budget' },
+  { href: '#brands', text: 'Top Brands & Recommended Models' },
+  { href: '#faqs', text: 'FAQs' },
+  { href: '#expert-advice', text: 'Need Expert Advice?' }
+];
 ---
 
 <MainLayout title={title} description={description}>
   <div class="whiteboard-guide">
-    <header class="guide-header">
-      <div class="container">
-        <h1>Smart Whiteboard Buying Guide</h1>
-        <p class="subtitle">
-          Everything You Need to Know Before Choosing the Right Interactive
-          Display
-        </p>
-      </div>
-    </header>
+    <Header
+      title="Smart Whiteboard Buying Guide"
+      subtitle="Everything You Need to Know Before Choosing the Right Interactive Display"
+    />
 
-    <section class="table-of-contents">
-      <div class="container">
-        <h2>Table of Contents</h2>
-        <nav class="toc-nav">
-          <ul>
-            <li><a href="#what-is">What is a Smart Whiteboard?</a></li>
-            <li>
-              <a href="#why-choose">Why Choose Interactive Whiteboards?</a>
-            </li>
-            <li><a href="#use-cases">Use Case Scenarios</a></li>
-            <li><a href="#display-tech">Display Technologies Explained</a></li>
-            <li><a href="#touch-tech">Touch Technologies Breakdown</a></li>
-            <li>
-              <a href="#comparison">Interactive Display Comparison Chart</a>
-            </li>
-            <li>
-              <a href="#combinations">Best Combinations by Use Case & Budget</a>
-            </li>
-            <li><a href="#brands">Top Brands & Recommended Models</a></li>
-            <li><a href="#faqs">FAQs</a></li>
-            <li><a href="#expert-advice">Need Expert Advice?</a></li>
-          </ul>
-        </nav>
-      </div>
-    </section>
+    <TableOfContents items={tocItems} />
 
-    <section id="what-is" class="content-section">
-      <div class="container">
-        <h2>🎯 What is a Smart Whiteboard?</h2>
-        <p>
-          A smart whiteboard is a digital interactive screen that enables
-          collaboration, real-time annotations, and presentations, effectively
-          replacing traditional whiteboards. These modern displays combine touch
-          technology with high-resolution screens to create versatile tools for
-          education, business, and creative environments.
-        </p>
-      </div>
-    </section>
+    <WhatIsSection />
 
-    <section id="why-choose" class="content-section bg-light">
-      <div class="container">
-        <h2>🌟 Why Choose Interactive Whiteboards?</h2>
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <h3>Boosts Collaboration</h3>
-            <p>
-              Enhances team engagement through interactive features that allow
-              multiple users to contribute simultaneously.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <h3>Ideal for Remote Work</h3>
-            <p>
-              Perfect for hybrid and remote setups with digital sharing
-              capabilities and cloud integration.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <h3>Enhances Learning</h3>
-            <p>
-              Improves knowledge retention through interactive, multi-sensory
-              learning experiences.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <h3>Versatile Applications</h3>
-            <p>
-              Adaptable across multiple environments from classrooms to
-              boardrooms to creative studios.
-            </p>
-          </div>
-        </div>
-        <div class="cta-container">
-          <a href="#" class="button-ghost"
-            >Unsure about your needs? Request a demo →</a
-          >
-        </div>
-      </div>
-    </section>
+    <WhyChooseSection />
 
-    <section id="use-cases" class="content-section">
-      <div class="container">
-        <h2>🏢 Use Case Scenarios</h2>
-        <div class="use-case-grid">
-          <div class="use-case-card">
-            <h3>Classrooms & Education</h3>
-            <p><strong>Recommended:</strong> LED + IR (Affordable & Robust)</p>
-            <p>
-              Ideal for educational environments where durability and
-              cost-effectiveness are priorities while maintaining good
-              interactivity.
-            </p>
-            <a href="/solutions/education" class="button-faint">Learn more</a>
-          </div>
-          <div class="use-case-card">
-            <h3>Creative Studios</h3>
-            <p>
-              <strong>Recommended:</strong> OLED + EMR (High Precision & Color Clarity)
-            </p>
-            <p>
-              Perfect for design professionals who need exceptional color
-              accuracy and precise pen input for detailed work.
-            </p>
-            <a href="/solutions/design-studio" class="button-faint"
-              >Learn more</a
-            >
-          </div>
-          <div class="use-case-card">
-            <h3>Corporate Environments</h3>
-            <p>
-              <strong>Recommended:</strong> LED/OLED + Capacitive (Professional &
-              Responsive)
-            </p>
-            <p>
-              Suited for business settings requiring sleek aesthetics, reliable
-              performance, and intuitive touch interaction.
-            </p>
-            <a href="/solutions/corporate" class="button-faint">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <UseCasesSection
+      useCases={[
+        {
+          title: 'Classrooms & Education',
+          recommendation: 'LED + IR (Affordable & Robust)',
+          description:
+            'Ideal for educational environments where durability and cost-effectiveness are priorities while maintaining good interactivity.',
+          link: '/solutions/education',
+          linkText: 'Learn more'
+        },
+        {
+          title: 'Creative Studios',
+          recommendation: 'OLED + EMR (High Precision & Color Clarity)',
+          description:
+            'Perfect for design professionals who need exceptional color accuracy and precise pen input for detailed work.',
+          link: '/solutions/design-studio',
+          linkText: 'Learn more'
+        },
+        {
+          title: 'Corporate Environments',
+          recommendation: 'LED/OLED + Capacitive (Professional & Responsive)',
+          description:
+            'Suited for business settings requiring sleek aesthetics, reliable performance, and intuitive touch interaction.',
+          link: '/solutions/corporate',
+          linkText: 'Learn more'
+        }
+      ]}
+    />
 
-    <section id="display-tech" class="content-section bg-light">
-      <div class="container">
-        <h2>📺 Display Technologies Explained</h2>
-        <div class="table-responsive">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Image Quality</th>
-                <th>Power Use</th>
-                <th>Cost</th>
-                <th>Ideal For</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>LCD</strong></td>
-                <td>Medium</td>
-                <td>Medium</td>
-                <td>Low</td>
-                <td>General, classrooms</td>
-              </tr>
-              <tr>
-                <td><strong>LED</strong></td>
-                <td>High</td>
-                <td>Low</td>
-                <td>Medium</td>
-                <td>Offices, modern classrooms</td>
-              </tr>
-              <tr>
-                <td><strong>OLED</strong></td>
-                <td>Very High</td>
-                <td>Low</td>
-                <td>High</td>
-                <td>Creative industries, premium setups</td>
-              </tr>
-              <tr>
-                <td><strong>Projector</strong></td>
-                <td>Low</td>
-                <td>Low</td>
-                <td>Very Low</td>
-                <td>Budget, large scale settings</td>
-              </tr>
-              <tr>
-                <td><strong>E-Paper</strong></td>
-                <td>Low</td>
-                <td>Very Low</td>
-                <td>Low</td>
-                <td>Reading-focused applications</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="internal-link">
-          <a href="#" class="text-link">OLED vs LCD Comparison →</a>
-        </div>
-      </div>
-    </section>
+    <DisplayTechSection
+      technologies={[
+        {
+          type: 'LCD',
+          imageQuality: 'Medium',
+          powerUse: 'Medium',
+          cost: 'Low',
+          idealFor: 'General, classrooms'
+        },
+        {
+          type: 'LED',
+          imageQuality: 'High',
+          powerUse: 'Low',
+          cost: 'Medium',
+          idealFor: 'Offices, modern classrooms'
+        },
+        {
+          type: 'OLED',
+          imageQuality: 'Very High',
+          powerUse: 'Low',
+          cost: 'High',
+          idealFor: 'Creative industries, premium setups'
+        },
+        {
+          type: 'Projector',
+          imageQuality: 'Low',
+          powerUse: 'Low',
+          cost: 'Very Low',
+          idealFor: 'Budget, large scale settings'
+        },
+        {
+          type: 'E-Paper',
+          imageQuality: 'Low',
+          powerUse: 'Very Low',
+          cost: 'Low',
+          idealFor: 'Reading-focused applications'
+        }
+      ]}
+      internalLinkText="OLED vs LCD Comparison →"
+      internalLinkUrl="#"
+    />
 
-    <section id="touch-tech" class="content-section">
-      <div class="container">
-        <h2>✏️ Touch Technologies Breakdown</h2>
+    <TouchTechSection
+      technologies={[
+        {
+          name: 'Infrared (IR)',
+          pros: ['Works with any object', 'Scalable, cost-effective'],
+          cons: ['Sensitive to external conditions (sunlight/dust)']
+        },
+        {
+          name: 'Electromagnetic (EMR)',
+          pros: ['Extremely precise, pressure-sensitive'],
+          cons: ['Requires special pen; expensive']
+        },
+        {
+          name: 'Capacitive',
+          pros: ['Highly responsive; sleek'],
+          cons: ['Not compatible with gloves; higher cost']
+        },
+        {
+          name: 'Optical Imaging',
+          pros: ['Easy to install, scalable'],
+          cons: ['Accuracy impacted by lighting/shadows']
+        },
+        {
+          name: 'Resistive (Legacy)',
+          pros: ['Low cost, versatile input'],
+          cons: ['Poor clarity and durability; outdated']
+        }
+      ]}
+      internalLinkText="Capacitive vs Infrared Touch Screen →"
+      internalLinkUrl="#"
+    />
 
-        <div class="touch-tech-grid">
-          <div class="touch-tech-card">
-            <h3>Infrared (IR)</h3>
-            <ul class="pros-cons">
-              <li class="pro">✅ Works with any object</li>
-              <li class="pro">✅ Scalable, cost-effective</li>
-              <li class="con">
-                ❌ Sensitive to external conditions (sunlight/dust)
-              </li>
-            </ul>
-          </div>
+    <ComparisonChartSection
+      ctaText="Download the Full Comparison Table [PDF] →"
+      ctaLink="#"
+    />
 
-          <div class="touch-tech-card">
-            <h3>Electromagnetic (EMR)</h3>
-            <ul class="pros-cons">
-              <li class="pro">✅ Extremely precise, pressure-sensitive</li>
-              <li class="con">❌ Requires special pen; expensive</li>
-            </ul>
-          </div>
+    <CombinationsSection
+      combinations={[
+        {
+          title: 'Education (Budget-Friendly)',
+          recommendation: 'LED Display + IR Touch',
+          description:
+            'Balances affordability with durability for classroom environments.'
+        },
+        {
+          title: 'Creative Industries (High Precision)',
+          recommendation: 'OLED Display + EMR Touch',
+          description:
+            'Provides exceptional color accuracy and pen precision for detailed creative work.'
+        },
+        {
+          title: 'Corporate (Professional)',
+          recommendation: 'LED/OLED + Capacitive Touch',
+          description:
+            'Offers sleek aesthetics with responsive multi-touch for business environments.'
+        },
+        {
+          title: 'Budget Setups',
+          recommendation: 'Projector + IR or Resistive Touch',
+          description:
+            'Most cost-effective solution for basic interactive needs.'
+        }
+      ]}
+      ctaText="Find Your Perfect Whiteboard in 60 Seconds! →"
+      ctaLink="#"
+    />
 
-          <div class="touch-tech-card">
-            <h3>Capacitive</h3>
-            <ul class="pros-cons">
-              <li class="pro">✅ Highly responsive; sleek</li>
-              <li class="con">❌ Not compatible with gloves; higher cost</li>
-            </ul>
-          </div>
+    <BrandsSection
+      brands={[
+        {
+          name: 'LG',
+          description: 'Best for OLED clarity'
+        },
+        {
+          name: 'Samsung',
+          description: 'Premium QD-OLED technology'
+        },
+        {
+          name: 'MAXHUB',
+          description: 'Enterprise-focused capacitive solutions'
+        },
+        {
+          name: 'ViewSonic',
+          description: 'Reliable classroom displays'
+        },
+        {
+          name: 'Promethean',
+          description: 'Robust education-focused products'
+        }
+      ]}
+      internalLinkText="Explore METZ IR Series →"
+      internalLinkUrl="#"
+    />
 
-          <div class="touch-tech-card">
-            <h3>Optical Imaging</h3>
-            <ul class="pros-cons">
-              <li class="pro">✅ Easy to install, scalable</li>
-              <li class="con">❌ Accuracy impacted by lighting/shadows</li>
-            </ul>
-          </div>
+    <FaqsSection
+      faqs={[
+        {
+          question: 'Do smartboards work with gloves?',
+          answer:
+            "It depends on the touch technology. Infrared (IR) and optical systems work with gloves, while capacitive screens typically don't unless they're specially designed for capacitive touch."
+        },
+        {
+          question: 'Which technology is best for artists?',
+          answer:
+            'Electromagnetic Resonance (EMR) technology paired with OLED displays offers the highest precision and pressure sensitivity, making it ideal for artists and designers who need detailed control.'
+        },
+        {
+          question: "What's the lifespan of a smartboard?",
+          answer:
+            'Most quality smart whiteboards have a lifespan of 5-7 years with regular use. OLED displays may have shorter lifespans (3-5 years) while LED displays can last 7-10 years with proper care.'
+        },
+        {
+          question: 'Is a special pen always required?',
+          answer:
+            'No. IR, optical, and resistive technologies work with any object. EMR requires a special pen, while capacitive screens work with fingers and compatible styluses.'
+        }
+      ]}
+    />
 
-          <div class="touch-tech-card">
-            <h3>Resistive (Legacy)</h3>
-            <ul class="pros-cons">
-              <li class="pro">✅ Low cost, versatile input</li>
-              <li class="con">❌ Poor clarity and durability; outdated</li>
-            </ul>
-          </div>
-        </div>
+    <ExpertAdviceSection
+      title="📞 Need Expert Advice?"
+      introText="Our product specialists are ready to help you find the perfect smart whiteboard solution for your specific needs."
+      ctaButtons={[
+        {
+          text: 'Request a Quote →',
+          link: '#',
+          type: 'primary'
+        },
+        {
+          text: 'Download Full Buying Guide PDF',
+          link: '#',
+          type: 'ghost'
+        },
+        {
+          text: 'Schedule a Consultation',
+          link: '#',
+          type: 'ghost'
+        }
+      ]}
+    />
 
-        <div class="internal-link">
-          <a href="#" class="text-link">Capacitive vs Infrared Touch Screen →</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <section id="comparison" class="content-section bg-light">
-      <div class="container">
-        <h2>🧩 Interactive Display Comparison Chart</h2>
-        <div class="table-responsive">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Feature</th>
-                <th>IR</th>
-                <th>EMR</th>
-                <th>Capacitive</th>
-                <th>Optical</th>
-                <th>Resistive</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Precision</strong></td>
-                <td>🟡</td>
-                <td>🟢</td>
-                <td>🟢</td>
-                <td>🟡</td>
-                <td>🔴</td>
-              </tr>
-              <tr>
-                <td><strong>Speed</strong></td>
-                <td>🟡</td>
-                <td>🟢</td>
-                <td>🟢</td>
-                <td>🔴</td>
-                <td>🔴</td>
-              </tr>
-              <tr>
-                <td><strong>Multi-Touch</strong></td>
-                <td>✅</td>
-                <td>✅</td>
-                <td>✅</td>
-                <td>✅</td>
-                <td>❌</td>
-              </tr>
-              <tr>
-                <td><strong>Pen Required</strong></td>
-                <td>❌</td>
-                <td>✅</td>
-                <td>Optional</td>
-                <td>❌</td>
-                <td>❌</td>
-              </tr>
-              <tr>
-                <td><strong>Cost</strong></td>
-                <td>💲</td>
-                <td>💲💲💲</td>
-                <td>💲💲💲</td>
-                <td>💲💲</td>
-                <td>💲</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="cta-container">
-          <a href="#" class="button-ghost"
-            >Download the Full Comparison Table [PDF] →</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <section id="combinations" class="content-section">
-      <div class="container">
-        <h2>💰 Best Combinations by Use Case & Budget</h2>
-        <div class="combinations-grid">
-          <div class="combination-card">
-            <h3>Education (Budget-Friendly)</h3>
-            <p><strong>Recommended:</strong> LED Display + IR Touch</p>
-            <p>
-              Balances affordability with durability for classroom environments.
-            </p>
-          </div>
-          <div class="combination-card">
-            <h3>Creative Industries (High Precision)</h3>
-            <p><strong>Recommended:</strong> OLED Display + EMR Touch</p>
-            <p>
-              Provides exceptional color accuracy and pen precision for detailed
-              creative work.
-            </p>
-          </div>
-          <div class="combination-card">
-            <h3>Corporate (Professional)</h3>
-            <p><strong>Recommended:</strong> LED/OLED + Capacitive Touch</p>
-            <p>
-              Offers sleek aesthetics with responsive multi-touch for business
-              environments.
-            </p>
-          </div>
-          <div class="combination-card">
-            <h3>Budget Setups</h3>
-            <p>
-              <strong>Recommended:</strong> Projector + IR or Resistive Touch
-            </p>
-            <p>Most cost-effective solution for basic interactive needs.</p>
-          </div>
-        </div>
-        <div class="cta-container">
-          <a href="#" class="button-primary"
-            >Find Your Perfect Whiteboard in 60 Seconds! →</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <section id="brands" class="content-section bg-light">
-      <div class="container">
-        <h2>🏷 Top Brands & Recommended Models</h2>
-        <div class="brands-grid">
-          <div class="brand-card">
-            <h3>LG</h3>
-            <p>Best for OLED clarity</p>
-          </div>
-          <div class="brand-card">
-            <h3>Samsung</h3>
-            <p>Premium QD-OLED technology</p>
-          </div>
-          <div class="brand-card">
-            <h3>MAXHUB</h3>
-            <p>Enterprise-focused capacitive solutions</p>
-          </div>
-          <div class="brand-card">
-            <h3>ViewSonic</h3>
-            <p>Reliable classroom displays</p>
-          </div>
-          <div class="brand-card">
-            <h3>Promethean</h3>
-            <p>Robust education-focused products</p>
-          </div>
-        </div>
-        <div class="internal-link">
-          <a href="#" class="text-link">Explore METZ IR Series →</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="faqs" class="content-section">
-      <div class="container">
-        <h2>❓ FAQs</h2>
-        <div class="faq-container">
-          <div class="faq-item">
-            <h3>Do smartboards work with gloves?</h3>
-            <p>
-              It depends on the touch technology. Infrared (IR) and optical
-              systems work with gloves, while capacitive screens typically don't
-              unless they're specially designed for capacitive touch.
-            </p>
-          </div>
-          <div class="faq-item">
-            <h3>Which technology is best for artists?</h3>
-            <p>
-              Electromagnetic Resonance (EMR) technology paired with OLED
-              displays offers the highest precision and pressure sensitivity,
-              making it ideal for artists and designers who need detailed
-              control.
-            </p>
-          </div>
-          <div class="faq-item">
-            <h3>What's the lifespan of a smartboard?</h3>
-            <p>
-              Most quality smart whiteboards have a lifespan of 5-7 years with
-              regular use. OLED displays may have shorter lifespans (3-5 years)
-              while LED displays can last 7-10 years with proper care.
-            </p>
-          </div>
-          <div class="faq-item">
-            <h3>Is a special pen always required?</h3>
-            <p>
-              No. IR, optical, and resistive technologies work with any object.
-              EMR requires a special pen, while capacitive screens work with
-              fingers and compatible styluses.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="expert-advice" class="content-section bg-accent">
-      <div class="container">
-        <h2>📞 Need Expert Advice?</h2>
-        <p class="section-intro">
-          Our product specialists are ready to help you find the perfect smart
-          whiteboard solution for your specific needs.
-        </p>
-        <div class="cta-group">
-          <a href="#" class="button-primary">Request a Quote →</a>
-          <a href="#" class="button-ghost">Download Full Buying Guide PDF</a>
-          <a href="#" class="button-ghost">Schedule a Consultation</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="related-posts">
-      <div class="container">
-        <h2>🔗 Related Blog Posts</h2>
-        <div class="related-posts-grid">
-          <a href="#" class="related-post-card">
-            <h3>OLED vs LCD for Interactive Whiteboards</h3>
-            <p>Discover which display technology is right for your needs</p>
-          </a>
-          <a href="#" class="related-post-card">
-            <h3>Capacitive vs Infrared Touch Technology</h3>
-            <p>Understanding the pros and cons of different touch systems</p>
-          </a>
-          <a href="#" class="related-post-card">
-            <h3>Understanding Smartboard Touch Detection</h3>
-            <p>How different technologies detect and process touch input</p>
-          </a>
-        </div>
-      </div>
-    </section>
+    <RelatedPostsSection
+      title="🔗 Related Blog Posts"
+      posts={[
+        {
+          title: 'OLED vs LCD for Interactive Whiteboards',
+          description:
+            'Discover which display technology is right for your needs',
+          link: '#'
+        },
+        {
+          title: 'Capacitive vs Infrared Touch Technology',
+          description:
+            'Understanding the pros and cons of different touch systems',
+          link: '#'
+        },
+        {
+          title: 'Understanding Smartboard Touch Detection',
+          description:
+            'How different technologies detect and process touch input',
+          link: '#'
+        }
+      ]}
+    />
   </div>
 </MainLayout>
-
-<style lang="scss">
-  .whiteboard-guide {
-    line-height: 1.6;
-
-    .guide-header {
-      background:
-        linear-gradient(rgba(0, 150, 136, 0.9), rgba(0, 150, 136, 0.7)),
-        url('/images/whiteboard-header-bg.jpg') center/cover no-repeat;
-      color: white;
-      padding: var(--spacing-xxl) 0;
-      text-align: center;
-
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: var(--spacing-md);
-      }
-
-      .subtitle {
-        font-size: var(--font-size-body-large);
-        max-width: 800px;
-        margin: 0 auto;
-      }
-    }
-
-    .content-section {
-      padding: var(--spacing-xxl) 0;
-
-      h2 {
-        text-align: center;
-        margin-bottom: var(--spacing-xl);
-        font-size: var(--font-size-h2);
-      }
-
-      .section-intro {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto var(--spacing-xl);
-      }
-    }
-
-    .bg-light {
-      background-color: #f5f5f5;
-    }
-
-    .bg-accent {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-    }
-
-    .table-of-contents {
-      padding: var(--spacing-xl) 0;
-      background-color: white;
-
-      .toc-nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        list-style: none;
-        padding: var(--spacing-md);
-        text-align: left;
-        width: 600px;
-        margin: 0 auto;
-        counter-reset: item;
-        border-radius: 8px;
-        box-shadow: var(--box-shadow-1);
-
-        li {
-          flex: 0 0 100%;
-        }
-
-        li a {
-          font-size: 120%;
-          display: inline-block;
-          padding: var(--spacing-xs) var(--spacing-sm);
-          border-radius: 4px;
-          transition: all 0.3s ease;
-
-          &:hover {
-            background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-          }
-          &:before {
-            counter-increment: item;
-            content: '➤ ';
-          }
-        }
-      }
-    }
-
-    .benefits-grid,
-    .use-case-grid,
-    .touch-tech-grid,
-    .combinations-grid,
-    .brands-grid,
-    .related-posts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-xl);
-    }
-
-    .benefit-card,
-    .use-case-card,
-    .touch-tech-card,
-    .combination-card,
-    .brand-card,
-    .related-post-card {
-      background: white;
-      border-radius: 8px;
-      padding: var(--spacing-lg);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
-      h3 {
-        color: var(--color-accent-primary);
-        margin-bottom: var(--spacing-sm);
-      }
-    }
-
-    .pros-cons {
-      list-style: none;
-      padding: 0;
-
-      li {
-        margin-bottom: var(--spacing-xs);
-      }
-
-      .pro {
-        color: green;
-      }
-
-      .con {
-        color: #d32f2f;
-      }
-    }
-
-    .table-responsive {
-      overflow-x: auto;
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: var(--spacing-lg);
-
-      th,
-      td {
-        padding: var(--spacing-sm);
-        text-align: center;
-        border: 1px solid var(--color-border);
-      }
-
-      th {
-        background-color: var(--color-accent-primary);
-        color: white;
-      }
-
-      tr:nth-child(even) {
-        background-color: rgba(0, 0, 0, 0.02);
-      }
-    }
-
-    .cta-container,
-    .cta-group {
-      text-align: center;
-      margin-top: var(--spacing-xl);
-    }
-
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--spacing-md);
-    }
-
-    .internal-link {
-      text-align: center;
-      margin-top: var(--spacing-lg);
-    }
-
-    .text-link {
-      color: var(--color-accent-primary);
-      font-weight: var(--font-weight-bold);
-      text-decoration: none;
-      transition: color 0.3s ease;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .faq-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      margin-bottom: var(--spacing-lg);
-      padding-bottom: var(--spacing-lg);
-      border-bottom: 1px solid var(--color-border);
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      h3 {
-        color: var(--color-accent-primary);
-        margin-bottom: var(--spacing-sm);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .guide-header {
-        padding: var(--spacing-xl) var(--spacing-md);
-
-        h1 {
-          font-size: 2rem;
-        }
-      }
-
-      .content-section {
-        padding: var(--spacing-xl) var(--spacing-md);
-      }
-
-      .table-of-contents .toc-nav ul {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .cta-group {
-        flex-direction: column;
-        gap: var(--spacing-md);
-      }
-    }
-  }
-</style>

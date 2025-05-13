@@ -1,0 +1,16 @@
+---
+interface Props {
+  content?: string;
+}
+
+const { content = "A smart whiteboard is a digital interactive screen that enables collaboration, real-time annotations, and presentations, effectively replacing traditional whiteboards. These modern displays combine touch technology with high-resolution screens to create versatile tools for education, business, and creative environments." } = Astro.props;
+---
+
+<section id="what-is" class="content-section">
+  <div class="container">
+    <h2>What is a Smart Whiteboard?</h2>
+    <p>
+      {content}
+    </p>
+  </div>
+</section>

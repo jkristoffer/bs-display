@@ -1,0 +1,49 @@
+---
+interface CtaButton {
+  text: string;
+  link: string;
+  type: 'primary' | 'ghost';
+}
+
+interface Props {
+  title?: string;
+  introText?: string;
+  ctaButtons: CtaButton[];
+}
+
+const { 
+  title = "📞 Need Expert Advice?",
+  introText = "Our product specialists are ready to help you find the perfect smart whiteboard solution for your specific needs.",
+  ctaButtons = [
+    {
+      text: "Request a Quote →",
+      link: "#",
+      type: "primary"
+    },
+    {
+      text: "Download Full Buying Guide PDF",
+      link: "#",
+      type: "ghost"
+    },
+    {
+      text: "Schedule a Consultation",
+      link: "#",
+      type: "ghost"
+    }
+  ]
+} = Astro.props;
+---
+
+<section id="expert-advice" class="content-section bg-accent">
+  <div class="container">
+    <h2>{title}</h2>
+    <p class="section-intro">
+      {introText}
+    </p>
+    <div class="cta-group">
+      {ctaButtons.map(button => (
+        <a href={button.link} class={`button-${button.type}`}>{button.text}</a>
+      ))}
+    </div>
+  </div>
+</section>

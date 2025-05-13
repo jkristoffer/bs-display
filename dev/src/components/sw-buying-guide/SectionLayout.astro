@@ -1,0 +1,16 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  bgClass?: 'bg-light' | 'bg-accent' | '';
+}
+
+const { id, title, bgClass = '' } = Astro.props;
+---
+
+<section id={id} class={`content-section ${bgClass}`}>
+  <div class="container">
+    <h2>{title}</h2>
+    <slot />
+  </div>
+</section>

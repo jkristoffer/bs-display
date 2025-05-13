@@ -1,0 +1,66 @@
+---
+import Icons from '@components/common/Icons/Icons.astro';
+
+interface Benefit {
+  title: string;
+  description: string;
+  icon: 'collaboration' | 'network' | 'learning' | 'versatile';
+  id: string;
+}
+
+const {
+  benefits = [
+    {
+      title: 'Boosts Collaboration',
+      description:
+        'Enhances team engagement through interactive features that allow multiple users to contribute simultaneously.',
+      icon: 'collaboration'
+    },
+    {
+      title: 'Ideal for Remote Work',
+      description:
+        'Perfect for hybrid and remote setups with digital sharing capabilities and cloud integration.',
+      icon: 'network'
+    },
+    {
+      title: 'Enhances Learning',
+      description:
+        'Improves knowledge retention through interactive, multi-sensory learning experiences.',
+      icon: 'learning'
+    },
+    {
+      title: 'Versatile Applications',
+      description:
+        'Adaptable across multiple environments from classrooms to boardrooms to creative studios.',
+      icon: 'versatile'
+    }
+  ],
+  ctaText = 'Unsure about your needs? Request a demo →',
+  ctaLink = '#'
+} = Astro.props;
+---
+
+<section id="why-choose" class="content-section bg-light">
+  <div class="container">
+    <h2>Why Choose Interactive Whiteboards?</h2>
+    <div class="benefits-grid">
+      {
+        benefits.map((benefit: Benefit) => (
+          <div class="benefit-card">
+            <h3>{benefit.title}</h3>
+            <Icons
+              name={benefit.icon}
+              alt={benefit.title}
+              size={84}
+              class="why-choose-icon"
+            />
+            <p>{benefit.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="cta-container">
+      <a href={ctaLink} class="button-ghost">{ctaText}</a>
+    </div>
+  </div>
+</section>

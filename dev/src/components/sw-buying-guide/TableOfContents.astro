@@ -1,0 +1,29 @@
+---
+interface TocItem {
+  href: string;
+  text: string;
+}
+
+interface Props {
+  items: TocItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="table-of-contents">
+  <div class="container">
+    <h2>Table of Contents</h2>
+    <nav class="toc-nav">
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a href={item.href}>{item.text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

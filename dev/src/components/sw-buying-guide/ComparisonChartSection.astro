@@ -1,0 +1,76 @@
+---
+interface Props {
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const { 
+  ctaText = "Download the Full Comparison Table [PDF] →",
+  ctaLink = "#"
+} = Astro.props;
+---
+
+<section id="comparison" class="content-section bg-light">
+  <div class="container">
+    <h2>🧩 Interactive Display Comparison Chart</h2>
+    <div class="table-responsive">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>IR</th>
+            <th>EMR</th>
+            <th>Capacitive</th>
+            <th>Optical</th>
+            <th>Resistive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Precision</strong></td>
+            <td>🟡</td>
+            <td>🟢</td>
+            <td>🟢</td>
+            <td>🟡</td>
+            <td>🔴</td>
+          </tr>
+          <tr>
+            <td><strong>Speed</strong></td>
+            <td>🟡</td>
+            <td>🟢</td>
+            <td>🟢</td>
+            <td>🔴</td>
+            <td>🔴</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Touch</strong></td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td><strong>Pen Required</strong></td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>Optional</td>
+            <td>❌</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td><strong>Cost</strong></td>
+            <td>💲</td>
+            <td>💲💲💲</td>
+            <td>💲💲💲</td>
+            <td>💲💲</td>
+            <td>💲</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cta-container">
+      <a href={ctaLink} class="button-ghost">{ctaText}</a>
+    </div>
+  </div>
+</section>

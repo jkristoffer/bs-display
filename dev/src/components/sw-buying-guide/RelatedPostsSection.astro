@@ -1,0 +1,47 @@
+---
+interface RelatedPost {
+  title: string;
+  description: string;
+  link: string;
+}
+
+interface Props {
+  title?: string;
+  posts: RelatedPost[];
+}
+
+const { 
+  title = "🔗 Related Blog Posts",
+  posts = [
+    {
+      title: "OLED vs LCD for Interactive Whiteboards",
+      description: "Discover which display technology is right for your needs",
+      link: "#"
+    },
+    {
+      title: "Capacitive vs Infrared Touch Technology",
+      description: "Understanding the pros and cons of different touch systems",
+      link: "#"
+    },
+    {
+      title: "Understanding Smartboard Touch Detection",
+      description: "How different technologies detect and process touch input",
+      link: "#"
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="related-posts">
+  <div class="container">
+    <h2>{title}</h2>
+    <div class="related-posts-grid">
+      {posts.map(post => (
+        <a href={post.link} class="related-post-card">
+          <h3>{post.title}</h3>
+          <p>{post.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,10 +1,12 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-import eslint from "vite-plugin-eslint";
+import sitemap from '@astrojs/sitemap';
 import vercel from "@astrojs/vercel";
+import eslint from "vite-plugin-eslint";
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  site: 'https://bigshine-display.com',
+  integrations: [react(), sitemap()],
 
   experimental: {
     responsiveImages: true,

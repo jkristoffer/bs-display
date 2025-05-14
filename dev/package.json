@@ -16,6 +16,7 @@
   "description": "",
   "dependencies": {
     "@astrojs/react": "^4.2.7",
+    "@astrojs/sitemap": "^3.4.0",
     "@astrojs/vercel": "^8.1.4",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.3",

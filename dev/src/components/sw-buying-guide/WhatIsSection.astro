@@ -1,16 +1,78 @@
 ---
-interface Props {
-  content?: string;
-}
-
-const { content = "A smart whiteboard is a digital interactive screen that enables collaboration, real-time annotations, and presentations, effectively replacing traditional whiteboards. These modern displays combine touch technology with high-resolution screens to create versatile tools for education, business, and creative environments." } = Astro.props;
+import { Image } from 'astro:assets';
+import whatIsSmartWhiteboard from './what-is-a-smart-whiteboard.png';
 ---
 
 <section id="what-is" class="content-section">
   <div class="container">
     <h2>What is a Smart Whiteboard?</h2>
-    <p>
-      {content}
-    </p>
+    <div class="whatis-content">
+      <p>
+        A smart whiteboard is a digital interactive screen that enables
+        <span class="highlight1">collaboration</span>,
+        <span class="highlight1">real-time annotations</span>, and
+        <span class="highlight1">presentations</span>, effectively replacing
+        traditional whiteboards. These modern displays combine touch technology
+        with high-resolution screens to create versatile tools for
+        <span class="highlight2">education</span>,
+        <span class="highlight2">business</span>, and
+        <span class="highlight2">creative environments</span>.
+      </p>
+      <Image
+        src={whatIsSmartWhiteboard}
+        alt="What is a Smart Whiteboard?"
+        width={300}
+      />
+    </div>
   </div>
 </section>
+<style lang="scss">
+  %highlight {
+    display: inline-block;
+    padding: 0 4px;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 10px;
+      background-color: var(--color-accent-secondary);
+      bottom: 3px;
+      left: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+  }
+  .whatis-content {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--spacing-xl);
+    justify-content: center;
+    align-items: center;
+
+    p {
+      width: 340px;
+      text-align: left;
+      .highlight1 {
+        @extend %highlight;
+      }
+      .highlight2 {
+        @extend %highlight;
+        &:after {
+          background-color: var(--color-accent-primary);
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    .whatis-content {
+      flex-direction: column;
+      p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+</style>

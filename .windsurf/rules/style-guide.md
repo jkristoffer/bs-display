@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: When styling Components
+description: When dealing with files with extensions .css , .scss , .astro , .ts, .jsx, .tsx
 ---
 
 # Global Style System Overview

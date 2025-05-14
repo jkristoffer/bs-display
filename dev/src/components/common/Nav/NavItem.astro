@@ -7,12 +7,12 @@ interface Props {
 const { href, active = false } = Astro.props;
 ---
 
-<a href={href} class={active ? 'active' : ''}>
+<a href={href} class={`nav__link ${active ? 'nav__link--active' : ''}`}>
   <slot />
 </a>
 
 <style lang="scss">
-  a {
+  .nav__link {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 400;
@@ -23,16 +23,16 @@ const { href, active = false } = Astro.props;
     box-sizing: border-box;
   }
 
-  a:hover {
+  .nav__link:hover {
     color: var(--color-accent-primary);
     background-color: rgba(var(--color-accent-primary-rgb), 0.05);
   }
 
-  a.active {
+  .nav__link--active {
     color: var(--color-accent-primary);
   }
 
-  a.active::after {
+  .nav__link--active::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -43,7 +43,7 @@ const { href, active = false } = Astro.props;
   }
 
   /* Style for dropdown menu items */
-  :global(.dropdown-menu) a {
+  :global(.nav__dropdown-menu) .nav__link {
     display: block;
     width: 100%;
     padding: 10px 16px;
@@ -54,12 +54,12 @@ const { href, active = false } = Astro.props;
     border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.05);
   }
 
-  :global(.dropdown-menu) a:last-child {
+  :global(.nav__dropdown-menu) .nav__link:last-child {
     border-bottom: none;
   }
 
-  @media (max-width: 768px) {
-    a {
+  @media (max-width: $breakpoint_md) {
+    .nav__link {
       padding: 8px 6px;
       font-size: 14px;
       display: block;

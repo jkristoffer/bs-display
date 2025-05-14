@@ -1,0 +1,68 @@
+/* Block: nav__link */
+.nav__link {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  padding: 8px 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Hover state */
+.nav__link:hover {
+  color: var(--color-accent-primary);
+  background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+}
+
+/* Modifier: nav__link--active */
+.nav__link_active {
+  color: var(--color-accent-primary);
+}
+
+/* Active state indicator */
+.nav__link_active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background-color: var(--color-accent-primary);
+}
+
+/* Style for dropdown menu items */
+:global(.nav__dropdown_menu) .nav__link {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  text-transform: none;
+  border-radius: 0;
+  font-size: 15px;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.05);
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+/* Remove border from last dropdown item */
+:global(.nav__dropdown_menu) .nav__link:last-child {
+  border-bottom: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav__link {
+    padding: 8px 6px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Style for dropdown menu items in mobile */
+  :global(.nav__dropdown_menu) .nav__link {
+    padding: 10px 24px; /* Increase padding for better touch targets */
+    font-size: 14px;
+  }
+}

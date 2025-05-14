@@ -13,27 +13,29 @@ const navItems = [
     label: 'Products',
     dropdown: true,
     items: [
-      { path: '/products/smart-boards', label: 'Smart Boards' },
-      { path: '/products/lecterns', label: 'Lecterns' }
+      { path: '/products', label: 'Smart Boards' }
+      // { path: '/products/lecterns', label: 'Lecterns' }
     ]
   },
-  {
-    label: 'Solutions',
-    dropdown: true,
-    items: [
-      { path: '/solutions/classrooms', label: 'For Classrooms' },
-      { path: '/solutions/offices', label: 'For Offices & Boardrooms' },
-      { path: '/solutions/training', label: 'For Training Centers' }
-    ]
-  },
+  // {
+  //   label: 'Solutions',
+  //   dropdown: true,
+  //   items: [
+  //     { path: '/solutions/classrooms', label: 'For Classrooms' },
+  //     { path: '/solutions/offices', label: 'For Offices & Boardrooms' },
+  //     { path: '/solutions/training', label: 'For Training Centers' }
+  //   ]
+  // },
   {
     label: 'Learn',
     dropdown: true,
     items: [
-      { path: '/learn/buying-guide', label: 'Smart Whiteboard Buying Guide' },
+      {
+        path: '/smart-whiteboard-buying-guide',
+        label: 'Smart Whiteboard Buying Guide'
+      },
       { path: '/learn/blog', label: 'Blog' },
-      { path: '/learn/comparison', label: 'Comparison Table' },
-      { path: '/smart-whiteboard-buying-guide', label: 'How Smartboards Work' }
+      { path: '/learn/comparison', label: 'Comparison Table' }
     ]
   },
   { path: '/contact', label: 'Contact' }
@@ -190,7 +192,7 @@ const navItems = [
 
   .dropdown-menu {
     position: absolute;
-    top: calc(100% + var(--spacing-sm));
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--color-background);
@@ -220,7 +222,25 @@ const navItems = [
     border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
   }
 
+  /* Create a virtual padding area to prevent dropdown from collapsing */
+  .dropdown-container::after {
+    content: '';
+    position: absolute;
+    height: 20px; /* Virtual padding height */
+    width: 100%;
+    bottom: -20px;
+    left: 0;
+    z-index: 150;
+  }
+
   .dropdown-container:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Add hover state for the dropdown menu itself */
+  .dropdown-menu:hover {
     display: block;
     opacity: 1;
     transform: translateX(-50%) translateY(0);

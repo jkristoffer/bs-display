@@ -20,10 +20,12 @@ const { href, active = false } = Astro.props;
     padding: 8px 12px;
     position: relative;
     transition: all 0.3s ease;
+    box-sizing: border-box;
   }
 
   a:hover {
     color: var(--color-accent-primary);
+    background-color: rgba(var(--color-accent-primary-rgb), 0.05);
   }
 
   a.active {
@@ -40,7 +42,23 @@ const { href, active = false } = Astro.props;
     background-color: var(--color-accent-primary);
   }
 
-  @media (max-width: $breakpoint-md) {
+  /* Style for dropdown menu items */
+  :global(.dropdown-menu) a {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    text-transform: none;
+    border-radius: 0;
+    font-size: 15px;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.05);
+  }
+
+  :global(.dropdown-menu) a:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
     a {
       padding: 8px 6px;
       font-size: 14px;

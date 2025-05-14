@@ -73,6 +73,13 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       }));
     }
   };
+  
+  // Close all dropdowns when mobile menu is closed
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      setActiveDropdowns({});
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <nav className={styles.nav}>

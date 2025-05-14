@@ -19,6 +19,7 @@
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Element: nav__logo */
@@ -134,15 +135,7 @@
   z-index: 150;
 }
 
-/* Show dropdown menu on hover */
 .nav__dropdown:hover .nav__dropdown_menu {
-  display: flex; /* Use flex instead of block */
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Add hover state for the dropdown menu itself */
-.nav__dropdown_menu:hover {
   display: flex; /* Use flex instead of block */
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -190,11 +183,13 @@
   /* Modifier: nav__items--active */
   .nav__items_active {
     display: flex;
+    gap: 0;
   }
 
   .nav__dropdown {
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-direction: column; /* Stack dropdown content vertically */
   }
 
   .nav__dropdown_trigger {
@@ -202,35 +197,49 @@
     justify-content: space-between;
     width: 100%;
     border-radius: 0;
+    display: flex; /* Ensure content is properly aligned */
+    box-sizing: border-box;
+  }
+
+  /* Rotate dropdown arrow when active */
+  .nav__dropdown_active .nav__dropdown_arrow {
+    transform: rotate(180deg);
   }
 
   .nav__dropdown_menu {
     position: static;
     display: none;
-    flex-direction: column; /* Ensure items stack vertically */
+    flex-direction: column;
     box-shadow: none;
     padding: 0;
     border: none;
     border-radius: 0;
+    width: 100%; /* Full width */
     min-width: 100%;
     transform: none;
     opacity: 1;
     background-color: rgba(var(--color-accent-primary-rgb), 0.03);
+    visibility: visible; /* Ensure visibility */
   }
-  
+
   /* Modifier: nav__dropdown--active */
   .nav__dropdown_active .nav__dropdown_menu {
-    display: flex; /* Use flex instead of block */
+    display: flex;
+    visibility: visible;
   }
 
   .nav__dropdown_menu::before {
     display: none;
   }
 
+  .nav__dropdown:hover .nav__dropdown_menu {
+    transform: translateX(0%) translateY(0);
+  }
+
   .nav__mobile_toggle {
     display: block;
-  } 
-  
+  }
+
   /* Modifier: nav__mobile-toggle--active */
   .nav__mobile_toggle_active .nav__mobile_toggle_bar:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);

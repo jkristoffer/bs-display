@@ -53,16 +53,23 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .nav__link {
-    padding: 8px 6px;
+    padding: 12px 16px;
     font-size: 14px;
     display: block;
     width: 100%;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
   
   /* Style for dropdown menu items in mobile */
   :global(.nav__dropdown_menu) .nav__link {
-    padding: 10px 24px; /* Increase padding for better touch targets */
+    padding: 12px 32px; /* Increased left padding for nested items */
     font-size: 14px;
+    background-color: rgba(var(--color-accent-primary-rgb), 0.03);
+  }
+  
+  /* Remove border from last nav item */
+  .nav__link:last-child {
+    border-bottom: none;
   }
 }

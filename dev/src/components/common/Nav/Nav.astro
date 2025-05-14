@@ -49,23 +49,21 @@ const navItems = [
     </div>
     <div class="nav-items">
       {
-        navItems.map((item) => (
+        navItems.map((item) =>
           item.dropdown ? (
             <div class="dropdown-container">
               <div class="dropdown-trigger">
                 {item.label} <span class="dropdown-arrow">▾</span>
               </div>
               <div class="dropdown-menu">
-                {
-                  item.items.map((subItem) => (
-                    <NavItem 
-                      href={subItem.path} 
-                      active={currentPath === subItem.path}
-                    >
-                      {subItem.label}
-                    </NavItem>
-                  ))
-                }
+                {item.items.map((subItem) => (
+                  <NavItem
+                    href={subItem.path}
+                    active={currentPath === subItem.path}
+                  >
+                    {subItem.label}
+                  </NavItem>
+                ))}
               </div>
             </div>
           ) : (
@@ -73,7 +71,7 @@ const navItems = [
               {item.label}
             </NavItem>
           )
-        ))
+        )
       }
     </div>
     <button
@@ -96,10 +94,11 @@ const navItems = [
   });
 
   // Mobile dropdown functionality
-  if (window.innerWidth <= 768) { // Assuming $breakpoint-md is 768px
+  if (window.innerWidth <= 768) {
+    // Assuming $breakpoint-md is 768px
     const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-    
-    dropdownTriggers.forEach(trigger => {
+
+    dropdownTriggers.forEach((trigger) => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         const container = trigger.closest('.dropdown-container');
@@ -202,7 +201,9 @@ const navItems = [
     display: none;
     z-index: 200;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
     border: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
   }
 
@@ -225,28 +226,6 @@ const navItems = [
     transform: translateX(-50%) translateY(0);
   }
 
-  .dropdown-menu a {
-    padding: var(--spacing-md) var(--spacing-lg);
-    display: block;
-    text-transform: none;
-    white-space: nowrap;
-    font-weight: var(--font-weight-regular);
-    border-left: 3px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .dropdown-menu a:hover {
-    background-color: rgba(var(--color-accent-primary-rgb), 0.05);
-    border-left: 3px solid var(--color-accent-primary);
-    color: var(--color-accent-primary);
-  }
-
-  .dropdown-menu a.active {
-    border-left: 3px solid var(--color-accent-primary);
-    color: var(--color-accent-primary);
-    font-weight: var(--font-weight-bold);
-  }
-
   .mobile-menu-toggle {
     display: none;
     background: none;
@@ -266,18 +245,6 @@ const navItems = [
     border-radius: 2px;
   }
 
-  .mobile-menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 6px);
-  }
-
-  .mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -6px);
-  }
-  
   @media (max-width: 768px) {
     .main-nav > .container {
       padding: var(--spacing-sm) var(--spacing-md);
@@ -285,29 +252,6 @@ const navItems = [
 
     .nav-items {
       display: none;
-    }
-
-    .nav-items.active {
-      gap: 0;
-      flex-flow: column;
-      position: absolute;
-      left: 0;
-      top: 70px;
-      background: var(--color-background);
-      width: 100%;
-      display: block;
-      padding: 0;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
-      z-index: 99;
-    }
-
-    .nav-items a {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      padding: var(--spacing-md) var(--spacing-lg);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .dropdown-container {
@@ -337,19 +281,6 @@ const navItems = [
 
     .dropdown-menu::before {
       display: none;
-    }
-
-    .dropdown-menu a {
-      padding: var(--spacing-md) var(--spacing-xl);
-      border-left: 3px solid transparent;
-    }
-
-    .dropdown-container.active .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-container.active .dropdown-arrow {
-      transform: rotate(180deg);
     }
 
     .mobile-menu-toggle {

@@ -2,22 +2,74 @@
 import '../styles/global.scss';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+
 interface Props {
   title: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  canonicalUrl?: string;
+  structuredData?: string;
+  viewport?: string;
 }
 
-const { title, description } = Astro.props;
+const { 
+  title, 
+  description, 
+  ogTitle = title,
+  ogDescription = description,
+  ogImage,
+  ogType = 'website',
+  twitterCard = 'summary',
+  twitterTitle = title,
+  twitterDescription = description,
+  twitterImage = ogImage,
+  canonicalUrl,
+  structuredData,
+  viewport = 'width=device-width, initial-scale=1'
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE || Astro.url.origin;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content={viewport} />
     <meta name="description" content={description} />
     <title>{title}</title>
-
+    
+    <!-- Canonical URL -->
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl || Astro.url.href} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl).href} />}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:url" content={canonicalUrl || Astro.url.href} />
+    <meta name="twitter:title" content={twitterTitle} />
+    <meta name="twitter:description" content={twitterDescription} />
+    {twitterImage && <meta name="twitter:image" content={new URL(twitterImage, siteUrl).href} />}
+    
+    <!-- Structured Data -->
+    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
+    
+    <!-- Sitemap and other links -->
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

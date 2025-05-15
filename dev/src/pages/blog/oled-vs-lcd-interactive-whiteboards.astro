@@ -1,0 +1,31 @@
+---
+import { getEntry } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Get the blog post content
+const blogEntry = await getEntry('blog', 'oled-vs-lcd-interactive-whiteboards');
+const { Content } = await blogEntry.render();
+
+// Extract frontmatter
+const { 
+  title, 
+  description, 
+  publishDate, 
+  author, 
+  category, 
+  image, 
+  canonicalUrl 
+} = blogEntry.data;
+---
+
+<BlogLayout
+  title={title}
+  description={description}
+  publishDate={publishDate}
+  author={author}
+  category={category}
+  image={image}
+  canonicalUrl={canonicalUrl}
+>
+  <Content />
+</BlogLayout>

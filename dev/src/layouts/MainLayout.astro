@@ -6,12 +6,51 @@ import Footer from '../components/common/Footer/Footer.astro';
 interface Props {
   title: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  canonicalUrl?: string;
+  structuredData?: string;
+  viewport?: string;
 }
 
-const { title, description } = Astro.props;
+const { 
+  title, 
+  description, 
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogType,
+  twitterCard,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  canonicalUrl,
+  structuredData,
+  viewport
+} = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout 
+  title={title} 
+  description={description}
+  ogTitle={ogTitle}
+  ogDescription={ogDescription}
+  ogImage={ogImage}
+  ogType={ogType}
+  twitterCard={twitterCard}
+  twitterTitle={twitterTitle}
+  twitterDescription={twitterDescription}
+  twitterImage={twitterImage}
+  canonicalUrl={canonicalUrl}
+  structuredData={structuredData}
+  viewport={viewport}
+>
   <Nav client:only="react" />
   <main>
     <slot />

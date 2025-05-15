@@ -2,31 +2,13 @@
  * Type definitions for blog posts
  */
 
+import type { z } from 'astro:content';
+import { blogSchema } from '../content/config';
+
 /**
  * Interface for blog post frontmatter data
  */
-export interface BlogPost {
-  /** Title of the blog post */
-  title: string;
-
-  /** Meta description for SEO */
-  description: string;
-
-  /** Publication date of the post */
-  publishDate: Date;
-
-  /** Author of the post */
-  author?: string;
-
-  /** Category or topic of the post */
-  category?: string;
-
-  /** Featured image with metadata */
-  image?: string;
-
-  /** Custom canonical URL if different from the default */
-  canonicalUrl?: string;
-}
+export type BlogPost = z.infer<typeof blogSchema>;
 
 /**
  * Interface for blog post API response item

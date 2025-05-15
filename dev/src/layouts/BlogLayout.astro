@@ -1,5 +1,6 @@
 ---
 import MainLayout from './MainLayout.astro';
+import RelatedBlogPosts from '../components/blog/RelatedBlogPosts.astro';
 
 interface Props {
   title: string;
@@ -84,6 +85,9 @@ const structuredData =
   structuredData={structuredData ? JSON.stringify(structuredData) : undefined}
 >
   <div class="blog-container">
+    <article class="blog-content">
+      <slot />
+    </article>
     {
       publishDate && author && (
         <div class="blog-meta">
@@ -93,10 +97,14 @@ const structuredData =
         </div>
       )
     }
-    <article class="blog-content">
-      <slot />
-    </article>
   </div>
+
+  {/* Add related blog posts component */}
+  <RelatedBlogPosts
+    currentSlug={Astro.url.pathname.split('/').pop()}
+    category={category}
+  />
+
   <style>
     .blog-container {
       max-width: 800px;
@@ -105,12 +113,15 @@ const structuredData =
     }
 
     .blog-meta {
+      border-top: 1px solid #eee;
+      padding-top: var(--spacing-xl);
       margin-bottom: 2rem;
       font-size: 0.9rem;
       color: #666;
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
+      flex-flow: column;
+      align-items: center;
     }
 
     .blog-category {

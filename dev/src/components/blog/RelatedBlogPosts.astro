@@ -1,0 +1,204 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentSlug: string;
+  category?: string;
+  limit?: number;
+}
+
+const { currentSlug, limit = 3 } = Astro.props;
+
+// Get all blog posts
+const allBlogPosts = await getCollection('blog');
+
+// Filter out the current post and optionally filter by category
+const filteredPosts = allBlogPosts.filter((post) => post.slug !== currentSlug);
+
+// Apply category filter if provided
+// const categoryFilteredPosts = category
+//   ? filteredPosts.filter((post) => post.data.category === category)
+//   : filteredPosts;
+
+// Sort by publish date (newest first)
+const sortedPosts = filteredPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+// Limit the number of posts
+const relatedPosts = sortedPosts.slice(0, limit);
+
+// Format date function
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+}
+---
+
+<section class="related-posts container">
+  <h2>Related Articles</h2>
+
+  {
+    relatedPosts.length > 0 ? (
+      <div class="related-posts-grid">
+        {relatedPosts.map((post) => (
+          <article class="related-post-card">
+            {post.data.image && (
+              <div class="related-post-image">
+                <a href={`/blog/${post.slug}`}>
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+            )}
+            <div class="related-post-content">
+              {post.data.category && (
+                <span class="related-post-category">{post.data.category}</span>
+              )}
+              <h3>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h3>
+              <div class="related-post-meta">
+                {post.data.publishDate && (
+                  <time datetime={post.data.publishDate.toISOString()}>
+                    {formatDate(post.data.publishDate)}
+                  </time>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="no-related-posts">No related articles found.</p>
+    )
+  }
+
+  <div class="view-all-link">
+    <a href="/blog">View All Articles</a>
+  </div>
+</section>
+
+<style>
+  .related-posts {
+    margin-top: var(--space-xl, 3rem);
+    padding-top: var(--space-lg, 2rem);
+    border-top: 1px solid #eee;
+  }
+
+  .related-posts h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md, 1.5rem);
+    text-align: center;
+  }
+
+  .related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-md, 1.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .related-posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .related-post-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    background-color: #fff;
+  }
+
+  .related-post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .related-post-image {
+    height: 140px;
+    overflow: hidden;
+  }
+
+  .related-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .related-post-card:hover .related-post-image img {
+    transform: scale(1.05);
+  }
+
+  .related-post-content {
+    padding: var(--space-sm, 1rem);
+  }
+
+  .related-post-category {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .related-post-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .related-post-card h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .related-post-card h3 a:hover {
+    color: #0066cc;
+  }
+
+  .related-post-meta {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .no-related-posts {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: var(--space-md, 1.5rem) 0;
+  }
+
+  .view-all-link {
+    text-align: center;
+    margin-top: var(--space-md, 1.5rem);
+  }
+
+  .view-all-link a {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .view-all-link a:hover {
+    background-color: #0055aa;
+  }
+</style>

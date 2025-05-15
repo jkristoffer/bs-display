@@ -38,8 +38,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
           path: '/smart-whiteboard-buying-guide',
           label: 'Smart Whiteboard Buying Guide'
         },
-        { path: '/learn/blog', label: 'Blog' },
-        { path: '/learn/comparison', label: 'Comparison Table' }
+        { path: '/blog', label: 'Blog' }
       ]
     },
     { path: '/contact', label: 'Contact' }
@@ -73,7 +72,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       }));
     }
   };
-  
+
   // Close all dropdowns when mobile menu is closed
   useEffect(() => {
     if (!mobileMenuOpen) {

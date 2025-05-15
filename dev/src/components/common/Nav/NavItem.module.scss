@@ -8,6 +8,7 @@
   position: relative;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  text-align: center;
 }
 
 /* Hover state */
@@ -59,15 +60,16 @@
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: left;
   }
-  
+
   /* Style for dropdown menu items in mobile */
   :global(.nav__dropdown_menu) .nav__link {
     padding: 12px 32px; /* Increased left padding for nested items */
     font-size: 14px;
     background-color: rgba(var(--color-accent-primary-rgb), 0.03);
   }
-  
+
   /* Remove border from last nav item */
   .nav__link:last-child {
     border-bottom: none;

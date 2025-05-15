@@ -1,15 +1,41 @@
 ---
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
+import type { CollectionEntry } from 'astro:content';
 
 // Get all blog posts and sort by publish date (newest first)
 const allBlogPosts = await getCollection('blog');
-const sortedPosts = allBlogPosts.sort((a, b) => 
-  b.data.publishDate.getTime() - a.data.publishDate.getTime()
+const sortedPosts = allBlogPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
 );
 
+// Pagination configuration
+export const prerender = true; // Enable static site generation for SEO
+const postsPerPage = 6;
+const totalPosts = sortedPosts.length;
+const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+// Get the current page from the URL or default to 1
+const currentPage = Astro.url.searchParams.get('page')
+  ? parseInt(Astro.url.searchParams.get('page'))
+  : 1;
+
+// Calculate pagination data
+const startIndex = (currentPage - 1) * postsPerPage;
+const endIndex = startIndex + postsPerPage;
+const currentPosts: CollectionEntry<'blog'>[] = sortedPosts.slice(
+  startIndex,
+  endIndex
+);
+const hasNextPage = currentPage < totalPages;
+const hasPrevPage = currentPage > 1;
+
+// Generate URLs for pagination
+const nextPageUrl = hasNextPage ? `/blog?page=${currentPage + 1}` : null;
+const prevPageUrl = hasPrevPage ? `/blog?page=${currentPage - 1}` : null;
+
 // Format date function
-function formatDate(date) {
+function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
@@ -18,154 +44,359 @@ function formatDate(date) {
 }
 ---
 
-<MainLayout 
-  title="Blog | Big Shine Display" 
+<MainLayout
+  title="Blog | Big Shine Display"
   description="Explore the latest insights, guides, and industry news about smart displays, interactive whiteboards, and digital signage solutions."
 >
+  {/* Add prev/next links for SEO and accessibility */}
+  {prevPageUrl && <link rel="prev" href={prevPageUrl} />}
+  {nextPageUrl && <link rel="next" href={nextPageUrl} />}
   <div class="blog-index-container">
     <header class="blog-header">
       <h1>Blog</h1>
-      <p>Insights, guides, and industry news about smart display technologies</p>
+      <p>
+        Insights, guides, and industry news about smart display technologies
+      </p>
     </header>
 
-    <div class="blog-posts-grid">
-      {sortedPosts.map(post => (
-        <article class="blog-card">
-          {post.data.image && (
-            <div class="blog-card-image">
-              <img src={post.data.image} alt={post.data.title} />
-            </div>
-          )}
-          <div class="blog-card-content">
-            {post.data.category && (
-              <span class="blog-category">{post.data.category}</span>
+    <div class="blog-posts-grid" id="blog-posts-container">
+      {
+        currentPosts.map((post) => (
+          <article class="blog-card">
+            {post.data.image && (
+              <div class="blog-card-image">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  loading="lazy"
+                />
+              </div>
             )}
-            <h2>
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-            </h2>
-            <p class="blog-excerpt">{post.data.description}</p>
-            <div class="blog-meta">
-              {post.data.publishDate && (
-                <time datetime={post.data.publishDate.toISOString()}>
-                  {formatDate(post.data.publishDate)}
-                </time>
+            <div class="blog-card-content">
+              {post.data.category && (
+                <span class="blog-category">{post.data.category}</span>
               )}
-              {post.data.author && (
-                <span class="blog-author">By {post.data.author}</span>
-              )}
+              <h2>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              <p class="blog-excerpt">{post.data.description}</p>
+              <div class="blog-meta">
+                {post.data.publishDate && (
+                  <time datetime={post.data.publishDate.toISOString()}>
+                    {formatDate(post.data.publishDate)}
+                  </time>
+                )}
+                {post.data.author && (
+                  <span class="blog-author">By {post.data.author}</span>
+                )}
+              </div>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="pagination-container">
+      {/* Server-side pagination controls */}
+      <div class="pagination-links">
+        {
+          hasPrevPage && (
+            <a href={prevPageUrl} class="pagination-link" rel="prev">
+              &larr; Previous
+            </a>
+          )
+        }
+
+        <span class="pagination-info">Page {currentPage} of {totalPages}</span>
+
+        {
+          hasNextPage && (
+            <a href={nextPageUrl} class="pagination-link" rel="next">
+              Next &rarr;
+            </a>
+          )
+        }
+      </div>
+
+      {/* Client-side load more button */}
+      {
+        hasNextPage && (
+          <button
+            id="load-more-btn"
+            class="load-more-button"
+            data-next-page={currentPage + 1}
+            data-total-pages={totalPages}
+          >
+            Load More
+          </button>
+        )
+      }
     </div>
   </div>
+
+  <script>
+    // Client-side JavaScript for the "Load More" functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadMoreBtn = document.getElementById(
+        'load-more-btn'
+      ) as HTMLButtonElement;
+      const postsContainer = document.getElementById('blog-posts-container');
+
+      if (loadMoreBtn && postsContainer) {
+        loadMoreBtn.addEventListener('click', async () => {
+          // Get the next page number from the button's data attribute
+          const nextPage = parseInt(loadMoreBtn.getAttribute('data-next-page'));
+          const totalPages = parseInt(
+            loadMoreBtn.getAttribute('data-total-pages')
+          );
+
+          // Show loading state
+          loadMoreBtn.textContent = 'Loading...';
+          loadMoreBtn.disabled = true;
+
+          try {
+            // Fetch the next page
+            const response = await fetch(`/api/blog-posts?page=${nextPage}`);
+
+            if (!response.ok) {
+              throw new Error('Failed to load more posts');
+            }
+
+            const data = await response.json();
+
+            // Append the new posts to the container
+            if (data.posts && data.posts.length > 0) {
+              // Create HTML for each post and append to the container
+              data.posts.forEach((post) => {
+                const postElement = createPostElement(post);
+                postsContainer.appendChild(postElement);
+              });
+
+              // Update the button's next page number
+              loadMoreBtn.setAttribute('data-next-page', String(nextPage + 1));
+
+              // Hide the button if we've reached the last page
+              if (nextPage + 1 > totalPages) {
+                loadMoreBtn.style.display = 'none';
+              }
+            }
+          } catch (error) {
+            console.error('Error loading more posts:', error);
+          } finally {
+            // Reset button state
+            loadMoreBtn.textContent = 'Load More';
+            loadMoreBtn.disabled = false;
+          }
+        });
+      }
+    });
+
+    // Helper function to create a post element from post data
+    function createPostElement(post) {
+      const article = document.createElement('article');
+      article.className = 'blog-card';
+
+      let html = '';
+
+      // Add image if available
+      if (post.image) {
+        html += `
+        <div class="blog-card-image">
+          <img src="${post.image}" alt="${post.title}" loading="lazy" />
+        </div>
+      `;
+      }
+
+      // Add content
+      html += `
+      <div class="blog-card-content">
+        ${post.category ? `<span class="blog-category">${post.category}</span>` : ''}
+        <h2>
+          <a href="/blog/${post.slug}">${post.title}</a>
+        </h2>
+        <p class="blog-excerpt">${post.description}</p>
+        <div class="blog-meta">
+          ${post.publishDate ? `<time datetime="${post.publishDate}">${formatDate(new Date(post.publishDate))}</time>` : ''}
+          ${post.author ? `<span class="blog-author">By ${post.author}</span>` : ''}
+        </div>
+      </div>
+    `;
+
+      article.innerHTML = html;
+      return article;
+    }
+
+    // Format date function for client-side use
+    function formatDate(date: Date): string {
+      return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }).format(date);
+    }
+  </script>
+
+  <style>
+    .blog-index-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-header p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    .blog-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .blog-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .blog-posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .blog-card {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+      background-color: #fff;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .blog-card-content {
+      padding: 1.5rem;
+    }
+
+    .blog-category {
+      display: inline-block;
+      background-color: #f0f0f0;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .blog-card h2 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .blog-card h2 a:hover {
+      color: #0066cc;
+    }
+
+    .blog-excerpt {
+      color: #555;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+      flex-wrap: wrap;
+    }
+
+    /* Pagination styles */
+    .pagination-container {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .pagination-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .pagination-link {
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      background-color: #f5f5f5;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .pagination-link:hover {
+      background-color: #e0e0e0;
+    }
+
+    .pagination-info {
+      color: #666;
+    }
+
+    .load-more-button {
+      padding: 0.75rem 2rem;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .load-more-button:hover {
+      background-color: #0055aa;
+    }
+
+    .load-more-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
 </MainLayout>
-
-<style>
-  .blog-index-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  .blog-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .blog-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .blog-header p {
-    color: #666;
-    font-size: 1.1rem;
-  }
-
-  .blog-posts-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .blog-posts-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .blog-posts-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .blog-card {
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff;
-  }
-
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .blog-card-image {
-    height: 200px;
-    overflow: hidden;
-  }
-
-  .blog-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .blog-card-content {
-    padding: 1.5rem;
-  }
-
-  .blog-category {
-    display: inline-block;
-    background-color: #f0f0f0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-
-  .blog-card h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    line-height: 1.4;
-  }
-
-  .blog-card h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .blog-card h2 a:hover {
-    color: #0066cc;
-  }
-
-  .blog-excerpt {
-    color: #555;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .blog-meta {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.85rem;
-    color: #666;
-    flex-wrap: wrap;
-  }
-</style>

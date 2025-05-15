@@ -7,14 +7,14 @@ const blogEntry = await getEntry('blog', 'oled-vs-lcd-interactive-whiteboards');
 const { Content } = await blogEntry.render();
 
 // Extract frontmatter
-const { 
-  title, 
-  description, 
-  publishDate, 
-  author, 
-  category, 
-  image, 
-  canonicalUrl 
+const {
+  title,
+  description,
+  publishDate,
+  author,
+  category,
+  image,
+  canonicalUrl
 } = blogEntry.data;
 ---
 

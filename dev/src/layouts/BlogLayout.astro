@@ -11,18 +11,18 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const { 
-  title, 
-  description, 
-  publishDate, 
-  author, 
-  category, 
-  image, 
-  canonicalUrl 
+const {
+  title,
+  description,
+  publishDate,
+  author,
+  category,
+  image,
+  canonicalUrl
 } = Astro.props;
 
 // Format date if provided
-const formattedDate = publishDate 
+const formattedDate = publishDate
   ? new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'long',
@@ -32,41 +32,45 @@ const formattedDate = publishDate
 
 // Generate canonical URL
 const siteUrl = import.meta.env.SITE || Astro.url.origin;
-const resolvedCanonicalUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const resolvedCanonicalUrl =
+  canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 
 // Prepare structured data for blog post
-const structuredData = publishDate && author ? {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: title,
-  description,
-  datePublished: publishDate.toISOString(),
-  author: {
-    '@type': 'Person',
-    name: author
-  },
-  ...(image && { image: new URL(image, siteUrl).href }),
-  ...(category && { keywords: category }),
-  publisher: {
-    '@type': 'Organization',
-    name: 'BS Display',
-    url: siteUrl,
-    logo: {
-      '@type': 'ImageObject',
-      url: new URL('/logo.png', siteUrl).href,
-      width: 600,
-      height: 60
-    }
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': resolvedCanonicalUrl
-  }
-} : null;
+const structuredData =
+  publishDate && author
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description,
+        datePublished: publishDate.toISOString(),
+        author: {
+          '@type': 'Person',
+          name: author
+        },
+        ...(image && { image: new URL(image, siteUrl).href }),
+        ...(category && { keywords: category }),
+        publisher: {
+          '@type': 'Organization',
+          name: 'BS Display',
+          url: siteUrl,
+          logo: {
+            '@type': 'ImageObject',
+            url: new URL('/logo.png', siteUrl).href,
+            width: 600,
+            height: 60
+          }
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': resolvedCanonicalUrl
+        }
+      }
+    : null;
 ---
 
-<MainLayout 
-  title={title} 
+<MainLayout
+  title={title}
   description={description}
   ogTitle={title}
   ogDescription={description}
@@ -80,13 +84,15 @@ const structuredData = publishDate && author ? {
   structuredData={structuredData ? JSON.stringify(structuredData) : undefined}
 >
   <div class="blog-container">
-    {publishDate && author && (
-      <div class="blog-meta">
-        {category && <span class="blog-category">{category}</span>}
-        <time datetime={publishDate.toISOString()}>{formattedDate}</time>
-        <span class="blog-author">By {author}</span>
-      </div>
-    )}
+    {
+      publishDate && author && (
+        <div class="blog-meta">
+          {category && <span class="blog-category">{category}</span>}
+          <time datetime={publishDate.toISOString()}>{formattedDate}</time>
+          <span class="blog-author">By {author}</span>
+        </div>
+      )
+    }
     <article class="blog-content">
       <slot />
     </article>

@@ -7,14 +7,14 @@ const blogEntry = await getEntry('blog', 'smartboard-budget-guide');
 const { Content } = await blogEntry.render();
 
 // Extract frontmatter
-const { 
-  title, 
-  description, 
-  publishDate, 
-  author, 
-  category, 
-  image, 
-  canonicalUrl 
+const {
+  title,
+  description,
+  publishDate,
+  author,
+  category,
+  image,
+  canonicalUrl
 } = blogEntry.data;
 ---
 

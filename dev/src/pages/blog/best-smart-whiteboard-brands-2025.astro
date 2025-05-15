@@ -1,20 +1,24 @@
 ---
 import { getEntry } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
-
+import type { CollectionEntry } from 'astro:content';
 // Get the blog post content
-const blogEntry = await getEntry('blog', 'best-smart-whiteboard-brands-2025');
+const blogEntry = (await getEntry(
+  'blog',
+  'best-smart-whiteboard-brands-2025'
+)) as CollectionEntry<'blog'>;
+if (!blogEntry) throw new Error('Not found');
 const { Content } = await blogEntry.render();
 
 // Extract frontmatter
-const { 
-  title, 
-  description, 
-  publishDate, 
-  author, 
-  category, 
-  image, 
-  canonicalUrl 
+const {
+  title,
+  description,
+  publishDate,
+  author,
+  category,
+  image,
+  canonicalUrl
 } = blogEntry.data;
 ---
 

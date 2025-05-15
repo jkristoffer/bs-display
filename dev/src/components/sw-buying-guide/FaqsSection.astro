@@ -4,10 +4,6 @@ interface FaqItem {
   answer: string;
 }
 
-interface Props {
-  faqs: FaqItem[];
-}
-
 const {
   faqs = [
     {
@@ -39,7 +35,7 @@ const {
     <h2>FAQs</h2>
     <div class="faq-container">
       {
-        faqs.map((faq) => (
+        faqs.map((faq: FaqItem) => (
           <div class="faq-item">
             <h3>{faq.question}</h3>
             <p>{faq.answer}</p>

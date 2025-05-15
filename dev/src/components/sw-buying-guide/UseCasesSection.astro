@@ -7,10 +7,6 @@ interface UseCase {
   linkText: string;
 }
 
-interface Props {
-  useCases: UseCase[];
-}
-
 const {
   useCases = [
     {
@@ -46,14 +42,14 @@ const {
     <h2>Use Case Scenarios</h2>
     <div class="use-case-grid">
       {
-        useCases.map((useCase) => (
+        useCases.map((useCase: UseCase) => (
           <div class="use-case-card">
             <h3>{useCase.title}</h3>
             <p>
               <strong>Recommended:</strong> {useCase.recommendation}
             </p>
             <p>{useCase.description}</p>
-            <a href={useCase.link} class="button-faint">
+            <a style="display:none" href={useCase.link} class="button-faint">
               {useCase.linkText}
             </a>
           </div>

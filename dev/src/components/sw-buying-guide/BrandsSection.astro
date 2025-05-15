@@ -4,12 +4,6 @@ interface Brand {
   description: string;
 }
 
-interface Props {
-  brands: Brand[];
-  internalLinkText?: string;
-  internalLinkUrl?: string;
-}
-
 const {
   brands = [
     {
@@ -34,7 +28,7 @@ const {
     }
   ],
   internalLinkText = 'Explore METZ IR Series →',
-  internalLinkUrl = '#'
+  internalLinkUrl = '/products/metz'
 } = Astro.props;
 ---
 
@@ -43,7 +37,7 @@ const {
     <h2>Top Brands & Recommended Models</h2>
     <div class="brands-grid">
       {
-        brands.map((brand) => (
+        brands.map((brand: Brand) => (
           <div class="brand-card">
             <h3>{brand.name}</h3>
             <p>{brand.description}</p>

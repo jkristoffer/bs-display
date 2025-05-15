@@ -5,19 +5,13 @@ interface CtaButton {
   type: 'primary' | 'ghost';
 }
 
-interface Props {
-  title?: string;
-  introText?: string;
-  ctaButtons: CtaButton[];
-}
-
 const {
   title = 'Need Expert Advice?',
   introText = 'Our product specialists are ready to help you find the perfect smart whiteboard solution for your specific needs.',
   ctaButtons = [
     {
       text: 'Request a Quote →',
-      link: '#',
+      link: '/contact',
       type: 'primary'
     },
     {
@@ -27,7 +21,7 @@ const {
     },
     {
       text: 'Schedule a Consultation',
-      link: '#',
+      link: '/contact',
       type: 'ghost'
     }
   ]
@@ -42,7 +36,7 @@ const {
     </p>
     <div class="cta-group">
       {
-        ctaButtons.map((button) => (
+        ctaButtons.map((button: CtaButton) => (
           <a href={button.link} class={`button-${button.type}`}>
             {button.text}
           </a>

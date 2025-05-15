@@ -5,12 +5,6 @@ interface Combination {
   description: string;
 }
 
-interface Props {
-  combinations: Combination[];
-  ctaText?: string;
-  ctaLink?: string;
-}
-
 const {
   combinations = [
     {
@@ -47,7 +41,7 @@ const {
     <h2>Best Combinations by Use Case & Budget</h2>
     <div class="combinations-grid">
       {
-        combinations.map((combo) => (
+        combinations.map((combo: Combination) => (
           <div class="combination-card">
             <h3>{combo.title}</h3>
             <p>

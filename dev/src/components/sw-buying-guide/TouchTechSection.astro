@@ -5,12 +5,6 @@ interface TouchTech {
   cons: string[];
 }
 
-interface Props {
-  technologies: TouchTech[];
-  internalLinkText?: string;
-  internalLinkUrl?: string;
-}
-
 const {
   technologies = [
     {
@@ -40,7 +34,7 @@ const {
     }
   ],
   internalLinkText = 'Capacitive vs Infrared Touch Screen →',
-  internalLinkUrl = '#'
+  internalLinkUrl = '/blog/capacitive-vs-infrared-touch-screen'
 } = Astro.props;
 ---
 
@@ -50,7 +44,7 @@ const {
 
     <div class="touch-tech-grid">
       {
-        technologies.map((tech) => (
+        technologies.map((tech: TouchTech) => (
           <div class="touch-tech-card">
             <h3>{tech.name}</h3>
             <ul class="pros-cons">

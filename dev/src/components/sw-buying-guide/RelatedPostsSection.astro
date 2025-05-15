@@ -5,28 +5,23 @@ interface RelatedPost {
   link: string;
 }
 
-interface Props {
-  title?: string;
-  posts: RelatedPost[];
-}
-
 const {
   title = 'Related Blog Posts',
   posts = [
     {
       title: 'OLED vs LCD for Interactive Whiteboards',
       description: 'Discover which display technology is right for your needs',
-      link: '#'
+      link: '/blog/oled-vs-lcd-interactive-whiteboards'
     },
     {
       title: 'Capacitive vs Infrared Touch Technology',
       description: 'Understanding the pros and cons of different touch systems',
-      link: '#'
+      link: '/blog/capacitive-vs-infrared-touch-screen'
     },
     {
       title: 'Understanding Smartboard Touch Detection',
       description: 'How different technologies detect and process touch input',
-      link: '#'
+      link: '/blog/how-smartboards-work'
     }
   ]
 } = Astro.props;
@@ -37,7 +32,7 @@ const {
     <h2>{title}</h2>
     <div class="related-posts-grid">
       {
-        posts.map((post) => (
+        posts.map((post: RelatedPost) => (
           <a href={post.link} class="related-post-card">
             <h3>{post.title}</h3>
             <p>{post.description}</p>

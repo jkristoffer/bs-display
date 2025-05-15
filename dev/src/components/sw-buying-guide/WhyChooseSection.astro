@@ -35,8 +35,11 @@ const {
       icon: 'versatile'
     }
   ],
-  ctaText = 'Unsure about your needs? Request a demo →',
-  ctaLink = '#'
+  ctaText = {
+    paragraph: 'Unsure about your needs?',
+    buttonText: 'Request a demo'
+  },
+  ctaLink = '/contact'
 } = Astro.props;
 ---
 
@@ -60,7 +63,8 @@ const {
       }
     </div>
     <div class="cta-container">
-      <a href={ctaLink} class="button-ghost">{ctaText}</a>
+      <small><i>{ctaText.paragraph}</i></small><br />
+      <a href={ctaLink} class="button-ghost">{ctaText.buttonText}</a>
     </div>
   </div>
 </section>

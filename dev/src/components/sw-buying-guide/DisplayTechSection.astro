@@ -7,12 +7,6 @@ interface DisplayTech {
   idealFor: string;
 }
 
-interface Props {
-  technologies: DisplayTech[];
-  internalLinkText?: string;
-  internalLinkUrl?: string;
-}
-
 const {
   technologies = [
     {
@@ -52,7 +46,7 @@ const {
     }
   ],
   internalLinkText = 'OLED vs LCD Comparison →',
-  internalLinkUrl = '#'
+  internalLinkUrl = '/blog/oled-vs-lcd-interactive-whiteboards'
 } = Astro.props;
 ---
 
@@ -72,7 +66,7 @@ const {
         </thead>
         <tbody>
           {
-            technologies.map((tech) => (
+            technologies.map((tech: DisplayTech) => (
               <tr>
                 <td>
                   <strong>{tech.type}</strong>

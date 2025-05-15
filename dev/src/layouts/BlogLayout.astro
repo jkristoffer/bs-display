@@ -86,6 +86,7 @@ const structuredData =
 >
   <div class="blog-container">
     <article class="blog-content">
+      <h1>{title}</h1>
       <slot />
     </article>
     {
@@ -106,6 +107,17 @@ const structuredData =
   />
 
   <style>
+    h1 {
+      text-align: center;
+      &:after {
+        content: '';
+        display: block;
+        height: 10px;
+        width: 33%;
+        background-color: var(--color-accent-secondary);
+        margin: var(--spacing-xxl) auto;
+      }
+    }
     .blog-container {
       max-width: 800px;
       margin: 0 auto;

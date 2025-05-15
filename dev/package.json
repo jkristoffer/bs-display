@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\"",
     "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\" --fix",

@@ -21,8 +21,11 @@ dev/.env
 
 # Editor directories and files
 .vscode/*
+.astro/*
+.vercel/*
 !.vscode/extensions.json
 dev/.astro/*
+dev/.vercel/*
 .idea/
 .windsurf/
 *.suo

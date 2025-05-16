@@ -1,9 +1,9 @@
 # build output
-dist/
+dev/dist/*
 .output/
 
 # dependencies
-node_modules/
+dev/node_modules/
 
 # logs
 npm-debug.log*
@@ -13,6 +13,7 @@ pnpm-debug.log*
 
 # environment variables
 .env
+dev/.env
 .env.production
 
 # macOS-specific files
@@ -21,7 +22,9 @@ pnpm-debug.log*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+dev/.astro/*
 .idea/
+.windsurf/
 *.suo
 *.ntvs*
 *.njsproj

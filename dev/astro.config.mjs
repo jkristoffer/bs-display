@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from '@astrojs/sitemap';
 import vercel from "@astrojs/vercel";
-import eslint from "vite-plugin-eslint";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bigshine-display.com',
@@ -32,13 +31,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [
-      eslint({
-        cache: false,
-        include: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.astro'],
-        exclude: ['node_modules', 'dist', '.astro'],
-      }),
-    ],
+    plugins: [],
     css: {
       preprocessorOptions: {
         scss: {

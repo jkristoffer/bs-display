@@ -1,5 +1,0 @@
-
-User-agent: *
-Allow: /
-
-Sitemap: https://bigshine-display.com/sitemap-index.xml

@@ -3,7 +3,7 @@
  */
 
 import type { z } from 'astro:content';
-import { blogSchema } from '../content/config';
+import { blogSchema } from '../content/content.config';
 
 /**
  * Interface for blog post frontmatter data

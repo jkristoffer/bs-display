@@ -16,9 +16,8 @@ const totalPosts = sortedPosts.length;
 const totalPages = Math.ceil(totalPosts / postsPerPage);
 
 // Get the current page from the URL or default to 1
-const currentPage = Astro.url.searchParams.get('page')
-  ? parseInt(Astro.url.searchParams.get('page'))
-  : 1;
+const pageParams = Astro.url.searchParams.get('page') || '1';
+const currentPage = parseInt(pageParams);
 
 // Calculate pagination data
 const startIndex = (currentPage - 1) * postsPerPage;
@@ -77,7 +76,7 @@ function formatDate(date: Date): string {
                 <span class="blog-category">{post.data.category}</span>
               )}
               <h2>
-                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
               </h2>
               <p class="blog-excerpt">{post.data.description}</p>
               <div class="blog-meta">
@@ -145,10 +144,10 @@ function formatDate(date: Date): string {
       if (loadMoreBtn && postsContainer) {
         loadMoreBtn.addEventListener('click', async () => {
           // Get the next page number from the button's data attribute
-          const nextPage = parseInt(loadMoreBtn.getAttribute('data-next-page'));
-          const totalPages = parseInt(
-            loadMoreBtn.getAttribute('data-total-pages')
-          );
+
+          const nextPage = loadMoreBtn.getAttribute('data-next-page') || '1';
+          const totalPages =
+            loadMoreBtn.getAttribute('data-total-pages') || '1';
 
           // Show loading state
           loadMoreBtn.textContent = 'Loading...';

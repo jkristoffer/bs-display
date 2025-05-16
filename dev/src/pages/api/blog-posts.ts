@@ -28,7 +28,7 @@ export const GET: APIRoute = async ({ request }) => {
 
     // Transform the posts to a simpler format for JSON response
     const posts: BlogPostResponse[] = paginatedPosts.map((post) => ({
-      slug: post.slug,
+      slug: post.id,
       title: post.data.title,
       description: post.data.description,
       publishDate: post.data.publishDate.toISOString(),

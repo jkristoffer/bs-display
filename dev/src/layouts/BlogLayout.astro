@@ -102,7 +102,7 @@ const structuredData =
 
   {/* Add related blog posts component */}
   <RelatedBlogPosts
-    currentSlug={Astro.url.pathname.split('/').pop()}
+    currentSlug={Astro.url.pathname.split('/').pop() || ''}
     category={category}
   />
 

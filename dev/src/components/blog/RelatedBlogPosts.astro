@@ -13,7 +13,7 @@ const { currentSlug, limit = 3 } = Astro.props;
 const allBlogPosts = await getCollection('blog');
 
 // Filter out the current post and optionally filter by category
-const filteredPosts = allBlogPosts.filter((post) => post.slug !== currentSlug);
+const filteredPosts = allBlogPosts.filter((post) => post.id !== currentSlug);
 
 // Apply category filter if provided
 // const categoryFilteredPosts = category
@@ -48,7 +48,7 @@ function formatDate(date: Date): string {
           <article class="related-post-card">
             {post.data.image && (
               <div class="related-post-image">
-                <a href={`/blog/${post.slug}`}>
+                <a href={`/blog/${post.id}`}>
                   <img
                     src={post.data.image}
                     alt={post.data.title}
@@ -62,7 +62,7 @@ function formatDate(date: Date): string {
                 <span class="related-post-category">{post.data.category}</span>
               )}
               <h3>
-                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
               </h3>
               <div class="related-post-meta">
                 {post.data.publishDate && (

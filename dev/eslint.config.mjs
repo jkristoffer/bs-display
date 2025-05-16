@@ -48,6 +48,7 @@ export default defineConfig([
         sourceType: "module",
         ecmaVersion: "latest",
         project: "./tsconfig.json",
+        tsconfigRootDir: process.cwd(),
       },
     },
     rules: {

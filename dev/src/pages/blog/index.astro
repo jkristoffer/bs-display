@@ -50,13 +50,14 @@ function formatDate(date: Date): string {
   {/* Add prev/next links for SEO and accessibility */}
   {prevPageUrl && <link rel="prev" href={prevPageUrl} />}
   {nextPageUrl && <link rel="next" href={nextPageUrl} />}
+  <div class="blog-hero-banner">
+    <div class="blog-hero-content">
+      <h1>Display Technology Blog</h1>
+      <p>Insights, guides, and industry news about smart display technologies</p>
+    </div>
+  </div>
+  
   <div class="blog-index-container">
-    <header class="blog-header">
-      <h1>Blog</h1>
-      <p>
-        Insights, guides, and industry news about smart display technologies
-      </p>
-    </header>
 
     <div class="blog-posts-grid" id="blog-posts-container">
       {
@@ -72,22 +73,36 @@ function formatDate(date: Date): string {
               </div>
             )}
             <div class="blog-card-content">
-              {post.data.category && (
-                <span class="blog-category">{post.data.category}</span>
-              )}
-              <h2>
-                <a href={`/blog/${post.id}`}>{post.data.title}</a>
-              </h2>
-              <p class="blog-excerpt">{post.data.description}</p>
-              <div class="blog-meta">
+              <div class="blog-card-header">
+                {post.data.category && (
+                  <span class="blog-category">{post.data.category}</span>
+                )}
                 {post.data.publishDate && (
-                  <time datetime={post.data.publishDate.toISOString()}>
+                  <time datetime={post.data.publishDate.toISOString()} class="blog-date">
                     {formatDate(post.data.publishDate)}
                   </time>
                 )}
-                {post.data.author && (
-                  <span class="blog-author">By {post.data.author}</span>
-                )}
+              </div>
+              
+              <h2>
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              </h2>
+              
+              <p class="blog-excerpt">{post.data.description}</p>
+              
+              <div class="blog-card-footer">
+                <div class="blog-meta">
+                  {post.data.author && (
+                    <div class="blog-author">
+                      <span class="author-avatar"></span>
+                      <span>By {post.data.author}</span>
+                    </div>
+                  )}
+                </div>
+                
+                <a href={`/blog/${post.id}`} class="read-more-link">
+                  Read more <span class="read-more-arrow">→</span>
+                </a>
               </div>
             </div>
           </article>
@@ -236,122 +251,261 @@ function formatDate(date: Date): string {
   </script>
 
   <style>
-    .blog-index-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    .blog-header {
+    /* Hero Banner Styles */
+    .blog-hero-banner {
+      background: linear-gradient(135deg, rgba(var(--color-accent-primary-rgb), 0.9) 0%, rgba(var(--color-accent-primary-rgb), 0.7) 100%), url('/images/blog-hero.jpg') no-repeat center center;
+      background-size: cover;
+      width: 100%;
+      padding: var(--spacing-xxl) 0;
       text-align: center;
-      margin-bottom: 3rem;
+      color: var(--color-background);
+      margin-bottom: var(--spacing-xl);
     }
 
-    .blog-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    .blog-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
     }
 
-    .blog-header p {
-      color: #666;
-      font-size: 1.1rem;
+    .blog-hero-banner h1 {
+      font-size: var(--font-size-h1);
+      margin-bottom: var(--spacing-md);
+      font-weight: var(--font-weight-bold);
     }
+
+    .blog-hero-banner p {
+      font-size: var(--font-size-body-large);
+      margin-bottom: 0;
+      opacity: 0.9;
+    }
+
+    @media (max-width: var(--breakpoint-md)) {
+      .blog-hero-banner {
+        padding: var(--spacing-xl) 0;
+      }
+      
+      .blog-hero-banner h1 {
+        font-size: calc(var(--font-size-h1) * 0.8);
+      }
+    }
+
+    /* Blog Container Styles */
+    .blog-index-container {
+      max-width: var(--spacing-container-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    /* Blog header styles removed as replaced by hero banner */
 
     .blog-posts-grid {
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-      gap: 2rem;
+      gap: var(--spacing-lg);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: var(--breakpoint-md)) {
       .blog-posts-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: var(--breakpoint-lg)) {
       .blog-posts-grid {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
     .blog-card {
-      border-radius: 0.5rem;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-      background-color: #fff;
+      box-shadow: var(--box-shadow-1);
+      transition: all 0.3s ease;
+      background-color: var(--color-surface);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
     }
 
     .blog-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 15px rgba(33, 33, 33, 0.2);
+    }
+    
+    .blog-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .blog-card:hover:before {
+      opacity: 1;
     }
 
     .blog-card-image {
       height: 200px;
       overflow: hidden;
+      position: relative;
+    }
+
+    .blog-card-image:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .blog-card:hover .blog-card-image:after {
+      opacity: 1;
     }
 
     .blog-card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.05);
     }
 
     .blog-card-content {
-      padding: 1.5rem;
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      height: 100%;
     }
 
     .blog-category {
       display: inline-block;
-      background-color: #f0f0f0;
-      padding: 0.25rem 0.75rem;
+      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+      color: var(--color-accent-primary);
+      padding: var(--spacing-xs) var(--spacing-sm);
       border-radius: 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 0.75rem;
+      font-size: var(--font-size-smaller);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .blog-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
     }
 
     .blog-card h2 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.4;
+      font-size: var(--font-size-h3);
+      margin-bottom: var(--spacing-sm);
+      line-height: var(--line-height-headers);
+      transition: color 0.3s ease;
     }
 
     .blog-card h2 a {
-      color: inherit;
+      color: var(--color-text-primary);
       text-decoration: none;
     }
 
     .blog-card h2 a:hover {
-      color: #0066cc;
+      color: var(--color-accent-primary);
     }
 
     .blog-excerpt {
-      color: #555;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.6;
+      color: var(--color-text-primary);
+      opacity: 0.8;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-body-regular);
+      line-height: var(--line-height-default);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
+    .blog-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    }
+    
     .blog-meta {
       display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: #666;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--font-size-small);
+      color: var(--color-text-primary);
+      opacity: 0.7;
+    }
+    
+    .blog-date {
+      font-size: var(--font-size-smaller);
+      color: var(--color-text-primary);
+      opacity: 0.6;
+    }
+    
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .author-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: rgba(var(--color-accent-primary-rgb), 0.2);
+      display: inline-block;
+    }
+    
+    .read-more-link {
+      font-size: var(--font-size-small);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-accent-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      transition: all 0.3s ease;
+    }
+    
+    .read-more-link:hover {
+      opacity: 0.8;
+    }
+    
+    .read-more-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    .read-more-link:hover .read-more-arrow {
+      transform: translateX(4px);
     }
 
     /* Pagination styles */
     .pagination-container {
-      margin-top: 3rem;
+      margin-top: var(--spacing-xl);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
+      gap: var(--spacing-lg);
     }
 
     .pagination-links {
@@ -361,17 +515,20 @@ function formatDate(date: Date): string {
     }
 
     .pagination-link {
-      padding: 0.5rem 1rem;
-      border-radius: 0.25rem;
-      background-color: #f5f5f5;
-      color: #333;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: 4px;
+      background-color: var(--color-surface);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
       text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.2s ease;
+      font-weight: var(--font-weight-bold);
+      transition: all 0.3s ease;
     }
 
     .pagination-link:hover {
-      background-color: #e0e0e0;
+      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
     }
 
     .pagination-info {
@@ -379,22 +536,24 @@ function formatDate(date: Date): string {
     }
 
     .load-more-button {
-      padding: 0.75rem 2rem;
-      background-color: #0066cc;
-      color: white;
+      padding: 12px 24px;
+      background-color: var(--color-button-primary-background);
+      color: var(--color-button-primary-text);
       border: none;
-      border-radius: 0.25rem;
-      font-weight: 500;
+      border-radius: 4px;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: all 0.3s ease;
     }
 
     .load-more-button:hover {
-      background-color: #0055aa;
+      background-color: #fb8c00;
     }
 
     .load-more-button:disabled {
-      background-color: #cccccc;
+      background-color: var(--color-button-disabled-border);
+      color: var(--color-button-disabled-text);
       cursor: not-allowed;
     }
   </style>

@@ -1,0 +1,197 @@
+{
+  "title": "Find Your Ideal Smartboard Setup in 6 Questions",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Where will this smartboard be used most of the time?",
+      "type": "single",
+      "options": [
+        { "label": "A) A classroom or training room", "value": "education" },
+        {
+          "label": "B) A corporate meeting or conference space",
+          "value": "corporate"
+        },
+        {
+          "label": "C) A creative or design-focused studio",
+          "value": "creative"
+        },
+        { "label": "D) A multi-use or flexible workspace", "value": "general" }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What features matter most to you? (Pick up to 2)",
+      "type": "multi",
+      "maxSelections": 2,
+      "options": [
+        {
+          "label": "A) Multi-user annotation or collaboration",
+          "value": "education"
+        },
+        { "label": "B) Sharp display and accurate color", "value": "creative" },
+        { "label": "C) Precise pen/stylus input", "value": "creative" },
+        {
+          "label": "D) Cloud tools & video conferencing",
+          "value": "corporate"
+        },
+        { "label": "E) Simplicity and ease of use", "value": "education" }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Do you require a camera or video conferencing capabilities?",
+      "type": "single",
+      "options": [
+        { "label": "A) No – it’s not a priority", "value": "education" },
+        {
+          "label": "B) Yes – for remote meetings or hybrid learning",
+          "value": "general"
+        },
+        { "label": "C) Optional, but it might be useful", "value": "general" },
+        {
+          "label": "D) Yes – we rely heavily on video calls",
+          "value": "corporate"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How important is input precision for your tasks?",
+      "type": "single",
+      "options": [
+        {
+          "label": "A) Low – basic writing and navigation is enough",
+          "value": "education"
+        },
+        {
+          "label": "B) Moderate – we annotate or whiteboard often",
+          "value": "corporate"
+        },
+        {
+          "label": "C) High – we need pressure-sensitive stylus accuracy",
+          "value": "creative"
+        },
+        {
+          "label": "D) Mixed – we want both touch and pen options",
+          "value": "general"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "What level of visual quality do you expect?",
+      "type": "single",
+      "options": [
+        {
+          "label": "A) Basic – clear enough for notes and slides",
+          "value": "education"
+        },
+        {
+          "label": "B) Good – suitable for presentations and video",
+          "value": "corporate"
+        },
+        {
+          "label": "C) Excellent – accurate color and detail is key",
+          "value": "creative"
+        },
+        {
+          "label": "D) Doesn’t matter much – cost is more important",
+          "value": "education"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "question": "What is your ideal level of tech complexity?",
+      "type": "single",
+      "options": [
+        {
+          "label": "A) As simple as possible – minimal learning curve",
+          "value": "education"
+        },
+        {
+          "label": "B) A bit of setup is fine if we get strong features",
+          "value": "corporate"
+        },
+        {
+          "label": "C) We prefer advanced tools for professional workflows",
+          "value": "creative"
+        },
+        {
+          "label": "D) Needs to support different users and setups",
+          "value": "general"
+        }
+      ]
+    }
+  ],
+  "results": {
+    "education": {
+      "title": "📚 Classroom Education",
+      "description": "An affordable and durable smartboard setup optimized for teaching, group work, and ease of use.",
+      "recommendation": {
+        "display": "LED Display",
+        "touch": "IR Touch",
+        "features": [
+          "Multi-user annotation",
+          "Simple interface",
+          "Lesson capture"
+        ],
+        "camera": "Not required"
+      },
+      "cta": [
+        "See Recommended Models",
+        "Request a Demo",
+        "Download the Education Guide"
+      ]
+    },
+    "corporate": {
+      "title": "🏢 Corporate",
+      "description": "A professional-grade smartboard setup that supports remote collaboration, video conferencing, and business presentations.",
+      "recommendation": {
+        "display": "LED or LCD",
+        "touch": "Capacitive Touch",
+        "features": [
+          "Cloud tools",
+          "Wireless screen sharing",
+          "Video conferencing"
+        ],
+        "camera": "Required"
+      },
+      "cta": ["Explore Corporate Solutions", "Get a Quote", "Book a Demo"]
+    },
+    "creative": {
+      "title": "🎨 Creative Studio",
+      "description": "A high-fidelity interactive display with stylus support and precise touch — built for design professionals and creatives.",
+      "recommendation": {
+        "display": "OLED or High-Res LCD",
+        "touch": "EMR (Electromagnetic) Touch",
+        "features": [
+          "Pressure-sensitive input",
+          "Color accuracy",
+          "Drawing tools"
+        ],
+        "camera": "Optional"
+      },
+      "cta": ["Compare Creative Displays", "Try a Demo", "Get Studio Pricing"]
+    },
+    "general": {
+      "title": "⚙️ General Use",
+      "description": "A flexible and reliable smartboard setup that suits a variety of team needs and environments.",
+      "recommendation": {
+        "display": "LED Display",
+        "touch": "Capacitive or Optical Touch",
+        "features": [
+          "Moderate visual clarity",
+          "Cloud access",
+          "Multi-platform compatibility"
+        ],
+        "camera": "Optional or situational"
+      },
+      "cta": [
+        "View Flexible Options",
+        "Request a Custom Quote",
+        "Schedule a Walkthrough"
+      ]
+    }
+  }
+}

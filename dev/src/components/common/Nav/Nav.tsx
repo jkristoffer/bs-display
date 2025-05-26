@@ -34,11 +34,11 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       label: 'Learn',
       dropdown: true,
       items: [
+        { path: '/blog', label: 'Blog' },
         {
           path: '/smart-whiteboard-buying-guide',
           label: 'Smart Whiteboard Buying Guide'
-        },
-        { path: '/blog', label: 'Blog' }
+        }
       ]
     },
     { path: '/contact', label: 'Contact' }

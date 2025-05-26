@@ -21,23 +21,30 @@ const { title, image, points } = Astro.props;
 
 <style lang="scss">
   .buying-guide-item {
-    background-color: var(--color-surface);
+    background-color: white;
     border-radius: 8px;
     padding: var(--spacing-lg);
-    box-shadow: var(--box-shadow-1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     height: 100%;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .buying-guide-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
   }
 
   .item-title {
     color: var(--color-accent-primary);
-    margin-top: 0;
+    margin-top: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-bold);
+    text-align: center;
   }
 
   .item-points {
@@ -52,6 +59,15 @@ const { title, image, points } = Astro.props;
     line-height: 1.5;
     position: relative;
     padding-left: var(--spacing-md);
+    color: var(--color-text-primary, #333);
+  }
+  
+  .item-points li::before {
+    content: '•';
+    color: var(--color-accent-secondary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
   }
 
   .item-points li:last-child {

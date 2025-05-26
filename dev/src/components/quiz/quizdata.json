@@ -26,15 +26,29 @@
       "options": [
         {
           "label": "A) Multi-user annotation or collaboration",
-          "value": "education"
+          "value": "education",
+          "id": "q2-education-1"
         },
-        { "label": "B) Sharp display and accurate color", "value": "creative" },
-        { "label": "C) Precise pen/stylus input", "value": "creative" },
+        { 
+          "label": "B) Sharp display and accurate color", 
+          "value": "creative",
+          "id": "q2-creative-1"
+        },
+        { 
+          "label": "C) Precise pen/stylus input", 
+          "value": "creative",
+          "id": "q2-creative-2"
+        },
         {
           "label": "D) Cloud tools & video conferencing",
-          "value": "corporate"
+          "value": "corporate",
+          "id": "q2-corporate-1"
         },
-        { "label": "E) Simplicity and ease of use", "value": "education" }
+        { 
+          "label": "E) Simplicity and ease of use", 
+          "value": "education",
+          "id": "q2-education-2"
+        }
       ]
     },
     {

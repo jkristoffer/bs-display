@@ -1,0 +1,580 @@
+---
+interface QuizOption {
+  text: string;
+  value: string;
+}
+
+interface QuizQuestion {
+  id: string;
+  title: string;
+  question: string;
+  options: QuizOption[];
+}
+
+interface RecommendedSetup {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl?: string; // Optional image/icon URL
+  tags: string[]; // To match against user answers
+}
+
+const quizTitle = 'Find the Best Smart Whiteboard for Your Needs';
+const quizDescription =
+  'Not sure which smartboard is right for you? Answer a few questions and we’ll match you with the best option.';
+const startButtonText = 'Start Quiz';
+
+const questions: QuizQuestion[] = [
+  {
+    id: 'section-a',
+    title: 'Section A: Use Case / Environment',
+    question: 'Where will you primarily use the smartboard?',
+    options: [
+      { text: '🏫 Classroom or Training Room', value: 'classroom' },
+      { text: '🧑‍💼 Executive Meeting Room', value: 'executive' },
+      { text: '🎨 Creative Studio / Design Team', value: 'creative' },
+      { text: '🏢 General Office Use', value: 'office' },
+      { text: '🛠️ Industrial or Specialized Use', value: 'industrial' }
+    ]
+  },
+  {
+    id: 'section-b',
+    title: 'Section B: Input Preference',
+    question: 'How do you prefer to interact with the screen?',
+    options: [
+      { text: '👆 Finger touch only', value: 'finger' },
+      {
+        text: '✍️ Precise stylus input (drawing, technical work)',
+        value: 'stylus'
+      },
+      { text: '🙌 Multi-user touch (collaboration)', value: 'multiuser' },
+      { text: '🧤 Gloves or non-conductive input required', value: 'gloves' }
+    ]
+  },
+  {
+    id: 'section-c',
+    title: 'Section C: Display Quality Needs',
+    question: 'How important is image quality?',
+    options: [
+      {
+        text: '🎞️ Top-tier visuals (high contrast, vibrant color – OLED)',
+        value: 'oled'
+      },
+      { text: '🖼️ Good but not premium (LCD/LED is fine)', value: 'lcd_led' },
+      {
+        text: '📉 Budget-sensitive (lower display clarity is acceptable)',
+        value: 'budget_clarity'
+      }
+    ]
+  },
+  {
+    id: 'section-d',
+    title: 'Section D: Budget Range',
+    question: 'What’s your expected budget range?',
+    options: [
+      { text: '💰 Entry-level ($)', value: 'entry' },
+      { text: '💼 Mid-range ($$)', value: 'mid' },
+      { text: '🏆 Premium investment ($$$)', value: 'premium' }
+    ]
+  },
+  {
+    id: 'section-e',
+    title: 'Section E: Size Requirements',
+    question: 'What screen size do you need?',
+    options: [
+      { text: '📏 Under 55”', value: 'under55' },
+      { text: '📐 55” – 65”', value: '55-65' },
+      { text: '🖥️ Over 65”', value: 'over65' }
+    ]
+  }
+];
+
+// Define Recommended Setups
+const recommendedSetups: RecommendedSetup[] = [
+  {
+    id: 'classroom-setup',
+    name: 'Best for Classrooms: IR Touch + LED Display',
+    description:
+      'A cost-effective and durable solution, perfect for interactive learning and presentations in educational environments.',
+    imageUrl: '/images/quiz/ir-led.png', // Placeholder image
+    tags: ['classroom', 'finger', 'multiuser', 'lcd_led', 'entry', 'mid']
+  },
+  {
+    id: 'design-setup',
+    name: 'Best for Design Teams: EMR Touch + OLED Display',
+    description:
+      'Offers superior precision for creative work with stunning visuals, ideal for design studios and artistic applications.',
+    imageUrl: '/images/quiz/emr-oled.png', // Placeholder image
+    tags: ['creative', 'stylus', 'oled', 'premium']
+  },
+  {
+    id: 'corporate-setup',
+    name: 'Best for Corporate: Capacitive Touch + LED Display',
+    description:
+      'A sleek and responsive experience for modern meeting rooms, balancing performance with a professional aesthetic.',
+    imageUrl: '/images/quiz/capacitive-led.png', // Placeholder image
+    tags: [
+      'executive',
+      'office',
+      'finger',
+      'multiuser',
+      'lcd_led',
+      'mid',
+      'premium'
+    ]
+  },
+  {
+    id: 'industrial-setup',
+    name: 'Specialized Use: IR Touch + Robust Display',
+    description:
+      'Built for durability and can be operated with gloves, suitable for industrial or specialized environments.',
+    imageUrl: '/images/quiz/industrial-ir.png', // Placeholder image
+    tags: ['industrial', 'gloves', 'lcd_led', 'entry', 'mid']
+  },
+  {
+    id: 'budget-general-setup',
+    name: 'Budget-Friendly All-Rounder: IR Touch + LCD Display',
+    description:
+      'A versatile and affordable option for general use where budget is a key consideration.',
+    imageUrl: '/images/quiz/ir-lcd-budget.png', // Placeholder image
+    tags: ['office', 'classroom', 'finger', 'budget_clarity', 'entry']
+  }
+];
+
+let currentQuestionIndex = 0;
+const userAnswers: { [key: string]: string } = {};
+---
+
+<div class="quiz-container">
+  <section id="intro-screen" class="quiz-section active">
+    <h2>{quizTitle}</h2>
+    <p>{quizDescription}</p>
+    <button id="start-quiz-btn" class="cta-button">{startButtonText}</button>
+  </section>
+
+  <!-- Question Sections -->
+  {
+    questions.map((q, index) => (
+      <section
+        id={q.id}
+        class="quiz-section quiz-question-section"
+        data-question-index={index}
+      >
+        <h3>{q.title}</h3>
+        <p>{q.question}</p>
+        <div class="options-container">
+          {q.options.map((option) => (
+            <button class="option-button" data-value={option.value}>
+              {option.text}
+            </button>
+          ))}
+        </div>
+        <button class="next-question-btn" style="display: none;">
+          Next
+        </button>{' '}
+        {/* Initially hidden */}
+      </section>
+    ))
+  }
+
+  <!-- Result Page -->
+  <section id="result-screen" class="quiz-section">
+    <h3>Your Recommended Smart Whiteboard Setup</h3>
+    <div id="recommendations-container">
+      <!-- Recommendations will be injected here by script -->
+    </div>
+    <div class="result-ctas">
+      <button class="cta-button" onclick="window.location.href='/products'"
+        >View Matching Models &rarr;</button
+      >
+      <button
+        class="cta-button"
+        onclick="window.location.href='/contact?subject=QuoteRequest'"
+        >Request a Quote &rarr;</button
+      >
+      <button
+        class="cta-button"
+        onclick="window.location.href='/contact?subject=DemoRequest'"
+        >Schedule a Demo &rarr;</button
+      >
+    </div>
+    <button id="restart-quiz-btn" class="cta-button">Restart Quiz</button>
+  </section>
+</div>
+
+<style>
+  .quiz-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #eee; /* Placeholder, use variables.scss */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Placeholder, use variables.scss */
+    font-family: sans-serif; /* Basic styling, can be integrated with global styles */
+  }
+
+  .quiz-section {
+    display: none; /* Hidden by default, controlled by JS */
+    text-align: center;
+  }
+
+  .quiz-section.active {
+    display: block;
+  }
+
+  h2 {
+    font-size: 1.8em; /* Placeholder, use variables.scss */
+    margin-bottom: 1rem; /* Placeholder, use variables.scss */
+    color: #333; /* Placeholder, use variables.scss */
+  }
+
+  h3 {
+    font-size: 1.5em; /* Placeholder, use variables.scss */
+    margin-bottom: 0.75rem;
+    color: #444;
+  }
+
+  p {
+    font-size: 1.1em; /* Placeholder, use variables.scss */
+    margin-bottom: 1.5rem; /* Placeholder, use variables.scss */
+    color: #555; /* Placeholder, use variables.scss */
+    line-height: 1.6;
+  }
+
+  .cta-button {
+    background-color: #007bff; /* Example color, align with project's theme from variables.scss */
+    color: white; /* Placeholder, use variables.scss */
+    padding: 0.75rem 1.5rem; /* Placeholder, use variables.scss */
+    border: none;
+    border-radius: 4px;
+    font-size: 1em; /* Placeholder, use variables.scss */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: #0056b3; /* Example color, align with project's theme from variables.scss */
+  }
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .option-button {
+    background-color: #f0f0f0; /* Placeholder */
+    color: #333; /* Placeholder */
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc; /* Placeholder */
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .option-button:hover {
+    background-color: #e0e0e0; /* Placeholder */
+    border-color: #bbb; /* Placeholder */
+  }
+
+  .option-button.selected {
+    background-color: #cceeff; /* Placeholder for selected */
+    border-color: #007bff; /* Placeholder for selected */
+    font-weight: bold;
+  }
+
+  .next-question-btn {
+    background-color: #28a745; /* Green for next, placeholder */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .next-question-btn:hover {
+    background-color: #218838; /* Darker green, placeholder */
+  }
+
+  #recommendations-container {
+    margin: 2rem 0;
+    text-align: left;
+  }
+
+  .recommendation-item {
+    border: 1px solid #ddd; /* Placeholder */
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9; /* Placeholder */
+  }
+
+  .recommendation-item img {
+    max-width: 100px; /* Adjust as needed */
+    float: right;
+    margin-left: 1rem;
+    border-radius: 4px;
+  }
+
+  .recommendation-item h4 {
+    font-size: 1.3em; /* Placeholder */
+    color: #007bff; /* Placeholder */
+    margin-bottom: 0.5rem;
+  }
+
+  .result-ctas {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Stack CTAs on smaller screens or by default */
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 600px) {
+    /* Adjust breakpoint as needed */
+    .result-ctas {
+      flex-direction: row; /* Align CTAs in a row on larger screens */
+      justify-content: center;
+    }
+  }
+</style>
+
+<script is:inline>
+  // This script uses the is:inline directive to ensure it runs immediately
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Quiz script loaded (DOMContentLoaded)');
+    initQuiz();
+  });
+
+  // Also listen for Astro's page load event as a fallback
+  document.addEventListener('astro:page-load', function() {
+    console.log('Quiz script loaded (astro:page-load)');
+    initQuiz();
+  });
+
+  // Keep track of whether we've already initialized to avoid double initialization
+  let quizInitialized = false;
+
+  function initQuiz() {
+    // Only initialize once
+    if (quizInitialized) {
+      console.log('Quiz already initialized, skipping');
+      return;
+    }
+    quizInitialized = true;
+    console.log('Initializing quiz...');
+
+    // Get all the required elements
+    const introScreen = document.getElementById('intro-screen');
+    const startButton = document.getElementById('start-quiz-btn');
+    const resultScreen = document.getElementById('result-screen');
+    const restartButton = document.getElementById('restart-quiz-btn');
+    const allSections = document.querySelectorAll('.quiz-section');
+
+    console.log('Found elements:', {
+      introScreen: !!introScreen,
+      startButton: !!startButton,
+      resultScreen: !!resultScreen,
+      restartButton: !!restartButton,
+      sections: allSections.length
+    });
+
+    // Set up global state
+    let currentQuestionIdx = 0;
+    const userAnswers = {};
+
+    // Add click handler for the start button
+    if (startButton) {
+      console.log('Adding click handler to Start Quiz button');
+      startButton.addEventListener('click', handleStartQuiz);
+    } else {
+      console.error('Start Quiz button not found!');
+    }
+
+    // Add click handler for the restart button
+    if (restartButton) {
+      restartButton.addEventListener('click', function() {
+        showSection('intro-screen');
+      });
+    }
+
+    // Set up option buttons and next buttons for all question sections
+    document.querySelectorAll('.quiz-question-section').forEach(function(section) {
+      const sectionId = section.id;
+      const optionButtons = section.querySelectorAll('.option-button');
+      const nextButton = section.querySelector('.next-question-btn');
+
+      // Add click handlers to option buttons
+      optionButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          // Clear previous selections
+          optionButtons.forEach(function(btn) {
+            btn.classList.remove('selected');
+          });
+          
+          // Mark this option as selected
+          button.classList.add('selected');
+          userAnswers[sectionId] = button.getAttribute('data-value');
+          
+          // Show the next button
+          if (nextButton) {
+            nextButton.style.display = 'inline-block';
+          }
+        });
+      });
+
+      // Add click handler to next button
+      if (nextButton) {
+        nextButton.addEventListener('click', function() {
+          if (userAnswers[sectionId]) {
+            const nextIndex = getQuestionIndex(sectionId) + 1;
+            const nextSectionId = getQuestionIdByIndex(nextIndex);
+            
+            if (nextSectionId) {
+              showSection(nextSectionId);
+            } else {
+              // If no next section, show results
+              calculateAndShowResults();
+              showSection('result-screen');
+            }
+          }
+        });
+      }
+    });
+
+    // Function to handle Start Quiz button click
+    function handleStartQuiz() {
+      console.log('Start Quiz button clicked!');
+      
+      // Reset state
+      currentQuestionIdx = 0;
+      Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+      
+      // Show the first question
+      const firstQuestionId = 'section-a';
+      console.log('Attempting to show first question:', firstQuestionId);
+      showSection(firstQuestionId);
+    }
+
+    // Function to show a specific section and hide others
+    function showSection(sectionId) {
+      console.log('Showing section:', sectionId);
+      
+      // Hide all sections
+      allSections.forEach(function(section) {
+        section.classList.remove('active');
+      });
+      
+      // Show the requested section
+      const sectionToShow = document.getElementById(sectionId);
+      if (sectionToShow) {
+        sectionToShow.classList.add('active');
+        console.log('Section activated:', sectionId);
+      } else {
+        console.error('Section not found:', sectionId);
+      }
+    }
+
+    // Helper function to get question index by ID
+    function getQuestionIndex(questionId) {
+      const sections = ['section-a', 'section-b', 'section-c', 'section-d', 'section-e'];
+      return sections.indexOf(questionId);
+    }
+
+    // Helper function to get question ID by index
+    function getQuestionIdByIndex(index) {
+      const sections = ['section-a', 'section-b', 'section-c', 'section-d', 'section-e'];
+      return index < sections.length ? sections[index] : null;
+    }
+
+    // Function to calculate and display results
+    function calculateAndShowResults() {
+      console.log('Calculating results with answers:', userAnswers);
+      const container = document.getElementById('recommendations-container');
+      if (!container) return;
+
+      container.innerHTML = ''; // Clear previous results
+
+      // Get all the recommended setups from the data attributes on the container
+      const setupsJson = container.getAttribute('data-setups');
+      let recommendedSetups = [];
+      
+      try {
+        if (setupsJson) {
+          recommendedSetups = JSON.parse(setupsJson);
+        }
+      } catch (e) {
+        console.error('Error parsing setups JSON:', e);
+      }
+
+      if (recommendedSetups.length === 0) {
+        // Fallback hardcoded setups if data attribute isn't available
+        recommendedSetups = [
+          {
+            id: "classroom-setup",
+            name: "Best for Classrooms: IR Touch + LED Display",
+            description: "A cost-effective and durable solution, perfect for interactive learning and presentations in educational environments.",
+            imageUrl: "/images/quiz/ir-led.png",
+            tags: ["classroom", "finger", "multiuser", "lcd_led", "entry", "mid"]
+          },
+          {
+            id: "design-setup",
+            name: "Best for Design Teams: EMR Touch + OLED Display",
+            description: "Offers superior precision for creative work with stunning visuals, ideal for design studios and artistic applications.",
+            imageUrl: "/images/quiz/emr-oled.png",
+            tags: ["creative", "stylus", "oled", "premium"]
+          },
+          {
+            id: "corporate-setup",
+            name: "Best for Corporate: Capacitive Touch + LED Display",
+            description: "A sleek and responsive experience for modern meeting rooms, balancing performance with a professional aesthetic.",
+            imageUrl: "/images/quiz/capacitive-led.png",
+            tags: ["executive", "office", "finger", "multiuser", "lcd_led", "mid", "premium"]
+          }
+        ];
+      }
+
+      // Simple scoring logic
+      const userValues = Object.values(userAnswers);
+      const scoredSetups = recommendedSetups.map(setup => {
+        let score = 0;
+        if (setup.tags) {
+          setup.tags.forEach(tag => {
+            if (userValues.includes(tag)) score++;
+          });
+        }
+        return { ...setup, score };
+      }).sort((a, b) => b.score - a.score);
+
+      // Show the top results (up to 3)
+      const topResults = scoredSetups.filter(s => s.score > 0).slice(0, 3);
+      
+      if (topResults.length === 0) {
+        container.innerHTML = "<p>We couldn't find a perfect match with your selections. Please try different options or contact us for a custom consultation.</p>";
+        return;
+      }
+
+      // Display each recommendation
+      topResults.forEach(result => {
+        const div = document.createElement('div');
+        div.className = 'recommendation-item';
+        
+        let html = `<h4>${result.name}</h4><p>${result.description}</p>`;
+        if (result.imageUrl) {
+          html = `<img src="${result.imageUrl}" alt="${result.name}">` + html;
+        }
+        
+        div.innerHTML = html;
+        container.appendChild(div);
+      });
+    }
+  }
+</script>

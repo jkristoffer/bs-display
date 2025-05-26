@@ -37,7 +37,11 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
         { path: '/blog', label: 'Blog' },
         {
           path: '/smart-whiteboard-buying-guide',
-          label: 'Smart Whiteboard Buying Guide'
+          label: 'Buying Guide'
+        },
+        {
+          path: '/quiz',
+          label: 'Quiz'
         }
       ]
     },

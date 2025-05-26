@@ -4,7 +4,6 @@ import BuyingGuideItem from './BuyingGuideItem.astro';
 import screenResImage from './screen-res-184w.png';
 import touchTechImage from './touch-tech-184w.png';
 import useCasesImage from './match-usecase-184w.png';
-import backgroundImage from './conference_room_interactive_display_16x9.jpeg';
 
 const guideItems = [
   {
@@ -37,9 +36,11 @@ const guideItems = [
 ];
 ---
 
-<div class="buying-guide-section" style={`background-image: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(11,43,85,0.75) 100%), url(${backgroundImage.src})`}>
+<div class="buying-guide-section">
   <h2>Buying Guide</h2>
-  <p class="intro-text">Navigate the world of interactive displays with our comprehensive resources</p>
+  <p class="intro-text">
+    Navigate the world of interactive displays with our comprehensive resources
+  </p>
 
   <div class="guide-items-container">
     {
@@ -81,7 +82,8 @@ const guideItems = [
     position: relative;
     display: inline-block;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
   }
 
   h2:before {
@@ -121,7 +123,6 @@ const guideItems = [
     color: var(--color-text-primary, #333);
   }
 
-
   .cta-container {
     text-align: center;
     margin-top: 2rem;
@@ -141,7 +142,7 @@ const guideItems = [
       gap: var(--spacing-md);
       padding: var(--spacing-md);
     }
-    
+
     .intro-text {
       font-size: var(--font-size-base);
       padding: 0 var(--spacing-md);

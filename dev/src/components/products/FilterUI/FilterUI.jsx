@@ -3,7 +3,7 @@ import FilterPanel from './FilterPanel/FilterPanel';
 import ModelDisplay from './ModelDisplay/ModelDisplay';
 import styles from './FilterUI.module.scss';
 
-export default function FilterUI({ allModels }) {
+export default function FilterUI({ allModels, productType = 'smartboards' }) {
   const [filters, setFilters] = useState({
     brands: [],
     sizes: [],
@@ -51,7 +51,7 @@ export default function FilterUI({ allModels }) {
       </div>
 
       <div className={styles.modelDisplay}>
-        <ModelDisplay models={filtered} />
+        <ModelDisplay models={filtered} productType={productType} />
       </div>
     </div>
   );

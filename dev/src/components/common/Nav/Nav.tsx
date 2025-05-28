@@ -28,7 +28,11 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
     {
       label: 'Products',
       dropdown: true,
-      items: [{ path: '/products', label: 'Smart Boards' }]
+      path: '/products',
+      items: [
+        { path: '/products/smartboards', label: 'Smart Boards' },
+        { path: '/products/lecterns', label: 'Lecterns' }
+      ]
     },
     {
       label: 'Learn',

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProductDetails.module.scss';
 
-const ProductDetails = ({ model }) => {
+const ProductDetails = ({ model, productType = 'smartboards' }) => {
   if (!model) {
     return (
       <div className={styles.notFound}>
@@ -35,7 +35,8 @@ const ProductDetails = ({ model }) => {
       <div className={styles.header}>
         <div className={styles.breadcrumbs}>
           <a href="/products">Products</a> &gt;
-          <a href={`/products/${brand.toLowerCase().replace(/\s+/g, '-')}`}>
+          <a href={`/products/${productType}/`}>{productType === 'smartboards' ? 'Smart Boards' : 'Lecterns'}</a> &gt;
+          <a href={`/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}`}>
             {brand}
           </a>{' '}
           &gt;

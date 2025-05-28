@@ -4,7 +4,7 @@ import styles from './ModelDisplay.module.scss';
 import { FaThLarge, FaList } from 'react-icons/fa';
 import { TfiLayoutGrid3Alt } from 'react-icons/tfi';
 
-export default function ModelDisplay({ models }) {
+export default function ModelDisplay({ models, productType = 'smartboards' }) {
   const [sortBy, setSortBy] = useState('default');
   const [displayMode, setDisplayMode] = useState('grid-3'); // 'grid-3', 'grid-2', or 'list'
 
@@ -84,7 +84,7 @@ export default function ModelDisplay({ models }) {
       <section className={`${styles.grid} ${styles[displayMode]}`}>
         {sortedModels.map((model) => (
           <div key={model.id} className={styles.cardWrapper}>
-            <ModelCard model={model} displayMode={displayMode} />
+            <ModelCard model={model} displayMode={displayMode} productType={productType} />
           </div>
         ))}
       </section>

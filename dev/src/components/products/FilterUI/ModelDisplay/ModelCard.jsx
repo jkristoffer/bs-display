@@ -1,6 +1,6 @@
 import styles from './ModelCard.module.scss';
 
-const ModelCard = ({ model }) => {
+const ModelCard = ({ model, productType = 'smartboards' }) => {
   const {
     id,
     brand,
@@ -13,7 +13,7 @@ const ModelCard = ({ model }) => {
   } = model;
 
   const viewDetails = () => {
-    window.location.href = `/products/${brand.toLowerCase().replace(/\s+/g, '-')}/${id}`;
+    window.location.href = `/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}/${id}`;
   };
 
   const requestQuote = () => {

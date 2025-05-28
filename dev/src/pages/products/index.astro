@@ -2,44 +2,56 @@
 import ProductLayout from '../../layouts/ProductLayout.astro';
 
 const title = 'Display Products | Big Shine Display';
-const description = 'Explore our complete range of interactive display products, including smart boards and lecterns for education and business.';
+const description =
+  'Explore our complete range of interactive display products, including smart boards and lecterns for education and business.';
 ---
 
 <ProductLayout title={title} description={description}>
   <div class="products-header">
     <h1>Interactive Display Solutions</h1>
     <p>
-      Discover our complete range of interactive display products for education, business, and training environments.
-      From large format displays to interactive lecterns, we have solutions to fit every need.
+      Discover our complete range of interactive display products for education,
+      business, and training environments. From large format displays to
+      interactive lecterns, we have solutions to fit every need.
     </p>
   </div>
 
   <div class="product-categories">
     <div class="category-card">
       <div class="category-image">
-        <img src="/images/smartboard-category.jpg" alt="Interactive Smart Boards" />
+        <img
+          src="/assets/conference_room_interactive_display_16x9.jpeg"
+          alt="Interactive Smart Boards"
+        />
       </div>
       <div class="category-content">
         <h2>Interactive Smart Boards</h2>
         <p>
-          Large format interactive displays for classrooms, meeting rooms, and training centers.
-          Available in various sizes with advanced touch technology.
+          Large format interactive displays for classrooms, meeting rooms, and
+          training centers. Available in various sizes with advanced touch
+          technology.
         </p>
-        <a href="/products/smartboards" class="cta-button">Browse Smart Boards</a>
+        <a href="/products/smartboards/" class="cta-button"
+          >Browse Smart Boards</a
+        >
       </div>
     </div>
 
     <div class="category-card">
       <div class="category-image">
-        <img src="/images/lectern-category.jpg" alt="Interactive Lecterns" />
+        <img
+          src="/assets/lecture_hall_smart_lectern_16x9.jpeg"
+          alt="Interactive Lecterns"
+        />
       </div>
       <div class="category-content">
         <h2>Interactive Lecterns</h2>
         <p>
-          Digital podiums and lecterns with built-in displays and annotation capabilities.
-          Perfect for presentations and lectures in any environment.
+          Digital podiums and lecterns with built-in displays and annotation
+          capabilities. Perfect for presentations and lectures in any
+          environment.
         </p>
-        <a href="/products/lecterns" class="cta-button">Browse Lecterns</a>
+        <a href="/products/lecterns/" class="cta-button">Browse Lecterns</a>
       </div>
     </div>
   </div>
@@ -91,7 +103,9 @@ const description = 'Explore our complete range of interactive display products,
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(-5px);
@@ -100,7 +114,7 @@ const description = 'Explore our complete range of interactive display products,
   }
 
   .category-image {
-    height: 240px;
+    height: 280px;
     overflow: hidden;
 
     img {
@@ -173,7 +187,7 @@ const description = 'Explore our complete range of interactive display products,
     }
 
     .category-image {
-      height: 200px;
+      height: 280px;
     }
   }
 </style>

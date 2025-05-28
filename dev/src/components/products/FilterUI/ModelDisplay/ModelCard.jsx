@@ -1,4 +1,5 @@
 import styles from './ModelCard.module.scss';
+import { routes } from '../../../../utils/routes';
 
 const ModelCard = ({ model, productType = 'smartboards' }) => {
   const {
@@ -13,11 +14,11 @@ const ModelCard = ({ model, productType = 'smartboards' }) => {
   } = model;
 
   const viewDetails = () => {
-    window.location.href = `/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}/${id}`;
+    window.location.href = routes.products[productType].product(brand, id);
   };
 
   const requestQuote = () => {
-    window.location.href = `/contact`;
+    window.location.href = routes.contact;
   };
 
   return (

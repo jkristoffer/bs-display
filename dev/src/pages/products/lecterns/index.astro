@@ -1,6 +1,7 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
 import FilterUI from '../../../components/products/FilterUI/FilterUI.jsx';
+import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import lecterns from '../../../data/lecterns.all.js';
 
 const title = 'Smart Lecterns | Big Shine Display';
@@ -9,6 +10,8 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
+  <Breadcrumbs productType="lecterns" />
+  
   <div class="products-header">
     <h1>Interactive Smart Lecterns</h1>
     <p>

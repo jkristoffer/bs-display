@@ -1,6 +1,7 @@
 ---
 import ProductLayout from '../../../../layouts/ProductLayout.astro';
 import FilterUI from '../../../../components/products/FilterUI/FilterUI.jsx';
+import Breadcrumbs from '../../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import allLecterns from '../../../../data/lecterns.all.js';
 
 export function getStaticPaths() {
@@ -24,6 +25,12 @@ const description = `Browse our selection of ${brand} interactive smart lecterns
 ---
 
 <ProductLayout title={title} description={description}>
+  <Breadcrumbs 
+    productType="lecterns" 
+    brand={brand.toLowerCase().replace(/\s+/g, '-')}
+    brandLabel={brand}
+  />
+  
   <div class="brand-header">
     <h1>{brand} Interactive Smart Lecterns</h1>
     <p>

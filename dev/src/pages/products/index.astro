@@ -1,5 +1,7 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import { routes } from '../../utils/routes';
 
 const title = 'Display Products | Big Shine Display';
 const description =
@@ -7,6 +9,11 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
+  <Breadcrumbs items={[
+    { label: 'Home', path: routes.home },
+    { label: 'Products' }
+  ]} />
+  
   <div class="products-header">
     <h1>Interactive Display Solutions</h1>
     <p>

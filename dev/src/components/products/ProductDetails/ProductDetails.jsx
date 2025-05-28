@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ProductDetails.module.scss';
+import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
+import { getProductBreadcrumbs } from '../../../utils/routes';
 
 const ProductDetails = ({ model, productType = 'smartboards' }) => {
   if (!model) {
@@ -33,15 +35,16 @@ const ProductDetails = ({ model, productType = 'smartboards' }) => {
   return (
     <div className={styles.productDetails}>
       <div className={styles.header}>
-        <div className={styles.breadcrumbs}>
-          <a href="/products">Products</a> &gt;
-          <a href={`/products/${productType}/`}>{productType === 'smartboards' ? 'Smart Boards' : 'Lecterns'}</a> &gt;
-          <a href={`/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}`}>
-            {brand}
-          </a>{' '}
-          &gt;
-          <span>{modelName}</span>
-        </div>
+        <Breadcrumbs 
+          items={getProductBreadcrumbs({
+            productType,
+            brand,
+            brandLabel: brand,
+            productId: model.id,
+            productLabel: modelName
+          })}
+          className={styles.breadcrumbs}
+        />
         <h1 className={styles.title}>
           {brand} {modelName}
         </h1>

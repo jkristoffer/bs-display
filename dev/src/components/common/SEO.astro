@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  canonicalUrl?: string;
+  structuredData?: string;
+  viewport?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  additionalTags?: Array<{
+    name?: string;
+    property?: string;
+    content: string;
+    httpEquiv?: string;
+  }>;
+}
+
+const { 
+  title, 
+  description, 
+  ogTitle = title,
+  ogDescription = description,
+  ogImage,
+  ogType = 'website',
+  twitterCard = 'summary',
+  twitterTitle = title,
+  twitterDescription = description,
+  twitterImage = ogImage,
+  canonicalUrl,
+  structuredData,
+  viewport = 'width=device-width, initial-scale=1',
+  noindex = false,
+  nofollow = false,
+  additionalTags = []
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE || Astro.url.origin;
+const currentUrl = canonicalUrl || Astro.url.href;
+const robotsContent = [
+  noindex ? 'noindex' : 'index',
+  nofollow ? 'nofollow' : 'follow'
+].join(', ');
+---
+
+<!-- Basic Meta Tags -->
+<meta charset="UTF-8" />
+<meta name="viewport" content={viewport} />
+<meta name="description" content={description} />
+<meta name="robots" content={robotsContent} />
+<title>{title}</title>
+
+<!-- Canonical URL -->
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={ogDescription} />
+{ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl).href} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:url" content={currentUrl} />
+<meta name="twitter:title" content={twitterTitle} />
+<meta name="twitter:description" content={twitterDescription} />
+{twitterImage && <meta name="twitter:image" content={new URL(twitterImage, siteUrl).href} />}
+
+<!-- Structured Data -->
+{structuredData && <script type="application/ld+json" set:html={structuredData} />}
+
+<!-- Additional Tags -->
+{additionalTags.map(tag => (
+  tag.name ? <meta name={tag.name} content={tag.content} /> :
+  tag.property ? <meta property={tag.property} content={tag.content} /> :
+  tag.httpEquiv ? <meta http-equiv={tag.httpEquiv} content={tag.content} /> :
+  null
+))}

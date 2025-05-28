@@ -2,12 +2,28 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Button from '../components/common/Button/Button.astro';
 
-const title = 'Contact Us | Big Shine Display';
-const description =
-  'Get in touch with Big Shine Display for inquiries about interactive smart boards and accessories. Request a quote or book a demo.';
+// Enhanced SEO configuration
+const seoProps = {
+  title: 'Contact Us | Big Shine Display',
+  description: 'Get in touch with Big Shine Display for inquiries about interactive smart boards and accessories. Request a quote or book a demo.',
+  ogTitle: 'Contact Big Shine Display | Request a Quote or Demo',
+  ogDescription: 'Reach out to our team for personalized assistance with interactive displays, smart boards, and accessories. We respond within 24 hours.',
+  ogImage: '/assets/images/contact-social-share.jpg', // Replace with your actual social image path
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Contact Big Shine Display | Interactive Display Solutions',
+  twitterDescription: 'Questions about our smart display solutions? Our team is ready to help with quotes, demos, and technical support.',
+  canonicalUrl: new URL('/contact', Astro.site).href,
+  additionalTags: [
+    { name: 'author', content: 'Big Shine Display' },
+    { name: 'geo.region', content: 'SG' },
+    { name: 'geo.placename', content: 'Singapore' },
+    { property: 'og:locale', content: 'en_SG' }
+  ]
+};
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout {...seoProps}>
   <div class="contact-container">
     <div class="contact-header">
       <h1>Contact Us</h1>

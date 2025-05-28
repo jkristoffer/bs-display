@@ -2,6 +2,7 @@
 import '../styles/global.scss';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import SEO from '../components/common/SEO.astro';
 
 interface Props {
   title: string;
@@ -17,53 +18,22 @@ interface Props {
   canonicalUrl?: string;
   structuredData?: string;
   viewport?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  additionalTags?: Array<{
+    name?: string;
+    property?: string;
+    content: string;
+    httpEquiv?: string;
+  }>;
 }
 
-const { 
-  title, 
-  description, 
-  ogTitle = title,
-  ogDescription = description,
-  ogImage,
-  ogType = 'website',
-  twitterCard = 'summary',
-  twitterTitle = title,
-  twitterDescription = description,
-  twitterImage = ogImage,
-  canonicalUrl,
-  structuredData,
-  viewport = 'width=device-width, initial-scale=1'
-} = Astro.props;
-
-const siteUrl = import.meta.env.SITE || Astro.url.origin;
+const props = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content={viewport} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    
-    <!-- Canonical URL -->
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonicalUrl || Astro.url.href} />
-    <meta property="og:title" content={ogTitle} />
-    <meta property="og:description" content={ogDescription} />
-    {ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl).href} />}
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content={twitterCard} />
-    <meta name="twitter:url" content={canonicalUrl || Astro.url.href} />
-    <meta name="twitter:title" content={twitterTitle} />
-    <meta name="twitter:description" content={twitterDescription} />
-    {twitterImage && <meta name="twitter:image" content={new URL(twitterImage, siteUrl).href} />}
-    
-    <!-- Structured Data -->
-    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
+    <SEO {...props} />
     
     <!-- Sitemap and other links -->
     <link rel="sitemap" href="/sitemap-index.xml" />

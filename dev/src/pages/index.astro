@@ -6,12 +6,29 @@ import BuyingGuideSection from '../components/home/BuyingGuideSection/BuyingGuid
 import UsecasesSection from '../components/home/UsecasesSection/UsecasesSection.astro';
 import Button from '../components/common/Button/Button.astro';
 
-const title = 'Big Shine Display';
-const description =
-  'Interactive Smart Board & Accessories for Classrooms, Offices, and Training Centers';
+// SEO Configuration for Homepage
+const seoProps = {
+  title: 'Big Shine Display | Interactive Smart Boards & Accessories',
+  description: 'Premium interactive smart boards and accessories for classrooms, offices, and training centers in Singapore and Malaysia.',
+  ogTitle: 'Smart Display Solutions for Education & Business | Big Shine',
+  ogDescription: 'Transform your classroom or meeting room with our interactive smart boards. Touch-enabled displays with multi-user collaboration features.',
+  ogImage: '/assets/images/homepage-social-share.jpg', // Please ensure this image exists at this path or update it.
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Big Shine Display | Interactive Smart Boards & Accessories',
+  twitterDescription: 'Premium interactive smart boards for classrooms, offices, and training centers in SG & MY. Visual collaboration tools.',
+  canonicalUrl: new URL('/', Astro.site).href,
+  noindex: false,
+  nofollow: false,
+  additionalTags: [
+    { name: 'author', content: 'Big Shine Display' },
+    { name: 'keywords', content: 'interactive smart board, smart display, digital whiteboard, classroom technology, office collaboration, Singapore, Malaysia, touch screen display' },
+    { property: 'og:locale', content: 'en_SG' }
+  ]
+};
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout {...seoProps}>
   <Banner
     title="BIG SHINE DISPLAY"
     subtitle="Premium Interactive Smart Boards for Education and Business"

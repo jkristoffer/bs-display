@@ -1,0 +1,174 @@
+---
+// Component for displaying related products in use cases
+import { getCollection } from 'astro:content';
+
+interface Props {
+  productIds: string[];
+  heading?: string;
+}
+
+const { 
+  productIds,
+  heading = "Related Products" 
+} = Astro.props;
+
+// Function to fetch products based on IDs
+async function fetchRelatedProducts(ids: string[]) {
+  // This approach assumes products are stored in collections
+  // If they're stored differently, this logic would need to be adjusted
+  
+  // Example implementation:
+  // 1. Get all products (could be from multiple collections)
+  const allLecterns = await getCollection('lecterns') || [];
+  const allSmartboards = await getCollection('smartboards') || [];
+  
+  // 2. Combine all products
+  const allProducts = [...allLecterns, ...allSmartboards];
+  
+  // 3. Filter products by ID
+  return allProducts.filter(product => 
+    ids.includes(product.id) || 
+    ids.includes(product.slug)
+  ).slice(0, 3); // Limit to 3 products
+}
+
+const relatedProducts = await fetchRelatedProducts(productIds);
+---
+
+{relatedProducts.length > 0 && (
+  <section class="related-products">
+    <div class="related-products__container">
+      <h2 class="related-products__heading">{heading}</h2>
+      
+      <div class="related-products__grid">
+        {relatedProducts.map(product => (
+          <a 
+            href={`/products/${product.collection}/${product.slug}`} 
+            class="related-product"
+          >
+            <div class="related-product__image-container">
+              {product.data.image && (
+                <img 
+                  src={product.data.image} 
+                  alt={product.data.title}
+                  class="related-product__image"
+                  width="300"
+                  height="200"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            <h3 class="related-product__title">{product.data.title}</h3>
+            {product.data.description && (
+              <p class="related-product__description">{product.data.description}</p>
+            )}
+          </a>
+        ))}
+      </div>
+      
+      <div class="related-products__cta">
+        <a href="/products" class="u-button">View All Products</a>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .related-products {
+    margin-top: var(--space-xxl);
+    padding: var(--space-lg) 0;
+    background-color: #f8f9fa;
+  }
+  
+  .related-products__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+  
+  .related-products__heading {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: var(--space-sm);
+  }
+  
+  .related-products__heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--color-accent-primary);
+  }
+  
+  .related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .related-product {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .related-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .related-product__image-container {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .related-product__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .related-product:hover .related-product__image {
+    transform: scale(1.05);
+  }
+  
+  .related-product__title {
+    padding: var(--space-md) var(--space-md) var(--space-xs);
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .related-product__description {
+    padding: 0 var(--space-md) var(--space-md);
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .related-products__cta {
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .related-products__grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+</style>

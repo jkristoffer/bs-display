@@ -1,0 +1,415 @@
+---
+import MainLayout from './MainLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import RelatedProducts from '../components/use-cases/RelatedProducts.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  industry: string;
+  client?: string;
+  clientLogo?: string;
+  challenge: string;
+  solution: string;
+  results: string[];
+  testimonial?: {
+    quote?: string;
+    author?: string;
+    position?: string;
+  };
+  featuredImage: string;
+  galleryImages?: string[];
+  relatedProducts?: string[];
+  tags?: string[];
+  publishDate: Date;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string[];
+  };
+}
+
+const {
+  title,
+  description,
+  industry,
+  client,
+  clientLogo,
+  challenge,
+  solution,
+  results,
+  testimonial,
+  featuredImage,
+  galleryImages,
+  relatedProducts,
+  tags,
+  publishDate,
+  seo
+} = Astro.props;
+
+// Format date
+const formattedDate = publishDate
+  ? new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(publishDate)
+  : null;
+
+// Generate canonical URL
+const siteUrl = import.meta.env.SITE || Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+// Prepare structured data for use case
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  image: new URL(featuredImage, siteUrl).href,
+  datePublished: publishDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'BS Display'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'BS Display',
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/logo.png', siteUrl).href,
+      width: 600,
+      height: 60
+    }
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl
+  },
+  keywords: tags?.join(', ') || industry
+};
+---
+
+<MainLayout
+  title={seo?.metaTitle || title}
+  description={seo?.metaDescription || description}
+  ogTitle={seo?.metaTitle || title}
+  ogDescription={seo?.metaDescription || description}
+  ogImage={featuredImage}
+  ogType="article"
+  twitterCard="summary_large_image"
+  twitterTitle={seo?.metaTitle || title}
+  twitterDescription={seo?.metaDescription || description}
+  twitterImage={featuredImage}
+  canonicalUrl={canonicalUrl}
+  structuredData={JSON.stringify(structuredData)}
+>
+  <div class="use-case-container">
+    <header class="use-case-header">
+      <div class="use-case-meta">
+        <span class="use-case-industry">{industry}</span>
+        <time datetime={publishDate.toISOString()}>{formattedDate}</time>
+      </div>
+      
+      <h1 class="use-case-title">{title}</h1>
+      
+      <p class="use-case-description">{description}</p>
+      
+      {client && (
+        <div class="use-case-client">
+          <span class="client-label">Client:</span>
+          <span class="client-name">{client}</span>
+          {clientLogo && (
+            <img 
+              src={clientLogo} 
+              alt={`${client} logo`}
+              class="client-logo"
+              width="150"
+              height="auto"
+            />
+          )}
+        </div>
+      )}
+    </header>
+    
+    <div class="use-case-featured-image">
+      <img 
+        src={featuredImage} 
+        alt={title}
+        width="1200"
+        height="675"
+        loading="eager"
+      />
+    </div>
+    
+    <div class="use-case-content">
+      <section class="use-case-section challenge-section">
+        <h2>Challenge</h2>
+        <div class="section-content">
+          <p>{challenge}</p>
+        </div>
+      </section>
+      
+      <section class="use-case-section solution-section">
+        <h2>Solution</h2>
+        <div class="section-content">
+          <p>{solution}</p>
+        </div>
+        
+        {/* Custom content slot for additional solution details */}
+        <div class="solution-details">
+          <slot name="solution-details" />
+        </div>
+      </section>
+      
+      <section class="use-case-section results-section">
+        <h2>Results</h2>
+        <ul class="results-list">
+          {results.map(result => (
+            <li class="result-item">{result}</li>
+          ))}
+        </ul>
+      </section>
+      
+      {galleryImages && galleryImages.length > 0 && (
+        <section class="use-case-section gallery-section">
+          <h2>Gallery</h2>
+          <div class="image-gallery">
+            {galleryImages.map((image, index) => (
+              <div class="gallery-image">
+                <img 
+                  src={image} 
+                  alt={`Project image ${index + 1}`} 
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+      
+      {testimonial && testimonial.quote && (
+        <section class="use-case-section testimonial-section">
+          <blockquote class="testimonial-quote">
+            <p>{testimonial.quote}</p>
+            {testimonial.author && (
+              <footer>
+                <cite>
+                  <strong>{testimonial.author}</strong>
+                  {testimonial.position && (
+                    <span>, {testimonial.position}</span>
+                  )}
+                </cite>
+              </footer>
+            )}
+          </blockquote>
+        </section>
+      )}
+      
+      <slot />
+    </div>
+    
+    {relatedProducts && relatedProducts.length > 0 && (
+      <RelatedProducts productIds={relatedProducts} />
+    )}
+    
+    {tags && tags.length > 0 && (
+      <div class="use-case-tags">
+        {tags.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <style>
+    /* Global Layout */
+    .use-case-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-md);
+    }
+    
+    .use-case-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .use-case-meta {
+      margin-bottom: var(--space-md);
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .use-case-industry {
+      background-color: #f0f0f0;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-weight: 500;
+    }
+    
+    .use-case-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .use-case-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto var(--space-lg);
+      color: #444;
+    }
+    
+    .use-case-client {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    
+    .client-logo {
+      max-height: 60px;
+      width: auto;
+    }
+    
+    .use-case-featured-image {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .use-case-featured-image img {
+      width: 100%;
+      border-radius: 8px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    
+    /* Content Sections */
+    .use-case-section {
+      margin-bottom: var(--space-xxl);
+    }
+    
+    .use-case-section h2 {
+      margin-bottom: var(--space-md);
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: var(--space-sm);
+    }
+    
+    .use-case-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--color-accent-secondary);
+    }
+    
+    /* Results List */
+    .results-list {
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .results-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .result-item {
+      background-color: #f8f8f8;
+      padding: var(--space-md);
+      border-radius: 8px;
+      border-left: 4px solid var(--color-accent-primary);
+    }
+    
+    /* Gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-md);
+    }
+    
+    .gallery-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-image img:hover {
+      transform: scale(1.03);
+    }
+    
+    /* Testimonial */
+    .testimonial-section {
+      background-color: #f9f9f9;
+      padding: var(--space-lg);
+      border-radius: 8px;
+      margin: var(--space-xl) 0;
+    }
+    
+    .testimonial-quote {
+      position: relative;
+      padding-left: var(--space-lg);
+      font-style: italic;
+      color: #444;
+    }
+    
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--color-accent-secondary);
+      position: absolute;
+      left: 0;
+      top: -20px;
+      opacity: 0.4;
+    }
+    
+    .testimonial-quote p {
+      margin-bottom: var(--space-md);
+    }
+    
+    .testimonial-quote footer {
+      font-style: normal;
+      font-weight: 500;
+    }
+    
+    /* Tags */
+    .use-case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-lg);
+    }
+    
+    .tag {
+      background-color: #eee;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .use-case-title {
+        font-size: 2rem;
+      }
+      
+      .use-case-description {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</MainLayout>

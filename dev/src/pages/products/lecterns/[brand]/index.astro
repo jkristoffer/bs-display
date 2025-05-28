@@ -1,0 +1,87 @@
+---
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import FilterUI from '../../../../components/products/FilterUI/FilterUI.jsx';
+import allLecterns from '../../../../data/lecterns.all.js';
+
+export function getStaticPaths() {
+  const brands = [...new Set(allLecterns.map((lectern) => lectern.brand))];
+
+  return brands.map((brand) => {
+    const brandLecterns = allLecterns.filter((lectern) => lectern.brand === brand);
+    const brandSlug = brand.toLowerCase().replace(/\s+/g, '-');
+
+    return {
+      params: { brand: brandSlug },
+      props: { brand, lecterns: brandLecterns }
+    };
+  });
+}
+
+const { brand, lecterns } = Astro.props;
+
+const title = `${brand} Smart Lecterns | Big Shine Display`;
+const description = `Browse our selection of ${brand} interactive smart lecterns. Find the perfect ${brand} lectern for your classroom, office, or training center.`;
+---
+
+<ProductLayout title={title} description={description}>
+  <div class="brand-header">
+    <h1>{brand} Interactive Smart Lecterns</h1>
+    <p>
+      Explore our selection of {brand} interactive lecterns.
+      {
+        brand === 'SMART' &&
+          'SMART Podium lecterns are known for their intuitive touch technology and robust educational features.'
+      }
+      {
+        brand === 'MAXHUB' &&
+          'MAXHUB lecterns offer excellent value with high-quality panels and versatile connectivity options.'
+      }
+    </p>
+  </div>
+
+  <FilterUI allModels={lecterns} client:visible />
+</ProductLayout>
+
+<style lang="scss">
+  .brand-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  p {
+    max-width: 800px;
+    color: #666;
+    font-size: var(--font-size-body-large);
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+</style>

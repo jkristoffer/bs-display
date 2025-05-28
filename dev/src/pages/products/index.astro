@@ -1,29 +1,53 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
-import FilterUI from '../../components/products/FilterUI/FilterUI.jsx';
-import models from '../../data/models.all.js';
 
-const title = 'Interactive Boards | Big Shine Display';
-const description =
-  'Browse our selection of interactive smart boards from top brands like SMART, METZ, and more.';
+const title = 'Display Products | Big Shine Display';
+const description = 'Explore our complete range of interactive display products, including smart boards and lecterns for education and business.';
 ---
 
 <ProductLayout title={title} description={description}>
   <div class="products-header">
-    <h1>Interactive Smart Boards</h1>
+    <h1>Interactive Display Solutions</h1>
     <p>
-      Find the perfect interactive display for your classroom, office, or
-      training center. Our selection includes top brands with various sizes and
-      features to meet your needs.
+      Discover our complete range of interactive display products for education, business, and training environments.
+      From large format displays to interactive lecterns, we have solutions to fit every need.
     </p>
   </div>
 
-  <FilterUI allModels={models} client:visible />
+  <div class="product-categories">
+    <div class="category-card">
+      <div class="category-image">
+        <img src="/images/smartboard-category.jpg" alt="Interactive Smart Boards" />
+      </div>
+      <div class="category-content">
+        <h2>Interactive Smart Boards</h2>
+        <p>
+          Large format interactive displays for classrooms, meeting rooms, and training centers.
+          Available in various sizes with advanced touch technology.
+        </p>
+        <a href="/products/smartboards" class="cta-button">Browse Smart Boards</a>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <div class="category-image">
+        <img src="/images/lectern-category.jpg" alt="Interactive Lecterns" />
+      </div>
+      <div class="category-content">
+        <h2>Interactive Lecterns</h2>
+        <p>
+          Digital podiums and lecterns with built-in displays and annotation capabilities.
+          Perfect for presentations and lectures in any environment.
+        </p>
+        <a href="/products/lecterns" class="cta-button">Browse Lecterns</a>
+      </div>
+    </div>
+  </div>
 </ProductLayout>
 
 <style lang="scss">
   .products-header {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-align: center;
   }
 
@@ -54,13 +78,102 @@ const description =
     line-height: 1.6;
   }
 
+  .product-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 20px 0 60px;
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .category-image {
+    height: 240px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .category-card:hover & img {
+      transform: scale(1.05);
+    }
+  }
+
+  .category-content {
+    padding: 25px;
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: var(--font-size-h3);
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+  }
+
+  .category-content p {
+    margin: 0 0 20px;
+    color: #666;
+    line-height: 1.5;
+    font-size: var(--font-size-body-regular);
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--color-accent-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    margin-top: auto;
+    align-self: flex-start;
+
+    &:hover {
+      background-color: var(--color-accent-dark);
+    }
+  }
+
   @media (max-width: $breakpoint-md) {
+    .product-categories {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
     h1 {
       font-size: 28px;
     }
 
+    h2 {
+      font-size: 22px;
+    }
+
     p {
       font-size: var(--font-size-body-regular);
+    }
+
+    .category-image {
+      height: 200px;
     }
   }
 </style>

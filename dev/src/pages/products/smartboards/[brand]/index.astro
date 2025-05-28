@@ -1,7 +1,7 @@
 ---
-import ProductLayout from '../../../layouts/ProductLayout.astro';
-import FilterUI from '../../../components/products/FilterUI/FilterUI.jsx';
-import allModels from '../../../data/models.all.js';
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import FilterUI from '../../../../components/products/FilterUI/FilterUI.jsx';
+import allModels from '../../../../data/models.all.js';
 
 export function getStaticPaths() {
   const brands = [...new Set(allModels.map((model) => model.brand))];

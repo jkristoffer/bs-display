@@ -1,0 +1,25 @@
+---
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import ProductDetails from '../../../../components/products/ProductDetails/ProductDetails.jsx';
+import allLecterns from '../../../../data/lecterns.all.js';
+
+export function getStaticPaths() {
+  return allLecterns.map((lectern) => ({
+    params: {
+      brand: lectern.brand.toLowerCase().replace(/\s+/g, '-'),
+      id: lectern.id
+    },
+    props: { lectern }
+  }));
+}
+
+const { lectern } = Astro.props;
+const { brand, model: modelName } = lectern;
+
+const title = `${brand} ${modelName} | Big Shine Display`;
+const description = `Learn more about the ${brand} ${modelName} interactive smart lectern. View specifications, features, and request a quote.`;
+---
+
+<ProductLayout title={title} description={description}>
+  <ProductDetails model={lectern} client:visible />
+</ProductLayout>

@@ -1,7 +1,7 @@
 ---
-import ProductLayout from '../../../layouts/ProductLayout.astro';
-import ProductDetails from '../../../components/products/ProductDetails/ProductDetails.jsx';
-import allModels from '../../../data/models.all.js';
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import ProductDetails from '../../../../components/products/ProductDetails/ProductDetails.jsx';
+import allModels from '../../../../data/models.all.js';
 
 export function getStaticPaths() {
   return allModels.map((model) => ({

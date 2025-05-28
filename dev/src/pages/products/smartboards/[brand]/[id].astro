@@ -2,6 +2,12 @@
 import ProductLayout from '../../../../layouts/ProductLayout.astro';
 import ProductDetails from '../../../../components/products/ProductDetails/ProductDetails.jsx';
 import allModels from '../../../../data/models.all.js';
+import {
+  convertModelToProductInfo,
+  generateProductSchema,
+  generateBreadcrumbSchema
+} from '../../../../utils/schema';
+import { getProductBreadcrumbs } from '../../../../utils/routes';
 
 export function getStaticPaths() {
   return allModels.map((model) => ({
@@ -18,8 +24,41 @@ const { brand, model: modelName } = model;
 
 const title = `${brand} ${modelName} | Big Shine Display`;
 const description = `Learn more about the ${brand} ${modelName} interactive smart board. View specifications, features, and request a quote.`;
+
+// Generate structured data for SEO
+const baseUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : 'https://bigshine.display';
+const productInfo = convertModelToProductInfo(model, 'smartboards', baseUrl);
+const productSchema = generateProductSchema(productInfo);
+
+// Generate breadcrumb schema
+const breadcrumbItems = getProductBreadcrumbs({
+  productType: 'smartboards',
+  brand,
+  brandLabel: brand,
+  productId: model.id,
+  productLabel: modelName
+});
+console.log(breadcrumbItems);
+const breadcrumbSchema = generateBreadcrumbSchema({
+  items: breadcrumbItems.map((item, index) => ({
+    name: item.label,
+    item: item.path
+      ? new URL(
+          item.path.startsWith('/') ? item.path.slice(1) : item.path,
+          baseUrl
+        ).href
+      : baseUrl,
+    position: index + 1
+  }))
+});
 ---
 
 <ProductLayout title={title} description={description}>
+  <!-- JSON-LD structured data for SEO -->
+  <script type="application/ld+json" set:html={productSchema} />
+  <script type="application/ld+json" set:html={breadcrumbSchema} />
+
   <ProductDetails model={model} productType="smartboards" client:visible />
 </ProductLayout>

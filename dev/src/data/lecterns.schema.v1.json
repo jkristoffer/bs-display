@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SmartBoardModel",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "brand",
+      "model",
+      "size",
+      "resolution",
+      "os",
+      "touchTechnology",
+      "features",
+      "warranty",
+      "priceRange",
+      "image"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique ID slug for the model"
+      },
+      "brand": {
+        "type": "string",
+        "enum": [
+          "METZ",
+          "SMART",
+          "Infinity Pro"
+        ],
+        "description": "Brand name"
+      },
+      "model": {
+        "type": "string",
+        "description": "Full marketing model name"
+      },
+      "size": {
+        "type": "integer",
+        "description": "Diagonal screen size in inches"
+      },
+      "resolution": {
+        "type": "string",
+        "pattern": "^[0-9]+x[0-9]+$",
+        "description": "Screen resolution"
+      },
+      "os": {
+        "type": "string",
+        "description": "Operating system or systems supported"
+      },
+      "touchTechnology": {
+        "type": "string",
+        "enum": [
+          "Infrared",
+          "Capacitive",
+          "Optical Bonded",
+          "HyPr Touch (InGlass)",
+          "10-point capacitive multitouch with palm rejection"
+        ],
+        "description": "Touch input technology"
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Key marketing features and capabilities"
+      },
+      "warranty": {
+        "type": "string",
+        "description": "Warranty period"
+      },
+      "priceRange": {
+        "type": "string",
+        "description": "Price range"
+      },
+      "image": {
+        "type": "string",
+        "description": "Path to the product image"
+      },
+      "brightness": {
+        "type": "string",
+        "description": "Panel brightness"
+      },
+      "contrastRatio": {
+        "type": "string",
+        "description": "Contrast ratio"
+      },
+      "viewingAngle": {
+        "type": "string",
+        "description": "Viewing angle"
+      },
+      "responseTime": {
+        "type": "string",
+        "description": "Response time"
+      },
+      "panelLife": {
+        "type": "string",
+        "description": "Panel lifespan"
+      },
+      "audioOutput": {
+        "type": "string",
+        "description": "Speaker output"
+      },
+      "powerConsumption": {
+        "type": "string",
+        "description": "Power usage"
+      }
+    }
+  }
+}

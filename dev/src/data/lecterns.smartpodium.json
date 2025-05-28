@@ -1,0 +1,31 @@
+[
+  {
+    "id": "smart-podium-624",
+    "brand": "SMART",
+    "model": "SMART Podium 624 Interactive Pen Display",
+    "size": 24,
+    "resolution": "1920x1080",
+    "os": "Compatible with Windows and macOS (SMART software)",
+    "touchTechnology": "10-point capacitive multitouch with palm rejection",
+    "features": [
+      "Full HD 24\" LCD with 178\u00b0 viewing angle",
+      "Cordless, battery-free pen with 2048 pressure levels",
+      "\u00b160\u00b0 tilt recognition",
+      "Silktouch\u2122 anti-glare surface",
+      "SMART Ink\u2122 for annotation over any file or application",
+      "Customizable on-screen floating toolbar",
+      "Kensington lock support",
+      "Gesture support (pinch, zoom, rotate, flip)"
+    ],
+    "warranty": "Standard manufacturer warranty",
+    "priceRange": "Not listed",
+    "image": "https://www.eptecstore.com/wp-content/uploads/2021/06/SMART-Podium-624.png",
+    "brightness": "210 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "viewingAngle": "178\u00b0",
+    "responseTime": "Not specified",
+    "panelLife": "Not specified",
+    "audioOutput": "Not applicable",
+    "powerConsumption": "Not specified"
+  }
+]

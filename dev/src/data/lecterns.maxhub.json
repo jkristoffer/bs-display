@@ -1,0 +1,29 @@
+[
+  {
+    "id": "maxhub-sl22mc",
+    "brand": "SMART",
+    "model": "MAXHUB Smart Lectern SL22MC",
+    "size": 21,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "touchTechnology": "10-point capacitive multitouch with palm rejection",
+    "features": [
+      "Capacitive + EMR touch support",
+      "Full HD 21.5\" IPS screen",
+      "Built-in dual microphones and speakers",
+      "Wireless screen sharing up to 8 devices",
+      "Electric height adjustment",
+      "Smart pen included"
+    ],
+    "warranty": "1 year standard manufacturer warranty",
+    "priceRange": "Contact for pricing",
+    "image": "images/maxhub-sl22mc.jpg",
+    "brightness": "450 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "viewingAngle": "178\u00b0",
+    "responseTime": "14ms",
+    "panelLife": "Not specified",
+    "audioOutput": "2 x 3W speakers",
+    "powerConsumption": "Not specified"
+  }
+]

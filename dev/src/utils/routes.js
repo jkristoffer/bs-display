@@ -3,6 +3,16 @@
  * Use this to avoid hardcoding paths throughout the app
  */
 
+/**
+ * Create a URL-friendly slug from a string
+ * @param {string} text - Text to convert to slug
+ * @returns {string} URL-friendly slug
+ */
+export function createSlug(text) {
+  if (typeof text !== 'string') return '';
+  return text.toLowerCase().replace(/\s+/g, '-');
+}
+
 export const routes = {
   home: '/',
   about: '/about/',
@@ -11,13 +21,13 @@ export const routes = {
     index: '/products/',
     smartboards: {
       index: '/products/smartboards/',
-      brand: (brand) => `/products/smartboards/${brand.toLowerCase().replace(/\\s+/g, '-')}/`,
-      product: (brand, id) => `/products/smartboards/${brand.toLowerCase().replace(/\\s+/g, '-')}/${id}`
+      brand: (brand) => `/products/smartboards/${createSlug(brand)}/`,
+      product: (brand, id) => `/products/smartboards/${createSlug(brand)}/${id}`
     },
     lecterns: {
       index: '/products/lecterns/',
-      brand: (brand) => `/products/lecterns/${brand.toLowerCase().replace(/\\s+/g, '-')}/`,
-      product: (brand, id) => `/products/lecterns/${brand.toLowerCase().replace(/\\s+/g, '-')}/${id}`
+      brand: (brand) => `/products/lecterns/${createSlug(brand)}/`,
+      product: (brand, id) => `/products/lecterns/${createSlug(brand)}/${id}`
     }
   },
   quiz: '/quiz/'
@@ -48,9 +58,12 @@ export function getProductBreadcrumbs({
 
   // Add brand breadcrumb if provided
   if (brand && brandLabel) {
+    // Make sure we're using a properly formatted brand slug
+    const brandSlug = typeof brand === 'string' ? createSlug(brand) : brand;
+    
     items.push({
       label: brandLabel,
-      path: routes.products[productType].brand(brand)
+      path: routes.products[productType].brand(brandSlug)
     });
   }
 

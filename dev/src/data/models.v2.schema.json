@@ -24,7 +24,7 @@
       },
       "brand": {
         "type": "string",
-        "enum": ["METZ", "SMART", "Infinity Pro"],
+        "enum": ["METZ", "SMART", "Infinity Pro", "Qeoyo", "MAXHUB"],
         "description": "Brand name"
       },
       "model": {

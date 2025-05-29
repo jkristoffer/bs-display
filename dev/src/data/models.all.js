@@ -9,6 +9,7 @@ import metzModels from './models.metz.json';
 import smart6000sv3Models from './models.smart6000sv3.json';
 import smartmxv5Models from './models.smartmxv5.json';
 import xboardv7Models from './models.xboardv7.json';
+import qeoyoModels from './models.qeoyo.json';
 
 // Export all models
 export {
@@ -16,7 +17,8 @@ export {
     metzModels,
     smart6000sv3Models,
     smartmxv5Models,
-    xboardv7Models
+    xboardv7Models,
+    qeoyoModels,
 };
 
 // Export combined array of all models
@@ -25,7 +27,8 @@ export const allModels = [
     ...metzModels,
     ...smart6000sv3Models,
     ...smartmxv5Models,
-    ...xboardv7Models
+    ...xboardv7Models,
+    ...qeoyoModels,
 ];
 
 export default allModels;

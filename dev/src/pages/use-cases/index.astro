@@ -1,18 +1,21 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import PageHeader from '../../components/common/page-header/index.astro';
 import { getCollection } from 'astro:content';
 
 const useCases = await getCollection('useCases');
-console.log('Use Cases:', useCases.map(uc => ({ id: uc.id, slug: uc.slug, data: uc.data })));
 ---
 
 <MainLayout 
   title="Use Cases | BS Display"
   description="Explore how our display solutions have helped businesses across industries create engaging experiences and achieve measurable results."
 >
+  <PageHeader 
+    title="Use Cases" 
+    subtitle="See how our display solutions drive real-world results across industries"
+  />
+  
   <div class="use-cases-container">
-    <h1>Use Cases</h1>
-    <p class="intro">See how our display solutions drive real-world results across industries</p>
     
     <div class="use-case-grid">
       {useCases.map(useCase => (

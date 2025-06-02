@@ -2,15 +2,14 @@
 // Import quiz data from JSON file
 import quizData from './quizdata.json';
 import { FinalQuiz } from './Quiz';
+import PageHeader from '../common/page-header/index.astro';
 import './components/Quiz.css';
 ---
 
-<div class="quiz-hero-banner">
-  <div class="quiz-hero-content">
-    <h1>Find Your Perfect Smartboard</h1>
-    <p>Answer a few questions and we'll recommend the best display solution for your needs</p>
-  </div>
-</div>
+<PageHeader
+  title="Find Your Perfect Smartboard"
+  subtitle="Answer a few questions and we'll recommend the best display solution for your needs"
+/>
 
 <div class="quiz-client-wrapper">
   <FinalQuiz client:load quizData={quizData} />

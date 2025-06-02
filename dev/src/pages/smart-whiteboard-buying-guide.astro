@@ -4,7 +4,7 @@ import '../styles/index.scss';
 import '../styles/sw-buying-guide.scss';
 
 // Import components
-import Header from '../components/sw-buying-guide/Header.astro';
+import PageHeader from '../components/common/page-header/index.astro';
 import TableOfContents from '../components/sw-buying-guide/TableOfContents.astro';
 import WhatIsSection from '../components/sw-buying-guide/WhatIsSection.astro';
 import WhyChooseSection from '../components/sw-buying-guide/WhyChooseSection.astro';
@@ -40,7 +40,7 @@ const tocItems = [
 
 <MainLayout title={title} description={description}>
   <div class="whiteboard-guide">
-    <Header
+    <PageHeader
       title="Smart Whiteboard Buying Guide"
       subtitle="Everything You Need to Know Before Choosing the Right Interactive Display"
     />

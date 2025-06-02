@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
+import PageHeader from '../../components/common/page-header/index.astro';
 import type { CollectionEntry } from 'astro:content';
 
 // Get all blog posts and sort by publish date (newest first)
@@ -50,12 +51,10 @@ function formatDate(date: Date): string {
   {/* Add prev/next links for SEO and accessibility */}
   {prevPageUrl && <link rel="prev" href={prevPageUrl} />}
   {nextPageUrl && <link rel="next" href={nextPageUrl} />}
-  <div class="blog-hero-banner">
-    <div class="blog-hero-content">
-      <h1>Display Technology Blog</h1>
-      <p>Insights, guides, and industry news about smart display technologies</p>
-    </div>
-  </div>
+  <PageHeader
+    title="Display Technology Blog"
+    subtitle="Insights, guides, and industry news about smart display technologies"
+  />
   
   <div class="blog-index-container">
 

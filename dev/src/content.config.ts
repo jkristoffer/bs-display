@@ -2,7 +2,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Blog schema
 export const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -13,31 +12,26 @@ export const blogSchema = z.object({
   canonicalUrl: z.string().optional()
 });
 
-// Use Case schema
 export const useCaseSchema = z.object({
   title: z.string(),
   description: z.string(),
+  publishDate: z.date(),
   industry: z.string(),
-  client: z.string().optional(),
-  clientLogo: z.string().optional(),
   challenge: z.string(),
   solution: z.string(),
-  results: z.array(z.string()),
+  results: z.string(),
+  clientName: z.string().optional(),
+  clientLogo: z.string().optional(),
+  featuredImage: z.string().optional(),
+  gallery: z.array(z.string()).optional(),
   testimonial: z.object({
-    quote: z.string().optional(),
-    author: z.string().optional(),
+    quote: z.string(),
+    author: z.string(),
     position: z.string().optional()
   }).optional(),
-  featuredImage: z.string(),
-  galleryImages: z.array(z.string()).optional(),
-  relatedProducts: z.array(z.string()).optional(),
+  products: z.array(z.string()).optional(),
   tags: z.array(z.string()).optional(),
-  publishDate: z.date(),
-  seo: z.object({
-    metaTitle: z.string().optional(),
-    metaDescription: z.string().optional(),
-    keywords: z.array(z.string()).optional()
-  }).optional()
+  canonicalUrl: z.string().optional()
 });
 
 // Define the blog collection schema
@@ -46,14 +40,11 @@ const blog = defineCollection({
   schema: blogSchema
 });
 
-// Define the use case collection schema
-const useCase = defineCollection({
+// Define the use cases collection schema
+const useCases = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/use-cases' }),
   schema: useCaseSchema
 });
 
 // Export the collections
-export const collections = { 
-  blog,
-  useCase
-};
+export const collections = { blog, useCases };

@@ -1,0 +1,58 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import UseCaseLayout from '../../layouts/UseCaseLayout.astro';
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const useCases = await getCollection('useCases');
+  if (!useCases) throw new Error('Use cases collection not found');
+
+  return useCases.map((useCase: CollectionEntry<'useCases'>) => ({
+    params: { slug: useCase.id },
+    props: { useCase }
+  }));
+}
+
+// 2. For your template, you can get the entry directly from the prop
+const { useCase } = Astro.props;
+const { Content } = await render(useCase);
+
+// Extract frontmatter
+const {
+  title,
+  description,
+  publishDate,
+  industry,
+  challenge,
+  solution,
+  results,
+  clientName,
+  clientLogo,
+  featuredImage,
+  gallery,
+  testimonial,
+  products,
+  tags,
+  canonicalUrl
+} = useCase.data;
+---
+
+<UseCaseLayout
+  title={title}
+  description={description}
+  publishDate={publishDate}
+  industry={industry}
+  challenge={challenge}
+  solution={solution}
+  results={results}
+  clientName={clientName}
+  clientLogo={clientLogo}
+  featuredImage={featuredImage}
+  gallery={gallery}
+  testimonial={testimonial}
+  products={products}
+  tags={tags}
+  canonicalUrl={canonicalUrl}
+>
+  <Content />
+</UseCaseLayout>

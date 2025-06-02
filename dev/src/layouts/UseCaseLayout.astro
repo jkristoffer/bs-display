@@ -1,53 +1,47 @@
 ---
 import MainLayout from './MainLayout.astro';
-import type { CollectionEntry } from 'astro:content';
-import RelatedProducts from '../components/use-cases/RelatedProducts.astro';
 
 interface Props {
   title: string;
   description: string;
+  publishDate: Date;
   industry: string;
-  client?: string;
-  clientLogo?: string;
   challenge: string;
   solution: string;
-  results: string[];
+  results: string;
+  clientName?: string;
+  clientLogo?: string;
+  featuredImage?: string;
+  gallery?: string[];
   testimonial?: {
-    quote?: string;
-    author?: string;
+    quote: string;
+    author: string;
     position?: string;
   };
-  featuredImage: string;
-  galleryImages?: string[];
-  relatedProducts?: string[];
+  products?: string[];
   tags?: string[];
-  publishDate: Date;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    keywords?: string[];
-  };
+  canonicalUrl?: string;
 }
 
 const {
   title,
   description,
+  publishDate,
   industry,
-  client,
-  clientLogo,
   challenge,
   solution,
   results,
-  testimonial,
+  clientName,
+  clientLogo,
   featuredImage,
-  galleryImages,
-  relatedProducts,
+  gallery,
+  testimonial,
+  products,
   tags,
-  publishDate,
-  seo
+  canonicalUrl
 } = Astro.props;
 
-// Format date
+// Format date if provided
 const formattedDate = publishDate
   ? new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -58,16 +52,17 @@ const formattedDate = publishDate
 
 // Generate canonical URL
 const siteUrl = import.meta.env.SITE || Astro.url.origin;
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const resolvedCanonicalUrl =
+  canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 
 // Prepare structured data for use case
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: title,
-  description: description,
-  image: new URL(featuredImage, siteUrl).href,
+  description,
   datePublished: publishDate.toISOString(),
+  ...(featuredImage && { image: new URL(featuredImage, siteUrl).href }),
   author: {
     '@type': 'Organization',
     name: 'BS Display'
@@ -85,330 +80,410 @@ const structuredData = {
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': canonicalUrl
+    '@id': resolvedCanonicalUrl
   },
-  keywords: tags?.join(', ') || industry
+  ...(clientName && {
+    about: {
+      '@type': 'Organization',
+      name: clientName
+    }
+  })
 };
 ---
 
 <MainLayout
-  title={seo?.metaTitle || title}
-  description={seo?.metaDescription || description}
-  ogTitle={seo?.metaTitle || title}
-  ogDescription={seo?.metaDescription || description}
+  title={title}
+  description={description}
+  ogTitle={title}
+  ogDescription={description}
   ogImage={featuredImage}
   ogType="article"
   twitterCard="summary_large_image"
-  twitterTitle={seo?.metaTitle || title}
-  twitterDescription={seo?.metaDescription || description}
+  twitterTitle={title}
+  twitterDescription={description}
   twitterImage={featuredImage}
-  canonicalUrl={canonicalUrl}
+  canonicalUrl={resolvedCanonicalUrl}
   structuredData={JSON.stringify(structuredData)}
 >
   <div class="use-case-container">
-    <header class="use-case-header">
-      <div class="use-case-meta">
-        <span class="use-case-industry">{industry}</span>
-        <time datetime={publishDate.toISOString()}>{formattedDate}</time>
-      </div>
+    <article class="use-case-content">
+      <h1>{title}</h1>
       
-      <h1 class="use-case-title">{title}</h1>
-      
-      <p class="use-case-description">{description}</p>
-      
-      {client && (
-        <div class="use-case-client">
-          <span class="client-label">Client:</span>
-          <span class="client-name">{client}</span>
-          {clientLogo && (
-            <img 
-              src={clientLogo} 
-              alt={`${client} logo`}
-              class="client-logo"
-              width="150"
-              height="auto"
-            />
-          )}
+      {featuredImage && (
+        <div class="featured-image">
+          <img src={featuredImage} alt={title} />
         </div>
       )}
-    </header>
-    
-    <div class="use-case-featured-image">
-      <img 
-        src={featuredImage} 
-        alt={title}
-        width="1200"
-        height="675"
-        loading="eager"
-      />
-    </div>
-    
-    <div class="use-case-content">
-      <section class="use-case-section challenge-section">
+      
+      <div class="use-case-meta">
+        <span class="industry-tag">{industry}</span>
+        {formattedDate && <time datetime={publishDate.toISOString()}>{formattedDate}</time>}
+        {clientName && <span class="client-name">Client: {clientName}</span>}
+      </div>
+
+      <div class="use-case-overview">
+        <p class="use-case-description">{description}</p>
+      </div>
+
+      <div class="use-case-section">
         <h2>Challenge</h2>
         <div class="section-content">
           <p>{challenge}</p>
         </div>
-      </section>
-      
-      <section class="use-case-section solution-section">
+      </div>
+
+      <div class="use-case-section">
         <h2>Solution</h2>
         <div class="section-content">
           <p>{solution}</p>
+          <slot name="solution" />
         </div>
-        
-        {/* Custom content slot for additional solution details */}
-        <div class="solution-details">
-          <slot name="solution-details" />
-        </div>
-      </section>
-      
-      <section class="use-case-section results-section">
+      </div>
+
+      <div class="use-case-section">
         <h2>Results</h2>
-        <ul class="results-list">
-          {results.map(result => (
-            <li class="result-item">{result}</li>
-          ))}
-        </ul>
-      </section>
-      
-      {galleryImages && galleryImages.length > 0 && (
-        <section class="use-case-section gallery-section">
-          <h2>Gallery</h2>
-          <div class="image-gallery">
-            {galleryImages.map((image, index) => (
-              <div class="gallery-image">
-                <img 
-                  src={image} 
-                  alt={`Project image ${index + 1}`} 
-                  width="400"
-                  height="300"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-      
-      {testimonial && testimonial.quote && (
-        <section class="use-case-section testimonial-section">
-          <blockquote class="testimonial-quote">
-            <p>{testimonial.quote}</p>
-            {testimonial.author && (
-              <footer>
-                <cite>
-                  <strong>{testimonial.author}</strong>
-                  {testimonial.position && (
-                    <span>, {testimonial.position}</span>
-                  )}
-                </cite>
-              </footer>
-            )}
+        <div class="section-content">
+          <p>{results}</p>
+          <slot name="results" />
+        </div>
+      </div>
+
+      {testimonial && (
+        <div class="testimonial">
+          <blockquote>
+            <p>"{testimonial.quote}"</p>
+            <cite>
+              {testimonial.author}
+              {testimonial.position && <span>, {testimonial.position}</span>}
+            </cite>
           </blockquote>
-        </section>
+        </div>
       )}
       
       <slot />
-    </div>
+    </article>
     
-    {relatedProducts && relatedProducts.length > 0 && (
-      <RelatedProducts productIds={relatedProducts} />
-    )}
+    <aside class="use-case-sidebar">
+      {clientName && clientLogo && (
+        <div class="client-info">
+          <h3>About the Client</h3>
+          <img src={clientLogo} alt={`${clientName} logo`} class="client-logo" />
+          <p>{clientName}</p>
+        </div>
+      )}
+      
+      {products && products.length > 0 && (
+        <div class="related-products">
+          <h3>Related Products</h3>
+          <ul class="products-list">
+            {products.map((product) => (
+              <li>{product}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      
+      {tags && tags.length > 0 && (
+        <div class="tags-section">
+          <h3>Tags</h3>
+          <div class="tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      )}
+    </aside>
     
-    {tags && tags.length > 0 && (
-      <div class="use-case-tags">
-        {tags.map(tag => (
-          <span class="tag">{tag}</span>
-        ))}
-      </div>
+    {gallery && gallery.length > 0 && (
+      <section class="gallery-section">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          {gallery.map((image) => (
+            <div class="gallery-item">
+              <img src={image} alt="Project image" />
+            </div>
+          ))}
+        </div>
+      </section>
     )}
   </div>
 
   <style>
-    /* Global Layout */
     .use-case-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: var(--space-md);
+      padding: var(--spacing-xl) var(--spacing-md);
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: var(--spacing-xl);
     }
-    
-    .use-case-header {
+
+    h1 {
       text-align: center;
-      margin-bottom: var(--space-xl);
+      font-size: var(--font-size-h1);
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-text-primary);
+      &:after {
+        content: '';
+        display: block;
+        height: 10px;
+        width: 33%;
+        background-color: var(--color-accent-secondary);
+        margin: var(--spacing-xl) auto;
+      }
     }
-    
+
+    h2 {
+      font-size: var(--font-size-h2);
+      color: var(--color-accent-primary);
+      margin: var(--spacing-xl) 0 var(--spacing-md);
+    }
+
+    h3 {
+      font-size: var(--font-size-h3);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .featured-image {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .featured-image img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .use-case-content {
+      grid-column: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
     .use-case-meta {
-      margin-bottom: var(--space-md);
-      display: flex;
-      justify-content: center;
-      gap: var(--space-md);
-      color: #666;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: var(--spacing-md) 0;
+      margin-bottom: var(--spacing-xl);
       font-size: 0.9rem;
+      color: #666;
+      display: flex;
+      gap: 1rem;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
     }
-    
-    .use-case-industry {
-      background-color: #f0f0f0;
+
+    .use-case-overview {
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .use-case-description {
+      font-size: var(--font-size-body-large);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+
+    .industry-tag {
+      background-color: var(--color-accent-primary);
+      color: white;
       padding: 0.25rem 0.75rem;
       border-radius: 1rem;
       font-weight: 500;
     }
-    
-    .use-case-title {
-      font-size: 2.5rem;
-      margin-bottom: var(--space-md);
-    }
-    
-    .use-case-description {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto var(--space-lg);
-      color: #444;
-    }
-    
-    .use-case-client {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      margin-top: var(--space-md);
-    }
-    
-    .client-logo {
-      max-height: 60px;
-      width: auto;
-    }
-    
-    .use-case-featured-image {
-      margin-bottom: var(--space-xl);
-    }
-    
-    .use-case-featured-image img {
-      width: 100%;
-      border-radius: 8px;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    
-    /* Content Sections */
-    .use-case-section {
-      margin-bottom: var(--space-xxl);
-    }
-    
-    .use-case-section h2 {
-      margin-bottom: var(--space-md);
-      font-size: 1.8rem;
-      position: relative;
-      padding-bottom: var(--space-sm);
-    }
-    
-    .use-case-section h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background-color: var(--color-accent-secondary);
-    }
-    
-    /* Results List */
-    .results-list {
-      list-style-type: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-    
-    @media (min-width: 768px) {
-      .results-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    .result-item {
-      background-color: #f8f8f8;
-      padding: var(--space-md);
-      border-radius: 8px;
-      border-left: 4px solid var(--color-accent-primary);
-    }
-    
-    /* Gallery */
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: var(--space-md);
-    }
-    
-    .gallery-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      transition: transform 0.3s ease;
-    }
-    
-    .gallery-image img:hover {
-      transform: scale(1.03);
-    }
-    
-    /* Testimonial */
-    .testimonial-section {
-      background-color: #f9f9f9;
-      padding: var(--space-lg);
-      border-radius: 8px;
-      margin: var(--space-xl) 0;
-    }
-    
-    .testimonial-quote {
-      position: relative;
-      padding-left: var(--space-lg);
-      font-style: italic;
-      color: #444;
-    }
-    
-    .testimonial-quote::before {
-      content: '"';
-      font-size: 3rem;
-      color: var(--color-accent-secondary);
-      position: absolute;
-      left: 0;
-      top: -20px;
-      opacity: 0.4;
-    }
-    
-    .testimonial-quote p {
-      margin-bottom: var(--space-md);
-    }
-    
-    .testimonial-quote footer {
-      font-style: normal;
+
+    .client-name {
       font-weight: 500;
     }
-    
-    /* Tags */
-    .use-case-tags {
+
+    .use-case-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+
+    .section-content {
+      font-size: var(--font-size-body-regular);
+    }
+
+    .use-case-sidebar {
+      grid-column: 2;
+      background-color: var(--color-surface);
+      padding: var(--spacing-lg);
+      border-radius: 8px;
+      align-self: start;
+      position: sticky;
+      top: var(--spacing-xl);
+    }
+
+    .use-case-sidebar > div {
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .use-case-sidebar > div:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .client-info {
+      text-align: center;
+    }
+
+    .client-logo {
+      max-height: 60px;
+      max-width: 100%;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .testimonial {
+      background-color: var(--color-surface);
+      padding: var(--spacing-xl);
+      border-radius: 8px;
+      margin: var(--spacing-xxl) 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    blockquote {
+      font-style: italic;
+      font-size: var(--font-size-body-large);
+      margin: 0;
+      padding: 0;
+      border-left: 4px solid var(--color-accent-secondary);
+      padding-left: var(--spacing-md);
+    }
+
+    cite {
+      display: block;
+      margin-top: var(--spacing-md);
+      font-style: normal;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .gallery-section {
+      grid-column: 1 / -1;
+      margin-top: var(--spacing-xxl);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.03);
+    }
+
+    .products-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .products-list li {
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px dashed var(--color-border);
+    }
+
+    .products-list li:last-child {
+      border-bottom: none;
+    }
+
+    .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-xs);
-      margin-top: var(--space-lg);
+      gap: var(--spacing-sm);
     }
-    
+
     .tag {
-      background-color: #eee;
+      background-color: #f0f0f0;
+      color: var(--color-text-primary);
       padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
+      border-radius: 1rem;
+      font-size: var(--font-size-small);
     }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .use-case-title {
-        font-size: 2rem;
+
+    /* Style slots for custom content */
+    .use-case-content :global(h2),
+    .use-case-content :global(h3),
+    .use-case-content :global(h4) {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .use-case-content :global(img) {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .use-case-content :global(blockquote) {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      font-style: italic;
+      margin: 1.5rem 0;
+      color: #555;
+    }
+
+    .use-case-content :global(pre) {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .use-case-content :global(p) {
+      margin-bottom: 1.5rem;
+    }
+
+    .use-case-content :global(ul),
+    .use-case-content :global(ol) {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .use-case-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
       }
-      
-      .use-case-description {
-        font-size: 1rem;
+
+      .use-case-content,
+      .use-case-sidebar {
+        grid-column: 1;
+      }
+
+      .use-case-sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .use-case-container {
+        padding: var(--spacing-lg) var(--spacing-sm);
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .use-case-meta {
+        flex-direction: column;
       }
     }
   </style>

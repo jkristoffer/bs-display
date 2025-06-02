@@ -39,6 +39,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       dropdown: true,
       items: [
         { path: '/blog', label: 'Blog' },
+        { path: '/use-cases', label: 'Use Cases' },
         {
           path: '/smart-whiteboard-buying-guide',
           label: 'Buying Guide'

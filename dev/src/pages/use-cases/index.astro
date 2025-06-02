@@ -3,6 +3,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 
 const useCases = await getCollection('useCases');
+console.log('Use Cases:', useCases.map(uc => ({ id: uc.id, slug: uc.slug, data: uc.data })));
 ---
 
 <MainLayout 
@@ -15,7 +16,7 @@ const useCases = await getCollection('useCases');
     
     <div class="use-case-grid">
       {useCases.map(useCase => (
-        <a href={`/use-cases/${useCase.slug}`} class="use-case-card">
+        <a href={`/use-cases/${useCase.id}`} class="use-case-card">
           {useCase.data.featuredImage && (
             <img src={useCase.data.featuredImage} alt={useCase.data.title} class="card-image" />
           )}

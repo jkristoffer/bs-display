@@ -1,12 +1,5 @@
-import { useState } from 'react';
-import type { QuizData, CategoryScores, HybridCategoryResult } from './types';
-
-interface SecondaryRecommendation {
-  category: string;
-  score: number;
-  scorePercent: number;
-  reason: string;
-}
+import { useQuizState } from './quizState';
+import type { QuizData } from './types';
 
 interface FinalQuizProps {
   quizData: QuizData;
@@ -17,323 +10,32 @@ interface FinalQuizProps {
  * when options share the same category value
  */
 export function FinalQuiz({ quizData }: FinalQuizProps) {
-  // Track selections by unique identifiers (NOT values)
-  const [selectedOptionIds, setSelectedOptionIds] = useState<{
-    [questionId: string]: string[];
-  }>({});
-  const [currentScreen, setCurrentScreen] = useState<
-    'intro' | 'questions' | 'results'
-  >('intro');
-  const [result, setResult] = useState<string | null>(null);
-  const [isHybridResult, setIsHybridResult] = useState<boolean>(false);
-  const [categoryScores, setCategoryScores] = useState<CategoryScores | null>(null);
-  const [secondaryCategory, setSecondaryCategory] = useState<string | null>(null);
-  const [secondaryRecommendations, setSecondaryRecommendations] = useState<SecondaryRecommendation[]>([]);
-  const [activeTab, setActiveTab] = useState<'primary' | 'alternatives'>('primary');
+  // Use the centralized state management hook
+  const {
+    // State
+    selectedOptionIds,
+    currentScreen,
+    result,
+    isHybridResult,
+    categoryScores,
+    secondaryCategory,
+    secondaryRecommendations,
+    activeTab,
+    
+    // Actions
+    startQuiz,
+    toggleOption,
+    submitQuiz,
+    setActiveTab,
+    viewAlternative,
+    
+    // Derived state
+    isOptionSelected,
+    getSelectionCount,
+    allQuestionsAnswered
+  } = useQuizState(quizData);
 
   const { title, questions, results } = quizData;
-
-  // Start the quiz
-  function startQuiz() {
-    setSelectedOptionIds({});
-    setCurrentScreen('questions');
-  }
-
-  // Toggle an option by its unique ID
-  function toggleOption(
-    questionId: string,
-    option: any,
-    isMulti: boolean,
-    maxSelections: number
-  ) {
-    // Get a unique identifier for this option
-    const optionId = option.id || `${questionId}-option-${option.label}`;
-
-    setSelectedOptionIds((prev) => {
-      // Create a new object for immutability
-      const newSelections = { ...prev };
-
-      // Initialize question array if needed
-      if (!newSelections[questionId]) {
-        newSelections[questionId] = [];
-      }
-
-      // Check if this option is already selected
-      const isSelected = newSelections[questionId].includes(optionId);
-
-      if (!isMulti) {
-        // For single select, just set this option
-        newSelections[questionId] = [optionId];
-      } else {
-        // For multi-select, toggle this option
-        if (isSelected) {
-          // Remove if already selected
-          newSelections[questionId] = newSelections[questionId].filter(
-            (id) => id !== optionId
-          );
-        } else if (newSelections[questionId].length < maxSelections) {
-          // Add if under max selections
-          newSelections[questionId] = [...newSelections[questionId], optionId];
-        }
-      }
-
-      return newSelections;
-    });
-  }
-
-  // Check if an option is selected by its ID
-  function isOptionSelected(questionId: string, option: any): boolean {
-    if (!selectedOptionIds[questionId]) return false;
-
-    // Get the option's unique ID
-    const optionId = option.id || `${questionId}-option-${option.label}`;
-
-    return selectedOptionIds[questionId].includes(optionId);
-  }
-
-  // Get the selection count for a question
-  function getSelectionCount(questionId: string): number {
-    return selectedOptionIds[questionId]?.length || 0;
-  }
-
-  // Generate secondary recommendations based on score proximity
-  function generateSecondaryRecommendations(scores: CategoryScores, primaryCategory: string): SecondaryRecommendation[] {
-    // Define close score threshold (15% of top score)
-    const topScore = scores[primaryCategory];
-    const closeScoreThreshold = topScore * 0.85;
-    
-    // Sort all categories except the primary by score (descending)
-    const sortedCategories = Object.entries(scores)
-      .filter(([category]) => category !== primaryCategory)
-      .sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
-    
-    // Take up to 3 categories that meet the threshold
-    const closeCategories = sortedCategories
-      .filter(([, score]) => score >= closeScoreThreshold)
-      .slice(0, 3);
-    
-    // Generate explanations for each close category
-    return closeCategories.map(([category, score]) => {
-      const scorePercent = Math.round((score / topScore) * 100);
-      let reason = '';
-      
-      // Generate different reasons based on the category and score percentage
-      if (scorePercent > 95) {
-        reason = `This is an excellent alternative with ${scorePercent}% compatibility with your needs.`;
-      } else if (scorePercent > 90) {
-        reason = `This is a strong alternative that addresses most of your requirements.`;
-      } else {
-        reason = `This option covers many of your needs but with some trade-offs.`;
-      }
-      
-      // Add category-specific reasoning
-      switch(category) {
-        case 'education':
-          reason += ' It excels in teaching and learning environments.';
-          break;
-        case 'corporate':
-          reason += ' It provides robust business and collaboration features.';
-          break;
-        case 'creative':
-          reason += ' It offers precision tools for design and creative work.';
-          break;
-        case 'general':
-          reason += ' It provides flexibility for diverse use cases.';
-          break;
-      }
-      
-      return {
-        category,
-        score,
-        scorePercent,
-        reason
-      };
-    });
-  }
-  
-  // Determine if a result should be considered hybrid based on score proximity
-  function calculateHybridResults(): HybridCategoryResult {
-    // First calculate the raw weighted scores
-    const scores = calculateWeightedScores();
-    
-    // Sort categories by score (descending)
-    const sortedCategories = Object.entries(scores)
-      .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
-      .map(([category]) => category);
-    
-    const topCategory = sortedCategories[0];
-    const secondHighestCategory = sortedCategories[1];
-    
-    const topScore = scores[topCategory];
-    const secondScore = scores[secondHighestCategory];
-    
-    // Calculate the threshold for hybrid classification (80% of top score)
-    const hybridThreshold = topScore * 0.8;
-    
-    // Check if second score is close enough to top score for hybrid classification
-    const isHybrid = secondScore >= hybridThreshold;
-    
-    // If scores are close, create a hybrid result key
-    if (isHybrid) {
-      // Form the hybrid key by alphabetically sorting the two categories
-      const hybridKey = [topCategory, secondHighestCategory].sort().join('-');
-      
-      // Check if this hybrid category exists in the results
-      if (results[hybridKey]) {
-        return {
-          topCategory: hybridKey,
-          scores,
-          isHybrid: true
-        };
-      }
-      
-      // If the specific hybrid doesn't exist, return the individual categories
-      return {
-        topCategory,
-        secondCategory: secondHighestCategory,
-        scores,
-        isHybrid: true
-      };
-    }
-    
-    // If scores aren't close enough, return single category
-    return {
-      topCategory,
-      scores,
-      isHybrid: false
-    };
-  }
-  
-  // Calculate weighted scores for all categories
-  function calculateWeightedScores(): CategoryScores {
-    // Initialize score object for each category
-    const categoryScores = {
-      education: 0,
-      corporate: 0,
-      creative: 0,
-      general: 0
-    };
-    
-    // Track total possible weighted points for percentage calculation
-    let totalPossiblePoints = 0;
-    let totalEarnedPoints = 0;
-    
-    // Process each question with its weight
-    questions.forEach((question) => {
-      const questionWeight = question.weight || 1; // Default to 1 if weight not specified
-      totalPossiblePoints += questionWeight;
-      
-      const selectedIds = selectedOptionIds[question.id] || [];
-      
-      // Skip if no selections for this question
-      if (selectedIds.length === 0) return;
-      
-      // For single-select questions, apply full weight
-      if (question.type === 'single' && selectedIds.length === 1) {
-        const optionId = selectedIds[0];
-        const option = question.options.find((opt) => {
-          const thisOptionId = opt.id || `${question.id}-option-${opt.label}`;
-          return thisOptionId === optionId;
-        });
-        
-        if (option && categoryScores[option.value] !== undefined) {
-          categoryScores[option.value] += questionWeight;
-          totalEarnedPoints += questionWeight;
-        }
-      } 
-      // For multi-select questions, distribute weight among selected options
-      else if (question.type === 'multi' && selectedIds.length > 0) {
-        // Calculate points per selection for this question
-        const pointsPerSelection = questionWeight / selectedIds.length;
-        
-        // Track category counts for this question to calculate distribution
-        const questionCategoryCounts = {
-          education: 0,
-          corporate: 0,
-          creative: 0,
-          general: 0
-        };
-        
-        // First pass: count selections by category
-        selectedIds.forEach((optionId) => {
-          const option = question.options.find((opt) => {
-            const thisOptionId = opt.id || `${question.id}-option-${opt.label}`;
-            return thisOptionId === optionId;
-          });
-          
-          if (option && questionCategoryCounts[option.value] !== undefined) {
-            questionCategoryCounts[option.value]++;
-          }
-        });
-        
-        // Second pass: distribute points proportionally
-        Object.entries(questionCategoryCounts).forEach(([category, count]) => {
-          if (count > 0) {
-            const categoryPoints = pointsPerSelection * count;
-            categoryScores[category] += categoryPoints;
-            totalEarnedPoints += categoryPoints;
-          }
-        });
-      }
-    });
-    
-    // Calculate category with highest weighted score
-    let topCategory = 'general'; // Default fallback
-    let topScore = 0;
-    
-    Object.entries(categoryScores).forEach(([category, score]) => {
-      if (score > topScore) {
-        topScore = score;
-        topCategory = category;
-      }
-    });
-    
-    // If scoring is very close between top categories (within 15%),
-    // consider user's primary use case (q1) as tiebreaker
-    const scoreThreshold = topScore * 0.85;
-    const closeCategories = Object.entries(categoryScores)
-      .filter(([category, score]) => score >= scoreThreshold && category !== topCategory)
-      .map(([category]) => category);
-    
-    if (closeCategories.length > 0) {
-      // Check primary use case question (q1) as tiebreaker
-      const primaryUseSelection = selectedOptionIds['q1']?.[0];
-      if (primaryUseSelection) {
-        const primaryOption = questions[0].options.find((opt) => {
-          const optionId = opt.id || `q1-option-${opt.label}`;
-          return optionId === primaryUseSelection;
-        });
-        
-        if (primaryOption && closeCategories.includes(primaryOption.value)) {
-          // Override with primary use case if it's one of the close categories
-          topCategory = primaryOption.value;
-        }
-      }
-    }
-    
-    return categoryScores;
-  }
-
-  // Submit the quiz
-  function submitQuiz() {
-    const { topCategory, secondCategory, scores, isHybrid } = calculateHybridResults();
-    setResult(topCategory);
-    setSecondaryCategory(secondCategory || null);
-    setIsHybridResult(isHybrid);
-    setCategoryScores(scores);
-    
-    // Generate secondary recommendations
-    const secondaryRecs = generateSecondaryRecommendations(scores, topCategory);
-    setSecondaryRecommendations(secondaryRecs);
-    
-    setCurrentScreen('results');
-    setActiveTab('primary');
-  }
-
-  // Check if all questions are answered
-  const allQuestionsAnswered = questions.every(
-    (q) => (selectedOptionIds[q.id]?.length || 0) > 0
-  );
 
   return (
     <div className="quiz-container">
@@ -388,7 +90,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
 
                     return (
                       <button
-                        key={optionId}
+                        key={option.id || `${question.id}-option-${optionIndex}`}
                         className={`option-button ${isSelected ? 'selected' : ''}`}
                         onClick={() =>
                           toggleOption(
@@ -498,10 +200,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                     <p>{results[secondaryCategory].recommendation.features[0]}, {results[secondaryCategory].recommendation.features[1]}</p>
                     <button 
                       className="secondary-cta"
-                      onClick={() => {
-                        setResult(secondaryCategory);
-                        setSecondaryCategory(null);
-                      }}
+                      onClick={() => viewAlternative(secondaryCategory)}
                     >
                       View This Option
                     </button>
@@ -567,10 +266,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                       <div className="alternative-actions">
                         <button 
                           className="view-details-button"
-                          onClick={() => {
-                            setResult(rec.category);
-                            setActiveTab('primary');
-                          }}
+                          onClick={() => viewAlternative(rec.category)}
                         >
                           View Full Details
                         </button>

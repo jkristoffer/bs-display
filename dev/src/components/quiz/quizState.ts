@@ -263,24 +263,56 @@ function detectHybridCategory(scores: CategoryScores): HybridCategoryResult | nu
 /**
  * Determine if a result should be considered hybrid based on score proximity
  */
+/**
+ * Calculate hybrid results based on the user's selections
+ * 
+ * This function handles the main logic for determining whether the user's
+ * quiz results indicate a hybrid category or single category recommendation.
+ * 
+ * @param selectedOptionIds - User's selected options for each question
+ * @param quizData - The complete quiz data
+ * @returns A hybrid category result object with detailed analysis
+ */
 function calculateHybridResults(
   selectedOptionIds: { [questionId: string]: string[] },
   quizData: QuizData
 ): HybridCategoryResult {
-  // First calculate the raw weighted scores
+  // Calculate the weighted scores across all categories
   const scores = calculateWeightedScores(selectedOptionIds, quizData);
   
-  // Detect hybrid category
+  // First check if we detect a hybrid category using the enhanced algorithm
   const hybridResult = detectHybridCategory(scores);
   
+  // If we detected a valid hybrid combination with our algorithm, use it
   if (hybridResult) {
+    // Check if this hybrid combination has a specific template in our quiz data
+    const hybridKey = hybridResult.key;
+    const hasSpecificHybridTemplate = !!quizData.results[hybridKey];
+    
     return {
-      topCategory: hybridResult.key,
+      // If we have a specific template, use that as the top category key
+      // Otherwise, use the individual top category and track secondary separately
+      topCategory: hasSpecificHybridTemplate ? hybridKey : hybridResult.primaryCategory,
       scores,
       isHybrid: true,
-      secondCategory: hybridResult.secondaryCategory
+      secondCategory: hasSpecificHybridTemplate ? undefined : hybridResult.secondaryCategory,
+      // Include additional hybrid analysis data for UI presentation
+      primaryCategory: hybridResult.primaryCategory,
+      secondaryCategory: hybridResult.secondaryCategory,
+      primaryScore: hybridResult.primaryScore,
+      secondaryScore: hybridResult.secondaryScore,
+      scoreRatio: hybridResult.scoreRatio,
+      primaryRatio: hybridResult.primaryRatio,
+      secondaryRatio: hybridResult.secondaryRatio,
+      balanceFactor: hybridResult.balanceFactor,
+      // Note whether we're using a specific hybrid template
+      isSpecificHybrid: hasSpecificHybridTemplate,
+      hybridKey
     };
   }
+  
+  // If our advanced hybrid detection didn't find a match,
+  // fall back to simpler sorting-based approach
   
   // Sort categories by score (descending)
   const sortedCategories = Object.entries(scores)
@@ -288,34 +320,64 @@ function calculateHybridResults(
     .map(([category]) => category);
   
   const topCategory = sortedCategories[0];
-  const secondHighestCategory = sortedCategories[1];
+  const secondCategory = sortedCategories[1];
+  const topScore = scores[topCategory];
+  const secondScore = scores[secondCategory];
+  
+  // Only consider a hybrid if we have at least two categories with scores
+  if (sortedCategories.length < 2 || secondScore === 0) {
+    return {
+      topCategory,
+      scores,
+      isHybrid: false
+    };
+  }
   
   // Calculate the threshold for hybrid classification (80% of top score)
-  const hybridThreshold = scores[topCategory] * 0.8;
+  // This is a simpler fallback when our main algorithm doesn't detect a hybrid
+  const hybridThreshold = topScore * 0.8;
+  const isHybrid = secondScore >= hybridThreshold;
   
-  // Check if second score is close enough to top score for hybrid classification
-  const isHybrid = scores[secondHighestCategory] >= hybridThreshold;
-  
-  // If scores are close, create a hybrid result key
+  // If scores are close, check for a hybrid template
   if (isHybrid) {
     // Form the hybrid key by alphabetically sorting the two categories
-    const hybridKey = [topCategory, secondHighestCategory].sort().join('-');
+    const categories = [topCategory, secondCategory].sort();
+    const hybridKey = `${categories[0]}-${categories[1]}` as HybridCategoryKey;
     
     // Check if this hybrid category exists in the results
     if (quizData.results[hybridKey]) {
       return {
         topCategory: hybridKey,
         scores,
-        isHybrid: true
+        isHybrid: true,
+        isSpecificHybrid: true,
+        hybridKey,
+        primaryCategory: topCategory as CategoryType,
+        secondaryCategory: secondCategory as CategoryType,
+        primaryScore: topScore,
+        secondaryScore: secondScore,
+        scoreRatio: secondScore / topScore,
+        primaryRatio: topScore / (topScore + secondScore),
+        secondaryRatio: secondScore / (topScore + secondScore),
+        balanceFactor: Math.abs((topScore / (topScore + secondScore)) - 0.5) * 2
       };
     }
     
     // If the specific hybrid doesn't exist, return the individual categories
     return {
       topCategory,
-      secondCategory: secondHighestCategory,
+      secondCategory,
       scores,
-      isHybrid: true
+      isHybrid: true,
+      isSpecificHybrid: false,
+      primaryCategory: topCategory as CategoryType,
+      secondaryCategory: secondCategory as CategoryType,
+      primaryScore: topScore,
+      secondaryScore: secondScore,
+      scoreRatio: secondScore / topScore,
+      primaryRatio: topScore / (topScore + secondScore),
+      secondaryRatio: secondScore / (topScore + secondScore),
+      balanceFactor: Math.abs((topScore / (topScore + secondScore)) - 0.5) * 2
     };
   }
   

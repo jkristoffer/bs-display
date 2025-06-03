@@ -83,6 +83,10 @@ export interface HybridCategoryResult {
   primaryRatio?: number; // Ratio of primary score to total score (0.0-1.0)
   secondaryRatio?: number; // Ratio of secondary score to total score (0.0-1.0)
   balanceFactor?: number; // How balanced the hybrid is (0.0 = perfectly balanced, 1.0 = totally imbalanced)
+  
+  // Hybrid template information
+  isSpecificHybrid?: boolean; // Whether we're using a specific hybrid template
+  hybridKey?: HybridCategoryKey; // The key of the hybrid combination
 }
 
 // Quiz State Types

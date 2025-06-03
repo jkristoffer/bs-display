@@ -1,0 +1,168 @@
+// Quiz component styles
+@use "src/styles/index.scss" as *;
+
+.quiz-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  
+  // Hybrid badge styles
+  .hybrid-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 16px;
+    margin-bottom: var(--spacing-md);
+    
+    .hybrid-badge-label {
+      color: white;
+      font-weight: 600;
+      font-size: var(--font-size-small);
+    }
+  }
+  
+  // Hybrid explanation styles
+  .hybrid-explanation {
+    background-color: var(--color-surface);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin: var(--spacing-md) 0;
+    
+    .hybrid-note {
+      margin-bottom: var(--spacing-md);
+      
+      .category-highlight {
+        font-weight: 600;
+      }
+    }
+    
+    .hybrid-balance {
+      margin-top: var(--spacing-md);
+      
+      .balance-label {
+        font-size: var(--font-size-small);
+        font-weight: 600;
+        margin-bottom: var(--spacing-xs);
+      }
+      
+      .balance-bars {
+        display: flex;
+        height: 30px;
+        border-radius: 4px;
+        overflow: hidden;
+        
+        .primary-bar,
+        .secondary-bar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: var(--font-size-smaller);
+          font-weight: 600;
+          transition: width 0.3s ease;
+          
+          .bar-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 var(--spacing-xs);
+          }
+        }
+      }
+    }
+  }
+  
+  // Score visualization
+  .score-breakdown {
+    margin-top: var(--spacing-xl);
+    background-color: var(--color-surface);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    
+    .score-bars {
+      .score-bar-container {
+        margin-bottom: var(--spacing-sm);
+        
+        .score-label {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: var(--spacing-xs);
+          
+          .category-name {
+            font-weight: 600;
+          }
+          
+          .score-value {
+            color: var(--color-accent-primary);
+          }
+        }
+        
+        .score-bar-wrapper {
+          height: 12px;
+          background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+          border-radius: 6px;
+          overflow: hidden;
+          
+          .score-bar {
+            height: 100%;
+            background-color: var(--color-accent-primary);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            
+            &.top-score {
+              background-color: var(--color-accent-secondary);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Alternative options
+  .alternative-recommendation {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    
+    .secondary-option {
+      margin-top: var(--spacing-md);
+      
+      h6 {
+        color: var(--color-accent-secondary);
+        margin-bottom: var(--spacing-xs);
+      }
+      
+      .secondary-cta {
+        display: inline-block;
+        margin-top: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-md);
+        border-radius: 4px;
+        background-color: var(--color-accent-secondary);
+        color: white;
+        font-weight: 600;
+        font-size: var(--font-size-small);
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: darken(var(--color-accent-secondary), 10%);
+        }
+      }
+    }
+  }
+  
+  // General quiz styles
+  .quiz-intro, 
+  .quiz-results,
+  .questions-container {
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Remaining styles as needed...
+}

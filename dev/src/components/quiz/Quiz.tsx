@@ -1,5 +1,26 @@
 import { useQuizState } from './quizState';
-import type { QuizData } from './types';
+import type { QuizData, CategoryType } from './types';
+import './quiz-styles.scss';
+
+/**
+ * Utility function to get a consistent color for each category
+ */
+function getCategoryColor(category: string): string {
+  const colorMap: Record<string, string> = {
+    education: 'var(--color-accent-primary)',
+    corporate: 'var(--color-accent-secondary)',
+    creative: '#e91e63',
+    general: '#9e9e9e'
+  };
+  
+  // For hybrid categories, return the color of the first category
+  if (category.includes('-')) {
+    const firstCategory = category.split('-')[0];
+    return colorMap[firstCategory] || colorMap.general;
+  }
+  
+  return colorMap[category] || colorMap.general;
+}
 
 interface FinalQuizProps {
   quizData: QuizData;
@@ -143,12 +164,64 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
         <div className="quiz-results">
           <div className="result-header">
             <h4>{results[result].title}</h4>
+            
+            {/* Add hybrid badge for hybrid results */}
+            {isHybridResult && (
+              <div className="hybrid-badge" style={{ backgroundColor: getCategoryColor(result) }}>
+                <span className="hybrid-badge-label">
+                  {result.includes('-') ? 'Hybrid Solution' : 'Mixed Use Case'}
+                </span>
+              </div>
+            )}
+            
             <p>{results[result].description}</p>
-            {isHybridResult && secondaryCategory && !result.includes('-') && (
-              <div className="hybrid-indicator">
-                <p className="hybrid-note">
-                  <strong>Note:</strong> Your answers show mixed needs between {result} and {secondaryCategory} use cases.
-                </p>
+            
+            {/* Enhanced hybrid explanation */}
+            {isHybridResult && (
+              <div className="hybrid-explanation">
+                {result.includes('-') ? (
+                  /* For dedicated hybrid templates */
+                  <p className="hybrid-note">
+                    <strong>Why this recommendation:</strong> Your answers indicate needs that span multiple use cases.
+                    This specialized hybrid solution is designed specifically for environments that combine
+                    <span className="category-highlight" style={{ color: getCategoryColor(result.split('-')[0]) }}> {result.split('-')[0]}</span> and
+                    <span className="category-highlight" style={{ color: getCategoryColor(result.split('-')[1]) }}> {result.split('-')[1]}</span> requirements.
+                  </p>
+                ) : secondaryCategory ? (
+                  /* For hybrid without specific template */
+                  <div>
+                    <p className="hybrid-note">
+                      <strong>Mixed Use Case Detected:</strong> Your answers show needs that span both
+                      <span className="category-highlight" style={{ color: getCategoryColor(result) }}> {result}</span> and
+                      <span className="category-highlight" style={{ color: getCategoryColor(secondaryCategory) }}> {secondaryCategory}</span> categories.
+                    </p>
+                    
+                    {/* Visual hybrid breakdown bar */}
+                    <div className="hybrid-balance">
+                      <div className="balance-label">Category Balance:</div>
+                      <div className="balance-bars">
+                        <div 
+                          className="primary-bar" 
+                          style={{ 
+                            width: `${primaryRatio ? Math.round(primaryRatio * 100) : 60}%`,
+                            backgroundColor: getCategoryColor(result)
+                          }}
+                        >
+                          <span className="bar-label">{result}</span>
+                        </div>
+                        <div 
+                          className="secondary-bar"
+                          style={{ 
+                            width: `${secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%`,
+                            backgroundColor: getCategoryColor(secondaryCategory)
+                          }}
+                        >
+                          <span className="bar-label">{secondaryCategory}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             )}
             

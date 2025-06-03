@@ -318,6 +318,50 @@
         "Schedule a Walkthrough"
       ],
       "productIds": ["BS-VERSED-001", "BS-VERSED-002"]
+    },
+    "corporate-education": {
+      "title": "🏢 Enterprise Education",
+      "description": "A professional smartboard solution that combines corporate reliability with educational versatility - ideal for training centers, corporate academies, and higher education.",
+      "recommendation": {
+        "display": "Commercial-Grade LED Display",
+        "touch": "Hybrid IR/Capacitive Touch",
+        "features": [
+          "Enterprise management",
+          "Multi-user collaboration", 
+          "Learning management integration",
+          "Video conferencing optimized",
+          "Content library support"
+        ],
+        "camera": "Integrated HD camera"
+      },
+      "cta": [
+        "View Enterprise Education Solutions", 
+        "Request Corporate Training Quote", 
+        "Schedule a Consultation"
+      ],
+      "productIds": ["BS-ENTEDU-001", "BS-ENTEDU-002"]
+    },
+    "creative-education": {
+      "title": "🎨 Creative Learning",
+      "description": "A precision-focused smartboard that balances teaching capabilities with creative tools - perfect for art departments, design schools, and media education.",
+      "recommendation": {
+        "display": "High-Resolution LED with Enhanced Color Gamut",
+        "touch": "Pressure-Sensitive Stylus Support with Palm Rejection",
+        "features": [
+          "Precision drawing tools",
+          "Creative software compatibility",
+          "Teaching annotation features",
+          "Multi-angle viewing",
+          "Content recording and playback"
+        ],
+        "camera": "Optional HD camera"
+      },
+      "cta": [
+        "Explore Creative Education Displays", 
+        "Request Art Department Quote", 
+        "Book a Creative Demo"
+      ],
+      "productIds": ["BS-CREDU-001", "BS-CREDU-002"]
     }
   }
 }

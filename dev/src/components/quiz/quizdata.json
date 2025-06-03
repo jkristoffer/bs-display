@@ -5,6 +5,7 @@
       "id": "q1",
       "question": "Where will this smartboard be used most of the time?",
       "type": "single",
+      "weight": 5,
       "options": [
         { "label": "A) A classroom or training room", "value": "education" },
         {
@@ -23,6 +24,7 @@
       "question": "What features matter most to you? (Pick up to 2)",
       "type": "multi",
       "maxSelections": 2,
+      "weight": 4,
       "options": [
         {
           "label": "A) Multi-user annotation or collaboration",
@@ -55,6 +57,7 @@
       "id": "q3",
       "question": "Do you require a camera or video conferencing capabilities?",
       "type": "single",
+      "weight": 3,
       "options": [
         { "label": "A) No – it’s not a priority", "value": "education" },
         {
@@ -72,6 +75,7 @@
       "id": "q4",
       "question": "How important is input precision for your tasks?",
       "type": "single",
+      "weight": 4,
       "options": [
         {
           "label": "A) Low – basic writing and navigation is enough",
@@ -95,6 +99,7 @@
       "id": "q5",
       "question": "What level of visual quality do you expect?",
       "type": "single",
+      "weight": 3,
       "options": [
         {
           "label": "A) Basic – clear enough for notes and slides",
@@ -118,6 +123,7 @@
       "id": "q6",
       "question": "What is your ideal level of tech complexity?",
       "type": "single",
+      "weight": 3,
       "options": [
         {
           "label": "A) As simple as possible – minimal learning curve",
@@ -156,7 +162,8 @@
         "See Recommended Models",
         "Request a Demo",
         "Download the Education Guide"
-      ]
+      ],
+      "productIds": ["BS-EDU-001", "BS-EDU-002", "BS-EDU-003"]
     },
     "corporate": {
       "title": "🏢 Corporate",
@@ -171,7 +178,8 @@
         ],
         "camera": "Required"
       },
-      "cta": ["Explore Corporate Solutions", "Get a Quote", "Book a Demo"]
+      "cta": ["Explore Corporate Solutions", "Get a Quote", "Book a Demo"],
+      "productIds": ["BS-CORP-001", "BS-CORP-002", "BS-CORP-003"]
     },
     "creative": {
       "title": "🎨 Creative Studio",
@@ -186,7 +194,8 @@
         ],
         "camera": "Optional"
       },
-      "cta": ["Compare Creative Displays", "Try a Demo", "Get Studio Pricing"]
+      "cta": ["Compare Creative Displays", "Try a Demo", "Get Studio Pricing"],
+      "productIds": ["BS-CRE-001", "BS-CRE-002", "BS-CRE-003"]
     },
     "general": {
       "title": "⚙️ General Use",
@@ -199,13 +208,116 @@
           "Cloud access",
           "Multi-platform compatibility"
         ],
+        "camera": "Optional"
+      },
+      "cta": ["View All-Purpose Solutions", "Request Information", "Schedule a Demo"],
+      "productIds": ["BS-GEN-001", "BS-GEN-002", "BS-GEN-003"]
+    },
+    "education-corporate": {
+      "title": "🏫 Hybrid Learning",
+      "description": "A versatile smartboard that bridges classroom teaching and remote collaboration for hybrid or distance learning environments.",
+      "recommendation": {
+        "display": "Premium LED Display",
+        "touch": "IR Touch with Multi-User Support",
+        "features": [
+          "Cloud integration",
+          "Video conferencing",
+          "Lesson recording",
+          "Remote student participation"
+        ],
+        "camera": "High-quality integrated camera"
+      },
+      "cta": ["Explore Hybrid Learning Solutions", "Request Pricing", "Book a Demo"],
+      "productIds": ["BS-HYBRID-001", "BS-HYBRID-002"]
+    },
+    "education-creative": {
+      "title": "🎭 STEAM Education",
+      "description": "A precision smartboard optimized for art, design, and technical subjects that demand both teaching functionality and creative expression.",
+      "recommendation": {
+        "display": "High-Res LED Display",
+        "touch": "Pressure-Sensitive Stylus with Palm Rejection",
+        "features": [
+          "Color accuracy",
+          "Multi-user drawing",
+          "Content library",
+          "Subject-specific templates"
+        ],
+        "camera": "Optional"
+      },
+      "cta": ["See STEAM Solutions", "Download Brochure", "Schedule Consultation"],
+      "productIds": ["BS-STEAM-001", "BS-STEAM-002"]
+    },
+    "corporate-creative": {
+      "title": "🎯 Design Collaboration",
+      "description": "A high-end smartboard for design-focused businesses that need precision tools with enterprise collaboration features.",
+      "recommendation": {
+        "display": "OLED or Premium LCD",
+        "touch": "EMR Touch with Multi-User Support",
+        "features": [
+          "Professional color accuracy",
+          "Cloud synchronization",
+          "Advanced annotation tools",
+          "Design software integration"
+        ],
+        "camera": "Integrated 4K camera"
+      },
+      "cta": ["Explore Design Solutions", "Request Enterprise Quote", "Book Demo"],
+      "productIds": ["BS-DESIGN-001", "BS-DESIGN-002"]
+    },
+    "corporate-general": {
+      "title": "💼 Business Flexibility",
+      "description": "A reliable, multi-purpose smartboard for businesses with diverse needs across departments and use cases.",
+      "recommendation": {
+        "display": "Commercial-Grade LED",
+        "touch": "Capacitive Touch",
+        "features": [
+          "Enterprise management",
+          "Multi-platform compatibility",
+          "Simplified user interface",
+          "Modular feature expansion"
+        ],
+        "camera": "Optional modular camera system"
+      },
+      "cta": ["View Business Solutions", "Enterprise Consultation", "Schedule Demo"],
+      "productIds": ["BS-BIZ-001", "BS-BIZ-002", "BS-BIZ-003"]
+    },
+    "creative-general": {
+      "title": "🎪 Creative Workspace",
+      "description": "A flexible smartboard that balances creative precision with general productivity for studios and creative professionals.",
+      "recommendation": {
+        "display": "High-Quality LCD",
+        "touch": "Dual-Mode Touch (Finger + Stylus)",
+        "features": [
+          "Pressure sensitivity",
+          "Cross-application compatibility",
+          "Customizable interface",
+          "Gesture support"
+        ],
+        "camera": "Optional"
+      },
+      "cta": ["Explore Creative Workspace Solutions", "Get Pricing", "Schedule Demo"],
+      "productIds": ["BS-CW-001", "BS-CW-002"]
+    },
+    "education-general": {
+      "title": "📝 Versatile Learning",
+      "description": "An adaptable smartboard for educational settings that need to support diverse teaching styles and content types.",
+      "recommendation": {
+        "display": "Standard LED Display",
+        "touch": "Optical Touch",
+        "features": [
+          "Simplified interface",
+          "Content variety",
+          "Quick-switch modes",
+          "Budget-friendly"
+        ],
         "camera": "Optional or situational"
       },
       "cta": [
         "View Flexible Options",
         "Request a Custom Quote",
         "Schedule a Walkthrough"
-      ]
+      ],
+      "productIds": ["BS-VERSED-001", "BS-VERSED-002"]
     }
   }
 }

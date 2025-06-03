@@ -1,0 +1,223 @@
+---
+// Define the interface for category items
+interface CategoryItem {
+  title: string;
+  description: string;
+  icon: string;
+  url: string;
+  color: string;
+}
+
+// Define the categories
+const categories: CategoryItem[] = [
+  {
+    title: 'Smart Boards',
+    description: 'Interactive displays for classrooms and meeting rooms',
+    icon: 'display-screen',
+    url: '/products/smartboards/',
+    color: '#4caf50' // Green
+  },
+  {
+    title: 'Lecterns',
+    description: 'Digital podiums for presentations and lectures',
+    icon: 'podium',
+    url: '/products/lecterns/',
+    color: '#2196f3' // Blue
+  },
+  {
+    title: 'Accessories',
+    description: 'Enhance your display with stands, mounts, and more',
+    icon: 'accessories',
+    url: '/products/accessories/',
+    color: '#ff9800' // Orange
+  }
+];
+---
+
+<section class="category-navigation">
+  <div class="category-navigation__container">
+    <div class="category-navigation__header">
+      <h2 class="category-navigation__title">Browse Our Products</h2>
+      <p class="category-navigation__subtitle">Find the perfect solution for your needs</p>
+    </div>
+    
+    <div class="category-navigation__grid">
+      {categories.map((category) => (
+        <a href={category.url} class="category-navigation__item">
+          <div 
+            class="category-navigation__icon-wrapper"
+            style={`background-color: ${category.color}1A; border-color: ${category.color}40;`}
+          >
+            <div class="category-navigation__icon">
+              {category.icon === 'display-screen' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              )}
+              {category.icon === 'podium' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <rect x="4" y="5" width="16" height="16" rx="2" />
+                  <path d="M12 5V2" />
+                  <path d="M4 13h16" />
+                  <path d="M9 17h6" />
+                </svg>
+              )}
+              {category.icon === 'accessories' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                  <path d="M12 3a9 9 0 0 0 9 9 9 9 0 0 0-9 9 9 9 0 0 0-9-9 9 9 0 0 0 9-9z" />
+                </svg>
+              )}
+            </div>
+          </div>
+          <div class="category-navigation__content">
+            <h3 class="category-navigation__item-title">{category.title}</h3>
+            <p class="category-navigation__item-description">{category.description}</p>
+          </div>
+          <div class="category-navigation__arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .category-navigation {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .category-navigation__container {
+    max-width: var(--spacing-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  .category-navigation__header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .category-navigation__title {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--color-accent-primary);
+    }
+  }
+
+  .category-navigation__subtitle {
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-primary);
+    opacity: 0.8;
+  }
+
+  .category-navigation__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .category-navigation__item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: 
+      transform 0.3s ease, 
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      
+      .category-navigation__arrow {
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  .category-navigation__icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid;
+    transition: transform 0.3s ease;
+
+    .category-navigation__item:hover & {
+      transform: scale(1.05);
+    }
+  }
+
+  .category-navigation__icon {
+    width: 32px;
+    height: 32px;
+    
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .category-navigation__content {
+    flex: 1;
+  }
+
+  .category-navigation__item-title {
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-xs);
+    font-weight: 600;
+  }
+
+  .category-navigation__item-description {
+    font-size: var(--font-size-small);
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .category-navigation__arrow {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    
+    .icon {
+      color: var(--color-accent-primary);
+    }
+  }
+</style>

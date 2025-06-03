@@ -6,6 +6,7 @@ import BuyingGuideSection from '../components/home/BuyingGuideSection/BuyingGuid
 import UsecasesSection from '../components/home/UsecasesSection/UsecasesSection.astro';
 import BlogHighlights from '../components/home/BlogHighlights/BlogHighlights.astro';
 import QuizPromotion from '../components/home/QuizPromotion/QuizPromotion.astro';
+import CategoryNavigation from '../components/home/CategoryNavigation/CategoryNavigation.astro';
 import Button from '../components/common/Button/Button.astro';
 
 // SEO Configuration for Homepage
@@ -46,6 +47,12 @@ const seoProps = {
   <section>
     <div class="container">
       <QuizPromotion />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <CategoryNavigation />
     </div>
   </section>
 

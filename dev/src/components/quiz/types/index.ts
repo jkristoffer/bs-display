@@ -10,6 +10,7 @@ export interface QuizQuestion {
   question: string;
   type: 'single' | 'multi';
   maxSelections?: number;
+  weight?: number; // Weight factor for scoring algorithm (1-5)
   options: QuizOption[];
 }
 
@@ -25,6 +26,21 @@ export interface ResultType {
   description: string;
   recommendation: ResultRecommendation;
   cta: string[];
+  productIds: string[];
+}
+
+export interface CategoryScores {
+  education: number;
+  corporate: number;
+  creative: number;
+  general: number;
+}
+
+export interface HybridCategoryResult {
+  topCategory: string;
+  secondCategory?: string;
+  scores: CategoryScores;
+  isHybrid: boolean;
 }
 
 export interface QuizData {

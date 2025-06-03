@@ -1,0 +1,268 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import { routes } from '../../../utils/routes';
+
+const title = 'Display Accessories | Big Shine Display';
+const description =
+  'Enhance your interactive display experience with our range of accessories, including stands, mounts, pens, and connectivity solutions.';
+---
+
+<ProductLayout title={title} description={description}>
+  <Breadcrumbs items={[
+    { label: 'Home', path: routes.home },
+    { label: 'Products', path: '/products/' },
+    { label: 'Accessories' }
+  ]} />
+  
+  <div class="accessories-header">
+    <h1>Display Accessories</h1>
+    <p>
+      Complete your display solution with our range of high-quality accessories.
+      From adjustable mounts and mobile stands to stylus pens and connectivity
+      adapters, we offer everything you need to maximize the functionality of your
+      interactive display.
+    </p>
+  </div>
+
+  <div class="accessories-categories">
+    <div class="category-card">
+      <div class="category-image">
+        <img
+          src="/assets/accessories/display-stands.jpeg"
+          alt="Display Stands & Mounts"
+          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+        />
+      </div>
+      <div class="category-content">
+        <h2>Stands & Mounts</h2>
+        <p>
+          Mobile stands, wall mounts, and adjustable brackets designed for
+          interactive displays of all sizes.
+        </p>
+        <a href="/products/accessories/stands-mounts/" class="cta-button"
+          >View Stands & Mounts</a
+        >
+      </div>
+    </div>
+
+    <div class="category-card">
+      <div class="category-image">
+        <img
+          src="/assets/accessories/stylus-pens.jpeg"
+          alt="Stylus Pens & Accessories"
+          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+        />
+      </div>
+      <div class="category-content">
+        <h2>Stylus Pens & Controllers</h2>
+        <p>
+          Precision stylus pens, remote controls, and annotation tools for
+          enhanced interaction.
+        </p>
+        <a href="/products/accessories/stylus-controllers/" class="cta-button"
+          >View Stylus & Controllers</a
+        >
+      </div>
+    </div>
+
+    <div class="category-card">
+      <div class="category-image">
+        <img
+          src="/assets/accessories/connectivity-solutions.jpeg"
+          alt="Connectivity Solutions"
+          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+        />
+      </div>
+      <div class="category-content">
+        <h2>Connectivity Solutions</h2>
+        <p>
+          Wireless casting devices, adapters, cables, and connectivity modules for
+          seamless integration.
+        </p>
+        <a href="/products/accessories/connectivity/" class="cta-button"
+          >View Connectivity Solutions</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="accessories-cta">
+    <h2>Not Sure What You Need?</h2>
+    <p>
+      Our experts can help you select the right accessories for your specific
+      display model and use case.
+    </p>
+    <div class="cta-buttons">
+      <a href="/contact" class="button button-primary">Request Advice</a>
+      <a href="/quiz" class="button button-ghost">Take Our Quiz</a>
+    </div>
+  </div>
+</ProductLayout>
+
+<style lang="scss">
+  .accessories-header {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+    font-size: var(--font-size-body-large);
+    line-height: 1.6;
+  }
+
+  .accessories-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin: 20px 0 60px;
+  }
+
+  .category-card {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+    }
+  }
+
+  .category-image {
+    width: 40%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .category-card:hover & img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  .category-content {
+    padding: 25px;
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: var(--font-size-h3);
+    color: var(--color-text-primary);
+    margin-bottom: 12px;
+  }
+
+  .category-content p {
+    margin: 0 0 20px;
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    font-size: var(--font-size-body-regular);
+    flex-grow: 1;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--color-accent-primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+    
+    &:hover {
+      background-color: darken(#009688, 10%);
+    }
+  }
+
+  .accessories-cta {
+    background-color: #f5f7fa;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .button-primary {
+    background-color: var(--color-accent-primary);
+    color: white;
+    
+    &:hover {
+      background-color: darken(#009688, 10%);
+    }
+  }
+
+  .button-ghost {
+    background-color: transparent;
+    color: var(--color-accent-primary);
+    border: 1px solid var(--color-accent-primary);
+    
+    &:hover {
+      background-color: rgba(0, 150, 136, 0.05);
+    }
+  }
+</style>

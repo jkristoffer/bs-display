@@ -1,0 +1,463 @@
+---
+/**
+ * SpacingGuide.astro
+ * A visual reference component for the spacing system
+ * Only for development purposes
+ */
+---
+
+<section class="section">
+  <div class="container">
+    <h1>BigShine Display Spacing System Guide</h1>
+    <p class="intro">This is a visual reference for the spacing system used throughout the site.</p>
+    
+    <h2>Spacing Tokens</h2>
+    <div class="spacing-tokens">
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-xs);"></div>
+        <div class="token-details">
+          <code>--spacing-xs</code>
+          <span>4px</span>
+        </div>
+      </div>
+      
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-sm);"></div>
+        <div class="token-details">
+          <code>--spacing-sm</code>
+          <span>8px</span>
+        </div>
+      </div>
+      
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-md);"></div>
+        <div class="token-details">
+          <code>--spacing-md</code>
+          <span>16px</span>
+        </div>
+      </div>
+      
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-lg);"></div>
+        <div class="token-details">
+          <code>--spacing-lg</code>
+          <span>24px</span>
+        </div>
+      </div>
+      
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-xl);"></div>
+        <div class="token-details">
+          <code>--spacing-xl</code>
+          <span>32px</span>
+        </div>
+      </div>
+      
+      <div class="token-item">
+        <div class="token-visual" style="height: var(--spacing-xxl);"></div>
+        <div class="token-details">
+          <code>--spacing-xxl</code>
+          <span>48px</span>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Section Variants</h2>
+    <p>All sections automatically adjust for responsive layouts based on screen size.</p>
+    
+    <div class="section-examples">
+      <div class="example">
+        <h3>Default Section</h3>
+        <code>.section</code>
+        <div class="example-visual">
+          <div class="section-demo">
+            <div class="padding-top">32px padding-top</div>
+            <div class="content">Content area</div>
+            <div class="padding-bottom">32px padding-bottom</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="example">
+        <h3>With Background</h3>
+        <code>.section--with-background</code>
+        <div class="example-visual">
+          <div class="section-demo section-demo--with-background">
+            <div class="padding-top">48px padding-top</div>
+            <div class="content">Content area</div>
+            <div class="padding-bottom">48px padding-bottom</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="example">
+        <h3>Narrow Section</h3>
+        <code>.section--narrow</code>
+        <div class="example-visual">
+          <div class="section-demo section-demo--narrow">
+            <div class="padding-top">16px padding-top</div>
+            <div class="content">Content area</div>
+            <div class="padding-bottom">16px padding-bottom</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="example">
+        <h3>Wide Section</h3>
+        <code>.section--wide</code>
+        <div class="example-visual">
+          <div class="section-demo section-demo--wide">
+            <div class="padding-top">48px padding-top</div>
+            <div class="content">Content area with horizontal padding</div>
+            <div class="padding-bottom">48px padding-bottom</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="example">
+        <h3>Hero Section</h3>
+        <code>.section--hero</code>
+        <div class="example-visual">
+          <div class="section-demo section-demo--hero">
+            <div class="padding-top">72px padding-top</div>
+            <div class="content">Hero content area</div>
+            <div class="padding-bottom">72px padding-bottom</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="example">
+        <h3>Section Spacing</h3>
+        <code>.section + .section</code>
+        <div class="example-visual section-spacing">
+          <div class="section-demo section-demo--mini">Section 1</div>
+          <div class="margin">48px margin</div>
+          <div class="section-demo section-demo--mini">Section 2</div>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Utility Classes</h2>
+    <div class="utilities">
+      <div class="utility-group">
+        <h3>Margin Top Utilities</h3>
+        <div class="utility-examples">
+          <div class="utility-item">
+            <code>.u-margin-top-xs</code>
+            <div class="utility-visual">
+              <div class="base-element"></div>
+              <div class="spacer" style="height: var(--spacing-xs);"></div>
+              <div class="target-element">4px margin-top</div>
+            </div>
+          </div>
+          
+          <div class="utility-item">
+            <code>.u-margin-top-md</code>
+            <div class="utility-visual">
+              <div class="base-element"></div>
+              <div class="spacer" style="height: var(--spacing-md);"></div>
+              <div class="target-element">16px margin-top</div>
+            </div>
+          </div>
+          
+          <div class="utility-item">
+            <code>.u-margin-top-xl</code>
+            <div class="utility-visual">
+              <div class="base-element"></div>
+              <div class="spacer" style="height: var(--spacing-xl);"></div>
+              <div class="target-element">32px margin-top</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="utility-group">
+        <h3>Padding Utilities</h3>
+        <div class="utility-examples">
+          <div class="utility-item">
+            <code>.u-padding-sm</code>
+            <div class="utility-visual">
+              <div class="padding-element padding-sm">
+                8px padding
+              </div>
+            </div>
+          </div>
+          
+          <div class="utility-item">
+            <code>.u-padding-lg</code>
+            <div class="utility-visual">
+              <div class="padding-element padding-lg">
+                24px padding
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Animation System</h2>
+    <p>Add the <code>.section--animate</code> class to any section for a subtle entrance animation.</p>
+    <div class="animation-demo">
+      <button id="animate-trigger" class="button button-primary">Trigger Animation Demo</button>
+      <div id="animation-section" class="section-demo section-demo--animate">
+        This section will animate in when the button is clicked
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  h1 {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  h2 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-accent-primary);
+    padding-bottom: var(--spacing-xs);
+  }
+  
+  h3 {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .intro {
+    font-size: var(--font-size-body-large);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  code {
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+  
+  /* Spacing Tokens */
+  .spacing-tokens {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+  }
+  
+  .token-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .token-visual {
+    width: 100px;
+    background-color: var(--color-accent-primary);
+    margin-right: var(--spacing-md);
+  }
+  
+  .token-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Section Examples */
+  .section-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+  }
+  
+  .example {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .example-visual {
+    margin-top: var(--spacing-sm);
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  .section-demo {
+    background-color: #f0f8ff;
+    margin: 0;
+    position: relative;
+  }
+  
+  .section-demo--with-background {
+    background-color: #e6f7ff;
+  }
+  
+  .section-demo--narrow {
+    background-color: #fff0f0;
+  }
+  
+  .section-demo--wide {
+    background-color: #f0fff0;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+  
+  .section-demo--hero {
+    background-color: #f0f0ff;
+  }
+  
+  .section-demo--mini {
+    padding: var(--spacing-sm);
+    text-align: center;
+    background-color: #f0f8ff;
+  }
+  
+  .padding-top, .padding-bottom {
+    height: 32px;
+    background-color: rgba(255, 165, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  .section-demo--with-background .padding-top,
+  .section-demo--with-background .padding-bottom {
+    height: 48px;
+  }
+  
+  .section-demo--narrow .padding-top,
+  .section-demo--narrow .padding-bottom {
+    height: 16px;
+  }
+  
+  .section-demo--wide .padding-top,
+  .section-demo--wide .padding-bottom {
+    height: 48px;
+  }
+  
+  .section-demo--hero .padding-top,
+  .section-demo--hero .padding-bottom {
+    height: 72px;
+  }
+  
+  .content {
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: white;
+  }
+  
+  .section-spacing {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .margin {
+    height: 48px;
+    background-color: rgba(255, 192, 203, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  /* Utility Examples */
+  .utilities {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .utility-group {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .utility-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+  }
+  
+  .utility-item {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .utility-visual {
+    margin-top: var(--spacing-xs);
+    border: 1px dashed #ccc;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  .base-element, .target-element {
+    background-color: #e6e6e6;
+    padding: var(--spacing-xs);
+    text-align: center;
+  }
+  
+  .target-element {
+    background-color: #c5e1a5;
+  }
+  
+  .spacer {
+    background-color: rgba(255, 192, 203, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  .padding-element {
+    background-color: #bbdefb;
+    text-align: center;
+  }
+  
+  .padding-sm {
+    padding: var(--spacing-sm);
+  }
+  
+  .padding-lg {
+    padding: var(--spacing-lg);
+  }
+  
+  /* Animation Demo */
+  .animation-demo {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  #animate-trigger {
+    align-self: flex-start;
+  }
+  
+  .section-demo--animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    padding: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .section-demo--animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Simple animation demo
+  document.addEventListener('DOMContentLoaded', () => {
+    const animateTrigger = document.getElementById('animate-trigger');
+    const animationSection = document.getElementById('animation-section');
+    
+    if (animateTrigger && animationSection) {
+      animateTrigger.addEventListener('click', () => {
+        animationSection.classList.remove('is-visible');
+        
+        // Force reflow
+        void animationSection.offsetWidth;
+        
+        // Add class back to trigger animation
+        setTimeout(() => {
+          animationSection.classList.add('is-visible');
+        }, 50);
+      });
+    }
+  });
+</script>

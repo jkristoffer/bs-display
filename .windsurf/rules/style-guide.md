@@ -79,31 +79,57 @@ Always use the predefined CSS variables for consistency:
 Use the predefined utility classes for common patterns
 
 ```
+// Section Classes
+.section                    // Base section with consistent padding (32px top/bottom)
+.section--with-background   // For sections with backgrounds (48px padding)
+.section--narrow            // For content-dense areas (16px padding)
+.section--wide              // For showcasing important content (48px padding)
+.section--hero              // For hero sections (72px padding)
+.section--grid-content      // For grid-based content layouts
+.section--animate           // For sections with entrance animations
+
+// Spacing Utilities
+.u-margin-top-xs            // margin-top: 4px
+.u-margin-top-sm            // margin-top: 8px
+.u-margin-top-md            // margin-top: 16px
+.u-margin-top-lg            // margin-top: 24px
+.u-margin-top-xl            // margin-top: 32px
+.u-margin-bottom-xs         // margin-bottom: 4px
+.u-margin-bottom-sm         // margin-bottom: 8px
+.u-margin-bottom-md         // margin-bottom: 16px
+.u-margin-bottom-lg         // margin-bottom: 24px
+.u-margin-bottom-xl         // margin-bottom: 32px
+.u-padding-xs               // padding: 4px
+.u-padding-sm               // padding: 8px
+.u-padding-md               // padding: 16px
+.u-padding-lg               // padding: 24px
+.u-padding-xl               // padding: 32px
+
 // Flexbox Layouts
-.flex-row       // display: flex; flex-direction: row;
-.flex-column    // display: flex; flex-direction: column;
-.flex-center    // display: flex; justify-content: center; align-items: center;
-.flex-between   // display: flex; justify-content: space-between; align-items: center;
-.flex-wrap      // flex-wrap: wrap;
+.flex-row                  // display: flex; flex-direction: row;
+.flex-column               // display: flex; flex-direction: column;
+.flex-center               // display: flex; justify-content: center; align-items: center;
+.flex-between              // display: flex; justify-content: space-between; align-items: center;
+.flex-wrap                 // flex-wrap: wrap;
 
 // Typography
-.text-center    // text-align: center;
-.text-primary   // color: var(--color-text-primary);
-.text-accent    // color: var(--color-accent-primary);
+.text-center               // text-align: center;
+.text-primary              // color: var(--color-text-primary);
+.text-accent               // color: var(--color-accent-primary);
 
 // Containers
-.container      // max-width: var(--spacing-container-max-width); margin: 0 auto;
-.full-width     // width: 100%;
+.container                 // max-width: var(--spacing-container-max-width); margin: 0 auto;
+.full-width                // width: 100%;
 
 // Responsive Helpers
-.hide-sm        // Hides elements on small screens
-.hide-md        // Hides elements on medium screens
-.show-md        // Shows elements on medium screens and up
+.hide-sm                   // Hides elements on small screens
+.hide-md                   // Hides elements on medium screens
+.show-md                   // Shows elements on medium screens and up
 
 // Button Styles
-.button-primary  // Main CTA buttons
-.button-ghost    // Secondary/outline buttons
-.button-faint    // Subtle/tertiary buttons
+.button-primary            // Main CTA buttons
+.button-ghost              // Secondary/outline buttons
+.button-faint              // Subtle/tertiary buttons
 ```
 
 # 6. Responsive Design Best Practices
@@ -123,17 +149,37 @@ Use the predefined utility classes for common patterns
 .grid-container  // display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 ```
 
-# 7. Style Implementation Guidelines
+# 7. Section & Layout System
+
+1. Wrap page content in semantic `<section>` elements with the `.section` class
+2. Always include the `.container` class inside sections to constrain content width:
+   ```html
+   <section class="section [modifier]">
+     <div class="container">
+       <!-- Content goes here -->
+     </div>
+   </section>
+   ```
+3. Use appropriate section modifiers based on content type:
+   - `.section--with-background` for sections with background colors/images
+   - `.section--narrow` for content-dense areas with less padding
+   - `.section--wide` for showcasing important content with more padding
+   - `.section--hero` for hero sections with maximum padding
+   - `.section--grid-content` for grid-based content layouts
+4. For animated sections, add the `.section--animate` class which will trigger a subtle entrance animation when the section comes into view
+5. All sections automatically adjust padding for mobile devices at the 768px breakpoint
+
+# 8. Style Implementation Guidelines
 
 1. Follow BEM Naming: Use Block\_\_Element--Modifier pattern for class names with kebab-case
 2. Prefer Utility Classes: Use existing utility classes before writing custom CSS
 3. Avoid Inline Styles: Use class-based styling over inline style attributes
 4. Functional Programming: Use functional patterns; avoid classes per the code style guide
 5. No CSS Modules: Styles are global; avoid component-scoped CSS
-6. Prefix Utilities: Utility classes should be prefixed with u- (e.g., .u-margin-sm)
+6. Prefix Utilities: Utility classes should be prefixed with u- (e.g., .u-margin-sm)
 7. Use Design Tokens: Always reference the variables for colors, spacing, etc.
 
-# 8. Adding New Styles
+# 9. Adding New Styles
 
 When adding new styles:
 

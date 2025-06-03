@@ -66,23 +66,71 @@
 
 ---
 
-## 6. Spacing and Layout Preferences
+## 6. Spacing and Layout System
 
-- **Layout Density:** Dense and information-packed
-- **Structure:** Card-based layout
-- **Spacing System:**
-  - **Section Class:** Use `.section` for consistent page sections
-    - Base padding: `var(--spacing-xl)` (32px) top and bottom
-    - Section separation: `var(--spacing-xxl)` (48px) between adjacent sections
-  - **Section Modifiers:**
-    - `.section--with-background` for sections with backgrounds or images (48px padding)
-    - Custom modifiers like `.section--usecase` for section-specific styling
-  - **Responsive Behavior:**
-    - Reduces to `var(--spacing-lg)` (24px) padding on mobile
-    - Reduces to `var(--spacing-xl)` (32px) spacing between sections on mobile
-  - **Card Components:**
-    - Sufficient inner padding within cards (typically `var(--spacing-lg)`)
-    - Follows BEM naming convention
+### 6.1 Section Components
+
+The BigShine Display site uses a comprehensive section-based layout system for consistent vertical rhythm across all pages.
+
+#### Core Section Classes
+
+- **`.section`**: Base section component (32px padding top/bottom)
+  - Section separation: 48px margin between adjacent sections
+
+#### Section Variants
+
+- **`.section--with-background`**: For sections with background colors/images (48px padding)
+- **`.section--narrow`**: For content-dense areas (16px padding)
+- **`.section--wide`**: For showcasing important content (48px padding with horizontal padding)
+- **`.section--hero`**: For hero sections (72px padding with special treatment)
+- **`.section--grid-content`**: For grid-based content layouts (includes grid container)
+- **`.section--animate`**: For sections with entrance animations
+
+#### Section Implementation Pattern
+
+```html
+<section class="section [variant-modifier]">
+  <div class="container">
+    <!-- Section content goes here -->
+  </div>
+</section>
+```
+
+### 6.2 Spacing Utilities
+
+Utility classes follow BEM convention with u- prefix for quick spacing adjustments:
+
+#### Margin Utilities
+- **Top**: `.u-margin-top-xs`, `.u-margin-top-sm`, `.u-margin-top-md`, `.u-margin-top-lg`, `.u-margin-top-xl`
+- **Bottom**: `.u-margin-bottom-xs`, `.u-margin-bottom-sm`, `.u-margin-bottom-md`, `.u-margin-bottom-lg`, `.u-margin-bottom-xl`
+
+#### Padding Utilities
+- `.u-padding-xs`, `.u-padding-sm`, `.u-padding-md`, `.u-padding-lg`, `.u-padding-xl`
+
+### 6.3 Responsive Behavior
+
+- All sections and spacing automatically adjust for mobile devices
+- Mobile breakpoint: 768px
+- Desktop-to-mobile spacing reduction pattern:
+  - Standard sections: 32px → 24px padding
+  - Background sections: 48px → 32px padding
+  - Section spacing: 48px → 32px margin
+
+### 6.4 Animation System
+
+For subtle entrance animations:
+
+1. Add the `.section--animate` class to any section
+2. Animation automatically triggers when section comes into view
+3. Uses intersection observer for performance
+4. Graceful fallback for older browsers
+
+### 6.5 Card Components
+
+- Inner padding within cards: typically `var(--spacing-lg)` (24px)
+- Card grid spacing: `var(--spacing-md)` (16px) to `var(--spacing-lg)` (24px)
+- All card components follow BEM naming convention
+- Card hover states use subtle transforms for interaction
 
 ---
 

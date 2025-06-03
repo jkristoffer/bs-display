@@ -1,6 +1,6 @@
 /* CSS Mixins using Custom Properties */
 
-/* Section Layout */
+/* Section Layout System */
 .section {
   padding: var(--spacing-xl) 0;
 
@@ -9,9 +9,36 @@
     margin-top: var(--spacing-xxl);
   }
 
-  /* Modifier for sections with background elements */
+  /* Section variants for different content needs */
+  
+  /* For sections with background elements - more padding */
   &--with-background {
     padding: var(--spacing-xxl) 0;
+  }
+  
+  /* For content-dense areas - less padding */
+  &--narrow {
+    padding: var(--spacing-md) 0;
+  }
+  
+  /* For showcasing important content - more padding */
+  &--wide {
+    padding: var(--spacing-xxl) var(--spacing-md);
+  }
+  
+  /* For hero sections - extra padding and special treatment */
+  &--hero {
+    padding: calc(var(--spacing-xxl) * 1.5) 0;
+    position: relative;
+  }
+  
+  /* For grid-based content - specific spacing for grid layouts */
+  &--grid-content {
+    padding: var(--spacing-xl) 0;
+    & > .container {
+      display: grid;
+      gap: var(--spacing-lg);
+    }
   }
 }
 
@@ -26,6 +53,55 @@
 
     &--with-background {
       padding: var(--spacing-xl) 0;
+    }
+    
+    &--narrow {
+      padding: var(--spacing-sm) 0;
+    }
+    
+    &--wide {
+      padding: var(--spacing-xl) var(--spacing-sm);
+    }
+    
+    &--hero {
+      padding: var(--spacing-xl) 0;
+    }
+    
+    &--grid-content > .container {
+      gap: var(--spacing-md);
+    }
+  }
+}
+
+/* Spacing Utilities - Following BEM Utility Prefix Convention */
+.u-margin-top-xs { margin-top: var(--spacing-xs); }
+.u-margin-top-sm { margin-top: var(--spacing-sm); }
+.u-margin-top-md { margin-top: var(--spacing-md); }
+.u-margin-top-lg { margin-top: var(--spacing-lg); }
+.u-margin-top-xl { margin-top: var(--spacing-xl); }
+
+.u-margin-bottom-xs { margin-bottom: var(--spacing-xs); }
+.u-margin-bottom-sm { margin-bottom: var(--spacing-sm); }
+.u-margin-bottom-md { margin-bottom: var(--spacing-md); }
+.u-margin-bottom-lg { margin-bottom: var(--spacing-lg); }
+.u-margin-bottom-xl { margin-bottom: var(--spacing-xl); }
+
+.u-padding-xs { padding: var(--spacing-xs); }
+.u-padding-sm { padding: var(--spacing-sm); }
+.u-padding-md { padding: var(--spacing-md); }
+.u-padding-lg { padding: var(--spacing-lg); }
+.u-padding-xl { padding: var(--spacing-xl); }
+
+/* Section Animation for subtle transitions */
+.section {
+  &--animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

@@ -1,5 +1,35 @@
 /* CSS Mixins using Custom Properties */
 
+/* Section Layout */
+.section {
+  padding: var(--spacing-xl) 0;
+
+  /* Create larger spacing between adjacent sections */
+  & + & {
+    margin-top: var(--spacing-xxl);
+  }
+
+  /* Modifier for sections with background elements */
+  &--with-background {
+    padding: var(--spacing-xxl) 0;
+  }
+}
+
+/* Responsive Section Adjustments */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--spacing-lg) 0;
+
+    & + & {
+      margin-top: var(--spacing-xl);
+    }
+
+    &--with-background {
+      padding: var(--spacing-xl) 0;
+    }
+  }
+}
+
 /* Flexbox Layouts */
 .flex-row {
   display: flex;

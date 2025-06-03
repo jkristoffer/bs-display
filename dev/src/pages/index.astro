@@ -44,63 +44,64 @@ const seoProps = {
     subtitle="Premium Interactive Smart Boards for Education and Business"
   />
 
-  <section>
+  <section class="section">
     <div class="container">
       <QuizPromotion />
     </div>
   </section>
 
-  <section>
+  <section class="section">
     <div class="container">
       <CategoryNavigation />
     </div>
   </section>
 
-  <section class="usecase-container">
+  <section class="section section--with-background section--usecase">
     <div class="container">
       <UsecasesSection />
     </div>
   </section>
 
-  <section class="buying-guide-container">
+  <section class="section section--with-background section--buying-guide">
     <div class="container">
       <BuyingGuideSection />
     </div>
   </section>
 
-  <section>
+  <section class="section">
     <div class="container">
       <BlogHighlights />
     </div>
   </section>
 
-  <div class="container">
-    <section class="cta-banner">
-      <h3>Find Your Perfect Smart Display Solution</h3>
-      <p>
-        Let our experts help you choose the right technology for your specific
-        needs
-      </p>
-      <div class="cta-buttons">
-        <Button
-          variant="primary"
-          size="lg"
-          href="/contact"
-          id="homepage-primary-cta">Request Expert Advice</Button
-        >
-        <Button variant="ghost" href="/demo" id="homepage-secondary-cta"
-          >See It In Action</Button
-        >
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h3>Find Your Perfect Smart Display Solution</h3>
+        <p>
+          Let our experts help you choose the right technology for your specific
+          needs
+        </p>
+        <div class="cta-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/contact"
+            id="homepage-primary-cta">Request Expert Advice</Button
+          >
+          <Button variant="ghost" href="/demo" id="homepage-secondary-cta"
+            >See It In Action</Button
+          >
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </MainLayout>
 
 <style lang="scss">
-  .buying-guide-container {
+  /* Section-specific styles */
+  .section--buying-guide {
     background-color: #f6f9fc;
-    padding: 50px 0;
-    margin-top: 30px;
     background-image: linear-gradient(
         135deg,
         rgba(0, 0, 0, 0.15) 0%,
@@ -111,19 +112,11 @@ const seoProps = {
     background-position: center;
   }
 
-  .usecase-container {
+  .section--usecase {
     background-color: #fff;
-    padding: 50px 0;
-    margin-top: 30px;
   }
 
-  @media (max-width: $breakpoint-md) {
-    .buying-guide-container,
-    .usecase-container {
-      padding: 30px 0;
-    }
-  }
-
+  /* Testimonial component styles */
   .testimonial {
     background-color: var(--color-surface);
     padding: var(--spacing-lg);
@@ -156,11 +149,11 @@ const seoProps = {
     top: -10px;
   }
 
+  /* CTA Banner styles */
   .cta-banner {
     background: #f0f8ff;
     padding: var(--spacing-xl);
     text-align: center;
-    margin-top: var(--spacing-xl);
     border-radius: 8px;
     box-shadow: var(--box-shadow-1);
   }

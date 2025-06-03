@@ -1,5 +1,5 @@
 // src/styles/index.scss
 // global import via vite configuration
+@forward '_breakpoints.scss';
 @forward 'variables.scss';
 @forward 'mixins.scss';
-@forward '_breakpoints.scss';

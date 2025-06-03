@@ -1,5 +1,6 @@
 import { useQuizState } from './quizState';
 import type { QuizData, CategoryType } from './types';
+import { getProductsForQuizResult, getRelevantFeatures } from './utils/productMatcher';
 import './quiz-styles.scss';
 
 /**
@@ -284,20 +285,70 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
               <div className="product-recommendations">
                 <h5>Recommended Products:</h5>
                 <div className="product-list">
-                  {results[result].productIds.map((productId, index) => (
-                    <div key={productId} className="product-item">
-                      <div className="product-placeholder">
-                        <div className="product-image-placeholder" />
-                        <div className="product-name">Model {productId}</div>
-                      </div>
-                      <button 
-                        className="view-product-button"
-                        onClick={() => window.location.href = `/products/${productId}`}
-                      >
-                        View Details
-                      </button>
-                    </div>
-                  ))}
+                  {(() => {
+                    // Fetch actual product recommendations based on the quiz result category
+                    const { products } = getProductsForQuizResult(result);
+                    
+                    return products.length > 0 ? (
+                      // Display actual products with real data
+                      products.map((product, index) => (
+                        <div key={product.id} className="product-item">
+                          <div className="product-content">
+                            {product.image ? (
+                              <img 
+                                src={product.image} 
+                                alt={`${product.brand} ${product.model}`} 
+                                className="product-image" 
+                              />
+                            ) : (
+                              <div className="product-image-placeholder" />
+                            )}
+                            <div className="product-details">
+                              <div className="product-name">{product.brand} {product.model.split(' ')[0]}</div>
+                              <div className="product-specs">
+                                <span className="spec-item">{product.size}"</span>
+                                <span className="spec-item">{product.touchTechnology}</span>
+                              </div>
+                              <div className="product-match">
+                                <span className="match-label">Match:</span>
+                                <span className="match-score">{product.matchPercentage || 95}%</span>
+                              </div>
+                              <div className="product-features">
+                                {getRelevantFeatures(product, result).slice(0, 2).map((feature, i) => (
+                                  <div key={i} className="feature-tag">{feature}</div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                          <button 
+                            className="view-product-button"
+                            onClick={() => {
+                              const brand = product.brand.toLowerCase().replace(/\s+/g, '-');
+                              window.location.href = `/products/smartboards/${brand}/${product.id}`;
+                            }}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      ))
+                    ) : (
+                      // Fallback to placeholder IDs if no real products are found
+                      results[result].productIds.map((productId, index) => (
+                        <div key={productId} className="product-item">
+                          <div className="product-placeholder">
+                            <div className="product-image-placeholder" />
+                            <div className="product-name">Model {productId}</div>
+                          </div>
+                          <button 
+                            className="view-product-button"
+                            onClick={() => window.location.href = `/products/${productId}`}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      ))
+                    );
+                  })()}
                 </div>
               </div>
             </div>
@@ -331,10 +382,39 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                     </div>
                     
                     <div className="alternative-product">
-                      <div className="product-placeholder">
-                        <div className="product-image-placeholder" />
-                        <div className="product-name">Model {results[rec.category].productIds[0]}</div>
-                      </div>
+                      {(() => {
+                        // Get recommended product for this alternative category
+                        const { products } = getProductsForQuizResult(rec.category);
+                        const product = products.length > 0 ? products[0] : null;
+                        
+                        return product ? (
+                          // Display actual product data
+                          <div className="product-content">
+                            {product.image ? (
+                              <img 
+                                src={product.image} 
+                                alt={`${product.brand} ${product.model}`} 
+                                className="product-image" 
+                              />
+                            ) : (
+                              <div className="product-image-placeholder" />
+                            )}
+                            <div className="product-details">
+                              <div className="product-name">{product.brand} {product.model.split(' ')[0]}</div>
+                              <div className="product-specs">
+                                <span className="spec-item">{product.size}"</span>
+                                <span className="spec-item">{product.touchTechnology}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          // Fallback to placeholder
+                          <div className="product-placeholder">
+                            <div className="product-image-placeholder" />
+                            <div className="product-name">Model {results[rec.category].productIds[0]}</div>
+                          </div>
+                        );
+                      })()}
                       
                       <div className="alternative-actions">
                         <button 
@@ -345,7 +425,17 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                         </button>
                         <button 
                           className="product-button"
-                          onClick={() => window.location.href = `/products/${results[rec.category].productIds[0]}`}
+                          onClick={() => {
+                            const { products } = getProductsForQuizResult(rec.category);
+                            const product = products.length > 0 ? products[0] : null;
+                            
+                            if (product) {
+                              const brand = product.brand.toLowerCase().replace(/\s+/g, '-');
+                              window.location.href = `/products/smartboards/${brand}/${product.id}`;
+                            } else {
+                              window.location.href = `/products/${results[rec.category].productIds[0]}`;
+                            }
+                          }}
                         >
                           See Product
                         </button>

@@ -50,12 +50,39 @@ export type CategoryScores = {
   [category: string]: number;
 };
 
+// Category Types
+export type CategoryType = 'education' | 'corporate' | 'creative' | 'general';
+
+// Hybrid Category Keys
+export type HybridCategoryKey = 
+  | 'corporate-creative'
+  | 'corporate-education'
+  | 'corporate-general'
+  | 'creative-education'
+  | 'creative-general'
+  | 'education-general';
+
 // Hybrid Result Types
 export interface HybridCategoryResult {
+  // Core hybrid result properties
   topCategory: string;
-  secondCategory?: string;
   scores: CategoryScores;
   isHybrid: boolean;
+  secondCategory?: string;
+  
+  // Detailed hybrid analysis properties
+  key?: HybridCategoryKey;
+  categories?: [CategoryType, CategoryType];
+  primaryCategory?: CategoryType;
+  secondaryCategory?: CategoryType;
+  primaryScore?: number;
+  secondaryScore?: number;
+  scoreRatio?: number;
+  
+  // Advanced metrics for UI presentation
+  primaryRatio?: number; // Ratio of primary score to total score (0.0-1.0)
+  secondaryRatio?: number; // Ratio of secondary score to total score (0.0-1.0)
+  balanceFactor?: number; // How balanced the hybrid is (0.0 = perfectly balanced, 1.0 = totally imbalanced)
 }
 
 // Quiz State Types

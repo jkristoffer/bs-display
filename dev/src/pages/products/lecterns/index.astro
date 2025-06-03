@@ -12,16 +12,20 @@ const description =
 <ProductLayout title={title} description={description}>
   <Breadcrumbs productType="lecterns" />
   
-  <div class="products-header">
-    <h1>Interactive Smart Lecterns</h1>
-    <p>
-      Find the perfect interactive lectern for your classroom, office, or
-      training center. Our selection includes top brands with various sizes and
-      features to meet your needs.
-    </p>
-  </div>
+  <section class="section">
+    <div class="container">
+      <div class="products-header">
+        <h1>Interactive Smart Lecterns</h1>
+        <p>
+          Find the perfect interactive lectern for your classroom, office, or
+          training center. Our selection includes top brands with various sizes and
+          features to meet your needs.
+        </p>
+      </div>
 
-  <FilterUI allModels={lecterns} productType="lecterns" client:visible />
+      <FilterUI allModels={lecterns} productType="lecterns" client:visible />
+    </div>
+  </section>
 </ProductLayout>
 
 <style lang="scss">

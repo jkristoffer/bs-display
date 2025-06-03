@@ -70,9 +70,19 @@
 
 - **Layout Density:** Dense and information-packed
 - **Structure:** Card-based layout
-- **Spacing:**
-  - Tight vertical spacing
-  - Sufficient inner padding within cards
+- **Spacing System:**
+  - **Section Class:** Use `.section` for consistent page sections
+    - Base padding: `var(--spacing-xl)` (32px) top and bottom
+    - Section separation: `var(--spacing-xxl)` (48px) between adjacent sections
+  - **Section Modifiers:**
+    - `.section--with-background` for sections with backgrounds or images (48px padding)
+    - Custom modifiers like `.section--usecase` for section-specific styling
+  - **Responsive Behavior:**
+    - Reduces to `var(--spacing-lg)` (24px) padding on mobile
+    - Reduces to `var(--spacing-xl)` (32px) spacing between sections on mobile
+  - **Card Components:**
+    - Sufficient inner padding within cards (typically `var(--spacing-lg)`)
+    - Follows BEM naming convention
 
 ---
 

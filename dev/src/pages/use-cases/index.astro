@@ -15,30 +15,27 @@ const useCases = await getCollection('useCases');
     subtitle="See how our display solutions drive real-world results across industries"
   />
   
-  <div class="use-cases-container">
-    
-    <div class="use-case-grid">
-      {useCases.map(useCase => (
-        <a href={`/use-cases/${useCase.id}`} class="use-case-card">
-          {useCase.data.featuredImage && (
-            <img src={useCase.data.featuredImage} alt={useCase.data.title} class="card-image" />
-          )}
-          <div class="card-content">
-            <div class="industry-tag">{useCase.data.industry}</div>
-            <h3>{useCase.data.title}</h3>
-            <p>{useCase.data.description}</p>
-          </div>
-        </a>
-      ))}
+  <section class="section">
+    <div class="container use-cases-container">
+      <div class="use-case-grid">
+        {useCases.map(useCase => (
+          <a href={`/use-cases/${useCase.id}`} class="use-case-card">
+            {useCase.data.featuredImage && (
+              <img src={useCase.data.featuredImage} alt={useCase.data.title} class="card-image" />
+            )}
+            <div class="card-content">
+              <div class="industry-tag">{useCase.data.industry}</div>
+              <h3>{useCase.data.title}</h3>
+              <p>{useCase.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
-  </div>
+  </section>
 
   <style>
-    .use-cases-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--spacing-xl) var(--spacing-md);
-    }
+    /* Use global section class from mixins.scss */
     
     h1 {
       text-align: center;

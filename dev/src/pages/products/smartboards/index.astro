@@ -12,16 +12,20 @@ const description =
 <ProductLayout title={title} description={description}>
   <Breadcrumbs productType="smartboards" />
   
-  <div class="products-header">
-    <h1>Interactive Smart Boards</h1>
-    <p>
-      Find the perfect interactive display for your classroom, office, or
-      training center. Our selection includes top brands with various sizes and
-      features to meet your needs.
-    </p>
-  </div>
+  <section class="section">
+    <div class="container">
+      <div class="products-header">
+        <h1>Interactive Smart Boards</h1>
+        <p>
+          Find the perfect interactive display for your classroom, office, or
+          training center. Our selection includes top brands with various sizes and
+          features to meet your needs.
+        </p>
+      </div>
 
-  <FilterUI allModels={models} productType="smartboards" client:visible />
+      <FilterUI allModels={models} productType="smartboards" client:visible />
+    </div>
+  </section>
 </ProductLayout>
 
 <style lang="scss">

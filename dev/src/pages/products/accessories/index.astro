@@ -15,89 +15,97 @@ const description =
     { label: 'Accessories' }
   ]} />
   
-  <div class="accessories-header">
-    <h1>Display Accessories</h1>
-    <p>
-      Complete your display solution with our range of high-quality accessories.
-      From adjustable mounts and mobile stands to stylus pens and connectivity
-      adapters, we offer everything you need to maximize the functionality of your
-      interactive display.
-    </p>
-  </div>
-
-  <div class="accessories-categories">
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/accessories/display-stands.jpeg"
-          alt="Display Stands & Mounts"
-          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Stands & Mounts</h2>
+  <section class="section">
+    <div class="container">
+      <div class="accessories-header">
+        <h1>Display Accessories</h1>
         <p>
-          Mobile stands, wall mounts, and adjustable brackets designed for
-          interactive displays of all sizes.
+          Complete your display solution with our range of high-quality accessories.
+          From adjustable mounts and mobile stands to stylus pens and connectivity
+          adapters, we offer everything you need to maximize the functionality of your
+          interactive display.
         </p>
-        <a href="/products/accessories/stands-mounts/" class="cta-button"
-          >View Stands & Mounts</a
-        >
+      </div>
+
+      <div class="accessories-categories">
+        <div class="category-card">
+          <div class="category-image">
+            <img
+              src="/assets/accessories/display-stands.jpeg"
+              alt="Display Stands & Mounts"
+              onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+            />
+          </div>
+          <div class="category-content">
+            <h2>Stands & Mounts</h2>
+            <p>
+              Mobile stands, wall mounts, and adjustable brackets designed for
+              interactive displays of all sizes.
+            </p>
+            <a href="/products/accessories/stands-mounts/" class="cta-button"
+              >View Stands & Mounts</a
+            >
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-image">
+            <img
+              src="/assets/accessories/stylus-pens.jpeg"
+              alt="Stylus Pens & Accessories"
+              onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+            />
+          </div>
+          <div class="category-content">
+            <h2>Stylus Pens & Controllers</h2>
+            <p>
+              Precision stylus pens, remote controls, and annotation tools for
+              enhanced interaction.
+            </p>
+            <a href="/products/accessories/stylus-controllers/" class="cta-button"
+              >View Stylus & Controllers</a
+            >
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-image">
+            <img
+              src="/assets/accessories/connectivity-solutions.jpeg"
+              alt="Connectivity Solutions"
+              onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
+            />
+          </div>
+          <div class="category-content">
+            <h2>Connectivity Solutions</h2>
+            <p>
+              Wireless casting devices, adapters, cables, and connectivity modules for
+              seamless integration.
+            </p>
+            <a href="/products/accessories/connectivity/" class="cta-button"
+              >View Connectivity Solutions</a
+            >
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/accessories/stylus-pens.jpeg"
-          alt="Stylus Pens & Accessories"
-          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Stylus Pens & Controllers</h2>
+  <section class="section section--with-background">
+    <div class="container">
+      <div class="accessories-cta">
+        <h2>Not Sure What You Need?</h2>
         <p>
-          Precision stylus pens, remote controls, and annotation tools for
-          enhanced interaction.
+          Our experts can help you select the right accessories for your specific
+          display model and use case.
         </p>
-        <a href="/products/accessories/stylus-controllers/" class="cta-button"
-          >View Stylus & Controllers</a
-        >
+        <div class="cta-buttons">
+          <a href="/contact" class="button button-primary">Request Advice</a>
+          <a href="/quiz" class="button button-ghost">Take Our Quiz</a>
+        </div>
       </div>
     </div>
-
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/accessories/connectivity-solutions.jpeg"
-          alt="Connectivity Solutions"
-          onError="this.src='/assets/abstract-bg-1.jpeg'; this.onerror=null;"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Connectivity Solutions</h2>
-        <p>
-          Wireless casting devices, adapters, cables, and connectivity modules for
-          seamless integration.
-        </p>
-        <a href="/products/accessories/connectivity/" class="cta-button"
-          >View Connectivity Solutions</a
-        >
-      </div>
-    </div>
-  </div>
-
-  <div class="accessories-cta">
-    <h2>Not Sure What You Need?</h2>
-    <p>
-      Our experts can help you select the right accessories for your specific
-      display model and use case.
-    </p>
-    <div class="cta-buttons">
-      <a href="/contact" class="button button-primary">Request Advice</a>
-      <a href="/quiz" class="button button-ghost">Take Our Quiz</a>
-    </div>
-  </div>
+  </section>
 </ProductLayout>
 
 <style lang="scss">

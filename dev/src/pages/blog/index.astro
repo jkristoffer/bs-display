@@ -56,9 +56,9 @@ function formatDate(date: Date): string {
     subtitle="Insights, guides, and industry news about smart display technologies"
   />
   
-  <div class="blog-index-container">
-
-    <div class="blog-posts-grid" id="blog-posts-container">
+  <section class="section">
+    <div class="container blog-index-container">
+      <div class="blog-posts-grid" id="blog-posts-container">
       {
         currentPosts.map((post) => (
           <article class="blog-card">
@@ -146,6 +146,7 @@ function formatDate(date: Date): string {
       }
     </div>
   </div>
+</section>
 
   <script>
     // Client-side JavaScript for the "Load More" functionality

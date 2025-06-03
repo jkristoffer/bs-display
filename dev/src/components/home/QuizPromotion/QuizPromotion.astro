@@ -1,0 +1,176 @@
+---
+import Button from '../../common/Button/Button.astro';
+---
+
+<section class="quiz-promotion">
+  <div class="quiz-promotion__container">
+    <div class="quiz-promotion__content">
+      <h2 class="quiz-promotion__title">Not Sure Which Display You Need?</h2>
+      <p class="quiz-promotion__description">
+        Answer 6 quick questions and get personalized recommendations for your classroom, 
+        meeting room, or creative studio.
+      </p>
+      <div class="quiz-promotion__actions">
+        <Button 
+          variant="primary" 
+          size="lg" 
+          href="/quiz" 
+          id="quiz-cta-primary"
+        >
+          Find My Ideal Display
+        </Button>
+      </div>
+    </div>
+    <div class="quiz-promotion__visual">
+      <div class="quiz-promotion__cards">
+        <div class="quiz-promotion__card quiz-promotion__card--education">
+          <div class="quiz-promotion__card-icon">📚</div>
+          <h3>Classroom</h3>
+        </div>
+        <div class="quiz-promotion__card quiz-promotion__card--corporate">
+          <div class="quiz-promotion__card-icon">🏢</div>
+          <h3>Corporate</h3>
+        </div>
+        <div class="quiz-promotion__card quiz-promotion__card--creative">
+          <div class="quiz-promotion__card-icon">🎨</div>
+          <h3>Creative</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .quiz-promotion {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, rgba(var(--color-accent-primary-rgb), 0.08) 0%, rgba(var(--color-accent-secondary), 0.05) 100%);
+    border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+  }
+
+  .quiz-promotion__container {
+    max-width: var(--spacing-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    
+    @media (max-width: $breakpoint-lg) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .quiz-promotion__content {
+    flex: 1;
+  }
+
+  .quiz-promotion__title {
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+  }
+
+  .quiz-promotion__description {
+    font-size: var(--font-size-body-large);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-primary);
+    opacity: 0.85;
+    line-height: 1.5;
+    max-width: 500px;
+    
+    @media (max-width: $breakpoint-lg) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .quiz-promotion__actions {
+    margin-top: var(--spacing-md);
+  }
+
+  .quiz-promotion__visual {
+    flex: 1;
+    position: relative;
+    
+    @media (max-width: $breakpoint-lg) {
+      width: 100%;
+      margin-top: var(--spacing-lg);
+    }
+  }
+
+  .quiz-promotion__cards {
+    display: flex;
+    gap: var(--spacing-sm);
+    transform: translateY(-10px) rotate(2deg);
+    
+    @media (max-width: $breakpoint-md) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+
+  .quiz-promotion__card {
+    width: 120px;
+    height: 150px;
+    background-color: var(--color-background);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-1);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    
+    &:nth-child(1) {
+      transform: translateY(10px) rotate(-3deg);
+      z-index: 3;
+    }
+    
+    &:nth-child(2) {
+      transform: translateY(0) rotate(0);
+      z-index: 2;
+    }
+    
+    &:nth-child(3) {
+      transform: translateY(15px) rotate(3deg);
+      z-index: 1;
+    }
+    
+    &:hover {
+      transform: translateY(-5px) rotate(0);
+      box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      width: 100px;
+      height: 130px;
+    }
+  }
+
+  .quiz-promotion__card--education {
+    border-top: 4px solid #4caf50;
+  }
+  
+  .quiz-promotion__card--corporate {
+    border-top: 4px solid #2196f3;
+  }
+  
+  .quiz-promotion__card--creative {
+    border-top: 4px solid #ff9800;
+  }
+
+  .quiz-promotion__card-icon {
+    font-size: 32px;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .quiz-promotion__card h3 {
+    font-size: var(--font-size-small);
+    margin: 0;
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+</style>

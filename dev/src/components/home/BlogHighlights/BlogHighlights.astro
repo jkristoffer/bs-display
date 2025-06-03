@@ -1,0 +1,244 @@
+---
+import { getCollection } from 'astro:content';
+import Button from '../../common/Button/Button.astro';
+
+// Get latest blog posts (most recent 3)
+const allBlogPosts = await getCollection('blog');
+const latestPosts = allBlogPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+
+// Format date function
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(date);
+}
+---
+
+<section class="blog-highlights">
+  <div class="blog-highlights__header">
+    <h2>Latest Insights & Resources</h2>
+    <p>Expert advice, industry trends, and practical guides for smart display technology</p>
+  </div>
+
+  <div class="blog-highlights__grid">
+    {
+      latestPosts.map((post) => (
+        <article class="blog-highlights__card">
+          <div class="blog-highlights__card-image">
+            <img
+              src={post.data.image || `/assets/default-blog-${post.data.category ? post.data.category.toLowerCase().replace(/\s+/g, '-') : 'article'}.jpg`}
+              alt={post.data.title}
+              loading="lazy"
+              onError={`this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'`}
+            />
+          </div>
+          <div class="blog-highlights__card-content">
+            <div class="blog-highlights__card-meta">
+              {post.data.category && (
+                <span class="blog-highlights__category">{post.data.category}</span>
+              )}
+              <time datetime={post.data.publishDate.toISOString()} class="blog-highlights__date">
+                {formatDate(post.data.publishDate)}
+              </time>
+            </div>
+            
+            <h3 class="blog-highlights__title">
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            </h3>
+            
+            <p class="blog-highlights__excerpt">{post.data.description}</p>
+            
+            <a href={`/blog/${post.id}`} class="blog-highlights__link">
+              Read article <span class="blog-highlights__arrow">→</span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="blog-highlights__footer">
+    <Button variant="ghost" href="/blog" id="view-all-blogs-cta">View All Articles</Button>
+  </div>
+</section>
+
+<style lang="scss">
+  .blog-highlights {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-surface);
+  }
+
+  .blog-highlights__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+    
+    h2 {
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-primary);
+    }
+    
+    p {
+      font-size: var(--font-size-body-large);
+      color: var(--color-text-primary);
+      opacity: 0.8;
+    }
+  }
+
+  .blog-highlights__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .blog-highlights__card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow-1);
+    transition: all 0.3s ease;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(33, 33, 33, 0.2);
+    }
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+
+  .blog-highlights__card-image {
+    height: 180px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .blog-highlights__card:hover .blog-highlights__card-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-highlights__card-content {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .blog-highlights__card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .blog-highlights__category {
+    display: inline-block;
+    background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+    color: var(--color-accent-primary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 1rem;
+    font-size: var(--font-size-smaller);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .blog-highlights__date {
+    font-size: var(--font-size-smaller);
+    color: var(--color-text-primary);
+    opacity: 0.7;
+  }
+
+  .blog-highlights__title {
+    font-size: var(--font-size-body-large);
+    margin: 0 0 var(--spacing-sm);
+    line-height: 1.3;
+    
+    a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--color-accent-primary);
+      }
+    }
+  }
+
+  .blog-highlights__excerpt {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-default);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .blog-highlights__link {
+    margin-top: auto;
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    
+    &:hover {
+      color: var(--color-accent-secondary);
+    }
+  }
+
+  .blog-highlights__arrow {
+    display: inline-block;
+    margin-left: var(--spacing-xs);
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-highlights__link:hover .blog-highlights__arrow {
+    transform: translateX(4px);
+  }
+
+  .blog-highlights__footer {
+    text-align: center;
+  }
+</style>

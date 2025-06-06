@@ -1,0 +1,208 @@
+---
+import allModels from '../../../data/models.all.js';
+
+interface Props {
+  limit?: number;
+}
+
+// Get props with default values
+const { limit = 10 } = Astro.props;
+
+// Get models with limit
+const models = allModels.slice(0, limit);
+
+// Define displayed properties
+const displayProperties = [
+  'brand',
+  'model',
+  'size',
+  'resolution',
+  'os',
+  'touchTechnology',
+  'warranty',
+  'priceRange'
+];
+
+// Format property name for display
+function formatPropertyName(prop: string): string {
+  return prop.charAt(0).toUpperCase() + prop.slice(1);
+}
+---
+
+<section class="section section--with-background">
+  <div class="container">
+    <div class="product-table">
+      <h2 class="product-table__title">Available Products</h2>
+      <p class="product-table__description">
+        Browse our extensive range of interactive displays for education and business.
+      </p>
+      
+      <div class="product-table__wrapper">
+        <table class="product-table__table">
+          <thead class="product-table__head">
+            <tr>
+              {displayProperties.map((prop) => (
+                <th class="product-table__header">{formatPropertyName(prop)}</th>
+              ))}
+              <th class="product-table__header">Details</th>
+            </tr>
+          </thead>
+          <tbody class="product-table__body">
+            {
+              models.map((model) => (
+                <tr class="product-table__row">
+                  {displayProperties.map((prop) => (
+                    <td class="product-table__cell">{model[prop]}</td>
+                  ))}
+                  <td class="product-table__cell product-table__cell--action">
+                    <a href={`/products/${model.id}`} class="product-table__link">View</a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="product-table__footer">
+        <a href="/products" class="product-table__view-all">
+          View all products
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .product-table {
+    width: 100%;
+    margin: var(--spacing-lg) 0;
+
+    &__title {
+      font-size: var(--font-size-h2);
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-sm);
+      text-align: center;
+    }
+
+    &__description {
+      font-size: var(--font-size-body-regular);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--spacing-lg) auto;
+    }
+
+    &__wrapper {
+      width: 100%;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    &__head {
+      background-color: var(--color-accent-primary);
+    }
+
+    &__header {
+      padding: var(--spacing-md);
+      text-align: left;
+      color: white;
+      font-weight: 500;
+      white-space: nowrap;
+      
+      &:first-child {
+        border-top-left-radius: 8px;
+      }
+      
+      &:last-child {
+        border-top-right-radius: 8px;
+      }
+    }
+
+    &__body {
+      background-color: var(--color-surface);
+    }
+
+    &__row {
+      border-bottom: 1px solid var(--color-border);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:hover {
+        background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+      }
+    }
+
+    &__cell {
+      padding: var(--spacing-md);
+      
+      &--action {
+        text-align: center;
+      }
+    }
+
+    &__link {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background-color: var(--color-accent-secondary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background-color 0.2s ease-in-out;
+      
+      &:hover {
+        background-color: darken(#ffa726, 10%);
+      }
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--spacing-lg);
+    }
+
+    &__view-all {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      color: var(--color-accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+      
+      svg {
+        transition: transform 0.2s ease-in-out;
+      }
+      
+      &:hover svg {
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    .product-table {
+      &__title {
+        font-size: var(--font-size-h3);
+      }
+      
+      &__description {
+        font-size: var(--font-size-body-regular);
+      }
+    }
+  }
+</style>

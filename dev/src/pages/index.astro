@@ -8,6 +8,7 @@ import BlogHighlights from '../components/home/BlogHighlights/BlogHighlights.ast
 import QuizPromotion from '../components/home/QuizPromotion/QuizPromotion.astro';
 import CategoryNavigation from '../components/home/CategoryNavigation/CategoryNavigation.astro';
 import Button from '../components/common/Button/Button.astro';
+import DataTable from '../components/home/DataTable/DataTable.astro';
 
 // SEO Configuration for Homepage
 const seoProps = {
@@ -67,6 +68,8 @@ const seoProps = {
       <BuyingGuideSection />
     </div>
   </section>
+
+  <DataTable limit={8} />
 
   <section class="section">
     <div class="container">

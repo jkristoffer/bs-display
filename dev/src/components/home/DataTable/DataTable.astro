@@ -107,7 +107,7 @@ function formatPropertyName(prop: string): string {
         </a>
       </div>
       
-      <script define:vars={{ allDisplayedModels, itemsPerPage, totalPages }}>
+      <script define:vars={{ allDisplayedModels, itemsPerPage, totalPages, displayProperties }}>
         // Store all models data for client-side pagination
         const allModels = {
           allDisplayedModels: allDisplayedModels,
@@ -130,17 +130,102 @@ function formatPropertyName(prop: string): string {
           nextButton.disabled = allModels.currentPage >= allModels.totalPages;
         }
         
+        // Store the initial HTML structure as a template
+        let rowTemplate;
+        
+        // Function to initialize the template from the first rendered row
+        function initializeTemplate() {
+          if (!tableBody.querySelector('.product-table__row')) {
+            return false;
+          }
+          
+          // Get the first row as a template
+          const firstRow = tableBody.querySelector('.product-table__row').cloneNode(true);
+          
+          // Clear the content but keep the structure
+          const cells = firstRow.querySelectorAll('.product-table__cell');
+          const thumbnailCell = firstRow.querySelector('.product-table__cell--thumbnail img');
+          const actionCell = firstRow.querySelector('.product-table__link');
+          
+          if (thumbnailCell) {
+            thumbnailCell.src = '';
+            thumbnailCell.alt = '';
+          }
+          
+          cells.forEach(cell => {
+            if (!cell.classList.contains('product-table__cell--thumbnail') && 
+                !cell.classList.contains('product-table__cell--action')) {
+              cell.textContent = '';
+            }
+          });
+          
+          if (actionCell) {
+            actionCell.href = '';
+          }
+          
+          rowTemplate = firstRow;
+          return true;
+        }
+        
         // Render models for the current page
         function renderCurrentPage() {
           const startIdx = (allModels.currentPage - 1) * allModels.itemsPerPage;
           const endIdx = startIdx + allModels.itemsPerPage;
           const currentPageModels = allModels.allDisplayedModels.slice(startIdx, endIdx);
           
+          // Initialize template if not already done
+          if (!rowTemplate) {
+            if (!initializeTemplate()) {
+              // Fallback rendering if template initialization fails
+              fallbackRender(currentPageModels);
+              return;
+            }
+          }
+          
+          // Clear table body
+          tableBody.innerHTML = '';
+          
+          // Add rows for the current page using the template
+          currentPageModels.forEach(model => {
+            // Clone the template row
+            const row = rowTemplate.cloneNode(true);
+            
+            // Update the thumbnail
+            const thumbnailImg = row.querySelector('.product-table__cell--thumbnail img');
+            if (thumbnailImg) {
+              thumbnailImg.src = model.image;
+              thumbnailImg.alt = model.model;
+            }
+            
+            // Update the property cells
+            const propertyCells = row.querySelectorAll('.product-table__cell');
+            let cellIndex = 0;
+            propertyCells.forEach(cell => {
+              if (!cell.classList.contains('product-table__cell--thumbnail') && 
+                  !cell.classList.contains('product-table__cell--action')) {
+                const prop = displayProperties[cellIndex];
+                cell.textContent = model[prop];
+                cellIndex++;
+              }
+            });
+            
+            // Update the action link
+            const actionLink = row.querySelector('.product-table__link');
+            if (actionLink) {
+              actionLink.href = `/products/${model.id}`;
+            }
+            
+            tableBody.appendChild(row);
+          });
+        }
+        
+        // Fallback rendering method if template approach fails
+        function fallbackRender(models) {
           // Clear table body
           tableBody.innerHTML = '';
           
           // Add rows for the current page
-          currentPageModels.forEach(model => {
+          models.forEach(model => {
             const row = document.createElement('tr');
             row.className = 'product-table__row';
             
@@ -160,7 +245,6 @@ function formatPropertyName(prop: string): string {
             row.appendChild(thumbnailCell);
             
             // Property cells
-            const displayProperties = ['brand', 'model', 'size', 'os', 'touchTechnology'];
             displayProperties.forEach(prop => {
               const cell = document.createElement('td');
               cell.className = 'product-table__cell';

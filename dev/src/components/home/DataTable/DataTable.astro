@@ -3,13 +3,20 @@ import allModels from '../../../data/models.all.js';
 
 interface Props {
   limit?: number;
+  itemsPerPage?: number;
 }
 
 // Get props with default values
-const { limit = 10 } = Astro.props;
+const { limit = 50, itemsPerPage = 8 } = Astro.props;
 
 // Get models with limit
-const models = allModels.slice(0, limit);
+const allDisplayedModels = allModels.slice(0, limit);
+
+// Calculate total number of pages
+const totalPages = Math.ceil(allDisplayedModels.length / itemsPerPage);
+
+// Initialize with first page of items
+const initialModels = allDisplayedModels.slice(0, itemsPerPage);
 
 // Define displayed properties
 const displayProperties = [
@@ -45,9 +52,9 @@ function formatPropertyName(prop: string): string {
               <th class="product-table__header">Details</th>
             </tr>
           </thead>
-          <tbody class="product-table__body">
+          <tbody class="product-table__body" id="product-table-body">
             {
-              models.map((model) => (
+              initialModels.map((model) => (
                 <tr class="product-table__row">
                   <td class="product-table__cell product-table__cell--thumbnail">
                     <img 
@@ -72,6 +79,24 @@ function formatPropertyName(prop: string): string {
         </table>
       </div>
       
+      <div class="product-table__pagination" id="pagination-controls">
+        <button class="pagination-button" id="prev-page" aria-label="Previous page" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        
+        <div class="pagination-info">
+          <span id="current-page">1</span> / <span id="total-pages">{totalPages}</span>
+        </div>
+        
+        <button class="pagination-button" id="next-page" aria-label="Next page" disabled={totalPages <= 1}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+      
       <div class="product-table__footer">
         <a href="/products" class="product-table__view-all">
           View all products
@@ -81,6 +106,105 @@ function formatPropertyName(prop: string): string {
           </svg>
         </a>
       </div>
+      
+      <script define:vars={{ allDisplayedModels, itemsPerPage, totalPages }}>
+        // Store all models data for client-side pagination
+        const allModels = {
+          allDisplayedModels: allDisplayedModels,
+          itemsPerPage: itemsPerPage,
+          currentPage: 1,
+          totalPages: totalPages
+        };
+        
+        // Get DOM elements
+        const tableBody = document.getElementById('product-table-body');
+        const currentPageEl = document.getElementById('current-page');
+        const totalPagesEl = document.getElementById('total-pages');
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        
+        // Update pagination UI
+        function updatePaginationControls() {
+          currentPageEl.textContent = allModels.currentPage;
+          prevButton.disabled = allModels.currentPage <= 1;
+          nextButton.disabled = allModels.currentPage >= allModels.totalPages;
+        }
+        
+        // Render models for the current page
+        function renderCurrentPage() {
+          const startIdx = (allModels.currentPage - 1) * allModels.itemsPerPage;
+          const endIdx = startIdx + allModels.itemsPerPage;
+          const currentPageModels = allModels.allDisplayedModels.slice(startIdx, endIdx);
+          
+          // Clear table body
+          tableBody.innerHTML = '';
+          
+          // Add rows for the current page
+          currentPageModels.forEach(model => {
+            const row = document.createElement('tr');
+            row.className = 'product-table__row';
+            
+            // Thumbnail cell
+            const thumbnailCell = document.createElement('td');
+            thumbnailCell.className = 'product-table__cell product-table__cell--thumbnail';
+            thumbnailCell.innerHTML = `
+              <img 
+                src="${model.image}" 
+                alt="${model.model}" 
+                class="product-thumbnail" 
+                width="60" 
+                height="40" 
+                loading="lazy"
+              />
+            `;
+            row.appendChild(thumbnailCell);
+            
+            // Property cells
+            const displayProperties = ['brand', 'model', 'size', 'os', 'touchTechnology'];
+            displayProperties.forEach(prop => {
+              const cell = document.createElement('td');
+              cell.className = 'product-table__cell';
+              cell.textContent = model[prop];
+              row.appendChild(cell);
+            });
+            
+            // Action cell
+            const actionCell = document.createElement('td');
+            actionCell.className = 'product-table__cell product-table__cell--action';
+            actionCell.innerHTML = `
+              <a href="/products/${model.id}" class="product-table__link">View</a>
+            `;
+            row.appendChild(actionCell);
+            
+            tableBody.appendChild(row);
+          });
+        }
+        
+        // Go to previous page
+        function goToPrevPage() {
+          if (allModels.currentPage > 1) {
+            allModels.currentPage--;
+            renderCurrentPage();
+            updatePaginationControls();
+          }
+        }
+        
+        // Go to next page
+        function goToNextPage() {
+          if (allModels.currentPage < allModels.totalPages) {
+            allModels.currentPage++;
+            renderCurrentPage();
+            updatePaginationControls();
+          }
+        }
+        
+        // Add event listeners
+        prevButton.addEventListener('click', goToPrevPage);
+        nextButton.addEventListener('click', goToNextPage);
+        
+        // Initialize pagination
+        updatePaginationControls();
+      </script>
     </div>
   </div>
 </section>
@@ -219,6 +343,45 @@ function formatPropertyName(prop: string): string {
         transform: translateX(3px);
       }
     }
+  }
+
+  /* Pagination styles */
+  .product-table__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+  }
+
+  .pagination-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover:not(:disabled) {
+      background-color: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+      color: white;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .pagination-info {
+    font-size: var(--font-size-body-regular);
+    color: var(--color-text-primary);
+    font-weight: 500;
   }
 
   @media (max-width: $breakpoint-sm) {

@@ -16,11 +16,8 @@ const displayProperties = [
   'brand',
   'model',
   'size',
-  'resolution',
   'os',
-  'touchTechnology',
-  'warranty',
-  'priceRange'
+  'touchTechnology'
 ];
 
 // Format property name for display
@@ -41,6 +38,7 @@ function formatPropertyName(prop: string): string {
         <table class="product-table__table">
           <thead class="product-table__head">
             <tr>
+              <th class="product-table__header">Thumbnail</th>
               {displayProperties.map((prop) => (
                 <th class="product-table__header">{formatPropertyName(prop)}</th>
               ))}
@@ -51,6 +49,16 @@ function formatPropertyName(prop: string): string {
             {
               models.map((model) => (
                 <tr class="product-table__row">
+                  <td class="product-table__cell product-table__cell--thumbnail">
+                    <img 
+                      src={model.image} 
+                      alt={model.model} 
+                      class="product-thumbnail" 
+                      width="60" 
+                      height="40" 
+                      loading="lazy"
+                    />
+                  </td>
                   {displayProperties.map((prop) => (
                     <td class="product-table__cell">{model[prop]}</td>
                   ))}
@@ -151,6 +159,25 @@ function formatPropertyName(prop: string): string {
       
       &--action {
         text-align: center;
+      }
+      
+      &--thumbnail {
+        padding: var(--spacing-xs);
+        text-align: center;
+        width: 80px;
+      }
+    }
+    
+    .product-thumbnail {
+      border-radius: 4px;
+      object-fit: contain;
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.05);
       }
     }
 

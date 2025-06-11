@@ -1,6 +1,15 @@
 import { useQuizState } from './quizState';
-import type { QuizData, CategoryType } from './types';
-import { getProductsForQuizResult, getRelevantFeatures } from './utils/productMatcher';
+import type { QuizData } from './types';
+import {
+  getProductsForQuizResult,
+  getRelevantFeatures
+} from './utils/productMatcher';
+import { QuizIntro } from './components/QuizIntro';
+import { QuizQuestions } from './components/QuizQuestions';
+import { QuizResultHeader } from './components/QuizResultHeader';
+import { ProductRecommendations } from './components/ProductRecommendations';
+import { AlternativeRecommendations } from './components/AlternativeRecommendations';
+import { CategoryScores } from './components/CategoryScores';
 import './quiz-styles.scss';
 
 /**
@@ -13,13 +22,13 @@ function getCategoryColor(category: string): string {
     creative: '#e91e63',
     general: '#9e9e9e'
   };
-  
+
   // For hybrid categories, return the color of the first category
   if (category.includes('-')) {
     const firstCategory = category.split('-')[0];
     return colorMap[firstCategory] || colorMap.general;
   }
-  
+
   return colorMap[category] || colorMap.general;
 }
 
@@ -43,14 +52,14 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     secondaryCategory,
     secondaryRecommendations,
     activeTab,
-    
+
     // Actions
     startQuiz,
     toggleOption,
     submitQuiz,
     setActiveTab,
     viewAlternative,
-    
+
     // Derived state
     isOptionSelected,
     getSelectionCount,
@@ -63,186 +72,81 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     <div className="quiz-container">
       {/* Intro Screen */}
       {currentScreen === 'intro' && (
-        <div className="quiz-intro">
-          <h2>{title}</h2>
-          <p>
-            Not sure which smartboard is right for you? Answer a few questions
-            and we'll match you with the best option.
-          </p>
-          <button onClick={startQuiz} className="cta-button">
-            Start Quiz
-          </button>
-        </div>
+        <QuizIntro
+          title={title}
+          onStart={startQuiz}
+          startButtonText="Start Quiz"
+          description="Not sure which smartboard is right for you? Answer a few questions and we'll match you with the best option."
+        />
       )}
 
       {/* Questions Screen */}
       {currentScreen === 'questions' && (
-        <div className="questions-container">
-          {/* Progress Indicator */}
-          <div className="quiz-progress">
-            {questions.filter((q) => getSelectionCount(q.id) > 0).length} of{' '}
-            {questions.length} questions answered
-          </div>
-
-          {/* All Questions (Vertical Layout) */}
-          {questions.map((question, index) => {
-            const isAnswered = getSelectionCount(question.id) > 0;
-            const isMulti = question.type === 'multi';
-            const maxSelections = question.maxSelections || 1;
-
-            return (
-              <div
-                key={question.id}
-                className={`quiz-question ${isAnswered ? 'question-answered' : ''}`}
-              >
-                <div className="question-header">
-                  <h3>Question {index + 1}</h3>
-                  <div className="question-status">
-                    {isAnswered ? 'Answered' : 'Needs answer'}
-                  </div>
-                </div>
-
-                <p>{question.question}</p>
-
-                <div className="options-container">
-                  {question.options.map((option, optionIndex) => {
-                    const optionId =
-                      option.id || `${question.id}-option-${optionIndex}`;
-                    const isSelected = isOptionSelected(question.id, option);
-
-                    return (
-                      <button
-                        key={option.id || `${question.id}-option-${optionIndex}`}
-                        className={`option-button ${isSelected ? 'selected' : ''}`}
-                        onClick={() =>
-                          toggleOption(
-                            question.id,
-                            option,
-                            isMulti,
-                            maxSelections
-                          )
-                        }
-                      >
-                        {option.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {isMulti && (
-                  <div className="selection-info">
-                    <p className="selection-hint">
-                      Select up to {maxSelections} options
-                    </p>
-                  </div>
-                )}
-
-                <hr className="question-divider" />
-              </div>
-            );
-          })}
-
-          {/* Submit Button */}
-          <div className="quiz-submit-container">
-            <button
-              className="cta-button"
-              disabled={!allQuestionsAnswered}
-              onClick={submitQuiz}
-            >
-              See Your Results
-            </button>
-            {!allQuestionsAnswered && (
-              <p className="submit-hint">
-                Please answer all questions to see your results.
-              </p>
-            )}
-          </div>
-        </div>
+        <QuizQuestions
+          questions={questions}
+          isOptionSelected={isOptionSelected}
+          getSelectionCount={getSelectionCount}
+          toggleOption={toggleOption}
+          allQuestionsAnswered={allQuestionsAnswered}
+          onSubmit={submitQuiz}
+        />
       )}
 
       {/* Results Screen */}
       {currentScreen === 'results' && result && (
         <div className="quiz-results">
-          <div className="result-header">
-            <h4>{results[result].title}</h4>
-            
-            {/* Add hybrid badge for hybrid results */}
-            {isHybridResult && (
-              <div className="hybrid-badge" style={{ backgroundColor: getCategoryColor(result) }}>
-                <span className="hybrid-badge-label">
-                  {result.includes('-') ? 'Hybrid Solution' : 'Mixed Use Case'}
-                </span>
-              </div>
-            )}
-            
-            <p>{results[result].description}</p>
-            
-            {/* Enhanced hybrid explanation */}
-            {isHybridResult && (
-              <div className="hybrid-explanation">
-                {result.includes('-') ? (
-                  /* For dedicated hybrid templates */
-                  <p className="hybrid-note">
-                    <strong>Why this recommendation:</strong> Your answers indicate needs that span multiple use cases.
-                    This specialized hybrid solution is designed specifically for environments that combine
-                    <span className="category-highlight" style={{ color: getCategoryColor(result.split('-')[0]) }}> {result.split('-')[0]}</span> and
-                    <span className="category-highlight" style={{ color: getCategoryColor(result.split('-')[1]) }}> {result.split('-')[1]}</span> requirements.
-                  </p>
-                ) : secondaryCategory ? (
-                  /* For hybrid without specific template */
-                  <div>
-                    <p className="hybrid-note">
-                      <strong>Mixed Use Case Detected:</strong> Your answers show needs that span both
-                      <span className="category-highlight" style={{ color: getCategoryColor(result) }}> {result}</span> and
-                      <span className="category-highlight" style={{ color: getCategoryColor(secondaryCategory) }}> {secondaryCategory}</span> categories.
-                    </p>
-                    
-                    {/* Visual hybrid breakdown bar */}
-                    <div className="hybrid-balance">
-                      <div className="balance-label">Category Balance:</div>
-                      <div className="balance-bars">
-                        <div 
-                          className="primary-bar" 
-                          style={{ 
-                            width: `${primaryRatio ? Math.round(primaryRatio * 100) : 60}%`,
-                            backgroundColor: getCategoryColor(result)
-                          }}
-                        >
-                          <span className="bar-label">{result}</span>
-                        </div>
-                        <div 
-                          className="secondary-bar"
-                          style={{ 
-                            width: `${secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%`,
-                            backgroundColor: getCategoryColor(secondaryCategory)
-                          }}
-                        >
-                          <span className="bar-label">{secondaryCategory}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            )}
-            
-            {secondaryRecommendations.length > 0 && (
-              <div className="recommendation-tabs">
-                <button 
-                  className={`tab-button ${activeTab === 'primary' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('primary')}
+          <QuizResultHeader
+            title={results[result].title}
+            description={results[result].description}
+            isHybridResult={isHybridResult}
+            result={result}
+            getCategoryColor={getCategoryColor}
+            secondaryCategory={secondaryCategory}
+          />
+
+          {/* Visual hybrid balance indicator */}
+          {isHybridResult && secondaryCategory && (
+            <div className="hybrid-balance">
+              <div className="balance-label">Category Balance:</div>
+              <div className="balance-bars">
+                <div
+                  className="primary-bar"
+                  style={{
+                    width: `${primaryRatio ? Math.round(primaryRatio * 100) : 60}%`,
+                    backgroundColor: getCategoryColor(result)
+                  }}
                 >
-                  Primary Recommendation
-                </button>
-                <button 
-                  className={`tab-button ${activeTab === 'alternatives' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('alternatives')}
+                  {result} ({primaryRatio ? Math.round(primaryRatio * 100) : 60}%)
+                </div>
+                <div
+                  className="secondary-bar"
+                  style={{
+                    width: `${secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%`,
+                    backgroundColor: getCategoryColor(secondaryCategory)
+                  }}
                 >
-                  Alternative Options ({secondaryRecommendations.length})
-                </button>
+                  {secondaryCategory} ({secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%)
+                </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+
+          {secondaryRecommendations.length > 0 && (
+            <div className="recommendation-tabs">
+              <button
+                className={`tab-button ${activeTab === 'primary' ? 'active' : ''}`}
+                onClick={() => setActiveTab('primary')}
+              >
+                Primary Recommendation
+              </button>
+              <button
+                className={`tab-button ${activeTab === 'alternatives' ? 'active' : ''}`}
+                onClick={() => setActiveTab('alternatives')}
+              >
+                Alternative Options ({secondaryRecommendations.length})
+              </button>
+            </div>
+          )}
 
           {activeTab === 'primary' ? (
             <div className="recommendation-details primary-recommendation">
@@ -257,241 +161,73 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                   {results[result].recommendation.touch}
                 </li>
                 <li>
-                  <strong>Camera:</strong> {results[result].recommendation.camera}
+                  <strong>Camera:</strong>{' '}
+                  {results[result].recommendation.camera}
                 </li>
                 <li>
                   <strong>Key Features:</strong>{' '}
                   {results[result].recommendation.features.join(', ')}
                 </li>
               </ul>
-              
-              {isHybridResult && !result.includes('-') && secondaryCategory && results[secondaryCategory] && (
-                <div className="alternative-recommendation">
-                  <h5>Alternative to Consider:</h5>
-                  <p>Based on your mixed needs, you might also be interested in:</p>
-                  <div className="secondary-option">
-                    <h6>{results[secondaryCategory].title}</h6>
-                    <p>{results[secondaryCategory].recommendation.features[0]}, {results[secondaryCategory].recommendation.features[1]}</p>
-                    <button 
-                      className="secondary-cta"
-                      onClick={() => viewAlternative(secondaryCategory)}
-                    >
-                      View This Option
-                    </button>
+
+              {isHybridResult &&
+                !result.includes('-') &&
+                secondaryCategory &&
+                results[secondaryCategory] && (
+                  <div className="alternative-recommendation">
+                    <h5>Alternative to Consider:</h5>
+                    <p>
+                      Based on your mixed needs, you might also be interested
+                      in:
+                    </p>
+                    <div className="secondary-option">
+                      <h6>{results[secondaryCategory].title}</h6>
+                      <p>
+                        {results[secondaryCategory].recommendation.features[0]},{' '}
+                        {results[secondaryCategory].recommendation.features[1]}
+                      </p>
+                      <button
+                        className="secondary-cta"
+                        onClick={() => viewAlternative(secondaryCategory)}
+                      >
+                        View This Option
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-              
-              <div className="product-recommendations">
-                <h5>Recommended Products:</h5>
-                <div className="product-list">
-                  {(() => {
-                    // Fetch actual product recommendations based on the quiz result category
-                    const { products } = getProductsForQuizResult(result);
-                    
-                    return products.length > 0 ? (
-                      // Display actual products with real data
-                      products.map((product, index) => (
-                        <div key={product.id} className="product-item">
-                          <div className="product-content">
-                            {product.image ? (
-                              <img 
-                                src={product.image} 
-                                alt={`${product.brand} ${product.model}`} 
-                                className="product-image" 
-                              />
-                            ) : (
-                              <div className="product-image-placeholder" />
-                            )}
-                            <div className="product-details">
-                              <div className="product-name">{product.brand} {product.model.split(' ')[0]}</div>
-                              <div className="product-specs">
-                                <span className="spec-item">{product.size}"</span>
-                                <span className="spec-item">{product.touchTechnology}</span>
-                              </div>
-                              <div className="product-match">
-                                <span className="match-label">Match:</span>
-                                <span className="match-score">{product.matchPercentage || 95}%</span>
-                              </div>
-                              <div className="product-features">
-                                {getRelevantFeatures(product, result).slice(0, 2).map((feature, i) => (
-                                  <div key={i} className="feature-tag">{feature}</div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          <button 
-                            className="view-product-button"
-                            onClick={() => {
-                              const brand = product.brand.toLowerCase().replace(/\s+/g, '-');
-                              window.location.href = `/products/smartboards/${brand}/${product.id}`;
-                            }}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      // Fallback to placeholder IDs if no real products are found
-                      results[result].productIds.map((productId, index) => (
-                        <div key={productId} className="product-item">
-                          <div className="product-placeholder">
-                            <div className="product-image-placeholder" />
-                            <div className="product-name">Model {productId}</div>
-                          </div>
-                          <button 
-                            className="view-product-button"
-                            onClick={() => window.location.href = `/products/${productId}`}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      ))
-                    );
-                  })()}
-                </div>
-              </div>
+                )}
+
+              <ProductRecommendations 
+                result={result} 
+                getProductsForQuizResult={getProductsForQuizResult}
+                getRelevantFeatures={getRelevantFeatures}
+              />
             </div>
           ) : (
-            <div className="recommendation-details alternative-recommendations">
-              <h5>Alternative Options Based On Your Answers</h5>
-              <p className="alternatives-explanation">
-                Based on your answers, these solutions might also be suitable with some trade-offs.
-                Each option is scored based on how well it matches your specific needs.
-              </p>
-              
-              <div className="alternatives-list">
-                {secondaryRecommendations.map((rec) => (
-                  <div key={rec.category} className="alternative-item">
-                    <div className="alternative-header">
-                      <h6>{results[rec.category].title}</h6>
-                      <div className="match-score">
-                        <div className="score-pill">{rec.scorePercent}% Match</div>
-                      </div>
-                    </div>
-                    
-                    <p className="alternative-reason">{rec.reason}</p>
-                    
-                    <div className="alternative-features">
-                      <h6>Key Features:</h6>
-                      <ul>
-                        {results[rec.category].recommendation.features.slice(0, 3).map((feature, i) => (
-                          <li key={i}>{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="alternative-product">
-                      {(() => {
-                        // Get recommended product for this alternative category
-                        const { products } = getProductsForQuizResult(rec.category);
-                        const product = products.length > 0 ? products[0] : null;
-                        
-                        return product ? (
-                          // Display actual product data
-                          <div className="product-content">
-                            {product.image ? (
-                              <img 
-                                src={product.image} 
-                                alt={`${product.brand} ${product.model}`} 
-                                className="product-image" 
-                              />
-                            ) : (
-                              <div className="product-image-placeholder" />
-                            )}
-                            <div className="product-details">
-                              <div className="product-name">{product.brand} {product.model.split(' ')[0]}</div>
-                              <div className="product-specs">
-                                <span className="spec-item">{product.size}"</span>
-                                <span className="spec-item">{product.touchTechnology}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          // Fallback to placeholder
-                          <div className="product-placeholder">
-                            <div className="product-image-placeholder" />
-                            <div className="product-name">Model {results[rec.category].productIds[0]}</div>
-                          </div>
-                        );
-                      })()}
-                      
-                      <div className="alternative-actions">
-                        <button 
-                          className="view-details-button"
-                          onClick={() => viewAlternative(rec.category)}
-                        >
-                          View Full Details
-                        </button>
-                        <button 
-                          className="product-button"
-                          onClick={() => {
-                            const { products } = getProductsForQuizResult(rec.category);
-                            const product = products.length > 0 ? products[0] : null;
-                            
-                            if (product) {
-                              const brand = product.brand.toLowerCase().replace(/\s+/g, '-');
-                              window.location.href = `/products/smartboards/${brand}/${product.id}`;
-                            } else {
-                              window.location.href = `/products/${results[rec.category].productIds[0]}`;
-                            }
-                          }}
-                        >
-                          See Product
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <button 
-                className="back-to-primary"
-                onClick={() => setActiveTab('primary')}
-              >
-                Back to Primary Recommendation
-              </button>
-            </div>
+            <AlternativeRecommendations
+              secondaryRecommendations={secondaryRecommendations}
+              results={results}
+              getProductsForQuizResult={getProductsForQuizResult}
+              getRelevantFeatures={getRelevantFeatures}
+            />
           )}
-          
+
           {categoryScores && (
             <div className="score-breakdown">
               <h5>Compatibility Score Breakdown:</h5>
-              <div className="score-bars">
-                {Object.entries(categoryScores).map(([category, score]) => {
-                  // Calculate percentage for visual representation
-                  const maxScore = Math.max(...Object.values(categoryScores));
-                  const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
-                  const isTopScore = score === maxScore;
-                  
-                  return (
-                    <div key={category} className="score-bar-container">
-                      <div className="score-label">
-                        <span className="category-name">
-                          {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </span>
-                        <span className="score-value">
-                          {score.toFixed(1)}
-                        </span>
-                      </div>
-                      <div className="score-bar-wrapper">
-                        <div 
-                          className={`score-bar ${isTopScore ? 'top-score' : ''}`}
-                          style={{ width: `${percentage}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              <CategoryScores 
+                categoryScores={categoryScores} 
+                getCategoryColor={getCategoryColor} 
+              />
               <p className="score-explanation">
-                This recommendation is based on weighted analysis of your answers.
-                {isHybridResult && result.includes('-') && (
-                  ' This hybrid solution addresses your mixed needs across multiple categories.'
-                )}
-                {isHybridResult && !result.includes('-') && secondaryCategory && (
-                  ` Consider exploring our ${secondaryCategory} options as well for supplementary features.`
-                )}
+                This recommendation is based on weighted analysis of your
+                answers.
+                {isHybridResult &&
+                  result.includes('-') &&
+                  ' This hybrid solution addresses your mixed needs across multiple categories.'}
+                {isHybridResult &&
+                  !result.includes('-') &&
+                  secondaryCategory &&
+                  ` Consider exploring our ${secondaryCategory} options as well for supplementary features.`}
               </p>
             </div>
           )}

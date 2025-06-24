@@ -22,19 +22,24 @@ export const QuizResultHeader: FC<QuizResultHeaderProps> = ({
   secondaryCategory,
 }) => {
   return (
-    <div className="result-header">
-      <h4>{title}</h4>
+    <header className="result-header" role="banner" aria-labelledby="quiz-result-title">
+      <h4 id="quiz-result-title" aria-live="polite">{title}</h4>
       
       {/* Add hybrid badge for hybrid results */}
       {isHybridResult && (
-        <div className="hybrid-badge" style={{ backgroundColor: getCategoryColor(result) }}>
+        <div 
+          className="hybrid-badge" 
+          style={{ backgroundColor: getCategoryColor(result) }}
+          role="status"
+          aria-label={`${result.includes('-') ? 'Hybrid Solution' : 'Mixed Use Case'} recommendation`}
+        >
           <span className="hybrid-badge-label">
             {result.includes('-') ? 'Hybrid Solution' : 'Mixed Use Case'}
           </span>
         </div>
       )}
       
-      <p>{description}</p>
+      <p aria-describedby="quiz-result-title">{description}</p>
       
       {/* Enhanced hybrid explanation */}
       {isHybridResult && (
@@ -81,6 +86,6 @@ export const QuizResultHeader: FC<QuizResultHeaderProps> = ({
           ) : null}
         </div>
       )}
-    </div>
+    </header>
   );
 };

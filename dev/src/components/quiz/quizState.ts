@@ -324,7 +324,10 @@ export function useQuizState(quizData: QuizData) {
   const actions = useMemo(() => {
     return {
       // Start or restart quiz
-      startQuiz: () => dispatch({ type: 'START_QUIZ' }),
+      startQuiz: () => {
+        dispatch({ type: 'START_QUIZ' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
       
       // Toggle option selection
       toggleOption: (
@@ -349,6 +352,7 @@ export function useQuizState(quizData: QuizData) {
           type: 'SUBMIT_QUIZ',
           quizData // Pass quizData to access questions and results
         } as QuizAction);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       
       // Set active tab

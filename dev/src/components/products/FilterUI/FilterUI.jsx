@@ -8,8 +8,7 @@ export default function FilterUI({ allModels, productType = 'smartboards' }) {
     brands: [],
     sizes: [],
     touchTechs: [],
-    contrastRatios: [],
-    priceRanges: []
+    contrastRatios: []
   });
   const [mobileFiltersVisible, setMobileFiltersVisible] = useState(false);
 
@@ -55,4 +54,4 @@ export default function FilterUI({ allModels, productType = 'smartboards' }) {
       </div>
     </div>
   );
-}
+};

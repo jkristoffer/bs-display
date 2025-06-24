@@ -77,6 +77,20 @@ export interface QuizState {
   secondaryRatio?: number;
 }
 
+// Product Type
+export interface Product {
+  id: string;
+  brand: string;
+  model: string;
+  size: number;
+  touchTechnology?: string;
+  resolution?: string;
+  features?: string[];
+  image?: string;
+  matchPercentage?: number;
+  matchScore?: number;
+}
+
 // Quiz Action Types
 export type QuizAction =
   | { type: 'START_QUIZ' }

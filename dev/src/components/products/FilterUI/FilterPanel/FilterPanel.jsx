@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import FilterOption from './FilterOption';
 import styles from './FilterPanel.module.scss';
 
@@ -14,15 +14,47 @@ export default function FilterPanel({ allModels, onFilterChange }) {
     contrastRatio: false
   });
 
-  // Count models for each filter option
-  const getBrandCount = (brand) =>
-    allModels.filter((m) => m.brand === brand).length;
-  const getSizeCount = (size) =>
-    allModels.filter((m) => m.size === size).length;
-  const getTouchTechCount = (tech) =>
-    allModels.filter((m) => m.touchTechnology === tech).length;
-  const getContrastRatioCount = (ratio) =>
-    allModels.filter((m) => m.contrastRatio === ratio).length;
+  // Optimized count calculations with memoization
+  const brandCounts = useMemo(() => {
+    const counts = {};
+    allModels.forEach(model => {
+      counts[model.brand] = (counts[model.brand] || 0) + 1;
+    });
+    return counts;
+  }, [allModels]);
+
+  const sizeCounts = useMemo(() => {
+    const counts = {};
+    allModels.forEach(model => {
+      counts[model.size] = (counts[model.size] || 0) + 1;
+    });
+    return counts;
+  }, [allModels]);
+
+  const touchTechCounts = useMemo(() => {
+    const counts = {};
+    allModels.forEach(model => {
+      if (model.touchTechnology) {
+        counts[model.touchTechnology] = (counts[model.touchTechnology] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [allModels]);
+
+  const contrastRatioCounts = useMemo(() => {
+    const counts = {};
+    allModels.forEach(model => {
+      if (model.contrastRatio) {
+        counts[model.contrastRatio] = (counts[model.contrastRatio] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [allModels]);
+
+  const getBrandCount = (brand) => brandCounts[brand] || 0;
+  const getSizeCount = (size) => sizeCounts[size] || 0;
+  const getTouchTechCount = (tech) => touchTechCounts[tech] || 0;
+  const getContrastRatioCount = (ratio) => contrastRatioCounts[ratio] || 0;
 
   useEffect(() => {
     onFilterChange({
@@ -51,7 +83,6 @@ export default function FilterPanel({ allModels, onFilterChange }) {
     setSizes([]);
     setTouchTechs([]);
     setContrastRatios([]);
-    setPriceRanges([]);
   };
 
   // Extract unique values for each filter

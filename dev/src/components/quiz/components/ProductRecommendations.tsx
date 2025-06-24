@@ -27,7 +27,7 @@ export const ProductRecommendations: FC<ProductRecommendationsProps> = ({
     <section className="product-recommendations" aria-labelledby="product-recommendations-title">
       <h5 id="product-recommendations-title">Recommended Products:</h5>
       <div className="product-list" role="list">
-        {products.map((product, index) => {
+        {products.map((product) => {
           const matchPercentage = product.matchPercentage || 95;
           return (
             <article 

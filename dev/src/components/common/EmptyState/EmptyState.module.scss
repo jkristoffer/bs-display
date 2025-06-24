@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  min-height: 300px;
+}
+
+.icon {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-tertiary);
+  font-size: 3rem;
+}
+
+.title {
+  margin: 0 0 1rem 0;
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.message {
+  margin: 0 0 2rem 0;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.suggestions {
+  margin-bottom: 2rem;
+}
+
+.suggestionsTitle {
+  margin: 0 0 1rem 0;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.suggestionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestionItem {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  
+  &:before {
+    content: "• ";
+    color: var(--color-accent-primary);
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+}
+
+.actionButton {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-accent-primary-dark, #007f75);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+}

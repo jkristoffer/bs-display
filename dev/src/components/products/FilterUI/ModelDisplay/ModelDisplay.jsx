@@ -3,32 +3,14 @@ import ModelCard from './ModelCard';
 import styles from './ModelDisplay.module.scss';
 import { FaThLarge, FaList } from 'react-icons/fa';
 import { TfiLayoutGrid3Alt } from 'react-icons/tfi';
+import { sortProducts } from '../../../../utils/productUtils';
 
 export default function ModelDisplay({ models, productType = 'smartboards' }) {
   const [sortBy, setSortBy] = useState('default');
   const [displayMode, setDisplayMode] = useState('grid-3'); // 'grid-3', 'grid-2', or 'list'
 
-  // Sort models based on selected criteria
-  const sortedModels = [...models].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-low':
-        // Extract numeric value from price range (assuming format like "$2,000 - $2,500")
-        const aPrice = parseInt(a.priceRange.replace(/[^0-9]/g, ''));
-        const bPrice = parseInt(b.priceRange.replace(/[^0-9]/g, ''));
-        return aPrice - bPrice;
-      case 'price-high':
-        const aPriceHigh = parseInt(a.priceRange.replace(/[^0-9]/g, ''));
-        const bPriceHigh = parseInt(b.priceRange.replace(/[^0-9]/g, ''));
-        return bPriceHigh - aPriceHigh;
-      case 'size-small':
-        return a.size - b.size;
-      case 'size-large':
-        return b.size - a.size;
-      default:
-        // Default sorting by brand and then model
-        return a.brand.localeCompare(b.brand) || a.model.localeCompare(b.model);
-    }
-  });
+  // Sort models using optimized utility function
+  const sortedModels = sortProducts(models, sortBy);
 
   return (
     <div className={styles.container}>
@@ -97,4 +79,4 @@ export default function ModelDisplay({ models, productType = 'smartboards' }) {
       )}
     </div>
   );
-}
+};

@@ -1,7 +1,10 @@
+import React, { useState } from 'react';
 import styles from './ModelCard.module.scss';
 import { routes } from '../../../../utils/routes';
 
-const ModelCard = ({ model, productType = 'smartboards' }) => {
+const ModelCard = ({ model, displayMode, productType = 'smartboards' }) => {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
   const {
     id,
     brand,
@@ -14,26 +17,39 @@ const ModelCard = ({ model, productType = 'smartboards' }) => {
   } = model;
 
   const viewDetails = () => {
-    window.location.href = routes.products[productType].product(brand, id);
+    // Use proper navigation instead of window.location
+    const url = routes.products[productType].product(brand, id);
+    window.open(url, '_self');
   };
 
   const requestQuote = () => {
-    window.location.href = routes.contact;
+    // Use proper navigation instead of window.location
+    window.open(routes.contact, '_self');
   };
 
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
+        {imageLoading && (
+          <div className={styles.imagePlaceholder}>
+            <div className={styles.loadingShimmer}></div>
+          </div>
+        )}
         <img
-          src={image || '/assets/iboard-placeholder.jpeg'}
+          src={imageError ? '/assets/iboard-placeholder.jpeg' : (image || '/assets/iboard-placeholder.jpeg')}
           alt={modelName}
-          className={styles.image}
+          className={`${styles.image} ${imageLoading ? styles.imageLoading : ''}`}
           loading="lazy"
+          onLoad={() => setImageLoading(false)}
+          onError={() => {
+            setImageError(true);
+            setImageLoading(false);
+          }}
         />
         <div className={styles.brandBadge}>{brand}</div>
       </div>
 
-      <div className={styles.content}>
+      <div className={`${styles.content} ${displayMode ? styles[displayMode] : ''}`}>
         <h4 className={styles.title}>
           {brand} – {modelName}
         </h4>

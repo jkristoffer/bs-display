@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Product } from '../../quiz/types';
 import styles from './ProductCard.module.scss';
 
@@ -36,6 +36,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setImageLoading(false);
+    }
+  }, []);
 
   const {
     id,
@@ -88,6 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
         <img
+          ref={imgRef}
           src={
             imageError
               ? '/assets/iboard-placeholder.jpeg'

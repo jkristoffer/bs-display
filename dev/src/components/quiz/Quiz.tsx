@@ -52,6 +52,8 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     secondaryCategory,
     secondaryRecommendations,
     activeTab,
+    primaryRatio,
+    secondaryRatio,
 
     // Actions
     startQuiz,
@@ -104,30 +106,10 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
             secondaryCategory={secondaryCategory}
           />
 
-          {/* Visual hybrid balance indicator */}
+          {/* Simple hybrid indicator */}
           {isHybridResult && secondaryCategory && (
-            <div className="hybrid-balance">
-              <div className="balance-label">Category Balance:</div>
-              <div className="balance-bars">
-                <div
-                  className="primary-bar"
-                  style={{
-                    width: `${primaryRatio ? Math.round(primaryRatio * 100) : 60}%`,
-                    backgroundColor: getCategoryColor(result)
-                  }}
-                >
-                  {result} ({primaryRatio ? Math.round(primaryRatio * 100) : 60}%)
-                </div>
-                <div
-                  className="secondary-bar"
-                  style={{
-                    width: `${secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%`,
-                    backgroundColor: getCategoryColor(secondaryCategory)
-                  }}
-                >
-                  {secondaryCategory} ({secondaryRatio ? Math.round(secondaryRatio * 100) : 40}%)
-                </div>
-              </div>
+            <div className="hybrid-notice">
+              <p>This recommendation also has strong compatibility with <strong>{secondaryCategory}</strong> needs.</p>
             </div>
           )}
 
@@ -219,15 +201,9 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                 getCategoryColor={getCategoryColor} 
               />
               <p className="score-explanation">
-                This recommendation is based on weighted analysis of your
-                answers.
-                {isHybridResult &&
-                  result.includes('-') &&
-                  ' This hybrid solution addresses your mixed needs across multiple categories.'}
-                {isHybridResult &&
-                  !result.includes('-') &&
-                  secondaryCategory &&
-                  ` Consider exploring our ${secondaryCategory} options as well for supplementary features.`}
+                This recommendation is based on your quiz answers.
+                {isHybridResult && secondaryCategory &&
+                  ` You may also want to consider ${secondaryCategory} options.`}
               </p>
             </div>
           )}

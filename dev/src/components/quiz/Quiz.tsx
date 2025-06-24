@@ -44,7 +44,6 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
   // Use the centralized state management hook
   const {
     // State
-    selectedOptionIds,
     currentScreen,
     result,
     isHybridResult,
@@ -52,8 +51,6 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     secondaryCategory,
     secondaryRecommendations,
     activeTab,
-    primaryRatio,
-    secondaryRatio,
 
     // Actions
     startQuiz,

@@ -722,13 +722,23 @@
       border-radius: 12px 12px 0 0;
     }
     
-    // Specific styling for the "Recommended Setup" section
-    h5:first-child + ul {
+    // Specific styling for the "Recommended Setup" section only
+    > h5:first-child {
+      color: var(--color-text-primary);
+      font-size: var(--font-size-body-large);
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 2px solid var(--color-accent-primary);
+      padding-bottom: var(--spacing-xs);
+      display: inline-block;
+    }
+    
+    > h5:first-child + ul {
       list-style: none;
       padding: 0;
       margin: 0;
       
-      li {
+      > li {
         padding: var(--spacing-sm) 0;
         border-bottom: 1px solid rgba(var(--color-border-rgb, 221, 221, 221), 0.3);
         display: flex;
@@ -738,29 +748,14 @@
           border-bottom: none;
         }
         
-        strong {
+        > strong {
           min-width: 140px;
           color: var(--color-accent-primary);
           font-weight: 600;
           margin-right: var(--spacing-md);
           flex-shrink: 0;
         }
-        
-        span {
-          color: var(--color-text-primary);
-          line-height: 1.4;
-        }
       }
-    }
-    
-    h5:first-child {
-      color: var(--color-text-primary);
-      font-size: var(--font-size-body-large);
-      font-weight: 600;
-      margin-bottom: var(--spacing-md);
-      border-bottom: 2px solid var(--color-accent-primary);
-      padding-bottom: var(--spacing-xs);
-      display: inline-block;
     }
   }
 

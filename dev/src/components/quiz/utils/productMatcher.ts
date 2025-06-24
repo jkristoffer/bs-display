@@ -1,4 +1,4 @@
-import type { CategoryType } from '../types';
+import type { CategoryType, Product } from '../types';
 import { allModels } from '../../../data/models.all';
 
 /**
@@ -166,9 +166,9 @@ const categoryToProductCriteria: Record<string, ProductMatchingCriteria> = {
  * @param criteria - The matching criteria
  * @returns A score from 0-100 indicating match quality
  */
-function scoreProductMatch(product: any, criteria: ProductMatchingCriteria): number {
+function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria): number {
   let score = 0;
-  const maxScore = 100;
+  // const maxScore = 100; // Keep for potential future use
   
   // Category weights for different attributes
   const weights = {
@@ -229,7 +229,7 @@ function scoreProductMatch(product: any, criteria: ProductMatchingCriteria): num
  * @param limit - Maximum number of products to return
  * @returns An array of matching products sorted by match quality
  */
-export function findMatchingProducts(category: CategoryType, limit = 3): any[] {
+export function findMatchingProducts(category: CategoryType, limit = 3): Product[] {
   // Get the criteria for this category
   const criteria = categoryToProductCriteria[category];
   
@@ -263,7 +263,7 @@ export function findMatchingProducts(category: CategoryType, limit = 3): any[] {
  * @param category - The quiz category
  * @returns An array of the most relevant features for this category
  */
-export function getRelevantFeatures(product: any, category: CategoryType): string[] {
+export function getRelevantFeatures(product: Product, category: CategoryType): string[] {
   if (!product || !product.features) return [];
   
   const featurePriorities: Record<string, string[]> = {
@@ -316,7 +316,7 @@ export function getRelevantFeatures(product: any, category: CategoryType): strin
  * This is the main export that the Quiz component will use
  */
 export interface ProductResult {
-  products: any[];
+  products: Product[];
   allFeatures: string[];
 }
 

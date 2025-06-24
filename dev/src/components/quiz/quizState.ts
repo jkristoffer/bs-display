@@ -71,7 +71,8 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
     }
 
     case 'SUBMIT_QUIZ': {
-      const { quizData } = action as any; // Passing quiz data implicitly
+      const submitAction = action as QuizAction & { quizData: QuizData };
+      const { quizData } = submitAction;
       
       // Calculate results
       const hybridResult = calculateHybridResults(

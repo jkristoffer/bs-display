@@ -101,6 +101,6 @@ export type QuizAction =
       isMulti: boolean;
       maxSelections: number;
     }
-  | { type: 'SUBMIT_QUIZ' }
+  | { type: 'SUBMIT_QUIZ'; quizData?: QuizData }
   | { type: 'SET_ACTIVE_TAB'; tab: 'primary' | 'alternatives' }
   | { type: 'VIEW_ALTERNATIVE'; category: string };

@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { QuizResult } from '../types';
+import type { QuizResult, Product } from '../types';
 import { ProductRecommendations } from './ProductRecommendations';
 
 interface AlternativeRecommendationsProps {
@@ -9,8 +9,8 @@ interface AlternativeRecommendationsProps {
     reason: string;
   }>;
   results: Record<string, QuizResult>;
-  getProductsForQuizResult: (result: string) => { products: any[] };
-  getRelevantFeatures: (product: any, result: string) => string[];
+  getProductsForQuizResult: (result: string) => { products: Product[] };
+  getRelevantFeatures: (product: Product, result: string) => string[];
 }
 
 /**

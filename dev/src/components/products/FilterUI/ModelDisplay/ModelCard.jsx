@@ -1,24 +1,11 @@
-import React, { useState } from 'react';
-import styles from './ModelCard.module.scss';
+import React from 'react';
+import { ProductCard } from '../../../common/ProductCard';
 import { routes } from '../../../../utils/routes';
 
 const ModelCard = ({ model, displayMode, productType = 'smartboards' }) => {
-  const [imageError, setImageError] = useState(false);
-  const [imageLoading, setImageLoading] = useState(true);
-  const {
-    id,
-    brand,
-    model: modelName,
-    size,
-    os,
-    touchTechnology,
-    features,
-    image
-  } = model;
-
   const viewDetails = () => {
     // Use proper navigation instead of window.location
-    const url = routes.products[productType].product(brand, id);
+    const url = routes.products[productType].product(model.brand, model.id);
     window.open(url, '_self');
   };
 
@@ -27,65 +14,48 @@ const ModelCard = ({ model, displayMode, productType = 'smartboards' }) => {
     window.open(routes.contact, '_self');
   };
 
+  // Convert model data to Product interface format
+  const productData = {
+    id: model.id,
+    brand: model.brand,
+    model: model.model,
+    size: model.size,
+    touchTechnology: model.touchTechnology,
+    features: model.features || [],
+    image: model.image
+  };
+
+  // Create enhanced features list that includes OS
+  const getEnhancedFeatures = (product) => {
+    const baseFeatures = product.features || [];
+    const enhancedFeatures = [...baseFeatures];
+    
+    // Add OS as a feature if it exists and isn't already in features
+    if (model.os && !baseFeatures.some(f => f.toLowerCase().includes('android') || f.toLowerCase().includes('windows'))) {
+      enhancedFeatures.unshift(`${model.os} Operating System`);
+    }
+    
+    return enhancedFeatures;
+  };
+
   return (
-    <div className={styles.card}>
-      <div className={styles.imageContainer}>
-        {imageLoading && (
-          <div className={styles.imagePlaceholder}>
-            <div className={styles.loadingShimmer}></div>
-          </div>
-        )}
-        <img
-          src={imageError ? '/assets/iboard-placeholder.jpeg' : (image || '/assets/iboard-placeholder.jpeg')}
-          alt={modelName}
-          className={`${styles.image} ${imageLoading ? styles.imageLoading : ''}`}
-          loading="lazy"
-          onLoad={() => setImageLoading(false)}
-          onError={() => {
-            setImageError(true);
-            setImageLoading(false);
-          }}
-        />
-        <div className={styles.brandBadge}>{brand}</div>
-      </div>
-
-      <div className={`${styles.content} ${displayMode ? styles[displayMode] : ''}`}>
-        <h4 className={styles.title}>
-          {brand} – {modelName}
-        </h4>
-
-        <div className={styles.specs}>
-          <span className={styles.spec}>{size}"</span>
-          <span className={styles.spec}>{touchTechnology}</span>
-          <span className={styles.spec}>{os}</span>
-        </div>
-
-        <div className={styles.featuresContainer}>
-          <h5 className={styles.featuresTitle}>Key Features</h5>
-          <ul className={styles.featureList}>
-            {features.slice(0, 5).map((feature, index) => (
-              <li key={index} className={styles.feature}>
-                {feature}
-              </li>
-            ))}
-          </ul>
-          {features.length > 5 && (
-            <div className={styles.moreFeatures}>
-              +{features.length - 5} more features
-            </div>
-          )}
-        </div>
-
-        <div className={styles.actions}>
-          <button onClick={viewDetails} className={styles.detailsButton}>
-            View Details
-          </button>
-          <button onClick={requestQuote} className={styles.quoteButton}>
-            Request Quote
-          </button>
-        </div>
-      </div>
-    </div>
+    <ProductCard
+      product={productData}
+      displayMode={displayMode}
+      productType={productType}
+      maxFeatures={5}
+      getRelevantFeatures={getEnhancedFeatures}
+      actions={{
+        viewDetails: {
+          label: 'View Details',
+          onClick: viewDetails
+        },
+        requestQuote: {
+          label: 'Request Quote',
+          onClick: requestQuote
+        }
+      }}
+    />
   );
 };
 

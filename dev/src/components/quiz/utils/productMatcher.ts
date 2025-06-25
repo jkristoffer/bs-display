@@ -181,7 +181,7 @@ function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria):
   // Score touch technology (30%)
   if (criteria.touchTechnology && product.touchTechnology) {
     const matchingTech = criteria.touchTechnology.some(tech => 
-      product.touchTechnology.toLowerCase().includes(tech.toLowerCase())
+      product.touchTechnology?.toLowerCase().includes(tech.toLowerCase())
     );
     if (matchingTech) score += weights.touchTechnology;
   }
@@ -213,7 +213,7 @@ function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria):
   }
   
   // Score resolution (15%)
-  if (criteria.resolution && criteria.resolution.includes(product.resolution)) {
+  if (criteria.resolution && product.resolution && criteria.resolution.includes(product.resolution)) {
     score += weights.resolution;
   } else if (product.resolution && product.resolution.includes('3840x2160')) {
     // Bonus for 4K UHD
@@ -260,11 +260,14 @@ export function findMatchingProducts(category: CategoryType, limit = 3): Product
 /**
  * Extract important features from a product based on category
  * @param product - The product object
- * @param category - The quiz category
+ * @param context - The quiz category or context string
  * @returns An array of the most relevant features for this category
  */
-export function getRelevantFeatures(product: Product, category: CategoryType): string[] {
+export function getRelevantFeatures(product: Product, context?: string | CategoryType): string[] {
   if (!product || !product.features) return [];
+  
+  // Default to 'general' if no context provided
+  const category = context || 'general';
   
   const featurePriorities: Record<string, string[]> = {
     education: [
@@ -325,7 +328,8 @@ export interface ProductResult {
  * @param category - The quiz result category
  * @returns Object containing matching products and relevant features
  */
-export function getProductsForQuizResult(category: CategoryType): ProductResult {
+export function getProductsForQuizResult(result: string | CategoryType): ProductResult {
+  const category = result as CategoryType; // Cast to CategoryType for internal use
   const products = findMatchingProducts(category, 3);
   
   // Collect all relevant features across products

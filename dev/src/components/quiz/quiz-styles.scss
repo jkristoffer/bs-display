@@ -1,6 +1,66 @@
 // Quiz component styles
 @use 'src/styles/index.scss' as *;
 
+// Error Boundary Styles
+.quiz-error-boundary {
+  padding: var(--spacing-xl);
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  margin: var(--spacing-lg) 0;
+
+  .quiz-error-content {
+    max-width: 500px;
+    margin: 0 auto;
+
+    h3 {
+      color: var(--color-text-primary);
+      font-size: var(--font-size-h3);
+      margin-bottom: var(--spacing-md);
+    }
+
+    p {
+      color: var(--color-text-primary);
+      margin-bottom: var(--spacing-lg);
+      opacity: 0.8;
+    }
+  }
+
+  .quiz-error-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .quiz-error-details {
+    text-align: left;
+    margin-top: var(--spacing-lg);
+    
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+  }
+
+  .quiz-error-stack {
+    background: #f1f3f4;
+    padding: var(--spacing-md);
+    border-radius: 4px;
+    font-size: var(--font-size-small);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
 .quiz-container {
   max-width: 960px;
   margin: 0 auto;

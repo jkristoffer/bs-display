@@ -1,35 +1,23 @@
-import { useQuizState } from './quizState';
+import React, { useMemo, useCallback } from 'react';
+import { 
+  useQuizState,
+  ProductMatchingService,
+  QuizConfigHelper,
+  QuizIntro,
+  QuizQuestions,
+  QuizResultHeader,
+  ProductRecommendations,
+  AlternativeRecommendations,
+  CategoryScores
+} from './index';
 import type { QuizData } from './types';
-import {
-  getProductsForQuizResult,
-  getRelevantFeatures
-} from './utils/productMatcher';
-import { QuizIntro } from './components/QuizIntro';
-import { QuizQuestions } from './components/QuizQuestions';
-import { QuizResultHeader } from './components/QuizResultHeader';
-import { ProductRecommendations } from './components/ProductRecommendations';
-import { AlternativeRecommendations } from './components/AlternativeRecommendations';
-import { CategoryScores } from './components/CategoryScores';
 import './quiz-styles.scss';
 
 /**
  * Utility function to get a consistent color for each category
  */
 function getCategoryColor(category: string): string {
-  const colorMap: Record<string, string> = {
-    education: 'var(--color-accent-primary)',
-    corporate: 'var(--color-accent-secondary)',
-    creative: '#e91e63',
-    general: '#9e9e9e'
-  };
-
-  // For hybrid categories, return the color of the first category
-  if (category.includes('-')) {
-    const firstCategory = category.split('-')[0];
-    return colorMap[firstCategory] || colorMap.general;
-  }
-
-  return colorMap[category] || colorMap.general;
+  return QuizConfigHelper.getCategoryColor(category);
 }
 
 interface FinalQuizProps {
@@ -67,6 +55,26 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
 
   const { title, questions, results } = quizData;
 
+  // Memoized product fetching functions for performance
+  const getProductsForQuizResult = useCallback(
+    (resultKey: string) => ProductMatchingService.getRecommendations(resultKey),
+    []
+  );
+
+  const getRelevantFeatures = useCallback(
+    (product: any, context?: string) => ProductMatchingService.getRelevantFeatures(product, context),
+    []
+  );
+
+  // Memoized results data to prevent unnecessary re-renders
+  const memoizedResultsData = useMemo(() => ({
+    result,
+    isHybridResult,
+    secondaryCategory,
+    secondaryRecommendations,
+    categoryScores
+  }), [result, isHybridResult, secondaryCategory, secondaryRecommendations, categoryScores]);
+
   return (
     <div className="quiz-container">
       {/* Intro Screen */}
@@ -100,7 +108,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
             isHybridResult={isHybridResult}
             result={result}
             getCategoryColor={getCategoryColor}
-            secondaryCategory={secondaryCategory}
+            secondaryCategory={secondaryCategory || undefined}
           />
 
           {/* Simple hybrid indicator */}

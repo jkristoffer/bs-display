@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import type { Product } from '../types';
-import { ProductCard } from '../../common/ProductCard';
+import { ProductCard } from '../../common/ProductCard/ProductCard';
 
 interface ProductRecommendationsProps {
   result: string;
-  getProductsForQuizResult: (result: string) => { products: Product[] };
-  getRelevantFeatures: (product: Product, result: string) => string[];
+  getProductsForQuizResult: (result: string) => { products: Product[]; allFeatures?: string[] };
+  getRelevantFeatures: (product: Product, context?: string) => string[];
 }
 
 /**

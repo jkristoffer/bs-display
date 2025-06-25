@@ -91,6 +91,9 @@ export interface Product {
   matchScore?: number;
 }
 
+// Export alias for backwards compatibility
+export type QuizResult = Result;
+
 // Quiz Action Types
 export type QuizAction =
   | { type: 'START_QUIZ' }

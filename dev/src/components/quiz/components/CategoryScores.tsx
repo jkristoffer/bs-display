@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import React, { type FC, memo } from 'react';
 
 interface CategoryScoresProps {
   categoryScores: Record<string, number> | null;
@@ -9,7 +9,7 @@ interface CategoryScoresProps {
  * CategoryScores component that displays a visual representation of category scores
  * from the quiz results.
  */
-export const CategoryScores: FC<CategoryScoresProps> = ({
+export const CategoryScores: FC<CategoryScoresProps> = memo(({
   categoryScores,
   getCategoryColor,
 }) => {
@@ -54,4 +54,4 @@ export const CategoryScores: FC<CategoryScoresProps> = ({
       </div>
     </div>
   );
-};
+});

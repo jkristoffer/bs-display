@@ -1,8 +1,11 @@
 ---
 // Import quiz data from JSON file
-import quizData from './quizdata.json';
+import quizDataRaw from './quizdata.json';
+import type { QuizData } from './types';
 import { FinalQuiz } from './Quiz';
 import PageHeader from '../common/page-header/index.astro';
+
+const quizData = quizDataRaw as QuizData;
 ---
 
 <PageHeader

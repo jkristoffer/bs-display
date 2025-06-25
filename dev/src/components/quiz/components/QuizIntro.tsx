@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import React, { type FC, memo } from 'react';
 
 interface QuizIntroProps {
   title: string;
@@ -11,7 +11,7 @@ interface QuizIntroProps {
  * QuizIntro component that displays the introduction screen for the quiz
  * with a title, description, and start button.
  */
-export const QuizIntro: FC<QuizIntroProps> = ({
+export const QuizIntro: FC<QuizIntroProps> = memo(({
   title,
   onStart,
   startButtonText = 'Start Quiz',
@@ -26,4 +26,4 @@ export const QuizIntro: FC<QuizIntroProps> = ({
       </button>
     </div>
   );
-};
+});

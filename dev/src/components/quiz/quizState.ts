@@ -9,6 +9,14 @@ import type {
   SecondaryRecommendation
 } from './types';
 
+// Type guard for valid category keys
+const VALID_CATEGORIES = ['education', 'corporate', 'creative', 'general'] as const;
+type ValidCategoryKey = typeof VALID_CATEGORIES[number];
+
+function isValidCategoryKey(key: string): key is ValidCategoryKey {
+  return VALID_CATEGORIES.includes(key as ValidCategoryKey);
+}
+
 /**
  * Initial state for the quiz
  */
@@ -288,7 +296,7 @@ function calculateWeightedScores(
         return thisOptionId === optionId;
       });
       
-      if (option && categoryScores[option.value] !== undefined) {
+      if (option && isValidCategoryKey(option.value)) {
         categoryScores[option.value] += questionWeight;
       }
     } 
@@ -303,7 +311,7 @@ function calculateWeightedScores(
           return thisOptionId === optionId;
         });
         
-        if (option && categoryScores[option.value] !== undefined) {
+        if (option && isValidCategoryKey(option.value)) {
           categoryScores[option.value] += weightPerSelection;
         }
       });

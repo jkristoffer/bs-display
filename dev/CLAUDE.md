@@ -77,10 +77,53 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 
 #### Creating New Components
 
-- Follow existing patterns: Astro for static, React for interactive
-- Use TypeScript interfaces for props
-- Include component-specific SCSS modules
-- Import global styles via the Vite SCSS configuration
+- **Follow development standards**: See `/src/project-management/standards/` for detailed guidelines
+- **Component structure**: Use TypeScript (.tsx), SCSS modules, and proper exports
+- **File organization**: PascalCase directories with index.ts exports
+- **Styling**: SCSS modules for component styles, global classes for utilities
+
+#### Development Standards
+
+**IMPORTANT**: All new development should follow the standards in `/src/project-management/standards/`:
+- **Component Standards**: TypeScript patterns, file structure, and organization
+- **Styling Patterns**: SCSS modules vs global styles (resolves previous CSS modules confusion)
+- **Work Item Format**: Structured project management with AI-friendly formatting
+- **File Naming**: Consistent naming conventions across the project
+
+#### AI-Agent Infrastructure (Future-Ready)
+
+**Context**: This project is designed for eventual AI-agent automation where multiple specialized agents handle most coding tasks, with humans focusing on verification, task creation, and architectural decisions.
+
+**Current Implementation**: Hybrid approach with human-AI collaboration using structured standards that are AI-agent compatible.
+
+**AI-Agent Extensions** (in `/src/project-management/standards/`):
+- **ai-agent-work-items.md**: Machine-parseable work item format with JSON metadata for agent coordination
+- **agent-coordination.md**: Multi-agent coordination protocols, handoff procedures, and conflict resolution
+- **automated-verification.md**: System for converting acceptance criteria into automated test suites
+
+**Agent Types Defined**:
+- **Frontend-UI Agent**: React/Astro components, SCSS styling, client-side functionality
+- **Backend-API Agent**: Server-side logic, APIs, data processing
+- **Data-Pipeline Agent**: Data transformation, schema validation, content management
+- **Testing Agent**: Test creation from acceptance criteria, quality assurance
+- **Integration Agent**: Multi-agent coordination, deployment, system-wide consistency
+
+**Implementation Strategy**:
+1. **Current Phase**: Use development standards for human-AI collaboration
+2. **Near Future**: Add JSON metadata to work items for complex features
+3. **Long Term**: Deploy specialized agents using coordination protocols
+
+**Key Benefits**:
+- Standards reduce AI confusion and improve consistency today
+- Work items can be automatically assigned to specialized agents
+- Acceptance criteria automatically generate test suites
+- Human oversight focuses on business decisions rather than implementation details
+
+**Usage for AI Assistants**: 
+- Follow current development standards immediately
+- Reference agent coordination protocols for complex multi-file changes
+- Use automated verification patterns when implementing features with acceptance criteria
+- Understand this codebase is designed for eventual full AI-agent automation
 
 #### SEO & Performance
 
@@ -93,3 +136,4 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 
 - Prettier formatting with Astro plugin
 - No formal test framework currently configured (tests show "Error: no test specified")
+- **Code quality**: Follow TypeScript patterns and SCSS module standards

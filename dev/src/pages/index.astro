@@ -69,6 +69,37 @@ const seoProps = {
     </div>
   </section>
 
+  <section class="section section--wide section--flexible-payment">
+    <div class="container">
+      <div class="flexible-payment-promo">
+        <h2>Flexible Payment Options Available</h2>
+        <p>
+          Make your smart display investment more affordable with our flexible payment plans. 
+          Choose from installment options, bank loans, or buy-now-pay-later solutions to fit your budget.
+        </p>
+        <div class="payment-highlights">
+          <div class="payment-option">
+            <strong>Installment Plans</strong>
+            <span>Up to 12 months, 0% interest available</span>
+          </div>
+          <div class="payment-option">
+            <strong>Bank Loans</strong>
+            <span>Up to 36 months with competitive rates</span>
+          </div>
+          <div class="payment-option">
+            <strong>Buy Now, Pay Later</strong>
+            <span>Split payments, instant approval</span>
+          </div>
+        </div>
+        <Button
+          variant="primary"
+          size="lg"
+          href="/flexible-payment"
+          id="flexible-payment-cta">Learn More About Payment Options</Button>
+      </div>
+    </div>
+  </section>
+
   <DataTable limit={50} />
 
   <section class="section">
@@ -177,5 +208,72 @@ const seoProps = {
     justify-content: center;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+  }
+
+  /* Flexible Payment Section styles */
+  .section--flexible-payment {
+    background: linear-gradient(135deg, #f8fafb 0%, #e8f5e8 100%);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .flexible-payment-promo {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .flexible-payment-promo h2 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+  }
+
+  .flexible-payment-promo > p {
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+
+  .payment-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .payment-option {
+    background: rgba(255, 255, 255, 0.8);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .payment-option strong {
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-body-regular);
+    font-weight: 600;
+  }
+
+  .payment-option span {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-small);
+    opacity: 0.8;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    .payment-highlights {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    
+    .flexible-payment-promo h2 {
+      font-size: var(--font-size-h3);
+    }
   }
 </style>

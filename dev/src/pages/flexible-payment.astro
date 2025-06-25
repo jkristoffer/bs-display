@@ -1,0 +1,529 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/common/Button/Button.astro';
+
+// SEO Configuration for Flexible Payment Page
+const seoProps = {
+  title: 'Flexible Payment Options | Big Shine Display',
+  description:
+    'Make your smart display investment affordable with our flexible payment plans. Installment options, bank loans, and buy-now-pay-later solutions available.',
+  ogTitle: 'Flexible Payment Plans for Smart Displays | Big Shine',
+  ogDescription:
+    'Choose from installment plans, bank loans, or BNPL options. Make high-value smart display purchases more affordable with competitive rates.',
+  ogImage: '/assets/images/flexible-payment-social.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Flexible Payment Options | Big Shine Display',
+  twitterDescription:
+    'Flexible payment plans for smart displays. Installment options, bank loans, and BNPL solutions available.',
+  canonicalUrl: new URL('/flexible-payment', Astro.site).href,
+  noindex: false,
+  nofollow: false,
+  additionalTags: [
+    { name: 'author', content: 'Big Shine Display' },
+    {
+      name: 'keywords',
+      content:
+        'flexible payment, installment plan, smart display financing, bank loan, buy now pay later, payment options, Singapore, Malaysia'
+    }
+  ]
+};
+---
+
+<MainLayout {...seoProps}>
+  <section class="section section--hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Flexible Payment Options</h1>
+        <p class="hero-subtitle">
+          Make Your Smart Display Investment More Affordable with Our Tailored Payment Plans
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-content">
+        <p>
+          At Big Shine Display, we understand that flexibility in payment is important for our customers. 
+          To make our products and services more accessible, we now offer loan and installment payment 
+          plans tailored to suit different financial needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--with-background payment-options-section">
+    <div class="container">
+      <h2 class="section-title">Available Payment Options</h2>
+      
+      <div class="payment-options-grid">
+        <div class="payment-option-card">
+          <div class="option-header">
+            <h3>Installment Plan</h3>
+            <span class="option-subtitle">In-House or via Credit Card</span>
+          </div>
+          <div class="option-details">
+            <ul>
+              <li><strong>Tenure:</strong> Up to 3, 6, or 12 months</li>
+              <li><strong>Interest:</strong> 0% interest (for selected credit cards or promotions)</li>
+              <li><strong>Minimum Purchase:</strong> Applicable to purchases above RM [amount]</li>
+              <li><strong>Supported Cards:</strong> Visa, MasterCard, AMEX</li>
+              <li><strong>Required Documents:</strong> NRIC copy, proof of income (if needed)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="payment-option-card">
+          <div class="option-header">
+            <h3>Bank/Third-Party Personal Loan</h3>
+            <span class="option-subtitle">Collaborations with local banks/financial institutions</span>
+          </div>
+          <div class="option-details">
+            <ul>
+              <li><strong>Loan Tenure:</strong> Up to 36 months</li>
+              <li><strong>Interest Rates:</strong> Competitive rates (subject to bank approval)</li>
+              <li><strong>Approval Time:</strong> Usually within 3–7 working days</li>
+              <li><strong>Required Documents:</strong> NRIC, latest 3-month payslip/bank statement, EPF statement, or business documents for company purchases</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="payment-option-card">
+          <div class="option-header">
+            <h3>Buy Now, Pay Later (BNPL)</h3>
+            <span class="option-subtitle">Available through providers like Atome, PayLater</span>
+          </div>
+          <div class="option-details">
+            <ul>
+              <li><strong>Payment Split:</strong> Split payment into 3 or 6 months</li>
+              <li><strong>No Credit Card Required:</strong> Simple application process</li>
+              <li><strong>Approval:</strong> Instant approval for eligible applicants</li>
+              <li><strong>Convenience:</strong> Manage payments through partner apps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section benefits-section">
+    <div class="container">
+      <h2 class="section-title">Why Choose Our Flexible Payment Plans?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">💰</div>
+          <h3>Make High-Value Purchases More Affordable</h3>
+          <p>Break down large investments into manageable monthly payments that fit your budget.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">⏰</div>
+          <h3>No Need to Delay Important Investments</h3>
+          <p>Get the technology you need now without waiting to save up the full amount.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">📊</div>
+          <h3>Easy Monthly Repayment Options</h3>
+          <p>Choose from various payment schedules and methods that work best for you.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">🔍</div>
+          <h3>Transparent Terms, No Hidden Fees</h3>
+          <p>Clear, upfront pricing with no surprise charges or hidden costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--with-background application-process-section">
+    <div class="container">
+      <h2 class="section-title">How to Apply?</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Contact Our Sales Team</h3>
+            <p>Inform our sales team that you wish to pay via installment or loan when discussing your purchase.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Provide Required Documents</h3>
+            <p>Submit the necessary documentation based on your chosen payment method.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Choose Your Preferred Payment Plan</h3>
+            <p>Select the payment option and terms that best suit your financial situation.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Complete Setup Process</h3>
+            <p>Our team will guide you through the approval and setup process from start to finish.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-card">
+        <h2>Need Assistance?</h2>
+        <p>For more information or to apply, please contact us:</p>
+        
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>📧 Email:</strong>
+            <a href="mailto:info@bigshineDisplay.com">info@bigshineDisplay.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>📞 Phone/WhatsApp:</strong>
+            <a href="tel:+60123456789">+60 12-345 6789</a>
+          </div>
+          <div class="contact-item">
+            <strong>📍 Office Hours:</strong>
+            <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
+          </div>
+        </div>
+        
+        <div class="cta-buttons">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/contact"
+            id="flexible-payment-contact-cta">Get in Touch</Button>
+          <Button
+            variant="ghost"
+            href="/products"
+            id="flexible-payment-browse-cta">Browse Products</Button>
+        </div>
+        
+        <p class="closing-message">
+          Let us help you make your purchase easier and more convenient!
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style lang="scss">
+  /* Hero Section */
+  .section--hero {
+    background: linear-gradient(135deg, var(--color-accent-primary) 0%, #007a6b 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: white;
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-body-large);
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Intro Content */
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content p {
+    font-size: var(--font-size-body-large);
+    line-height: 1.7;
+    color: var(--color-text-primary);
+  }
+
+  /* Section Titles */
+  .section-title {
+    text-align: center;
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text-primary);
+  }
+
+  /* Payment Options Section */
+  .payment-options-section {
+    background-color: #f8fafb;
+  }
+
+  .payment-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+  }
+
+  .payment-option-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .payment-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .option-header {
+    border-bottom: 2px solid var(--color-accent-primary);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .option-header h3 {
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .option-subtitle {
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    font-size: var(--font-size-small);
+    font-style: italic;
+  }
+
+  .option-details ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .option-details li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: var(--font-size-body-regular);
+    line-height: 1.5;
+  }
+
+  .option-details li:last-child {
+    border-bottom: none;
+  }
+
+  .option-details strong {
+    color: var(--color-accent-primary);
+  }
+
+  /* Benefits Section */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+  }
+
+  .benefit-item {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .benefit-icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .benefit-item h3 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .benefit-item p {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  /* Application Process Section */
+  .application-process-section {
+    background-color: #f8fafb;
+  }
+
+  .process-steps {
+    display: grid;
+    gap: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .step-number {
+    background: var(--color-accent-primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-body-large);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .step-content p {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  /* Contact Section */
+  .contact-card {
+    background: white;
+    border-radius: 16px;
+    padding: var(--spacing-xxl);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-card h2 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .contact-card > p {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body-large);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-details {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .contact-item {
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  .contact-item:last-child {
+    border-bottom: none;
+  }
+
+  .contact-item strong {
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-body-regular);
+  }
+
+  .contact-item a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-item span {
+    color: var(--color-text-primary);
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+
+  .closing-message {
+    color: var(--color-text-primary);
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: $breakpoint-md) {
+    .hero-content h1 {
+      font-size: var(--font-size-h2);
+    }
+
+    .payment-options-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .step {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-md);
+    }
+
+    .contact-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    .contact-card {
+      padding: var(--spacing-lg);
+    }
+
+    .section-title {
+      font-size: var(--font-size-h3);
+    }
+  }
+</style>

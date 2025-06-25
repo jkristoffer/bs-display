@@ -1,10 +1,10 @@
-import React from 'react';
+import type { FC, ReactNode } from 'react';
 import styles from './EmptyState.module.scss';
 
 interface EmptyStateProps {
   title: string;
   message: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   action?: {
     label: string;
     onClick: () => void;
@@ -12,7 +12,7 @@ interface EmptyStateProps {
   suggestions?: string[];
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
+const EmptyState: FC<EmptyStateProps> = ({
   title,
   message,
   icon,

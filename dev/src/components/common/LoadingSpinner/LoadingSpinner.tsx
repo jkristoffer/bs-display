@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import styles from './LoadingSpinner.module.scss';
 
 interface LoadingSpinnerProps {
@@ -7,7 +7,7 @@ interface LoadingSpinnerProps {
   className?: string;
 }
 
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ 
+const LoadingSpinner: FC<LoadingSpinnerProps> = ({ 
   size = 'medium', 
   message = 'Loading...',
   className = ''

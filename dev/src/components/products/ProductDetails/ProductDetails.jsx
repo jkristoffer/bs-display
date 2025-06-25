@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './ProductDetails.module.scss';
 import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
 import { getProductBreadcrumbs } from '../../../utils/routes';

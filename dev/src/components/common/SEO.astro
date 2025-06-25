@@ -75,7 +75,7 @@ const robotsContent = [
 {twitterImage && <meta name="twitter:image" content={new URL(twitterImage, siteUrl).href} />}
 
 <!-- Structured Data -->
-{structuredData && <script type="application/ld+json" set:html={structuredData} />}
+{structuredData && <script is:inline type="application/ld+json" set:html={structuredData} />}
 
 <!-- Additional Tags -->
 {additionalTags.map(tag => (

@@ -33,7 +33,7 @@ function formatDate(date: Date): string {
               src={post.data.image || `/assets/default-blog-${post.data.category ? post.data.category.toLowerCase().replace(/\s+/g, '-') : 'article'}.jpg`}
               alt={post.data.title}
               loading="lazy"
-              onError={`this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'`}
+              onerror={`this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'`}
             />
           </div>
           <div class="blog-highlights__card-content">

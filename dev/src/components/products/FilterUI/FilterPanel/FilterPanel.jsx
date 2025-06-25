@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import FilterOption from './FilterOption';
 import styles from './FilterPanel.module.scss';
 

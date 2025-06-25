@@ -149,6 +149,17 @@ function formatDate(date: Date): string {
 </section>
 
   <script>
+    // TypeScript interface for blog post
+    interface BlogPost {
+      image?: string;
+      title: string;
+      category?: string;
+      slug: string;
+      description: string;
+      publishDate?: string;
+      author?: string;
+    }
+
     // Client-side JavaScript for the "Load More" functionality
     document.addEventListener('DOMContentLoaded', () => {
       const loadMoreBtn = document.getElementById(
@@ -181,7 +192,7 @@ function formatDate(date: Date): string {
             // Append the new posts to the container
             if (data.posts && data.posts.length > 0) {
               // Create HTML for each post and append to the container
-              data.posts.forEach((post) => {
+              data.posts.forEach((post: BlogPost) => {
                 const postElement = createPostElement(post);
                 postsContainer.appendChild(postElement);
               });
@@ -206,7 +217,7 @@ function formatDate(date: Date): string {
     });
 
     // Helper function to create a post element from post data
-    function createPostElement(post) {
+    function createPostElement(post: BlogPost) {
       const article = document.createElement('article');
       article.className = 'blog-card';
 

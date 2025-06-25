@@ -6,11 +6,30 @@ interface Props {
   itemsPerPage?: number;
 }
 
+interface ProductModel {
+  id: string;
+  brand: string;
+  model: string;
+  size: number;
+  resolution: string;
+  os: string;
+  touchTechnology: string;
+  features: string[];
+  warranty: string;
+  priceRange: string;
+  image: string;
+  brightness: string;
+  contrast: string;
+  connectivity: string;
+  powerConsumption: string;
+  [key: string]: any; // Index signature for dynamic property access
+}
+
 // Get props with default values
 const { limit = 50, itemsPerPage = 8 } = Astro.props;
 
 // Get models with limit
-const allDisplayedModels = allModels.slice(0, limit);
+const allDisplayedModels = (allModels as unknown as ProductModel[]).slice(0, limit);
 
 // Calculate total number of pages
 const totalPages = Math.ceil(allDisplayedModels.length / itemsPerPage);
@@ -107,7 +126,7 @@ function formatPropertyName(prop: string): string {
         </a>
       </div>
       
-      <script define:vars={{ allDisplayedModels, itemsPerPage, totalPages, displayProperties }}>
+      <script is:inline define:vars={{ allDisplayedModels, itemsPerPage, totalPages, displayProperties }}>
         // Store all models data for client-side pagination
         const allModels = {
           allDisplayedModels: allDisplayedModels,
@@ -126,6 +145,7 @@ function formatPropertyName(prop: string): string {
         // Update pagination UI
         function updatePaginationControls() {
           currentPageEl.textContent = allModels.currentPage;
+          totalPagesEl.textContent = allModels.totalPages;
           prevButton.disabled = allModels.currentPage <= 1;
           nextButton.disabled = allModels.currentPage >= allModels.totalPages;
         }

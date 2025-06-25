@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ModelCard from './ModelCard';
 import styles from './ModelDisplay.module.scss';
 import { FaThLarge, FaList } from 'react-icons/fa';

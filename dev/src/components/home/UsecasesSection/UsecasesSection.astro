@@ -6,6 +6,13 @@ import img1 from './img/bsdisplay-iboard-usecase-classroom.jpeg';
 import img2 from './img/bsdisplay-iboard-usecase-office.jpeg';
 import img3 from './img/bsdisplay-iboard-usecase-training.jpeg';
 
+interface Usecase {
+  title: string;
+  image: any;
+  points: string[];
+  recommendedModels: string;
+}
+
 const {
   usecases = [
     {
@@ -47,7 +54,7 @@ const {
 
   <div class="usecases-container">
     {
-      usecases.map((usecase, index) => (
+      usecases.map((usecase: Usecase, index: number) => (
         <UsecaseItem
           title={usecase.title}
           image={usecase.image}

@@ -10,6 +10,7 @@ import smart6000sv3Models from './models.smart6000sv3.json';
 import smartmxv5Models from './models.smartmxv5.json';
 import xboardv7Models from './models.xboardv7.json';
 import qeoyoModels from './models.qeoyo.json';
+import elonModels from './models.elon.json';
 
 // Export all models
 export {
@@ -19,6 +20,7 @@ export {
     smartmxv5Models,
     xboardv7Models,
     qeoyoModels,
+    elonModels,
 };
 
 // Export combined array of all models
@@ -29,6 +31,7 @@ export const allModels = [
     ...smartmxv5Models,
     ...xboardv7Models,
     ...qeoyoModels,
+    ...elonModels,
 ];
 
 export default allModels;

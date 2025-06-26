@@ -1,0 +1,18 @@
+{
+  "primary": {
+    "location": "Singapore",
+    "address": "5 Harper Road #07-03, Singapore 369673",
+    "phone": "+65 6858 6597",
+    "email": "team@bigshine-display.com"
+  },
+  "secondary": {
+    "location": "Malaysia",
+    "email": "info@bigshineDisplay.com",
+    "phone": "+60 12-345 6789",
+    "_note": "Phone number appears to be placeholder data - requires verification"
+  },
+  "general": {
+    "supportEmail": "team@bigshine-display.com",
+    "salesEmail": "team@bigshine-display.com"
+  }
+}

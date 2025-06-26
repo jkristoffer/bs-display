@@ -4,8 +4,8 @@ This directory contains files for tracking and managing development work on the 
 
 ## Project Structure
 
-- `features/` - Contains detailed feature implementation files
-- `docs/` - Project documentation and guides
+- `features/` - Contains detailed feature implementation files with work items
+- `standards/` - **Current development standards** (primary reference for AI agents)
 
 ## How To Use These Files
 
@@ -26,11 +26,15 @@ This directory contains files for tracking and managing development work on the 
 
 When an AI assistant is asked to work on this project, they should:
 
-1. **Locate the Feature**: Find the relevant feature file in the `features/` directory
-2. **Update Status**: Mark the work item as "In Progress" at the start, and update to "Completed" or "Needs Review" when done
-3. **Document Changes**: Always note what changes were made and which files were modified
-4. **Follow Code Standards**: Adhere to the project's code style guide (see memory)
+1. **Follow Current Standards**: Use `/src/project-management/standards/` as the primary reference for all development patterns
+2. **Locate the Feature**: Find the relevant feature file in the `features/` directory
+3. **Update Status**: Mark the work item as "In Progress" at the start, and update to "Completed" or "Needs Review" when done
+4. **Document Changes**: Always note what changes were made and which files were modified
 5. **Update the Progress Table**: Keep the progress table at the bottom of the feature file updated
+
+**Documentation Hierarchy for AI Assistants:**
+1. **PRIMARY**: `/src/project-management/standards/` - Current authoritative standards
+2. **SECONDARY**: `CLAUDE.md` - Project overview and AI-specific instructions
 
 ## Status Indicators
 

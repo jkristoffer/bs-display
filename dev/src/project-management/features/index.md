@@ -7,14 +7,18 @@ This index tracks all feature development work in the BigShine Display project.
 | Feature | Status | Description | Last Updated | Priority |
 |---------|--------|-------------|--------------|----------|
 | [Quiz Enhancement](./quiz-enhancement.md) | In Planning | Improve product quiz with weighted scoring, dynamic questions, and real product data | 2025-06-03 | High |
+| [Flexible Payment Options](./home.flexible-payment.md) | In Planning | Add flexible payment content to home page and dedicated payment options page | 2025-06-25 | Medium |
 
 ## Completed Features
 
-_No completed features yet._
+| Feature | Status | Description | Last Updated | Priority |
+|---------|--------|-------------|--------------|----------|
+| Product DataTable Component | Completed | Responsive data table component displaying product information on homepage | 2025-06-06 | Medium |
 
 ## Proposed Features
 
 _No proposed features yet._
+
 
 ## Feature Status Definitions
 

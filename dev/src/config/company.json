@@ -1,0 +1,26 @@
+{
+  "name": "Big Shine Display",
+  "displayName": "BIG SHINE DISPLAY",
+  "tagline": "Premium Interactive Smart Boards",
+  "description": "Premium Interactive Smart Boards for Education and Business",
+  "website": "bigshine-display.com",
+  "specializations": [
+    "Interactive smart boards and displays",
+    "Educational technology solutions",
+    "Business/corporate display solutions",
+    "Touch screen technology",
+    "Digital whiteboards"
+  ],
+  "targetMarkets": [
+    "Education (classrooms)",
+    "Corporate (offices, boardrooms)",
+    "Training centers",
+    "Healthcare facilities",
+    "Retail environments"
+  ],
+  "geographic": {
+    "primary": "Singapore",
+    "secondary": "Malaysia",
+    "region": "Southeast Asia"
+  }
+}

@@ -28,13 +28,15 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
+        cache-dependency-path: 'dev/package-lock.json'
         
     - name: Install dependencies
-      run: npm ci
+      run: cd dev && npm ci
       
     - name: Check content queue status
       id: queue-check
       run: |
+        cd dev
         if [ -f "content-queue.json" ]; then
           POSTS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('content-queue.json', 'utf8')).scheduledPosts.length")
           echo "posts_available=$POSTS_COUNT" >> $GITHUB_OUTPUT
@@ -48,7 +50,7 @@ jobs:
       id: generate
       if: steps.queue-check.outputs.posts_available > 0 || inputs.force_generate == 'true'
       run: |
-        cd scripts
+        cd dev/scripts
         RESULT=$(node generate-blog-post.js)
         echo "generation_result<<EOF" >> $GITHUB_OUTPUT
         echo "$RESULT" >> $GITHUB_OUTPUT
@@ -105,7 +107,7 @@ jobs:
           
           // Read content queue to get post details
           const fs = require('fs');
-          const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
+          const queue = JSON.parse(fs.readFileSync('dev/content-queue.json', 'utf8'));
           
           // Create PR body
           const currentDate = new Date().toISOString().split('T')[0];

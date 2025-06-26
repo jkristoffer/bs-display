@@ -108,47 +108,40 @@ jobs:
           const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
           
           // Create PR body
-          const prBody = `## 📝 Automated Blog Post Generated
-
-### Post Details
-- **Filename**: ${filename}
-- **Generated**: ${new Date().toISOString().split('T')[0]}
-- **Remaining in Queue**: ${queue.scheduledPosts.length} posts
-- **Next Scheduled**: ${queue.nextPostDate}
-
-### Content Preview
-The generated blog post follows our established content standards:
-- ✅ SEO-optimized title and meta description
-- ✅ Structured content with proper headings
-- ✅ Industry-focused messaging and terminology
-- ✅ Call-to-action and contact integration
-- ✅ Brand voice consistency
-
-### Review Checklist
-Please review the following before approving:
-
-- [ ] **Content Quality**: Verify technical accuracy and messaging
-- [ ] **SEO Elements**: Check title, description, and keyword usage
-- [ ] **Brand Voice**: Ensure content matches brand standards
-- [ ] **Links and CTAs**: Verify all links and calls-to-action work
-- [ ] **Formatting**: Check markdown formatting and structure
-- [ ] **Images**: Add relevant images if needed (not auto-generated)
-
-### Approval Process
-- ✅ **Auto-generated**: Content created using approved templates
-- 🔍 **Review Required**: Human review for quality assurance
-- 🚀 **Ready to Publish**: Merge when review is complete
-
-### Next Steps
-1. Review the generated content thoroughly
-2. Make any necessary edits directly in this PR
-3. Add relevant images if needed
-4. Approve and merge to publish
-
----
-*This blog post was automatically generated using our content automation system. Next post scheduled for: ${queue.nextPostDate}*
-
-🤖 Generated with automated blog system`;
+          const currentDate = new Date().toISOString().split('T')[0];
+          const prBody = '## 📝 Automated Blog Post Generated\n\n' +
+            '### Post Details\n' +
+            '- **Filename**: ' + filename + '\n' +
+            '- **Generated**: ' + currentDate + '\n' +
+            '- **Remaining in Queue**: ' + queue.scheduledPosts.length + ' posts\n' +
+            '- **Next Scheduled**: ' + queue.nextPostDate + '\n\n' +
+            '### Content Preview\n' +
+            'The generated blog post follows our established content standards:\n' +
+            '- ✅ SEO-optimized title and meta description\n' +
+            '- ✅ Structured content with proper headings\n' +
+            '- ✅ Industry-focused messaging and terminology\n' +
+            '- ✅ Call-to-action and contact integration\n' +
+            '- ✅ Brand voice consistency\n\n' +
+            '### Review Checklist\n' +
+            'Please review the following before approving:\n\n' +
+            '- [ ] **Content Quality**: Verify technical accuracy and messaging\n' +
+            '- [ ] **SEO Elements**: Check title, description, and keyword usage\n' +
+            '- [ ] **Brand Voice**: Ensure content matches brand standards\n' +
+            '- [ ] **Links and CTAs**: Verify all links and calls-to-action work\n' +
+            '- [ ] **Formatting**: Check markdown formatting and structure\n' +
+            '- [ ] **Images**: Add relevant images if needed (not auto-generated)\n\n' +
+            '### Approval Process\n' +
+            '- ✅ **Auto-generated**: Content created using approved templates\n' +
+            '- 🔍 **Review Required**: Human review for quality assurance\n' +
+            '- 🚀 **Ready to Publish**: Merge when review is complete\n\n' +
+            '### Next Steps\n' +
+            '1. Review the generated content thoroughly\n' +
+            '2. Make any necessary edits directly in this PR\n' +
+            '3. Add relevant images if needed\n' +
+            '4. Approve and merge to publish\n\n' +
+            '---\n' +
+            '*This blog post was automatically generated using our content automation system. Next post scheduled for: ' + queue.nextPostDate + '*\n\n' +
+            '🤖 Generated with automated blog system';
 
           const { data: pullRequest } = await github.rest.pulls.create({
             owner: context.repo.owner,

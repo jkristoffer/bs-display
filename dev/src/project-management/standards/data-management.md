@@ -42,10 +42,10 @@ src/data/
 ### Import Patterns
 ```typescript
 // Preferred import method
-import { companyConfig, contactConfig } from '@/config';
+import { companyConfig, contactConfig } from '@config';
 
 // Individual imports when needed
-import companyConfig from '@/config/company.json';
+import companyConfig from '@config/company.json';
 ```
 
 ### Usage Guidelines
@@ -82,7 +82,7 @@ When moving hardcoded data to config:
 ### Component Usage
 ```astro
 ---
-import { contactConfig, businessConfig } from '@/config';
+import { contactConfig, businessConfig } from '@config';
 ---
 
 <footer>
@@ -93,14 +93,14 @@ import { contactConfig, businessConfig } from '@/config';
 
 ### Type-Safe Access
 ```typescript
-import { type ContactConfig, contactConfig } from '@/config';
+import { type ContactConfig, contactConfig } from '@config';
 
 const primaryEmail: string = contactConfig.primary.email;
 ```
 
 ### Conditional Rendering
 ```jsx
-import { socialConfig } from '@/config';
+import { socialConfig } from '@config';
 
 {!socialConfig._note && (
   <SocialLinks platforms={socialConfig.platforms} />

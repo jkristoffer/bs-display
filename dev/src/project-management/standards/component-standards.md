@@ -10,6 +10,9 @@
 ### Astro Components
 - **Pages and layouts**: Use `.astro` for static content
 - **Data fetching**: Use Astro for server-side data loading
+- **Layout imports**: Always verify layout exists before importing
+  - Available layouts: `BaseLayout`, `MainLayout`, `ProductLayout`, `BlogLayout`, `UseCaseLayout`
+  - Use `BaseLayout` for new pages unless specific layout needed
 
 ## Component Structure
 
@@ -65,7 +68,7 @@ export type { ComponentNameProps } from './ComponentName';
 import { useState } from 'react';
 
 // Internal utilities
-import { formatDate } from '@/utils/dateHelpers';
+import { formatDate } from '@utils/dateHelpers';
 
 // Local components
 import { Button } from '../Button';

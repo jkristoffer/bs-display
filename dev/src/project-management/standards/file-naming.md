@@ -73,9 +73,9 @@ import { ProductCard } from '../ProductCard/ProductCard';
 
 ```typescript
 // Use configured path aliases
-import { ProductCard } from '@/components/common/ProductCard';
-import { formatPrice } from '@/utils/formatting';
-import type { Product } from '@/types/product';
+import { ProductCard } from '@components/common/ProductCard';
+import { formatPrice } from '@utils/formatting';
+import type { Product } from '@types/product';
 ```
 
 ## Feature-Based Organization

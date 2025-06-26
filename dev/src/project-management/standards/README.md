@@ -16,11 +16,7 @@ This directory contains lightweight standards for consistent development pattern
 - [`file-naming.md`](./file-naming.md) - Naming conventions
 - [`styling-patterns.md`](./styling-patterns.md) - SCSS and CSS standards
 - [`data-management.md`](./data-management.md) - Static data organization and config patterns
-
-### AI-Agent-First Standards (Future)
-- [`ai-agent-work-items.md`](./ai-agent-work-items.md) - Machine-parseable work item format for AI agents
-- [`agent-coordination.md`](./agent-coordination.md) - Multi-agent coordination protocols
-- [`automated-verification.md`](./automated-verification.md) - Automated testing from acceptance criteria
+- [`ai-development-patterns.md`](./ai-development-patterns.md) - Human-AI collaboration and development workflows
 
 ## Usage
 

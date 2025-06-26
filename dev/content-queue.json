@@ -4,26 +4,6 @@
   "nextPostDate": "2025-06-29",
   "scheduledPosts": [
     {
-      "id": "002",
-      "title": "Interactive Whiteboard Installation Guide: Professional Setup in 7 Steps",
-      "description": "Step-by-step guide for installing interactive whiteboards including wall mounting, calibration, cable management, and troubleshooting common issues.",
-      "category": "Installation Guide",
-      "template": "how-to",
-      "priority": "medium",
-      "keywords": [
-        "whiteboard installation",
-        "smartboard setup",
-        "interactive display mounting"
-      ],
-      "targetAudience": "IT_professionals",
-      "estimatedReadTime": "12 minutes",
-      "data": {
-        "mainTopic": "Interactive Whiteboard Installation",
-        "hook": "Proper installation is crucial for optimal performance and longevity of your interactive whiteboard investment.",
-        "cta": "Need professional installation services? Our certified technicians ensure perfect setup and configuration."
-      }
-    },
-    {
       "id": "003",
       "title": "Healthcare Interactive Displays: Transforming Patient Care and Medical Training",
       "description": "Explore how interactive displays revolutionize healthcare environments, from patient consultations to medical education and hospital wayfinding systems.",

@@ -1,0 +1,37 @@
+{
+  "hours": {
+    "primary": {
+      "monday": "9:00 AM - 6:00 PM",
+      "tuesday": "9:00 AM - 6:00 PM",
+      "wednesday": "9:00 AM - 6:00 PM",
+      "thursday": "9:00 AM - 6:00 PM",
+      "friday": "9:00 AM - 6:00 PM",
+      "saturday": "10:00 AM - 2:00 PM",
+      "sunday": "Closed"
+    },
+    "formatted": {
+      "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM",
+      "saturday": "Saturday: 10:00 AM - 2:00 PM",
+      "sunday": "Sunday: Closed"
+    }
+  },
+  "services": [
+    "Free consultation",
+    "Product demonstrations",
+    "Technical support",
+    "Installation services",
+    "Warranty coverage (typically 5 years)"
+  ],
+  "paymentOptions": [
+    "Credit card payments (Visa, MasterCard, AMEX)",
+    "Installment plans (0% interest available)",
+    "Bank loans (up to 36 months)",
+    "Buy Now Pay Later (BNPL) - Atome, PayLater"
+  ],
+  "priceRange": {
+    "min": 2205,
+    "max": 12445,
+    "currency": "SGD",
+    "note": "Approximate range based on product catalog"
+  }
+}

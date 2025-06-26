@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { 
   useQuizState,
   ProductMatchingService,
@@ -66,14 +66,6 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     []
   );
 
-  // Memoized results data to prevent unnecessary re-renders
-  const memoizedResultsData = useMemo(() => ({
-    result,
-    isHybridResult,
-    secondaryCategory,
-    secondaryRecommendations,
-    categoryScores
-  }), [result, isHybridResult, secondaryCategory, secondaryRecommendations, categoryScores]);
 
   return (
     <div className="quiz-container">

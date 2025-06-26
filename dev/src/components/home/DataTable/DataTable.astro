@@ -132,7 +132,7 @@ function formatPropertyName(prop: string): string {
           allDisplayedModels: allDisplayedModels,
           itemsPerPage: itemsPerPage,
           currentPage: 1,
-          totalPages: totalPages
+          totalPages: Math.ceil(allDisplayedModels.length / itemsPerPage)
         };
         
         // Get DOM elements

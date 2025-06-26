@@ -14,7 +14,8 @@
       "@utils/*": ["src/utils/*"],
       "@types/*": ["src/types/*"],
       "@data/*": ["src/data/*"],
-      "@content/*": ["src/content/*"]
+      "@content/*": ["src/content/*"],
+      "@config/*": ["src/config/*"]
     }
   },
   "exclude": ["node_modules", "dist"],

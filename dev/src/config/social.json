@@ -1,0 +1,17 @@
+{
+  "platforms": {
+    "facebook": {
+      "url": "https://facebook.com/bigshinedisplay",
+      "handle": "@bigshinedisplay"
+    },
+    "instagram": {
+      "url": "https://instagram.com/bigshinedisplay",
+      "handle": "@bigshinedisplay"
+    },
+    "linkedin": {
+      "url": "https://linkedin.com/company/bigshinedisplay",
+      "handle": "bigshinedisplay"
+    }
+  },
+  "_note": "Social media links are currently hidden in footer component - may need activation/verification"
+}

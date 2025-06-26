@@ -1,4 +1,4 @@
-import React, { type FC, memo } from 'react';
+import { type FC, memo } from 'react';
 
 interface CategoryScoresProps {
   categoryScores: Record<string, number> | null;

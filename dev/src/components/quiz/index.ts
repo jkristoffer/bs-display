@@ -37,7 +37,7 @@ export type {
   QuizAction,
   Product,
   CategoryType,
-  CategoryScores,
+  CategoryScores as CategoryScoresType,
   HybridCategoryResult,
   SecondaryRecommendation
 } from './types';

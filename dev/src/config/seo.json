@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Big Shine Display",
+    "description": "Premium Interactive Smart Boards for Education and Business",
+    "url": "https://bigshine-display.com",
+    "image": "/images/og-image.jpg"
+  },
+  "defaultMeta": {
+    "title": "Big Shine Display - Premium Interactive Smart Boards",
+    "description": "Discover premium interactive smart boards and displays for education and business. Expert advice, competitive pricing, and comprehensive support in Singapore and Malaysia.",
+    "keywords": [
+      "interactive smart boards",
+      "digital whiteboards",
+      "education technology",
+      "business displays",
+      "touch screen displays",
+      "Singapore",
+      "Malaysia"
+    ]
+  },
+  "organization": {
+    "@type": "Organization",
+    "name": "Big Shine Display",
+    "url": "https://bigshine-display.com",
+    "logo": "https://bigshine-display.com/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+65-6858-6597",
+      "contactType": "sales"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5 Harper Road #07-03",
+      "addressLocality": "Singapore",
+      "postalCode": "369673",
+      "addressCountry": "SG"
+    }
+  }
+}

@@ -26,20 +26,15 @@ export interface ProductMatchingConfig {
  * ProductMatchingService provides centralized product matching functionality
  */
 export class ProductMatchingService {
-  private static defaultConfig: ProductMatchingConfig = {
-    maxProducts: 3,
-    maxFeatures: 6
-  };
 
   /**
    * Get product recommendations for a quiz result category
    */
   static getRecommendations(
-    category: string | CategoryType, 
-    config: Partial<ProductMatchingConfig> = {}
+    category: string | CategoryType
   ): ProductResult {
     // Configuration merging for future use
-    const _finalConfig = { ...this.defaultConfig, ...config };
+    // const _finalConfig = { ...this.defaultConfig, ...config };
     
     try {
       return getProductsForQuizResult(category);

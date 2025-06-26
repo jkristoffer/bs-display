@@ -15,6 +15,7 @@ This directory contains lightweight standards for consistent development pattern
 - [`work-item-template.md`](./work-item-template.md) - Project management format
 - [`file-naming.md`](./file-naming.md) - Naming conventions
 - [`styling-patterns.md`](./styling-patterns.md) - SCSS and CSS standards
+- [`data-management.md`](./data-management.md) - Static data organization and config patterns
 
 ### AI-Agent-First Standards (Future)
 - [`ai-agent-work-items.md`](./ai-agent-work-items.md) - Machine-parseable work item format for AI agents

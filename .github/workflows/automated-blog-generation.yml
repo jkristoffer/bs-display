@@ -111,7 +111,7 @@ jobs:
           const prBody = `## 📝 Automated Blog Post Generated
 
 ### Post Details
-- **Filename**: \`${filename}\`
+- **Filename**: ${filename}
 - **Generated**: ${new Date().toISOString().split('T')[0]}
 - **Remaining in Queue**: ${queue.scheduledPosts.length} posts
 - **Next Scheduled**: ${queue.nextPostDate}
@@ -180,9 +180,9 @@ Please review the following before approving:
             
             const comment = `## 🔍 Generation Report
 
-\`\`\`
+` + '```' + `
 ${{ steps.generate.outputs.generation_result }}
-\`\`\`
+` + '```'
 
 ### Automation Status
 - ⏰ **Triggered**: ${new Date().toISOString()}
@@ -223,9 +223,9 @@ Please review for accuracy and make any necessary adjustments before publishing.
 **Trigger**: ${{ github.event_name }}
 
 ### Error Details
-\`\`\`
+` + '```' + `
 ${{ steps.generate.outputs.generation_result }}
-\`\`\`
+` + '```' + `
 
 ### Queue Status
 - **Posts Available**: ${{ steps.queue-check.outputs.posts_available }}

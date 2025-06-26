@@ -146,14 +146,14 @@ jobs:
           const { data: pullRequest } = await github.rest.pulls.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            title: `📝 Automated Blog Post: ${filename.replace('.md', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+            title: '📝 Automated Blog Post: ' + filename.replace('.md', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
             head: branchName,
             base: 'main',
             body: prBody,
             labels: ['automated-content', 'blog-post', 'needs-review']
           });
           
-          console.log(`Pull request created: ${pullRequest.html_url}`);
+          console.log('Pull request created: ' + pullRequest.html_url);
           
     - name: Add PR comment with generation details
       if: steps.generate.outputs.success == 'true'
@@ -164,34 +164,31 @@ jobs:
           const { data: pulls } = await github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            head: `${context.repo.owner}:${process.env.BRANCH_NAME}`,
+            head: context.repo.owner + ':' + process.env.BRANCH_NAME,
             state: 'open'
           });
           
           if (pulls.length > 0) {
             const pr = pulls[0];
             
-            const comment = `## 🔍 Generation Report
-
-` + '```' + `
-${{ steps.generate.outputs.generation_result }}
-` + '```'
-
-### Automation Status
-- ⏰ **Triggered**: ${new Date().toISOString()}
-- 📊 **Queue Status**: ${{ steps.queue-check.outputs.posts_available }} posts remaining
-- ✅ **Generation**: Successful
-- 🔄 **Next Run**: In 3 days (scheduled)
-
-### Quality Assurance Notes
-This content was generated using our automated system with the following quality controls:
-- Template-based structure ensuring consistency
-- Brand voice guidelines applied
-- SEO optimization built-in
-- Technical accuracy based on knowledge base
-- Call-to-action integration
-
-Please review for accuracy and make any necessary adjustments before publishing.`;
+            const currentTime = new Date().toISOString();
+            const comment = '## 🔍 Generation Report\n\n' +
+              '```\n' +
+              '${{ steps.generate.outputs.generation_result }}\n' +
+              '```\n\n' +
+              '### Automation Status\n' +
+              '- ⏰ **Triggered**: ' + currentTime + '\n' +
+              '- 📊 **Queue Status**: ${{ steps.queue-check.outputs.posts_available }} posts remaining\n' +
+              '- ✅ **Generation**: Successful\n' +
+              '- 🔄 **Next Run**: In 3 days (scheduled)\n\n' +
+              '### Quality Assurance Notes\n' +
+              'This content was generated using our automated system with the following quality controls:\n' +
+              '- Template-based structure ensuring consistency\n' +
+              '- Brand voice guidelines applied\n' +
+              '- SEO optimization built-in\n' +
+              '- Technical accuracy based on knowledge base\n' +
+              '- Call-to-action integration\n\n' +
+              'Please review for accuracy and make any necessary adjustments before publishing.';
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -206,44 +203,38 @@ Please review for accuracy and make any necessary adjustments before publishing.
       uses: actions/github-script@v7
       with:
         script: |
+          const currentDate = new Date().toISOString();
           const issue = await github.rest.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: '🚨 Automated Blog Generation Failed',
-            body: `## Blog Generation Failure Report
-
-**Date**: ${new Date().toISOString()}
-**Trigger**: ${{ github.event_name }}
-
-### Error Details
-` + '```' + `
-${{ steps.generate.outputs.generation_result }}
-` + '```' + `
-
-### Queue Status
-- **Posts Available**: ${{ steps.queue-check.outputs.posts_available }}
-- **Queue File Exists**: ${{ steps.queue-check.outputs.queue_exists }}
-
-### Possible Causes
-- Content queue is empty and needs refilling
-- Template or script error
-- File system permissions issue
-- Invalid content queue format
-
-### Next Steps
-1. Check content-queue.json for available posts
-2. Review generation script for errors
-3. Manually trigger workflow if queue has been refilled
-4. Contact development team if issue persists
-
-### Monitoring
-This issue was automatically created by the blog generation workflow. The system will attempt generation again in 3 days unless manually resolved.
-
-Labels: automated-content, bug, needs-attention`,
+            body: '## Blog Generation Failure Report\n\n' +
+              '**Date**: ' + currentDate + '\n' +
+              '**Trigger**: ${{ github.event_name }}\n\n' +
+              '### Error Details\n' +
+              '```\n' +
+              '${{ steps.generate.outputs.generation_result }}\n' +
+              '```\n\n' +
+              '### Queue Status\n' +
+              '- **Posts Available**: ${{ steps.queue-check.outputs.posts_available }}\n' +
+              '- **Queue File Exists**: ${{ steps.queue-check.outputs.queue_exists }}\n\n' +
+              '### Possible Causes\n' +
+              '- Content queue is empty and needs refilling\n' +
+              '- Template or script error\n' +
+              '- File system permissions issue\n' +
+              '- Invalid content queue format\n\n' +
+              '### Next Steps\n' +
+              '1. Check content-queue.json for available posts\n' +
+              '2. Review generation script for errors\n' +
+              '3. Manually trigger workflow if queue has been refilled\n' +
+              '4. Contact development team if issue persists\n\n' +
+              '### Monitoring\n' +
+              'This issue was automatically created by the blog generation workflow. The system will attempt generation again in 3 days unless manually resolved.\n\n' +
+              'Labels: automated-content, bug, needs-attention',
             labels: ['automated-content', 'bug', 'needs-attention']
           });
           
-          console.log(`Issue created for failed generation: ${issue.data.html_url}`);
+          console.log('Issue created for failed generation: ' + issue.data.html_url);
           
     - name: Summary
       if: always()

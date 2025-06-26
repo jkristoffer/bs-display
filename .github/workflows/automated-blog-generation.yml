@@ -83,19 +83,12 @@ jobs:
       run: |
         git add .
         git commit -m "feat: add automated blog post - ${{ steps.generate.outputs.filename }}
-
-Generated blog post using automated content generation system.
-
-Template: $(node -p "
-  const fs = require('fs');
-  const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
-  const recentlyRemoved = queue.scheduledPosts.length > 0 ? 'comparison' : 'generated';
-  recentlyRemoved;
-")
-
-🤖 Generated with automated blog system
-
-Co-Authored-By: GitHub Actions <noreply@github.com>"
+        
+        Generated blog post using automated content generation system.
+        
+        🤖 Generated with automated blog system
+        
+        Co-Authored-By: GitHub Actions <noreply@github.com>"
         
     - name: Push feature branch
       if: steps.generate.outputs.success == 'true'

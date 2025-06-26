@@ -1,0 +1,275 @@
+name: Automated Blog Post Generation
+
+on:
+  schedule:
+    # Run every 3 days at 9:00 AM UTC
+    - cron: '0 9 */3 * *'
+  workflow_dispatch: # Allow manual triggering
+    inputs:
+      force_generate:
+        description: 'Force generate blog post even if queue is empty'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  generate-blog-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Check content queue status
+      id: queue-check
+      run: |
+        if [ -f "content-queue.json" ]; then
+          POSTS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('content-queue.json', 'utf8')).scheduledPosts.length")
+          echo "posts_available=$POSTS_COUNT" >> $GITHUB_OUTPUT
+          echo "queue_exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "posts_available=0" >> $GITHUB_OUTPUT
+          echo "queue_exists=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Generate blog post
+      id: generate
+      if: steps.queue-check.outputs.posts_available > 0 || inputs.force_generate == 'true'
+      run: |
+        cd scripts
+        RESULT=$(node generate-blog-post.js)
+        echo "generation_result<<EOF" >> $GITHUB_OUTPUT
+        echo "$RESULT" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+        # Extract filename from output for use in PR
+        FILENAME=$(echo "$RESULT" | grep -o "[a-z0-9-]*\.md" | head -1)
+        echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+        
+        # Check if generation was successful
+        if echo "$RESULT" | grep -q "✅ Blog post generated"; then
+          echo "success=true" >> $GITHUB_OUTPUT
+        else
+          echo "success=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Configure git
+      if: steps.generate.outputs.success == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Create feature branch
+      if: steps.generate.outputs.success == 'true'
+      run: |
+        BRANCH_NAME="automated-blog-post-$(date +%Y%m%d-%H%M%S)"
+        git checkout -b $BRANCH_NAME
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        
+    - name: Commit changes
+      if: steps.generate.outputs.success == 'true'
+      run: |
+        git add .
+        git commit -m "feat: add automated blog post - ${{ steps.generate.outputs.filename }}
+
+Generated blog post using automated content generation system.
+
+Template: $(node -p "
+  const fs = require('fs');
+  const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
+  const recentlyRemoved = queue.scheduledPosts.length > 0 ? 'comparison' : 'generated';
+  recentlyRemoved;
+")
+
+🤖 Generated with automated blog system
+
+Co-Authored-By: GitHub Actions <noreply@github.com>"
+        
+    - name: Push feature branch
+      if: steps.generate.outputs.success == 'true'
+      run: |
+        git push origin $BRANCH_NAME
+        
+    - name: Create Pull Request
+      if: steps.generate.outputs.success == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const filename = '${{ steps.generate.outputs.filename }}';
+          const branchName = process.env.BRANCH_NAME;
+          
+          // Read content queue to get post details
+          const fs = require('fs');
+          const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
+          
+          // Create PR body
+          const prBody = `## 📝 Automated Blog Post Generated
+
+### Post Details
+- **Filename**: \`${filename}\`
+- **Generated**: ${new Date().toISOString().split('T')[0]}
+- **Remaining in Queue**: ${queue.scheduledPosts.length} posts
+- **Next Scheduled**: ${queue.nextPostDate}
+
+### Content Preview
+The generated blog post follows our established content standards:
+- ✅ SEO-optimized title and meta description
+- ✅ Structured content with proper headings
+- ✅ Industry-focused messaging and terminology
+- ✅ Call-to-action and contact integration
+- ✅ Brand voice consistency
+
+### Review Checklist
+Please review the following before approving:
+
+- [ ] **Content Quality**: Verify technical accuracy and messaging
+- [ ] **SEO Elements**: Check title, description, and keyword usage
+- [ ] **Brand Voice**: Ensure content matches brand standards
+- [ ] **Links and CTAs**: Verify all links and calls-to-action work
+- [ ] **Formatting**: Check markdown formatting and structure
+- [ ] **Images**: Add relevant images if needed (not auto-generated)
+
+### Approval Process
+- ✅ **Auto-generated**: Content created using approved templates
+- 🔍 **Review Required**: Human review for quality assurance
+- 🚀 **Ready to Publish**: Merge when review is complete
+
+### Next Steps
+1. Review the generated content thoroughly
+2. Make any necessary edits directly in this PR
+3. Add relevant images if needed
+4. Approve and merge to publish
+
+---
+*This blog post was automatically generated using our content automation system. Next post scheduled for: ${queue.nextPostDate}*
+
+🤖 Generated with automated blog system`;
+
+          const { data: pullRequest } = await github.rest.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `📝 Automated Blog Post: ${filename.replace('.md', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+            head: branchName,
+            base: 'main',
+            body: prBody,
+            labels: ['automated-content', 'blog-post', 'needs-review']
+          });
+          
+          console.log(`Pull request created: ${pullRequest.html_url}`);
+          
+    - name: Add PR comment with generation details
+      if: steps.generate.outputs.success == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Find the PR we just created
+          const { data: pulls } = await github.rest.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            head: `${context.repo.owner}:${process.env.BRANCH_NAME}`,
+            state: 'open'
+          });
+          
+          if (pulls.length > 0) {
+            const pr = pulls[0];
+            
+            const comment = `## 🔍 Generation Report
+
+\`\`\`
+${{ steps.generate.outputs.generation_result }}
+\`\`\`
+
+### Automation Status
+- ⏰ **Triggered**: ${new Date().toISOString()}
+- 📊 **Queue Status**: ${{ steps.queue-check.outputs.posts_available }} posts remaining
+- ✅ **Generation**: Successful
+- 🔄 **Next Run**: In 3 days (scheduled)
+
+### Quality Assurance Notes
+This content was generated using our automated system with the following quality controls:
+- Template-based structure ensuring consistency
+- Brand voice guidelines applied
+- SEO optimization built-in
+- Technical accuracy based on knowledge base
+- Call-to-action integration
+
+Please review for accuracy and make any necessary adjustments before publishing.`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: comment
+            });
+          }
+          
+    - name: Handle generation failure
+      if: steps.generate.outputs.success == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const issue = await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: '🚨 Automated Blog Generation Failed',
+            body: `## Blog Generation Failure Report
+
+**Date**: ${new Date().toISOString()}
+**Trigger**: ${{ github.event_name }}
+
+### Error Details
+\`\`\`
+${{ steps.generate.outputs.generation_result }}
+\`\`\`
+
+### Queue Status
+- **Posts Available**: ${{ steps.queue-check.outputs.posts_available }}
+- **Queue File Exists**: ${{ steps.queue-check.outputs.queue_exists }}
+
+### Possible Causes
+- Content queue is empty and needs refilling
+- Template or script error
+- File system permissions issue
+- Invalid content queue format
+
+### Next Steps
+1. Check content-queue.json for available posts
+2. Review generation script for errors
+3. Manually trigger workflow if queue has been refilled
+4. Contact development team if issue persists
+
+### Monitoring
+This issue was automatically created by the blog generation workflow. The system will attempt generation again in 3 days unless manually resolved.
+
+Labels: automated-content, bug, needs-attention`,
+            labels: ['automated-content', 'bug', 'needs-attention']
+          });
+          
+          console.log(`Issue created for failed generation: ${issue.data.html_url}`);
+          
+    - name: Summary
+      if: always()
+      run: |
+        echo "## Blog Generation Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Date**: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Posts in Queue**: ${{ steps.queue-check.outputs.posts_available }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Generation Success**: ${{ steps.generate.outputs.success }}" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ steps.generate.outputs.success }}" == "true" ]; then
+          echo "- **Generated File**: ${{ steps.generate.outputs.filename }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch Created**: $BRANCH_NAME" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Blog post successfully generated and PR created for review." >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Blog generation failed. Check logs and queue status." >> $GITHUB_STEP_SUMMARY
+        fi

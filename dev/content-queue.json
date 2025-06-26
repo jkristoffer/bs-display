@@ -107,26 +107,6 @@
         "hook": "Interactive displays are revolutionizing manufacturing floors, improving both efficiency and worker safety.",
         "cta": "Explore how interactive displays can transform your manufacturing operations and workforce development."
       }
-    },
-    {
-      "id": "008",
-      "title": "Interactive Display Security: Protecting Your Investment and Data",
-      "description": "Comprehensive security guide for interactive displays covering network security, user access controls, software updates, and physical security measures.",
-      "category": "Security Guide",
-      "template": "how-to",
-      "priority": "high",
-      "keywords": [
-        "display security",
-        "interactive board cybersecurity",
-        "network security"
-      ],
-      "targetAudience": "IT_professionals",
-      "estimatedReadTime": "13 minutes",
-      "data": {
-        "mainTopic": "Interactive Display Security",
-        "hook": "As interactive displays become more connected, security becomes critical for protecting both your investment and sensitive data.",
-        "cta": "Implement comprehensive security measures to protect your interactive display infrastructure."
-      }
     }
   ],
   "templates": {

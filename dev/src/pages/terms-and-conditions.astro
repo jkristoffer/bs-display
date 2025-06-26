@@ -1,0 +1,440 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { companyConfig, contactConfig } from '../config';
+
+const seo = {
+  title: 'Terms and Conditions | BigShine Display',
+  description:
+    'Terms and conditions for BigShine Display products and services. Learn about our policies, warranties, and legal agreements.',
+  canonical: 'https://bigshine-display.com/terms-and-conditions'
+};
+
+const lastUpdated = '2024-12-26';
+---
+
+<MainLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalUrl={seo.canonical}
+>
+  <main class="terms-page">
+    <div class="container">
+      <header class="terms-header">
+        <h1>Terms and Conditions</h1>
+        <p class="terms-meta">Last updated: {lastUpdated}</p>
+      </header>
+
+      <div class="terms-content">
+        <nav class="terms-toc">
+          <h2>Table of Contents</h2>
+          <ol>
+            <li><a href="#acceptance">Acceptance of Terms</a></li>
+            <li><a href="#definitions">Definitions</a></li>
+            <li><a href="#products">Products and Services</a></li>
+            <li><a href="#ordering">Ordering and Payment</a></li>
+            <li><a href="#shipping">Shipping and Delivery</a></li>
+            <li><a href="#warranty">Warranty and Returns</a></li>
+            <li><a href="#liability">Limitation of Liability</a></li>
+            <li><a href="#privacy">Privacy and Data Protection</a></li>
+            <li><a href="#changes">Changes to Terms</a></li>
+            <li><a href="#contact">Contact Information</a></li>
+          </ol>
+        </nav>
+
+        <article class="terms-article">
+          <section id="acceptance" class="terms-section">
+            <h2>1. Acceptance of Terms</h2>
+            <p>
+              By accessing and using the BigShine Display website and services,
+              you agree to be bound by these Terms and Conditions. If you do not
+              agree to these terms, please do not use our website or purchase
+              our products.
+            </p>
+            <p>
+              These terms apply to all visitors, users, and customers who access
+              or use our service.
+            </p>
+          </section>
+
+          <section id="definitions" class="terms-section">
+            <h2>2. Definitions</h2>
+            <dl class="terms-definitions">
+              <dt>"Company" (referred to as "we", "us", or "our")</dt>
+              <dd>
+                BigShine Display, the operator of this website and provider of
+                interactive display solutions.
+              </dd>
+
+              <dt>"Customer" or "You"</dt>
+              <dd>
+                The person or entity purchasing products or services from
+                BigShine Display.
+              </dd>
+
+              <dt>"Products"</dt>
+              <dd>
+                Interactive displays, smartboards, digital signage, and related
+                hardware and software offered by BigShine Display.
+              </dd>
+
+              <dt>"Services"</dt>
+              <dd>
+                Installation, support, maintenance, and consultation services
+                provided by BigShine Display.
+              </dd>
+            </dl>
+          </section>
+
+          <section id="products" class="terms-section">
+            <h2>3. Products and Services</h2>
+            <h3>3.1 Product Information</h3>
+            <p>
+              We strive to provide accurate product descriptions,
+              specifications, and pricing. However, we do not warrant that
+              product descriptions or other content is accurate, complete,
+              reliable, current, or error-free.
+            </p>
+
+            <h3>3.2 Availability</h3>
+            <p>
+              All products are subject to availability. We reserve the right to
+              discontinue any product at any time without notice. In case of
+              unavailability, we will contact you to discuss alternatives or
+              refund options.
+            </p>
+
+            <h3>3.3 Pricing</h3>
+            <p>
+              Prices are displayed in USD and are subject to change without
+              notice. The price charged will be the price in effect at the time
+              the order is placed, subject to acceptance of your order.
+            </p>
+          </section>
+
+          <section id="ordering" class="terms-section">
+            <h2>4. Ordering and Payment</h2>
+            <h3>4.1 Order Process</h3>
+            <p>
+              When you place an order, you are making an offer to purchase the
+              product(s). We reserve the right to accept or decline your order
+              for any reason, including product availability, errors in pricing,
+              or fraud prevention.
+            </p>
+
+            <h3>4.2 Payment Terms</h3>
+            <p>
+              Payment is due at the time of order unless otherwise arranged. We
+              accept major credit cards, bank transfers, and approved payment
+              methods. For large orders, custom payment terms may be available.
+            </p>
+
+            <h3>4.3 Order Confirmation</h3>
+            <p>
+              You will receive an order confirmation email once your order is
+              accepted. This confirmation will include order details, estimated
+              delivery times, and tracking information when available.
+            </p>
+          </section>
+
+          <section id="shipping" class="terms-section">
+            <h2>5. Shipping and Delivery</h2>
+            <h3>5.1 Shipping Methods</h3>
+            <p>
+              We offer various shipping options including standard ground,
+              expedited, and white-glove delivery services. Shipping costs are
+              calculated based on product weight, dimensions, and destination.
+            </p>
+
+            <h3>5.2 Delivery Times</h3>
+            <p>
+              Estimated delivery times are provided for planning purposes and
+              are not guaranteed. Actual delivery times may vary due to product
+              availability, shipping method, and destination location.
+            </p>
+
+            <h3>5.3 Risk of Loss</h3>
+            <p>
+              Risk of loss and title for products pass to you upon delivery to
+              the carrier. We recommend purchasing shipping insurance for
+              high-value items.
+            </p>
+          </section>
+
+          <section id="warranty" class="terms-section">
+            <h2>6. Warranty and Returns</h2>
+            <h3>6.1 Product Warranty</h3>
+            <p>
+              Our products come with manufacturer warranties as specified in
+              product documentation. We provide support for warranty claims and
+              will coordinate with manufacturers for repairs or replacements.
+            </p>
+
+            <h3>6.2 Return Policy</h3>
+            <p>
+              Returns may be accepted within 30 days of delivery, subject to
+              product condition and return policy requirements. Custom or
+              configured products may not be returnable. Return shipping costs
+              are the responsibility of the customer unless the return is due to
+              our error.
+            </p>
+
+            <h3>6.3 Refund Process</h3>
+            <p>
+              Approved refunds will be processed to the original payment method
+              within 5-10 business days after we receive and inspect the
+              returned product.
+            </p>
+          </section>
+
+          <section id="liability" class="terms-section">
+            <h2>7. Limitation of Liability</h2>
+            <h3>7.1 General Limitations</h3>
+            <p>
+              To the fullest extent permitted by law, BigShine Display shall not
+              be liable for any indirect, incidental, special, consequential, or
+              punitive damages, including loss of profits, data, or business
+              interruption.
+            </p>
+
+            <h3>7.2 Maximum Liability</h3>
+            <p>
+              Our total liability for any claim related to products or services
+              shall not exceed the amount paid by you for the specific product
+              or service that is the subject of the claim.
+            </p>
+
+            <h3>7.3 Force Majeure</h3>
+            <p>
+              We shall not be liable for any failure or delay in performance due
+              to circumstances beyond our reasonable control, including natural
+              disasters, strikes, or supplier delays.
+            </p>
+          </section>
+
+          <section id="privacy" class="terms-section">
+            <h2>8. Privacy and Data Protection</h2>
+            <p>
+              Your privacy is important to us. Our collection and use of
+              personal information is governed by our Privacy Policy, which is
+              incorporated by reference into these Terms and Conditions.
+            </p>
+            <p>
+              By using our services, you consent to the collection and use of
+              your information as described in our Privacy Policy.
+            </p>
+          </section>
+
+          <section id="changes" class="terms-section">
+            <h2>9. Changes to Terms</h2>
+            <p>
+              We reserve the right to modify these Terms and Conditions at any
+              time. Changes will be effective immediately upon posting on our
+              website. Your continued use of our services after changes are
+              posted constitutes acceptance of the modified terms.
+            </p>
+            <p>
+              We will make reasonable efforts to notify customers of significant
+              changes to these terms.
+            </p>
+          </section>
+
+          <section id="contact" class="terms-section">
+            <h2>10. Contact Information</h2>
+            <p>
+              If you have questions about these Terms and Conditions, please
+              contact us:
+            </p>
+            <address class="terms-contact">
+              <strong>{companyConfig.displayName}</strong><br />
+              Email: <a href={`mailto:${contactConfig.primary.email}`}
+                >{contactConfig.primary.email}</a
+              ><br />
+              Phone: <a href={`tel:${contactConfig.primary.phone}`}
+                >{contactConfig.primary.phone}</a
+              ><br />
+              Address: {contactConfig.primary.address}
+            </address>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+</MainLayout>
+
+<style lang="scss">
+  .terms-page {
+    padding: 2rem 0;
+    background-color: var(--color-bg-secondary);
+    min-height: 70vh;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+  }
+
+  .terms-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--color-border-light);
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--color-text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .terms-meta {
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+  }
+
+  .terms-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 3rem;
+    align-items: start;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .terms-toc {
+    background: var(--color-bg-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-light);
+    position: sticky;
+    top: 2rem;
+
+    @media (max-width: 768px) {
+      position: static;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--color-text-primary);
+    }
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+
+        a {
+          color: var(--color-accent-primary);
+          text-decoration: none;
+          font-size: 0.9rem;
+          display: block;
+          padding: 0.25rem 0;
+          border-radius: 4px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            color: var(--color-accent-dark);
+            background-color: var(--color-bg-hover);
+            padding-left: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .terms-article {
+    background: var(--color-bg-primary);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-light);
+    line-height: 1.6;
+  }
+
+  .terms-section {
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      color: var(--color-accent-primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    h3 {
+      color: var(--color-text-primary);
+      font-size: 1.2rem;
+      margin: 1.5rem 0 0.75rem 0;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--color-text-primary);
+    }
+  }
+
+  .terms-definitions {
+    dt {
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    dd {
+      margin-left: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .terms-contact {
+    background: var(--color-bg-secondary);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--color-accent-primary);
+    font-style: normal;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-primary);
+    }
+
+    a {
+      color: var(--color-accent-primary);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Print styles
+  @media print {
+    .terms-toc {
+      display: none;
+    }
+
+    .terms-content {
+      grid-template-columns: 1fr;
+    }
+
+    .terms-article {
+      border: none;
+      box-shadow: none;
+    }
+  }
+</style>

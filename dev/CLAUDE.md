@@ -11,15 +11,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run preview` - Preview production build locally
 - `npm run check` - Run Astro type checking
 
-### AI-First Development Commands
-
-- `/project:new-feature "name" [priority] [agent-type]` - Create AI-optimized feature with work items
-- `/project:update-status WI-XXX status [notes]` - Track AI development progress
-- `/project:feature-status [feature] [format]` - Monitor AI development velocity
-- `/project:parallel-dev [feature-list]` - Coordinate multi-agent development streams
-- `/project:auto-qa [scope]` - Trigger automated quality assurance pipeline
-- `/project:deploy-preview [feature]` - Generate preview deployment for verification
-
 ## Architecture Overview
 
 This is an **Astro-based e-commerce website** for interactive displays and smartboards, built with React components and SCSS styling.
@@ -93,103 +84,13 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 
 #### Development Standards
 
-**IMPORTANT**: All new development should follow the standards in `/src/project-management/standards/`:
+**IMPORTANT**: All new development should follow the standards in `/src/development-standards/standards/`:
 - **Component Standards**: TypeScript patterns, file structure, and organization
 - **Styling Patterns**: SCSS modules for components, global utilities for shared styles
-- **Work Item Format**: Structured project management with AI-friendly formatting
 - **File Naming**: Consistent naming conventions across the project
 
 **Documentation Precedence**: 
-- **PRIMARY**: `/src/project-management/standards/` (current, authoritative)
-
-#### AI-First Development Infrastructure (Production-Ready)
-
-**Context**: This project operates with AI-native development cycles where AI agents handle most implementation, with humans focusing on strategic decisions, acceptance criteria, and final verification.
-
-**Development Velocity**: AI-optimized timelines replace traditional human development cycles:
-- **Feature Implementation**: 2-6 hours (vs 1-4 weeks human)
-- **Bug Fixes**: 10-30 minutes (vs 2-8 hours human) 
-- **Component Creation**: 30-90 minutes (vs 4-16 hours human)
-- **Testing & Documentation**: Automated and parallel (vs sequential human process)
-
-**Multi-Agent Development Streams**:
-- **Parallel Development**: 3-5 agents working simultaneously on different components
-- **24/7 Availability**: Development continues outside business hours
-- **Instant Coordination**: Real-time agent communication and conflict resolution
-- **Automated Quality Gates**: Every change includes tests, documentation, and type safety
-
-**AI-Agent Specializations**:
-- **Frontend-UI Agent**: React/Astro components, SCSS styling, responsive design, accessibility
-- **Backend-API Agent**: Server-side logic, database operations, API design, security
-- **Data-Pipeline Agent**: JSON data management, content processing, schema validation
-- **Testing Agent**: Unit/integration/e2e tests, performance testing, security audits
-- **Integration Agent**: Multi-agent coordination, deployment automation, cross-cutting concerns
-- **QA Agent**: Code review, standards compliance, performance optimization
-
-**AI Development Phases** (Hours, not Weeks):
-
-**Phase 1 - Foundation (Day 1: 0-8 hours)**
-- Fix critical TypeScript errors and warnings
-- Implement comprehensive testing framework
-- Set up continuous integration pipeline
-- Establish performance monitoring baseline
-
-**Phase 2 - Core Features (Day 1-2: 8-24 hours)**
-- Shopping cart and checkout implementation
-- User authentication and session management  
-- Payment processing integration
-- Product search with filtering
-
-**Phase 3 - Enhancement (Day 2-3: 24-48 hours)**
-- Mobile optimization and PWA features
-- Accessibility compliance (WCAG 2.1 AA)
-- Performance optimization and code splitting
-- SEO enhancement with schema markup
-
-**Phase 4 - Advanced Features (Day 3-5: 48-96 hours)**
-- AI-powered recommendations and personalization
-- Real-time features (chat, notifications)
-- Advanced analytics and conversion optimization
-- Multi-language support and localization
-
-**Continuous Development Practices**:
-- **Automated Testing**: Every commit includes comprehensive test coverage
-- **Performance Monitoring**: Real-time performance regression detection
-- **Accessibility Auditing**: Automated WCAG compliance checking
-- **Security Scanning**: Automated vulnerability assessment
-- **Code Quality Gates**: TypeScript errors block deployment
-- **Documentation Generation**: Auto-generated API docs and component stories
-
-**AI-Agent Coordination Protocols**:
-```json
-{
-  "workItemFormat": "machine-parseable with JSON metadata",
-  "agentHandoffs": "automated with dependency tracking",
-  "conflictResolution": "real-time with precedence rules",
-  "qualityGates": "automated verification before merge",
-  "deploymentPipeline": "continuous with rollback capabilities"
-}
-```
-
-**Human-AI Collaboration Model**:
-- **Human Role**: Strategic decisions, acceptance criteria definition, final verification
-- **AI Role**: Implementation, testing, documentation, optimization, maintenance
-- **Decision Points**: Architecture changes, business logic, user experience decisions
-- **Verification Gates**: Automated quality checks + human acceptance testing
-
-**AI Development Metrics**:
-- **Velocity**: Features/hour vs traditional features/sprint
-- **Quality**: Automated test coverage, performance benchmarks, accessibility scores
-- **Consistency**: Code style compliance, pattern adherence, documentation completeness
-- **Efficiency**: Lines of code per feature, technical debt reduction, performance improvements
-
-**Usage for AI Assistants**:
-- **Expect Rapid Iteration**: Implement features in hours, not days
-- **Work in Parallel**: Coordinate multiple development streams simultaneously
-- **Automate Everything**: Testing, documentation, deployment, monitoring
-- **Maintain Quality**: Every change includes comprehensive quality assurance
-- **Think in Pipelines**: Continuous integration, deployment, and monitoring
-- **Optimize Continuously**: Performance, accessibility, SEO, and user experience
+- **PRIMARY**: `/src/development-standards/standards/` (current, authoritative)
 
 #### SEO & Performance
 
@@ -198,71 +99,162 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 - Responsive image optimization with Astro's image service
 - Meta tag management through reusable SEO component
 
-### AI-Driven Testing & Quality Assurance
+### Quality Assurance
 
-**Automated Quality Pipeline**:
-- **Test Generation**: AI creates comprehensive test suites from acceptance criteria
-- **Performance Testing**: Automated Lighthouse audits and performance regression detection
-- **Accessibility Testing**: Automated WCAG 2.1 AA compliance verification
-- **Security Scanning**: Automated vulnerability assessment and dependency auditing
-- **Type Safety**: Zero TypeScript errors policy with automated enforcement
+**Current Quality Practices**:
+- **TypeScript**: Type safety throughout the codebase
+- **Manual Testing**: Verify functionality against acceptance criteria
+- **Code Standards**: Follow established patterns in `/src/project-management/standards/`
+- **Performance**: Optimize for fast loading and good user experience
 
-**Continuous Quality Gates**:
-- **Pre-commit**: Automated linting, formatting, and basic type checking
-- **Pre-merge**: Full test suite, performance benchmarks, accessibility audit
-- **Pre-deployment**: Security scan, bundle size analysis, SEO validation
-- **Post-deployment**: Real-time monitoring, error tracking, performance metrics
+## Development Planning
 
-**AI Quality Metrics**:
-- **Test Coverage**: >90% automated coverage for all new code
-- **Performance**: <2s page load, >95 Lighthouse score
-- **Accessibility**: 100% WCAG 2.1 AA compliance
-- **Type Safety**: Zero TypeScript errors/warnings
-- **Bundle Size**: <200KB initial bundle, code splitting enforced
+**Feature Estimation Guidelines**:
+- **Simple tasks**: 30-60 minutes (single component changes)
+- **Medium tasks**: 2-4 hours (multiple components, some integration)
+- **Complex tasks**: 4+ hours (architectural changes, multiple sessions)
 
-## AI-First Project Planning & Estimation
+**Development Priorities**:
+- **Maintain current functionality**: Ensure existing features continue working
+- **Improve user experience**: Focus on usability and performance
+- **Follow established patterns**: Use existing component and styling standards
 
-**Feature Estimation Model** (AI Development):
-```json
-{
-  "simple-component": "30-60 minutes",
-  "complex-component": "2-4 hours", 
-  "full-feature": "4-12 hours",
-  "integration": "1-3 hours",
-  "testing-suite": "auto-generated",
-  "documentation": "auto-generated"
-}
+## AI Development Patterns
+
+> **MANDATORY FOR AI ASSISTANTS**: These patterns define required practices for all AI development work in this project. Read and apply these patterns before starting any development tasks.
+
+### Human-AI Collaboration Model
+
+**Approach**: Human-AI pair programming for rapid, high-quality development
+
+**Human Responsibilities:**
+- **Strategic Decisions**: Architecture choices, business logic, user experience decisions
+- **Acceptance Criteria**: Define what "done" looks like
+- **Final Verification**: Review implementation against requirements
+- **Code Review**: Approve changes that affect core functionality
+
+**AI Responsibilities:**
+- **Implementation**: Write code, create components, implement features
+- **Documentation**: Generate inline docs, update README files
+- **Debugging**: Identify and fix implementation issues
+- **Testing**: Create tests when framework exists
+
+**Development Velocity**: AI-optimized development cycles:
+- **Feature Implementation**: 30 minutes to 6 hours per feature
+- **Bug Fixes**: 10-30 minutes for most issues
+- **Component Creation**: 30-90 minutes with proper patterns
+- **Documentation**: Generated during implementation
+
+**Interaction Patterns:**
+- **Conversational Task Definition**: Clear requirements through natural language
+- **Real-time Feedback**: Immediate iteration and refinement cycles
+- **Session Scope**: Complete features in single interactions when possible
+- **Context Continuity**: Maintain full understanding across related changes
+
+### AI Development Capabilities
+
+**Current Approach: Single AI, Multiple Capabilities**
+
+**Why Single AI Works Best (Current Project Scale):**
+- **Context continuity**: Maintains full understanding across all changes
+- **No coordination overhead**: Zero handoff delays or miscommunication  
+- **Holistic optimization**: Can optimize across frontend/data/styling simultaneously
+- **Immediate iteration**: Fix issues instantly without waiting for coordination
+- **Simple interaction model**: Human works with one consistent assistant
+
+**Development Specialization Areas:**
+
+#### Frontend Development
+- **Components**: React/Astro components with TypeScript
+- **Styling**: SCSS modules, responsive design, CSS architecture
+- **Integration**: Component composition and state management
+- **Tools**: React, Astro, TypeScript, SCSS
+
+#### Data & Content Management  
+- **Static Data**: JSON file organization and updates (product catalogs, configs)
+- **Content Collections**: Astro content management (blog posts, use cases)
+- **Schema Validation**: Data structure consistency and validation
+- **Tools**: JSON processing, Astro content API, schema validation
+
+#### Quality Assurance & Standards
+- **Code Quality**: TypeScript error resolution, linting compliance
+- **Standards Adherence**: Component, styling, and file naming conventions
+- **Manual Verification**: Functionality testing and acceptance criteria validation
+- **Documentation**: Inline docs, README updates, pattern documentation
+
+**When Multiple AI Would Become Necessary:**
+- **Context overflow**: 100+ components, complex state management systems
+- **True parallel development**: Multiple unrelated major features simultaneously
+- **Specialized expertise**: Security, performance, DevOps requiring deep domain knowledge
+- **Team scale**: 5+ developers, multiple product lines, enterprise architecture
+
+**Current Project Assessment:** Single AI optimal for foreseeable growth
+
+### Task Communication Patterns
+
+**Simple Task Format:**
+- **Clear, specific descriptions**: "Add hover zoom to ProductImage component with 2x magnification"
+- **Explicit acceptance criteria**: What "done" looks like
+- **Dependencies noted upfront**: Required files, existing components, prerequisites
+- **No formal work item IDs**: AI development moves too fast for heavy process
+
+**Complexity Indicators:**
+- **Simple**: Single component change, clear requirements, 30min-2hrs
+- **Medium**: Multiple related changes, some integration, 2-6hrs  
+- **Complex**: Cross-cutting changes, architectural decisions needed, 6+ hrs or multiple sessions
+
+**Effective Task Examples:**
+```markdown
+// Good: Specific and actionable
+"Add hover zoom functionality to ProductImage component with 2x magnification that follows cursor position"
+
+// Poor: Vague and unclear  
+"Make images better"
+
+// Good: Clear acceptance criteria
+- [ ] Image zooms to 2x scale on hover
+- [ ] Zoom follows mouse cursor position
+- [ ] Zoom resets when mouse leaves image area
+- [ ] Works on both desktop and mobile devices
 ```
 
-**Parallel Development Capacity**:
-- **Simultaneous Features**: 3-5 features in parallel development
-- **Agent Specialization**: Frontend, Backend, Data, Testing, Integration agents
-- **Coordination Overhead**: Minimal with automated handoffs
-- **Quality Assurance**: Continuous and automated
+### Development Workflow
 
-**AI Enhancement Roadmap** (Revised Timelines):
-```
-Week 1 (40 hours AI development):
-- Foundation fixes (TypeScript, testing, CI/CD)
-- Core e-commerce features (cart, auth, payments)
-- Mobile optimization and accessibility
-- Performance optimization
+**For Simple Tasks (30min-2hrs):**
+1. **Understand**: Clarify requirements and acceptance criteria
+2. **Verify**: Check imports, dependencies, and existing patterns exist using Glob/LS tools
+3. **Implement**: Write code following established standards
+4. **Validate**: Test functionality and verify acceptance criteria met
 
-Week 2 (40 hours AI development):  
-- Advanced features (search, recommendations)
-- Real-time capabilities (chat, notifications)
-- Analytics and conversion optimization
-- SEO and content management
+**For Complex Tasks (Multi-session/6+ hrs):**
+1. **Plan**: Break into logical phases, use TodoWrite for tracking progress
+2. **Implement Incrementally**: Complete phases one at a time
+3. **Verify Each Phase**: Ensure stability before moving forward
+4. **Document**: Summarize progress and any architectural decisions made
 
-Week 3+ (Continuous):
-- AI-powered personalization
-- Advanced business intelligence
-- Multi-language and internationalization
-- Enterprise features and scaling
-```
+**AI-Specific Best Practices:**
+- **Always verify context first**: Use Glob/LS to confirm files/components exist before coding
+- **Ask clarifying questions**: When requirements are ambiguous or incomplete
+- **Show incremental progress**: For complex changes, demonstrate working steps
+- **Reference standards**: Link to specific patterns when deviating from conventions
+- **Use path aliases**: Import from configured aliases for clean, maintainable code
 
-**Success Metrics for AI Development**:
-- **Velocity**: 8-10 completed features per week
-- **Quality**: Zero production bugs, >95% performance scores
-- **Consistency**: 100% adherence to development standards
-- **Efficiency**: 90% reduction in development time vs traditional approach
+## AI Development Standards & Requirements
+
+**IMPORTANT**: All AI development work must follow the patterns defined above in the AI Development Patterns section.
+
+**Before Starting Any Development Task:**
+- **Review**: Read task communication patterns and workflow steps above
+- **Apply**: Use AI-specific best practices consistently throughout implementation
+- **Verify**: Always use Glob/LS tools before coding to confirm context exists
+- **Follow**: Reference established standards in `/src/development-standards/standards/` rather than duplicating or guessing patterns
+
+**Required Development Practices:**
+- Context verification before implementation
+- Standards compliance (component, styling, file naming, data management)
+- Clear communication with humans when requirements are ambiguous
+- Incremental progress demonstration for complex changes
+
+---
+
+**Philosophy**: Start simple, add complexity only when needed. Focus on practical patterns that improve development velocity while maintaining code quality.

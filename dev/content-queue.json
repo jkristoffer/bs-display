@@ -1,0 +1,215 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-06-26",
+  "nextPostDate": "2025-06-29",
+  "scheduledPosts": [
+    {
+      "id": "002",
+      "title": "Interactive Whiteboard Installation Guide: Professional Setup in 7 Steps",
+      "description": "Step-by-step guide for installing interactive whiteboards including wall mounting, calibration, cable management, and troubleshooting common issues.",
+      "category": "Installation Guide",
+      "template": "how-to",
+      "priority": "medium",
+      "keywords": [
+        "whiteboard installation",
+        "smartboard setup",
+        "interactive display mounting"
+      ],
+      "targetAudience": "IT_professionals",
+      "estimatedReadTime": "12 minutes",
+      "data": {
+        "mainTopic": "Interactive Whiteboard Installation",
+        "hook": "Proper installation is crucial for optimal performance and longevity of your interactive whiteboard investment.",
+        "cta": "Need professional installation services? Our certified technicians ensure perfect setup and configuration."
+      }
+    },
+    {
+      "id": "003",
+      "title": "Healthcare Interactive Displays: Transforming Patient Care and Medical Training",
+      "description": "Explore how interactive displays revolutionize healthcare environments, from patient consultations to medical education and hospital wayfinding systems.",
+      "category": "Industry Applications",
+      "template": "use-case",
+      "priority": "medium",
+      "keywords": [
+        "healthcare displays",
+        "medical interactive boards",
+        "hospital technology"
+      ],
+      "targetAudience": "healthcare_professionals",
+      "estimatedReadTime": "10 minutes",
+      "data": {
+        "mainTopic": "Healthcare Interactive Displays",
+        "industry": "Healthcare",
+        "hook": "Interactive displays are transforming healthcare delivery, enhancing both patient care and medical education.",
+        "cta": "Discover how interactive displays can improve patient outcomes and streamline healthcare operations."
+      }
+    },
+    {
+      "id": "005",
+      "title": "4K vs 8K Interactive Displays: When Ultra-High Resolution Matters",
+      "description": "Analyze the benefits and costs of 4K versus 8K resolution interactive displays, including content requirements, viewing distances, and future-proofing considerations.",
+      "category": "Display Technology",
+      "template": "comparison",
+      "priority": "medium",
+      "keywords": [
+        "4K displays",
+        "8K displays",
+        "ultra high resolution",
+        "interactive display resolution"
+      ],
+      "targetAudience": "business_decision_makers",
+      "estimatedReadTime": "9 minutes",
+      "data": {
+        "mainTopic": "4K vs 8K Interactive Display Resolution",
+        "techA": "4K Interactive Displays",
+        "techB": "8K Interactive Displays",
+        "hook": "Higher resolution promises better visual quality, but do you really need 8K for your interactive applications?",
+        "cta": "Find the optimal resolution for your display needs while maximizing your technology investment."
+      }
+    },
+    {
+      "id": "006",
+      "title": "Interactive Display Maintenance: Extending Lifespan and Performance",
+      "description": "Essential maintenance practices for interactive displays including cleaning procedures, calibration schedules, software updates, and preventive care tips.",
+      "category": "Maintenance Guide",
+      "template": "how-to",
+      "priority": "medium",
+      "keywords": [
+        "display maintenance",
+        "interactive board care",
+        "touchscreen cleaning"
+      ],
+      "targetAudience": "facility_managers",
+      "estimatedReadTime": "11 minutes",
+      "data": {
+        "mainTopic": "Interactive Display Maintenance",
+        "hook": "Proper maintenance can double the lifespan of your interactive displays while maintaining peak performance.",
+        "cta": "Implement a maintenance program that protects your display investment and ensures consistent performance."
+      }
+    },
+    {
+      "id": "007",
+      "title": "Manufacturing Interactive Displays: Streamlining Production and Training",
+      "description": "How interactive displays optimize manufacturing operations through digital work instructions, quality control visualization, and workforce training programs.",
+      "category": "Industry Applications",
+      "template": "use-case",
+      "priority": "medium",
+      "keywords": [
+        "manufacturing displays",
+        "industrial interactive boards",
+        "production optimization"
+      ],
+      "targetAudience": "manufacturing_professionals",
+      "estimatedReadTime": "10 minutes",
+      "data": {
+        "mainTopic": "Manufacturing Interactive Displays",
+        "industry": "Manufacturing",
+        "hook": "Interactive displays are revolutionizing manufacturing floors, improving both efficiency and worker safety.",
+        "cta": "Explore how interactive displays can transform your manufacturing operations and workforce development."
+      }
+    },
+    {
+      "id": "008",
+      "title": "Interactive Display Security: Protecting Your Investment and Data",
+      "description": "Comprehensive security guide for interactive displays covering network security, user access controls, software updates, and physical security measures.",
+      "category": "Security Guide",
+      "template": "how-to",
+      "priority": "high",
+      "keywords": [
+        "display security",
+        "interactive board cybersecurity",
+        "network security"
+      ],
+      "targetAudience": "IT_professionals",
+      "estimatedReadTime": "13 minutes",
+      "data": {
+        "mainTopic": "Interactive Display Security",
+        "hook": "As interactive displays become more connected, security becomes critical for protecting both your investment and sensitive data.",
+        "cta": "Implement comprehensive security measures to protect your interactive display infrastructure."
+      }
+    }
+  ],
+  "templates": {
+    "comparison": {
+      "name": "Technology Comparison",
+      "description": "Compare two technologies or products side-by-side",
+      "sections": [
+        "introduction",
+        "technology_a_overview",
+        "technology_b_overview",
+        "detailed_comparison",
+        "use_cases",
+        "decision_factors",
+        "conclusion"
+      ],
+      "targetLength": "1500-2000 words"
+    },
+    "how-to": {
+      "name": "How-To Guide",
+      "description": "Step-by-step instructional content",
+      "sections": [
+        "introduction",
+        "prerequisites",
+        "step_by_step",
+        "troubleshooting",
+        "best_practices",
+        "conclusion"
+      ],
+      "targetLength": "2000-2500 words"
+    },
+    "use-case": {
+      "name": "Industry Use Case",
+      "description": "Industry-specific application examples",
+      "sections": [
+        "industry_overview",
+        "challenges",
+        "solution_requirements",
+        "implementation",
+        "benefits",
+        "roi_considerations",
+        "next_steps"
+      ],
+      "targetLength": "1800-2200 words"
+    },
+    "buyer-guide": {
+      "name": "Buyer's Guide",
+      "description": "Product selection and purchasing advice",
+      "sections": [
+        "market_overview",
+        "key_factors",
+        "product_categories",
+        "budget_considerations",
+        "vendor_selection",
+        "implementation_planning",
+        "recommendations"
+      ],
+      "targetLength": "2500-3000 words"
+    }
+  },
+  "contentGuidelines": {
+    "brandVoice": {
+      "tone": "professional, helpful, authoritative",
+      "style": "clear, concise, solution-focused",
+      "perspective": "expert guidance, practical advice"
+    },
+    "seoRequirements": {
+      "titleLength": "50-60 characters",
+      "descriptionLength": "150-160 characters",
+      "keywordDensity": "1-2%",
+      "headingStructure": "H1, H2, H3 hierarchy"
+    },
+    "qualityStandards": {
+      "minWordCount": 1500,
+      "maxWordCount": 3000,
+      "readabilityScore": "9th grade level",
+      "factAccuracy": "industry-verified information"
+    }
+  },
+  "automation": {
+    "publishSchedule": "every 3 days",
+    "nextScheduledDate": "2025-06-29T09:00:00Z",
+    "timeZone": "UTC",
+    "reviewRequired": true,
+    "autoPublish": false
+  }
+}

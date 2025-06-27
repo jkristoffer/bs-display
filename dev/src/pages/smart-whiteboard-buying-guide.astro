@@ -11,8 +11,7 @@ import WhyChooseSection from '../components/sw-buying-guide/WhyChooseSection.ast
 import UseCasesSection from '../components/sw-buying-guide/UseCasesSection.astro';
 import DisplayTechSection from '../components/sw-buying-guide/DisplayTechSection.astro';
 import TouchTechSection from '../components/sw-buying-guide/TouchTechSection.astro';
-import ComparisonChartSection from '../components/sw-buying-guide/ComparisonChartSection.astro';
-import CombinationsSection from '../components/sw-buying-guide/CombinationsSection.astro';
+import TouchComparison from '../components/sw-buying-guide/TouchComparison';
 import BrandsSection from '../components/sw-buying-guide/BrandsSection.astro';
 import FaqsSection from '../components/sw-buying-guide/FaqsSection.astro';
 import ExpertAdviceSection from '../components/sw-buying-guide/ExpertAdviceSection.astro';
@@ -34,7 +33,6 @@ const tocItems = [
   { href: '#display-tech', text: 'Display Technologies Explained' },
   { href: '#touch-tech', text: 'Touch Technologies Breakdown' },
   { href: '#comparison', text: 'Interactive Display Comparison Chart' },
-  { href: '#combinations', text: 'Best Combinations by Use Case & Budget' },
   { href: '#brands', text: 'Top Brands & Recommended Models' },
   { href: '#faqs', text: 'FAQs' },
   { href: '#expert-advice', text: 'Need Expert Advice?' }
@@ -60,9 +58,8 @@ const tocItems = [
 
     <TouchTechSection />
 
-    <ComparisonChartSection />
+    <TouchComparison client:load />
 
-    <CombinationsSection />
 
     <BrandsSection />
 

@@ -1,0 +1,12 @@
+/**
+ * Contact Page Styles
+ * 
+ * External SCSS file for contact page using contact page mixins.
+ * Extracted from inline styles in contact.astro for better maintainability.
+ */
+
+@use 'contact-page-mixins' as contact;
+
+.contact-container {
+  @include contact.contact-page-complete;
+}

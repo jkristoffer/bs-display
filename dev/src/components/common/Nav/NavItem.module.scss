@@ -1,21 +1,22 @@
 /* Block: nav__link */
 .nav__link {
-  font-size: var(--font-size-nav-primary); /* Navigation-specific sizing */
+  font-size: var(--font-size-nav-primary);
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-wide);
   line-height: var(--line-height-body);
   text-transform: none;
-  padding: var(--spacing-4) var(--spacing-6);
+  padding: var(--spacing-5) var(--spacing-8); /* Enhanced padding for better proportions */
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
   text-align: center;
-  min-height: 44px;
+  height: 48px; /* Fixed height for consistency */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md); /* Modern radius */
+  border-radius: var(--radius-md);
   color: var(--color-text-primary);
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Enhanced hover state */
@@ -57,19 +58,20 @@
   color: var(--color-button-primary-text);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-normal);
-  padding: var(--spacing-5) var(--spacing-10); /* Enhanced padding for better proportions */
-  border-radius: var(--radius-lg); /* Modern radius system */
-  margin-left: var(--spacing-8);
+  padding: var(--spacing-5) var(--spacing-12); /* Optimized CTA padding */
+  border-radius: var(--radius-lg);
+  margin-left: var(--spacing-6); /* Reduced margin for better balance */
   text-transform: none;
-  min-height: 44px;
-  box-shadow: var(--shadow-sm); /* Subtle depth */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
+  height: 48px; /* Consistent height */
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: var(--font-size-nav-secondary); /* Slightly smaller for hierarchy */
   
   &:hover {
     background: var(--color-button-primary-hover);
     color: var(--color-button-primary-text);
-    transform: translateY(-2px); /* Enhanced lift */
-    box-shadow: var(--shadow-md); /* Enhanced shadow on hover */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
   
   &:active {

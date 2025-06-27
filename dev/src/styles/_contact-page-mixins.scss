@@ -1,0 +1,421 @@
+/**
+ * Contact Page Mixins
+ * 
+ * Reusable SCSS mixins for contact forms and contact information pages.
+ * Provides consistent styling patterns for contact interfaces.
+ */
+
+// Contact page container
+@mixin contact-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-40) var(--spacing-lg);
+  background-color: var(--color-background);
+  
+  @media (max-width: 768px) {
+    padding: var(--spacing-24) var(--spacing-md);
+  }
+}
+
+// Contact page header with decorative elements
+@mixin contact-page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-48);
+  
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    display: inline-block;
+    font-weight: var(--font-weight-semibold);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background-color: var(--color-accent-primary);
+      border-radius: var(--border-radius-small);
+    }
+  }
+  
+  .subtitle {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+    }
+    
+    .subtitle {
+      font-size: var(--font-size-body-regular);
+    }
+  }
+}
+
+// Two-column layout for contact content
+@mixin contact-content-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--spacing-40);
+  align-items: start;
+  
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-24);
+  }
+}
+
+// Contact form container styling
+@mixin contact-form-container {
+  background-color: var(--color-surface-elevated);
+  border-radius: var(--border-radius-card);
+  padding: var(--spacing-32);
+  box-shadow: var(--box-shadow-card);
+  border: 1px solid var(--color-border-light);
+  
+  @media (max-width: 768px) {
+    padding: var(--spacing-24);
+  }
+  
+  h2 {
+    font-size: var(--font-size-h4);
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--color-accent-primary);
+      border-radius: var(--border-radius-small);
+    }
+  }
+}
+
+// Contact form styling
+@mixin contact-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    
+    &.full-width {
+      grid-column: 1 / -1;
+    }
+    
+    @media (max-width: 768px) {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  label {
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body-small);
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: var(--spacing-6);
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--border-radius-small);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-regular);
+    background-color: var(--color-background);
+    transition: all 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent-primary);
+      box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.1);
+      background-color: var(--color-surface-elevated);
+    }
+    
+    &:hover:not(:focus) {
+      border-color: var(--color-border-default);
+    }
+    
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: var(--font-primary);
+  }
+  
+  .form-actions {
+    grid-column: 1 / -1;
+    margin-top: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}
+
+// Form status messages
+@mixin contact-form-status {
+  .form-status {
+    padding: var(--spacing-6) var(--spacing-8);
+    border-radius: var(--border-radius-small);
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-body-small);
+    
+    &.success {
+      background-color: rgba(76, 175, 80, 0.1);
+      color: #2e7d32;
+      border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+    
+    &.error {
+      background-color: rgba(244, 67, 54, 0.1);
+      color: #d32f2f;
+      border: 1px solid rgba(244, 67, 54, 0.3);
+    }
+  }
+  
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: var(--spacing-sm);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// Contact information sidebar
+@mixin contact-info-container {
+  background-color: var(--color-surface-elevated);
+  border-radius: var(--border-radius-card);
+  padding: var(--spacing-32);
+  box-shadow: var(--box-shadow-card);
+  border: 1px solid var(--color-border-light);
+  
+  @media (max-width: 768px) {
+    padding: var(--spacing-24);
+  }
+  
+  h2 {
+    font-size: var(--font-size-h4);
+    color: var(--color-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--color-accent-primary);
+      border-radius: var(--border-radius-small);
+    }
+  }
+}
+
+// Individual contact information items
+@mixin contact-info-item {
+  margin-bottom: var(--spacing-lg);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  h3 {
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-xs) 0;
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-body-regular);
+    
+    a {
+      color: var(--color-accent-primary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        color: var(--color-accent-secondary);
+        text-decoration: underline;
+      }
+      
+      &:focus {
+        outline: 2px solid var(--color-accent-primary);
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+// Social links section
+@mixin contact-social-links {
+  margin-top: var(--spacing-32);
+  
+  h3 {
+    font-size: var(--font-size-body-large);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+  
+  .social-icon {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-small);
+    background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+    font-size: var(--font-size-body-small);
+    font-weight: var(--font-weight-medium);
+    
+    &:hover {
+      color: var(--color-accent-secondary);
+      background-color: rgba(var(--color-accent-secondary-rgb), 0.1);
+      transform: translateY(-1px);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--color-accent-primary);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Accessibility enhancements for contact forms
+@mixin contact-accessibility {
+  // Skip link for screen readers
+  .skip-to-form {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-accent-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+    
+    &:focus {
+      top: 6px;
+    }
+  }
+  
+  // Enhanced focus styles
+  *:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+  
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    .contact-form-container,
+    .contact-info {
+      border: 2px solid var(--color-text-primary);
+    }
+    
+    input,
+    select,
+    textarea {
+      border: 2px solid var(--color-text-primary);
+    }
+  }
+  
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+// Complete contact page layout combining all mixins
+@mixin contact-page-complete {
+  @include contact-page-container;
+  @include contact-form-status;
+  @include contact-accessibility;
+  
+  .contact-header {
+    @include contact-page-header;
+  }
+  
+  .contact-content {
+    @include contact-content-layout;
+  }
+  
+  .contact-form-container {
+    @include contact-form-container;
+  }
+  
+  .contact-form {
+    @include contact-form;
+  }
+  
+  .contact-info {
+    @include contact-info-container;
+  }
+  
+  .info-item {
+    @include contact-info-item;
+  }
+  
+  .social-links {
+    @include contact-social-links;
+  }
+}

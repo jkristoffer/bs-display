@@ -25,6 +25,7 @@ const seoProps = {
 
 <MainLayout {...seoProps}>
   <div class="contact-container">
+    <a href="#contact-form" class="skip-to-form">Skip to contact form</a>
     <div class="contact-header">
       <h1>Contact Us</h1>
       <p class="subtitle">
@@ -37,16 +38,18 @@ const seoProps = {
     <div class="contact-content">
       <div class="contact-form-container">
         <h2>Send Us a Message</h2>
-        <form class="contact-form" id="contactForm">
-          <div id="formStatus" class="form-status" style="display: none;"></div>
+        <form class="contact-form" id="contactForm" role="form" aria-label="Contact form">
+          <div id="formStatus" class="form-status" style="display: none;" role="alert" aria-live="polite"></div>
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required />
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required aria-required="true" aria-describedby="name-help" />
+            <small id="name-help" class="sr-only">Enter your full name</small>
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-help" />
+            <small id="email-help" class="sr-only">Enter a valid email address</small>
           </div>
 
           <div class="form-group">
@@ -60,8 +63,9 @@ const seoProps = {
           </div>
 
           <div class="form-group">
-            <label for="inquiry-type">Inquiry Type</label>
-            <select id="inquiry-type" name="inquiry-type" required>
+            <label for="inquiry-type">Inquiry Type *</label>
+            <select id="inquiry-type" name="inquiry-type" required aria-required="true" aria-describedby="inquiry-help">
+            <small id="inquiry-help" class="sr-only">Select the type of inquiry</small>
               <option value="">Select an option</option>
               <option value="quote">Request a Quote</option>
               <option value="demo">Book a Demo</option>
@@ -71,8 +75,9 @@ const seoProps = {
           </div>
 
           <div class="form-group full-width">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-help" placeholder="Please describe your inquiry in detail..."></textarea>
+            <small id="message-help" class="sr-only">Provide details about your inquiry</small>
           </div>
 
           <div class="form-actions">
@@ -90,7 +95,7 @@ const seoProps = {
       </div>
 
       <div class="contact-info">
-        <h2>Contact Information</h2>
+        <h2 id="contact-info">Contact Information</h2>
 
         <div class="info-item">
           <h3>Address</h3>
@@ -99,12 +104,12 @@ const seoProps = {
 
         <div class="info-item">
           <h3>Phone</h3>
-          <p>+65 6858 6597</p>
+          <p><a href="tel:+6568586597">+65 6858 6597</a></p>
         </div>
 
         <div class="info-item">
           <h3>Email</h3>
-          <p>team@bigshine-display.com</p>
+          <p><a href="mailto:team@bigshine-display.com">team@bigshine-display.com</a></p>
         </div>
 
         <div class="info-item">

@@ -15,13 +15,18 @@ $color-accent-secondary: #ffa726;
   --color-border: #dddddd;
   /* Optional light grey border color */
 
-  /* Button Colors */
+  /* Enhanced Button Color System */
   --color-button-ghost-border: var(--color-accent-primary);
   --color-button-ghost-text: var(--color-accent-primary);
-  --color-button-primary-background: var(--color-accent-secondary);
-  --color-button-primary-text: var(--color-background);
-  --color-button-disabled-border: #cccccc;
-  --color-button-disabled-text: #999999;
+  --color-button-primary-background: var(--color-accent-primary);
+  --color-button-primary-text: white;
+  --color-button-primary-hover: #007a6b;
+  --color-button-primary-active: #006b5d;
+  --color-button-secondary-background: var(--color-accent-secondary);
+  --color-button-secondary-text: var(--color-background);
+  --color-button-disabled-border: var(--color-border-muted);
+  --color-button-disabled-text: var(--color-text-muted);
+  --color-button-disabled-background: var(--color-surface-muted);
 
   /* Typography - Modern Scale & Hierarchy */
   --font-primary: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
@@ -37,6 +42,10 @@ $color-accent-secondary: #ffa726;
   --font-size-body-small: 14px;
   --font-size-caption: 13px;
   --font-size-micro: 11px;
+  
+  /* Navigation-specific sizes */
+  --font-size-nav-primary: 15px;
+  --font-size-nav-secondary: 14px;
   
   /* Modern Line Heights */
   --line-height-tight: 1.15;
@@ -95,19 +104,56 @@ $color-accent-secondary: #ffa726;
   --spacing-card-padding: 24px;
   --spacing-gap-between-blocks: 20px;
 
-  /* Additional color variables for buying guide */
+  /* Extended Color Palette */
   --color-text-secondary: #64748b;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #d1d5db;
   --color-accent-secondary-dark: #f57c00;
+  
+  /* Surface Colors */
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-surface-subtle: #f1f5f9;
+  
+  /* Border Colors */
+  --color-border-light: #f1f5f9;
+  --color-border-muted: #e2e8f0;
+  --color-border-default: #d1d5db;
+  --color-border-strong: #9ca3af;
 
-  /* Border radius */
-  --border-radius-small: 6px;
-  --border-radius-card: 12px;
-  --border-radius-button: 8px;
+  /* Modern Border Radius System */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Semantic Border Radius */
+  --border-radius-small: var(--radius-md);
+  --border-radius-card: var(--radius-xl);
+  --border-radius-button: var(--radius-lg);
 
-  /* Effects */
+  /* Modern Shadow System */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Colored Shadows */
+  --shadow-accent: 0 4px 14px 0 rgba(var(--color-accent-primary-rgb), 0.15);
+  --shadow-accent-lg: 0 8px 25px 0 rgba(var(--color-accent-primary-rgb), 0.2);
+  
+  /* Legacy shadows (for gradual migration) */
   --box-shadow-1: -1px 2px 3px 2px rgba(33, 33, 33, 0.15);
-  --box-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --box-shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --box-shadow-card: var(--shadow-sm);
+  --box-shadow-card-hover: var(--shadow-md);
 
   /* Breakpoints */
   --breakpoint-sm: 576px;

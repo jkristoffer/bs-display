@@ -1,25 +1,32 @@
 /* Block: nav__link */
 .nav__link {
-  font-size: var(--font-size-body-regular);
-  font-weight: var(--font-weight-medium); /* Enhanced weight for better hierarchy */
-  letter-spacing: var(--letter-spacing-wide); /* Modern letter spacing */
+  font-size: var(--font-size-nav-primary); /* Navigation-specific sizing */
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
   line-height: var(--line-height-body);
-  text-transform: none; /* Remove uppercase for modern feel */
+  text-transform: none;
   padding: var(--spacing-4) var(--spacing-6);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
   box-sizing: border-box;
   text-align: center;
-  min-height: 44px; /* Touch-friendly height */
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-md); /* Modern radius */
+  color: var(--color-text-primary);
 }
 
-/* Hover state */
+/* Enhanced hover state */
 .nav__link:hover {
   color: var(--color-accent-primary);
-  background: rgba(var(--color-accent-primary-rgb), 0.06);
+  background: var(--color-surface-muted);
+  transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.nav__link:active {
+  transform: translateY(0);
 }
 
 /* Modifier: nav__link--active */
@@ -46,24 +53,33 @@
 
 /* Modifier: nav__link--cta */
 .nav__link_cta {
-  background: var(--color-accent-primary);
-  color: white;
-  font-weight: var(--font-weight-semibold); /* Modern weight */
-  letter-spacing: var(--letter-spacing-normal); /* Clean letter spacing for CTA */
-  padding: var(--spacing-5) var(--spacing-8); /* Refined padding */
-  border-radius: var(--border-radius-button);
+  background: var(--color-button-primary-background);
+  color: var(--color-button-primary-text);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  padding: var(--spacing-5) var(--spacing-10); /* Enhanced padding for better proportions */
+  border-radius: var(--radius-lg); /* Modern radius system */
   margin-left: var(--spacing-8);
   text-transform: none;
-  min-height: 44px; /* Consistent touch target */
+  min-height: 44px;
+  box-shadow: var(--shadow-sm); /* Subtle depth */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
   
   &:hover {
-    background: #007a6b;
-    color: white;
-    transform: translateY(-1px);
+    background: var(--color-button-primary-hover);
+    color: var(--color-button-primary-text);
+    transform: translateY(-2px); /* Enhanced lift */
+    box-shadow: var(--shadow-md); /* Enhanced shadow on hover */
   }
   
   &:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: var(--shadow-md), 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.2);
   }
 }
 

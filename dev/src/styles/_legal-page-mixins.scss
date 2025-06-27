@@ -59,8 +59,9 @@
   border-radius: var(--border-radius-card);
   border: 1px solid var(--color-border-light);
   position: sticky;
-  top: var(--spacing-xl);
+  top: calc(72px + var(--spacing-md)); // Nav height (72px) + buffer (16px) = 88px
   box-shadow: var(--box-shadow-card);
+  z-index: 10; // Below navigation (nav is z-index 100)
 
   @media (max-width: 768px) {
     position: static;

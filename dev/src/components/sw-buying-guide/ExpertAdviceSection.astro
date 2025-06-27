@@ -1,47 +1,121 @@
 ---
-interface CtaButton {
-  text: string;
-  link: string;
-  type: 'primary' | 'ghost';
+import { allModels } from '../../data/models.all.js';
+
+interface ExpertService {
+  title: string;
+  description: string;
+  icon: string;
+  benefits: string[];
+  action: {
+    text: string;
+    link: string;
+  };
 }
 
-const {
-  title = 'Need Expert Advice?',
-  introText = 'Our product specialists are ready to help you find the perfect smart whiteboard solution for your specific needs.',
-  ctaButtons = [
-    {
-      text: 'Request a Quote →',
-      link: '/contact',
-      type: 'primary'
-    },
-    {
-      text: 'Download Full Buying Guide PDF',
-      link: '#',
-      type: 'ghost'
-    },
-    {
-      text: 'Schedule a Consultation',
-      link: '/contact',
-      type: 'ghost'
+// Calculate data-driven insights for expert services
+const brands = [...new Set(allModels.map((m: any) => m.brand).filter(Boolean))];
+const totalModels = allModels.length;
+const sizeRange = {
+  min: Math.min(...allModels.map((m: any) => m.size || 0)),
+  max: Math.max(...allModels.map((m: any) => m.size || 0))
+};
+
+const expertServices: ExpertService[] = [
+  {
+    title: 'Product Selection Consultation',
+    description: `Get personalized recommendations from our ${totalModels}+ interactive display options across ${brands.length} trusted brands.`,
+    icon: '🎯',
+    benefits: [
+      'Analyze your space and usage requirements',
+      'Compare specifications across brands',
+      'Recommend optimal size and features',
+      'Budget-friendly options and financing'
+    ],
+    action: {
+      text: 'Get Product Recommendation',
+      link: '/contact'
     }
-  ]
+  },
+  {
+    title: 'Installation Planning',
+    description: `Professional installation planning for displays ranging from ${sizeRange.min}" to ${sizeRange.max}" with mounting and setup guidance.`,
+    icon: '🔧',
+    benefits: [
+      'Site assessment and space planning',
+      'Mounting solutions and hardware',
+      'Cable management and power requirements',
+      'Professional installation coordination'
+    ],
+    action: {
+      text: 'Schedule Site Assessment',
+      link: '/contact'
+    }
+  },
+  {
+    title: 'Training & Support',
+    description: 'Comprehensive training programs and ongoing technical support to maximize your interactive display investment.',
+    icon: '🎓',
+    benefits: [
+      'User training for all skill levels',
+      'Software integration guidance',
+      'Best practices and workflows',
+      'Ongoing technical support'
+    ],
+    action: {
+      text: 'Learn About Training',
+      link: '/contact'
+    }
+  }
+];
+
+const {
+  title = 'Expert Guidance Every Step of the Way',
+  subtitle = 'From selection to installation to training, our specialists ensure your success'
 } = Astro.props;
 ---
 
-<section id="expert-advice" class="content-section bg-accent">
+<section id="expert-advice" class="content-section">
   <div class="container">
-    <h2>{title}</h2>
-    <p class="section-intro">
-      {introText}
-    </p>
-    <div class="cta-group">
+    <div class="expert-header">
+      <h2>{title}</h2>
+      <p class="section-subtitle">{subtitle}</p>
+    </div>
+
+    <div class="expert-services">
       {
-        ctaButtons.map((button: CtaButton) => (
-          <a href={button.link} class={`button-${button.type}`}>
-            {button.text}
-          </a>
+        expertServices.map((service: ExpertService) => (
+          <div class="service-card">
+            <div class="service-icon">{service.icon}</div>
+            <div class="service-content">
+              <h3>{service.title}</h3>
+              <p class="service-description">{service.description}</p>
+              <ul class="service-benefits">
+                {service.benefits.map((benefit: string) => (
+                  <li>{benefit}</li>
+                ))}
+              </ul>
+              <a href={service.action.link} class="service-action">
+                {service.action.text}
+              </a>
+            </div>
+          </div>
         ))
       }
     </div>
+
+    <div class="expert-summary">
+      <div class="summary-content">
+        <h3>Ready to Get Started?</h3>
+        <p>Contact our expert team for personalized guidance on selecting, installing, and using your interactive display solution.</p>
+        <div class="summary-actions">
+          <a href="/contact" class="btn-primary">Contact Our Experts</a>
+          <a href="/quiz" class="btn-secondary">Take Product Quiz</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style lang="scss">
+  @use './ExpertAdviceSection.scss';
+</style>

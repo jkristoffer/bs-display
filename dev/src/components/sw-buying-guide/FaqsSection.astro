@@ -1,47 +1,266 @@
 ---
+import { allModels } from '../../data/models.all.js';
+
 interface FaqItem {
   question: string;
   answer: string;
+  category: string;
+  icon: string;
+  relatedProducts?: any[];
 }
 
-const {
-  faqs = [
-    {
-      question: 'Do smartboards work with gloves?',
-      answer:
-        "It depends on the touch technology. Infrared (IR) and optical systems work with gloves, while capacitive screens typically don't unless they're specially designed for capacitive touch."
-    },
-    {
-      question: 'Which technology is best for artists?',
-      answer:
-        'Electromagnetic Resonance (EMR) technology paired with OLED displays offers the highest precision and pressure sensitivity, making it ideal for artists and designers who need detailed control.'
-    },
-    {
-      question: "What's the lifespan of a smartboard?",
-      answer:
-        'Most quality smart whiteboards have a lifespan of 5-7 years with regular use. OLED displays may have shorter lifespans (3-5 years) while LED displays can last 7-10 years with proper care.'
-    },
-    {
-      question: 'Is a special pen always required?',
-      answer:
-        'No. IR, optical, and resistive technologies work with any object. EMR requires a special pen, while capacitive screens work with fingers and compatible styluses.'
-    }
-  ]
-} = Astro.props;
+// Analyze real product data for accurate FAQs
+const touchTechnologies = [...new Set(allModels.map((m: any) => m.touchTechnology).filter(Boolean))];
+const resolutions = [...new Set(allModels.map((m: any) => m.resolution).filter(Boolean))];
+const brands = [...new Set(allModels.map((m: any) => m.brand).filter(Boolean))];
+const sizeRange = {
+  min: Math.min(...allModels.map((m: any) => m.size || 0)),
+  max: Math.max(...allModels.map((m: any) => m.size || 0))
+};
+
+// Get models with specific features for recommendations
+const wirelessModels = allModels.filter((m: any) => 
+  m.features?.some((f: string) => f.toLowerCase().includes('wireless'))
+);
+
+const androidModels = allModels.filter((m: any) => 
+  m.features?.some((f: string) => f.toLowerCase().includes('android'))
+);
+
+const highBrightnessModels = allModels.filter((m: any) => {
+  const brightness = parseInt(m.brightness?.replace(/[^0-9]/g, '') || '0');
+  return brightness >= 450;
+});
+
+// Data-driven FAQs based on actual product capabilities
+const faqs: FaqItem[] = [
+  // Technical Questions
+  {
+    question: 'What touch technologies are available?',
+    answer: `Our interactive displays use ${touchTechnologies.join(', ')} touch technologies. These technologies support multi-touch interaction, work with fingers and styluses, and provide accurate touch recognition for collaborative use.`,
+    category: 'Technical',
+    icon: '👆',
+    relatedProducts: allModels.slice(0, 3)
+  },
+  {
+    question: 'Do smart whiteboards work with gloves?',
+    answer: `Yes! Our infrared touch technology works perfectly with gloves, making them ideal for medical, laboratory, or industrial environments where protective equipment is required.`,
+    category: 'Technical',
+    icon: '🧤'
+  },
+  {
+    question: 'What resolutions are available?',
+    answer: `We offer displays in multiple resolutions: ${resolutions.join(', ')}. Higher resolutions like 4K UHD provide crystal-clear text and images, perfect for detailed presentations and collaborative work.`,
+    category: 'Technical',
+    icon: '📺',
+    relatedProducts: allModels.filter((m: any) => m.resolution?.includes('4K')).slice(0, 2)
+  },
+  {
+    question: 'What sizes are available?',
+    answer: `Our interactive displays range from ${sizeRange.min}" to ${sizeRange.max}", covering everything from small meeting rooms to large auditoriums. We can help you choose the right size for your space and viewing distance.`,
+    category: 'Technical',
+    icon: '📏'
+  },
+  
+  // Usage Questions
+  {
+    question: 'Can multiple people use the whiteboard simultaneously?',
+    answer: `Absolutely! Our displays support multi-touch interaction, allowing multiple users to write, draw, and interact simultaneously. This makes them perfect for collaborative brainstorming and group activities.`,
+    category: 'Usage',
+    icon: '👥'
+  },
+  {
+    question: 'Do I need special software?',
+    answer: `Many of our displays come with built-in Android operating systems and pre-installed whiteboard software. You can also use your preferred presentation software, web browsers, or connect external devices.`,
+    category: 'Usage',
+    icon: '💻',
+    relatedProducts: androidModels.slice(0, 2)
+  },
+  {
+    question: 'How do I connect my devices?',
+    answer: `Our displays offer multiple connectivity options including HDMI, USB, wireless screen sharing, and Bluetooth. You can easily connect laptops, tablets, smartphones, and other devices for seamless content sharing.`,
+    category: 'Usage',
+    icon: '🔗',
+    relatedProducts: wirelessModels.slice(0, 2)
+  },
+  {
+    question: 'Can I use it in a bright room?',
+    answer: `Yes! Our high-brightness displays (450+ cd/m²) with anti-glare screens are designed for well-lit environments. They maintain excellent visibility even in rooms with windows or bright lighting.`,
+    category: 'Usage',
+    icon: '☀️',
+    relatedProducts: highBrightnessModels.slice(0, 2)
+  },
+  
+  // Installation Questions
+  {
+    question: 'How are they mounted?',
+    answer: `Our displays can be wall-mounted or used with mobile stands. We provide mounting hardware and can recommend professional installation services to ensure safe and secure placement.`,
+    category: 'Installation',
+    icon: '🔧'
+  },
+  {
+    question: 'What about power requirements?',
+    answer: `Most displays use standard electrical outlets. Larger displays may require dedicated circuits. We provide detailed power specifications and can help plan electrical requirements for your installation.`,
+    category: 'Installation',
+    icon: '⚡'
+  },
+  {
+    question: 'Is professional installation required?',
+    answer: `While not always required, we recommend professional installation for wall-mounted displays, especially larger sizes. This ensures proper mounting, cable management, and optimal positioning.`,
+    category: 'Installation',
+    icon: '🏗️'
+  },
+  
+  // Business Questions
+  {
+    question: 'What about warranty and support?',
+    answer: `All our displays come with comprehensive warranties and technical support. We provide training, troubleshooting assistance, and have service technicians available for on-site support when needed.`,
+    category: 'Business',
+    icon: '🛡️'
+  },
+  {
+    question: 'How do I get pricing information?',
+    answer: `Pricing varies based on size, features, and quantity. Contact our team for detailed quotes, volume discounts, and financing options. We also offer leasing programs for educational and business customers.`,
+    category: 'Business',
+    icon: '💰'
+  },
+  {
+    question: 'Do you offer training?',
+    answer: `Yes! We provide comprehensive training for administrators and end-users. This includes basic operation, advanced features, troubleshooting, and best practices for collaborative use.`,
+    category: 'Business',
+    icon: '🎓'
+  },
+  {
+    question: 'What about bulk orders for schools/offices?',
+    answer: `We specialize in bulk deployments for educational institutions and businesses. We offer volume pricing, coordinated delivery, installation services, and ongoing support for large-scale rollouts.`,
+    category: 'Business',
+    icon: '🏢'
+  }
+];
+
+// Group FAQs by category
+const faqCategories = {
+  'Technical': faqs.filter(f => f.category === 'Technical'),
+  'Usage': faqs.filter(f => f.category === 'Usage'),
+  'Installation': faqs.filter(f => f.category === 'Installation'),
+  'Business': faqs.filter(f => f.category === 'Business')
+};
 ---
 
 <section id="faqs" class="content-section">
   <div class="container">
-    <h2>FAQs</h2>
-    <div class="faq-container">
-      {
-        faqs.map((faq: FaqItem) => (
-          <div class="faq-item">
-            <h3>{faq.question}</h3>
-            <p>{faq.answer}</p>
+    <div class="faqs-header">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-intro">
+        Get answers to common questions about interactive displays, installation, and usage
+      </p>
+    </div>
+
+    <div class="faqs-stats">
+      <div class="stat-item">
+        <span class="stat-number">{allModels.length}+</span>
+        <span class="stat-label">Models Available</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{brands.length}</span>
+        <span class="stat-label">Trusted Brands</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{sizeRange.min}" - {sizeRange.max}"</span>
+        <span class="stat-label">Size Range</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{touchTechnologies.length}</span>
+        <span class="stat-label">Touch Technologies</span>
+      </div>
+    </div>
+
+    <div class="faq-categories">
+      {Object.entries(faqCategories).map(([categoryName, categoryFaqs]) => (
+        <div class="faq-category">
+          <h3 class="category-title">{categoryName} Questions</h3>
+          <div class="faq-list">
+            {categoryFaqs.map((faq: FaqItem) => (
+              <div class="faq-item" data-category={faq.category.toLowerCase()}>
+                <button class="faq-question" type="button">
+                  <span class="faq-icon">{faq.icon}</span>
+                  <span class="question-text">{faq.question}</span>
+                  <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <div class="answer-content">
+                    <p>{faq.answer}</p>
+                    {faq.relatedProducts && faq.relatedProducts.length > 0 && (
+                      <div class="related-products">
+                        <h5>Related Products:</h5>
+                        <div class="product-links">
+                          {faq.relatedProducts.map((product: any) => (
+                            <a href={`/products/interactive-displays/${product.brand.toLowerCase().replace(/\s+/g, '-')}/${product.id || product.model.toLowerCase().replace(/\s+/g, '-')}`} class="product-link">
+                              {product.model} ({product.size}")
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))
-      }
+        </div>
+      ))}
+    </div>
+
+    <div class="faq-cta">
+      <div class="cta-content">
+        <h3>Still Have Questions?</h3>
+        <p>Our experts are here to help you find the perfect interactive display solution</p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn-primary">Contact Our Experts</a>
+          <a href="/quiz" class="btn-secondary">Take Product Quiz</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  // FAQ Accordion Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const toggleIcon = item.querySelector('.toggle-icon');
+      
+      if (question && answer && toggleIcon) {
+        question.addEventListener('click', function() {
+          const isOpen = item.classList.contains('open');
+          
+          // Close all other items
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('open');
+              const otherToggle = otherItem.querySelector('.toggle-icon');
+              if (otherToggle) otherToggle.textContent = '+';
+            }
+          });
+          
+          // Toggle current item
+          if (isOpen) {
+            item.classList.remove('open');
+            toggleIcon.textContent = '+';
+          } else {
+            item.classList.add('open');
+            toggleIcon.textContent = '−';
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<style lang="scss">
+  @use './FaqsSection.scss';
+</style>

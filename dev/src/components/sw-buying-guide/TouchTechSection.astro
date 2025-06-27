@@ -1,67 +1,222 @@
 ---
+import { allModels } from '../../data/models.all.js';
+
 interface TouchTech {
   name: string;
+  modelCount: number;
   pros: string[];
   cons: string[];
+  bestFor: string[];
+  priceRange: string;
+  examples: any[];
 }
 
-const {
-  technologies = [
-    {
-      name: 'Infrared (IR)',
-      pros: ['Works with any object', 'Scalable, cost-effective'],
-      cons: ['Sensitive to external conditions (sunlight/dust)']
-    },
-    {
-      name: 'Electromagnetic (EMR)',
-      pros: ['Extremely precise, pressure-sensitive'],
-      cons: ['Requires special pen; expensive']
-    },
-    {
-      name: 'Capacitive',
-      pros: ['Highly responsive; sleek'],
-      cons: ['Not compatible with gloves; higher cost']
-    },
-    {
-      name: 'Optical Imaging',
-      pros: ['Easy to install, scalable'],
-      cons: ['Accuracy impacted by lighting/shadows']
-    },
-    {
-      name: 'Resistive (Legacy)',
-      pros: ['Low cost, versatile input'],
-      cons: ['Poor clarity and durability; outdated']
-    }
-  ],
-  internalLinkText = 'Capacitive vs Infrared Touch Screen →',
-  internalLinkUrl = '/blog/capacitive-vs-infrared-touch-screen'
-} = Astro.props;
+// Analyze touch technologies from real product data
+const touchTechData: Record<string, TouchTech> = {};
+
+allModels.forEach(model => {
+  const tech = model.touchTechnology;
+  if (!tech) return;
+  
+  if (!touchTechData[tech]) {
+    touchTechData[tech] = {
+      name: tech,
+      modelCount: 0,
+      pros: [],
+      cons: [],
+      bestFor: [],
+      priceRange: '',
+      examples: []
+    };
+  }
+  
+  touchTechData[tech].modelCount++;
+  touchTechData[tech].examples.push(model);
+});
+
+// Enhanced technology descriptions with real data
+const technologies: TouchTech[] = [
+  {
+    name: 'Infrared',
+    modelCount: touchTechData['Infrared']?.modelCount || 0,
+    pros: [
+      'Works with any object (finger, stylus, glove)',
+      'Cost-effective and widely available',
+      'Multi-touch support (up to 50+ points)',
+      'Durable - no surface wear from touch'
+    ],
+    cons: [
+      'Sensitive to bright sunlight and dust',
+      'Slight raised bezel around screen',
+      'May have parallax issues'
+    ],
+    bestFor: [
+      'Educational environments',
+      'High-traffic public spaces',
+      'Budget-conscious buyers'
+    ],
+    priceRange: 'Most affordable',
+    examples: touchTechData['Infrared']?.examples.slice(0, 3) || []
+  },
+  {
+    name: 'Capacitive',
+    modelCount: touchTechData['Capacitive']?.modelCount || 0,
+    pros: [
+      'Excellent touch sensitivity and accuracy',
+      'Smooth glass surface - no raised edges',
+      'Fast response time',
+      'Premium look and feel'
+    ],
+    cons: [
+      'Higher cost than infrared',
+      'May not work with gloves',
+      'Limited multi-touch points (usually 10-20)'
+    ],
+    bestFor: [
+      'Professional presentations',
+      'High-end conference rooms',
+      'Design and creative work'
+    ],
+    priceRange: 'Premium pricing',
+    examples: touchTechData['Capacitive']?.examples.slice(0, 3) || []
+  },
+  {
+    name: 'HyPr Touch (InGlass)',
+    modelCount: touchTechData['HyPr Touch (InGlass)']?.modelCount || 0,
+    pros: [
+      'Zero air gap - exceptional clarity',
+      'Highly accurate touch detection',
+      'Durable optical bonding process',
+      'Reduced reflections and glare'
+    ],
+    cons: [
+      'Most expensive technology',
+      'Limited availability',
+      'Repair costs higher if damaged'
+    ],
+    bestFor: [
+      'Premium installations',
+      'Medical and technical applications',
+      'High-end corporate environments'
+    ],
+    priceRange: 'Highest cost',
+    examples: touchTechData['HyPr Touch (InGlass)']?.examples.slice(0, 3) || []
+  },
+  {
+    name: 'Optical Bonded',
+    modelCount: touchTechData['Optical Bonded']?.modelCount || 0,
+    pros: [
+      'Enhanced durability and clarity',
+      'Reduced air gap for better viewing',
+      'Good touch accuracy',
+      'Improved contrast ratios'
+    ],
+    cons: [
+      'Higher manufacturing cost',
+      'Limited repair options',
+      'Specialized installation required'
+    ],
+    bestFor: [
+      'Outdoor installations',
+      'High-brightness environments',
+      'Long-term installations'
+    ],
+    priceRange: 'Mid-to-high range',
+    examples: touchTechData['Optical Bonded']?.examples.slice(0, 3) || []
+  }
+].filter(tech => tech.modelCount > 0); // Only show technologies we actually have
+
+const getModelUrl = (model: any): string => {
+  const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
+  const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
+  return `/products/interactive-displays/${brand}/${modelId}`;
+};
 ---
 
 <section id="touch-tech" class="content-section">
   <div class="container">
-    <h2>Touch Technologies Breakdown</h2>
+    <div class="touch-tech-header">
+      <h2>Touch Technologies Breakdown</h2>
+      <p>Compare different touch technologies available in our interactive displays</p>
+    </div>
 
     <div class="touch-tech-grid">
       {
         technologies.map((tech: TouchTech) => (
           <div class="touch-tech-card">
-            <h3>{tech.name}</h3>
-            <ul class="pros-cons">
-              {tech.pros.map((pro) => (
-                <li class="pro">✅ {pro}</li>
-              ))}
-              {tech.cons.map((con) => (
-                <li class="con">❌ {con}</li>
-              ))}
-            </ul>
+            <div class="tech-header">
+              <h3>{tech.name}</h3>
+              <div class="tech-stats">
+                <span class="model-count">{tech.modelCount} models</span>
+                <span class="price-indicator">{tech.priceRange}</span>
+              </div>
+            </div>
+
+            <div class="tech-content">
+              <div class="pros-cons-section">
+                <div class="pros">
+                  <h4>✅ Advantages</h4>
+                  <ul>
+                    {tech.pros.map((pro) => (
+                      <li>{pro}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="cons">
+                  <h4>⚠️ Considerations</h4>
+                  <ul>
+                    {tech.cons.map((con) => (
+                      <li>{con}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div class="best-for-section">
+                <h4>🎯 Best For</h4>
+                <ul class="best-for-list">
+                  {tech.bestFor.map((use) => (
+                    <li>{use}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {tech.examples.length > 0 && (
+                <div class="examples-section">
+                  <h4>Popular Models</h4>
+                  <div class="example-models">
+                    {tech.examples.map((model) => (
+                      <a href={getModelUrl(model)} class="example-model">
+                        <div class="model-info">
+                          <span class="model-name">{model.model}</span>
+                          <span class="model-brand">{model.brand}</span>
+                          <span class="model-size">{model.size}"</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ))
       }
     </div>
 
-    <div class="internal-link">
-      <a href={internalLinkUrl} class="text-link">{internalLinkText}</a>
+    <div class="tech-comparison-cta">
+      <div class="cta-content">
+        <h3>Need Help Choosing?</h3>
+        <p>Our interactive comparison tool helps you find the perfect touch technology for your needs</p>
+        <div class="cta-actions">
+          <a href="/quiz" class="btn-primary">Take Product Quiz</a>
+          <a href="/blog/capacitive-vs-infrared-touch-screen" class="btn-secondary">Read Detailed Comparison</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style lang="scss">
+  @use './TouchTechSection.scss';
+</style>

@@ -23,32 +23,75 @@ $color-accent-secondary: #ffa726;
   --color-button-disabled-border: #cccccc;
   --color-button-disabled-text: #999999;
 
-  /* Typography */
+  /* Typography - Modern Scale & Hierarchy */
   --font-primary: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
   --font-secondary: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-  --font-size-h1: 40px;
-  --font-size-h2: 32px;
-  --font-size-h3: 24px;
-  --font-size-body-large: 18px;
+  
+  /* Modern Type Scale (1.25 ratio) */
+  --font-size-h1: 48px;
+  --font-size-h2: 38px;
+  --font-size-h3: 30px;
+  --font-size-h4: 24px;
+  --font-size-body-large: 19px;
   --font-size-body-regular: 16px;
-  --font-size-small: 14px;
-  --font-size-smaller: 12px;
-  --line-height-headers: 1.2;
-  --line-height-default: 1.4;
+  --font-size-body-small: 14px;
+  --font-size-caption: 13px;
+  --font-size-micro: 11px;
+  
+  /* Modern Line Heights */
+  --line-height-tight: 1.15;
+  --line-height-headers: 1.25;
+  --line-height-body: 1.5;
+  --line-height-relaxed: 1.6;
+  
+  /* Enhanced Font Weights */
   --font-weight-light: 300;
   --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
 
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 48px;
+  /* Modern Spacing System (8px base) */
+  --spacing-0: 0;
+  --spacing-1: 2px;
+  --spacing-2: 4px;
+  --spacing-3: 6px;
+  --spacing-4: 8px;
+  --spacing-5: 10px;
+  --spacing-6: 12px;
+  --spacing-8: 16px;
+  --spacing-10: 20px;
+  --spacing-12: 24px;
+  --spacing-16: 32px;
+  --spacing-20: 40px;
+  --spacing-24: 48px;
+  --spacing-32: 64px;
+  --spacing-40: 80px;
+  --spacing-48: 96px;
+  
+  /* Semantic Spacing */
+  --spacing-xs: var(--spacing-2);
+  --spacing-sm: var(--spacing-4);
+  --spacing-md: var(--spacing-8);
+  --spacing-lg: var(--spacing-12);
+  --spacing-xl: var(--spacing-16);
+  --spacing-xxl: var(--spacing-24);
+  
+  /* Container & Layout */
+  --spacing-container-max-width: 1200px;
+  --spacing-container-padding: var(--spacing-8);
+  --spacing-section-gap: var(--spacing-24);
+  --spacing-component-gap: var(--spacing-12);
+  
+  /* Legacy spacing (for gradual migration) */
   --padding-s1: 15px;
   --padding-s2: 50px;
-  --spacing-container-max-width: 1200px;
   --spacing-card-padding: 24px;
   --spacing-gap-between-blocks: 20px;
 

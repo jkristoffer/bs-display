@@ -27,10 +27,10 @@ class CodeReviewAgent {
       taskId: options.taskId || null,
       outputFormat: options.outputFormat || 'detailed', // 'detailed', 'json', 'minimal'
       thresholds: {
-        excellent: options.thresholds?.excellent || 90,
-        good: options.thresholds?.good || 80,
-        acceptable: options.thresholds?.acceptable || 70,
-        failing: options.thresholds?.failing || 60
+        excellent: (options.thresholds && options.thresholds.excellent) || 90,
+        good: (options.thresholds && options.thresholds.good) || 80,
+        acceptable: (options.thresholds && options.thresholds.acceptable) || 70,
+        failing: (options.thresholds && options.thresholds.failing) || 60
       },
       ...options
     };
@@ -56,7 +56,9 @@ class CodeReviewAgent {
       const content = await fs.readFile(filePath, 'utf-8');
       const fileExtension = path.extname(filePath);
       
-      console.log(`🔍 Analyzing: ${filePath}`);
+      if (this.options.outputFormat !== 'json' && this.options.outputFormat !== 'minimal') {
+        console.log(`🔍 Analyzing: ${filePath}`);
+      }
       
       const fileResult = {
         path: filePath,
@@ -808,10 +810,18 @@ class CodeReviewAgent {
   }
 
   getStatus(score) {
-    if (score >= this.options.thresholds.excellent) return 'EXCELLENT';
-    if (score >= this.options.thresholds.good) return 'GOOD';
-    if (score >= this.options.thresholds.acceptable) return 'ACCEPTABLE';
-    if (score >= this.options.thresholds.failing) return 'NEEDS_WORK';
+    // Fallback thresholds if options are not properly set
+    const thresholds = this.options?.thresholds || {
+      excellent: 90,
+      good: 80,
+      acceptable: 70,
+      failing: 60
+    };
+    
+    if (score >= thresholds.excellent) return 'EXCELLENT';
+    if (score >= thresholds.good) return 'GOOD';
+    if (score >= thresholds.acceptable) return 'ACCEPTABLE';
+    if (score >= thresholds.failing) return 'NEEDS_WORK';
     return 'FAILING';
   }
 

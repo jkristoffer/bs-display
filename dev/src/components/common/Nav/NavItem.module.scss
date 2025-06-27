@@ -1,14 +1,19 @@
 /* Block: nav__link */
 .nav__link {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: 400;
-  letter-spacing: -0.5px;
-  padding: 8px 12px;
+  font-size: var(--font-size-body-regular);
+  font-weight: var(--font-weight-medium); /* Enhanced weight for better hierarchy */
+  letter-spacing: var(--letter-spacing-wide); /* Modern letter spacing */
+  line-height: var(--line-height-body);
+  text-transform: none; /* Remove uppercase for modern feel */
+  padding: var(--spacing-4) var(--spacing-6);
   position: relative;
   transition: all 0.3s ease;
   box-sizing: border-box;
   text-align: center;
+  min-height: 44px; /* Touch-friendly height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover state */
@@ -43,11 +48,13 @@
 .nav__link_cta {
   background: var(--color-accent-primary);
   color: white;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 6px;
-  margin-left: var(--spacing-md);
+  font-weight: var(--font-weight-semibold); /* Modern weight */
+  letter-spacing: var(--letter-spacing-normal); /* Clean letter spacing for CTA */
+  padding: var(--spacing-5) var(--spacing-8); /* Refined padding */
+  border-radius: var(--border-radius-button);
+  margin-left: var(--spacing-8);
   text-transform: none;
+  min-height: 44px; /* Consistent touch target */
   
   &:hover {
     background: #007a6b;
@@ -62,15 +69,22 @@
 
 /* Style for dropdown menu items */
 :global(.nav__dropdown_menu) .nav__link {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
-  padding: 10px 16px;
+  padding: var(--spacing-5) var(--spacing-8); /* Consistent with system */
   text-transform: none;
   border-radius: 0;
-  font-size: 15px;
+  font-size: var(--font-size-body-small); /* Slightly smaller for dropdowns */
+  font-weight: var(--font-weight-regular); /* Standard weight for dropdowns */
+  letter-spacing: var(--letter-spacing-normal);
+  line-height: var(--line-height-body);
   white-space: nowrap;
   border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.05);
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  box-sizing: border-box;
+  min-height: 40px; /* Slightly smaller touch target for dropdowns */
+  justify-content: flex-start;
+  text-align: left;
 }
 
 /* Remove border from last dropdown item */
@@ -81,20 +95,29 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .nav__link {
-    padding: 12px 16px;
-    font-size: 14px;
-    display: block;
+    padding: var(--spacing-6) var(--spacing-8); /* Consistent spacing */
+    font-size: var(--font-size-body-small); /* Proper mobile sizing */
+    font-weight: var(--font-weight-regular); /* Standard weight on mobile */
+    letter-spacing: var(--letter-spacing-normal);
+    line-height: var(--line-height-body);
+    display: flex;
+    align-items: center;
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     text-align: left;
+    min-height: 48px; /* Touch-friendly */
   }
 
   /* Style for dropdown menu items in mobile */
   :global(.nav__dropdown_menu) .nav__link {
-    padding: 12px 32px; /* Increased left padding for nested items */
-    font-size: 14px;
+    padding: var(--spacing-5) var(--spacing-16); /* Proper nested indentation */
+    font-size: var(--font-size-caption); /* Slightly smaller for hierarchy */
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-normal);
+    line-height: var(--line-height-body);
     background-color: rgba(var(--color-accent-primary-rgb), 0.03);
+    min-height: 44px; /* Slightly smaller for nested items */
   }
 
   /* Remove border from last nav item */
@@ -104,13 +127,15 @@
   
   /* CTA styling for mobile */
   .nav__link_cta {
-    margin: var(--spacing-md) var(--spacing-md) 0;
-    width: calc(100% - var(--spacing-xl));
+    margin: var(--spacing-8) var(--spacing-8) 0; /* Modern spacing */
+    width: calc(100% - var(--spacing-16));
     text-align: center;
-    border-radius: 8px;
-    padding: 14px 20px;
-    font-weight: 600;
+    border-radius: var(--border-radius-button);
+    padding: var(--spacing-6) var(--spacing-10); /* Refined mobile CTA padding */
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-normal);
     border-bottom: none;
+    min-height: 48px; /* Touch-friendly CTA */
     
     &:hover {
       background: #007a6b;

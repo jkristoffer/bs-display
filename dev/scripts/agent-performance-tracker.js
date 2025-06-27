@@ -53,7 +53,11 @@ class AgentPerformanceTracker {
   async logReviewResult(reviewResult) {
     await this.load();
 
-    const { metadata, overallScore, files } = reviewResult;
+    // Handle different JSON structures (direct results vs wrapped results)
+    const actualResult = reviewResult.summary ? reviewResult : reviewResult.results || reviewResult;
+    const overallScore = actualResult.summary?.overallScore || actualResult.overallScore;
+    const files = actualResult.files || [];
+    const metadata = actualResult.metadata || reviewResult.metadata || {};
     const { agentId, taskId, timestamp } = metadata;
 
     if (!agentId) {
@@ -79,13 +83,18 @@ class AgentPerformanceTracker {
 
     const agent = this.data.agents[agentId];
 
-    // Update agent stats
-    agent.tasksCompleted++;
-    agent.totalScore += overallScore;
-    agent.averageScore = Math.round(agent.totalScore / agent.tasksCompleted);
-    agent.scores.push(overallScore);
-    agent.lastActivity = timestamp;
-    agent.tasks.push(taskId);
+    // Update agent stats (only if we have a valid score)
+    if (overallScore !== undefined && overallScore !== null) {
+      agent.tasksCompleted++;
+      agent.totalScore += overallScore;
+      agent.averageScore = Math.round(agent.totalScore / agent.tasksCompleted);
+      agent.scores.push(overallScore);
+      agent.lastActivity = timestamp;
+      agent.tasks.push(taskId);
+    } else {
+      console.warn('Invalid score received:', overallScore);
+      return;
+    }
 
     // Keep only last 100 scores for performance
     if (agent.scores.length > 100) {
@@ -121,9 +130,19 @@ class AgentPerformanceTracker {
   }
 
   getCategoryScore(reviewResult, category) {
-    const scores = reviewResult.files
+    // Try different possible locations for category scores
+    const actualResult = reviewResult.summary ? reviewResult : reviewResult.results || reviewResult;
+    
+    // First try the categories object if it exists
+    if (actualResult.categories && actualResult.categories[category]) {
+      return actualResult.categories[category];
+    }
+    
+    // Fallback to file-level scores
+    const files = actualResult.files || [];
+    const scores = files
       .map(f => f[category]?.score)
-      .filter(s => s !== undefined);
+      .filter(s => s !== undefined && s !== null);
     
     return scores.length > 0 
       ? Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)

@@ -599,38 +599,49 @@ const ProductComponent = ({ products }) => {
 
 ## Code Review Agent
 
-**Automated enforcement of functional programming principles and project standards.**
+**✅ Production Ready** - Automated enforcement of functional programming principles and project standards.
 
-**Location**: `scripts/code-review-agent.js`, `.github/workflows/code-review-automation.yml`
+**Components**: 
+- `scripts/code-review-agent.js` - Core analysis engine
+- `scripts/code-review-api-simple.js` - HTTP API server  
+- `scripts/agent-performance-tracker.js` - Performance tracking
+- `.github/workflows/code-review-automation.yml` - GitHub integration
 
 **Quick Commands**:
 ```bash
 # Single file analysis
 node scripts/code-review-agent.js --file src/components/MyComponent.tsx
 
-# PR analysis
-node scripts/code-review-agent.js --pr 123
+# AI agent workflow (recommended)
+node scripts/code-review-agent.js --file [file] --ai-mode --agent-id [agent] --task-id [task] --format json
 
-# Batch analysis
-node scripts/code-review-agent.js --batch src/components/
+# API server for orchestrator
+node scripts/code-review-api-simple.js --port 3001
+
+# Performance tracking
+node scripts/agent-performance-tracker.js --summary
 ```
 
 **Scoring**: 90-100 (A), 80-89 (B), 70-79 (C), 60-69 (D), 0-59 (F)
 
 **Categories**: Functional Programming (40%), Project Standards (20%), TypeScript (20%), React Patterns (20%)
 
-**GitHub Integration**: Automatic PR analysis, status checks, auto-labeling, merge blocking for scores < 60
+**Key Features**:
+- **GitHub Integration**: Automatic PR analysis, status checks, auto-labeling, merge blocking for scores < 60
+- **AI Agent Tracking**: Performance monitoring, learning feedback, agent comparison
+- **API Integration**: HTTP endpoints for programmatic access by orchestrator systems
+- **Real-time Analysis**: 5-15 seconds per file, JSON/minimal output formats
 
-**AI Agent Integration**:
+**Mandatory for AI Agents**:
 ```bash
 # After generating code, ALWAYS run:
 node scripts/code-review-agent.js --file [generated-file] --ai-mode --agent-id [agent-name] --task-id [task-name]
 
 # If score < 80: Refactor code before considering task complete
-# API server for orchestrator: node scripts/code-review-api.js --port 3001
+# Log performance: node scripts/agent-performance-tracker.js --log review-results.json
 ```
 
-*See [CODE_REVIEW_AGENT.md](./CODE_REVIEW_AGENT.md) for detailed documentation.*
+*See [CODE_REVIEW_AGENT.md](./CODE_REVIEW_AGENT.md) for comprehensive documentation and troubleshooting.*
 
 ---
 

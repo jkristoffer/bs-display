@@ -16,15 +16,11 @@
  *   GET  /metrics         - Performance metrics
  */
 
-import express from 'express';
-import cors from 'cors';
-import multer from 'multer';
+import http from 'http';
+import url from 'url';
 import fs from 'fs/promises';
 import path from 'path';
 import CodeReviewAgent from './code-review-agent.js';
-
-const app = express();
-const upload = multer({ dest: 'temp/' });
 
 // Middleware
 app.use(cors());

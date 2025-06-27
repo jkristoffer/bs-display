@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import NavItem from './NavItem.tsx';
 import ProductsMegaMenu from './ProductsMegaMenu.tsx';
 import { Search } from '../Search';
@@ -16,11 +16,44 @@ interface NavItemType {
   }[];
 }
 
+// Pure function for navigation configuration
+const createNavigationConfig = (): ReadonlyArray<NavItemType> => [
+  { path: '/', label: 'Home' },
+  {
+    label: 'Products',
+    dropdown: true,
+    path: '/products',
+    megaMenu: true,
+    items: [
+      { path: '/products/smartboards', label: 'Smart Boards' },
+      { path: '/products/lecterns', label: 'Lecterns' }
+    ]
+  },
+  {
+    label: 'Resources',
+    dropdown: true,
+    items: [
+      { path: '/blog', label: 'Expert Articles' },
+      { path: '/use-cases', label: 'Customer Stories' },
+      { path: '/smart-whiteboard-buying-guide', label: 'Buying Guide' },
+      { path: '/quiz', label: 'Product Finder' }
+    ]
+  },
+  { path: '/contact', label: 'Get Quote', cta: true }
+] as const;
+
+// Pure function for active route detection
+const isActiveRoute = (currentPath: string, itemPath?: string): boolean => 
+  currentPath === itemPath;
+
+// Pure function for CTA detection
+const isCTAItem = (item: NavItemType): boolean => Boolean(item.cta);
+
 interface NavProps {
   currentPath?: string;
 }
 
-function Nav({ currentPath = window.location.pathname }: NavProps) {
+const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
@@ -29,36 +62,8 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
   >({});
   const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
 
-  const navItems: NavItemType[] = [
-    { path: '/', label: 'Home' },
-    {
-      label: 'Products',
-      dropdown: true,
-      path: '/products',
-      megaMenu: true,
-      items: [
-        { path: '/products/smartboards', label: 'Smart Boards' },
-        { path: '/products/lecterns', label: 'Lecterns' }
-      ]
-    },
-    {
-      label: 'Resources',
-      dropdown: true,
-      items: [
-        { path: '/blog', label: 'Expert Articles' },
-        { path: '/use-cases', label: 'Customer Stories' },
-        {
-          path: '/smart-whiteboard-buying-guide',
-          label: 'Buying Guide'
-        },
-        {
-          path: '/quiz',
-          label: 'Product Finder'
-        }
-      ]
-    },
-    { path: '/contact', label: 'Get Quote', cta: true }
-  ];
+  // Memoized navigation items
+  const navItems = useMemo(() => createNavigationConfig(), []);
 
   // Check if viewport is mobile
   useEffect(() => {
@@ -74,47 +79,46 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
     };
   }, []);
 
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  // Memoized event handlers
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev);
+  }, []);
 
-  // Toggle dropdown on mobile
-  const toggleDropdown = (index: number) => {
+  const toggleDropdown = useCallback((index: number) => {
     if (isMobile) {
-      setActiveDropdowns((prev) => ({
+      setActiveDropdowns(prev => ({
         ...prev,
         [index]: !prev[index]
       }));
     }
-  };
+  }, [isMobile]);
 
-  // Handle Products mega menu visibility
-  const handleProductsMouseEnter = () => {
+  const handleProductsMouseEnter = useCallback(() => {
     if (!isMobile) {
       setShowProductsMegaMenu(true);
     }
-  };
+  }, [isMobile]);
 
-  const handleProductsMouseLeave = () => {
+  const handleProductsMouseLeave = useCallback(() => {
     if (!isMobile) {
       setShowProductsMegaMenu(false);
     }
-  };
+  }, [isMobile]);
 
-  // Handle mobile search toggle
-  const toggleMobileSearch = () => {
-    setMobileSearchOpen(!mobileSearchOpen);
-    // Close mobile menu when opening search
-    if (!mobileSearchOpen) {
-      setMobileMenuOpen(false);
-    }
-  };
+  const toggleMobileSearch = useCallback(() => {
+    setMobileSearchOpen(prev => {
+      const newSearchOpen = !prev;
+      // Close mobile menu when opening search
+      if (newSearchOpen) {
+        setMobileMenuOpen(false);
+      }
+      return newSearchOpen;
+    });
+  }, []);
 
-  // Close mobile search
-  const closeMobileSearch = () => {
+  const closeMobileSearch = useCallback(() => {
     setMobileSearchOpen(false);
-  };
+  }, []);
 
 
   // Close all dropdowns when mobile menu is closed
@@ -171,7 +175,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
                       <NavItem
                         key={`dropdown-item-${index}-${subIndex}`}
                         href={subItem.path}
-                        active={currentPath === subItem.path}
+                        active={isActiveRoute(currentPath, subItem.path)}
                       >
                         {subItem.label}
                       </NavItem>
@@ -183,8 +187,8 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
               <NavItem
                 key={`nav-item-${index}`}
                 href={item.path || '#'}
-                active={currentPath === item.path}
-                cta={item.cta}
+                active={isActiveRoute(currentPath, item.path)}
+                cta={isCTAItem(item)}
               >
                 {item.label}
               </NavItem>
@@ -248,6 +252,6 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
 
     </nav>
   );
-}
+});
 
 export default Nav;

@@ -1,0 +1,45 @@
+{
+  "agents": {
+    "claude-dev-1": {
+      "agentId": "claude-dev-1",
+      "tasksCompleted": 1,
+      "totalScore": 95,
+      "averageScore": 95,
+      "scores": [
+        95
+      ],
+      "strengths": [
+        "functionalProgramming",
+        "projectStandards",
+        "typeScript"
+      ],
+      "weaknesses": [],
+      "firstSeen": "2025-06-27T17:09:09.150Z",
+      "lastActivity": "2025-06-27T17:09:09.150Z",
+      "tasks": [
+        "test-task-1"
+      ]
+    }
+  },
+  "tasks": {
+    "test-task-1": {
+      "taskId": "test-task-1",
+      "agentId": "claude-dev-1",
+      "score": 95,
+      "filesAnalyzed": 1,
+      "timestamp": "2025-06-27T17:09:09.150Z",
+      "categories": {
+        "functionalProgramming": 90,
+        "projectStandards": 94,
+        "typeScript": 100,
+        "reactPatterns": 100
+      }
+    }
+  },
+  "summary": {
+    "totalTasks": 1,
+    "totalAgents": 1,
+    "averageScore": 95,
+    "lastUpdated": "2025-06-27T17:10:13.303Z"
+  }
+}

@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import type { ReactNode } from 'react';
 import styles from './NavItem.module.scss';
 
@@ -8,12 +9,12 @@ interface NavItemProps {
   children: ReactNode;
 }
 
-function NavItem({ href, active = false, cta = false, children }: NavItemProps) {
-  const linkClass = [
+const NavItem = React.memo<NavItemProps>(({ href, active = false, cta = false, children }) => {
+  const linkClass = useMemo(() => [
     styles.nav__link,
     active && styles.nav__link_active,
     cta && styles.nav__link_cta
-  ].filter(Boolean).join(' ');
+  ].filter(Boolean).join(' '), [active, cta]);
 
   return (
     <a
@@ -23,6 +24,6 @@ function NavItem({ href, active = false, cta = false, children }: NavItemProps) 
       {children}
     </a>
   );
-}
+});
 
 export default NavItem;

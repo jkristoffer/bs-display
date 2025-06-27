@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { spawn } from 'child_process';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Claude Code command dispatcher
+const commands = {
+  'seo-review': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-quick-check': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-optimize': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-auto-optimize': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-apply-fixes': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-preview-changes': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-rollback': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-report': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-batch': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-compare': join(__dirname, '../scripts/claude-seo.js'),
+  'seo-monitor': join(__dirname, '../scripts/claude-seo.js'),
+  'generate-blog': join(__dirname, '../scripts/generate-blog-post.js'),
+  'help': 'help'
+};
+
+function showHelp() {
+  console.log(`
+🤖 Claude Code - AI Development Assistant
+=========================================
+
+SEO Analysis Commands:
+  seo-review --pr 123         Review PR with comprehensive SEO analysis
+  seo-quick-check --file X    Quick SEO check for single file
+  seo-report                  Generate SEO performance report
+  seo-batch                   Analyze all blog content
+  seo-compare file1 file2     Compare two blog posts
+  seo-monitor                 Monitor recent content quality
+
+SEO Auto-Optimization Commands:
+  seo-auto-optimize --pr 123  🚀 Auto-optimize entire PR (recommended)
+  seo-auto-optimize --file X  🚀 Auto-optimize single file
+  seo-apply-fixes --file X    Apply specific SEO fixes
+  seo-preview-changes --pr X  Preview proposed changes
+  seo-rollback --pr X         Rollback optimizations
+
+Legacy SEO:
+  seo-optimize --file X       Get optimization suggestions (manual)
+
+Blog Generation:
+  generate-blog               Generate new blog post manually
+
+Examples:
+  # Complete workflow: analyze → auto-optimize
+  claude seo-review --pr 456
+  claude seo-auto-optimize --pr 456
+  
+  # Single file optimization  
+  claude seo-auto-optimize --file my-blog.md
+  
+  # Advanced optimization
+  claude seo-auto-optimize --pr 456 --aggressive
+
+For detailed help on any command:
+  claude [command] --help
+
+📚 Complete Documentation:
+  BLOG_AUTOMATION_README.md  # Quick start guide
+  CLAUDE.md                  # Full system documentation
+`);
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  
+  if (args.length === 0 || args[0] === 'help' || args[0] === '--help') {
+    showHelp();
+    return;
+  }
+
+  const command = args[0];
+  const scriptPath = commands[command];
+
+  if (!scriptPath) {
+    console.error(`❌ Unknown command: ${command}`);
+    console.log('Run "claude help" to see available commands');
+    process.exit(1);
+  }
+
+  if (scriptPath === 'help') {
+    showHelp();
+    return;
+  }
+
+  // Execute the command script  
+  const child = spawn('node', [scriptPath, ...args], {
+    stdio: 'inherit',
+    cwd: process.cwd()
+  });
+
+  child.on('error', (error) => {
+    console.error(`❌ Failed to execute command: ${error.message}`);
+    process.exit(1);
+  });
+
+  child.on('close', (code) => {
+    process.exit(code);
+  });
+}
+
+main().catch(console.error);

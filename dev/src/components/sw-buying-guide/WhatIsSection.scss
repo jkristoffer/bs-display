@@ -1,0 +1,371 @@
+// What Is Section Styles
+#what-is {
+  .whatis-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      font-size: 1.2rem;
+      color: #4a5568;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .whatis-hero {
+    margin-bottom: 3rem;
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+
+      @media (max-width: 968px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+    }
+
+    .definition-section {
+      background: #f8f9fa;
+      padding: 2.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #4299e1;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin: 0;
+      }
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  // Highlight styles
+  .highlight1 {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #4c51bf;
+  }
+
+  .highlight2 {
+    background: linear-gradient(90deg, rgba(56, 178, 172, 0.2) 0%, rgba(129, 230, 217, 0.2) 100%);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #2c7a7b;
+  }
+
+  .whatis-stats {
+    margin-bottom: 4rem;
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+
+      .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #4299e1;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: #718096;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .whatis-capabilities {
+    margin-bottom: 4rem;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2d3748;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .capability-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+
+      .capability-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .tech-tag {
+          background: #e6fffa;
+          color: #234e52;
+          padding: 0.3rem 0.6rem;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          border: 1px solid #b2f5ea;
+        }
+      }
+    }
+  }
+
+
+  .whatis-applications {
+    margin-bottom: 4rem;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2d3748;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .application-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+
+      &.education {
+        border-top: 4px solid #4299e1;
+      }
+
+      &.business {
+        border-top: 4px solid #48bb78;
+      }
+
+      &.creative {
+        border-top: 4px solid #ed8936;
+      }
+
+      h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          font-size: 0.95rem;
+          color: #4a5568;
+          line-height: 1.6;
+          padding: 0.5rem 0;
+          position: relative;
+          padding-left: 1.5rem;
+
+          &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4299e1;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .whatis-cta {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+        line-height: 1.6;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .btn-primary,
+        .btn-secondary {
+          padding: 0.75rem 2rem;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .btn-primary {
+          background: white;
+          color: #667eea;
+
+          &:hover {
+            background: #f8f9fa;
+          }
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.2);
+          }
+        }
+
+        @media (max-width: 480px) {
+          flex-direction: column;
+          align-items: center;
+
+          .btn-primary,
+          .btn-secondary {
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 2rem 1.5rem;
+
+      .cta-content {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .whatis-header {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .section-intro {
+        font-size: 1rem;
+      }
+    }
+
+    .whatis-capabilities,
+    .whatis-applications {
+      h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+    .definition-card {
+      padding: 2rem !important;
+
+      h3 {
+        font-size: 1.3rem !important;
+      }
+
+      p {
+        font-size: 1rem !important;
+      }
+    }
+  }
+}

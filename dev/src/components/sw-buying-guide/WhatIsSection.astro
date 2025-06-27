@@ -1,78 +1,202 @@
 ---
 import { Image } from 'astro:assets';
 import whatIsSmartWhiteboard from './what-is-a-smart-whiteboard.png';
+import { allModels } from '../../data/models.all.js';
+
+// Analyze real product data to provide accurate information
+interface SmartWhiteboardStats {
+  totalModels: number;
+  sizeRange: { min: number; max: number };
+  touchTechnologies: string[];
+  resolutions: string[];
+  brands: string[];
+  commonFeatures: string[];
+}
+
+// Extract real data from product database
+const stats: SmartWhiteboardStats = {
+  totalModels: allModels.length,
+  sizeRange: {
+    min: Math.min(...allModels.map((m: any) => m.size || 0)),
+    max: Math.max(...allModels.map((m: any) => m.size || 0))
+  },
+  touchTechnologies: [...new Set(allModels.map((m: any) => m.touchTechnology).filter(Boolean))],
+  resolutions: [...new Set(allModels.map((m: any) => m.resolution).filter(Boolean))],
+  brands: [...new Set(allModels.map((m: any) => m.brand).filter(Boolean))],
+  commonFeatures: []
+};
+
+// Extract most common features across all models
+const featureCount: Record<string, number> = {};
+allModels.forEach((model: any) => {
+  if (model.features && Array.isArray(model.features)) {
+    model.features.forEach((feature: string) => {
+      const normalizedFeature = feature.toLowerCase();
+      if (normalizedFeature.includes('touch') || 
+          normalizedFeature.includes('android') ||
+          normalizedFeature.includes('wireless') ||
+          normalizedFeature.includes('4k') ||
+          normalizedFeature.includes('hdmi') ||
+          normalizedFeature.includes('usb')) {
+        featureCount[feature] = (featureCount[feature] || 0) + 1;
+      }
+    });
+  }
+});
+
+// Get top 6 most common features
+stats.commonFeatures = Object.entries(featureCount)
+  .sort(([,a], [,b]) => b - a)
+  .slice(0, 6)
+  .map(([feature]) => feature);
+
 ---
 
 <section id="what-is" class="content-section">
   <div class="container">
-    <h2>What is a Smart Whiteboard?</h2>
-    <div class="whatis-content">
-      <p>
-        A smart whiteboard is a digital interactive screen that enables
-        <span class="highlight1">collaboration</span>,
-        <span class="highlight1">real-time annotations</span>, and
-        <span class="highlight1">presentations</span>, effectively replacing
-        traditional whiteboards. These modern displays combine touch technology
-        with high-resolution screens to create versatile tools for
-        <span class="highlight2">education</span>,
-        <span class="highlight2">business</span>, and
-        <span class="highlight2">creative environments</span>.
+    <div class="whatis-header">
+      <h2>What is a Smart Whiteboard?</h2>
+      <p class="section-intro">
+        Discover how interactive displays are revolutionizing collaboration across industries
       </p>
-      <Image
-        src={whatIsSmartWhiteboard}
-        alt="What is a Smart Whiteboard?"
-        width={300}
-      />
+    </div>
+
+    <div class="whatis-hero">
+      <div class="hero-content">
+        <div class="definition-section">
+          <h3>Interactive Digital Display</h3>
+          <p>
+            A smart whiteboard is a <span class="highlight1">large-format touchscreen display</span> 
+            that combines the functionality of a traditional whiteboard with 
+            <span class="highlight1">advanced digital capabilities</span>. These interactive displays 
+            enable <span class="highlight2">real-time collaboration</span>, 
+            <span class="highlight2">multimedia presentations</span>, and 
+            <span class="highlight2">wireless connectivity</span> for modern workspaces.
+          </p>
+        </div>
+        <div class="hero-image">
+          <Image
+            src={whatIsSmartWhiteboard}
+            alt="Smart Whiteboard Interactive Display"
+            width={350}
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="whatis-stats">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">{stats.totalModels}+</span>
+          <span class="stat-label">Available Models</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">{stats.sizeRange.min}" - {stats.sizeRange.max}"</span>
+          <span class="stat-label">Size Range</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">{stats.brands.length}</span>
+          <span class="stat-label">Leading Brands</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">{stats.touchTechnologies.length}</span>
+          <span class="stat-label">Touch Technologies</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="whatis-capabilities">
+      <h3>Core Capabilities</h3>
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <div class="capability-icon">✍️</div>
+          <h4>Touch & Write</h4>
+          <p>Multi-point touch recognition with stylus support for natural writing and drawing</p>
+          <div class="tech-tags">
+            {stats.touchTechnologies.slice(0, 3).map((tech: string) => (
+              <span class="tech-tag">{tech}</span>
+            ))}
+          </div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">📱</div>
+          <h4>Wireless Connectivity</h4>
+          <p>Connect devices wirelessly to share content, present, and collaborate seamlessly</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Wi-Fi</span>
+            <span class="tech-tag">Bluetooth</span>
+            <span class="tech-tag">Screen Mirroring</span>
+          </div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">🎯</div>
+          <h4>High-Resolution Display</h4>
+          <p>Crystal clear visuals with support for 4K content and detailed presentations</p>
+          <div class="tech-tags">
+            {stats.resolutions.slice(0, 3).map((res: string) => (
+              <span class="tech-tag">{res}</span>
+            ))}
+          </div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">🖥️</div>
+          <h4>Built-in Computing</h4>
+          <p>Android OS with apps, cloud storage, and standalone functionality</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Android</span>
+            <span class="tech-tag">Apps</span>
+            <span class="tech-tag">Cloud Sync</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="whatis-applications">
+      <h3>Where Are Smart Whiteboards Used?</h3>
+      <div class="applications-grid">
+        <div class="application-card education">
+          <h4>🎓 Education</h4>
+          <ul>
+            <li>Interactive classroom learning</li>
+            <li>Student collaboration</li>
+            <li>Digital lesson delivery</li>
+            <li>Remote learning support</li>
+          </ul>
+        </div>
+        <div class="application-card business">
+          <h4>💼 Business</h4>
+          <ul>
+            <li>Meeting room presentations</li>
+            <li>Brainstorming sessions</li>
+            <li>Video conferencing</li>
+            <li>Project collaboration</li>
+          </ul>
+        </div>
+        <div class="application-card creative">
+          <h4>🎨 Creative Industries</h4>
+          <ul>
+            <li>Design studios</li>
+            <li>Architecture planning</li>
+            <li>Marketing agencies</li>
+            <li>Innovation labs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="whatis-cta">
+      <div class="cta-content">
+        <h3>Ready to Explore Smart Whiteboard Options?</h3>
+        <p>Browse our complete selection of interactive displays or take our quiz to find the perfect match for your needs</p>
+        <div class="cta-buttons">
+          <a href="/products/interactive-displays/" class="btn-primary">View All Products</a>
+          <a href="/quiz" class="btn-secondary">Take Product Quiz</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 <style lang="scss">
-  %highlight {
-    display: inline-block;
-    padding: 0 4px;
-    position: relative;
-    &:after {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 100%;
-      height: 10px;
-      background-color: var(--color-accent-secondary);
-      bottom: 3px;
-      left: 0;
-      z-index: -1;
-      opacity: 0.4;
-    }
-  }
-  .whatis-content {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: var(--spacing-xl);
-    justify-content: center;
-    align-items: center;
-
-    p {
-      width: 340px;
-      text-align: left;
-      .highlight1 {
-        @extend %highlight;
-      }
-      .highlight2 {
-        @extend %highlight;
-        &:after {
-          background-color: var(--color-accent-primary);
-        }
-      }
-    }
-  }
-
-  @media (max-width: $breakpoint-md) {
-    .whatis-content {
-      flex-direction: column;
-      p {
-        width: 100%;
-        text-align: center;
-      }
-    }
-  }
+  @use './WhatIsSection.scss';
 </style>

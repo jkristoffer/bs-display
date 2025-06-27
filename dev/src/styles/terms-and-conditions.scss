@@ -46,40 +46,9 @@
     font-size: var(--font-size-body);
   }
 
-  // Enhanced section numbering for terms
+  // Terms sections use manual numbering in HTML content
   .terms-section {
-    counter-increment: section;
-    
-    h2 {
-      position: relative;
-      
-      &::before {
-        content: counter(section) ". ";
-        color: var(--color-accent-primary);
-        font-weight: var(--font-weight-bold);
-      }
-    }
-  }
-
-  // Reset counter for the article
-  .terms-article {
-    counter-reset: section;
-  }
-
-  // Subsection styling
-  .terms-section {
-    h3 {
-      counter-increment: subsection;
-      
-      &::before {
-        content: counter(section) "." counter(subsection) " ";
-        color: var(--color-accent-secondary);
-        font-weight: var(--font-weight-semibold);
-      }
-    }
-    
-    // Reset subsection counter for each section
-    counter-reset: subsection;
+    // No automatic counters needed - numbering is in the HTML
   }
 
   // Enhanced definitions styling

@@ -1,0 +1,200 @@
+/* Block: search */
+.search {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-primary);
+}
+
+/* Element: search__input */
+.search__input {
+  width: 100%;
+}
+
+/* Element: search__mobileHeader */
+.search__mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+  border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+  background: rgba(var(--color-accent-primary-rgb), 0.02);
+}
+
+/* Element: search__mobileTitle */
+.search__mobileTitle {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Element: search__closeButton */
+.search__closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(var(--color-accent-primary-rgb), 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-accent-primary);
+  transition: all 0.2s ease;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover {
+    background: rgba(var(--color-accent-primary-rgb), 0.2);
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Element: search__backdrop */
+.search__backdrop {
+  position: fixed;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: backdropFadeIn 0.3s ease-out;
+  pointer-events: auto;
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Desktop styling */
+@media (min-width: 769px) {
+  .search {
+    width: 280px;
+    transition: width 0.3s ease;
+    
+    &:focus-within {
+      width: 320px;
+    }
+  }
+  
+  /* Floating overlay positioning handled in SearchResults component */
+}
+
+/* Mobile modifier */
+.search_mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  animation: mobileSlideUp 0.3s ease-out;
+  
+  .search__input {
+    padding: 0 var(--spacing-md);
+    flex-shrink: 0;
+  }
+  
+  /* Mobile results take full space */
+  :global(.searchResults) {
+    position: static !important;
+    flex: 1;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    overflow-y: auto;
+  }
+}
+
+@keyframes mobileSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .search__mobileHeader {
+    padding: var(--spacing-md);
+  }
+  
+  .search__mobileTitle {
+    font-size: var(--font-size-h2);
+  }
+  
+  .search__closeButton {
+    width: 36px;
+    height: 36px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+/* Accessibility enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .search,
+  .search__backdrop,
+  .search__closeButton {
+    animation: none;
+    transition: none;
+  }
+  
+  .search_mobile {
+    animation: none;
+  }
+}
+
+/* Focus management */
+.search:focus-within {
+  .search__input {
+    /* Input gets focus styling from SearchInput component */
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .search__mobileHeader {
+    border-bottom: 2px solid var(--color-text-primary);
+  }
+  
+  .search__closeButton {
+    border: 2px solid var(--color-accent-primary);
+    background: var(--color-background);
+  }
+  
+  .search__backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Print styles - hide search in print */
+@media print {
+  .search {
+    display: none;
+  }
+}

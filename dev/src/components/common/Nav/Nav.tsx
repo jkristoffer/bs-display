@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import NavItem from './NavItem.tsx';
 import ProductsMegaMenu from './ProductsMegaMenu.tsx';
+import { Search } from '../Search';
 import styles from './Nav.module.scss';
 
 interface NavItemType {
@@ -21,6 +22,7 @@ interface NavProps {
 function Nav({ currentPath = window.location.pathname }: NavProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeDropdowns, setActiveDropdowns] = useState<
     Record<number, boolean>
   >({});
@@ -99,11 +101,33 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
     }
   };
 
+  // Handle mobile search toggle
+  const toggleMobileSearch = () => {
+    setMobileSearchOpen(!mobileSearchOpen);
+    // Close mobile menu when opening search
+    if (!mobileSearchOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  // Close mobile search
+  const closeMobileSearch = () => {
+    setMobileSearchOpen(false);
+  };
+
+
   // Close all dropdowns when mobile menu is closed
   useEffect(() => {
     if (!mobileMenuOpen) {
       setActiveDropdowns({});
       setShowProductsMegaMenu(false);
+    }
+  }, [mobileMenuOpen]);
+
+  // Close mobile search when mobile menu is opened
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setMobileSearchOpen(false);
     }
   }, [mobileMenuOpen]);
 
@@ -166,17 +190,60 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
           )}
         </div>
 
-        <button
-          id="mobile-menu-toggle"
-          className={`${styles.nav__mobile_toggle} ${mobileMenuOpen ? styles.nav__mobile_toggle_active : ''}`}
-          aria-label="Toggle menu"
-          onClick={toggleMobileMenu}
-        >
-          <span className={styles.nav__mobile_toggle_bar}></span>
-          <span className={styles.nav__mobile_toggle_bar}></span>
-          <span className={styles.nav__mobile_toggle_bar}></span>
-        </button>
+        {/* Desktop Search */}
+        <div className={styles.nav__search}>
+          <Search 
+            className={styles.nav__searchComponent}
+            placeholder="Search products, articles..."
+          />
+        </div>
+
+        {/* Mobile controls */}
+        <div className={styles.nav__mobileControls}>
+          {/* Mobile search button */}
+          <button
+            type="button"
+            className={styles.nav__searchButton}
+            aria-label="Open search"
+            onClick={toggleMobileSearch}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+
+          {/* Mobile menu toggle */}
+          <button
+            id="mobile-menu-toggle"
+            className={`${styles.nav__mobile_toggle} ${mobileMenuOpen ? styles.nav__mobile_toggle_active : ''}`}
+            aria-label="Toggle menu"
+            onClick={toggleMobileMenu}
+          >
+            <span className={styles.nav__mobile_toggle_bar}></span>
+            <span className={styles.nav__mobile_toggle_bar}></span>
+            <span className={styles.nav__mobile_toggle_bar}></span>
+          </button>
+        </div>
+
+        {/* Mobile Search Overlay */}
+        {mobileSearchOpen && (
+          <Search
+            isMobile={true}
+            autoFocus={true}
+            onClose={closeMobileSearch}
+            placeholder="Search products, articles..."
+          />
+        )}
       </div>
+
     </nav>
   );
 }

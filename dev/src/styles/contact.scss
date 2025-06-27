@@ -5,6 +5,7 @@
  * Extracted from inline styles in contact.astro for better maintainability.
  */
 
+@use 'variables';
 @use 'contact-page-mixins' as contact;
 
 .contact-container {

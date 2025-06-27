@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from '@astrojs/sitemap';
 import vercel from "@astrojs/vercel";
+import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bigshine-display.com',
@@ -104,6 +105,78 @@ export default defineConfig({
 
   vite: {
     plugins: [],
+    css: {
+      postcss: {
+        plugins: [
+          purgeCSSPlugin({
+            content: [
+              './src/**/*.{astro,html,js,jsx,ts,tsx}',
+              './public/**/*.html'
+            ],
+            safelist: [
+              // Astro framework classes
+              /^astro-/,
+              // Data attributes
+              /^data-/,
+              // Quiz component classes
+              /quiz-/,
+              /cta-button/,
+              /result-/,
+              /category-/,
+              /product-/,
+              /score-/,
+              // Filter UI classes
+              /filter-/,
+              /model-/,
+              /brand-/,
+              // React/dynamic classes
+              /^react-/,
+              // Animation/transition classes
+              /fade-/,
+              /slide-/,
+              /show/,
+              /hide/,
+              /active/,
+              /selected/,
+              // Button states
+              /hover/,
+              /focus/,
+              /disabled/,
+              // Responsive utilities
+              /mobile-/,
+              /tablet-/,
+              /desktop-/,
+              // Common utility classes
+              'sr-only',
+              'visually-hidden',
+              'container',
+              'full-width-container'
+            ],
+            // Extract dynamic classes from templates
+            extractors: [
+              {
+                extensions: ['astro', 'html', 'js', 'jsx', 'ts', 'tsx'],
+                extractor: (content) => {
+                  // Match class names in templates
+                  const classMatches = content.match(/class[Name]*\s*=\s*["'`][^"'`]*["'`]/g) || [];
+                  const classes = classMatches
+                    .map(match => match.replace(/class[Name]*\s*=\s*["'`]([^"'`]*)["'`]/, '$1'))
+                    .join(' ')
+                    .split(/\s+/)
+                    .filter(cls => cls.length > 0);
+                  
+                  // Also match CSS classes in style tags and imports
+                  const cssMatches = content.match(/\.[a-zA-Z_-][a-zA-Z0-9_-]*/g) || [];
+                  const cssClasses = cssMatches.map(match => match.substring(1));
+                  
+                  return [...classes, ...cssClasses];
+                }
+              }
+            ]
+          })
+        ]
+      }
+    },
     build: {
       rollupOptions: {
         output: {

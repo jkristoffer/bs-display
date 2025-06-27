@@ -7,7 +7,6 @@ import {
   generateProductSchema,
   generateBreadcrumbSchema
 } from '../../../../utils/schema';
-import { getProductBreadcrumbs } from '../../../../utils/routes';
 
 export function getStaticPaths() {
   return allModels.map((model) => ({
@@ -33,13 +32,16 @@ const productInfo = convertModelToProductInfo(model, 'smartboards', baseUrl);
 const productSchema = generateProductSchema(productInfo);
 
 // Generate breadcrumb schema
-const breadcrumbItems = getProductBreadcrumbs({
-  productType: 'smartboards',
-  brand,
-  brandLabel: brand,
-  productId: model.id,
-  productLabel: modelName
-});
+const breadcrumbItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Products', path: '/products/' },
+  { label: 'Smart Boards', path: '/products/smartboards/' },
+  { 
+    label: brand,
+    path: `/products/smartboards/${brand.toLowerCase().replace(/\s+/g, '-')}/`
+  },
+  { label: modelName }
+];
 console.log(breadcrumbItems);
 const breadcrumbSchema = generateBreadcrumbSchema({
   items: breadcrumbItems.map((item, index) => ({

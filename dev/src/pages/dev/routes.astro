@@ -1,0 +1,274 @@
+---
+// Development-only route explorer
+// Only accessible in development mode
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
+
+// Only show in development
+if (import.meta.env.PROD) {
+  return Astro.redirect('/404');
+}
+
+// Read the generated routes documentation
+let routesContent = '';
+const routesPath = join(process.cwd(), 'ROUTES.md');
+if (existsSync(routesPath)) {
+  routesContent = readFileSync(routesPath, 'utf-8');
+}
+
+const title = 'Route Explorer - Development';
+const description = 'Interactive route explorer for development';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: #333;
+      margin: 0;
+    }
+    .header p {
+      color: #666;
+      margin: 10px 0 0 0;
+    }
+    .actions {
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 4px solid #007acc;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007acc;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .button:hover {
+      background: #005999;
+    }
+    .button.secondary {
+      background: #6c757d;
+    }
+    .button.secondary:hover {
+      background: #5a6268;
+    }
+    .route-section {
+      margin: 30px 0;
+    }
+    .route-item {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin: 10px 0;
+      padding: 15px;
+      background: #fafafa;
+    }
+    .route-path {
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      color: #d73a49;
+      margin-bottom: 8px;
+    }
+    .route-meta {
+      color: #666;
+      font-size: 14px;
+    }
+    .route-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 12px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .route-link:hover {
+      background: #218838;
+    }
+    .markdown-content {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+    }
+    .markdown-content pre {
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .markdown-content code {
+      background: #f8f8f8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', monospace;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛣️ Route Explorer</h1>
+      <p>Development tool for exploring and testing application routes</p>
+    </div>
+
+    <div class="actions">
+      <h3>Quick Actions</h3>
+      <a href="#" onclick="updateDocs()" class="button">🔄 Update Documentation</a>
+      <a href="/ROUTES.md" target="_blank" class="button secondary">📄 View Full Documentation</a>
+      <a href="/" class="button secondary">🏠 Back to Site</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="total-routes">25</div>
+        <div class="stat-label">Total Routes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="static-routes">15</div>
+        <div class="stat-label">Static Routes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="dynamic-routes">4</div>
+        <div class="stat-label">Dynamic Routes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="api-routes">2</div>
+        <div class="stat-label">API Endpoints</div>
+      </div>
+    </div>
+
+    <div class="route-section">
+      <h2>Quick Route Testing</h2>
+      
+      <div class="route-item">
+        <div class="route-path">/</div>
+        <div class="route-meta">Homepage - Static Route</div>
+        <a href="/" class="route-link" target="_blank">Test Route</a>
+      </div>
+
+      <div class="route-item">
+        <div class="route-path">/products/smartboards/smart/mx-v5</div>
+        <div class="route-meta">Dynamic Product Route Example</div>
+        <a href="/products/smartboards/smart/mx-v5" class="route-link" target="_blank">Test Route</a>
+      </div>
+
+      <div class="route-item">
+        <div class="route-path">/blog</div>
+        <div class="route-meta">Blog Index - Content Collection</div>
+        <a href="/blog" class="route-link" target="_blank">Test Route</a>
+      </div>
+
+      <div class="route-item">
+        <div class="route-path">/api/contact</div>
+        <div class="route-meta">Contact API Endpoint</div>
+        <a href="/api/contact" class="route-link" target="_blank">View API</a>
+      </div>
+
+      <div class="route-item">
+        <div class="route-path">/quiz</div>
+        <div class="route-meta">Interactive Quiz</div>
+        <a href="/quiz" class="route-link" target="_blank">Test Route</a>
+      </div>
+    </div>
+
+    <div class="markdown-content">
+      <h2>Generated Documentation</h2>
+      <div id="markdown-content">
+        {routesContent ? (
+          <pre>{routesContent}</pre>
+        ) : (
+          <p>Run <code>npm run docs:routes</code> to generate documentation.</p>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function updateDocs() {
+      try {
+        const response = await fetch('/api/update-routes-docs', {
+          method: 'POST'
+        });
+        
+        if (response.ok) {
+          alert('✅ Route documentation updated! Refresh the page to see changes.');
+        } else {
+          alert('❌ Failed to update documentation. Run `npm run docs:routes` manually.');
+        }
+      } catch (error) {
+        alert('❌ Error updating documentation. Run `npm run docs:routes` manually.');
+      }
+    }
+
+    // Extract stats from markdown content
+    function parseStats() {
+      const content = document.getElementById('markdown-content').textContent;
+      
+      const totalMatch = content.match(/\*\*Total Routes\*\* \| \*\*(\d+)\*\*/);
+      const staticMatch = content.match(/Static Routes \| (\d+)/);
+      const dynamicMatch = content.match(/Dynamic Routes \| (\d+)/);
+      const apiMatch = content.match(/API Endpoints \| (\d+)/);
+      
+      if (totalMatch) document.getElementById('total-routes').textContent = totalMatch[1];
+      if (staticMatch) document.getElementById('static-routes').textContent = staticMatch[1];
+      if (dynamicMatch) document.getElementById('dynamic-routes').textContent = dynamicMatch[1];
+      if (apiMatch) document.getElementById('api-routes').textContent = apiMatch[1];
+    }
+
+    // Parse stats on load
+    parseStats();
+  </script>
+</body>
+</html>

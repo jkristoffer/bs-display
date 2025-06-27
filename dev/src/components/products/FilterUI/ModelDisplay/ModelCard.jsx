@@ -1,16 +1,16 @@
 import { ProductCard } from '../../../common/ProductCard';
-import { routes } from '../../../../utils/routes';
 
 const ModelCard = ({ model, displayMode, productType = 'smartboards' }) => {
   const viewDetails = () => {
     // Use proper navigation instead of window.location
-    const url = routes.products[productType].product(model.brand, model.id);
+    const brandSlug = model.brand.toLowerCase().replace(/\s+/g, '-');
+    const url = `/products/${productType}/${brandSlug}/${model.id}`;
     window.open(url, '_self');
   };
 
   const requestQuote = () => {
     // Use proper navigation instead of window.location
-    window.open(routes.contact, '_self');
+    window.open('/contact', '_self');
   };
 
   // Convert model data to Product interface format

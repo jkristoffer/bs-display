@@ -13,6 +13,7 @@ interface StickyTableOfContentsProps {
 const StickyTableOfContents: React.FC<StickyTableOfContentsProps> = ({ items }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,9 +49,30 @@ const StickyTableOfContents: React.FC<StickyTableOfContentsProps> = ({ items }) 
   if (!isVisible) return null;
 
   return (
-    <nav className="sticky-toc" aria-label="Sticky table of contents">
+    <>
+      {/* Reopen Button */}
+      {isDismissed && (
+        <button 
+          className="reopen-toc-btn"
+          onClick={() => setIsDismissed(false)}
+          title="Open navigation menu"
+        >
+          📋
+        </button>
+      )}
+
+      {/* Main TOC */}
+      {!isDismissed && (
+        <nav className="sticky-toc" aria-label="Sticky table of contents">
       <div className="sticky-toc-header">
         <h3>Quick Navigation</h3>
+        <button 
+          className="close-toc-btn"
+          onClick={() => setIsDismissed(true)}
+          title="Close navigation menu"
+        >
+          ×
+        </button>
       </div>
       <ul className="sticky-toc-list">
         {items.map((item, index) => (
@@ -65,7 +87,9 @@ const StickyTableOfContents: React.FC<StickyTableOfContentsProps> = ({ items }) 
           </li>
         ))}
       </ul>
-    </nav>
+        </nav>
+      )}
+    </>
   );
 };
 

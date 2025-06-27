@@ -59,6 +59,14 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 - **Dynamic routes** for products: `/products/[category]/[brand]/[id]`
 - **Content-driven pages** for blog and use cases
 - **API endpoints** in `src/pages/api/` for contact forms and data fetching
+- **Living Documentation**: Auto-generated route documentation in `ROUTES.md`
+
+**Route Documentation System:**
+- **`scripts/generate-routes-docs.js`** - Automated route discovery and documentation generator
+- **`ROUTES.md`** - Living documentation of all routes, parameters, and examples
+- **`/dev/routes`** - Interactive route explorer (development only)
+- **`npm run docs:routes`** - Update route documentation
+- **Git hooks** - Auto-update documentation when routes change
 
 #### Styling System
 
@@ -91,6 +99,14 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 
 **Documentation Precedence**: 
 - **PRIMARY**: `/src/development-standards/standards/` (current, authoritative)
+
+### Pricing Policy
+
+**CRITICAL**: Pricing information is confidential and for internal use only
+- **Never display** specific prices, price ranges, or cost data on public pages
+- **Always use** "Contact for pricing" or "Request quote" instead
+- **Product data** may contain pricing fields for internal processes, but these must not be rendered
+- **Budget categories** should be based on features/use cases, not price ranges
 
 #### SEO & Performance
 

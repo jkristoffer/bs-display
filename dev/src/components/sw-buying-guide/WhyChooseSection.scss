@@ -1,0 +1,426 @@
+// Why Choose Section Styles
+#why-choose {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  
+  .why-choose-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      font-size: 1.2rem;
+      color: #4a5568;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .benefits-overview {
+    margin-bottom: 4rem;
+
+    .benefits-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #4a5568;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      @media (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .benefit-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      .benefit-visual {
+        margin-bottom: 1.5rem;
+
+        .benefit-icon {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          display: block;
+        }
+
+        .benefit-stat {
+          .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4299e1;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+          }
+
+          .stat-label {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 500;
+            line-height: 1.2;
+          }
+        }
+      }
+
+      .benefit-content {
+        flex: 1;
+        margin-bottom: 1.5rem;
+
+        h4 {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #2d3748;
+          margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+          font-size: 0.95rem;
+          color: #4a5568;
+          line-height: 1.6;
+        }
+      }
+
+      .benefit-highlight {
+        background: #f0f8ff;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid #4299e1;
+        margin-top: auto;
+
+        .highlight-icon {
+          font-size: 1.1rem;
+          margin-right: 0.5rem;
+        }
+
+        .highlight-text {
+          font-size: 0.85rem;
+          color: #2d3748;
+          font-weight: 500;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .features-breakdown {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #2d3748;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .feature-category {
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          font-size: 0.9rem;
+          color: #4a5568;
+          line-height: 1.6;
+          padding: 0.4rem 0;
+          position: relative;
+          padding-left: 1.5rem;
+
+          &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4299e1;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .why-choose-summary {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+
+    .summary-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #4a5568;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+
+        strong {
+          color: #2d3748;
+          font-weight: 600;
+        }
+      }
+
+      .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+
+        .summary-stat {
+          text-align: center;
+
+          .summary-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4299e1;
+            margin-bottom: 0.25rem;
+          }
+
+          .summary-label {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  .why-choose-cta {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+
+    .cta-content {
+      max-width: 700px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+        line-height: 1.6;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .btn-primary,
+        .btn-secondary {
+          padding: 0.75rem 1.5rem;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .btn-primary {
+          background: white;
+          color: #4299e1;
+
+          &:hover {
+            background: #f7fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: center;
+
+          .btn-primary,
+          .btn-secondary {
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    .why-choose-header {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .section-intro {
+        font-size: 1rem;
+      }
+    }
+
+    .benefits-overview {
+      .benefit-card {
+        .benefit-content {
+          h4 {
+            font-size: 1rem;
+          }
+
+          .benefit-description {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+
+    .features-breakdown {
+      padding: 2rem 1.5rem;
+
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .why-choose-summary {
+      padding: 2rem 1.5rem;
+
+      .summary-content {
+        h3 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        .summary-stats {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+
+          .summary-stat {
+            .summary-number {
+              font-size: 1.5rem;
+            }
+
+            .summary-label {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+
+    .why-choose-cta {
+      padding: 2rem 1.5rem;
+
+      .cta-content {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+}

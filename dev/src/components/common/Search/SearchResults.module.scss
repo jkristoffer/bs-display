@@ -23,6 +23,9 @@
     max-width: 800px;
     max-height: 70vh;
     z-index: 1000;
+    
+    /* Ensure centering is maintained during animation */
+    animation: searchResultsFadeInDesktop 0.4s ease-out;
   }
   
   /* Mobile positioning (handled separately) */
@@ -31,6 +34,19 @@
   }
 }
 
+/* Desktop animation with proper centering */
+@keyframes searchResultsFadeInDesktop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Mobile animation (no centering needed) */
 @keyframes searchResultsFadeIn {
   from {
     opacity: 0;

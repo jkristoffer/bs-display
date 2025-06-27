@@ -1,52 +1,211 @@
 ---
-interface Brand {
+import { allModels } from '../../data/models.all.js';
+
+interface BrandInfo {
   name: string;
-  description: string;
+  models: any[];
+  priceRange: { min: number; max: number };
+  touchTechs: Set<string>;
+  sizes: Set<number>;
 }
 
-const {
-  brands = [
-    {
-      name: 'LG',
-      description: 'Best for OLED clarity'
-    },
-    {
-      name: 'Samsung',
-      description: 'Premium QD-OLED technology'
-    },
-    {
-      name: 'MAXHUB',
-      description: 'Enterprise-focused capacitive solutions'
-    },
-    {
-      name: 'ViewSonic',
-      description: 'Reliable classroom displays'
-    },
-    {
-      name: 'Promethean',
-      description: 'Robust education-focused products'
-    }
-  ],
-  internalLinkText = 'Explore METZ IR Series →',
-  internalLinkUrl = '/products/metz'
-} = Astro.props;
+// Group models by brand and get brand info
+const brandData: Record<string, BrandInfo> = allModels.reduce((acc: Record<string, BrandInfo>, model: any) => {
+  const brand = model.brand;
+  if (!acc[brand]) {
+    acc[brand] = {
+      name: brand,
+      models: [],
+      priceRange: { min: Infinity, max: 0 },
+      touchTechs: new Set<string>(),
+      sizes: new Set<number>()
+    };
+  }
+  
+  acc[brand].models.push(model);
+  
+  // Note: Pricing data is internal only and not displayed to users
+  
+  // Track touch technologies
+  if (model.touchTechnology) {
+    acc[brand].touchTechs.add(model.touchTechnology);
+  }
+  
+  // Track sizes
+  if (model.size) {
+    acc[brand].sizes.add(model.size);
+  }
+  
+  return acc;
+}, {});
+
+// Create curated brand recommendations based on features and use cases
+const recommendations = [
+  {
+    category: 'Education & Training',
+    description: 'Perfect for classrooms and training environments',
+    brands: Object.values(brandData).filter(brand => 
+      brand.models.some(m => m.touchTechnology?.includes('Infrared')) && brand.models.length > 0
+    ).slice(0, 2),
+    icon: '🎓'
+  },
+  {
+    category: 'Business & Professional',
+    description: 'Ideal for meetings and presentations',
+    brands: Object.values(brandData).filter(brand => 
+      brand.models.some(m => m.touchTechnology?.includes('Capacitive') || m.features?.some((f: string) => f.includes('Android')))
+    ).slice(0, 2),
+    icon: '💼'
+  },
+  {
+    category: 'Enterprise & Large Venues',
+    description: 'High-end displays for demanding environments',
+    brands: Object.values(brandData).filter(brand => 
+      brand.models.some(m => m.size >= 86 || m.touchTechnology?.includes('EMR'))
+    ).slice(0, 2),
+    icon: '🏢'
+  }
+];
+
+// Helper functions (Note: Pricing data is internal only and not displayed)
+
+const getBestModel = (brand: BrandInfo): any => {
+  // Sort by features count and size to get "best" model
+  return brand.models.sort((a: any, b: any) => {
+    const aFeatures = a.features?.length || 0;
+    const bFeatures = b.features?.length || 0;
+    const aSize = a.size || 0;
+    const bSize = b.size || 0;
+    
+    // Prefer models with more features, then larger size
+    if (aFeatures !== bFeatures) return bFeatures - aFeatures;
+    if (aSize !== bSize) return bSize - aSize;
+    return 0;
+  })[0];
+};
+
+const getModelUrl = (model: any): string => {
+  const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
+  const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
+  return `/products/interactive-displays/${brand}/${modelId}`;
+};
 ---
 
 <section id="brands" class="content-section bg-light">
   <div class="container">
-    <h2>Top Brands & Recommended Models</h2>
-    <div class="brands-grid">
+    <div class="brands-header">
+      <h2>Top Brands & Recommended Models</h2>
+      <p>Our curated selection of interactive display brands, organized by budget and use case</p>
+    </div>
+
+    {/* Category-based Recommendations */}
+    <div class="recommendations-grid">
       {
-        brands.map((brand: Brand) => (
-          <div class="brand-card">
-            <h3>{brand.name}</h3>
-            <p>{brand.description}</p>
+        recommendations.map((category) => (
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-icon">{category.icon}</span>
+              <div>
+                <h3>{category.category}</h3>
+                <p>{category.description}</p>
+              </div>
+            </div>
+            
+            <div class="brands-in-category">
+              {
+                category.brands.map((brand) => {
+                  const bestModel = getBestModel(brand);
+                  
+                  return (
+                    <div class="brand-card">
+                      <div class="brand-header">
+                        <h4>{brand.name}</h4>
+                        <div class="brand-stats">
+                          <span class="models-count">{brand.models.length} models</span>
+                        </div>
+                      </div>
+                      
+                      {bestModel && (
+                        <div class="featured-model">
+                          <h5>🌟 Recommended: {bestModel.model}</h5>
+                          <div class="model-specs">
+                            <span class="spec">{bestModel.size}"</span>
+                            <span class="spec">{bestModel.touchTechnology}</span>
+                            <span class="spec">{bestModel.resolution}</span>
+                          </div>
+                          {bestModel.features && (
+                            <ul class="key-features">
+                              {bestModel.features.slice(0, 3).map((feature: string) => (
+                                <li>{feature}</li>
+                              ))}
+                            </ul>
+                          )}
+                          <div class="model-actions">
+                            <a href={getModelUrl(bestModel)} class="btn-primary">View Details</a>
+                            <a href={`/products/${brand.name.toLowerCase()}`} class="btn-secondary">All {brand.name} Models</a>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div class="brand-summary">
+                        <div class="tech-badges">
+                          {Array.from(brand.touchTechs).slice(0, 2).map((tech: string) => (
+                            <span class="tech-badge">{tech}</span>
+                          ))}
+                        </div>
+                        <div class="size-range">
+                          Sizes: {Array.from(brand.sizes).sort((a: number, b: number) => a - b).join('", ')}"
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              }
+            </div>
           </div>
         ))
       }
     </div>
-    <div class="internal-link">
-      <a href={internalLinkUrl} class="text-link">{internalLinkText}</a>
+
+    {/* All Brands Quick Links */}
+    <div class="all-brands-section">
+      <h3>All Available Brands</h3>
+      <div class="brand-links">
+        {
+          Object.values(brandData).map((brand: BrandInfo) => (
+            <a href={`/products/${brand.name.toLowerCase()}`} class="brand-link">
+              <span class="brand-name">{brand.name}</span>
+              <span class="brand-count">{brand.models.length} models</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Quick Decision Helper */}
+    <div class="decision-helper">
+      <h3>Not Sure Which Brand to Choose?</h3>
+      <div class="helper-options">
+        <a href="/quiz" class="helper-card">
+          <span class="helper-icon">🎯</span>
+          <h4>Take Our Quiz</h4>
+          <p>Answer 5 questions to get personalized recommendations</p>
+        </a>
+        <a href="/products/" class="helper-card">
+          <span class="helper-icon">🔍</span>
+          <h4>Browse All Products</h4>
+          <p>Compare all models side by side with filters</p>
+        </a>
+        <a href="/contact" class="helper-card">
+          <span class="helper-icon">💬</span>
+          <h4>Talk to an Expert</h4>
+          <p>Get personalized advice from our specialists</p>
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style lang="scss">
+  @use './BrandsSection.scss';
+</style>

@@ -1,6 +1,5 @@
 ---
 import BreadcrumbsComponent from './Breadcrumbs.jsx';
-import { getProductBreadcrumbs } from '../../../utils/routes';
 
 export interface Props {
   productType?: string;
@@ -24,13 +23,43 @@ const {
 
 // If items are directly provided, use them
 // Otherwise, generate product breadcrumbs
-const breadcrumbItems = items || getProductBreadcrumbs({
-  productType,
-  brand,
-  brandLabel,
-  productId,
-  productLabel
-});
+const breadcrumbItems = items || (() => {
+  const createSlug = (text: string) => {
+    if (typeof text !== 'string') return '';
+    return text.toLowerCase().replace(/\s+/g, '-');
+  };
+
+  const items: Array<{label: string; path?: string}> = [
+    { label: 'Home', path: '/' },
+    { label: 'Products', path: '/products/' }
+  ];
+
+  // Add product type breadcrumb
+  if (productType) {
+    items.push({
+      label: productType === 'smartboards' ? 'Smart Boards' : 'Lecterns',
+      path: `/products/${productType}/`
+    });
+  }
+
+  // Add brand breadcrumb if provided
+  if (brand && brandLabel) {
+    const brandSlug = typeof brand === 'string' ? createSlug(brand) : brand;
+    items.push({
+      label: brandLabel,
+      path: `/products/${productType}/${brandSlug}/`
+    });
+  }
+
+  // Add product breadcrumb if provided (no path for current page)
+  if (productId && productLabel) {
+    items.push({
+      label: productLabel
+    });
+  }
+
+  return items;
+})();
 ---
 
 <BreadcrumbsComponent items={breadcrumbItems} className={className} client:load />

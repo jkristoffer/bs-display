@@ -1,0 +1,412 @@
+// Top Brands & Recommended Models Section
+#brands {
+  .brands-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #4a5568;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  // Category-based Recommendations
+  .recommendations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .category-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f7fafc;
+
+    .category-icon {
+      font-size: 2rem;
+      background: linear-gradient(135deg, #4299e1, #3182ce);
+      padding: 0.75rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 60px;
+      height: 60px;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 0.25rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #718096;
+      margin: 0;
+    }
+  }
+
+  .brands-in-category {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .brand-card {
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #cbd5e0;
+    }
+  }
+
+  .brand-header {
+    margin-bottom: 1rem;
+
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 0.5rem;
+    }
+
+    .brand-stats {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+
+      .models-count {
+        color: #4299e1;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .featured-model {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 0.75rem;
+    }
+
+    .model-specs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+
+      .spec {
+        background: #edf2f7;
+        color: #4a5568;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+
+    .key-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem;
+
+      li {
+        font-size: 0.85rem;
+        color: #4a5568;
+        padding: 0.2rem 0;
+        position: relative;
+        padding-left: 1rem;
+
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #48bb78;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .model-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      .btn-primary {
+        background: #4299e1;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #3182ce;
+          transform: translateY(-1px);
+        }
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #4299e1;
+        border: 1px solid #4299e1;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #4299e1;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .brand-summary {
+    .tech-badges {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+
+      .tech-badge {
+        background: linear-gradient(135deg, #ed8936, #dd6b20);
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+    }
+
+    .size-range {
+      font-size: 0.85rem;
+      color: #718096;
+      font-weight: 500;
+    }
+  }
+
+  // All Brands Quick Links
+  .all-brands-section {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 1.5rem;
+    }
+
+    .brand-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+
+      .brand-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #f7fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #edf2f7;
+          border-color: #cbd5e0;
+          transform: translateY(-1px);
+        }
+
+        .brand-name {
+          font-weight: 500;
+          color: #2d3748;
+        }
+
+        .brand-count {
+          font-size: 0.85rem;
+          color: #718096;
+          background: #e2e8f0;
+          padding: 0.25rem 0.5rem;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+
+  // Decision Helper
+  .decision-helper {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    color: white;
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0 0 2rem;
+    }
+
+    .helper-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .helper-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .helper-icon {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 0.75rem;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        margin: 0;
+        opacity: 0.9;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// Mobile Responsiveness
+@media (max-width: 768px) {
+  #brands {
+    .brands-header {
+      margin-bottom: 2rem;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .recommendations-grid {
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .category-section {
+      padding: 1.5rem;
+    }
+
+    .category-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+
+      .category-icon {
+        font-size: 1.5rem;
+        min-width: 50px;
+        height: 50px;
+      }
+    }
+
+    .brand-card {
+      padding: 1rem;
+    }
+
+    .featured-model {
+      .model-actions {
+        flex-direction: column;
+
+        .btn-primary,
+        .btn-secondary {
+          text-align: center;
+        }
+      }
+    }
+
+    .decision-helper {
+      padding: 2rem 1.5rem;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

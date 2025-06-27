@@ -1,6 +1,5 @@
 import styles from './ProductDetails.module.scss';
 import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
-import { getProductBreadcrumbs } from '../../../utils/routes';
 
 const ProductDetails = ({ model, productType = 'smartboards' }) => {
   if (!model) {
@@ -35,13 +34,19 @@ const ProductDetails = ({ model, productType = 'smartboards' }) => {
     <div className={styles.productDetails}>
       <div className={styles.header}>
         <Breadcrumbs 
-          items={getProductBreadcrumbs({
-            productType,
-            brand,
-            brandLabel: brand,
-            productId: model.id,
-            productLabel: modelName
-          })}
+          items={[
+            { label: 'Home', path: '/' },
+            { label: 'Products', path: '/products/' },
+            { 
+              label: productType === 'smartboards' ? 'Smart Boards' : 'Lecterns',
+              path: `/products/${productType}/`
+            },
+            { 
+              label: brand,
+              path: `/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}/`
+            },
+            { label: modelName }
+          ]}
           className={styles.breadcrumbs}
         />
         <h1 className={styles.title}>

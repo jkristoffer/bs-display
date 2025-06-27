@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run optimize:images && astro build",
+    "build:fast": "astro build",
+    "optimize:images": "node scripts/optimize-images.js",
     "check": "astro check",
     "preview": "astro preview",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\"",

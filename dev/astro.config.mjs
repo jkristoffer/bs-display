@@ -86,25 +86,53 @@ export default defineConfig({
 
   image: {
     service: {
-      entrypoint: "astro/assets/services/sharp", // Options: 'sharp' (default), 'squoosh', or a custom service
+      entrypoint: "astro/assets/services/sharp",
       config: {
-        // Service-specific configurations (e.g., quality, formats)
+        quality: 85,
+        formats: ['avif', 'webp', 'jpeg'],
+        progressive: true,
+        withMetadata: false,
+        // Sharp-specific optimizations
+        mozjpeg: true,
+        pngQuantization: true
       },
     },
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.example.com",
-        pathname: "/**",
-      },
-    ],
-    experimentalLayout: "constrained", // Default layout for responsive images
-    experimentalObjectFit: "cover", // Default object-fit value
-    experimentalObjectPosition: "center", // Default object-position value
+    experimentalLayout: "constrained",
+    experimentalObjectFit: "cover",
+    experimentalObjectPosition: "center",
   },
 
   vite: {
     plugins: [],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Vendor libraries
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('react-icons')) {
+                return 'vendor-icons';
+              }
+              return 'vendor';
+            }
+            
+            // Quiz components and logic
+            if (id.includes('src/components/quiz/')) {
+              return 'quiz';
+            }
+            
+            // Product filtering components
+            if (id.includes('src/components/products/FilterUI/') || 
+                id.includes('src/hooks/useProductFilters')) {
+              return 'filters';
+            }
+          }
+        }
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {

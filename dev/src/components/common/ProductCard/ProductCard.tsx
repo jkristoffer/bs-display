@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import type { Product } from '../../quiz/types';
 import styles from './ProductCard.module.scss';
+import SmartProductImage from '../SmartProductImage/SmartProductImage';
 
 export interface ProductCardAction {
   label: string;
@@ -95,8 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <div className={styles.loadingShimmer}></div>
           </div>
         )}
-        <img
-          ref={imgRef}
+        <SmartProductImage
           src={
             imageError
               ? '/assets/iboard-placeholder.jpeg'

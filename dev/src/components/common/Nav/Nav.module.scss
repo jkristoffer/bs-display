@@ -1,20 +1,43 @@
 /* Block: nav */
 .nav {
   width: 100%;
-  background: rgba(255, 255, 255, 0.98); /* Slightly more opaque for better depth */
-  backdrop-filter: blur(12px); /* Enhanced blur for modern feel */
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-sm); /* Modern shadow system */
+  box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--color-border-muted); /* Refined border color */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
+  border-bottom: 1px solid var(--color-border-muted);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Enhanced hover state */
-  &:hover {
+  /* Subtle tech-inspired accent line */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(var(--color-accent-primary-rgb), 0.3) 25%,
+      rgba(var(--color-accent-primary-rgb), 0.6) 50%,
+      rgba(var(--color-accent-primary-rgb), 0.3) 75%,
+      transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Enhanced scroll state */
+  &:hover,
+  &.nav--scrolled {
     box-shadow: var(--shadow-md);
     border-bottom-color: var(--color-border-default);
+    
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
@@ -46,14 +69,39 @@
 /* Element: nav__logo-image */
 .nav__logo_image {
   width: 100%;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
-  filter: brightness(1); /* Prepare for hover effect */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1);
+  position: relative;
+  z-index: 1; /* Ensure logo stays above glow effect */
 }
 
-/* Enhanced logo hover state */
+/* Tech-inspired logo hover state */
 .nav__logo_link:hover .nav__logo_image {
-  transform: scale(1.03) translateY(-1px); /* Subtle scale and lift */
-  filter: brightness(1.05); /* Slight brightness increase */
+  transform: scale(1.03) translateY(-1px);
+  filter: brightness(1.05) drop-shadow(0 4px 8px rgba(var(--color-accent-primary-rgb), 0.2));
+  
+  /* Add subtle tech glow */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: radial-gradient(circle at center,
+      rgba(var(--color-accent-primary-rgb), 0.1) 0%,
+      transparent 60%);
+    border-radius: var(--radius-lg);
+    animation: logoGlow 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
+@keyframes logoGlow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Element: nav__items */
@@ -116,10 +164,34 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Modern easing */
 }
 
-/* Enhanced dropdown arrow states */
+/* Enhanced dropdown arrow states with smooth rotation */
 .nav__dropdown:hover .nav__dropdown_arrow {
   transform: rotate(180deg);
-  color: var(--color-accent-primary); /* Accent on hover */
+  color: var(--color-accent-primary);
+}
+
+/* Add subtle pulse effect for dropdowns */
+.nav__dropdown:hover .nav__dropdown_trigger::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, 
+    rgba(var(--color-accent-primary-rgb), 0.1),
+    rgba(var(--color-accent-secondary-rgb), 0.05));
+  border-radius: calc(var(--radius-md) + 1px);
+  z-index: -1;
+  animation: dropdownPulse 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dropdownPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Element: nav__dropdown-menu */
@@ -207,7 +279,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px; /* Touch-friendly size */
+  width: 44px;
   height: 44px;
   background: none;
   border: none;
@@ -215,18 +287,38 @@
   border-radius: var(--radius-full);
   color: var(--color-text-primary);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
+  position: relative;
+  
+  /* Tech-inspired background pattern */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: radial-gradient(circle at 30% 30%,
+      rgba(var(--color-accent-primary-rgb), 0.1) 0%,
+      transparent 50%);
+    border-radius: var(--radius-full);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
   
   svg {
-    width: 22px; /* Slightly larger for better visibility */
+    width: 22px;
     height: 22px;
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
   }
   
   &:hover {
     background: var(--color-surface-muted);
     color: var(--color-accent-primary);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-primary-rgb), 0.15);
+    
+    &::before {
+      opacity: 1;
+    }
     
     svg {
       transform: scale(1.1);
@@ -443,30 +535,54 @@
   }
 }
 
-/* Motion accessibility */
-@media (prefers-reduced-motion: reduce) {
+/* Progressive Enhancement: Modern Browser Features */
+@supports (backdrop-filter: blur(10px)) {
   .nav {
-    transition: none;
-  }
-  
-  .nav__dropdown_trigger {
-    transition: none;
-  }
-  
-  .nav__dropdown_arrow {
-    transition: none;
+    background: rgba(255, 255, 255, 0.95); /* More transparent when backdrop-filter supported */
   }
   
   .nav__dropdown_menu {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+@supports (color: color(display-p3 1 0 0)) {
+  :root {
+    --color-accent-primary: color(display-p3 0 0.59 0.53); /* P3 color space for modern displays */
+    --color-accent-secondary: color(display-p3 1 0.65 0.15);
+  }
+}
+
+@supports (color: oklch(0.7 0.15 180)) {
+  :root {
+    --color-accent-primary: oklch(0.55 0.15 180); /* Future-proof OKLCH colors */
+    --color-accent-secondary: oklch(0.75 0.12 60);
+  }
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .nav,
+  .nav__dropdown_trigger,
+  .nav__dropdown_arrow,
+  .nav__dropdown_menu,
+  .nav__desktopSearchBackdrop,
+  .nav__link,
+  .nav__link_cta,
+  .nav__searchButton {
     transition: none;
     animation: none;
   }
   
-  .nav__desktopSearchBackdrop {
-    animation: none;
-  }
-  
-  .nav__dropdown_trigger:hover {
+  .nav__dropdown_trigger:hover,
+  .nav__link:hover,
+  .nav__searchButton:hover {
     transform: none;
   }
 }

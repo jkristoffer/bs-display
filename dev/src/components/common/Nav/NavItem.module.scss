@@ -14,7 +14,10 @@
 /* Hover state */
 .nav__link:hover {
   color: var(--color-accent-primary);
-  background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+  background: linear-gradient(45deg, 
+    rgba(var(--color-accent-primary-rgb), 0.05) 0%, 
+    rgba(var(--color-accent-primary-rgb), 0.08) 100%);
+  transform: translateY(-1px);
 }
 
 /* Modifier: nav__link--active */
@@ -26,11 +29,26 @@
 .nav__link_active::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 12px;
   right: 12px;
-  height: 2px;
-  background-color: var(--color-accent-primary);
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--color-accent-primary) 20%, 
+    var(--color-accent-secondary) 80%, 
+    transparent 100%);
+  border-radius: 2px;
+  animation: activeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes activeGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(var(--color-accent-primary-rgb), 0.3);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(var(--color-accent-primary-rgb), 0.6);
+  }
 }
 
 /* Style for dropdown menu items */

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import NavItem from './NavItem.tsx';
+import ProductsMegaMenu from './ProductsMegaMenu.tsx';
 import styles from './Nav.module.scss';
 
 interface NavItemType {
   path?: string;
   label: string;
   dropdown?: boolean;
+  megaMenu?: boolean;
   items?: {
     path: string;
     label: string;
@@ -22,6 +24,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
   const [activeDropdowns, setActiveDropdowns] = useState<
     Record<number, boolean>
   >({});
+  const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
 
   const navItems: NavItemType[] = [
     { path: '/', label: 'Home' },
@@ -29,6 +32,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       label: 'Products',
       dropdown: true,
       path: '/products',
+      megaMenu: true,
       items: [
         { path: '/products/smartboards', label: 'Smart Boards' },
         { path: '/products/lecterns', label: 'Lecterns' }
@@ -82,10 +86,24 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
     }
   };
 
+  // Handle Products mega menu visibility
+  const handleProductsMouseEnter = () => {
+    if (!isMobile) {
+      setShowProductsMegaMenu(true);
+    }
+  };
+
+  const handleProductsMouseLeave = () => {
+    if (!isMobile) {
+      setShowProductsMegaMenu(false);
+    }
+  };
+
   // Close all dropdowns when mobile menu is closed
   useEffect(() => {
     if (!mobileMenuOpen) {
       setActiveDropdowns({});
+      setShowProductsMegaMenu(false);
     }
   }, [mobileMenuOpen]);
 
@@ -110,6 +128,8 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
               <div
                 key={`dropdown-${index}`}
                 className={`${styles.nav__dropdown} ${activeDropdowns[index] ? styles.nav__dropdown_active : ''}`}
+                onMouseEnter={item.megaMenu ? handleProductsMouseEnter : undefined}
+                onMouseLeave={item.megaMenu ? handleProductsMouseLeave : undefined}
               >
                 <div
                   className={styles.nav__dropdown_trigger}
@@ -118,17 +138,21 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
                   {item.label}{' '}
                   <span className={styles.nav__dropdown_arrow}>▾</span>
                 </div>
-                <div className={styles.nav__dropdown_menu}>
-                  {item.items?.map((subItem, subIndex) => (
-                    <NavItem
-                      key={`dropdown-item-${index}-${subIndex}`}
-                      href={subItem.path}
-                      active={currentPath === subItem.path}
-                    >
-                      {subItem.label}
-                    </NavItem>
-                  ))}
-                </div>
+                {item.megaMenu ? (
+                  <ProductsMegaMenu isVisible={showProductsMegaMenu} />
+                ) : (
+                  <div className={styles.nav__dropdown_menu}>
+                    {item.items?.map((subItem, subIndex) => (
+                      <NavItem
+                        key={`dropdown-item-${index}-${subIndex}`}
+                        href={subItem.path}
+                        active={currentPath === subItem.path}
+                      >
+                        {subItem.label}
+                      </NavItem>
+                    ))}
+                  </div>
+                )}
               </div>
             ) : (
               <NavItem

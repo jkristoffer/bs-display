@@ -14,10 +14,7 @@
 /* Hover state */
 .nav__link:hover {
   color: var(--color-accent-primary);
-  background: linear-gradient(45deg, 
-    rgba(var(--color-accent-primary-rgb), 0.05) 0%, 
-    rgba(var(--color-accent-primary-rgb), 0.08) 100%);
-  transform: translateY(-1px);
+  background: rgba(var(--color-accent-primary-rgb), 0.06);
 }
 
 /* Modifier: nav__link--active */
@@ -39,16 +36,7 @@
     var(--color-accent-secondary) 80%, 
     transparent 100%);
   border-radius: 2px;
-  animation: activeGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes activeGlow {
-  0% {
-    box-shadow: 0 0 5px rgba(var(--color-accent-primary-rgb), 0.3);
-  }
-  100% {
-    box-shadow: 0 0 8px rgba(var(--color-accent-primary-rgb), 0.6);
-  }
+  box-shadow: 0 2px 4px rgba(var(--color-accent-primary-rgb), 0.4);
 }
 
 /* Modifier: nav__link--cta */
@@ -127,5 +115,21 @@
     &:hover {
       background: #007a6b;
     }
+  }
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .nav__link {
+    transition: none;
+  }
+  
+  .nav__link_cta {
+    transition: none;
+  }
+  
+  .nav__link:hover,
+  .nav__link_cta:hover {
+    transform: none;
   }
 }

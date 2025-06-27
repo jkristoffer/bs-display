@@ -64,6 +64,7 @@
       flex-direction: column;
       text-align: center;
       height: 100%;
+      box-sizing: border-box;
 
       .benefit-visual {
         margin-bottom: 1.5rem;
@@ -402,5 +403,4 @@
       }
     }
   }
-
 }

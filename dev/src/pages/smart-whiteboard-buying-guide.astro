@@ -19,6 +19,7 @@ import ExpertAdviceSection from '../components/sw-buying-guide/ExpertAdviceSecti
 import RelatedPostsSection from '../components/sw-buying-guide/RelatedPostsSection.astro';
 import StickyTableOfContents from '../components/sw-buying-guide/StickyTableOfContents';
 import BackToTopButton from '../components/sw-buying-guide/BackToTopButton';
+import MobileTableOfContents from '../components/sw-buying-guide/MobileTableOfContents';
 
 // Define metadata for the page
 const title = 'Smart Whiteboard Buying Guide | BS Display';
@@ -72,6 +73,7 @@ const tocItems = [
     <RelatedPostsSection />
 
     <StickyTableOfContents items={tocItems} client:load />
+    <MobileTableOfContents items={tocItems} client:load />
     <BackToTopButton client:load />
   </div>
 </MainLayout>

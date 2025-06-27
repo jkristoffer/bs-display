@@ -1,0 +1,263 @@
+.mobile-toc-tab {
+  position: fixed;
+  bottom: 100px; // Above back-to-top button
+  left: 20px;
+  right: 20px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  cursor: pointer;
+  z-index: 998;
+  display: none; // Hidden by default
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-height: 64px; // Touch-friendly
+
+  &:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .progress-indicator {
+    height: 4px;
+    background-color: rgba(var(--color-border-rgb), 0.2);
+    position: relative;
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--color-accent-primary);
+      transition: width 0.5s ease;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  .section-info {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 12px;
+
+    .section-number {
+      background-color: var(--color-accent-primary);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: var(--font-size-body-small);
+      font-weight: var(--font-weight-bold);
+      min-width: 48px;
+      text-align: center;
+    }
+
+    .section-title {
+      flex: 1;
+      text-align: left;
+      font-size: var(--font-size-body-small);
+      color: var(--color-text);
+      line-height: 1.4;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .expand-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-secondary);
+  }
+
+  // Show only on mobile
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+.mobile-toc-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  animation: backdropFadeIn 0.3s ease-out;
+
+  @keyframes backdropFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.mobile-toc-bottom-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  animation: bottomSheetSlideIn 0.3s ease-out;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+
+  @keyframes bottomSheetSlideIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .bottom-sheet-header {
+    position: relative;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+
+    .drag-handle {
+      width: 40px;
+      height: 4px;
+      background-color: rgba(var(--color-border-rgb), 0.5);
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: var(--font-size-h4);
+      color: var(--color-text);
+    }
+
+    .close-button {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      color: var(--color-text-secondary);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba(var(--color-border-rgb), 0.1);
+        color: var(--color-text);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .bottom-sheet-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px 20px;
+  }
+}
+
+.mobile-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    border-bottom: 1px solid rgba(var(--color-border-rgb), 0.3);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .toc-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    gap: 16px;
+    min-height: 56px; // Touch-friendly
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+    }
+
+    &:active {
+      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+    }
+
+    &.active {
+      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+
+      .item-number {
+        background-color: var(--color-accent-primary);
+        color: white;
+      }
+
+      .item-text {
+        color: var(--color-accent-primary);
+        font-weight: var(--font-weight-bold);
+      }
+    }
+
+    .item-number {
+      background-color: rgba(var(--color-border-rgb), 0.2);
+      color: var(--color-text-secondary);
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: var(--font-size-body-small);
+      font-weight: var(--font-weight-bold);
+      min-width: 36px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .item-text {
+      flex: 1;
+      font-size: var(--font-size-body);
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    .current-indicator {
+      color: var(--color-accent-primary);
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+// Adjust back-to-top button position when mobile TOC is visible
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 180px; // Above mobile TOC tab
+  }
+}

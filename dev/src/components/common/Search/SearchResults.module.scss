@@ -11,7 +11,6 @@
     0 8px 16px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(var(--color-accent-primary-rgb), 0.15);
   overflow: hidden;
-  animation: searchResultsFadeIn 0.4s ease-out;
   
   /* Desktop floating overlay positioning */
   @media (min-width: 769px) {
@@ -31,6 +30,7 @@
   /* Mobile positioning (handled separately) */
   @media (max-width: 768px) {
     position: relative;
+    animation: searchResultsFadeIn 0.4s ease-out;
   }
 }
 

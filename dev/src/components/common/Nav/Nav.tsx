@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import NavItem from './NavItem.tsx';
 import ProductsMegaMenu from './ProductsMegaMenu.tsx';
 import { Search } from '../Search';
@@ -9,6 +9,7 @@ interface NavItemType {
   label: string;
   dropdown?: boolean;
   megaMenu?: boolean;
+  cta?: boolean;
   items?: {
     path: string;
     label: string;
@@ -41,22 +42,22 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
       ]
     },
     {
-      label: 'Learn',
+      label: 'Resources',
       dropdown: true,
       items: [
-        { path: '/blog', label: 'Blog' },
-        { path: '/use-cases', label: 'Use Cases' },
+        { path: '/blog', label: 'Expert Articles' },
+        { path: '/use-cases', label: 'Customer Stories' },
         {
           path: '/smart-whiteboard-buying-guide',
           label: 'Buying Guide'
         },
         {
           path: '/quiz',
-          label: 'Quiz'
+          label: 'Product Finder'
         }
       ]
     },
-    { path: '/contact', label: 'Contact' }
+    { path: '/contact', label: 'Get Quote', cta: true }
   ];
 
   // Check if viewport is mobile
@@ -183,6 +184,7 @@ function Nav({ currentPath = window.location.pathname }: NavProps) {
                 key={`nav-item-${index}`}
                 href={item.path || '#'}
                 active={currentPath === item.path}
+                cta={item.cta}
               >
                 {item.label}
               </NavItem>

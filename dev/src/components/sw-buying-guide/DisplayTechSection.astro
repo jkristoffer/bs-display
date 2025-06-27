@@ -1,88 +1,263 @@
 ---
-interface DisplayTech {
-  type: string;
-  imageQuality: string;
-  powerUse: string;
-  cost: string;
-  idealFor: string;
+import { allModels } from '../../data/models.all.js';
+
+interface DisplayQuality {
+  category: string;
+  description: string;
+  brightness: { min: number; max: number; unit: string; };
+  contrast: { min: number; max: number; unit: string; };
+  resolution: string[];
+  modelCount: number;
+  examples: any[];
+  bestFor: string[];
+  considerations: string[];
 }
 
-const {
-  technologies = [
-    {
-      type: 'LCD',
-      imageQuality: 'Medium',
-      powerUse: 'Medium',
-      cost: 'Low',
-      idealFor: 'General, classrooms'
-    },
-    {
-      type: 'LED',
-      imageQuality: 'High',
-      powerUse: 'Low',
-      cost: 'Medium',
-      idealFor: 'Offices, modern classrooms'
-    },
-    {
-      type: 'OLED',
-      imageQuality: 'Very High',
-      powerUse: 'Low',
-      cost: 'High',
-      idealFor: 'Creative industries, premium setups'
-    },
-    {
-      type: 'Projector',
-      imageQuality: 'Low',
-      powerUse: 'Low',
-      cost: 'Very Low',
-      idealFor: 'Budget, large scale settings'
-    },
-    {
-      type: 'E-Paper',
-      imageQuality: 'Low',
-      powerUse: 'Very Low',
-      cost: 'Low',
-      idealFor: 'Reading-focused applications'
-    }
-  ],
-  internalLinkText = 'OLED vs LCD Comparison →',
-  internalLinkUrl = '/blog/oled-vs-lcd-interactive-whiteboards'
-} = Astro.props;
+// Analyze display specifications from real product data
+const displayAnalysis = {
+  brightness: [] as number[],
+  contrast: [] as number[],
+  resolutions: new Set<string>(),
+  models: allModels
+};
+
+allModels.forEach((model: any) => {
+  // Extract brightness values
+  if (model.brightness) {
+    const brightness = parseInt(model.brightness.replace(/[^0-9]/g, ''));
+    if (!isNaN(brightness)) displayAnalysis.brightness.push(brightness);
+  }
+  
+  // Extract contrast ratios
+  if (model.contrastRatio) {
+    const contrast = parseInt(model.contrastRatio.replace(/[^0-9]/g, ''));
+    if (!isNaN(contrast)) displayAnalysis.contrast.push(contrast);
+  }
+  
+  // Track resolutions
+  if (model.resolution) {
+    displayAnalysis.resolutions.add(model.resolution);
+  }
+});
+
+// Create display quality categories based on real specs
+const displayQualities: DisplayQuality[] = [
+  {
+    category: 'Standard Brightness',
+    description: 'Suitable for typical indoor environments with moderate ambient light',
+    brightness: { min: 300, max: 400, unit: 'cd/m²' },
+    contrast: { min: 1200, max: 4000, unit: ':1' },
+    resolution: ['3840x2160'],
+    modelCount: allModels.filter((m: any) => {
+      const b = parseInt(m.brightness?.replace(/[^0-9]/g, '') || '0');
+      return b >= 300 && b <= 400;
+    }).length,
+    examples: allModels.filter((m: any) => {
+      const b = parseInt(m.brightness?.replace(/[^0-9]/g, '') || '0');
+      return b >= 300 && b <= 400;
+    }).slice(0, 3),
+    bestFor: [
+      'Classrooms with controlled lighting',
+      'Small to medium conference rooms',
+      'Training rooms',
+      'Budget-conscious installations'
+    ],
+    considerations: [
+      'May struggle in very bright rooms',
+      'Not ideal near windows without blinds',
+      'Perfect for most educational settings'
+    ]
+  },
+  {
+    category: 'High Brightness',
+    description: 'Enhanced visibility for brighter environments and larger spaces',
+    brightness: { min: 450, max: 500, unit: 'cd/m²' },
+    contrast: { min: 5000, max: 6000, unit: ':1' },
+    resolution: ['3840x2160'],
+    modelCount: allModels.filter((m: any) => {
+      const b = parseInt(m.brightness?.replace(/[^0-9]/g, '') || '0');
+      return b >= 450;
+    }).length,
+    examples: allModels.filter((m: any) => {
+      const b = parseInt(m.brightness?.replace(/[^0-9]/g, '') || '0');
+      return b >= 450;
+    }).slice(0, 3),
+    bestFor: [
+      'Large conference rooms',
+      'Auditoriums and lecture halls',
+      'Rooms with significant natural light',
+      'Professional presentation environments'
+    ],
+    considerations: [
+      'Higher power consumption',
+      'Premium pricing',
+      'Excellent for demanding environments'
+    ]
+  }
+].filter(quality => quality.modelCount > 0);
+
+// Universal display features across all our models
+const universalFeatures = {
+  resolution: '4K UHD (3840x2160)',
+  aspectRatio: '16:9',
+  panelLife: '50,000+ hours',
+  viewingAngle: '178° (horizontal and vertical)',
+  responseTime: '8ms or better'
+};
+
+const getModelUrl = (model: any): string => {
+  const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
+  const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
+  return `/products/interactive-displays/${brand}/${modelId}`;
+};
 ---
 
 <section id="display-tech" class="content-section bg-light">
   <div class="container">
-    <h2>Display Technologies Explained</h2>
-    <div class="table-responsive">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Image Quality</th>
-            <th>Power Use</th>
-            <th>Cost</th>
-            <th>Ideal For</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            technologies.map((tech: DisplayTech) => (
-              <tr>
-                <td>
-                  <strong>{tech.type}</strong>
-                </td>
-                <td>{tech.imageQuality}</td>
-                <td>{tech.powerUse}</td>
-                <td>{tech.cost}</td>
-                <td>{tech.idealFor}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <div class="display-tech-header">
+      <h2>Display Technologies Explained</h2>
+      <p>Understanding the display specifications that matter for interactive whiteboards and smart displays</p>
     </div>
-    <div class="internal-link">
-      <a href={internalLinkUrl} class="text-link">{internalLinkText}</a>
+
+    {/* Universal Display Standards */}
+    <div class="universal-features">
+      <h3>🎯 Standard Across All Our Models</h3>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-label">Resolution</span>
+          <span class="feature-value">{universalFeatures.resolution}</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Panel Life</span>
+          <span class="feature-value">{universalFeatures.panelLife}</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Viewing Angle</span>
+          <span class="feature-value">{universalFeatures.viewingAngle}</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-label">Response Time</span>
+          <span class="feature-value">{universalFeatures.responseTime}</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Display Quality Categories */}
+    <div class="quality-categories">
+      <h3>📊 Display Quality Categories</h3>
+      <div class="categories-grid">
+        {
+          displayQualities.map((quality: DisplayQuality) => (
+            <div class="quality-card">
+              <div class="quality-header">
+                <h4>{quality.category}</h4>
+                <div class="model-count">{quality.modelCount} models available</div>
+              </div>
+              
+              <p class="quality-description">{quality.description}</p>
+              
+              <div class="specs-section">
+                <h5>📈 Technical Specifications</h5>
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="spec-label">Brightness</span>
+                    <span class="spec-value">{quality.brightness.min}-{quality.brightness.max} {quality.brightness.unit}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Contrast Ratio</span>
+                    <span class="spec-value">{quality.contrast.min.toLocaleString()}-{quality.contrast.max.toLocaleString()}{quality.contrast.unit}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Resolution</span>
+                    <span class="spec-value">{quality.resolution.join(', ')}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="best-for-section">
+                <h5>✅ Best For</h5>
+                <ul class="best-for-list">
+                  {quality.bestFor.map((use: string) => (
+                    <li>{use}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="considerations-section">
+                <h5>💡 Considerations</h5>
+                <ul class="considerations-list">
+                  {quality.considerations.map((consideration: string) => (
+                    <li>{consideration}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {quality.examples.length > 0 && (
+                <div class="examples-section">
+                  <h5>Popular Models</h5>
+                  <div class="example-models">
+                    {quality.examples.map((model: any) => (
+                      <a href={getModelUrl(model)} class="example-model">
+                        <div class="model-info">
+                          <span class="model-name">{model.model}</span>
+                          <span class="model-specs">{model.size}" • {model.brightness}</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Technical Insights */}
+    <div class="technical-insights">
+      <h3>🔬 What These Specifications Mean</h3>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <h4>Brightness (cd/m²)</h4>
+          <p>Measures how bright the display appears. Higher values perform better in brighter rooms or near windows.</p>
+          <div class="insight-range">
+            <span>300-400: Standard indoor use</span>
+            <span>450+: Bright rooms & professional use</span>
+          </div>
+        </div>
+        <div class="insight-card">
+          <h4>Contrast Ratio</h4>
+          <p>The difference between the darkest and brightest colors. Higher ratios provide more vivid, detailed images.</p>
+          <div class="insight-range">
+            <span>1,200:1 - 4,000:1: Good quality</span>
+            <span>5,000:1+: Excellent image depth</span>
+          </div>
+        </div>
+        <div class="insight-card">
+          <h4>4K UHD Resolution</h4>
+          <p>All our displays feature 3840x2160 pixels, providing crisp text and detailed images at any viewing distance.</p>
+          <div class="insight-range">
+            <span>4x sharper than Full HD</span>
+            <span>Perfect for detailed content</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    <div class="display-tech-cta">
+      <div class="cta-content">
+        <h3>Need Help Choosing the Right Display?</h3>
+        <p>Our experts can help you select the perfect display specifications for your environment and use case</p>
+        <div class="cta-actions">
+          <a href="/quiz" class="btn-primary">Take Product Quiz</a>
+          <a href="/contact" class="btn-secondary">Speak with Expert</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style lang="scss">
+  @use './DisplayTechSection.scss';
+</style>

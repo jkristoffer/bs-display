@@ -1,0 +1,358 @@
+/**
+ * Legal Page Mixins
+ * 
+ * Reusable SCSS mixins for terms, privacy, warranty and other legal pages.
+ * Provides consistent styling patterns for legal document layouts.
+ */
+
+// Legal page container
+@mixin legal-page-container {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-bg-secondary);
+  min-height: 70vh;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+}
+
+// Legal page header
+@mixin legal-page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--color-border-light);
+
+  h1 {
+    font-size: var(--font-size-h1);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .page-meta {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    font-size: var(--font-size-body);
+  }
+}
+
+// Two-column layout for legal content
+@mixin legal-content-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--spacing-xxl);
+  align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+// Table of contents sidebar
+@mixin legal-toc {
+  background: var(--color-bg-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-card);
+  border: 1px solid var(--color-border-light);
+  position: sticky;
+  top: var(--spacing-xl);
+  box-shadow: var(--box-shadow-card);
+
+  @media (max-width: 768px) {
+    position: static;
+  }
+
+  h2 {
+    font-size: var(--font-size-h4);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  ol, ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: var(--spacing-sm);
+
+      a {
+        color: var(--color-accent-primary);
+        text-decoration: none;
+        font-size: var(--font-size-body-small);
+        display: block;
+        padding: var(--spacing-xs) 0;
+        border-radius: var(--border-radius-small);
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: var(--color-accent-dark);
+          background-color: var(--color-bg-hover);
+          padding-left: var(--spacing-sm);
+          transform: translateX(2px);
+        }
+
+        &:focus {
+          outline: 2px solid var(--color-accent-primary);
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+}
+
+// Main legal content article
+@mixin legal-article {
+  background: var(--color-bg-primary);
+  padding: var(--spacing-xxl);
+  border-radius: var(--border-radius-card);
+  border: 1px solid var(--color-border-light);
+  line-height: var(--line-height-relaxed);
+  box-shadow: var(--box-shadow-card);
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-xl);
+  }
+}
+
+// Legal content sections
+@mixin legal-section {
+  margin-bottom: var(--spacing-xxl);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    color: var(--color-accent-primary);
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border-light);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  h3 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h4);
+    margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  h4 {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-h5);
+    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+    font-weight: var(--font-weight-medium);
+  }
+
+  p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body);
+  }
+
+  ul, ol {
+    margin: var(--spacing-md) 0;
+    padding-left: var(--spacing-lg);
+
+    li {
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-primary);
+      line-height: var(--line-height-relaxed);
+    }
+  }
+
+  strong {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+}
+
+// Definition lists (for terms definitions)
+@mixin legal-definitions {
+  dt {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-body);
+  }
+
+  dd {
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid var(--color-border-light);
+  }
+}
+
+// Contact information block
+@mixin legal-contact {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-small);
+  border-left: 4px solid var(--color-accent-primary);
+  font-style: normal;
+  margin-top: var(--spacing-lg);
+  box-shadow: var(--box-shadow-card);
+
+  strong {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--color-accent-dark);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-accent-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Multi-line address formatting
+  br + * {
+    margin-top: var(--spacing-xs);
+  }
+}
+
+// Print optimizations for legal documents
+@mixin legal-print-styles {
+  @media print {
+    .legal-toc {
+      display: none;
+    }
+
+    .legal-content {
+      grid-template-columns: 1fr;
+    }
+
+    .legal-article {
+      border: none;
+      box-shadow: none;
+      background: white;
+    }
+
+    .legal-section {
+      break-inside: avoid;
+      
+      h2, h3 {
+        break-after: avoid;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      
+      &[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+      }
+    }
+  }
+}
+
+// Accessibility enhancements for legal pages
+@mixin legal-accessibility {
+  // Skip link for screen readers
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-accent-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+
+    &:focus {
+      top: 6px;
+    }
+  }
+
+  // Enhanced focus styles
+  *:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    .legal-article {
+      border: 2px solid var(--color-text-primary);
+    }
+
+    .legal-toc {
+      border: 2px solid var(--color-text-primary);
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+// Complete legal page layout combining all mixins
+@mixin legal-page-complete {
+  @include legal-page-container;
+  @include legal-print-styles;
+  @include legal-accessibility;
+
+  .legal-header {
+    @include legal-page-header;
+  }
+
+  .legal-content {
+    @include legal-content-layout;
+  }
+
+  .legal-toc {
+    @include legal-toc;
+  }
+
+  .legal-article {
+    @include legal-article;
+  }
+
+  .legal-section {
+    @include legal-section;
+  }
+
+  .legal-definitions {
+    @include legal-definitions;
+  }
+
+  .legal-contact {
+    @include legal-contact;
+  }
+}

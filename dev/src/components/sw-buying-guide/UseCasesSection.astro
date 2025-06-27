@@ -1,60 +1,314 @@
 ---
+import { allModels } from '../../data/models.all.js';
+
 interface UseCase {
   title: string;
-  recommendation: string;
+  icon: string;
   description: string;
-  link: string;
-  linkText: string;
+  keyFeatures: string[];
+  recommendedSpecs: {
+    sizes: string;
+    touchTech: string;
+    brightness: string;
+    ideal: string;
+  };
+  bestModels: any[];
+  environments: string[];
+  benefits: string[];
 }
 
-const {
-  useCases = [
-    {
-      title: 'Classrooms & Education',
-      recommendation: 'LED + IR (Affordable & Robust)',
-      description:
-        'Ideal for educational environments where durability and cost-effectiveness are priorities while maintaining good interactivity.',
-      link: '/solutions/education',
-      linkText: 'Learn more'
+// Analyze models for different use cases based on features and specs
+const educationModels = allModels.filter((model: any) => {
+  const hasEducationFeatures = model.features?.some((f: string) => 
+    f.toLowerCase().includes('whiteboard') || 
+    f.toLowerCase().includes('handwriting') ||
+    f.toLowerCase().includes('sharing') ||
+    f.toLowerCase().includes('android')
+  );
+  const affordableSize = model.size <= 75;
+  return hasEducationFeatures && affordableSize;
+});
+
+const businessModels = allModels.filter((model: any) => {
+  const hasBusinessFeatures = model.features?.some((f: string) => 
+    f.toLowerCase().includes('wireless') ||
+    f.toLowerCase().includes('bluetooth') ||
+    f.toLowerCase().includes('wifi') ||
+    f.toLowerCase().includes('ops')
+  );
+  const professionalSize = model.size >= 65;
+  return hasBusinessFeatures && professionalSize;
+});
+
+const largeVenueModels = allModels.filter((model: any) => {
+  const largeSize = model.size >= 86;
+  const brightness = parseInt(model.brightness?.replace(/[^0-9]/g, '') || '0');
+  const highBrightness = brightness >= 450;
+  return largeSize || highBrightness;
+});
+
+const interactiveModels = allModels.filter((model: any) => {
+  const hasAdvancedTouch = model.features?.some((f: string) => 
+    f.toLowerCase().includes('20 points') ||
+    f.toLowerCase().includes('50 points') ||
+    f.toLowerCase().includes('multi-touch')
+  );
+  const hasAdvancedFeatures = model.features?.some((f: string) => 
+    f.toLowerCase().includes('camera') ||
+    f.toLowerCase().includes('microphone') ||
+    f.toLowerCase().includes('ai')
+  );
+  return hasAdvancedTouch || hasAdvancedFeatures;
+});
+
+// Create use cases based on real product capabilities
+const useCases: UseCase[] = [
+  {
+    title: 'Education & Training',
+    icon: '🎓',
+    description: 'Interactive learning environments that engage students and enhance teaching effectiveness with collaborative tools and robust durability.',
+    keyFeatures: [
+      'Built-in whiteboard software with handwriting recognition',
+      'Wireless screen sharing from multiple devices',
+      'Durable infrared touch technology (up to 50 touch points)',
+      'Android integration with educational apps',
+      'Anti-glare tempered glass for clear visibility'
+    ],
+    recommendedSpecs: {
+      sizes: '65" - 75"',
+      touchTech: 'Infrared (multi-touch)',
+      brightness: '350-450 cd/m²',
+      ideal: 'Classrooms, training rooms, libraries'
     },
-    {
-      title: 'Creative Studios',
-      recommendation: 'OLED + EMR (High Precision & Color Clarity)',
-      description:
-        'Perfect for design professionals who need exceptional color accuracy and precise pen input for detailed work.',
-      link: '/solutions/design-studio',
-      linkText: 'Learn more'
+    bestModels: educationModels.slice(0, 3),
+    environments: [
+      'K-12 classrooms',
+      'University lecture halls',
+      'Training centers',
+      'Libraries and study spaces',
+      'Distance learning setups'
+    ],
+    benefits: [
+      'Cost-effective for educational budgets',
+      'Robust technology suitable for heavy student use',
+      'Integrated software reduces setup complexity',
+      'Multi-device connectivity supports BYOD policies'
+    ]
+  },
+  {
+    title: 'Business & Corporate',
+    icon: '💼',
+    description: 'Professional meeting solutions that enhance collaboration, presentations, and decision-making in corporate environments.',
+    keyFeatures: [
+      'Dual OS support (Android + Windows via OPS)',
+      'Advanced wireless connectivity (Wi-Fi 6, Bluetooth 5.0)',
+      'Professional-grade build quality',
+      'Multiple interface options (HDMI, USB, VGA)',
+      'High-resolution 4K UHD displays'
+    ],
+    recommendedSpecs: {
+      sizes: '65" - 86"',
+      touchTech: 'Infrared or Capacitive',
+      brightness: '450+ cd/m²',
+      ideal: 'Conference rooms, boardrooms'
     },
-    {
-      title: 'Corporate Environments',
-      recommendation: 'LED/OLED + Capacitive (Professional & Responsive)',
-      description:
-        'Suited for business settings requiring sleek aesthetics, reliable performance, and intuitive touch interaction.',
-      link: '/solutions/corporate',
-      linkText: 'Learn more'
-    }
-  ]
-} = Astro.props;
+    bestModels: businessModels.slice(0, 3),
+    environments: [
+      'Conference and meeting rooms',
+      'Executive boardrooms',
+      'Presentation spaces',
+      'Collaboration areas',
+      'Client meeting rooms'
+    ],
+    benefits: [
+      'Professional aesthetics enhance corporate image',
+      'Seamless integration with existing IT infrastructure',
+      'High-quality displays for detailed presentations',
+      'Reliable performance for critical business meetings'
+    ]
+  },
+  {
+    title: 'Large Venues & Auditoriums',
+    icon: '🏢',
+    description: 'High-impact displays for large spaces requiring maximum visibility, brightness, and advanced features for audience engagement.',
+    keyFeatures: [
+      'Large screen sizes (86" and above)',
+      'High brightness for excellent visibility',
+      'Advanced audio systems with subwoofers',
+      'AI-powered cameras and microphone arrays',
+      'Robust construction for permanent installation'
+    ],
+    recommendedSpecs: {
+      sizes: '86" and larger',
+      touchTech: 'Infrared (high precision)',
+      brightness: '450+ cd/m²',
+      ideal: 'Auditoriums, large conference rooms'
+    },
+    bestModels: largeVenueModels.slice(0, 3),
+    environments: [
+      'Auditoriums and lecture theaters',
+      'Large conference facilities',
+      'Event spaces and convention centers',
+      'Corporate headquarters',
+      'Public presentation areas'
+    ],
+    benefits: [
+      'Maximum visibility for large audiences',
+      'Professional audio-visual capabilities',
+      'Designed for high-traffic, permanent installations',
+      'Advanced features support complex presentations'
+    ]
+  },
+  {
+    title: 'Interactive Collaboration',
+    icon: '🤝',
+    description: 'Advanced interactive features for teams requiring precision input, multi-user collaboration, and seamless technology integration.',
+    keyFeatures: [
+      'Advanced multi-touch capabilities (up to 50 points)',
+      'Precision writing and drawing support',
+      'AI-powered features and smart recognition',
+      'Advanced camera and microphone systems',
+      'Modular design for flexible installation'
+    ],
+    recommendedSpecs: {
+      sizes: '65" - 86"',
+      touchTech: 'Advanced Infrared or Optical Bonded',
+      brightness: '400-450 cd/m²',
+      ideal: 'Design studios, innovation labs'
+    },
+    bestModels: interactiveModels.slice(0, 3),
+    environments: [
+      'Design and creative studios',
+      'Innovation and brainstorming spaces',
+      'Collaborative work areas',
+      'Research and development labs',
+      'Agile team spaces'
+    ],
+    benefits: [
+      'Precision input supports detailed creative work',
+      'Advanced collaboration features enhance teamwork',
+      'AI capabilities provide smart assistance',
+      'Flexible installation adapts to different spaces'
+    ]
+  }
+];
+
+const getModelUrl = (model: any): string => {
+  const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
+  const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
+  return `/products/interactive-displays/${brand}/${modelId}`;
+};
 ---
 
 <section id="use-cases" class="content-section">
   <div class="container">
-    <h2>Use Case Scenarios</h2>
-    <div class="use-case-grid">
+    <div class="use-cases-header">
+      <h2>Use Case Scenarios</h2>
+      <p>Find the perfect interactive display solution tailored to your specific environment and requirements</p>
+    </div>
+
+    <div class="use-cases-grid">
       {
         useCases.map((useCase: UseCase) => (
           <div class="use-case-card">
-            <h3>{useCase.title}</h3>
-            <p>
-              <strong>Recommended:</strong> {useCase.recommendation}
-            </p>
-            <p>{useCase.description}</p>
-            <a style="display:none" href={useCase.link} class="button-faint">
-              {useCase.linkText}
-            </a>
+            <div class="use-case-header">
+              <span class="use-case-icon">{useCase.icon}</span>
+              <div class="use-case-title">
+                <h3>{useCase.title}</h3>
+                <p class="use-case-description">{useCase.description}</p>
+              </div>
+            </div>
+
+            <div class="use-case-content">
+              <div class="key-features-section">
+                <h4>🔧 Key Features</h4>
+                <ul class="features-list">
+                  {useCase.keyFeatures.map((feature: string) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="recommended-specs">
+                <h4>📋 Recommended Specifications</h4>
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="spec-label">Screen Sizes:</span>
+                    <span class="spec-value">{useCase.recommendedSpecs.sizes}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Touch Technology:</span>
+                    <span class="spec-value">{useCase.recommendedSpecs.touchTech}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Brightness:</span>
+                    <span class="spec-value">{useCase.recommendedSpecs.brightness}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Ideal For:</span>
+                    <span class="spec-value">{useCase.recommendedSpecs.ideal}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="environments-section">
+                <h4>🏢 Typical Environments</h4>
+                <div class="environments-tags">
+                  {useCase.environments.map((env: string) => (
+                    <span class="environment-tag">{env}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="benefits-section">
+                <h4>✅ Key Benefits</h4>
+                <ul class="benefits-list">
+                  {useCase.benefits.map((benefit: string) => (
+                    <li>{benefit}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {useCase.bestModels.length > 0 && (
+                <div class="recommended-models">
+                  <h4>⭐ Top Recommended Models</h4>
+                  <div class="models-list">
+                    {useCase.bestModels.map((model: any) => (
+                      <a href={getModelUrl(model)} class="model-recommendation">
+                        <div class="model-info">
+                          <span class="model-name">{model.model}</span>
+                          <div class="model-details">
+                            <span class="model-size">{model.size}"</span>
+                            <span class="model-tech">{model.touchTechnology}</span>
+                            <span class="model-brightness">{model.brightness}</span>
+                          </div>
+                        </div>
+                        <span class="view-model">View Details →</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ))
       }
     </div>
+
+    <div class="use-cases-cta">
+      <div class="cta-content">
+        <h3>Still Not Sure Which Solution is Right for You?</h3>
+        <p>Our interactive quiz and expert consultations help you find the perfect display for your specific needs and environment</p>
+        <div class="cta-actions">
+          <a href="/quiz" class="btn-primary">Take Product Quiz</a>
+          <a href="/contact" class="btn-secondary">Speak with Expert</a>
+          <a href="/products/" class="btn-secondary">Browse All Products</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style lang="scss">
+  @use './UseCasesSection.scss';
+</style>

@@ -1,0 +1,431 @@
+// Use Cases Section
+#use-cases {
+  .use-cases-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #4a5568;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .use-case-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      border-color: #cbd5e0;
+    }
+
+    .use-case-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #f7fafc;
+
+      .use-case-icon {
+        font-size: 2.5rem;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .use-case-title {
+        flex: 1;
+
+        h3 {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #2d3748;
+          margin: 0 0 0.75rem;
+        }
+
+        .use-case-description {
+          font-size: 1rem;
+          color: #4a5568;
+          line-height: 1.6;
+          margin: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+
+        .use-case-icon {
+          align-self: center;
+        }
+      }
+    }
+
+    .use-case-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .key-features-section {
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 1rem;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        li {
+          font-size: 0.9rem;
+          color: #4a5568;
+          line-height: 1.5;
+          position: relative;
+          padding-left: 1.5rem;
+
+          &::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .recommended-specs {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 1.25rem;
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        @media (max-width: 480px) {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+      }
+
+      .spec-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .spec-label {
+          font-size: 0.85rem;
+          color: #718096;
+          font-weight: 500;
+        }
+
+        .spec-value {
+          font-size: 0.9rem;
+          color: #2d3748;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .environments-section {
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 1rem;
+      }
+
+      .environments-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+
+        .environment-tag {
+          background: #e6fffa;
+          color: #234e52;
+          padding: 0.5rem 0.75rem;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 500;
+          border: 1px solid #b2f5ea;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .benefits-section {
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 1rem;
+      }
+
+      .benefits-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        li {
+          font-size: 0.9rem;
+          color: #4a5568;
+          line-height: 1.5;
+          position: relative;
+          padding-left: 1.5rem;
+
+          &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4299e1;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .recommended-models {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border: 1px solid #e2e8f0;
+
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 1.25rem;
+      }
+
+      .models-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .model-recommendation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 1rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #f8f9fa;
+          border-color: #cbd5e0;
+          transform: translateX(4px);
+        }
+
+        .model-info {
+          flex: 1;
+
+          .model-name {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .model-details {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+
+            span {
+              background: #edf2f7;
+              color: #4a5568;
+              padding: 0.25rem 0.5rem;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+
+            .model-size {
+              background: #4299e1;
+              color: white;
+            }
+          }
+        }
+
+        .view-model {
+          font-size: 0.85rem;
+          color: #4299e1;
+          font-weight: 600;
+          flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+
+          .view-model {
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  .use-cases-cta {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: white;
+
+    .cta-content {
+      max-width: 700px;
+      margin: 0 auto;
+
+      h3 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin: 0 0 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 0 0 2rem;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .cta-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .btn-primary,
+        .btn-secondary {
+          padding: 0.75rem 1.5rem;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .btn-primary {
+          background: white;
+          color: #4299e1;
+
+          &:hover {
+            background: #f7fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          align-items: center;
+
+          .btn-primary,
+          .btn-secondary {
+            width: 100%;
+            max-width: 250px;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 2rem 1.5rem;
+
+      .cta-content {
+        h3 {
+          font-size: 1.4rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}

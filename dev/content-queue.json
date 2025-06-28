@@ -1,29 +1,8 @@
 {
   "version": "1.0",
   "lastUpdated": "2025-06-26",
-  "nextPostDate": "2025-06-29",
+  "nextPostDate": "2025-07-01",
   "scheduledPosts": [
-    {
-      "id": "003",
-      "title": "Healthcare Interactive Displays: Transforming Patient Care and Medical Training",
-      "description": "Explore how interactive displays revolutionize healthcare environments, from patient consultations to medical education and hospital wayfinding systems.",
-      "category": "Industry Applications",
-      "template": "use-case",
-      "priority": "medium",
-      "keywords": [
-        "healthcare displays",
-        "medical interactive boards",
-        "hospital technology"
-      ],
-      "targetAudience": "healthcare_professionals",
-      "estimatedReadTime": "10 minutes",
-      "data": {
-        "mainTopic": "Healthcare Interactive Displays",
-        "industry": "Healthcare",
-        "hook": "Interactive displays are transforming healthcare delivery, enhancing both patient care and medical education.",
-        "cta": "Discover how interactive displays can improve patient outcomes and streamline healthcare operations."
-      }
-    },
     {
       "id": "005",
       "title": "4K vs 8K Interactive Displays: When Ultra-High Resolution Matters",

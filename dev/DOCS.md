@@ -15,10 +15,10 @@ npm run preview         # Preview production build
 ```
 
 ### AI Development Workflow
-1. **Planning**: Review task requirements
-2. **Implementation**: Use [AI Development Guide](./CLAUDE.md)
-3. **Quality Check**: Run code review agent
-4. **Documentation**: Update relevant docs
+1. **Planning**: Review task requirements and use TodoWrite for complex tasks
+2. **Implementation**: Follow [AI Development Guide](./CLAUDE.md) patterns
+3. **Quality Check**: `npm run tools:code-review -- --file [file]`
+4. **Documentation**: Update relevant docs as needed
 
 ## 🗺️ Documentation Map
 
@@ -29,11 +29,11 @@ npm run preview         # Preview production build
 
 ### Development Tools
 - **[Code Review Agent](./CODE_REVIEW_AGENT.md)** - Automated code quality enforcement
-  - Quick check: `node scripts/code-review-agent.js --file [file]`
+  - Quick check: `npm run tools:code-review -- --file [file]`
 - **[SEO Optimization](./SEO_QUICK_REFERENCE.md)** - Content analysis and optimization
-  - PR review: `claude seo-review --pr [number]`
+  - Analysis: `npm run tools:seo-analyze -- --file [file]`
 - **[Blog Automation](./BLOG_AUTOMATION_README.md)** - Automated content generation system
-  - Generate: `claude generate-blog`
+  - Generate: `npm run tools:blog-generate`
 - **[Routes Documentation](./ROUTES.md)** - Auto-generated route documentation
   - Update: `npm run docs:routes`
 
@@ -69,13 +69,13 @@ claude generate-blog
 ### Code Quality
 ```bash
 # Single file review
-node scripts/code-review-agent.js --file [file]
+npm run tools:code-review -- --file [file]
 
-# PR review
-claude code-review --pr [number]
+# Performance tracking
+npm run tools:performance
 
-# Batch analysis
-claude code-review --batch src/components/
+# View all automation tools
+npm run tools
 ```
 
 ## 📊 Project Status

@@ -119,28 +119,22 @@ src/data/
 - **[EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)** - System recovery procedures
 
 ### **Quick AI Development Rules**
-1. **Always verify context first** - Use Glob/LS tools before coding
-2. **Follow functional programming** - Pure functions, immutability, composition
-3. **Run code review agent** - After generating code: `node scripts/code-review-agent.js --file [file]`
-4. **Use TodoWrite tool** - For complex tasks requiring planning
+See [CLAUDE.md](./CLAUDE.md) for complete AI development guidance including:
+- Context verification patterns
+- Functional programming requirements  
+- Quality assurance procedures
+- Development workflow standards
 
-### **Development Standards**
-- **Standards location**: `/src/development-standards/standards/`
-- **Component patterns**: TypeScript functional components with SCSS modules
-- **File organization**: PascalCase directories with index.ts exports
-- **Functional programming**: Mandatory for all code development
-
-### **Automation Systems**
+### **Essential Commands**
 ```bash
-# Code quality enforcement
-node scripts/code-review-agent.js --file [file]
+# View all automation tools
+npm run tools
 
-# SEO analysis and optimization  
-node scripts/seo-agent.js --file [blog-post]
-node scripts/seo-optimizer.js --file [blog-post]
+# Code quality enforcement  
+npm run tools:code-review -- --file [file]
 
-# Automated blog generation
-node scripts/generate-blog-post.js
+# Content SEO optimization
+npm run tools:seo-analyze -- --file [blog-post]
 ```
 
 ## Development Workflow

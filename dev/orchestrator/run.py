@@ -17,6 +17,16 @@ import re
 import tempfile
 import shutil
 
+# Import the Claude output parser after Path is imported
+import os
+import sys
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, current_dir)
+try:
+    from enhanced_claude_parser import create_files_from_output
+except ImportError:
+    from claude_output_parser import create_files_from_output
+
 # Constants
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 REGISTRY_FILE = TEMPLATES_DIR / "registry.yaml"
@@ -98,44 +108,59 @@ class TaskCompiler:
         
         return rendered
     
-    def execute_claude(self, prompt: str, output_file: Optional[Path] = None) -> Tuple[bool, str]:
-        """Execute Claude CLI with the given prompt"""
+    def execute_claude(self, prompt: str, output_dir: Optional[Path] = None) -> Tuple[bool, str]:
+        """Execute Claude CLI with the given prompt and parse output to create files"""
         if self.dry_run:
             self.log("DRY RUN: Would execute Claude with prompt")
             return True, "DRY RUN OUTPUT"
         
-        # Save prompt to temporary file
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False) as f:
-            f.write(prompt)
-            prompt_file = f.name
-        
         try:
-            # Build Claude command
-            cmd = ["claude"]
-            if output_file:
-                cmd.extend(["-o", str(output_file)])
-            cmd.append(prompt_file)
+            # Build Claude command with --print flag for non-interactive mode
+            cmd = ["claude", "--print"]
             
-            self.log(f"Executing: {' '.join(cmd)}")
+            self.log(f"Executing: {' '.join(cmd)} (with prompt via stdin)")
             
-            # Execute Claude
+            # Execute Claude with prompt via stdin
             result = subprocess.run(
                 cmd,
+                input=prompt,
                 capture_output=True,
                 text=True,
                 check=True
             )
             
             self.log("Claude execution successful")
+            
+            # Log Claude's output for debugging
+            if self.verbose:
+                self.log(f"Claude output length: {len(result.stdout)} characters")
+                self.log(f"Claude output preview: {result.stdout[:200]}...")
+            
+            # Save Claude's raw output for debugging
+            if output_dir:
+                debug_file = output_dir / "claude_raw_output.txt"
+                debug_file.parent.mkdir(parents=True, exist_ok=True)
+                with open(debug_file, 'w') as f:
+                    f.write(result.stdout)
+                self.log(f"Saved Claude raw output to: {debug_file}")
+            
+            # Parse output and create files if output_dir is provided
+            if output_dir and result.stdout:
+                self.log(f"Parsing Claude output to create files in {output_dir}")
+                created_files = create_files_from_output(result.stdout, output_dir)
+                
+                if created_files:
+                    self.log(f"Created {len(created_files)} file(s)")
+                    for filename in created_files:
+                        self.log(f"  - {filename}")
+                else:
+                    self.log("No files found in Claude output", "WARNING")
+            
             return True, result.stdout
             
         except subprocess.CalledProcessError as e:
             self.log(f"Claude execution failed: {e.stderr}", "ERROR")
             return False, e.stderr
-        
-        finally:
-            # Clean up temp file
-            Path(prompt_file).unlink(missing_ok=True)
     
     def validate_output(self, template_name: str, output_dir: Path) -> Dict[str, Any]:
         """Validate generated output against template requirements"""
@@ -231,7 +256,7 @@ class TaskCompiler:
         output_dir = self.session_dir / template_name.replace('/', '_')
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        success, output = self.execute_claude(prompt)
+        success, output = self.execute_claude(prompt, output_dir)
         
         if not success:
             return {

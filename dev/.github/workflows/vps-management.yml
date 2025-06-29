@@ -1,0 +1,190 @@
+name: 🚀 VPS Management
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'VPS Action'
+        required: true
+        type: choice
+        options: 
+          - deploy
+          - connect
+          - status
+          - cleanup
+          - costs
+          - create-base
+          - update
+        default: 'status'
+      session_name:
+        description: 'Session Name (for deploy/connect)'
+        required: false
+        type: string
+        default: 'mobile-session'
+      droplet_size:
+        description: 'Droplet Size (for deploy)'
+        required: false
+        type: choice
+        options:
+          - s-1vcpu-2gb
+          - s-2vcpu-4gb
+          - s-4vcpu-8gb
+        default: 's-2vcpu-4gb'
+
+jobs:
+  vps-management:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: 📋 Job Info
+        run: |
+          echo "🚀 **VPS Management Job Started**"
+          echo "Action: ${{ inputs.action }}"
+          echo "Session: ${{ inputs.session_name }}"
+          echo "Size: ${{ inputs.droplet_size }}"
+          echo "Triggered by: ${{ github.actor }}"
+          
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup DigitalOcean CLI
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          
+      - name: ✅ Verify doctl authentication
+        run: |
+          echo "Testing DigitalOcean CLI authentication..."
+          doctl account get
+          echo "✅ Authentication successful"
+          
+      - name: 🛠️ Make scripts executable
+        run: |
+          chmod +x vps-scripts/*.sh
+          ls -la vps-scripts/
+          
+      - name: 🚀 Execute VPS Action
+        id: vps-action
+        run: |
+          cd vps-scripts
+          
+          # Set environment variables for scripts
+          export DO_SIZE="${{ inputs.droplet_size }}"
+          export DO_REGION="nyc3"
+          
+          echo "Executing action: ${{ inputs.action }}"
+          
+          case "${{ inputs.action }}" in
+            deploy)
+              echo "🚀 Deploying VPS: ${{ inputs.session_name }}"
+              ./manage.sh deploy "${{ inputs.session_name }}"
+              ;;
+            connect)
+              echo "🔗 Getting connection info for: ${{ inputs.session_name }}"
+              ./manage.sh connect "${{ inputs.session_name }}"
+              ;;
+            status)
+              echo "📊 Getting VPS status"
+              ./manage.sh status
+              ;;
+            cleanup)
+              echo "🧹 Cleaning up resources"
+              ./manage.sh cleanup
+              ;;
+            costs)
+              echo "💰 Analyzing costs"
+              ./manage.sh costs
+              ;;
+            create-base)
+              echo "🏗️ Creating base snapshot"
+              ./manage.sh create-base
+              ;;
+            update)
+              echo "⬆️ Updating base snapshot"
+              ./manage.sh update
+              ;;
+            *)
+              echo "❌ Invalid action: ${{ inputs.action }}"
+              exit 1
+              ;;
+          esac
+          
+      - name: 💾 Save session info
+        if: inputs.action == 'deploy'
+        run: |
+          if [ -f vps-scripts/.last-session ]; then
+            echo "SESSION_INFO<<EOF" >> $GITHUB_ENV
+            cat vps-scripts/.last-session >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            
+            echo "📝 Session info saved:"
+            cat vps-scripts/.last-session
+          else
+            echo "⚠️ No session info file found"
+          fi
+          
+      - name: 📱 Create mobile-friendly summary
+        if: always()
+        run: |
+          echo "## 📱 VPS Management Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Action:** ${{ inputs.action }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Session:** ${{ inputs.session_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Droplet Size:** ${{ inputs.droplet_size }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ inputs.action }}" = "deploy" ] && [ -f "vps-scripts/.last-session" ]; then
+            echo "### 🚀 Deployment Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat vps-scripts/.last-session >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "**Run:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          
+      - name: 🎯 Post results comment (deploy only)
+        if: inputs.action == 'deploy' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let sessionInfo = 'Deployment completed successfully';
+            try {
+              if (fs.existsSync('vps-scripts/.last-session')) {
+                sessionInfo = fs.readFileSync('vps-scripts/.last-session', 'utf8');
+              }
+            } catch (error) {
+              console.log('Could not read session info:', error.message);
+            }
+            
+            const comment = `🚀 **VPS Deployed Successfully**
+            
+**Session:** ${{ inputs.session_name }}
+**Size:** ${{ inputs.droplet_size }}
+**Triggered by:** @${{ github.actor }}
+
+\`\`\`
+${sessionInfo}
+\`\`\`
+
+📱 **Quick Access:**
+- [View full run details](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+- Use GitHub mobile app to access this info anywhere!
+
+⏰ Deployed at: ${new Date().toISOString()}`;
+
+            // Comment on the latest commit
+            try {
+              await github.rest.repos.createCommitComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not create commit comment:', error.message);
+            }

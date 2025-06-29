@@ -1,0 +1,45 @@
+id: test-004
+template: function/utility
+description: "Group by utility function test"
+input:
+  function_name: "groupBy"
+  function_description: "Groups array items by a key selector function"
+  function_signature: "<T, K extends string | number>(items: T[], keySelector: (item: T) => K): Record<K, T[]>"
+  inputs:
+    - name: "items"
+      type: "T[]"
+      description: "Array to group"
+      constraints: "Can contain null/undefined values"
+    - name: "keySelector"
+      type: "(item: T) => K"
+      description: "Function to extract grouping key"
+      constraints: "Must return string or number"
+  output_type: "Record<K, T[]>"
+  output_description: "Object with arrays grouped by key"
+  detailed_behavior: "Groups array elements by the key returned from keySelector. Filters out null/undefined items. Returns empty object for empty input."
+  edge_cases:
+    - condition: "Empty array"
+      expected_behavior: "Returns empty object {}"
+    - condition: "Null/undefined items"
+      expected_behavior: "Filters out null/undefined before grouping"
+    - condition: "All items have same key"
+      expected_behavior: "Returns object with single key containing all items"
+  examples:
+    - input: "[{name: 'John', age: 25}, {name: 'Jane', age: 25}, {name: 'Bob', age: 30}]"
+      output: "{ 25: [{name: 'John', age: 25}, {name: 'Jane', age: 25}], 30: [{name: 'Bob', age: 30}] }"
+      explanation: "Groups people by age"
+  time_complexity: "O(n)"
+  space_complexity: "O(n)"
+  optimization_priority: "Readability and type safety"
+expected_outputs:
+  - "src/utils/groupBy.ts"
+validation:
+  must_include:
+    - "export const groupBy"
+    - "generic types <T, K>"
+    - "JSDoc comments"
+    - "null/undefined handling"
+  must_not_include:
+    - "mutations"
+    - "for loops"
+    - "any type"

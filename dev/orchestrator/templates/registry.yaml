@@ -1,0 +1,235 @@
+# Template Registry for AI Task Compiler
+# Defines available templates and their configurations
+
+templates:
+  feature:
+    react-component:
+      name: "React Component"
+      description: "Create a new React component with TypeScript and SCSS module"
+      file: "feature/react-component.md"
+      category: "frontend"
+      complexity: "medium"
+      estimated_time: "30-60 minutes"
+      inputs:
+        - name: "component_name"
+          type: "string"
+          required: true
+          example: "ProductCard"
+        - name: "component_description"
+          type: "string"
+          required: true
+          example: "Displays product information in a card layout"
+        - name: "category"
+          type: "string"
+          required: true
+          example: "products"
+          description: "Subdirectory in components folder"
+        - name: "props"
+          type: "array"
+          required: false
+          structure:
+            - name: "string"
+            - type: "string"
+            - description: "string"
+        - name: "behavior_description"
+          type: "string"
+          required: true
+        - name: "ui_elements"
+          type: "array"
+          required: false
+      outputs:
+        - "Component.tsx"
+        - "Component.module.scss"
+        - "index.ts"
+      validation:
+        - "typescript_check"
+        - "scss_lint"
+        - "functional_patterns"
+
+    api-endpoint:
+      name: "API Endpoint"
+      description: "Create a REST API endpoint with proper validation and error handling"
+      file: "feature/api-endpoint.md"
+      category: "backend"
+      complexity: "medium"
+      estimated_time: "45-90 minutes"
+      inputs:
+        - name: "endpoint_name"
+          type: "string"
+          required: true
+        - name: "endpoint_description"
+          type: "string"
+          required: true
+        - name: "http_method"
+          type: "enum"
+          values: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+          required: true
+        - name: "endpoint_path"
+          type: "string"
+          required: true
+          example: "contact/submit"
+        - name: "auth_required"
+          type: "boolean"
+          default: false
+        - name: "request_schema"
+          type: "string"
+          format: "typescript"
+        - name: "response_schema"
+          type: "string"
+          format: "typescript"
+      outputs:
+        - "api/[endpoint].ts"
+      validation:
+        - "typescript_check"
+        - "api_standards"
+        - "security_check"
+
+    data-integration:
+      name: "Data Integration"
+      description: "Create data fetching, transformation, and integration logic"
+      file: "feature/data-integration.md"
+      category: "integration"
+      complexity: "high"
+      estimated_time: "60-120 minutes"
+      inputs:
+        - name: "integration_name"
+          type: "string"
+          required: true
+        - name: "integration_description"
+          type: "string"
+          required: true
+        - name: "data_source"
+          type: "string"
+          required: true
+        - name: "data_destination"
+          type: "string"
+          required: true
+        - name: "source_schema"
+          type: "string"
+          format: "typescript"
+        - name: "target_schema"
+          type: "string"
+          format: "typescript"
+        - name: "transformation_rules"
+          type: "array"
+      outputs:
+        - "utils/[integration]/types.ts"
+        - "utils/[integration]/api.ts"
+        - "utils/[integration]/transform.ts"
+        - "utils/[integration]/index.ts"
+        - "utils/[integration]/[integration].test.ts"
+      validation:
+        - "typescript_check"
+        - "test_coverage"
+        - "functional_patterns"
+
+  function:
+    utility:
+      name: "Utility Function"
+      description: "Create a pure utility function with TypeScript"
+      file: "function/utility.md"
+      category: "utils"
+      complexity: "low"
+      estimated_time: "15-30 minutes"
+      inputs:
+        - name: "function_name"
+          type: "string"
+          required: true
+        - name: "function_description"
+          type: "string"
+          required: true
+        - name: "function_signature"
+          type: "string"
+          format: "typescript"
+          required: true
+        - name: "inputs"
+          type: "array"
+          structure:
+            - name: "string"
+            - type: "string"
+            - description: "string"
+            - constraints: "string"
+        - name: "output_type"
+          type: "string"
+        - name: "detailed_behavior"
+          type: "string"
+        - name: "edge_cases"
+          type: "array"
+        - name: "examples"
+          type: "array"
+      outputs:
+        - "utils/[function_name].ts"
+      validation:
+        - "typescript_check"
+        - "pure_function_check"
+        - "test_cases"
+
+  refactor:
+    add-types:
+      name: "Add TypeScript Types"
+      description: "Add proper TypeScript types to existing JavaScript or loosely typed code"
+      file: "refactor/add-types.md"
+      category: "maintenance"
+      complexity: "medium"
+      estimated_time: "30-60 minutes"
+      inputs:
+        - name: "file_path"
+          type: "string"
+          required: true
+        - name: "goals"
+          type: "array"
+          required: false
+        - name: "issues"
+          type: "array"
+          required: false
+        - name: "type_hints"
+          type: "array"
+          structure:
+            - variable: "string"
+            - suggested_type: "string"
+            - reason: "string"
+      outputs:
+        - "[original_file_path]"  # Overwrites original
+      validation:
+        - "typescript_strict"
+        - "no_any_types"
+        - "behavior_unchanged"
+
+# Template selection rules
+selection_rules:
+  - condition: "task contains 'component' or 'UI'"
+    suggest: ["feature/react-component"]
+  
+  - condition: "task contains 'API' or 'endpoint'"
+    suggest: ["feature/api-endpoint"]
+  
+  - condition: "task contains 'fetch' or 'transform' or 'integrate'"
+    suggest: ["feature/data-integration"]
+  
+  - condition: "task contains 'function' or 'utility' or 'helper'"
+    suggest: ["function/utility"]
+  
+  - condition: "task contains 'types' or 'TypeScript' or 'typing'"
+    suggest: ["refactor/add-types"]
+
+# Validation scripts referenced above
+validation:
+  typescript_check:
+    command: "npx tsc --noEmit"
+    description: "Verify TypeScript compilation"
+  
+  functional_patterns:
+    command: "node scripts/code-review-agent.js --file {file} --format minimal"
+    description: "Check functional programming compliance"
+  
+  scss_lint:
+    command: "npx stylelint {file}"
+    description: "Validate SCSS syntax and conventions"
+  
+  pure_function_check:
+    custom: true
+    description: "Verify function has no side effects"
+  
+  test_coverage:
+    command: "npm test -- --coverage {file}"
+    description: "Ensure adequate test coverage"

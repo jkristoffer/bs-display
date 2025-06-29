@@ -286,24 +286,25 @@ class ClaudeSEOInterface {
     const file = args.file;
     const aggressive = args.aggressive || false;
     const autoComment = args['auto-comment'] !== false;
+    const force = args.force || false;
 
     console.log('🚀 Claude SEO Auto-Optimizer');
     console.log('============================\n');
 
     if (prNumber && prNumber !== true) {
       // Specific PR number provided
-      await this.autoOptimizePR(prNumber, { aggressive, autoComment });
+      await this.autoOptimizePR(prNumber, { aggressive, autoComment, force });
     } else if (prNumber === true || (args.pr === '' && !file)) {
       // --pr flag provided without number, get the most recent PR
       const latestPR = this.getLatestPR();
       if (latestPR) {
         console.log(`🔍 Auto-detected most recent PR: #${latestPR}\n`);
-        await this.autoOptimizePR(latestPR, { aggressive, autoComment });
+        await this.autoOptimizePR(latestPR, { aggressive, autoComment, force });
       } else {
         console.error('❌ No recent PRs found');
       }
     } else if (file) {
-      await this.autoOptimizeFile(file, { aggressive });
+      await this.autoOptimizeFile(file, { aggressive, force });
     } else {
       console.error('❌ Please specify --pr NUMBER or --file PATH');
     }
@@ -345,7 +346,8 @@ class ClaudeSEOInterface {
         const fullPath = path.resolve(path.join(this.projectRoot, '..'), file);
         const result = await this.seoOptimizer.optimizeContent(fullPath, {
           improveReadability: options.aggressive,
-          addFAQ: options.aggressive
+          addFAQ: options.aggressive,
+          force: options.force
         });
 
         results.push({ file: path.basename(file), ...result });
@@ -1153,6 +1155,7 @@ Legacy Optimization:
 Options:
 --auto-comment    Auto-comment on PR (default: true)
 --aggressive      Apply advanced optimizations (readability, FAQ)
+--force          Skip safety checks for recently modified files
 --apply          Apply automated fixes (legacy command)
 --format json    Output format (console/json)
 --output file    Save results to file

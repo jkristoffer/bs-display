@@ -2,6 +2,63 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Table of Contents
+
+### 🚀 Quick Start
+- [Development Commands](#development-commands) - Build, dev server, type checking
+- [AI Development Patterns](#ai-development-patterns) - **MANDATORY** patterns for AI assistants
+- [Task Communication Patterns](#task-communication-patterns) - How to request work effectively
+
+### 🏗️ Architecture & Standards  
+- [Architecture Overview](#architecture-overview) - Core technologies and patterns
+- [Functional Programming Standards](#functional-programming-standards) - **MANDATORY** coding principles
+- [Development Standards](#development-standards) - Component, styling, file organization
+
+### 🤖 AI-First Development
+- [Human-AI Collaboration Model](#human-ai-collaboration-model) - Role definitions and workflow
+- [AI Development Capabilities](#ai-development-capabilities) - Single AI vs multiple AI approach
+- [Development Workflow](#development-workflow) - Simple vs complex task patterns
+
+### 🔧 Automation & Quality
+- [Code Review Agent](#code-review-agent) - Automated standards enforcement
+- [Blog Automation & SEO](#blog-automation--seo-optimization-system) - Content generation pipeline
+- [Quality Assurance](#quality-assurance) - Testing and verification practices
+
+### 📋 Common Tasks
+- [Adding New Products](#adding-new-products) - Product data management
+- [Creating New Components](#creating-new-components) - Component development workflow
+- [Development Planning](#development-planning) - Time estimates and priorities
+
+---
+
+## 🔥 At-a-Glance Quick Reference
+
+### Essential Commands
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production  
+npm run check        # Run Astro type checking
+```
+
+### Critical Paths
+- **Standards**: `/src/development-standards/standards/`
+- **Components**: `/src/components/`
+- **Product Data**: `/src/data/models.[brand].json`
+- **Automation Scripts**: `/scripts/`
+
+### AI Development Rules
+1. **Always verify context first** - Use Glob/LS before coding
+2. **Follow functional programming** - Pure functions, immutability, composition
+3. **Run code review agent** - After generating code: `node scripts/code-review-agent.js --file [file]`
+4. **Use TodoWrite tool** - For complex tasks requiring planning
+
+### Emergency Procedures
+- **Automation failures**: See [EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)
+- **Path issues**: All standards in `/src/development-standards/standards/`
+- **Context problems**: Refer to task-specific sections below
+
+---
+
 ## Development Commands
 
 ### Build & Development
@@ -85,7 +142,7 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 
 #### Creating New Components
 
-- **Follow development standards**: See `/src/project-management/standards/` for detailed guidelines
+- **Follow development standards**: See `/src/development-standards/standards/` for detailed guidelines
 - **Component structure**: Use TypeScript (.tsx), SCSS modules, and proper exports
 - **File organization**: PascalCase directories with index.ts exports
 - **Styling**: SCSS modules for component styles, global classes for utilities
@@ -120,7 +177,7 @@ This is an **Astro-based e-commerce website** for interactive displays and smart
 **Current Quality Practices**:
 - **TypeScript**: Type safety throughout the codebase
 - **Manual Testing**: Verify functionality against acceptance criteria
-- **Code Standards**: Follow established patterns in `/src/project-management/standards/`
+- **Code Standards**: Follow established patterns in `/src/development-standards/standards/`
 - **Performance**: Optimize for fast loading and good user experience
 
 ## Development Planning

@@ -1,0 +1,14 @@
+[2025-06-29 15:41:00] [INFO] Starting workflow compilation with 3 tasks
+[2025-06-29 15:41:00] [INFO] Processing task 1/3: Create FAQ page component
+[2025-06-29 15:41:00] [INFO] Compiling task with template: feature/react-component
+[2025-06-29 15:41:00] [INFO] Saved rendered prompt to: /Users/kristoffersanio/git/bs-display/dev/orchestrator/output/20250629_154100/feature_react-component_prompt.md
+[2025-06-29 15:41:00] [INFO] DRY RUN: Would execute Claude with prompt
+[2025-06-29 15:41:00] [INFO] Processing task 2/3: Create FAQ search utility
+[2025-06-29 15:41:00] [INFO] Compiling task with template: function/utility
+[2025-06-29 15:41:00] [INFO] Saved rendered prompt to: /Users/kristoffersanio/git/bs-display/dev/orchestrator/output/20250629_154100/function_utility_prompt.md
+[2025-06-29 15:41:00] [INFO] DRY RUN: Would execute Claude with prompt
+[2025-06-29 15:41:00] [INFO] Processing task 3/3: Create FAQ item component
+[2025-06-29 15:41:00] [INFO] Compiling task with template: feature/react-component
+[2025-06-29 15:41:00] [INFO] Saved rendered prompt to: /Users/kristoffersanio/git/bs-display/dev/orchestrator/output/20250629_154100/feature_react-component_prompt.md
+[2025-06-29 15:41:00] [INFO] DRY RUN: Would execute Claude with prompt
+[2025-06-29 15:41:00] [INFO] Workflow complete. Results saved to: /Users/kristoffersanio/git/bs-display/dev/orchestrator/output/20250629_154100/results.json

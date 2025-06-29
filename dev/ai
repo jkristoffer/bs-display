@@ -1,0 +1,9 @@
+#!/bin/bash
+# AI Task Compiler - Universal Natural Language Interface
+# Create, review, or improve code with natural language!
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# Pass all arguments to the working AI script
+python3 orchestrator/ai-working.py "$@"

@@ -54,8 +54,19 @@ class ClaudeSEOInterface {
     console.log('🔍 Claude SEO Expert Agent - PR Review');
     console.log('=====================================\n');
 
-    if (prNumber) {
+    if (prNumber && prNumber !== true) {
+      // Specific PR number provided
       await this.reviewPRByNumber(prNumber, autoComment);
+    } else if (prNumber === true || (args.pr === '' && !file)) {
+      // --pr flag provided without number, get the most recent PR
+      const latestPR = this.getLatestPR();
+      if (latestPR) {
+        console.log(`🔍 Auto-detected most recent PR: #${latestPR}\n`);
+        await this.reviewPRByNumber(latestPR, autoComment);
+      } else {
+        console.log('❌ No recent PRs found');
+        await this.reviewLatestContent();
+      }
     } else if (file) {
       await this.reviewSingleFile(file, autoComment);
     } else {
@@ -279,8 +290,18 @@ class ClaudeSEOInterface {
     console.log('🚀 Claude SEO Auto-Optimizer');
     console.log('============================\n');
 
-    if (prNumber) {
+    if (prNumber && prNumber !== true) {
+      // Specific PR number provided
       await this.autoOptimizePR(prNumber, { aggressive, autoComment });
+    } else if (prNumber === true || (args.pr === '' && !file)) {
+      // --pr flag provided without number, get the most recent PR
+      const latestPR = this.getLatestPR();
+      if (latestPR) {
+        console.log(`🔍 Auto-detected most recent PR: #${latestPR}\n`);
+        await this.autoOptimizePR(latestPR, { aggressive, autoComment });
+      } else {
+        console.error('❌ No recent PRs found');
+      }
     } else if (file) {
       await this.autoOptimizeFile(file, { aggressive });
     } else {
@@ -439,10 +460,19 @@ class ClaudeSEOInterface {
     console.log('👀 Claude SEO Change Preview');
     console.log('============================\n');
 
-    if (prNumber) {
+    if (prNumber && prNumber !== true) {
       console.log(`📋 Previewing optimizations for PR #${prNumber}...\n`);
       // This would show a diff of proposed changes without applying them
       console.log('🚧 Preview functionality coming soon!');
+    } else if (prNumber === true || (args.pr === '' && !file)) {
+      const latestPR = this.getLatestPR();
+      if (latestPR) {
+        console.log(`🔍 Auto-detected most recent PR: #${latestPR}`);
+        console.log(`📋 Previewing optimizations for PR #${latestPR}...\n`);
+        console.log('🚧 Preview functionality coming soon!');
+      } else {
+        console.error('❌ No recent PRs found');
+      }
     } else if (file) {
       console.log(`📄 Previewing optimizations for: ${path.basename(file)}\n`);
       // Show what would be changed without applying
@@ -459,10 +489,19 @@ class ClaudeSEOInterface {
     console.log('🔙 Claude SEO Rollback');
     console.log('======================\n');
 
-    if (prNumber) {
+    if (prNumber && prNumber !== true) {
       console.log(`📋 Rolling back PR #${prNumber} optimizations...\n`);
       // This would revert SEO optimization commits
       console.log('🚧 Rollback functionality coming soon!');
+    } else if (prNumber === true || (args.pr === '' && !file)) {
+      const latestPR = this.getLatestPR();
+      if (latestPR) {
+        console.log(`🔍 Auto-detected most recent PR: #${latestPR}`);
+        console.log(`📋 Rolling back PR #${latestPR} optimizations...\n`);
+        console.log('🚧 Rollback functionality coming soon!');
+      } else {
+        console.error('❌ No recent PRs found');
+      }
     } else if (file) {
       console.log(`📄 Rolling back: ${path.basename(file)}\n`);
       // Restore from backup if available
@@ -970,6 +1009,22 @@ class ClaudeSEOInterface {
     }
   }
 
+  getLatestPR() {
+    try {
+      // Get the most recent PR using GitHub CLI
+      const output = execSync('gh pr list --limit 1 --json number -q ".[0].number"', {
+        encoding: 'utf8',
+        cwd: path.join(this.projectRoot, '..')
+      });
+      
+      const prNumber = output.trim();
+      return prNumber && prNumber !== 'null' ? parseInt(prNumber, 10) : null;
+    } catch (error) {
+      console.warn('⚠️ Could not get latest PR:', error.message);
+      return null;
+    }
+  }
+
   // Optimization Helper Methods
   commitOptimizations(prNumber, results, totalImprovement) {
     try {
@@ -1073,7 +1128,8 @@ Co-Authored-By: Claude <noreply@anthropic.com>`;
 ===========================================
 
 Analysis Commands:
-📋 seo-review --pr 123          Review PR with SEO analysis (auto-checkout)
+📋 seo-review --pr 123          Review specific PR with SEO analysis (auto-checkout)
+📋 seo-review --pr              Review most recent PR automatically
 📋 seo-review --file blog.md    Review specific file
 ⚡ seo-quick-check --file blog.md   Quick SEO check
 📊 seo-report --period month       Generate performance report
@@ -1082,11 +1138,14 @@ Analysis Commands:
 📈 seo-monitor --threshold 70      Monitor recent content
 
 Auto-Optimization Commands:
-🚀 seo-auto-optimize --pr 123      Auto-optimize entire PR (recommended)
+🚀 seo-auto-optimize --pr 123      Auto-optimize specific PR (recommended)
+🚀 seo-auto-optimize --pr          Auto-optimize most recent PR
 🚀 seo-auto-optimize --file blog.md Auto-optimize single file
 🔧 seo-apply-fixes --file blog.md   Apply specific fixes
-👀 seo-preview-changes --pr 123     Preview proposed changes
-🔙 seo-rollback --pr 123            Rollback optimizations
+👀 seo-preview-changes --pr 123     Preview proposed changes for specific PR
+👀 seo-preview-changes --pr         Preview proposed changes for most recent PR
+🔙 seo-rollback --pr 123            Rollback optimizations for specific PR
+🔙 seo-rollback --pr                Rollback optimizations for most recent PR
 
 Legacy Optimization:
 🎯 seo-optimize --file blog.md     Get optimization suggestions (manual)
@@ -1102,6 +1161,10 @@ Examples:
   # Complete workflow: analyze → auto-optimize → ready for review
   claude seo-review --pr 456
   claude seo-auto-optimize --pr 456
+  
+  # Quick workflow with most recent PR
+  claude seo-review --pr
+  claude seo-auto-optimize --pr
   
   # Single file optimization
   claude seo-auto-optimize --file my-blog.md

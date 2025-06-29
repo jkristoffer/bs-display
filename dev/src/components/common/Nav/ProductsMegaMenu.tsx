@@ -44,7 +44,7 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
       id: 'accessories',
       title: 'Accessories',
       description: 'Stands, mounts, and enhancement tools',
-      image: '/assets/interactive-board.png',
+      image: '/assets/images/marketing/interactive-board.png',
       href: '/products/accessories'
     }
   ];

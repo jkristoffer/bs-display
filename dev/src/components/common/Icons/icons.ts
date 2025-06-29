@@ -1,7 +1,7 @@
-import CollaborationIcon from './collaboration-icon.png' assert { type: 'image' };
-import NetworkIcon from './network-icon.png' assert { type: 'image' };
-import LearningIcon from './learning-icon.png' assert { type: 'image' };
-import VersatileIcon from './versatile-icon.png' assert { type: 'image' };
+const CollaborationIcon = '/assets/images/icons/collaboration-icon.png';
+const NetworkIcon = '/assets/images/icons/network-icon.png';
+const LearningIcon = '/assets/images/icons/learning-icon.png';
+const VersatileIcon = '/assets/images/icons/versatile-icon.png';
 
 export const icons = {
   collaboration: CollaborationIcon,

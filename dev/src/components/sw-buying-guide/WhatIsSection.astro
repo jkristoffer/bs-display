@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import whatIsSmartWhiteboard from './what-is-a-smart-whiteboard.png';
+const whatIsSmartWhiteboard = '/assets/images/guides/what-is-a-smart-whiteboard.png';
 import { allModels } from '../../data/models.all.js';
 
 // Analyze real product data to provide accurate information
@@ -75,7 +74,7 @@ stats.commonFeatures = Object.entries(featureCount)
           </p>
         </div>
         <div class="hero-image">
-          <Image
+          <img
             src={whatIsSmartWhiteboard}
             alt="Smart Whiteboard Interactive Display"
             width={350}

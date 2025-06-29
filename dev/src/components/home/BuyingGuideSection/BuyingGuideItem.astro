@@ -1,17 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
-
 interface Props {
   title: string;
-  image: ImageMetadata;
+  image: string;
   points: string[];
 }
 const { title, image, points } = Astro.props;
 ---
 
 <div class="buying-guide-item">
-  <Image class="item-icon" src={image} alt={title} height={60} width={60} />
+  <img class="item-icon" src={image} alt={title} height={60} width={60} />
 
   <h3 class="item-title">{title}</h3>
   <ul class="item-points">

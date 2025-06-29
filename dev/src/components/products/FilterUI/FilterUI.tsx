@@ -1,18 +1,19 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import FilterPanel from './FilterPanel/FilterPanel';
 import ModelDisplay from './ModelDisplay/ModelDisplay';
 import styles from './FilterUI.module.scss';
+import type { ProductModel, FilterState, FilterUIProps } from '../../../types/product';
 
-export default function FilterUI({ allModels, productType = 'smartboards' }) {
-  const [filters, setFilters] = useState({
+const FilterUI: React.FC<FilterUIProps> = ({ allModels, productType = 'smartboards' }) => {
+  const [filters, setFilters] = useState<FilterState>({
     brands: [],
     sizes: [],
     touchTechs: [],
     contrastRatios: []
   });
-  const [mobileFiltersVisible, setMobileFiltersVisible] = useState(false);
+  const [mobileFiltersVisible, setMobileFiltersVisible] = useState<boolean>(false);
 
-  const filtered = allModels.filter((model) => {
+  const filtered = allModels.filter((model: ProductModel) => {
     const matchBrand =
       filters.brands.length === 0 || filters.brands.includes(model.brand);
 
@@ -21,16 +22,16 @@ export default function FilterUI({ allModels, productType = 'smartboards' }) {
 
     const matchTouchTech =
       filters.touchTechs.length === 0 ||
-      filters.touchTechs.includes(model.touchTechnology);
+      (model.touchTechnology && filters.touchTechs.includes(model.touchTechnology));
 
     const matchContrastRatio =
       filters.contrastRatios.length === 0 ||
-      filters.contrastRatios.includes(model.contrastRatio);
+      (model.contrastRatio && filters.contrastRatios.includes(model.contrastRatio));
 
     return matchBrand && matchSize && matchTouchTech && matchContrastRatio;
   });
 
-  const toggleMobileFilters = () => {
+  const toggleMobileFilters = (): void => {
     setMobileFiltersVisible(!mobileFiltersVisible);
   };
 
@@ -55,3 +56,5 @@ export default function FilterUI({ allModels, productType = 'smartboards' }) {
     </div>
   );
 };
+
+export default FilterUI;

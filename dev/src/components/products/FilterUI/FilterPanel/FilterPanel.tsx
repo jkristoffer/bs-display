@@ -1,13 +1,21 @@
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import FilterOption from './FilterOption';
 import styles from './FilterPanel.module.scss';
+import type { ProductModel, FilterPanelProps, FilterCounts } from '../../../../types/product';
 
-export default function FilterPanel({ allModels, onFilterChange }) {
-  const [brands, setBrands] = useState([]);
-  const [sizes, setSizes] = useState([]);
-  const [touchTechs, setTouchTechs] = useState([]);
-  const [contrastRatios, setContrastRatios] = useState([]);
-  const [isExpanded, setIsExpanded] = useState({
+interface ExpandedState {
+  brands: boolean;
+  sizes: boolean;
+  touchTech: boolean;
+  contrastRatio: boolean;
+}
+
+const FilterPanel: React.FC<FilterPanelProps> = ({ allModels, onFilterChange }) => {
+  const [brands, setBrands] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<number[]>([]);
+  const [touchTechs, setTouchTechs] = useState<string[]>([]);
+  const [contrastRatios, setContrastRatios] = useState<string[]>([]);
+  const [isExpanded, setIsExpanded] = useState<ExpandedState>({
     brands: true,
     sizes: true,
     touchTech: false,
@@ -15,25 +23,25 @@ export default function FilterPanel({ allModels, onFilterChange }) {
   });
 
   // Optimized count calculations with memoization
-  const brandCounts = useMemo(() => {
-    const counts = {};
-    allModels.forEach(model => {
+  const brandCounts = useMemo<FilterCounts>(() => {
+    const counts: FilterCounts = {};
+    allModels.forEach((model: ProductModel) => {
       counts[model.brand] = (counts[model.brand] || 0) + 1;
     });
     return counts;
   }, [allModels]);
 
-  const sizeCounts = useMemo(() => {
-    const counts = {};
-    allModels.forEach(model => {
+  const sizeCounts = useMemo<FilterCounts>(() => {
+    const counts: FilterCounts = {};
+    allModels.forEach((model: ProductModel) => {
       counts[model.size] = (counts[model.size] || 0) + 1;
     });
     return counts;
   }, [allModels]);
 
-  const touchTechCounts = useMemo(() => {
-    const counts = {};
-    allModels.forEach(model => {
+  const touchTechCounts = useMemo<FilterCounts>(() => {
+    const counts: FilterCounts = {};
+    allModels.forEach((model: ProductModel) => {
       if (model.touchTechnology) {
         counts[model.touchTechnology] = (counts[model.touchTechnology] || 0) + 1;
       }
@@ -41,9 +49,9 @@ export default function FilterPanel({ allModels, onFilterChange }) {
     return counts;
   }, [allModels]);
 
-  const contrastRatioCounts = useMemo(() => {
-    const counts = {};
-    allModels.forEach(model => {
+  const contrastRatioCounts = useMemo<FilterCounts>(() => {
+    const counts: FilterCounts = {};
+    allModels.forEach((model: ProductModel) => {
       if (model.contrastRatio) {
         counts[model.contrastRatio] = (counts[model.contrastRatio] || 0) + 1;
       }
@@ -51,10 +59,10 @@ export default function FilterPanel({ allModels, onFilterChange }) {
     return counts;
   }, [allModels]);
 
-  const getBrandCount = (brand) => brandCounts[brand] || 0;
-  const getSizeCount = (size) => sizeCounts[size] || 0;
-  const getTouchTechCount = (tech) => touchTechCounts[tech] || 0;
-  const getContrastRatioCount = (ratio) => contrastRatioCounts[ratio] || 0;
+  const getBrandCount = (brand: string): number => brandCounts[brand] || 0;
+  const getSizeCount = (size: number): number => sizeCounts[size] || 0;
+  const getTouchTechCount = (tech: string): number => touchTechCounts[tech] || 0;
+  const getContrastRatioCount = (ratio: string): number => contrastRatioCounts[ratio] || 0;
 
   useEffect(() => {
     onFilterChange({
@@ -63,22 +71,40 @@ export default function FilterPanel({ allModels, onFilterChange }) {
       touchTechs,
       contrastRatios
     });
-  }, [brands, sizes, touchTechs, contrastRatios]);
+  }, [brands, sizes, touchTechs, contrastRatios, onFilterChange]);
 
-  const toggle = (item, list, setList) => {
-    setList(
-      list.includes(item) ? list.filter((i) => i !== item) : [...list, item]
+  const toggleBrand = (item: string): void => {
+    setBrands(
+      brands.includes(item) ? brands.filter((i) => i !== item) : [...brands, item]
     );
   };
 
-  const toggleSection = (section) => {
+  const toggleSize = (item: number): void => {
+    setSizes(
+      sizes.includes(item) ? sizes.filter((i) => i !== item) : [...sizes, item]
+    );
+  };
+
+  const toggleTouchTech = (item: string): void => {
+    setTouchTechs(
+      touchTechs.includes(item) ? touchTechs.filter((i) => i !== item) : [...touchTechs, item]
+    );
+  };
+
+  const toggleContrastRatio = (item: string): void => {
+    setContrastRatios(
+      contrastRatios.includes(item) ? contrastRatios.filter((i) => i !== item) : [...contrastRatios, item]
+    );
+  };
+
+  const toggleSection = (section: keyof ExpandedState): void => {
     setIsExpanded({
       ...isExpanded,
       [section]: !isExpanded[section]
     });
   };
 
-  const clearFilters = () => {
+  const clearFilters = (): void => {
     setBrands([]);
     setSizes([]);
     setTouchTechs([]);
@@ -86,16 +112,16 @@ export default function FilterPanel({ allModels, onFilterChange }) {
   };
 
   // Extract unique values for each filter
-  const allBrands = [...new Set(allModels.map((m) => m.brand))].sort();
-  const allSizes = [...new Set(allModels.map((m) => m.size))].sort(
-    (a, b) => a - b
+  const allBrands = [...new Set(allModels.map((m: ProductModel) => m.brand))].sort();
+  const allSizes = [...new Set(allModels.map((m: ProductModel) => m.size))].sort(
+    (a: number, b: number) => a - b
   );
   const allTouchTech = [
-    ...new Set(allModels.map((m) => m.touchTechnology))
-  ].filter(Boolean);
+    ...new Set(allModels.map((m: ProductModel) => m.touchTechnology))
+  ].filter(Boolean) as string[];
   const allContrastRatios = [
-    ...new Set(allModels.map((m) => m.contrastRatio))
-  ].filter(Boolean);
+    ...new Set(allModels.map((m: ProductModel) => m.contrastRatio))
+  ].filter(Boolean) as string[];
 
   return (
     <aside className={styles.panel}>
@@ -124,12 +150,12 @@ export default function FilterPanel({ allModels, onFilterChange }) {
 
         {isExpanded.brands && (
           <div className={styles.optionsContainer}>
-            {allBrands.map((brand) => (
+            {allBrands.map((brand: string) => (
               <FilterOption
                 key={brand}
                 label={brand}
                 checked={brands.includes(brand)}
-                onChange={() => toggle(brand, brands, setBrands)}
+                onChange={() => toggleBrand(brand)}
                 count={getBrandCount(brand)}
               />
             ))}
@@ -150,12 +176,12 @@ export default function FilterPanel({ allModels, onFilterChange }) {
 
         {isExpanded.sizes && (
           <div className={styles.optionsContainer}>
-            {allSizes.map((size) => (
+            {allSizes.map((size: number) => (
               <FilterOption
                 key={size}
                 label={`${size}"`}
                 checked={sizes.includes(size)}
-                onChange={() => toggle(size, sizes, setSizes)}
+                onChange={() => toggleSize(size)}
                 count={getSizeCount(size)}
               />
             ))}
@@ -176,12 +202,12 @@ export default function FilterPanel({ allModels, onFilterChange }) {
 
         {isExpanded.touchTech && (
           <div className={styles.optionsContainer}>
-            {allTouchTech.map((tech) => (
+            {allTouchTech.map((tech: string) => (
               <FilterOption
                 key={tech}
                 label={tech}
                 checked={touchTechs.includes(tech)}
-                onChange={() => toggle(tech, touchTechs, setTouchTechs)}
+                onChange={() => toggleTouchTech(tech)}
                 count={getTouchTechCount(tech)}
               />
             ))}
@@ -202,14 +228,12 @@ export default function FilterPanel({ allModels, onFilterChange }) {
 
         {isExpanded.contrastRatio && (
           <div className={styles.optionsContainer}>
-            {allContrastRatios.map((ratio) => (
+            {allContrastRatios.map((ratio: string) => (
               <FilterOption
                 key={ratio}
                 label={ratio}
                 checked={contrastRatios.includes(ratio)}
-                onChange={() =>
-                  toggle(ratio, contrastRatios, setContrastRatios)
-                }
+                onChange={() => toggleContrastRatio(ratio)}
                 count={getContrastRatioCount(ratio)}
               />
             ))}
@@ -218,4 +242,6 @@ export default function FilterPanel({ allModels, onFilterChange }) {
       </div>
     </aside>
   );
-}
+};
+
+export default FilterPanel;

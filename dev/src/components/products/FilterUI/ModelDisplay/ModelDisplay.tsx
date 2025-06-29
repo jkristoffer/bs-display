@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ModelCard from './ModelCard';
 import styles from './ModelDisplay.module.scss';
 import { FaThLarge, FaList } from 'react-icons/fa';
 import { TfiLayoutGrid3Alt } from 'react-icons/tfi';
 import { sortProducts } from '../../../../utils/productUtils';
+import type { ModelDisplayProps, ProductModel, SortOption, DisplayMode } from '../../../../types/product';
 
-export default function ModelDisplay({ models, productType = 'smartboards' }) {
-  const [sortBy, setSortBy] = useState('default');
-  const [displayMode, setDisplayMode] = useState('grid-3'); // 'grid-3', 'grid-2', or 'list'
+const ModelDisplay: React.FC<ModelDisplayProps> = ({ models, productType = 'smartboards' }) => {
+  const [sortBy, setSortBy] = useState<SortOption>('default');
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('grid-3');
 
   // Sort models using optimized utility function
   const sortedModels = sortProducts(models, sortBy);
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    setSortBy(event.target.value as SortOption);
+  };
 
   return (
     <div className={styles.container}>
@@ -51,7 +56,7 @@ export default function ModelDisplay({ models, productType = 'smartboards' }) {
               id="sort-select"
               className={styles.sortSelect}
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={handleSortChange}
             >
               <option value="default">Default</option>
               <option value="price-low">Price: Low to High</option>
@@ -64,7 +69,7 @@ export default function ModelDisplay({ models, productType = 'smartboards' }) {
       </div>
 
       <section className={`${styles.grid} ${styles[displayMode]}`}>
-        {sortedModels.map((model) => (
+        {sortedModels.map((model: ProductModel) => (
           <div key={model.id} className={styles.cardWrapper}>
             <ModelCard model={model} displayMode={displayMode} productType={productType} />
           </div>
@@ -80,3 +85,5 @@ export default function ModelDisplay({ models, productType = 'smartboards' }) {
     </div>
   );
 };
+
+export default ModelDisplay;

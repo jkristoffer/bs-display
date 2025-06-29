@@ -1,7 +1,9 @@
+import React from 'react';
 import styles from './ProductDetails.module.scss';
 import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
+import type { ProductDetailsProps, ProductModel } from '../../../types/product';
 
-const ProductDetails = ({ model, productType = 'smartboards' }) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({ model, productType = 'smartboards' }) => {
   if (!model) {
     return (
       <div className={styles.notFound}>
@@ -28,7 +30,7 @@ const ProductDetails = ({ model, productType = 'smartboards' }) => {
     panelLife,
     audioOutput,
     powerConsumption
-  } = model;
+  }: ProductModel = model;
 
   return (
     <div className={styles.productDetails}>
@@ -129,7 +131,7 @@ const ProductDetails = ({ model, productType = 'smartboards' }) => {
           <div className={styles.features}>
             <h2>Key Features</h2>
             <ul className={styles.featureList}>
-              {features.map((feature, index) => (
+              {features.map((feature: string, index: number) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>

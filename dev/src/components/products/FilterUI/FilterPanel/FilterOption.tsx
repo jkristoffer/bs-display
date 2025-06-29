@@ -1,6 +1,8 @@
+import React from 'react';
 import styles from './FilterOption.module.scss';
+import type { FilterOptionProps } from '../../../../types/product';
 
-const FilterOption = ({
+const FilterOption: React.FC<FilterOptionProps> = ({
   label,
   checked,
   onChange,

@@ -74,7 +74,9 @@ class OrchestrationPipeline:
         output_path = None
         for line in stdout.split('\n'):
             if 'Output:' in line:
-                output_path = line.split('Output:')[1].strip()
+                relative_path = line.split('Output:')[1].strip()
+                # Make it absolute path from orchestrator directory
+                output_path = str(self.orchestrator_dir / relative_path)
                 break
         
         if not output_path:
@@ -169,7 +171,13 @@ class OrchestrationPipeline:
         # Find component directory in output
         component_dirs = list(source_dir.rglob(f"*{component_name}"))
         if not component_dirs:
-            return {"success": False, "error": "Component directory not found"}
+            # Try alternative search patterns
+            component_dirs = list(source_dir.rglob(f"*{component_name}*"))
+            if not component_dirs:
+                # List all directories for debugging
+                all_dirs = list(source_dir.rglob("*"))
+                self.log(f"Available directories: {[str(d) for d in all_dirs if d.is_dir()]}", "INFO")
+                return {"success": False, "error": f"Component directory {component_name} not found in {source_dir}"}
         
         source_component_dir = component_dirs[0]
         target_component_dir = target_base / component_name
@@ -367,6 +375,8 @@ Co-Authored-By: AI Orchestrator <ai@orchestrator.local>"""
         
         if not results["integration"]["success"]:
             self.log("Failed to integrate files", "ERROR")
+            # Set default PR results for failed integration
+            results["pr"] = {"success": False, "error": "Integration failed"}
             self.generate_report(results)
             return
         

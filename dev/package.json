@@ -26,7 +26,12 @@
     "tools:seo-cli": "node scripts/claude-seo.js",
     "orchestrator": "python3 orchestrator/run.py",
     "orchestrator:list": "python3 orchestrator/run.py --list-templates",
-    "orchestrator:test": "python3 orchestrator/run.py --task \"function/utility:function_name=test,function_description=Test function\" --dry-run"
+    "orchestrator:test": "python3 orchestrator/run.py --task \"function/utility:function_name=test,function_description=Test function\" --dry-run",
+    "ai": "./ai",
+    "ai:interactive": "python3 orchestrator/interactive.py",
+    "ai:smart": "python3 orchestrator/smart-interactive.py",
+    "review": "./review",
+    "review:simple": "python3 orchestrator/simple-review.py"
   },
   "author": "Kris",
   "license": "ISC",

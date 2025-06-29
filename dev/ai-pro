@@ -1,0 +1,13 @@
+#!/bin/bash
+# AI Pro - Full orchestration pipeline
+# Generates, validates, tests, integrates, and creates PRs
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+echo "🎭 AI Pro - Full Orchestration Pipeline"
+echo "This will generate, validate, test, integrate, and create a PR"
+echo ""
+
+# Pass all arguments to the orchestration pipeline
+python3 orchestrator/ai-orchestrated.py "$@"

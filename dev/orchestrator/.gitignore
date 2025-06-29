@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Test outputs
+test_*/
+demo_*/
+*_test/
+
+# Temporary files
+*.txt
+!requirements.txt
+!README.txt
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs (keeping .gitignore in logs/)
+logs/*.log
+
+# Output (keeping .gitignore in output/)
+output/*/

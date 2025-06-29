@@ -40,6 +40,17 @@ Quick deployment scripts for spinning up DigitalOcean development environments w
 
 ## 📁 Scripts Overview
 
+### 📋 **Quick Reference**
+| Script | Purpose | Key Usage |
+|--------|---------|-----------|
+| `manage.sh` | Main control center | `./manage.sh deploy my-session` |
+| `cost-calculator.sh` | Cost analysis & planning | `./cost-calculator.sh all` |
+| `cleanup.sh` | Resource management | `./cleanup.sh` |
+| `spin-up.sh` | Deploy environment | `./spin-up.sh my-session` |
+| `create-snapshot-from-droplet.sh` | Save VPS state | `./create-snapshot-from-droplet.sh my-vps "snapshot-name" --force` |
+| `create-base-snapshot.sh` | Build base image | `./create-base-snapshot.sh` |
+| `update-snapshot.sh` | Update base image | `./update-snapshot.sh` |
+
 ### `manage.sh` - **Main Control Script** 🎯
 Your go-to script for all VPS operations:
 ```bash
@@ -69,6 +80,51 @@ Comprehensive cleanup with multiple options:
 ./cleanup.sh all                 # Clean droplets + old snapshots
 ./cleanup.sh emergency --force   # Nuclear option (delete everything)
 ```
+
+### `cost-calculator.sh` - **Cost Analysis & Planning** 💰
+Comprehensive cost calculator with multiple views:
+```bash
+# Quick summary (shows current costs + basic scenarios)
+./cost-calculator.sh
+
+# Detailed views
+./cost-calculator.sh current     # Current resource costs only
+./cost-calculator.sh scenarios   # Usage scenario costs (30min to 12h)
+./cost-calculator.sh monthly     # Monthly estimates (5-40h/week)
+./cost-calculator.sh sizes       # Droplet size pricing comparison
+./cost-calculator.sh calc        # Interactive calculator (custom usage)
+./cost-calculator.sh all         # Complete analysis (all views)
+./cost-calculator.sh tips        # Cost optimization tips
+```
+
+**Features:**
+- Real-time cost analysis of active resources
+- Usage scenario planning (quick test to full work day)
+- Monthly cost estimates for different usage patterns
+- Interactive calculator for custom scenarios
+- Cost optimization recommendations
+- Integration with manage.sh (`./manage.sh costs`)
+
+### `create-snapshot-from-droplet.sh` - **Save VPS State** 📸
+Create snapshots from existing droplets to preserve your work:
+```bash
+# With confirmation prompt
+./create-snapshot-from-droplet.sh ssh-test "my-snapshot"
+
+# Skip confirmation (automation-friendly)
+./create-snapshot-from-droplet.sh ssh-test "my-snapshot" --force
+./create-snapshot-from-droplet.sh ssh-test "my-snapshot" -y
+
+# Auto-generated name
+./create-snapshot-from-droplet.sh ssh-test --force
+```
+
+**Process:**
+- Powers off droplet temporarily (~30 seconds)
+- Creates snapshot (~2-3 minutes)
+- Powers droplet back on automatically
+- Waits for SSH to be ready
+- Preserves all files, configurations, and installed software
 
 ### `create-base-snapshot.sh`
 Creates a base DigitalOcean snapshot with all dependencies pre-installed:
@@ -175,14 +231,37 @@ check   # Run Astro check
 
 ## 💰 Cost Management
 
-### Droplet Costs (hourly billing)
-- **s-2vcpu-4gb**: $24/month → ~$0.036/hour
-- **Development session (4 hours)**: ~$0.14
-- **Full day (8 hours)**: ~$0.29
+### 📊 **Cost Calculator (New!)**
+Get real-time cost analysis and planning:
+```bash
+# Quick cost summary
+./cost-calculator.sh
 
-### Snapshot Storage
-- **Base snapshot**: ~2-3GB → $0.12-0.18/month
-- **3 snapshots total**: ~$0.50/month
+# Complete cost analysis
+./cost-calculator.sh all
+
+# Interactive calculator for custom scenarios
+./cost-calculator.sh calc
+
+# Via management script
+./manage.sh costs
+```
+
+### 💵 **Current Pricing (2025)**
+**Hourly Rates:**
+- **s-1vcpu-2gb**: $0.018/hour (~$13/month if left running)
+- **s-2vcpu-4gb**: $0.036/hour (~$26/month if left running) 
+- **s-4vcpu-8gb**: $0.071/hour (~$51/month if left running)
+
+**Usage-Based Costs:**
+- **Quick test (30 min)**: $0.018
+- **Development session (4 hours)**: $0.144
+- **Work day (8 hours)**: $0.288
+- **Heavy usage (20h/week)**: ~$3/month
+
+**Storage Costs:**
+- **Snapshots**: $0.06/GB/month
+- **Typical snapshot (~3GB)**: ~$0.18/month
 
 ### Cost-Saving Tips
 1. **Destroy droplets** when not actively developing

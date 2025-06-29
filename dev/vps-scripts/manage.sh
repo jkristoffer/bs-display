@@ -71,16 +71,17 @@ show_help() {
     echo "  connect [name]  Show SSH command for droplet"
     echo "  list            List all active droplets"
     echo "  cleanup         Clean up resources"
-    echo "  update          Update base snapshot"
+    echo "  costs           Comprehensive cost analysis & calculator"
     echo
     echo -e "${YELLOW}Advanced Commands:${NC}"
     echo "  create-base     Create new base snapshot"
+    echo "  update          Update base snapshot"
     echo "  test            Run system tests"
-    echo "  costs           Show cost analysis"
     echo
     echo -e "${YELLOW}Examples:${NC}"
     echo "  $0 deploy feature-branch    # Create new dev environment"
     echo "  $0 connect feature-branch   # Get SSH command"
+    echo "  $0 costs                    # Analyze costs & plan usage"
     echo "  $0 cleanup                  # Interactive cleanup"
     echo "  $0 update                   # Update base snapshot"
     echo
@@ -210,7 +211,8 @@ case "${1:-help}" in
         ./test-dry-run.sh
         ;;
     "costs"|"--costs")
-        show_costs
+        cd "$SCRIPT_DIR"
+        ./cost-calculator.sh all
         ;;
     "help"|"-h"|"--help"|*)
         show_help

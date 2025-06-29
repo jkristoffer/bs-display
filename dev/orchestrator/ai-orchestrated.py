@@ -312,8 +312,23 @@ Co-Authored-By: AI Orchestrator <ai@orchestrator.local>"""
         print(f"{Colors.CYAN}{'='*50}{Colors.END}\n")
         
         # Parse request
-        component_type = "FAQ page" if "faq" in request.lower() else request
-        component_name = "FAQPage" if "faq" in request.lower() else "Component"
+        request_lower = request.lower()
+        
+        if "faq" in request_lower:
+            component_type = "FAQ page"
+            component_name = "FAQPage"
+        elif "contact" in request_lower or "form" in request_lower:
+            component_type = "contact form"
+            component_name = "ContactForm"
+        elif "button" in request_lower:
+            component_type = "button"
+            component_name = "Button"
+        elif "search" in request_lower:
+            component_type = "search bar"
+            component_name = "SearchBar"
+        else:
+            component_type = request
+            component_name = "Component"
         
         results = {
             "component_name": component_name,

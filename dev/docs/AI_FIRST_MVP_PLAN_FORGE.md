@@ -49,6 +49,24 @@
 
 ---
 
+### **Phase 2A: Immediate Fixes (1-2 hours)**
+
+**Goal:** Address critical usability issues related to Claude's output and improve prompt effectiveness for cleaner results.
+
+**Task 2A.1: Output Parsing (Critical)**
+1.  **Sub-task:** Modify the `call_claude` function in `dev/forge/forge.py` to strip markdown code blocks (e.g., ````python`, ````javascript`, ````text`, etc.) from Claude's response. This should extract only the content within the code block. If no code block is found, assume the entire response is the content.
+2.  **Sub-task:** Ensure any leading/trailing whitespace is cleaned from the extracted content before it's returned.
+3.  **VERIFICATION:** Run `python dev/forge/forge.py --prompt "A simple Python function to add two numbers, wrapped in a markdown code block." --output-file dev/forge/test_output_parsing.py`. Manually inspect `test_output_parsing.py` to confirm only the Python code (without markdown fences) is present.
+
+**Task 2A.2: Prompt Enhancement**
+1.  **Sub-task:** Refine the hardcoded prompt template in `call_claude` to explicitly request clean output and provide file-type specific instructions. For example, if the `--output-file` ends with `.py`, the prompt could suggest Python code. (For MVP, this can be a simple check on the output file extension).
+2.  **Sub-task:** Add instructions to the prompt to avoid conversational filler or explanations, requesting only the raw content.
+3.  **VERIFICATION:** Run `python dev/forge/forge.py --prompt "A simple HTML page with a title 'My Page'" --output-file dev/forge/my_page.html`. Manually inspect `my_page.html` to ensure it contains only the HTML and no extra text or markdown.
+
+**Success Criteria:** Claude's output is consistently clean and free of markdown fences or conversational text, making the generated files directly usable.
+
+---
+
 ### **Phase 3: MVP Validation (1-2 hours)**
 
 **Goal:** Validate the MVP's reliability for basic file operations and document its current state and limitations.
@@ -74,11 +92,52 @@
 
 ---
 
+### **Phase 4: Initial Context Awareness (The "Senses" MVP)**
+
+**Goal:** Enable the Forge to read and understand basic project context.
+
+**Task 4.1: Implement File System Utilities**
+1.  **Sub-task:** In `dev/forge/forge.py`, implement a pure function `read_file_content(file_path: str) -> str` that reads and returns the content of a specified file.
+2.  **Sub-task:** In `dev/forge/forge.py`, implement a pure function `list_directory_contents(directory_path: str) -> list[str]` that lists the names of files and subdirectories directly within a specified directory path.
+3.  **VERIFICATION:** Add simple unit tests or manual checks to confirm `read_file_content` and `list_directory_contents` function correctly with existing files/directories.
+
+**Task 4.2: Integrate Context Tools into Prompt**
+1.  **Sub-task:** Modify the `call_claude` function's prompt template to inform Claude about the new capabilities. For example: "You have access to `read_file_content(file_path)` and `list_directory_contents(directory_path)` tools. If you need information from the codebase, use these tools by outputting a specific JSON format (e.g., `{"tool": "read_file_content", "file_path": "path/to/file"}`)."
+2.  **Sub-task:** Implement a basic mechanism in `call_claude` to detect if Claude's response is a tool call. For this MVP, if a tool call is detected, simply log it and inform the user that tool execution is not yet automated.
+3.  **VERIFICATION:** Run `python dev/forge/forge.py --prompt "Read the content of dev/forge/forge.py and summarize it." --output-file dev/forge/summary.txt`. Manually inspect the output to see if Claude attempts to use the `read_file_content` tool (even if not executed).
+
+**Success Criteria:** The Forge can inform Claude about basic file system access tools, and Claude can express intent to use them.
+
+---
+
+### **Phase 5: Basic Autonomous Planning (The "Brain" MVP)**
+
+**Goal:** Allow the Forge to generate a simple plan based on a high-level goal and limited context, and execute basic `write_file` actions from that plan.
+
+**Task 5.1: Modify CLI for Goal-Oriented Input**
+1.  **Sub-task:** In `dev/forge/forge.py`, add a new `Typer` command `plan_and_execute` that accepts a `--goal` argument (e.g., `forge plan-and-execute --goal "Create a simple text file named 'my_plan.txt' with the content 'This is my plan.'" --output-dir dev/forge/plans`).
+2.  **Sub-task:** This command will replace the direct `--prompt` to Claude with a higher-level objective.
+
+**Task 5.2: Implement Basic Planning Prompt**
+1.  **Sub-task:** Within `plan_and_execute`, construct a "meta-prompt" for Claude. This prompt will instruct Claude to act as a planner and output a structured JSON plan.
+    *   **Prompt Example:** "You are an AI planner. Your goal is: '{user_goal}'. Output a JSON array of actions. Each action must be `{"action": "write_file", "file_path": "path/to/file", "content": "file content"}`. Do not include any other text."
+2.  **Sub-task:** Call Claude with this meta-prompt and parse the JSON response into a list of `Action` objects (define a `Pydantic` `Action` model for `write_file`).
+
+**Task 5.3: Implement Plan Execution**
+1.  **Sub-task:** Implement a new function `execute_actions(actions: list[Action])` that iterates through the parsed `Action` objects.
+2.  **Sub-task:** For each `write_file` action, use the existing file writing logic to create the specified file with the given content.
+3.  **VERIFICATION:** Run `python dev/forge/forge.py plan-and-execute --goal "Create a simple text file named 'my_plan.txt' with the content 'This is my plan.'" --output-dir dev/forge/plans`. Confirm `my_plan.txt` is created in the specified directory with the correct content.
+
+**Success Criteria:** The Forge can take a high-level goal, use Claude to generate a simple plan (containing only `write_file` actions), and execute that plan.
+
+---
+
 ### **Deferred for Post-MVP**
 
 *   Complex workspace scanning and code analysis (AST parsing, dependency graphs).
-*   Multi-tool architecture and dynamic tool selection.
+*   Multi-tool architecture and dynamic tool selection (beyond basic `read_file`/`list_directory` notification).
 *   Advanced planning algorithms and conversational workflows.
 *   Comprehensive unit and integration test suites (beyond basic verification).
-*   Structured output parsing (e.g., extracting multiple files from Claude's response).
+*   Structured output parsing (e.g., extracting multiple files from Claude's response - *already partially addressed in Phase 2A/2B of current MVP*).
 *   State management and session persistence.
+*   Integration with existing project structure and conventions (beyond basic file system access).

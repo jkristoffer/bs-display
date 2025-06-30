@@ -91,8 +91,8 @@ jobs:
         run: |
           echo "🚀 Executing auto-claude immediately..."
           
-          # Trigger the simple issue processor workflow
-          gh workflow run auto-claude-simple.yml \
+          # Trigger the direct API workflow
+          gh workflow run auto-claude-direct.yml \
             --ref main \
             -f triggered_by="${{ github.event.comment.user.login }}" \
             -f comment_url="${{ github.event.comment.html_url }}"

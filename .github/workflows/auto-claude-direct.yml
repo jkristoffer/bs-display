@@ -1,0 +1,154 @@
+name: Auto-Claude Direct API
+on:
+  workflow_dispatch:
+    inputs:
+      triggered_by:
+        description: 'User who triggered the command'
+        required: false
+      comment_url:
+        description: 'URL of the triggering comment'
+        required: false
+
+jobs:
+  process-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          npm install axios
+          
+      - name: Process GitHub issues with API
+        run: |
+          # Create a simple script that uses Anthropic API directly
+          cat > process-issue.js << 'EOF'
+          const axios = require('axios');
+          const { execSync } = require('child_process');
+          
+          async function processIssue() {
+            try {
+              // Get issues with claude-task label
+              const issuesResponse = await axios.get('https://api.github.com/repos/${{ github.repository }}/issues', {
+                headers: {
+                  'Authorization': 'token ${{ secrets.GITHUB_TOKEN }}',
+                  'Accept': 'application/vnd.github.v3+json'
+                },
+                params: {
+                  state: 'open',
+                  labels: 'claude-task',
+                  per_page: 1
+                }
+              });
+              
+              if (issuesResponse.data.length === 0) {
+                console.log('ℹ️ No issues found with claude-task label');
+                return;
+              }
+              
+              const issue = issuesResponse.data[0];
+              console.log(`🎯 Processing Issue #${issue.number}: ${issue.title}`);
+              
+              // Create branch
+              const branchName = `auto/issue-${issue.number}`;
+              execSync(`git checkout -b ${branchName}`);
+              
+              // Comment on issue
+              await axios.post(`https://api.github.com/repos/${{ github.repository }}/issues/${issue.number}/comments`, {
+                body: `🤖 **Auto-Claude Processing Started**\n\nStarted processing this issue automatically.\n- Branch: \`${branchName}\`\n- Time: ${new Date().toISOString()}\n- Runner: GitHub Actions\n\nWill create a PR if valid changes are generated.`
+              }, {
+                headers: {
+                  'Authorization': 'token ${{ secrets.GITHUB_TOKEN }}',
+                  'Accept': 'application/vnd.github.v3+json'
+                }
+              });
+              
+              // Call Anthropic API
+              const prompt = `${issue.title}\n\n## Issue Description\n${issue.body}\n\n## Project Context\nThis is the bs-display project - an Astro-based e-commerce platform for interactive displays.\n\n## Instructions\nPlease provide specific implementation steps for this request. Be concrete and actionable.`;
+              
+              const anthropicResponse = await axios.post('https://api.anthropic.com/v1/messages', {
+                model: 'claude-3-sonnet-20240229',
+                max_tokens: 1000,
+                messages: [{
+                  role: 'user',
+                  content: prompt
+                }]
+              }, {
+                headers: {
+                  'x-api-key': '${{ secrets.ANTHROPIC_API_KEY }}',
+                  'Content-Type': 'application/json',
+                  'anthropic-version': '2023-06-01'
+                }
+              });
+              
+              const response = anthropicResponse.data.content[0].text;
+              console.log('Claude response:', response);
+              
+              // For now, just create a simple implementation note
+              require('fs').writeFileSync('AUTO_CLAUDE_RESPONSE.md', `# Auto-Claude Response for Issue #${issue.number}\n\n${response}\n\nGenerated: ${new Date().toISOString()}`);
+              
+              // Check if any changes were made
+              const gitStatus = execSync('git status --porcelain').toString();
+              if (!gitStatus.trim()) {
+                console.log('ℹ️ No changes generated');
+                await axios.post(`https://api.github.com/repos/${{ github.repository }}/issues/${issue.number}/comments`, {
+                  body: '🤖 **No Changes Generated**\n\nClaude processed the issue but did not generate any code changes.\nPlease review the issue requirements.'
+                }, {
+                  headers: {
+                    'Authorization': 'token ${{ secrets.GITHUB_TOKEN }}',
+                    'Accept': 'application/vnd.github.v3+json'
+                  }
+                });
+                return;
+              }
+              
+              // Commit and push changes
+              execSync('git add .');
+              execSync(`git commit -m "feat: ${issue.title}\n\nAuto-generated response using Claude API\n\nCloses #${issue.number}"`);
+              execSync(`git push origin ${branchName}`);
+              
+              // Create PR
+              const prResponse = await axios.post(`https://api.github.com/repos/${{ github.repository }}/pulls`, {
+                title: `feat: ${issue.title}`,
+                head: branchName,
+                base: 'main',
+                body: `## 🤖 Automated Response\n\nThis PR was automatically generated to address issue #${issue.number}.\n\nCloses #${issue.number}`
+              }, {
+                headers: {
+                  'Authorization': 'token ${{ secrets.GITHUB_TOKEN }}',
+                  'Accept': 'application/vnd.github.v3+json'
+                }
+              });
+              
+              // Comment with PR link
+              await axios.post(`https://api.github.com/repos/${{ github.repository }}/issues/${issue.number}/comments`, {
+                body: `🤖 **Pull Request Created**\n\n✅ Successfully generated response: ${prResponse.data.html_url}\n\nThe PR is ready for human review.`
+              }, {
+                headers: {
+                  'Authorization': 'token ${{ secrets.GITHUB_TOKEN }}',
+                  'Accept': 'application/vnd.github.v3+json'
+                }
+              });
+              
+              console.log(`🎉 Successfully processed issue #${issue.number}`);
+              
+            } catch (error) {
+              console.error('Error:', error.response?.data || error.message);
+              process.exit(1);
+            }
+          }
+          
+          processIssue();
+          EOF
+          
+          node process-issue.js
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

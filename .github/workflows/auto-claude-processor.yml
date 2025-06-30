@@ -141,10 +141,18 @@ jobs:
             Check the repository for any new PRs that were created."
           fi
           
-          # Post to the original comment thread
-          gh api repos/${{ github.repository }}/issues/comments \
-            --method POST \
-            --field body="$STATUS_MESSAGE"
+          # Extract issue number from comment URL and post response
+          COMMENT_URL="${{ github.event.inputs.comment_url }}"
+          if [[ "$COMMENT_URL" =~ /issues/([0-9]+)# ]]; then
+            ISSUE_NUMBER="${BASH_REMATCH[1]}"
+            echo "Posting to issue #$ISSUE_NUMBER"
+            gh api repos/${{ github.repository }}/issues/$ISSUE_NUMBER/comments \
+              --method POST \
+              --field body="$STATUS_MESSAGE"
+          else
+            echo "Could not extract issue number from: $COMMENT_URL"
+            echo "Status: $STATUS_MESSAGE"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
@@ -251,9 +259,17 @@ jobs:
           
           **Quick Retry:** Comment \`/auto-claude now\` to try again."
           
-          # Post failure notification
-          gh api repos/${{ github.repository }}/issues/comments \
-            --method POST \
-            --field body="$FAILURE_MESSAGE"
+          # Extract issue number and post failure notification
+          COMMENT_URL="${{ github.event.inputs.comment_url }}"
+          if [[ "$COMMENT_URL" =~ /issues/([0-9]+)# ]]; then
+            ISSUE_NUMBER="${BASH_REMATCH[1]}"
+            echo "Posting failure to issue #$ISSUE_NUMBER"
+            gh api repos/${{ github.repository }}/issues/$ISSUE_NUMBER/comments \
+              --method POST \
+              --field body="$FAILURE_MESSAGE"
+          else
+            echo "Could not extract issue number from: $COMMENT_URL"
+            echo "Failure: $FAILURE_MESSAGE"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

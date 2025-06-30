@@ -28,7 +28,7 @@ jobs:
       - name: Spin up pre-configured VPS
         run: |
           echo "🚀 Spinning up VPS for auto-claude processing..."
-          ./dev/vps-scripts/spin-up.sh auto-claude-worker
+          ./dev/vps-scripts/spin-up-no-wait.sh auto-claude-worker
         
       - name: Wait for VPS to be ready
         run: |

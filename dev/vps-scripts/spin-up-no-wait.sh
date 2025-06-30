@@ -126,45 +126,8 @@ echo -e "${YELLOW}Debug: IP = '$IP'${NC}"
 
 echo -e "${GREEN}✓ Droplet created!${NC}"
 
-# Wait for SSH to be ready
-echo -e "${YELLOW}Waiting for SSH...${NC}"
-echo -n "  "
-SSH_ATTEMPTS=0
-MAX_SSH_ATTEMPTS=40  # 40 attempts × 3 seconds = 2 minutes max
-
-while ! ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 dev@$IP exit 2>/dev/null; do
-    SSH_ATTEMPTS=$((SSH_ATTEMPTS + 1))
-    
-    if [ $SSH_ATTEMPTS -ge $MAX_SSH_ATTEMPTS ]; then
-        echo
-        echo -e "${RED}❌ SSH timeout after $((MAX_SSH_ATTEMPTS * 3)) seconds${NC}"
-        echo -e "${YELLOW}Troubleshooting info:${NC}"
-        echo "  Droplet ID: $DROPLET_ID"
-        echo "  IP: $IP"
-        echo "  Status: $(doctl compute droplet get $DROPLET_ID --format Status --no-header)"
-        echo
-        echo -e "${YELLOW}Attempting to check droplet status...${NC}"
-        doctl compute droplet get $DROPLET_ID || echo "Failed to get droplet info"
-        
-        echo -e "${RED}SSH connection failed. You may need to:${NC}"
-        echo "  1. Check if the snapshot boots properly"
-        echo "  2. Verify SSH keys are configured"
-        echo "  3. Try connecting manually: ssh dev@$IP"
-        exit 1
-    fi
-    
-    echo -n "."
-    sleep 3
-done
-echo
-
-# Test the setup
-echo -e "${YELLOW}Testing environment...${NC}"
-if ssh -o StrictHostKeyChecking=no dev@$IP "cd /opt/bs-display/dev && npm --version" &>/dev/null; then
-    echo -e "${GREEN}✓ Environment ready${NC}"
-else
-    echo -e "${YELLOW}⚠ Environment may need a moment to finish setup${NC}"
-fi
+# Skip SSH waiting - let the calling workflow handle it
+echo -e "${YELLOW}⏭️  Skipping SSH wait (handled by workflow)${NC}"
 
 echo
 echo -e "${GREEN}=== Your development environment is ready! ===${NC}"

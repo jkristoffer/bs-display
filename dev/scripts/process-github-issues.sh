@@ -14,11 +14,17 @@ if ! command -v gh &> /dev/null; then
 fi
 
 if ! gh auth status &> /dev/null; then
-  echo "❌ GitHub CLI not authenticated in snapshot"
-  exit 1
+  echo "❌ GitHub CLI not authenticated, trying token authentication..."
+  if [ -n "$GITHUB_TOKEN" ]; then
+    echo "$GITHUB_TOKEN" | gh auth login --with-token
+    echo "✅ GitHub CLI authenticated with token"
+  else
+    echo "❌ No authentication available"
+    exit 1
+  fi
+else
+  echo "✅ GitHub CLI already authenticated"
 fi
-
-echo "✅ GitHub CLI ready"
 
 # Update to latest code (snapshot may be outdated)
 echo "📥 Updating repository to latest..."

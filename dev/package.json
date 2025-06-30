@@ -24,11 +24,6 @@
     "tools:seo-analyze": "node scripts/seo-agent.js",
     "tools:seo-optimize": "node scripts/seo-optimizer.js",
     "tools:seo-cli": "node scripts/claude-seo.js",
-    "tools:research": "gemini -p",
-    "tools:research-displays": "gemini -p \"Research latest trends, competitor analysis, and product specifications for interactive displays and smartboards\"",
-    "tools:research-competitors": "gemini -p \"Analyze top competitors in interactive display market including pricing, features, and market positioning\"",
-    "tools:research-blog-topics": "gemini -p \"Research trending blog topics and SEO keywords for interactive displays, smartboards, and educational technology\"",
-    "tools:research-script": "node scripts/gemini-research.js",
     "orchestrator": "python3 orchestrator/run.py",
     "orchestrator:list": "python3 orchestrator/run.py --list-templates",
     "orchestrator:test": "python3 orchestrator/run.py --task \"function/utility:function_name=test,function_description=Test function\" --dry-run"

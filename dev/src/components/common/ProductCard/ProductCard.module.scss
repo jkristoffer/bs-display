@@ -22,11 +22,13 @@
   margin-bottom: 16px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    var(--box-shadow-1),
-    0 10px 20px rgba(0, 0, 0, 0.1);
+@media (min-width: 768px) {
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      var(--box-shadow-1),
+      0 10px 20px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .imageContainer {

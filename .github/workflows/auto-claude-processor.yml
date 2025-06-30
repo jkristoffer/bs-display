@@ -77,8 +77,9 @@ jobs:
         run: |
           echo "🧠 Starting issue processing on VPS..."
           
+          # First update to latest scripts, then run
           ssh -o StrictHostKeyChecking=no dev@$VPS_IP \
-            "export GITHUB_TOKEN='${{ secrets.GITHUB_TOKEN }}' && cd /opt/bs-display/dev && ./scripts/process-github-issues.sh"
+            "cd /opt/bs-display/dev && git pull origin main && ./scripts/process-github-issues.sh"
           
       - name: Cleanup VPS
         if: always()

@@ -18,6 +18,8 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import logging
+import tempfile
+import subprocess
 
 # Third-party imports
 import google.generativeai as genai
@@ -273,15 +275,20 @@ class GeminiRAGSystem:
         # Construct augmented prompt
         prompt = self.construct_gemini_prompt(query, context)
         
-        # Query Gemini
+        # Query local Gemini CLI instead of API
         try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            response = model.generate_content(prompt)
+            # Call local Gemini CLI with prompt via stdin
+            result = subprocess.run(['gemini', '--prompt', prompt], 
+                                  capture_output=True, text=True, input='')
             
-            return response.text
+            if result.returncode == 0:
+                return result.stdout.strip()
+            else:
+                logger.error(f"Local Gemini CLI failed: {result.stderr}")
+                return f"Error calling local Gemini CLI: {result.stderr}"
             
         except Exception as e:
-            logger.error(f"Failed to query Gemini: {e}")
+            logger.error(f"Failed to query local Gemini CLI: {e}")
             return f"Error generating response: {e}"
 
 

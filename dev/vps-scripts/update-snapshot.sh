@@ -32,10 +32,30 @@ fi
 if [ -f .latest-snapshot-id ]; then
     SNAPSHOT_ID=$(cat .latest-snapshot-id)
     SNAPSHOT_NAME=$(cat .latest-snapshot-name 2>/dev/null || echo "unknown")
-    echo -e "${YELLOW}Using base snapshot: $SNAPSHOT_NAME${NC}"
+    echo -e "${YELLOW}Using tracked snapshot: $SNAPSHOT_NAME${NC}"
 else
-    echo -e "${RED}Error: No base snapshot found. Run ./create-base-snapshot.sh first${NC}"
-    exit 1
+    # Look for any existing bs-display snapshot
+    echo -e "${YELLOW}No tracked snapshot found, searching for existing bs-display snapshots...${NC}"
+    SNAPSHOT_INFO=$(doctl compute snapshot list \
+        --format ID,Name \
+        --no-header | \
+        grep "bs-display" | \
+        sort -r -k2 | \
+        head -1)
+    
+    if [ -z "$SNAPSHOT_INFO" ]; then
+        echo -e "${RED}Error: No bs-display snapshots found. Run ./create-base-snapshot.sh first${NC}"
+        exit 1
+    fi
+    
+    SNAPSHOT_ID=$(echo "$SNAPSHOT_INFO" | awk '{print $1}')
+    SNAPSHOT_NAME=$(echo "$SNAPSHOT_INFO" | awk '{print $2}')
+    echo -e "${YELLOW}Found existing snapshot: $SNAPSHOT_NAME ($SNAPSHOT_ID)${NC}"
+    
+    # Save this as the tracked snapshot for future use
+    echo "$SNAPSHOT_ID" > .latest-snapshot-id
+    echo "$SNAPSHOT_NAME" > .latest-snapshot-name
+    echo -e "${GREEN}✓ Now tracking this snapshot${NC}"
 fi
 
 # Get SSH key
@@ -130,7 +150,7 @@ echo -e "${YELLOW}Cleaning up old snapshots...${NC}"
 OLD_SNAPSHOTS=$(doctl compute snapshot list \
     --format ID,Name \
     --no-header | \
-    grep "bs-display-base" | \
+    grep "bs-display" | \
     sort -r -k2 | \
     tail -n +4 | \
     awk '{print $1}')

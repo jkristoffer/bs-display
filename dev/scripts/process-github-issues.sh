@@ -87,49 +87,64 @@ Started processing this issue automatically.
 
 Will create a PR if valid changes are generated."
 
-# Create comprehensive context for Claude
-CLAUDE_PROMPT="$ISSUE_TITLE
+# Create focused prompt for Claude
+CLAUDE_PROMPT="Implement this GitHub issue for the bs-display project:
 
-## Issue Description
+ISSUE #$ISSUE_NUM: $ISSUE_TITLE
+
 $ISSUE_BODY
 
-## Project Context
-This is the bs-display project - an Astro-based e-commerce platform for interactive displays.
+REQUIREMENTS:
+- This is an Astro-based e-commerce platform for interactive displays
+- Follow functional programming principles with TypeScript
+- Follow existing patterns in /src/components/ and /src/development-standards/
+- Create or modify files as needed to implement the requested feature
+- Ensure TypeScript compilation passes
 
-## Development Standards (from CLAUDE.md)
-- Follow functional programming principles (pure functions, immutability)
-- Use TypeScript throughout with strict typing
-- Follow component standards in /src/development-standards/
-- Run code review agent after changes: npm run tools:code-review -- --file [file]
-- Ensure all changes pass: npm run check
-
-## Automation Instructions
-This is an automated process running on a VPS:
-- Work autonomously following project standards
-- If multiple approaches are possible, choose the most standard/common one
-- If the request is unclear, implement the most reasonable interpretation
-- Proceed with best practices and established patterns
-
-## Instructions
-Please implement the requested changes following the project's development standards."
+AUTOMATION CONTEXT:
+- This is running automatically on a VPS
+- Implement the most reasonable interpretation if unclear
+- Follow established project conventions
+- Work autonomously and make the necessary changes"
 
 # Use Claude Code CLI to process the issue (with automation flags)
 echo "🧠 Running Claude Code CLI with automation flags..."
 
-# Run Claude with --print for non-interactive automation
-if claude --print --dangerously-skip-permissions "$CLAUDE_PROMPT" 2>&1 | tee /tmp/claude_output.log; then
+# Debug: Show prompt length and first few lines
+echo "📊 Prompt length: $(echo "$CLAUDE_PROMPT" | wc -c) characters"
+echo "📝 First 3 lines of prompt:"
+echo "$CLAUDE_PROMPT" | head -3
+echo "..."
+
+# Run Claude with --print for non-interactive automation and timeout
+echo "⏳ Starting Claude CLI (with 10-minute timeout)..."
+if timeout 600 claude --print --dangerously-skip-permissions --verbose "$CLAUDE_PROMPT" 2>&1 | tee /tmp/claude_output.log; then
   echo "✅ Claude Code CLI completed successfully"
+  echo "📄 Output log size: $(wc -l < /tmp/claude_output.log) lines"
 else
   CLAUDE_EXIT_CODE=$?
   echo "❌ Claude Code CLI failed (exit code: $CLAUDE_EXIT_CODE)"
   
+  # Show last few lines of output for debugging
+  echo "🔍 Last 10 lines of Claude output:"
+  tail -10 /tmp/claude_output.log 2>/dev/null || echo "No output log available"
+  
+  # Check if it was a timeout
+  if [ "$CLAUDE_EXIT_CODE" -eq 124 ]; then
+    FAILURE_REASON="Claude CLI timed out after 10 minutes"
+  else
+    FAILURE_REASON="Claude CLI encountered an error (exit code: $CLAUDE_EXIT_CODE)"
+  fi
+  
   gh issue comment "$ISSUE_NUM" --body "🤖 **Processing Failed**
 
-Claude Code CLI encountered an error (exit code: $CLAUDE_EXIT_CODE).
+$FAILURE_REASON
+
 This could mean:
 - The issue requires manual intervention
 - There was an unexpected error in the automation
 - The request may need clarification
+- Claude CLI hung or timed out
 
 Please review the issue or try processing manually."
   

@@ -28,8 +28,28 @@ npm run tools:seo-analyze -- --file src/content/blog/[post].md
 # Blog generation problems
 npm run tools:blog-generate
 
+# Research system issues
+npm run tools:research-competitors
+
 # Check all automation tools
 npm run tools
+```
+
+### **Multi-AI Research Integration**
+```bash
+# Quick competitor research
+npm run tools:research-competitors
+
+# Blog topic research
+npm run tools:research-blog-topics
+
+# Custom research (via Claude Code)
+gemini -p "Your research question about interactive displays"
+
+# Structured research with file output
+npm run tools:research-script -- competitors
+npm run tools:research-script -- trends
+npm run tools:research-script -- custom "Your custom prompt"
 ```
 
 ### **Path Issues**

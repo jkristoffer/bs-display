@@ -1,0 +1,25 @@
+#!/bin/bash
+# AI Review & Improve - Natural language code review
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# If no arguments, show help
+if [ $# -eq 0 ]; then
+    echo "🔍 AI Review & Improve"
+    echo ""
+    echo "Usage:"
+    echo "  review <component-name> [focus-areas]"
+    echo ""
+    echo "Examples:"
+    echo "  review hero-section"
+    echo "  review home-page performance,ux"
+    echo "  review Banner mobile,accessibility"
+    echo ""
+    echo "Focus areas:"
+    echo "  performance, ux, accessibility, seo, security,"
+    echo "  mobile, code-quality, animations, responsive"
+    exit 0
+fi
+
+python3 orchestrator/review-and-improve.py "$@"

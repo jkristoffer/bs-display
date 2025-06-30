@@ -1,0 +1,14 @@
+{
+  "session_id": "20250629_221211",
+  "template": "feature/react-component",
+  "component": "ContactForm",
+  "files_created": [
+    "output/20250629_221211/feature_react-component/components/common/ContactForm/ContactForm.tsx",
+    "output/20250629_221211/feature_react-component/components/common/ContactForm/ContactForm.module.scss",
+    "output/20250629_221211/feature_react-component/components/common/ContactForm/index.ts"
+  ],
+  "validation": {
+    "passed": true,
+    "score": 100
+  }
+}

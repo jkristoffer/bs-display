@@ -116,8 +116,8 @@ Please implement the requested changes following the project's development stand
 # Use Claude Code CLI to process the issue (with automation flags)
 echo "🧠 Running Claude Code CLI with automation flags..."
 
-# Run Claude with --dangerously-skip-permissions for automation
-if echo "$CLAUDE_PROMPT" | claude code --dangerously-skip-permissions 2>&1 | tee /tmp/claude_output.log; then
+# Run Claude with --print for non-interactive automation
+if claude --print --dangerously-skip-permissions "$CLAUDE_PROMPT" 2>&1 | tee /tmp/claude_output.log; then
   echo "✅ Claude Code CLI completed successfully"
 else
   CLAUDE_EXIT_CODE=$?

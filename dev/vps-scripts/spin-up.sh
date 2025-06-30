@@ -109,10 +109,20 @@ DROPLET_ID=$(doctl compute droplet create "$NAME" \
     --user-data "$USER_DATA" \
     --tag-names "bs-display,development" \
     --wait \
-    --format ID)
+    --format ID \
+    --no-header | tr -d '\n')
+
+echo -e "${YELLOW}Debug: Droplet ID = '$DROPLET_ID'${NC}"
+
+if [ -z "$DROPLET_ID" ] || [ "$DROPLET_ID" = "ID" ]; then
+    echo -e "${RED}Error: Failed to get droplet ID${NC}"
+    exit 1
+fi
 
 # Get IP
-IP=$(doctl compute droplet get "$DROPLET_ID" --format PublicIPv4 | tail -n 1)
+IP=$(doctl compute droplet get "$DROPLET_ID" --format PublicIPv4 --no-header | tr -d '\n')
+
+echo -e "${YELLOW}Debug: IP = '$IP'${NC}"
 
 echo -e "${GREEN}✓ Droplet created!${NC}"
 

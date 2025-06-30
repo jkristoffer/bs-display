@@ -35,12 +35,13 @@ if [ -f .latest-snapshot-id ]; then
     SNAPSHOT_NAME=$(cat .latest-snapshot-name 2>/dev/null || echo "unknown")
     echo -e "${YELLOW}Using snapshot: $SNAPSHOT_NAME${NC}"
 else
-    # Look for any bs-display snapshot (base, custom, etc.)
+    # Auto-detect most recent bs-display snapshot
+    echo -e "${YELLOW}Auto-detecting most recent bs-display snapshot...${NC}"
     SNAPSHOT_INFO=$(doctl compute snapshot list \
-        --format ID,Name \
+        --format ID,Name,Created \
         --no-header | \
         grep "bs-display" | \
-        sort -r -k2 | \
+        sort -k3 -r | \
         head -1)
     
     if [ -z "$SNAPSHOT_INFO" ]; then
@@ -50,7 +51,8 @@ else
     
     SNAPSHOT_ID=$(echo "$SNAPSHOT_INFO" | awk '{print $1}')
     SNAPSHOT_NAME=$(echo "$SNAPSHOT_INFO" | awk '{print $2}')
-    echo -e "${YELLOW}Found snapshot: $SNAPSHOT_NAME ($SNAPSHOT_ID)${NC}"
+    SNAPSHOT_DATE=$(echo "$SNAPSHOT_INFO" | awk '{print $3}')
+    echo -e "${YELLOW}Using most recent snapshot: $SNAPSHOT_NAME (created: $SNAPSHOT_DATE)${NC}"
 fi
 
 # Get SSH key

@@ -28,35 +28,34 @@ if ! doctl auth list &> /dev/null; then
     exit 1
 fi
 
-# Get latest snapshot
-if [ -f .latest-snapshot-id ]; then
-    SNAPSHOT_ID=$(cat .latest-snapshot-id)
-    SNAPSHOT_NAME=$(cat .latest-snapshot-name 2>/dev/null || echo "unknown")
-    echo -e "${YELLOW}Using tracked snapshot: $SNAPSHOT_NAME${NC}"
-else
-    # Look for any existing bs-display snapshot
-    echo -e "${YELLOW}No tracked snapshot found, searching for existing bs-display snapshots...${NC}"
-    SNAPSHOT_INFO=$(doctl compute snapshot list \
-        --format ID,Name \
-        --no-header | \
-        grep "bs-display" | \
-        sort -r -k2 | \
-        head -1)
-    
-    if [ -z "$SNAPSHOT_INFO" ]; then
-        echo -e "${RED}Error: No bs-display snapshots found. Run ./create-base-snapshot.sh first${NC}"
-        exit 1
-    fi
-    
-    SNAPSHOT_ID=$(echo "$SNAPSHOT_INFO" | awk '{print $1}')
-    SNAPSHOT_NAME=$(echo "$SNAPSHOT_INFO" | awk '{print $2}')
-    echo -e "${YELLOW}Found existing snapshot: $SNAPSHOT_NAME ($SNAPSHOT_ID)${NC}"
-    
-    # Save this as the tracked snapshot for future use
-    echo "$SNAPSHOT_ID" > .latest-snapshot-id
-    echo "$SNAPSHOT_NAME" > .latest-snapshot-name
-    echo -e "${GREEN}✓ Now tracking this snapshot${NC}"
+# Always auto-detect the most recent snapshot
+echo -e "${YELLOW}Auto-detecting most recent bs-display snapshot...${NC}"
+
+# Get all bs-display snapshots with creation date and sort by most recent
+SNAPSHOT_INFO=$(doctl compute snapshot list \
+    --format ID,Name,Created \
+    --no-header | \
+    grep "bs-display" | \
+    sort -k3 -r | \
+    head -1)
+
+if [ -z "$SNAPSHOT_INFO" ]; then
+    echo -e "${RED}Error: No bs-display snapshots found. Run ./create-base-snapshot.sh first${NC}"
+    exit 1
 fi
+
+SNAPSHOT_ID=$(echo "$SNAPSHOT_INFO" | awk '{print $1}')
+SNAPSHOT_NAME=$(echo "$SNAPSHOT_INFO" | awk '{print $2}')
+SNAPSHOT_DATE=$(echo "$SNAPSHOT_INFO" | awk '{print $3}')
+
+echo -e "${GREEN}✓ Using most recent snapshot:${NC}"
+echo -e "  Name: ${BLUE}$SNAPSHOT_NAME${NC}"
+echo -e "  ID: ${BLUE}$SNAPSHOT_ID${NC}"
+echo -e "  Created: ${BLUE}$SNAPSHOT_DATE${NC}"
+
+# Update tracking files
+echo "$SNAPSHOT_ID" > .latest-snapshot-id
+echo "$SNAPSHOT_NAME" > .latest-snapshot-name
 
 # Get SSH key
 SSH_KEY_ID=$(doctl compute ssh-key list --format ID --no-header | head -1)

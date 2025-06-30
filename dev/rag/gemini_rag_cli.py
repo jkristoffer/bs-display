@@ -54,13 +54,75 @@ load_dotenv()
 # Configuration
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 CHROMA_DB_PATH = os.path.join(os.path.dirname(__file__), 'chroma_db')
-COLLECTION_NAME = 'codebase_memory'
 
-# File extensions to process
+# Collection configurations
+COLLECTIONS = {
+    'codebase': {
+        'name': 'codebase_memory',
+        'description': 'Core codebase files for development',
+        'include_paths': [],
+        'exclude_paths': [
+            'node_modules', '.git', 'dist', 'build', '.next',
+            '__pycache__', '.pytest_cache', 'coverage', 'venv',
+            '.vercel', 'test_output', '.DS_Store', '.husky',
+            '.latest-snapshot', 'chroma_db', 'content-queue',
+            'FORGE_MVP', 'calculator-project', 'mvp_explanation',
+            '/src/content/blog/', '/.claude/commands/', '/vps-scripts/',
+            'LEGACY_COMPONENTS', 'LEGAL_PAGE_REFACTORING', 'VPS_MOBILE_SETUP',
+            '/orchestrator/output/', '/orchestrator/testing/'
+        ]
+    },
+    'blog': {
+        'name': 'blog_content',
+        'description': 'Blog posts and marketing content',
+        'include_paths': ['/src/content/blog/'],
+        'exclude_paths': [
+            'node_modules', '.git', 'dist', 'build', '.next',
+            '__pycache__', '.pytest_cache', 'coverage', 'venv',
+            '.vercel', 'test_output', '.DS_Store', '.husky',
+            '.latest-snapshot', 'chroma_db', 'content-queue',
+            'FORGE_MVP', 'calculator-project', 'mvp_explanation'
+        ]
+    },
+    'product-data': {
+        'name': 'product_data',
+        'description': 'Product specifications and data files',
+        'include_paths': ['/src/data/'],
+        'exclude_paths': [
+            'node_modules', '.git', 'dist', 'build', '.next',
+            '__pycache__', '.pytest_cache', 'coverage', 'venv',
+            '.vercel', 'test_output', '.DS_Store', '.husky',
+            '.latest-snapshot', 'chroma_db', 'content-queue',
+            'FORGE_MVP', 'calculator-project', 'mvp_explanation'
+        ]
+    },
+    'all': {
+        'name': 'complete_project',
+        'description': 'Complete project including all content',
+        'include_paths': [],
+        'exclude_paths': [
+            'node_modules', '.git', 'dist', 'build', '.next',
+            '__pycache__', '.pytest_cache', 'coverage', 'venv',
+            '.vercel', 'test_output', '.DS_Store', '.husky',
+            '.latest-snapshot', 'chroma_db', 'content-queue',
+            'FORGE_MVP', 'calculator-project', 'mvp_explanation'
+        ]
+    }
+}
+
+# File extensions to process (focusing on core development files)
 VALID_EXTENSIONS = {
-    '.tsx', '.ts', '.js', '.jsx',
-    '.astro', '.md', '.json', '.yml', '.yaml',
-    '.scss', '.css', '.py', '.sh'
+    '.tsx', '.ts', '.jsx',                    # React/TypeScript components
+    '.astro',                                 # Astro components
+    '.md',                                    # Documentation
+    '.scss', '.css',                          # Styles
+    '.py', '.sh'                             # Scripts
+}
+
+# Exclude most JSON files except important config
+INCLUDE_JSON_PATTERNS = {
+    'package.json', 'tsconfig.json', 'astro.config', 
+    'models.', 'CLAUDE.md', 'README.md'       # Project-specific data files
 }
 
 # Configure logging
@@ -77,8 +139,14 @@ logging.getLogger("chromadb.telemetry.posthog").setLevel(logging.CRITICAL)
 class GeminiRAGSystem:
     """Main class for the RAG system."""
     
-    def __init__(self):
-        """Initialize the RAG system with Gemini and ChromaDB clients."""
+    def __init__(self, collection_type='codebase'):
+        """Initialize the RAG system with Gemini and ChromaDB clients.
+        
+        Args:
+            collection_type: Type of collection ('codebase', 'blog', 'all')
+        """
+        self.collection_type = collection_type
+        self.collection_config = COLLECTIONS[collection_type]
         self.chroma_client = None
         self.collection = None
         self.text_splitter = RecursiveCharacterTextSplitter(
@@ -104,31 +172,34 @@ class GeminiRAGSystem:
                 settings=Settings(anonymized_telemetry=False)
             )
             
+            collection_name = self.collection_config['name']
+            collection_description = self.collection_config['description']
+            
             # Check if collection already exists
             existing_collections = [col.name for col in self.chroma_client.list_collections()]
-            collection_exists = COLLECTION_NAME in existing_collections
+            collection_exists = collection_name in existing_collections
             
             if collection_exists and not force_recreate:
                 # Get existing collection and check if it has data
-                self.collection = self.chroma_client.get_collection(name=COLLECTION_NAME)
+                self.collection = self.chroma_client.get_collection(name=collection_name)
                 count = self.collection.count()
                 if count > 0:
-                    raise ValueError(f"Collection '{COLLECTION_NAME}' already exists with {count} chunks. "
+                    raise ValueError(f"Collection '{collection_name}' already exists with {count} chunks. "
                                    f"Use --force to recreate or run /gemini-update for incremental changes.")
             
             if collection_exists and force_recreate:
                 # Delete existing collection and recreate
-                logger.info(f"Deleting existing collection '{COLLECTION_NAME}' (force recreate)")
-                self.chroma_client.delete_collection(name=COLLECTION_NAME)
+                logger.info(f"Deleting existing collection '{collection_name}' (force recreate)")
+                self.chroma_client.delete_collection(name=collection_name)
             
             # Create new collection
             self.collection = self.chroma_client.get_or_create_collection(
-                name=COLLECTION_NAME,
-                metadata={"description": "BS Display project codebase memory"}
+                name=collection_name,
+                metadata={"description": collection_description, "type": self.collection_type}
             )
             
             logger.info(f"Initialized ChromaDB at {CHROMA_DB_PATH}")
-            logger.info(f"Collection '{COLLECTION_NAME}' ready")
+            logger.info(f"Collection '{collection_name}' ({self.collection_type}) ready")
             
         except ValueError as e:
             # Re-raise ValueError for user-facing errors
@@ -236,12 +307,16 @@ class GeminiRAGSystem:
         for file_path in project_path.rglob('*'):
             if file_path.is_dir():
                 continue
-            if file_path.suffix not in VALID_EXTENSIONS:
+            # Filter by file extension with special JSON handling
+            if file_path.suffix == '.json':
+                # Only include important JSON config files
+                if not any(pattern in file_path.name for pattern in INCLUDE_JSON_PATTERNS):
+                    continue
+            elif file_path.suffix not in VALID_EXTENSIONS:
                 continue
-            if any(ignore in str(file_path) for ignore in [
-                'node_modules', '.git', 'dist', 'build', '.next',
-                '__pycache__', '.pytest_cache', 'coverage', 'venv'
-            ]):
+            
+            # Apply collection-specific filtering
+            if not self._should_include_file(file_path):
                 continue
             all_files.append(file_path)
             total_files += 1
@@ -277,6 +352,26 @@ class GeminiRAGSystem:
         
         print()  # Final newline after progress indicator
         logger.info(f"✅ Ingestion complete: {files_processed}/{total_files} files processed, {chunks_created} chunks created")
+        logger.info(f"Collection type: {self.collection_type} ({self.collection_config['description']})")
+        
+        return True
+    
+    def _should_include_file(self, file_path: Path) -> bool:
+        """Check if file should be included based on collection configuration."""
+        file_path_str = str(file_path)
+        
+        # Check include paths (if specified, file must match at least one)
+        include_paths = self.collection_config.get('include_paths', [])
+        if include_paths:
+            if not any(include_path in file_path_str for include_path in include_paths):
+                return False
+        
+        # Check exclude paths (if any match, exclude the file)
+        exclude_paths = self.collection_config.get('exclude_paths', [])
+        if any(exclude_path in file_path_str for exclude_path in exclude_paths):
+            return False
+            
+        return True
     
     def retrieve_context(self, query_text: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """Retrieve relevant context using similarity search."""
@@ -386,6 +481,12 @@ Examples:
         action='store_true',
         help='Force recreate database (deletes existing data)'
     )
+    ingest_parser.add_argument(
+        '--collection',
+        choices=['codebase', 'blog', 'product-data', 'all'],
+        default='codebase',
+        help='Collection type to ingest (default: codebase)'
+    )
     
     # Query command
     query_parser = subparsers.add_parser('query', help='Query project context using RAG')
@@ -393,6 +494,12 @@ Examples:
         '--query',
         required=True,
         help='Query text to search for relevant context'
+    )
+    query_parser.add_argument(
+        '--collection',
+        choices=['codebase', 'blog', 'product-data', 'all'],
+        default='codebase',
+        help='Collection to query (default: codebase)'
     )
     
     # Update command (for future use)
@@ -409,8 +516,11 @@ Examples:
         parser.print_help()
         return
     
+    # Get collection type from args
+    collection_type = getattr(args, 'collection', 'codebase')
+    
     # Initialize RAG system
-    rag_system = GeminiRAGSystem()
+    rag_system = GeminiRAGSystem(collection_type=collection_type)
     
     # Execute command
     if args.command == 'ingest':

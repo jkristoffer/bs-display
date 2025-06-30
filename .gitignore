@@ -5,6 +5,9 @@ dev/dist/*
 # dependencies
 dev/node_modules/
 
+# dev output directory
+dev/output/
+
 # logs
 npm-debug.log*
 yarn-debug.log*

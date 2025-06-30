@@ -136,11 +136,40 @@ echo "..."
 
 # Run Claude with --print for non-interactive automation and timeout
 echo "⏳ Starting Claude CLI (with 10-minute timeout)..."
-if timeout 600 claude --print --dangerously-skip-permissions --verbose "$CLAUDE_PROMPT" 2>&1 | tee /tmp/claude_output.log; then
+echo "🚀 Claude CLI started at $(date +%H:%M:%S)"
+
+# Start a simple progress indicator in background
+{
+  sleep 10  # Give Claude time to start
+  while true; do
+    if ! pgrep -f "claude.*--print" > /dev/null; then
+      break
+    fi
+    echo "🤖 Claude is working... ($(date +%H:%M:%S)) - checking file changes..."
+    # Show any new files being created
+    find . -name "*.tsx" -o -name "*.ts" -o -name "*.astro" -newer /tmp/claude_start 2>/dev/null | head -3 | sed 's/^/   📁 /'
+    sleep 45
+  done
+} &
+PROGRESS_PID=$!
+
+# Create timestamp file for change detection
+touch /tmp/claude_start
+
+# Run Claude CLI with verbose output and real-time display
+if timeout 600 stdbuf -oL -eL claude --print --dangerously-skip-permissions --verbose "$CLAUDE_PROMPT" 2>&1 | while IFS= read -r line; do
+  echo "$line"
+  # Log everything for debugging
+  echo "$line" >> /tmp/claude_output.log
+done; then
+  # Clean up
+  kill $PROGRESS_PID 2>/dev/null || true
   echo "✅ Claude Code CLI completed successfully"
-  echo "📄 Output log size: $(wc -l < /tmp/claude_output.log) lines"
+  echo "📄 Total output lines: $(wc -l < /tmp/claude_output.log 2>/dev/null || echo 0)"
 else
   CLAUDE_EXIT_CODE=$?
+  # Clean up
+  kill $PROGRESS_PID 2>/dev/null || true
   echo "❌ Claude Code CLI failed (exit code: $CLAUDE_EXIT_CODE)"
   
   # Show last few lines of output for debugging

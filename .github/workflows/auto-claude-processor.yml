@@ -57,8 +57,39 @@ jobs:
       - name: Cleanup VPS
         if: always()
         run: |
-          echo "🧹 Cleaning up VPS..."
-          ./dev/vps-scripts/cleanup.sh droplets
+          echo "🧹 Starting comprehensive VPS cleanup..."
+          
+          # First, try to clean up the specific droplet if we know its ID
+          if [ -n "$VPS_IP" ]; then
+            echo "📍 Cleaning up droplet with IP: $VPS_IP"
+            DROPLET_ID=$(doctl compute droplet list --format ID,PublicIPv4 --no-header | grep "$VPS_IP" | awk '{print $1}' || true)
+            if [ -n "$DROPLET_ID" ]; then
+              echo "🗑️  Deleting specific droplet: $DROPLET_ID"
+              doctl compute droplet delete "$DROPLET_ID" --force || echo "Failed to delete specific droplet"
+            fi
+          fi
+          
+          # Then clean up any remaining auto-claude droplets
+          echo "🔍 Searching for any remaining auto-claude droplets..."
+          AUTO_CLAUDE_DROPLETS=$(doctl compute droplet list --format ID,Name --no-header | grep "auto-claude" | awk '{print $1}' || true)
+          
+          if [ -n "$AUTO_CLAUDE_DROPLETS" ]; then
+            echo "🗑️  Found auto-claude droplets to clean up:"
+            echo "$AUTO_CLAUDE_DROPLETS" | while read -r droplet_id; do
+              if [ -n "$droplet_id" ]; then
+                echo "  Deleting droplet: $droplet_id"
+                doctl compute droplet delete "$droplet_id" --force || echo "Failed to delete droplet $droplet_id"
+              fi
+            done
+          else
+            echo "✅ No auto-claude droplets found"
+          fi
+          
+          # Finally, run general cleanup for any orphaned bs-display droplets
+          echo "🧹 Running general bs-display cleanup..."
+          ./dev/vps-scripts/cleanup.sh droplets --force || echo "General cleanup completed with warnings"
+          
+          echo "✅ VPS cleanup completed"
         
       - name: Report completion
         if: github.event.inputs.comment_url

@@ -1,0 +1,101 @@
+name: 🚨 Emergency VPS Cleanup
+on:
+  workflow_dispatch:
+    inputs:
+      cleanup_type:
+        description: 'Cleanup Type'
+        required: true
+        type: choice
+        options:
+          - auto-claude-only
+          - all-bs-display
+          - emergency-all
+        default: 'auto-claude-only'
+      confirm_cleanup:
+        description: 'Type "YES" to confirm cleanup'
+        required: true
+        type: string
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm_cleanup == 'YES'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup DigitalOcean CLI
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          
+      - name: Emergency VPS Cleanup
+        run: |
+          echo "🚨 Starting Emergency VPS Cleanup"
+          echo "Type: ${{ github.event.inputs.cleanup_type }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Time: $(date)"
+          echo
+          
+          case "${{ github.event.inputs.cleanup_type }}" in
+            "auto-claude-only")
+              echo "🎯 Cleaning up auto-claude droplets only..."
+              AUTO_CLAUDE_DROPLETS=$(doctl compute droplet list --format ID,Name --no-header | grep "auto-claude" | awk '{print $1}' || true)
+              
+              if [ -n "$AUTO_CLAUDE_DROPLETS" ]; then
+                echo "Found auto-claude droplets:"
+                doctl compute droplet list | grep "auto-claude" || echo "None found"
+                echo
+                echo "$AUTO_CLAUDE_DROPLETS" | while read -r droplet_id; do
+                  if [ -n "$droplet_id" ]; then
+                    echo "Deleting droplet: $droplet_id"
+                    doctl compute droplet delete "$droplet_id" --force
+                  fi
+                done
+                echo "✅ Auto-claude droplets cleaned up"
+              else
+                echo "✅ No auto-claude droplets found"
+              fi
+              ;;
+              
+            "all-bs-display")
+              echo "🧹 Cleaning up all bs-display droplets..."
+              cd dev
+              ./vps-scripts/cleanup.sh droplets --force
+              echo "✅ All bs-display droplets cleaned up"
+              ;;
+              
+            "emergency-all")
+              echo "💥 EMERGENCY: Cleaning up ALL bs-display resources..."
+              cd dev
+              ./vps-scripts/cleanup.sh emergency --force
+              echo "✅ Emergency cleanup completed"
+              ;;
+              
+            *)
+              echo "❌ Invalid cleanup type"
+              exit 1
+              ;;
+          esac
+          
+      - name: Report cleanup results
+        if: always()
+        run: |
+          echo "📊 Cleanup Summary"
+          echo "=================="
+          echo "Remaining bs-display droplets:"
+          doctl compute droplet list | grep "bs-display" || echo "None found ✅"
+          echo
+          echo "All droplets:"
+          doctl compute droplet list --format ID,Name,Status,PublicIPv4
+          
+  safety-check:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm_cleanup != 'YES'
+    steps:
+      - name: Safety Check Failed
+        run: |
+          echo "🛑 SAFETY CHECK FAILED"
+          echo "You must type 'YES' (all caps) to confirm cleanup"
+          echo "This prevents accidental resource deletion"
+          exit 1

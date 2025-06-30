@@ -163,16 +163,16 @@ jobs:
             
             const comment = `🚀 **VPS Deployed Successfully**
             
-**Session:** ${{ inputs.session_name }}
-**Size:** ${{ inputs.droplet_size }}
-**Triggered by:** @${{ github.actor }}
+**Session:** \${{ inputs.session_name }}
+**Size:** \${{ inputs.droplet_size }}
+**Triggered by:** @\${{ github.actor }}
 
-\`\`\`
+\\\`\\\`\\\`
 ${sessionInfo}
-\`\`\`
+\\\`\\\`\\\`
 
 📱 **Quick Access:**
-- [View full run details](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+- [View full run details](https://github.com/\${{ github.repository }}/actions/runs/\${{ github.run_id }})
 - Use GitHub mobile app to access this info anywhere!
 
 ⏰ Deployed at: ${new Date().toISOString()}`;

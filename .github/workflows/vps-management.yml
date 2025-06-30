@@ -167,21 +167,15 @@ jobs:
               console.log('Could not read session info:', error.message);
             }
             
-            const comment = `🚀 **VPS Deployed Successfully**
-            
-**Session:** ${process.env.SESSION_NAME}
-**Size:** ${process.env.DROPLET_SIZE}
-**Triggered by:** @${process.env.ACTOR}
-
-\`\`\`
-${sessionInfo}
-\`\`\`
-
-📱 **Quick Access:**
-- [View full run details](https://github.com/${process.env.REPOSITORY}/actions/runs/${process.env.RUN_ID})
-- Use GitHub mobile app to access this info anywhere!
-
-⏰ Deployed at: ${new Date().toISOString()}`;
+            const comment = '🚀 **VPS Deployed Successfully**\n\n' +
+              '**Session:** ' + process.env.SESSION_NAME + '\n' +
+              '**Size:** ' + process.env.DROPLET_SIZE + '\n' +
+              '**Triggered by:** @' + process.env.ACTOR + '\n\n' +
+              '```\n' + sessionInfo + '\n```\n\n' +
+              '📱 **Quick Access:**\n' +
+              '- [View full run details](https://github.com/' + process.env.REPOSITORY + '/actions/runs/' + process.env.RUN_ID + ')\n' +
+              '- Use GitHub mobile app to access this info anywhere!\n\n' +
+              '⏰ Deployed at: ' + new Date().toISOString();
 
             // Comment on the latest commit
             try {

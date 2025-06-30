@@ -1,0 +1,184 @@
+name: Auto-Claude Scheduler
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  parse-and-schedule:
+    if: startsWith(github.event.comment.body, '/auto-claude')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Parse auto-claude command
+        id: parse
+        run: |
+          COMMAND="${{ github.event.comment.body }}"
+          echo "Processing command: $COMMAND"
+          
+          # Parse different time patterns
+          if [[ "$COMMAND" =~ /auto-claude\ tonight\ at\ ([0-9]{1,2})(am|pm) ]]; then
+            HOUR=${BASH_REMATCH[1]}
+            PERIOD=${BASH_REMATCH[2]}
+            
+            # Convert to 24-hour format
+            if [[ "$PERIOD" == "pm" && "$HOUR" != "12" ]]; then
+              HOUR=$((HOUR + 12))
+            elif [[ "$PERIOD" == "am" && "$HOUR" == "12" ]]; then
+              HOUR=0
+            fi
+            
+            # Schedule for tonight
+            TARGET_DATE=$(date +%Y-%m-%d)
+            if [[ $(date +%H) -ge $HOUR ]]; then
+              # If time has passed today, schedule for tomorrow
+              TARGET_DATE=$(date -d "tomorrow" +%Y-%m-%d)
+            fi
+            SCHEDULE_TIME="$TARGET_DATE $(printf "%02d" $HOUR):00"
+            
+          elif [[ "$COMMAND" =~ /auto-claude\ today\ at\ ([0-9]{1,2})(am|pm) ]]; then
+            HOUR=${BASH_REMATCH[1]}
+            PERIOD=${BASH_REMATCH[2]}
+            
+            if [[ "$PERIOD" == "pm" && "$HOUR" != "12" ]]; then
+              HOUR=$((HOUR + 12))
+            elif [[ "$PERIOD" == "am" && "$HOUR" == "12" ]]; then
+              HOUR=0
+            fi
+            
+            TARGET_DATE=$(date +%Y-%m-%d)
+            SCHEDULE_TIME="$TARGET_DATE $(printf "%02d" $HOUR):00"
+            
+          elif [[ "$COMMAND" =~ /auto-claude\ tomorrow\ at\ ([0-9]{1,2})(am|pm) ]]; then
+            HOUR=${BASH_REMATCH[1]}
+            PERIOD=${BASH_REMATCH[2]}
+            
+            if [[ "$PERIOD" == "pm" && "$HOUR" != "12" ]]; then
+              HOUR=$((HOUR + 12))
+            elif [[ "$PERIOD" == "am" && "$HOUR" == "12" ]]; then
+              HOUR=0
+            fi
+            
+            TARGET_DATE=$(date -d "tomorrow" +%Y-%m-%d)
+            SCHEDULE_TIME="$TARGET_DATE $(printf "%02d" $HOUR):00"
+            
+          elif [[ "$COMMAND" =~ /auto-claude\ in\ ([0-9]+)\ hours? ]]; then
+            HOURS=${BASH_REMATCH[1]}
+            SCHEDULE_TIME=$(date -d "+${HOURS} hours" "+%Y-%m-%d %H:%M")
+            
+          elif [[ "$COMMAND" =~ /auto-claude\ now ]]; then
+            SCHEDULE_TIME="now"
+            
+          else
+            echo "Could not parse command: $COMMAND"
+            echo "schedule_time=" >> $GITHUB_OUTPUT
+            echo "error=Invalid command format" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          echo "schedule_time=$SCHEDULE_TIME" >> $GITHUB_OUTPUT
+          echo "Parsed schedule time: $SCHEDULE_TIME"
+          
+      - name: Setup DigitalOcean CLI (for immediate execution)
+        if: steps.parse.outputs.schedule_time == 'now'
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          
+      - name: Execute immediately
+        if: steps.parse.outputs.schedule_time == 'now'
+        run: |
+          echo "🚀 Executing auto-claude immediately..."
+          
+          # Trigger the issue processor workflow directly
+          gh workflow run auto-claude-processor.yml \
+            --ref main \
+            -f triggered_by="${{ github.event.comment.user.login }}" \
+            -f comment_url="${{ github.event.comment.html_url }}"
+            
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Schedule delayed execution
+        if: steps.parse.outputs.schedule_time != 'now' && steps.parse.outputs.schedule_time != ''
+        run: |
+          SCHEDULE_TIME="${{ steps.parse.outputs.schedule_time }}"
+          
+          # Calculate delay in seconds
+          TARGET_EPOCH=$(date -d "$SCHEDULE_TIME" +%s)
+          CURRENT_EPOCH=$(date +%s)
+          DELAY_SECONDS=$((TARGET_EPOCH - CURRENT_EPOCH))
+          
+          if [ $DELAY_SECONDS -gt 0 ]; then
+            echo "Scheduling execution in $DELAY_SECONDS seconds ($SCHEDULE_TIME)"
+            
+            # Use GitHub's repository_dispatch for delayed execution
+            # We'll use a simple approach: create a workflow that sleeps then executes
+            gh workflow run auto-claude-delayed.yml \
+              --ref main \
+              -f delay_seconds="$DELAY_SECONDS" \
+              -f scheduled_time="$SCHEDULE_TIME" \
+              -f triggered_by="${{ github.event.comment.user.login }}" \
+              -f comment_url="${{ github.event.comment.html_url }}"
+          else
+            echo "Schedule time is in the past, executing immediately instead"
+            gh workflow run auto-claude-processor.yml \
+              --ref main \
+              -f triggered_by="${{ github.event.comment.user.login }}" \
+              -f comment_url="${{ github.event.comment.html_url }}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Confirm scheduling
+        if: steps.parse.outputs.schedule_time != '' && !steps.parse.outputs.error
+        run: |
+          SCHEDULE_TIME="${{ steps.parse.outputs.schedule_time }}"
+          
+          if [ "$SCHEDULE_TIME" == "now" ]; then
+            CONFIRMATION="🤖 **Auto-Claude Executing Now**
+            
+            ✅ Starting issue processing immediately...
+            
+            I'll spin up a VPS and start processing issues labeled with \`claude-task\` right away."
+          else
+            CONFIRMATION="🤖 **Auto-Claude Scheduled**
+            
+            ✅ Issue processing scheduled for: **$SCHEDULE_TIME**
+            
+            I'll automatically spin up a VPS and start processing issues labeled with \`claude-task\` at that time.
+            
+            **Supported commands:**
+            - \`/auto-claude now\` - Process immediately
+            - \`/auto-claude tonight at 12am\` - Tonight at midnight
+            - \`/auto-claude today at 6pm\` - Today at 6 PM
+            - \`/auto-claude tomorrow at 9am\` - Tomorrow at 9 AM
+            - \`/auto-claude in 2 hours\` - In 2 hours"
+          fi
+          
+          gh api repos/${{ github.repository }}/issues/comments \
+            --method POST \
+            --field body="$CONFIRMATION"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Handle invalid command
+        if: steps.parse.outputs.error
+        run: |
+          gh api repos/${{ github.repository }}/issues/comments \
+            --method POST \
+            --field body="🤖 **Invalid Auto-Claude Command**
+            
+            ❌ Could not parse the command format.
+            
+            **Supported commands:**
+            - \`/auto-claude now\` - Process immediately
+            - \`/auto-claude tonight at 12am\` - Tonight at midnight  
+            - \`/auto-claude today at 6pm\` - Today at 6 PM
+            - \`/auto-claude tomorrow at 9am\` - Tomorrow at 9 AM
+            - \`/auto-claude in 2 hours\` - In 2 hours
+            
+            Please try again with one of these formats."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

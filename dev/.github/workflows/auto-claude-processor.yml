@@ -1,0 +1,88 @@
+name: Auto-Claude Issue Processor
+on:
+  workflow_dispatch:
+    inputs:
+      triggered_by:
+        description: 'User who triggered the command'
+        required: false
+      comment_url:
+        description: 'URL of the triggering comment'
+        required: false
+      scheduled_execution:
+        description: 'Whether this is a scheduled execution'
+        required: false
+        default: 'false'
+
+jobs:
+  process-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup DigitalOcean CLI
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Spin up pre-configured VPS
+        run: |
+          echo "🚀 Spinning up VPS for auto-claude processing..."
+          ./vps-scripts/spin-up.sh auto-claude-worker
+        
+      - name: Wait for VPS to be ready
+        run: |
+          VPS_IP=$(doctl compute droplet list --format "Name,PublicIPv4" | grep auto-claude-worker | awk '{print $2}')
+          echo "VPS_IP=$VPS_IP" >> $GITHUB_ENV
+          
+          echo "⏳ Waiting for VPS to be ready at $VPS_IP..."
+          
+          # Wait for SSH to be ready
+          for i in {1..30}; do
+            if ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 dev@$VPS_IP 'echo "SSH ready"' 2>/dev/null; then
+              echo "✅ VPS ready at $VPS_IP"
+              break
+            fi
+            echo "⏳ Waiting for VPS... ($i/30)"
+            sleep 10
+          done
+          
+      - name: Process GitHub issues on VPS
+        run: |
+          echo "🧠 Starting issue processing on VPS..."
+          
+          ssh -o StrictHostKeyChecking=no dev@$VPS_IP \
+            'cd /opt/bs-display/dev && ./scripts/process-github-issues.sh'
+          
+      - name: Cleanup VPS
+        if: always()
+        run: |
+          echo "🧹 Cleaning up VPS..."
+          ./vps-scripts/cleanup.sh droplets
+        
+      - name: Report completion
+        if: github.event.inputs.comment_url
+        run: |
+          TRIGGERED_BY="${{ github.event.inputs.triggered_by }}"
+          SCHEDULED="${{ github.event.inputs.scheduled_execution }}"
+          
+          if [ "$SCHEDULED" == "true" ]; then
+            STATUS_MESSAGE="🤖 **Scheduled Auto-Claude Completed**
+            
+            ✅ Processing completed as scheduled by @$TRIGGERED_BY
+            
+            Check the repository for any new PRs that were created."
+          else
+            STATUS_MESSAGE="🤖 **Auto-Claude Completed**
+            
+            ✅ Processing completed immediately as requested by @$TRIGGERED_BY
+            
+            Check the repository for any new PRs that were created."
+          fi
+          
+          # Post to the original comment thread
+          gh api repos/${{ github.repository }}/issues/comments \
+            --method POST \
+            --field body="$STATUS_MESSAGE"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,49 @@
+name: Auto-Claude Delayed Executor
+on:
+  workflow_dispatch:
+    inputs:
+      delay_seconds:
+        description: 'Delay in seconds'
+        required: true
+      scheduled_time:
+        description: 'Human readable scheduled time'
+        required: true
+      triggered_by:
+        description: 'User who triggered the command'
+        required: true
+      comment_url:
+        description: 'URL of the triggering comment'
+        required: true
+
+jobs:
+  delayed-execution:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for scheduled time
+        run: |
+          DELAY_SECONDS="${{ github.event.inputs.delay_seconds }}"
+          SCHEDULED_TIME="${{ github.event.inputs.scheduled_time }}"
+          
+          echo "⏳ Waiting $DELAY_SECONDS seconds until $SCHEDULED_TIME..."
+          
+          # For very long delays (> 6 hours), we might need a different approach
+          # GitHub Actions have a 6-hour timeout limit
+          if [ $DELAY_SECONDS -gt 21600 ]; then
+            echo "❌ Delay too long for GitHub Actions (max 6 hours)"
+            echo "Consider using an external scheduler service"
+            exit 1
+          fi
+          
+          sleep $DELAY_SECONDS
+          
+      - name: Trigger issue processor
+        run: |
+          echo "🚀 Scheduled time reached, triggering issue processor..."
+          
+          gh workflow run auto-claude-processor.yml \
+            --ref main \
+            -f triggered_by="${{ github.event.inputs.triggered_by }}" \
+            -f comment_url="${{ github.event.inputs.comment_url }}" \
+            -f scheduled_execution="true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,153 @@
+name: 🐛 Bug Report
+description: Report a bug that might be fixable by Auto-Claude
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Bug Report
+        Help us identify and fix bugs quickly. Simple, well-defined bugs may be eligible for Auto-Claude automated fixes.
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Bug Description
+      description: What's happening that shouldn't be?
+      placeholder: |
+        Provide a clear and concise description of the bug.
+        
+        Example:
+        "The ProductCard component's hover effect is not working on mobile devices, but it should only show on desktop anyway."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Go to the products page
+        2. Hover over a product card
+        3. Notice the effect appears on mobile
+        4. Expected: no effect on mobile devices
+      value: |
+        1. 
+        2. 
+        3. 
+        4. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: Describe what actually happens instead
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - Low - Minor cosmetic issue
+        - Medium - Functionality affected but workarounds exist
+        - High - Core functionality broken
+        - Critical - System unusable
+    validations:
+      required: true
+
+  - type: input
+    id: affected_component
+    attributes:
+      label: Affected Component/File
+      description: Which component or file is affected?
+      placeholder: e.g., ProductCard, src/components/products/ProductCard.tsx
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: What environment did this occur in?
+      placeholder: |
+        - Browser: Chrome 120
+        - Device: iPhone 14
+        - OS: iOS 17
+        - Screen size: Mobile (375px)
+      value: |
+        - Browser: 
+        - Device: 
+        - OS: 
+        - Screen size: 
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem
+      placeholder: |
+        - Screenshots or videos
+        - Error messages
+        - Console logs
+        - Related issues
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## 🤖 Auto-Claude Eligibility Assessment
+        Help us determine if this bug can be fixed automatically.
+
+  - type: checkboxes
+    id: auto_claude_eligibility
+    attributes:
+      label: Auto-Claude Fix Eligibility
+      description: Check all that apply to this bug
+      options:
+        - label: Bug is in a specific, identifiable component/file
+        - label: Root cause is clear and well-understood
+        - label: Fix doesn't require business logic decisions
+        - label: Fix is a simple code change (styling, logic, etc.)
+        - label: Bug doesn't involve configuration files or build setup
+        - label: Fix won't affect other components or global state
+
+  - type: dropdown
+    id: fix_complexity
+    attributes:
+      label: Estimated Fix Complexity
+      description: How complex do you think the fix is?
+      options:
+        - Simple - CSS/styling fix or small logic change
+        - Medium - Component logic or moderate changes
+        - Complex - Requires architectural changes or investigation
+
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested Fix (Optional)
+      description: If you have ideas on how to fix this, share them
+      placeholder: |
+        Example:
+        "Add a media query to the hover effect CSS to only apply on desktop devices (min-width: 768px)"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **🤖 Auto-Fix Instructions:**
+        If this bug meets the Auto-Claude criteria, maintainers may add the `claude-task` label and use:
+        - `/auto-claude now` for immediate fixes
+        - `/auto-claude tonight at 12am` for scheduled fixes

@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 🤖 Auto-Claude Documentation
+    url: https://github.com/jkristoffer/bs-display/blob/main/CLAUDE.md
+    about: Learn how to write issues suitable for Auto-Claude processing
+  - name: 💡 Auto-Claude Quick Guide
+    url: https://github.com/jkristoffer/bs-display/blob/main/docs/auto-claude-guide.md
+    about: Tips and best practices for automated task creation
+  - name: 🛠️ Development Standards
+    url: https://github.com/jkristoffer/bs-display/blob/main/src/development-standards/
+    about: Project development standards and coding guidelines
+  - name: 🚀 VPS Infrastructure
+    url: https://github.com/jkristoffer/bs-display/blob/main/vps-scripts/README.md
+    about: Learn about the VPS automation infrastructure

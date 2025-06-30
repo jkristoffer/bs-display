@@ -1,0 +1,89 @@
+name: 📋 General Issue
+description: General issue that may require manual attention
+title: ""
+labels: ["needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 General Issue
+        For tasks that require human analysis, complex decision-making, or cross-cutting changes.
+        
+        **Consider using the 🤖 Auto-Claude Task template if your issue:**
+        - Focuses on a single component
+        - Has clear, specific requirements
+        - Doesn't require business logic decisions
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What type of issue is this?
+      options:
+        - Bug Report
+        - Feature Request
+        - Documentation
+        - Technical Debt
+        - Question/Discussion
+        - Architecture Decision
+        - Performance Issue
+        - Security Concern
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue or request in detail
+      placeholder: |
+        Provide a clear description of:
+        - What the issue is
+        - Why it's important
+        - Any context or background information
+        - Potential impact or urgency
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Behavior (if applicable)
+      description: What's happening now?
+      placeholder: Describe the current state or behavior
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected/Desired Behavior
+      description: What should happen instead?
+      placeholder: Describe the desired outcome or behavior
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or relevant information
+      placeholder: |
+        - Screenshots
+        - Error messages
+        - Related issues
+        - External references
+
+  - type: checkboxes
+    id: auto_claude_consideration
+    attributes:
+      label: 🤖 Auto-Claude Consideration
+      description: Could this be suitable for Auto-Claude processing?
+      options:
+        - label: This task is specific and well-defined enough for automation
+        - label: This task involves only a single component/file
+        - label: This task has clear acceptance criteria
+        - label: This task doesn't require complex business decisions
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **💡 Tip:** If you checked most boxes above, consider recreating this as an 🤖 Auto-Claude Task for faster automated processing!

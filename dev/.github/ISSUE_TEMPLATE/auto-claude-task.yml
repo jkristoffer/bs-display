@@ -1,0 +1,163 @@
+name: 🤖 Auto-Claude Task
+description: Task suitable for automated processing by Auto-Claude
+title: "[Auto-Claude]: "
+labels: ["claude-task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🤖 Auto-Claude Task Guidelines
+        This template is designed for tasks that can be safely automated. Please provide clear, specific requirements to ensure Auto-Claude stays within scope.
+        
+        **⚡ Quick Commands:**
+        - `/auto-claude now` - Process immediately
+        - `/auto-claude tonight at 12am` - Process tonight at midnight
+        - `/auto-claude tomorrow at 9am` - Process tomorrow at 9 AM
+
+  - type: input
+    id: component
+    attributes:
+      label: Target Component/File
+      description: Which specific component or file should be modified?
+      placeholder: e.g., ProductCard component, src/components/products/ProductCard.tsx
+    validations:
+      required: true
+
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: Task Type
+      description: What type of change is this?
+      options:
+        - New Component
+        - Component Enhancement
+        - Bug Fix
+        - Styling Update
+        - TypeScript Enhancement
+        - Performance Optimization
+        - Documentation Update
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Task Description
+      description: Provide a clear, specific description of what needs to be implemented
+      placeholder: |
+        Be specific about:
+        - What exactly should be changed
+        - Expected behavior
+        - Any constraints or requirements
+        
+        Example:
+        "Add a hover effect to ProductCard component that shows a subtle shadow and 1.05x scale transform. The effect should have a 200ms transition and only apply on desktop devices (min-width: 768px)."
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope_definition
+    attributes:
+      label: 🛡️ Scope Definition
+      description: Define what should and should NOT be changed (Critical for safety)
+      placeholder: |
+        **Should change:**
+        - ProductCard.tsx component file
+        - ProductCard.module.scss styles
+        
+        **Should NOT change:**
+        - Other product-related components
+        - Global styles or variables
+        - Package.json or configuration files
+        - Existing component props or API
+      value: |
+        **Should change:**
+        - 
+        
+        **Should NOT change:**
+        - Configuration files (package.json, astro.config.mjs, etc.)
+        - Other unrelated components
+        - Global styles or variables
+        - Existing component APIs
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safety_checklist
+    attributes:
+      label: 🛡️ Safety Checklist
+      description: Confirm this task is suitable for automation
+      options:
+        - label: Task is focused on a single component/feature
+          required: true
+        - label: Requirements are clear and specific
+          required: true
+        - label: No complex business logic decisions required
+          required: true
+        - label: No breaking changes to existing APIs
+          required: true
+        - label: Task doesn't require configuration file changes
+          required: true
+        - label: Task doesn't affect other components or global state
+          required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: ✅ Acceptance Criteria
+      description: How will we know this is complete?
+      placeholder: |
+        - [ ] Hover effect is visible on ProductCard components
+        - [ ] Effect only applies on desktop devices (min-width: 768px)
+        - [ ] Transition is smooth (200ms duration)
+        - [ ] No performance impact on page load
+        - [ ] TypeScript validation passes (`npm run check`)
+        - [ ] Code review agent passes
+        - [ ] Component props/API unchanged
+      value: |
+        - [ ] 
+        - [ ] TypeScript validation passes (`npm run check`)
+        - [ ] Code review agent passes
+        - [ ] Follows functional programming standards
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex is this task?
+      options:
+        - Simple (single file, < 50 lines changed)
+        - Medium (2-3 files, < 200 lines changed)
+        - Complex (consider manual implementation)
+    validations:
+      required: true
+
+  - type: textarea
+    id: files_involved
+    attributes:
+      label: 📁 Expected Files to Modify
+      description: List the specific files you expect to be changed
+      placeholder: |
+        - src/components/products/ProductCard/ProductCard.tsx
+        - src/components/products/ProductCard/ProductCard.module.scss
+      value: |
+        - 
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: automation_ready
+    attributes:
+      label: 🚀 Automation Ready
+      description: Final confirmation
+      options:
+        - label: I have provided specific, clear requirements
+          required: true
+        - label: I have defined the scope boundaries clearly
+          required: true
+        - label: I understand Auto-Claude will only make changes within the defined scope
+          required: true
+        - label: I will review the generated PR before merging
+          required: true

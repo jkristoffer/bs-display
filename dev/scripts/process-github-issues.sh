@@ -26,6 +26,19 @@ else
   echo "✅ GitHub CLI already authenticated"
 fi
 
+# Verify Claude CLI is available (should be pre-installed in snapshot)
+if ! command -v claude &> /dev/null; then
+  echo "❌ Claude CLI not found in snapshot"
+  exit 1
+fi
+
+if ! claude auth status &> /dev/null; then
+  echo "❌ Claude CLI not authenticated in snapshot"
+  exit 1
+fi
+
+echo "✅ Claude CLI ready"
+
 # Update to latest code (snapshot may be outdated)
 echo "📥 Updating repository to latest..."
 git fetch origin

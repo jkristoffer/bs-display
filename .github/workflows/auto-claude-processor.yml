@@ -80,7 +80,7 @@ jobs:
         run: |
           echo "🧠 Starting issue processing on VPS..."
           
-          # First update to latest scripts, then run
+          # First update to latest scripts, then run (Claude CLI is pre-authenticated)
           ssh -o StrictHostKeyChecking=no dev@$VPS_IP \
             "cd /opt/bs-display/dev && git pull origin main && ./scripts/process-github-issues.sh"
           
@@ -99,20 +99,20 @@ jobs:
             fi
           fi
           
-          # Then clean up any remaining auto-claude droplets
-          echo "🔍 Searching for any remaining auto-claude droplets..."
-          AUTO_CLAUDE_DROPLETS=$(doctl compute droplet list --format ID,Name --no-header | grep "auto-claude" | awk '{print $1}' || true)
+          # Then clean up any remaining bs-display tagged droplets from this workflow
+          echo "🔍 Searching for any remaining bs-display droplets..."
+          BS_DISPLAY_DROPLETS=$(doctl compute droplet list --tag-name bs-display --format ID --no-header || true)
           
-          if [ -n "$AUTO_CLAUDE_DROPLETS" ]; then
-            echo "🗑️  Found auto-claude droplets to clean up:"
-            echo "$AUTO_CLAUDE_DROPLETS" | while read -r droplet_id; do
+          if [ -n "$BS_DISPLAY_DROPLETS" ]; then
+            echo "🗑️  Found bs-display droplets to clean up:"
+            echo "$BS_DISPLAY_DROPLETS" | while read -r droplet_id; do
               if [ -n "$droplet_id" ]; then
                 echo "  Deleting droplet: $droplet_id"
                 doctl compute droplet delete "$droplet_id" --force || echo "Failed to delete droplet $droplet_id"
               fi
             done
           else
-            echo "✅ No auto-claude droplets found"
+            echo "✅ No bs-display droplets found"
           fi
           
           # Finally, run general cleanup for any orphaned bs-display droplets

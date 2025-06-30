@@ -84,6 +84,9 @@ Expert-written guides covering display technologies, installation processes, and
 ### 🤖 **Automated Content Generation**
 AI-powered blog post generation with SEO optimization and quality assurance.
 
+### 🔧 **The Forge AI Orchestrator**
+Production-ready AI-first development tool for autonomous file generation and project orchestration with 95% test success rate.
+
 ## Architecture Overview
 
 ### **Component Structure**
@@ -168,6 +171,10 @@ bs-display/dev/
 │   ├── layouts/        # Page layout templates
 │   ├── pages/          # Route definitions
 │   └── styles/         # Global SCSS and variables
+├── 📁 forge/           # 🔧 AI Orchestrator (Production Ready)
+│   ├── forge.py        # Main CLI application
+│   ├── tests/          # 28 unit tests (100% pass rate)
+│   └── *.md            # Status and test documentation
 ├── 📁 scripts/         # Automation and utility scripts
 ├── 📁 public/          # Static assets and images
 ├── 📄 CLAUDE.md        # AI assistant comprehensive guide

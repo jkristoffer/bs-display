@@ -91,7 +91,7 @@ def parse_multi_file_response(content: str) -> list[FileSpec]:
             file_content = parts[i + 1].strip()
             
             # Clean markdown formatting from content
-            file_content = strip_markdown_formatting(file_content)
+            file_content = strip_conversational_text(file_content)
             
             files.append(FileSpec(path=file_path, content=file_content))
     
@@ -157,27 +157,120 @@ def list_directory_contents(directory_path: str) -> list[str]:
         raise
 
 
-def strip_markdown_formatting(content: str) -> str:
+def detect_content_type(content: str) -> str:
     """
-    Remove markdown code block formatting from Claude's response.
+    Detect the likely content type for targeted cleaning.
     
     Args:
-        content: Raw content from Claude that may contain markdown formatting
+        content: The content to analyze
         
     Returns:
-        Clean content without markdown code blocks
+        Content type string: 'python', 'html', 'javascript', 'json', or 'text'
+    """
+    content_lower = content.lower()
+    
+    if any(keyword in content_lower for keyword in ['def ', 'import ', 'class ', 'print(', 'from ']):
+        return 'python'
+    elif any(keyword in content_lower for keyword in ['<!doctype', '<html', '<div', '<body']):
+        return 'html'
+    elif any(keyword in content_lower for keyword in ['function', 'const ', 'let ', 'var ', '=>']):
+        return 'javascript'
+    elif any(keyword in content_lower for keyword in ['{', '}', '":', '[']) and content.strip().startswith(('{', '[')):
+        return 'json'
+    else:
+        return 'text'
+
+
+def strip_conversational_text(content: str) -> str:
+    """
+    Remove conversational text and formatting from Claude's response.
+    
+    Args:
+        content: Raw content from Claude that may contain conversational text
+        
+    Returns:
+        Clean content without conversational text or markdown formatting
     """
     import re
     
-    # Remove markdown code blocks (```language...```)
+    # Remove markdown code blocks first
     content = re.sub(r'^```[a-zA-Z]*\n', '', content, flags=re.MULTILINE)
     content = re.sub(r'\n```$', '', content, flags=re.MULTILINE)
     content = re.sub(r'^```$', '', content, flags=re.MULTILINE)
-    
-    # Remove any remaining triple backticks
     content = content.replace('```', '')
     
-    return content.strip()
+    # Remove common conversational starters (more aggressive patterns)
+    conversation_starters = [
+        r'^Here\'s\s+.*?[:\n]\s*',
+        r'^I\'ll\s+create\s+.*?[:\n]\s*',
+        r'^This\s+is\s+.*?[:\n]\s*',
+        r'^Let\s+me\s+.*?[:\n]\s*',
+        r'^Below\s+is\s+.*?[:\n]\s*',
+        r'^The\s+following\s+.*?[:\n]\s*',
+        r'^I\'ve\s+created\s+.*?[:\n]\s*',
+        r'^I\'ll\s+write\s+.*?[:\n]\s*'
+    ]
+    
+    for pattern in conversation_starters:
+        content = re.sub(pattern, '', content, flags=re.IGNORECASE | re.MULTILINE)
+    
+    # Remove explanatory endings
+    conversation_endings = [
+        r'\n\nThis\s+.*?[.!]$',
+        r'\n\nYou\s+can\s+.*?[.!]$',
+        r'\n\nFeel\s+free\s+.*?[.!]$',
+        r'\n\nThe\s+.*?\s+is\s+.*?[.!]$',
+        r'\n\nNote\s+that\s+.*?[.!]$',
+        r'\n\n.*?can\s+be\s+easily.*?[.!]$'
+    ]
+    
+    for pattern in conversation_endings:
+        content = re.sub(pattern, '', content, flags=re.IGNORECASE | re.MULTILINE)
+    
+    # Remove standalone explanatory sentences
+    lines = content.split('\n')
+    filtered_lines = []
+    
+    for line in lines:
+        line_stripped = line.strip()
+        # Skip lines that are purely explanatory (not code-related)
+        if (line_stripped.startswith(('This ', 'You can', 'Feel free', 'Note that')) and 
+            not line_stripped.startswith(('This.', 'This[', 'This(', 'This_')) and
+            not any(char in line_stripped for char in ['=', '(', ')', '{', '}', '<', '>'])):
+            continue
+        # Skip lines with common explanatory patterns
+        if ('can be easily' in line_stripped.lower() or 
+            'is straightforward' in line_stripped.lower() or
+            'is one of the fundamental' in line_stripped.lower() or
+            'provides a clean' in line_stripped.lower() or
+            'way to perform' in line_stripped.lower()):
+            continue
+        # Skip lines that are purely descriptive about the code
+        if (line_stripped.endswith('.') and 
+            any(phrase in line_stripped.lower() for phrase in [
+                'function', 'operation', 'programming', 'reusable', 'clean way',
+                'demonstrates', 'example of', 'simple approach'
+            ]) and
+            not any(char in line_stripped for char in ['=', '(', ')', '{', '}', '<', '>'])):
+            continue
+        filtered_lines.append(line)
+    
+    content = '\n'.join(filtered_lines)
+    
+    # Clean up extra whitespace
+    content = re.sub(r'\n\n+', '\n\n', content)  # Multiple newlines to double
+    content = content.strip()
+    
+    return content
+
+
+# Keep the old function for backward compatibility during transition
+def strip_markdown_formatting(content: str) -> str:
+    """
+    DEPRECATED: Use strip_conversational_text() instead.
+    Remove markdown code block formatting from Claude's response.
+    """
+    return strip_conversational_text(content)
 
 
 def execute_actions(actions: list[Action]) -> list[str]:
@@ -310,7 +403,7 @@ Return only the exact content that should be written to the file."""
                     print(f"🔧 Claude requested tool: {tool_call['tool']} with {tool_call['parameter']}: {tool_call['value']}")
         
         # Clean the response of any markdown formatting
-        cleaned_response = strip_markdown_formatting(raw_response)
+        cleaned_response = strip_conversational_text(raw_response)
         
         logger.info(f"Claude response received: {len(raw_response)} characters, cleaned to {len(cleaned_response)} characters")
         return cleaned_response

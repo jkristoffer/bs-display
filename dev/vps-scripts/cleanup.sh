@@ -82,8 +82,8 @@ cleanup_old_snapshots() {
     local keep_count=${1:-3}
     echo -e "${YELLOW}Cleaning up old snapshots (keeping latest $keep_count)...${NC}"
     
-    OLD_SNAPSHOTS=$(doctl compute snapshot list --format ID,Name | \
-        grep "bs-display-base" | \
+    OLD_SNAPSHOTS=$(doctl compute snapshot list --format ID,Name --no-header | \
+        grep "bs-display" | \
         sort -k2 -r | \
         tail -n +$((keep_count + 1)) | \
         awk '{print $1}' || true)
@@ -96,7 +96,7 @@ cleanup_old_snapshots() {
     echo "Found old snapshots to delete:"
     echo "$OLD_SNAPSHOTS" | while read -r snapshot_id; do
         if [ -n "$snapshot_id" ]; then
-            SNAPSHOT_NAME=$(doctl compute snapshot get "$snapshot_id" --format Name | tail -n 1)
+            SNAPSHOT_NAME=$(doctl compute snapshot get "$snapshot_id" --format Name --no-header)
             echo "  - $SNAPSHOT_NAME (ID: $snapshot_id)"
         fi
     done
@@ -113,7 +113,7 @@ cleanup_old_snapshots() {
     
     echo "$OLD_SNAPSHOTS" | while read -r snapshot_id; do
         if [ -n "$snapshot_id" ]; then
-            SNAPSHOT_NAME=$(doctl compute snapshot get "$snapshot_id" --format Name | tail -n 1)
+            SNAPSHOT_NAME=$(doctl compute snapshot get "$snapshot_id" --format Name --no-header)
             echo -e "  Deleting snapshot: ${YELLOW}$SNAPSHOT_NAME${NC} (ID: $snapshot_id)"
             doctl compute snapshot delete "$snapshot_id" --force
         fi

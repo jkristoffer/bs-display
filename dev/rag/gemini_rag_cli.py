@@ -5,10 +5,26 @@ Gemini RAG CLI - A tool for project-wide context retrieval using Gemini and Chro
 This script provides functionality to:
 1. Ingest project files into a vector database
 2. Query the project context using RAG (Retrieval-Augmented Generation)
-3. Generate context-aware responses using Gemini
+3. Generate context-aware responses using local Gemini CLI
+
+Features:
+- Smart re-ingestion with duplicate detection
+- Progress indicator during ingestion
+- Hybrid approach: API embeddings + local CLI responses
+- Force flag for intentional database recreation
 
 Usage:
+    # Initial ingestion
     python gemini_rag_cli.py ingest --project-root /path/to/project
+    
+    # Re-ingestion with safety check
+    python gemini_rag_cli.py ingest --project-root /path/to/project
+    # → Error: Collection exists with X chunks. Use --force or /gemini-update
+    
+    # Force recreation
+    python gemini_rag_cli.py ingest --project-root /path/to/project --force
+    
+    # Query with context
     python gemini_rag_cli.py query --query "Your question here"
 """
 
@@ -79,7 +95,7 @@ class GeminiRAGSystem:
         genai.configure(api_key=GEMINI_API_KEY)
         logger.info("Initialized Gemini API client")
     
-    def initialize_vector_db(self):
+    def initialize_vector_db(self, force_recreate: bool = False):
         """Initialize ChromaDB client and collection."""
         try:
             # Create persistent client with telemetry disabled
@@ -88,7 +104,24 @@ class GeminiRAGSystem:
                 settings=Settings(anonymized_telemetry=False)
             )
             
-            # Get or create collection
+            # Check if collection already exists
+            existing_collections = [col.name for col in self.chroma_client.list_collections()]
+            collection_exists = COLLECTION_NAME in existing_collections
+            
+            if collection_exists and not force_recreate:
+                # Get existing collection and check if it has data
+                self.collection = self.chroma_client.get_collection(name=COLLECTION_NAME)
+                count = self.collection.count()
+                if count > 0:
+                    raise ValueError(f"Collection '{COLLECTION_NAME}' already exists with {count} chunks. "
+                                   f"Use --force to recreate or run /gemini-update for incremental changes.")
+            
+            if collection_exists and force_recreate:
+                # Delete existing collection and recreate
+                logger.info(f"Deleting existing collection '{COLLECTION_NAME}' (force recreate)")
+                self.chroma_client.delete_collection(name=COLLECTION_NAME)
+            
+            # Create new collection
             self.collection = self.chroma_client.get_or_create_collection(
                 name=COLLECTION_NAME,
                 metadata={"description": "BS Display project codebase memory"}
@@ -97,6 +130,9 @@ class GeminiRAGSystem:
             logger.info(f"Initialized ChromaDB at {CHROMA_DB_PATH}")
             logger.info(f"Collection '{COLLECTION_NAME}' ready")
             
+        except ValueError as e:
+            # Re-raise ValueError for user-facing errors
+            raise e
         except Exception as e:
             logger.error(f"Failed to initialize vector database: {e}")
             sys.exit(1)
@@ -174,36 +210,49 @@ class GeminiRAGSystem:
                 ids=ids
             )
     
-    def ingest_project(self, project_root: str):
+    def ingest_project(self, project_root: str, force_recreate: bool = False):
         """Ingest entire project into vector database."""
         logger.info(f"Starting ingestion of project: {project_root}")
         
-        self.initialize_vector_db()
+        try:
+            self.initialize_vector_db(force_recreate=force_recreate)
+        except ValueError as e:
+            logger.error(str(e))
+            print(f"\n❌ {str(e)}")
+            print("\n💡 Options:")
+            print("   • Use --force to completely recreate the database")
+            print("   • Use /gemini-update for incremental changes (coming soon)")
+            print("   • Continue using existing database with /gemini queries")
+            return False
         
         project_path = Path(project_root)
         if not project_path.exists():
             logger.error(f"Project path does not exist: {project_root}")
             return
         
-        files_processed = 0
-        chunks_created = 0
-        
-        # Walk through project directory
+        # First pass: count total files to process for progress tracking
+        total_files = 0
+        all_files = []
         for file_path in project_path.rglob('*'):
-            # Skip directories and unwanted files
             if file_path.is_dir():
                 continue
-            
             if file_path.suffix not in VALID_EXTENSIONS:
                 continue
-            
-            # Skip common ignore patterns
             if any(ignore in str(file_path) for ignore in [
                 'node_modules', '.git', 'dist', 'build', '.next',
                 '__pycache__', '.pytest_cache', 'coverage', 'venv'
             ]):
                 continue
-            
+            all_files.append(file_path)
+            total_files += 1
+        
+        logger.info(f"Found {total_files} files to process")
+        
+        files_processed = 0
+        chunks_created = 0
+        
+        # Process files with progress indicator
+        for i, file_path in enumerate(all_files, 1):
             # Process file
             chunks = self.read_and_chunk_file(file_path)
             if chunks:
@@ -211,10 +260,23 @@ class GeminiRAGSystem:
                 files_processed += 1
                 chunks_created += len(chunks)
                 
+                # Calculate progress percentage
+                progress_pct = (i / total_files) * 100
+                
+                # Show progress every file for better feedback
+                print(f"\r[{progress_pct:5.1f}%] Processing {i}/{total_files}: {file_path.name} ({len(chunks)} chunks)", end='', flush=True)
+                
+                # Log detailed progress every 10 files
                 if files_processed % 10 == 0:
-                    logger.info(f"Processed {files_processed} files, {chunks_created} chunks")
+                    print()  # New line after progress indicator
+                    logger.info(f"Progress: {files_processed}/{total_files} files processed, {chunks_created} total chunks")
+            else:
+                # Show skipped files too
+                progress_pct = (i / total_files) * 100
+                print(f"\r[{progress_pct:5.1f}%] Skipped {i}/{total_files}: {file_path.name} (empty/error)", end='', flush=True)
         
-        logger.info(f"Ingestion complete: {files_processed} files, {chunks_created} chunks")
+        print()  # Final newline after progress indicator
+        logger.info(f"✅ Ingestion complete: {files_processed}/{total_files} files processed, {chunks_created} chunks created")
     
     def retrieve_context(self, query_text: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """Retrieve relevant context using similarity search."""
@@ -319,6 +381,11 @@ Examples:
         required=True,
         help='Root directory of the project to ingest'
     )
+    ingest_parser.add_argument(
+        '--force',
+        action='store_true',
+        help='Force recreate database (deletes existing data)'
+    )
     
     # Query command
     query_parser = subparsers.add_parser('query', help='Query project context using RAG')
@@ -347,7 +414,13 @@ Examples:
     
     # Execute command
     if args.command == 'ingest':
-        rag_system.ingest_project(args.project_root)
+        logger.info("Ingest command: processing project files")
+        force_recreate = getattr(args, 'force', False)
+        if force_recreate:
+            logger.info("Force flag detected: will recreate database")
+        success = rag_system.ingest_project(args.project_root, force_recreate=force_recreate)
+        if not success:
+            sys.exit(1)
     
     elif args.command == 'query':
         response = rag_system.query_with_context(args.query)

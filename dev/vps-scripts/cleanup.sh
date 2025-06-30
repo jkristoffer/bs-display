@@ -31,7 +31,7 @@ list_resources() {
     
     # List droplets
     echo -e "${BLUE}Droplets:${NC}"
-    DROPLETS=$(doctl compute droplet list | grep -E "(bs-display|ID)" || echo "No bs-display droplets found")
+    DROPLETS=$(doctl compute droplet list --tag-name bs-display || echo "No bs-display droplets found")
     echo "$DROPLETS"
     echo
     
@@ -46,7 +46,7 @@ list_resources() {
 cleanup_droplets() {
     echo -e "${YELLOW}Cleaning up droplets...${NC}"
     
-    DROPLET_IDS=$(doctl compute droplet list --format ID,Name | grep "bs-display" | awk '{print $1}' || true)
+    DROPLET_IDS=$(doctl compute droplet list --tag-name bs-display --format ID --no-header || true)
     
     if [ -z "$DROPLET_IDS" ]; then
         echo -e "${GREEN}✓ No bs-display droplets to clean up${NC}"
@@ -54,7 +54,7 @@ cleanup_droplets() {
     fi
     
     echo "Found droplets to delete:"
-    doctl compute droplet list | grep "bs-display"
+    doctl compute droplet list --tag-name bs-display
     echo
     
     if [ "$1" != "--force" ]; then
@@ -142,7 +142,7 @@ interactive_cleanup() {
                 ;;
             2)
                 echo -e "${YELLOW}Available droplets:${NC}"
-                doctl compute droplet list | grep -E "(bs-display|ID)"
+                doctl compute droplet list --tag-name bs-display
                 echo
                 read -p "Enter droplet ID to delete: " droplet_id
                 if [ -n "$droplet_id" ]; then

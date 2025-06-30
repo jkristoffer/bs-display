@@ -7,6 +7,30 @@ set -e
 echo "🤖 Starting Auto-Claude Issue Processor"
 echo "$(date): Processing GitHub issues with Claude Code CLI"
 
+# Install GitHub CLI if not present
+if ! command -v gh &> /dev/null; then
+  echo "📦 Installing GitHub CLI..."
+  if command -v apt-get &> /dev/null; then
+    # Ubuntu/Debian
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y gh
+  else
+    echo "❌ Cannot install GitHub CLI - unsupported OS"
+    exit 1
+  fi
+fi
+
+# Authenticate GitHub CLI with token
+if [ -n "$GITHUB_TOKEN" ]; then
+  echo "🔐 Authenticating GitHub CLI..."
+  echo "$GITHUB_TOKEN" | gh auth login --with-token
+else
+  echo "❌ GITHUB_TOKEN environment variable not set"
+  exit 1
+fi
+
 # Update to latest code (snapshot may be outdated)
 echo "📥 Updating repository to latest..."
 git fetch origin

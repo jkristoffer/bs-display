@@ -78,7 +78,7 @@ jobs:
           echo "🧠 Starting issue processing on VPS..."
           
           ssh -o StrictHostKeyChecking=no dev@$VPS_IP \
-            'cd /opt/bs-display/dev && ./scripts/process-github-issues.sh'
+            "export GITHUB_TOKEN='${{ secrets.GITHUB_TOKEN }}' && cd /opt/bs-display/dev && ./scripts/process-github-issues.sh"
           
       - name: Cleanup VPS
         if: always()

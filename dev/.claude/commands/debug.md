@@ -19,4 +19,4 @@ This command provides:
 - Specific file and line number references
 - Debugging steps based on project architecture
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py query --query "DEBUG ANALYSIS for BS Display project: $ARGUMENTS"
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_clean.sh query --query "DEBUG ANALYSIS for BS Display project: $ARGUMENTS"

@@ -26,6 +26,10 @@ from chromadb.config import Settings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
 
+# Disable ChromaDB telemetry to avoid capture() error
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+os.environ["CHROMA_TELEMETRY"] = "False"
+
 # Load environment variables
 load_dotenv()
 
@@ -47,6 +51,9 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+# Suppress ChromaDB telemetry errors
+logging.getLogger("chromadb.telemetry.posthog").setLevel(logging.CRITICAL)
 
 
 class GeminiRAGSystem:
@@ -73,8 +80,11 @@ class GeminiRAGSystem:
     def initialize_vector_db(self):
         """Initialize ChromaDB client and collection."""
         try:
-            # Create persistent client
-            self.chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
+            # Create persistent client with telemetry disabled
+            self.chroma_client = chromadb.PersistentClient(
+                path=CHROMA_DB_PATH,
+                settings=Settings(anonymized_telemetry=False)
+            )
             
             # Get or create collection
             self.collection = self.chroma_client.get_or_create_collection(

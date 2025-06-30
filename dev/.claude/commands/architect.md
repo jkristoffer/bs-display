@@ -20,4 +20,4 @@ This command provides:
 - Scalability implications
 - Consistency with established patterns
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py query --query "ARCHITECTURE ANALYSIS for BS Display project: $ARGUMENTS"
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_clean.sh query --query "ARCHITECTURE ANALYSIS for BS Display project: $ARGUMENTS"

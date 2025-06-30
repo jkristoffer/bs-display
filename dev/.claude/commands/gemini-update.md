@@ -16,4 +16,4 @@ Update the vector database with the latest project changes. This re-ingests the 
 ## Usage
 This command will clear the existing vector database and re-ingest all project files with fresh embeddings.
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py update --project-root /Users/kristoffersanio/git/bs-display/dev
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_wrapper.sh update --project-root /Users/kristoffersanio/git/bs-display/dev

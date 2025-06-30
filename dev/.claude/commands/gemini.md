@@ -12,4 +12,4 @@ Query Gemini with full project context using RAG (Retrieval-Augmented Generation
 - `gemini "What's the data flow for product filtering?"`
 - `gemini "Show me the styling patterns used in this project"`
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py query --query "$ARGUMENTS"
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_clean.sh query --query "$ARGUMENTS"

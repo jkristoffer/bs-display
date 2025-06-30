@@ -27,6 +27,11 @@ npm run preview         # Preview production build
 - **[Architecture Overview](./CLAUDE.md#architecture-overview)** - System design and patterns
 - **[Development Standards](/src/development-standards/)** - Component, styling, and naming conventions
 
+### AI-Powered Development
+- **[RAG Project Memory Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Comprehensive RAG system documentation  
+- **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage commands and examples
+- **[AI Development Guide](./CLAUDE.md)** - Core AI assistant patterns and workflows
+
 ### Development Tools
 - **[Code Review Agent](./CODE_REVIEW_AGENT.md)** - Automated code quality enforcement
   - Quick check: `npm run tools:code-review -- --file [file]`

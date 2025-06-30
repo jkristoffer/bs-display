@@ -14,4 +14,4 @@ This command will:
 3. Generate embeddings using Gemini's text-embedding-004 model
 4. Store in ChromaDB for fast retrieval
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py ingest --project-root /Users/kristoffersanio/git/bs-display/dev
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_wrapper.sh ingest --project-root /Users/kristoffersanio/git/bs-display/dev

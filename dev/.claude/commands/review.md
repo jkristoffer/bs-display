@@ -19,4 +19,4 @@ This command provides:
 - Component architecture recommendations
 - Integration suggestions with existing systems
 
-! python3 /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_cli.py query --query "CODE REVIEW for BS Display project: $ARGUMENTS"
+! /Users/kristoffersanio/git/bs-display/dev/rag/gemini_rag_clean.sh query --query "CODE REVIEW for BS Display project: $ARGUMENTS"

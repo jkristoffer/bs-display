@@ -15,6 +15,29 @@
 
 ---
 
+## 🧠 RAG PROJECT MEMORY (NEW!)
+
+**Transform from stateless AI to project-aware assistant with comprehensive codebase memory.**
+
+### **Quick Commands**
+```bash
+# Project-aware queries with full context
+/gemini "How does the ProductCard component work?"
+/debug "Images are 404ing on product pages"
+/review "Quiz component for functional programming standards"  
+/architect "How should I implement user authentication?"
+
+# Project maintenance
+/gemini-context     # Initial setup (one-time)
+/gemini-update      # Re-ingest after major changes
+```
+
+### **Learn More**
+- **[RAG System Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Complete documentation
+- **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage examples
+
+---
+
 ## 🆘 EMERGENCY QUICK ACCESS
 
 ### **Automation Failures**

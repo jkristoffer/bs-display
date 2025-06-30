@@ -1,0 +1,2 @@
+# Local CLI version requirements (no API key needed)
+langchain>=0.1.0

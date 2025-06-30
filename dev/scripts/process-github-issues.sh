@@ -4,161 +4,160 @@
 
 set -euo pipefail
 
+# Create temporary directory for script execution
+TMP_DIR=$(mktemp -d "/tmp/auto-claude-XXXXXX")
+
 # Enhanced logging and error handling
-LOG_FILE="/tmp/auto-claude-$(date +%Y%m%d-%H%M%S).log"
+LOG_FILE="$TMP_DIR/run.log"
 exec 1> >(tee -a "$LOG_FILE")
 exec 2> >(tee -a "$LOG_FILE" >&2)
 
-echo "🤖 Starting Auto-Claude Issue Processor v2.0"
-echo "$(date): Processing GitHub issues with Claude Code CLI"
-echo "📋 Log file: $LOG_FILE"
+# Logging helper functions for better readability
+log_section() {
+  echo ""
+  echo "======================================================================"
+  echo "  $1"
+  echo "======================================================================"
+}
 
-# Trap errors for better debugging
-trap 'echo "❌ Error on line $LINENO. Exit code: $?" | tee -a "$LOG_FILE"' ERR
+log_step() {
+  echo ""
+  echo "➤ $1"
+}
 
-# Enhanced authentication with better error handling
-check_github_auth() {
-  echo "🔐 Checking GitHub CLI authentication..."
+log_info() {
+  echo "  ℹ️  $1"
+}
+
+log_success() {
+  echo "  ✅ $1"
+}
+
+log_warning() {
+  echo "  ⚠️  $1"
+}
+
+log_error() {
+  echo "  ❌ $1"
+}
+
+log_progress() {
+  echo "  🔄 $1"
+}
+
+log_section "AUTO-CLAUDE GITHUB ISSUE PROCESSOR v2.0"
+log_info "Started at: $(date)"
+log_info "Log file: $LOG_FILE"
+log_info "Temporary directory: $TMP_DIR"
+
+# Trap for cleanup and error handling
+cleanup() {
+  echo ""
+  echo "🧹 Running cleanup..."
   
-  if ! command -v gh &> /dev/null; then
-    echo "❌ GitHub CLI not found in snapshot"
-    return 1
-  fi
-
-  if gh auth status &> /dev/null; then
-    echo "✅ GitHub CLI already authenticated"
-    return 0
-  fi
-
-  echo "🔑 GitHub CLI not authenticated, attempting token authentication..."
-  
-  if [ -z "${GITHUB_TOKEN:-}" ]; then
-    echo "❌ No GITHUB_TOKEN environment variable found"
-    echo "💡 Set GITHUB_TOKEN environment variable with a valid GitHub token"
-    return 1
-  fi
-
-  if echo "$GITHUB_TOKEN" | gh auth login --with-token 2>/dev/null; then
-    echo "✅ GitHub CLI authenticated with token"
-    # Verify authentication worked
-    if gh auth status &> /dev/null; then
-      return 0
+  # Clean up remote branch if PR was not successfully created
+  if [ -n "$BRANCH_NAME" ] && [ -z "$PR_URL" ]; then
+    echo "🗑️  PR not created, attempting to delete remote branch $BRANCH_NAME..."
+    if git push origin --delete "$BRANCH_NAME" 2>/dev/null; then
+      echo "✅ Remote branch $BRANCH_NAME deleted"
     else
-      echo "❌ Authentication verification failed"
-      return 1
+      echo "⚠️  Failed to delete remote branch $BRANCH_NAME (may not exist)"
     fi
-  else
-    echo "❌ Token authentication failed - token may be invalid or expired"
-    return 1
+    
+    # Also clean up local branch if we're not on it
+    local current_branch
+    current_branch=$(git branch --show-current 2>/dev/null || echo "")
+    if [ "$current_branch" != "$BRANCH_NAME" ]; then
+      if git branch -D "$BRANCH_NAME" 2>/dev/null; then
+        echo "✅ Local branch $BRANCH_NAME deleted"
+      fi
+    fi
+  elif [ -n "$PR_URL" ]; then
+    echo "✅ PR created successfully - branch $BRANCH_NAME will be preserved"
   fi
-}
-
-if ! check_github_auth; then
-  echo "❌ GitHub authentication failed - cannot proceed"
-  exit 1
-fi
-
-# Enhanced Claude CLI verification
-check_claude_auth() {
-  echo "🧠 Checking Claude CLI authentication..."
   
-  if ! command -v claude &> /dev/null; then
-    echo "❌ Claude CLI not found in snapshot"
-    echo "💡 Ensure Claude CLI is installed and available in PATH"
-    return 1
-  fi
-
-  if claude auth status &> /dev/null; then
-    echo "✅ Claude CLI authenticated and ready"
-    return 0
-  else
-    echo "❌ Claude CLI not authenticated in snapshot"
-    echo "💡 Run 'claude auth' to authenticate Claude CLI"
-    return 1
-  fi
+  # Clean up temporary files
+  echo "🧹 Cleaning up temporary files..."
+  rm -rf "$TMP_DIR"
 }
+trap cleanup EXIT
+trap 'echo "❌ Error on line $LINENO. Exit code: $?" | tee -a "$LOG_FILE"; cleanup; exit 1' ERR
 
-if ! check_claude_auth; then
-  echo "❌ Claude CLI authentication failed - cannot proceed"
-  exit 1
-fi
+# Global variables for tracking validation results
+REVIEW_ISSUES=0
+BRANCH_NAME=""
+PR_URL=""
+
 
 # Enhanced repository update with better error handling
 update_repository() {
-  echo "📥 Updating repository to latest..."
+  log_step "Updating repository to latest"
   local start_time=$(date +%s)
   
   # Store current branch and status
   local current_branch
   current_branch=$(git branch --show-current 2>/dev/null || echo "detached")
-  
-  # Stash any local changes to avoid conflicts
-  if ! git diff --quiet || ! git diff --cached --quiet; then
-    echo "💾 Stashing local changes..."
-    if ! git stash push -m "Auto-claude: temporary stash $(date)" 2>/dev/null; then
-      echo "⚠️  Failed to stash changes, attempting to continue..."
-    fi
-  fi
+  log_info "Current branch: $current_branch"
 
   # Ensure we're on main branch
   if [ "$current_branch" != "main" ]; then
-    echo "🔄 Switching to main branch from $current_branch"
+    log_progress "Switching to main branch from $current_branch"
     if ! git checkout main 2>/dev/null; then
-      echo "❌ Failed to checkout main branch"
+      log_error "Failed to checkout main branch"
       return 1
     fi
   fi
 
-  # Fetch with timeout protection
-  echo "🌐 Fetching latest changes..."
-  if ! timeout 60 git fetch origin 2>/dev/null; then
-    echo "❌ Git fetch timed out or failed"
+  # Robust repository sync: fetch + hard reset to guarantee exact mirror of remote
+  log_progress "Fetching latest changes from origin..."
+  if ! git fetch origin; then
+    log_error "Failed to fetch from origin"
     return 1
   fi
-  
-  local fetch_time=$(date +%s)
-  echo "⏱️  Git fetch completed in $((fetch_time - start_time)) seconds"
 
-  # Check if pull is needed to avoid unnecessary operations
-  local local_commit remote_commit
-  local_commit=$(git rev-parse HEAD)
-  remote_commit=$(git rev-parse origin/main 2>/dev/null || echo "unknown")
-
-  if [ "$local_commit" != "$remote_commit" ] && [ "$remote_commit" != "unknown" ]; then
-    echo "🔄 Pulling latest changes..."
-    if ! git pull origin main; then
-      echo "❌ Git pull failed"
-      return 1
-    fi
+  log_progress "Syncing to exact remote state..."
+  if git reset --hard origin/main; then
+    log_success "Repository synced to remote state"
     
-    # Smart dependency management
-    if git diff --name-only HEAD~1 | grep -q "package-lock.json\|package.json"; then
-      echo "📦 Package files changed, updating dependencies..."
-      local npm_start=$(date +%s)
-      if npm ci --prefer-offline --no-audit 2>/dev/null; then
-        local npm_time=$(date +%s)
-        echo "⏱️  npm ci completed in $((npm_time - npm_start)) seconds"
+    # Smart dependency management - check if package files exist and update deps
+    if [ -f "package.json" ]; then
+      if [ ! -d "node_modules" ] || [ "package-lock.json" -nt "node_modules" ]; then
+        log_progress "Dependencies need updating..."
+        local npm_start=$(date +%s)
+        if npm ci --prefer-offline --no-audit 2>/dev/null; then
+          local npm_time=$(date +%s)
+          log_success "npm ci completed in $((npm_time - npm_start)) seconds"
+        else
+          log_warning "npm ci failed, trying npm install..."
+          if npm install --prefer-offline --no-audit; then
+            log_success "npm install completed"
+          else
+            log_warning "npm install failed, continuing without dependency update"
+          fi
+        fi
       else
-        echo "⚠️  npm ci failed, trying npm install..."
-        npm install --prefer-offline --no-audit
+        log_info "Dependencies are current, skipping npm install"
       fi
     else
-      echo "📦 Package files unchanged, skipping dependency update"
+      log_info "No package.json found, skipping dependency update"
     fi
   else
-    echo "✅ Repository already up to date"
+    log_error "Failed to sync repository state"
+    return 1
   fi
   
   return 0
 }
 
 if ! update_repository; then
-  echo "❌ Repository update failed - cannot proceed"
+  log_error "Repository update failed - cannot proceed"
   exit 1
 fi
 
+log_section "GITHUB ISSUE PROCESSING"
+
 # Get open issues with claude-task label
-echo "🔍 Fetching open issues..."
+log_step "Fetching open issues with 'claude-task' label"
 ISSUES=$(gh issue list \
   --state open \
   --label "claude-task" \
@@ -166,9 +165,10 @@ ISSUES=$(gh issue list \
   --limit 1)
 
 ISSUE_COUNT=$(echo "$ISSUES" | jq length)
+log_info "Found $ISSUE_COUNT issue(s) with 'claude-task' label"
 
 if [ "$ISSUE_COUNT" -eq 0 ]; then
-  echo "ℹ️ No issues found with 'claude-task' label"
+  log_info "No issues found with 'claude-task' label - exiting"
   exit 0
 fi
 
@@ -177,10 +177,12 @@ ISSUE_NUM=$(echo "$ISSUES" | jq -r '.[0].number')
 ISSUE_TITLE=$(echo "$ISSUES" | jq -r '.[0].title')
 ISSUE_BODY=$(echo "$ISSUES" | jq -r '.[0].body')
 
-echo "🎯 Processing Issue #$ISSUE_NUM: $ISSUE_TITLE"
+log_step "Processing Issue #$ISSUE_NUM"
+log_info "Title: $ISSUE_TITLE"
 
 # Create working branch
 BRANCH_NAME="auto/issue-$ISSUE_NUM"
+log_progress "Creating working branch: $BRANCH_NAME"
 git checkout -b "$BRANCH_NAME"
 
 # Mark issue as in-progress
@@ -221,46 +223,33 @@ AUTOMATION CONTEXT:
 - Implement the most reasonable interpretation if requirements unclear
 - Generate commit with proper format including issue closure"
 
+log_section "CLAUDE CLI PROCESSING"
+
 # Use Claude Code CLI to process the issue (with automation flags)
-echo "🧠 Running Claude Code CLI with automation flags..."
+log_step "Running Claude Code CLI with automation flags"
 
 # Debug: Show prompt length and first few lines
-echo "📊 Prompt length: $(echo "$CLAUDE_PROMPT" | wc -c) characters"
-echo "📝 First 3 lines of prompt:"
+log_info "Prompt length: $(echo "$CLAUDE_PROMPT" | wc -c) characters"
+log_info "First 3 lines of prompt:"
 echo "$CLAUDE_PROMPT" | head -3
-echo "..."
+echo ""
 
 # Run Claude with --print for non-interactive automation and timeout
-echo "⏳ Starting Claude CLI (with 10-minute timeout)..."
-echo "🚀 Claude CLI started at $(date +%H:%M:%S)"
+log_progress "Starting Claude CLI (with 15-minute timeout)"
+log_info "Claude CLI started at $(date +%H:%M:%S)"
 
-# Start a simple progress indicator in background
-{
-  sleep 10  # Give Claude time to start
-  while true; do
-    if ! pgrep -f "claude.*--print" > /dev/null; then
-      break
-    fi
-    echo "🤖 Claude is working... ($(date +%H:%M:%S)) - checking file changes..."
-    # Show any new files being created
-    find . -name "*.tsx" -o -name "*.ts" -o -name "*.astro" -newer /tmp/claude_start 2>/dev/null | head -3 | sed 's/^/   📁 /'
-    sleep 45
-  done
-} &
-PROGRESS_PID=$!
-
-# Create timestamp file for change detection
-touch /tmp/claude_start
+# Create timestamp file for change detection  
+touch "$TMP_DIR/claude_start"
 
 # Enhanced Claude CLI execution with better monitoring
 run_claude_cli() {
-  echo "🧠 Starting Claude CLI execution..."
+  log_step "Starting Claude CLI execution"
   local claude_start_time=$(date +%s)
-  local claude_output="/tmp/claude_output.log"
-  local claude_progress="/tmp/claude_progress.log"
+  local claude_output="$TMP_DIR/claude_output.log"
+  local claude_progress="$TMP_DIR/claude_progress.log"
   
   # Create timestamp file for change detection
-  touch /tmp/claude_start
+  touch "$TMP_DIR/claude_start"
   
   # Enhanced progress monitoring
   {
@@ -279,7 +268,7 @@ run_claude_cli() {
       
       # Check for file activity
       local new_files
-      new_files=$(find . -newer /tmp/claude_start \( -name "*.tsx" -o -name "*.ts" -o -name "*.astro" -o -name "*.json" \) 2>/dev/null | head -3)
+      new_files=$(find . -newer "$TMP_DIR/claude_start" \( -name "*.tsx" -o -name "*.ts" -o -name "*.astro" -o -name "*.json" \) 2>/dev/null | head -3)
       if [ -n "$new_files" ]; then
         echo "📁 Files being modified:" >> "$claude_progress"
         echo "$new_files" | sed 's/^/   📝 /' >> "$claude_progress"
@@ -355,7 +344,7 @@ else
   # Enhanced error diagnosis
   echo "🔍 Error diagnosis:"
   echo "📋 Last 15 lines of Claude output:"
-  tail -15 /tmp/claude_output.log 2>/dev/null || echo "No output log available"
+  tail -15 "$TMP_DIR/claude_output.log" 2>/dev/null || echo "No output log available"
   
   # Determine failure reason
   local failure_reason
@@ -402,7 +391,7 @@ fi
 
 # Check if any changes were made
 if git diff --quiet && git diff --cached --quiet; then
-  echo "ℹ️ No changes generated by Claude"
+  log_info "No changes generated by Claude"
   gh issue comment "$ISSUE_NUM" --body "🤖 **No Changes Generated**
 
 Claude processed the issue but did not generate any code changes.
@@ -413,33 +402,32 @@ This could mean:
 
 Please review the issue requirements."
   
-  # Clean up branch
-  git checkout main
-  git branch -D "$BRANCH_NAME"
   exit 0
 fi
 
-echo "✅ Changes detected, validating..."
+log_success "Changes detected, starting validation"
+
+log_section "VALIDATION PIPELINE"
 
 # Enhanced validation following CLAUDE.md standards
 validate_changes() {
-  echo "🔍 Running comprehensive validation pipeline..."
+  log_step "Running comprehensive validation pipeline"
   local validation_start=$(date +%s)
   
   # Check for basic syntax issues first
-  echo "📝 Checking for basic syntax issues..."
+  log_progress "Checking for basic syntax issues..."
   local syntax_errors=0
   while IFS= read -r -d '' file; do
     case "$file" in
       *.ts|*.tsx)
         if ! npx tsc --noEmit "$file" 2>/dev/null; then
-          echo "⚠️  Syntax issues in $file"
+          log_warning "Syntax issues in $file"
           syntax_errors=$((syntax_errors + 1))
         fi
         ;;
       *.js|*.jsx)
         if ! node -c "$file" 2>/dev/null; then
-          echo "⚠️  Syntax issues in $file"
+          log_warning "Syntax issues in $file"
           syntax_errors=$((syntax_errors + 1))
         fi
         ;;
@@ -447,26 +435,26 @@ validate_changes() {
   done < <(git diff --name-only --diff-filter=AM -z)
   
   if [ $syntax_errors -gt 0 ]; then
-    echo "⚠️  $syntax_errors files have syntax issues, but continuing validation..."
+    log_warning "$syntax_errors files have syntax issues, but continuing validation..."
   fi
 
   # Quick build check (attempt fast build first)
-  echo "🏗️  Testing build process..."
+  log_progress "Testing build process..."
   local build_success=false
   
   # Try fast build first if available
   if npm run build:fast >/dev/null 2>&1; then
-    echo "✅ Fast build completed successfully"
+    log_success "Fast build completed successfully"
     build_success=true
   else
-    echo "🔄 Fast build failed, trying full build..."
-    if npm run build 2>&1 | tee /tmp/build_output.log; then
-      echo "✅ Full build completed successfully"
+    log_progress "Fast build failed, trying full build..."
+    if npm run build 2>&1 | tee "$TMP_DIR/build_output.log"; then
+      log_success "Full build completed successfully"
       build_success=true
     else
-      echo "❌ Build validation failed"
+      log_error "Build validation failed"
       local build_errors
-      build_errors=$(grep -i "error\|failed" /tmp/build_output.log 2>/dev/null | head -5 || echo "See build log for details")
+      build_errors=$(grep -i "error\|failed" "$TMP_DIR/build_output.log" 2>/dev/null | head -5 || echo "See build log for details")
       
       gh issue comment "$ISSUE_NUM" --body "🤖 **Build Validation Failed**
 
@@ -490,13 +478,13 @@ $build_errors
   fi
 
   # TypeScript validation with detailed error reporting
-  echo "🔍 Running TypeScript validation..."
-  if npm run check 2>&1 | tee /tmp/typescript_output.log; then
-    echo "✅ TypeScript validation passed"
+  log_progress "Running TypeScript validation..."
+  if npm run check 2>&1 | tee "$TMP_DIR/typescript_output.log"; then
+    log_success "TypeScript validation passed"
   else
-    echo "❌ TypeScript validation failed"
+    log_error "TypeScript validation failed"
     local ts_errors
-    ts_errors=$(grep -A 3 -B 1 "error TS" /tmp/typescript_output.log 2>/dev/null | head -10 || echo "See TypeScript log for details")
+    ts_errors=$(grep -A 3 -B 1 "error TS" "$TMP_DIR/typescript_output.log" 2>/dev/null | head -10 || echo "See TypeScript log for details")
     
     gh issue comment "$ISSUE_NUM" --body "🤖 **TypeScript Validation Failed**
 
@@ -519,35 +507,35 @@ $ts_errors
   fi
   
   local validation_time=$(($(date +%s) - validation_start))
-  echo "⏱️  Validation completed in ${validation_time}s"
+  log_success "Validation completed in ${validation_time}s"
   return 0
 }
 
 if ! validate_changes; then
-  echo "❌ Validation failed - cleaning up"
-  git checkout main 2>/dev/null || true
-  git branch -D "$BRANCH_NAME" 2>/dev/null || true
+  log_error "Validation failed"
   exit 1
 fi
 
+log_section "CODE REVIEW"
+
 # Enhanced code review with better reporting
 run_code_review() {
-  echo "📋 Running enhanced code review on modified files..."
+  log_step "Running enhanced code review on modified files"
   local review_start=$(date +%s)
-  local review_issues=0
   local reviewed_files=0
+  REVIEW_ISSUES=0  # Reset global counter
   
   # Get all modified files
   local modified_files
   modified_files=$(git diff --name-only --diff-filter=AM)
   
   if [ -z "$modified_files" ]; then
-    echo "ℹ️  No files to review"
+    log_info "No files to review"
     return 0
   fi
   
-  echo "📁 Files to review:"
-  echo "$modified_files" | sed 's/^/   📝 /'
+  log_info "Files to review:"
+  echo "$modified_files" | sed 's/^/    📝 /'
   
   # Review each relevant file
   while IFS= read -r file; do
@@ -561,7 +549,7 @@ run_code_review() {
           echo "✅ $file passed code review"
         else
           echo "⚠️  Code review issues or tool unavailable for $file"
-          review_issues=$((review_issues + 1))
+          REVIEW_ISSUES=$((REVIEW_ISSUES + 1))
         fi
         ;;
       *.md|*.json|*.yml|*.yaml)
@@ -576,11 +564,11 @@ run_code_review() {
   local review_time=$(($(date +%s) - review_start))
   echo "📊 Review summary:"
   echo "   📝 Files reviewed: $reviewed_files"
-  echo "   ⚠️  Issues detected: $review_issues"
+  echo "   ⚠️  Issues detected: $REVIEW_ISSUES"
   echo "   ⏱️  Review time: ${review_time}s"
   
-  if [ $review_issues -gt 0 ]; then
-    echo "⚠️  $review_issues files had code review issues, but proceeding with implementation"
+  if [ $REVIEW_ISSUES -gt 0 ]; then
+    echo "⚠️  $REVIEW_ISSUES files had code review issues, but proceeding with implementation"
     echo "💡 Manual review recommended for affected files"
   fi
   
@@ -589,13 +577,16 @@ run_code_review() {
 
 run_code_review
 
+log_section "COMMIT AND PR CREATION"
+
 # Commit changes with enhanced message format
-echo "💾 Committing changes..."
+log_step "Committing changes"
 git add .
 
 # Count changed files for commit message
 CHANGED_FILES=$(git diff --cached --name-only | wc -l)
 CHANGED_COMPONENTS=$(git diff --cached --name-only | grep -c "components/" || echo 0)
+log_info "Changed files: $CHANGED_FILES ($CHANGED_COMPONENTS components)"
 
 git commit -m "feat: $ISSUE_TITLE
 
@@ -615,11 +606,11 @@ Closes #$ISSUE_NUM
 Co-Authored-By: Claude <noreply@anthropic.com>"
 
 # Push branch
-echo "📤 Pushing branch..."
+log_progress "Pushing branch to origin..."
 git push origin "$BRANCH_NAME"
 
 # Create PR with comprehensive description
-echo "🔀 Creating Pull Request..."
+log_step "Creating Pull Request"
 
 # Get summary of changes for PR body
 CHANGED_FILES_LIST=$(git diff --name-only HEAD~1..HEAD | head -10)
@@ -676,6 +667,7 @@ gh pr create \
 
 # Get PR URL and update issue
 PR_URL=$(gh pr view --json url -q .url)
+log_success "PR created successfully: $PR_URL"
 
 gh issue comment "$ISSUE_NUM" --body "🤖 **Pull Request Created**
 
@@ -689,5 +681,6 @@ gh issue comment "$ISSUE_NUM" --body "🤖 **Pull Request Created**
 
 The PR will be automatically linked to close this issue when merged."
 
-echo "🎉 Successfully processed issue #$ISSUE_NUM"
-echo "📋 Created PR: $PR_URL"
+log_section "COMPLETION"
+log_success "Successfully processed issue #$ISSUE_NUM"
+log_info "Created PR: $PR_URL"

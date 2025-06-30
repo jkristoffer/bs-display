@@ -5,7 +5,7 @@ on:
 
 jobs:
   parse-and-schedule:
-    if: startsWith(github.event.comment.body, '/auto-claude')
+    if: startsWith(github.event.comment.body, '/auto-claude') && github.event.comment.user.login == 'jkristoffer'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

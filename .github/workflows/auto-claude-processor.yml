@@ -28,7 +28,7 @@ jobs:
       - name: Spin up pre-configured VPS
         run: |
           echo "🚀 Spinning up VPS for auto-claude processing..."
-          ./vps-scripts/spin-up.sh auto-claude-worker
+          ./dev/vps-scripts/spin-up.sh auto-claude-worker
         
       - name: Wait for VPS to be ready
         run: |
@@ -58,7 +58,7 @@ jobs:
         if: always()
         run: |
           echo "🧹 Cleaning up VPS..."
-          ./vps-scripts/cleanup.sh droplets
+          ./dev/vps-scripts/cleanup.sh droplets
         
       - name: Report completion
         if: github.event.inputs.comment_url

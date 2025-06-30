@@ -71,6 +71,7 @@ show_help() {
     echo "  connect [name]  Show SSH command for droplet"
     echo "  list            List all active droplets"
     echo "  cleanup         Clean up resources"
+    echo "  cleanup-snapshots Keep only most recent snapshot"
     echo "  costs           Comprehensive cost analysis & calculator"
     echo
     echo -e "${YELLOW}Advanced Commands:${NC}"
@@ -83,6 +84,7 @@ show_help() {
     echo "  $0 connect feature-branch   # Get SSH command"
     echo "  $0 costs                    # Analyze costs & plan usage"
     echo "  $0 cleanup                  # Interactive cleanup"
+    echo "  $0 cleanup-snapshots        # Keep only most recent snapshot"
     echo "  $0 update                   # Update base snapshot"
     echo
 }
@@ -193,6 +195,11 @@ case "${1:-help}" in
     "cleanup"|"--cleanup")
         cd "$SCRIPT_DIR"
         ./cleanup.sh
+        ;;
+    "cleanup-snapshots"|"--cleanup-snapshots")
+        echo -e "${YELLOW}Keeping only the most recent snapshot...${NC}"
+        cd "$SCRIPT_DIR"
+        ./cleanup.sh snapshots-keep-latest
         ;;
     "update"|"-u"|"--update")
         echo -e "${YELLOW}Updating base snapshot...${NC}"

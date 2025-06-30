@@ -130,10 +130,11 @@ interactive_cleanup() {
         echo "2. Delete specific droplet"
         echo "3. Delete all droplets"
         echo "4. Clean up old snapshots (keep latest 3)"
-        echo "5. Emergency cleanup (delete everything)"
-        echo "6. Exit"
+        echo "5. Keep only most recent snapshot"
+        echo "6. Emergency cleanup (delete everything)"
+        echo "7. Exit"
         echo
-        read -p "Enter choice (1-6): " choice
+        read -p "Enter choice (1-7): " choice
         
         case $choice in
             1)
@@ -156,6 +157,10 @@ interactive_cleanup() {
                 cleanup_old_snapshots 3
                 ;;
             5)
+                echo -e "${YELLOW}⚠ This will keep only the most recent snapshot and delete all others!${NC}"
+                cleanup_old_snapshots 1
+                ;;
+            6)
                 echo -e "${RED}⚠ Emergency cleanup will delete ALL bs-display resources!${NC}"
                 read -p "Are you sure? Type 'yes' to confirm: " confirm
                 if [ "$confirm" = "yes" ]; then
@@ -164,7 +169,7 @@ interactive_cleanup() {
                     echo -e "${GREEN}✓ Emergency cleanup complete${NC}"
                 fi
                 ;;
-            6)
+            7)
                 echo -e "${GREEN}Goodbye!${NC}"
                 exit 0
                 ;;
@@ -186,6 +191,10 @@ case "${1:-interactive}" in
         ;;
     "snapshots"|"-s"|"--snapshots")
         cleanup_old_snapshots "${2:-3}" "$3"
+        ;;
+    "snapshots-keep-latest"|"--snapshots-keep-latest")
+        echo -e "${YELLOW}Keeping only the most recent snapshot...${NC}"
+        cleanup_old_snapshots 1 "$2"
         ;;
     "all"|"--all")
         echo -e "${YELLOW}Cleaning up all bs-display resources...${NC}"
@@ -214,6 +223,7 @@ case "${1:-interactive}" in
         echo "  list                    List all bs-display resources"
         echo "  droplets [--force]      Delete all bs-display droplets"
         echo "  snapshots [N] [--force] Clean old snapshots (keep latest N, default 3)"
+        echo "  snapshots-keep-latest [--force] Keep only the most recent snapshot"
         echo "  all [--force]           Clean droplets + old snapshots"
         echo "  emergency [--force]     Delete everything (dangerous!)"
         echo "  help                    Show this help"
@@ -224,6 +234,7 @@ case "${1:-interactive}" in
         echo "  $0 droplets             Delete all droplets (with confirmation)"
         echo "  $0 droplets --force     Delete all droplets (no confirmation)"
         echo "  $0 snapshots 5          Keep latest 5 snapshots"
+        echo "  $0 snapshots-keep-latest Keep only the most recent snapshot"
         echo "  $0 emergency --force    Nuclear option (delete everything)"
         echo
         ;;

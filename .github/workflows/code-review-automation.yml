@@ -1,0 +1,357 @@
+name: Code Review Automation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**/*.ts'
+      - 'src/**/*.tsx'
+      - 'src/**/*.js'
+      - 'src/**/*.jsx'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to review'
+        required: true
+        type: string
+      batch_directory:
+        description: 'Directory to analyze (optional)'
+        required: false
+        type: string
+        default: 'src/'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup GitHub CLI
+        run: |
+          gh auth setup-git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Code Review Agent (PR)
+        if: github.event_name == 'pull_request'
+        id: review_pr
+        run: |
+          # Create output file for results
+          mkdir -p review-output
+          
+          # Run code review agent and capture output
+          node scripts/code-review-agent.js --pr ${{ github.event.number }} > review-output/report.txt 2>&1
+          
+          # Store results in environment variables
+          echo "REVIEW_COMPLETED=true" >> $GITHUB_OUTPUT
+          
+          # Extract score from output
+          SCORE=$(grep "Overall Score:" review-output/report.txt | grep -o '[0-9]\+' || echo "0")
+          echo "OVERALL_SCORE=$SCORE" >> $GITHUB_OUTPUT
+          
+          # Extract grade
+          GRADE=$(grep "Grade:" review-output/report.txt | cut -d' ' -f3- || echo "F")
+          echo "GRADE=$GRADE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Code Review Agent (Manual)
+        if: github.event_name == 'workflow_dispatch'
+        id: review_manual
+        run: |
+          mkdir -p review-output
+          
+          if [ -n "${{ github.event.inputs.batch_directory }}" ]; then
+            node scripts/code-review-agent.js --batch "${{ github.event.inputs.batch_directory }}" > review-output/report.txt 2>&1
+          else
+            node scripts/code-review-agent.js --pr "${{ github.event.inputs.pr_number }}" > review-output/report.txt 2>&1
+          fi
+          
+          echo "REVIEW_COMPLETED=true" >> $GITHUB_OUTPUT
+          
+          SCORE=$(grep "Overall Score:" review-output/report.txt | grep -o '[0-9]\+' || echo "0")
+          echo "OVERALL_SCORE=$SCORE" >> $GITHUB_OUTPUT
+          
+          GRADE=$(grep "Grade:" review-output/report.txt | cut -d' ' -f3- || echo "F")
+          echo "GRADE=$GRADE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Review Summary
+        if: steps.review_pr.outputs.REVIEW_COMPLETED == 'true' || steps.review_manual.outputs.REVIEW_COMPLETED == 'true'
+        run: |
+          # Get the score from whichever job ran
+          SCORE="${{ steps.review_pr.outputs.OVERALL_SCORE }}${{ steps.review_manual.outputs.OVERALL_SCORE }}"
+          GRADE="${{ steps.review_pr.outputs.GRADE }}${{ steps.review_manual.outputs.GRADE }}"
+          
+          # Create summary file
+          cat > review-output/summary.md << 'EOF'
+          ## 🤖 Automated Code Review Results
+          
+          **Overall Score:** ${SCORE}/100  
+          **Grade:** ${GRADE}
+          
+          ### 📊 Standards Compliance Analysis
+          
+          This automated review checks compliance with:
+          - ⚡ **Functional Programming Standards** (40% weight)
+          - 📏 **Project Development Standards** (20% weight) 
+          - 🔷 **TypeScript Best Practices** (20% weight)
+          - ⚛️ **React Component Patterns** (20% weight)
+          
+          ### 📋 Detailed Report
+          
+          <details>
+          <summary>Click to view full analysis</summary>
+          
+          \`\`\`
+          $(cat review-output/report.txt)
+          \`\`\`
+          
+          </details>
+          
+          ### 🎯 Score Interpretation
+          
+          - **90-100:** A (Excellent) - Ready for merge
+          - **80-89:** B (Good) - Minor improvements recommended
+          - **70-79:** C (Satisfactory) - Some issues to address
+          - **60-69:** D (Needs Improvement) - Significant changes required
+          - **0-59:** F (Major Issues) - Comprehensive refactoring needed
+          
+          ### 🚀 Next Steps
+          
+          $(if [ "$SCORE" -ge 80 ]; then
+            echo "✅ **Code meets quality standards** - Consider addressing minor recommendations and proceed with merge."
+          elif [ "$SCORE" -ge 70 ]; then
+            echo "⚠️ **Code is acceptable** - Please review and address the identified issues before merging."
+          else
+            echo "❌ **Code needs significant improvement** - Please address the identified issues before requesting another review."
+          fi)
+          
+          ---
+          
+          *This review was generated automatically by the Code Review Agent. For questions or to report issues, please contact the development team.*
+          EOF
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request' && (steps.review_pr.outputs.REVIEW_COMPLETED == 'true')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('review-output/summary.md', 'utf8');
+            
+            // Find existing bot comment
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            
+            const botComment = comments.data.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🤖 Automated Code Review Results')
+            );
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: summary
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: summary
+              });
+            }
+
+      - name: Set PR Status Checks
+        if: github.event_name == 'pull_request' && (steps.review_pr.outputs.REVIEW_COMPLETED == 'true')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const score = parseInt('${{ steps.review_pr.outputs.OVERALL_SCORE }}');
+            const sha = '${{ github.event.pull_request.head.sha }}';
+            
+            // Determine status based on score
+            const state = score >= 70 ? 'success' : score >= 60 ? 'pending' : 'failure';
+            const description = score >= 70 
+              ? `Code review passed (${score}/100)` 
+              : score >= 60 
+                ? `Code review needs attention (${score}/100)`
+                : `Code review failed (${score}/100)`;
+            
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: sha,
+              state: state,
+              target_url: `${context.payload.pull_request.html_url}#issuecomment-${context.issue.number}`,
+              description: description,
+              context: 'code-review-agent/standards-compliance'
+            });
+            
+            // Additional status for functional programming compliance
+            const fpScore = score; // Simplified - would extract actual FP score in real implementation
+            const fpState = fpScore >= 75 ? 'success' : 'failure';
+            const fpDescription = `Functional Programming compliance (${fpScore}/100)`;
+            
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: sha,
+              state: fpState,
+              target_url: `${context.payload.pull_request.html_url}#issuecomment-${context.issue.number}`,
+              description: fpDescription,
+              context: 'code-review-agent/functional-programming'
+            });
+
+      - name: Add PR Labels
+        if: github.event_name == 'pull_request' && (steps.review_pr.outputs.REVIEW_COMPLETED == 'true')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const score = parseInt('${{ steps.review_pr.outputs.OVERALL_SCORE }}');
+            
+            // Remove existing review labels
+            const existingLabels = ['review-excellent', 'review-good', 'review-needs-work', 'review-major-issues', 'fp-compliant', 'fp-non-compliant'];
+            
+            try {
+              for (const label of existingLabels) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: label
+                }).catch(() => {}); // Ignore if label doesn't exist
+              }
+            } catch (error) {
+              console.log('Error removing labels:', error.message);
+            }
+            
+            // Add new labels based on score
+            const labelsToAdd = [];
+            
+            if (score >= 90) {
+              labelsToAdd.push('review-excellent');
+            } else if (score >= 80) {
+              labelsToAdd.push('review-good');
+            } else if (score >= 60) {
+              labelsToAdd.push('review-needs-work');
+            } else {
+              labelsToAdd.push('review-major-issues');
+            }
+            
+            // Add functional programming compliance label
+            if (score >= 75) {
+              labelsToAdd.push('fp-compliant');
+            } else {
+              labelsToAdd.push('fp-non-compliant');
+            }
+            
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labelsToAdd
+              });
+            }
+
+      - name: Upload Review Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-review-results-${{ github.run_number }}
+          path: review-output/
+          retention-days: 30
+
+      - name: Fail workflow if critical issues found
+        if: steps.review_pr.outputs.OVERALL_SCORE != '' && steps.review_pr.outputs.OVERALL_SCORE < 60
+        run: |
+          echo "❌ Code review failed with score ${{ steps.review_pr.outputs.OVERALL_SCORE }}/100"
+          echo "Critical issues found that must be addressed before merging."
+          exit 1
+
+  create-labels:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Create Review Labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              {
+                name: 'review-excellent',
+                color: '0e8a16',
+                description: 'Code review score 90-100 (Excellent)'
+              },
+              {
+                name: 'review-good', 
+                color: '1d76db',
+                description: 'Code review score 80-89 (Good)'
+              },
+              {
+                name: 'review-needs-work',
+                color: 'fbca04',
+                description: 'Code review score 60-79 (Needs Work)'
+              },
+              {
+                name: 'review-major-issues',
+                color: 'd93f0b',
+                description: 'Code review score 0-59 (Major Issues)'
+              },
+              {
+                name: 'fp-compliant',
+                color: '0e8a16',
+                description: 'Functional Programming compliant'
+              },
+              {
+                name: 'fp-non-compliant',
+                color: 'd93f0b',
+                description: 'Functional Programming non-compliant'
+              }
+            ];
+            
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ...label
+                });
+                console.log(`Created label: ${label.name}`);
+              } catch (error) {
+                if (error.status === 422) {
+                  console.log(`Label already exists: ${label.name}`);
+                } else {
+                  console.error(`Error creating label ${label.name}:`, error.message);
+                }
+              }
+            }

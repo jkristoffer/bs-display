@@ -1,0 +1,10 @@
+#!/bin/bash
+# AI Pro - Redirect to AI (merged into single AI-first interface)
+# The ai command now includes the full pipeline by default
+
+echo "🔄 ai-pro has been merged into the main ai command"
+echo "   Using unified AI-first interface..."
+echo ""
+
+# Redirect to main ai command
+exec "$(dirname "$0")/ai" "$@"

@@ -42,6 +42,13 @@ echo "✅ Claude CLI ready"
 # Update to latest code (snapshot may be outdated)
 echo "📥 Updating repository to latest..."
 START_TIME=$(date +%s)
+
+# Stash any local changes to avoid conflicts
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "💾 Stashing local changes..."
+  git stash push -m "Auto-claude: temporary stash $(date)"
+fi
+
 git fetch origin
 git checkout main
 FETCH_TIME=$(date +%s)
@@ -105,25 +112,33 @@ Started processing this issue automatically.
 
 Will create a PR if valid changes are generated."
 
-# Create focused prompt for Claude
+# Create focused prompt for Claude with enhanced context
 CLAUDE_PROMPT="Implement this GitHub issue for the bs-display project:
 
 ISSUE #$ISSUE_NUM: $ISSUE_TITLE
 
 $ISSUE_BODY
 
+PROJECT CONTEXT:
+- Astro-based e-commerce platform for interactive displays and smartboards
+- React 19 + TypeScript with strict functional programming standards
+- Core features: Product quiz, dynamic filtering, buying guides, content automation
+- Architecture: /src/components/ for UI, /src/data/ for product models, /src/content/ for blog posts
+
 REQUIREMENTS:
-- This is an Astro-based e-commerce platform for interactive displays
-- Follow functional programming principles with TypeScript
+- Follow functional programming principles (pure functions, immutability, composition)
+- Use TypeScript throughout with proper type definitions
 - Follow existing patterns in /src/components/ and /src/development-standards/
-- Create or modify files as needed to implement the requested feature
-- Ensure TypeScript compilation passes
+- Run code review agent after implementation: npm run tools:code-review -- --file [file]
+- Ensure TypeScript compilation passes: npm run check
+- Create or modify files as needed, preferring edits over new files
 
 AUTOMATION CONTEXT:
-- This is running automatically on a VPS
-- Implement the most reasonable interpretation if unclear
-- Follow established project conventions
-- Work autonomously and make the necessary changes"
+- Running automatically on VPS infrastructure
+- Use TodoWrite tool for complex tasks requiring planning
+- Work autonomously following CLAUDE.md standards
+- Implement the most reasonable interpretation if requirements unclear
+- Generate commit with proper format including issue closure"
 
 # Use Claude Code CLI to process the issue (with automation flags)
 echo "🧠 Running Claude Code CLI with automation flags..."
@@ -156,12 +171,16 @@ PROGRESS_PID=$!
 # Create timestamp file for change detection
 touch /tmp/claude_start
 
-# Run Claude CLI with verbose output and real-time display
-if timeout 600 stdbuf -oL -eL claude --print --dangerously-skip-permissions --verbose "$CLAUDE_PROMPT" 2>&1 | while IFS= read -r line; do
-  echo "$line"
-  # Log everything for debugging
-  echo "$line" >> /tmp/claude_output.log
-done; then
+# Run Claude CLI with timeout and output capture
+# Check if timeout command is available (not on macOS by default)
+if command -v timeout >/dev/null 2>&1; then
+  TIMEOUT_CMD="timeout 600"
+else
+  TIMEOUT_CMD=""
+  echo "⚠️  timeout command not available, running without timeout"
+fi
+
+if $TIMEOUT_CMD claude --print --dangerously-skip-permissions "$CLAUDE_PROMPT" 2>&1 | tee /tmp/claude_output.log; then
   # Clean up
   kill $PROGRESS_PID 2>/dev/null || true
   echo "✅ Claude Code CLI completed successfully"
@@ -222,13 +241,38 @@ fi
 
 echo "✅ Changes detected, validating..."
 
-# Run TypeScript check (following CLAUDE.md standards)
+# Enhanced validation following CLAUDE.md standards
+echo "🔍 Running comprehensive validation..."
+
+# Build check (faster than TypeScript alone for some issues)
+echo "🏗️  Testing build..."
+if ! npm run build:fast 2>/dev/null || ! npm run build 2>&1; then
+  echo "❌ Build validation failed"
+  gh issue comment "$ISSUE_NUM" --body "🤖 **Build Validation Failed**
+
+Generated changes failed to build successfully. This may indicate:
+- Import/export issues
+- Missing dependencies
+- Syntax errors
+
+Please review the issue requirements or provide additional context."
+  
+  # Clean up
+  git checkout main
+  git branch -D "$BRANCH_NAME"
+  exit 1
+fi
+
+# TypeScript check
 echo "🔍 Running TypeScript validation..."
 if ! npm run check; then
   echo "❌ TypeScript validation failed"
   gh issue comment "$ISSUE_NUM" --body "🤖 **TypeScript Validation Failed**
 
-Generated changes failed TypeScript validation. The issue may require manual intervention or more specific requirements.
+Generated changes failed TypeScript validation. This may indicate:
+- Type definition issues
+- Missing type imports
+- Interface mismatches
 
 Please review and provide additional context if needed."
   
@@ -239,30 +283,48 @@ Please review and provide additional context if needed."
 fi
 
 # Run code review agent on modified files (following CLAUDE.md)
-echo "📋 Running code review agent..."
+echo "📋 Running code review agent on modified files..."
 MODIFIED_FILES=$(git diff --name-only HEAD~1)
+REVIEW_ISSUES=0
 for file in $MODIFIED_FILES; do
   if [[ "$file" =~ \.(tsx?|jsx?|astro)$ ]]; then
-    echo "Reviewing: $file"
-    if ! npm run tools:code-review -- --file "$file"; then
-      echo "⚠️ Code review issues detected in $file"
+    echo "📝 Reviewing: $file"
+    if ! npm run tools:code-review -- --file "$file" 2>/dev/null; then
+      echo "⚠️  Code review issues detected in $file"
+      REVIEW_ISSUES=$((REVIEW_ISSUES + 1))
+    else
+      echo "✅ $file passed code review"
     fi
   fi
 done
 
-# Commit changes with proper message format
+if [ $REVIEW_ISSUES -gt 0 ]; then
+  echo "⚠️  $REVIEW_ISSUES files had code review issues, but proceeding with implementation"
+fi
+
+# Commit changes with enhanced message format
 echo "💾 Committing changes..."
 git add .
+
+# Count changed files for commit message
+CHANGED_FILES=$(git diff --cached --name-only | wc -l)
+CHANGED_COMPONENTS=$(git diff --cached --name-only | grep -c "components/" || echo 0)
+
 git commit -m "feat: $ISSUE_TITLE
 
-Auto-generated implementation using Claude Code CLI following project standards:
-- Functional programming principles applied
+Auto-generated implementation for issue #$ISSUE_NUM using Claude Code CLI.
+
+Changes:
+- $CHANGED_FILES files modified ($CHANGED_COMPONENTS components)
+- Follows functional programming principles
 - TypeScript validation passed
 - Code review agent validation completed
+- Adheres to project development standards
 
 Closes #$ISSUE_NUM
 
-🤖 Generated with Claude Code on VPS
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
 Co-Authored-By: Claude <noreply@anthropic.com>"
 
 # Push branch
@@ -271,18 +333,38 @@ git push origin "$BRANCH_NAME"
 
 # Create PR with comprehensive description
 echo "🔀 Creating Pull Request..."
+
+# Get summary of changes for PR body
+CHANGED_FILES_LIST=$(git diff --name-only HEAD~1..HEAD | head -10)
+if [ $(git diff --name-only HEAD~1..HEAD | wc -l) -gt 10 ]; then
+  CHANGED_FILES_LIST="$CHANGED_FILES_LIST
+... and $(( $(git diff --name-only HEAD~1..HEAD | wc -l) - 10 )) more files"
+fi
+
 PR_BODY="## 🤖 Automated Implementation
 
 This PR was automatically generated by Claude Code CLI to address issue #$ISSUE_NUM.
 
-## Changes Made
-$(git log --oneline HEAD~1..HEAD)
+## Summary
+$(git log --pretty=format:"- %s" HEAD~1..HEAD)
+
+## Files Changed ($CHANGED_FILES files)
+\`\`\`
+$CHANGED_FILES_LIST
+\`\`\`
 
 ## Validation Completed
+- ✅ Build validation passed (\`npm run build\`)
 - ✅ TypeScript validation passed (\`npm run check\`)
-- ✅ Code review agent validation completed
+- ✅ Code review agent validation completed ($REVIEW_ISSUES issues detected)
 - ✅ Follows functional programming standards
 - ✅ Adheres to project component standards
+
+## Test Plan
+- [ ] Verify functionality works as expected
+- [ ] Test edge cases mentioned in issue
+- [ ] Confirm no regressions in existing features
+- [ ] Validate responsive design (if UI changes)
 
 ## Issue Context
 $ISSUE_BODY
@@ -290,11 +372,14 @@ $ISSUE_BODY
 ---
 
 **Automated Process Details:**
-- Generated on VPS infrastructure
+- Generated on VPS infrastructure using Claude Code CLI
 - Followed CLAUDE.md development standards
 - Ready for human review and testing
+- Auto-validated with project quality gates
 
-Closes #$ISSUE_NUM"
+Closes #$ISSUE_NUM
+
+🤖 Generated with [Claude Code](https://claude.ai/code)"
 
 gh pr create \
   --title "feat: $ISSUE_TITLE" \

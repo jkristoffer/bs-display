@@ -148,6 +148,12 @@ jobs:
       - name: 🎯 Post results comment (deploy only)
         if: inputs.action == 'deploy' && success()
         uses: actions/github-script@v7
+        env:
+          SESSION_NAME: ${{ inputs.session_name }}
+          DROPLET_SIZE: ${{ inputs.droplet_size }}
+          ACTOR: ${{ github.actor }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
         with:
           script: |
             const fs = require('fs');
@@ -163,16 +169,16 @@ jobs:
             
             const comment = `🚀 **VPS Deployed Successfully**
             
-**Session:** \${{ inputs.session_name }}
-**Size:** \${{ inputs.droplet_size }}
-**Triggered by:** @\${{ github.actor }}
+**Session:** ${process.env.SESSION_NAME}
+**Size:** ${process.env.DROPLET_SIZE}
+**Triggered by:** @${process.env.ACTOR}
 
-\\\`\\\`\\\`
+\`\`\`
 ${sessionInfo}
-\\\`\\\`\\\`
+\`\`\`
 
 📱 **Quick Access:**
-- [View full run details](https://github.com/\${{ github.repository }}/actions/runs/\${{ github.run_id }})
+- [View full run details](https://github.com/${process.env.REPOSITORY}/actions/runs/${process.env.RUN_ID})
 - Use GitHub mobile app to access this info anywhere!
 
 ⏰ Deployed at: ${new Date().toISOString()}`;

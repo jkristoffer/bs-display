@@ -41,14 +41,32 @@ echo "✅ Claude CLI ready"
 
 # Update to latest code (snapshot may be outdated)
 echo "📥 Updating repository to latest..."
+START_TIME=$(date +%s)
 git fetch origin
 git checkout main
-git pull origin main
+FETCH_TIME=$(date +%s)
+echo "⏱️  Git fetch completed in $((FETCH_TIME - START_TIME)) seconds"
 
-# Install/update dependencies if needed
-if [ -f "package-lock.json" ]; then
-  echo "📦 Updating dependencies..."
-  npm ci
+# Check if pull is needed to avoid unnecessary npm ci
+LOCAL_COMMIT=$(git rev-parse HEAD)
+REMOTE_COMMIT=$(git rev-parse origin/main)
+
+if [ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ]; then
+  echo "🔄 Pulling latest changes..."
+  git pull origin main
+  
+  # Only reinstall dependencies if package-lock.json changed
+  if git diff --name-only HEAD~1 | grep -q "package-lock.json"; then
+    echo "📦 Package-lock.json changed, updating dependencies..."
+    NPM_START=$(date +%s)
+    npm ci
+    NPM_TIME=$(date +%s)
+    echo "⏱️  npm ci completed in $((NPM_TIME - NPM_START)) seconds"
+  else
+    echo "📦 Package-lock.json unchanged, skipping dependency update"
+  fi
+else
+  echo "✅ Repository already up to date"
 fi
 
 # Get open issues with claude-task label

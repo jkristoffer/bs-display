@@ -171,7 +171,7 @@ bs-display/dev/
 │   ├── layouts/        # Page layout templates
 │   ├── pages/          # Route definitions
 │   └── styles/         # Global SCSS and variables
-├── 📁 forge/           # 🔧 AI Orchestrator (Production Ready)
+├── 📁 forge/           # 🔧 Forge System (Production Ready)
 │   ├── forge.py        # Main CLI application
 │   ├── tests/          # 28 unit tests (100% pass rate)
 │   └── *.md            # Status and test documentation

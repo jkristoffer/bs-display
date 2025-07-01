@@ -45,7 +45,6 @@ npm run preview         # Preview production build
 ### Specialized Guides
 - **[Quiz System](/src/components/quiz/CLAUDE.md)** - Interactive quiz implementation
 - **[VPS Deployment](/vps-scripts/README.md)** - Server management and deployment
-- **[AI Orchestrator Integration](./AI_ORCHESTRATOR_INTEGRATION.md)** - Multi-agent workflows
 
 ### Project Management
 - **[Content Queue](./content-queue.json)** - Scheduled blog posts and content planning
@@ -62,13 +61,13 @@ npm run preview         # Preview production build
 ### Content Management
 ```bash
 # SEO Analysis
-claude seo-review --file src/content/blog/[post].md
+npm run tools:seo-analyze -- --file src/content/blog/[post].md
 
 # Auto-optimize
-claude seo-auto-optimize --file src/content/blog/[post].md
+npm run tools:seo-optimize -- --file src/content/blog/[post].md
 
 # Generate new blog post
-claude generate-blog
+npm run tools:blog-generate
 ```
 
 ### Code Quality

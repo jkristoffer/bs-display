@@ -2,7 +2,7 @@
 
 Multiple ways to use intelligent fast git commits with Claude Code!
 
-## **Method 1: Project-Specific Slash Command (Recommended)**
+## **Method 1: Self-Contained Slash Command (Recommended)**
 
 ### Usage:
 ```bash
@@ -12,9 +12,10 @@ Multiple ways to use intelligent fast git commits with Claude Code!
 ### Setup:
 ✅ **Already configured** in this project at `.claude/commands/commit.md`
 
-- Runs the local script in **2-5 seconds**
-- Works only in this project directory
-- Uses our optimized bash script with intelligent analysis
+- **Self-contained**: All logic embedded in the slash command
+- **No dependencies**: Works even if script files are deleted  
+- **2-5 seconds**: Same speed as before
+- **Fully portable**: Complete independence from external files
 
 ---
 
@@ -65,17 +66,24 @@ commit
 
 ## **🎯 Comparison:**
 
-| Method | Speed | Scope | Intelligence | Setup |
-|--------|-------|-------|--------------|--------|
-| `/project:commit` | 2-5s | This project | High | ✅ Done |
-| `/user:fastcommit` | 10-20s | Any project | Very High | ✅ Done |
-| `./scripts/commit` | 2-5s | This project | High | ✅ Done |
-| `commit` (global) | 2-5s | Any project | High | Run installer |
+| Method | Speed | Scope | Intelligence | Dependencies | Setup |
+|--------|-------|-------|--------------|--------------|--------|
+| `/project:commit` | 2-5s | This project | High | **None** | ✅ Done |
+| `/user:fastcommit` | 10-20s | Any project | Very High | Claude AI | ✅ Done |
+| `./scripts/commit` | 2-5s | This project | High | Script file | ✅ Done |
+| `commit` (global) | 2-5s | Any project | High | Script file | Run installer |
 
 ## **💡 Recommended Usage:**
 
-- **In this project**: Use `/project:commit` for maximum speed
+- **In this project**: Use `/project:commit` for maximum speed and reliability
 - **Other projects**: Use `/user:fastcommit` for universal AI-powered commits
 - **Command line**: Use `./scripts/commit` for direct execution
+
+## **✨ Key Advantage of Method 1:**
+**Self-contained design** means the slash command is **bulletproof** - it will work even if:
+- Script files get deleted
+- Directory structure changes  
+- External dependencies break
+- You move the `.claude/commands/commit.md` to other projects
 
 All methods are **10-30x faster** than the old GitHub Actions approach (45-90s)! 🚀

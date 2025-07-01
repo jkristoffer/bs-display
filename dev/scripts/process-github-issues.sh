@@ -4,6 +4,39 @@
 
 set -euo pipefail
 
+# Parse command line arguments
+FORCE_MODE=false
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --force)
+      FORCE_MODE=true
+      shift
+      ;;
+    -h|--help)
+      echo "Usage: $0 [--force]"
+      echo ""
+      echo "Auto-Claude GitHub Issue Processor"
+      echo ""
+      echo "Options:"
+      echo "  --force    Skip safety checks and run autonomously"
+      echo "  -h, --help Show this help message"
+      echo ""
+      echo "⚠️  WARNING: This script will:"
+      echo "   • Reset repository to exact remote state (git reset --hard origin/main)"
+      echo "   • Remove ALL unstaged changes permanently"
+      echo "   • Switch to main branch automatically"
+      echo ""
+      echo "Use --force flag for automated/CI environments only."
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Use --help for usage information"
+      exit 1
+      ;;
+  esac
+done
+
 # Create temporary directory for script execution
 TMP_DIR=$(mktemp -d "/tmp/auto-claude-XXXXXX")
 
@@ -49,6 +82,47 @@ log_section "AUTO-CLAUDE GITHUB ISSUE PROCESSOR v2.0"
 log_info "Started at: $(date)"
 log_info "Log file: $LOG_FILE"
 log_info "Temporary directory: $TMP_DIR"
+
+# Safety check for unstaged changes (unless --force is used)
+if [ "$FORCE_MODE" = false ]; then
+  log_step "Safety check for unstaged changes"
+  
+  # Check for unstaged changes
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    log_warning "UNSTAGED CHANGES DETECTED!"
+    echo ""
+    echo "⚠️  WARNING: This script will permanently remove ALL unstaged changes!"
+    echo ""
+    echo "The following operations will be performed:"
+    echo "  • git fetch origin"
+    echo "  • git reset --hard origin/main"
+    echo "  • All local modifications will be LOST"
+    echo ""
+    echo "Unstaged files that will be lost:"
+    git diff --name-only
+    if ! git diff --cached --quiet; then
+      echo ""
+      echo "Staged files that will be lost:"
+      git diff --cached --name-only
+    fi
+    echo ""
+    echo "Options:"
+    echo "  1. Press Ctrl+C to cancel and save your changes"
+    echo "  2. Use --force flag to skip this warning"
+    echo "  3. Type 'yes' to proceed (changes will be lost)"
+    echo ""
+    read -p "Do you want to continue? (type 'yes' to proceed): " -r
+    if [[ ! $REPLY =~ ^yes$ ]]; then
+      log_info "Operation cancelled by user"
+      exit 0
+    fi
+    log_warning "User confirmed - proceeding with destructive operations"
+  else
+    log_success "No unstaged changes detected - safe to proceed"
+  fi
+else
+  log_info "Force mode enabled - skipping safety checks"
+fi
 
 # Trap for cleanup and error handling
 cleanup() {

@@ -1,0 +1,77 @@
+name: Simple Commit and Push
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  commit-and-push:
+    if: startsWith(github.event.comment.body, '/commit') && github.event.comment.user.login == 'jkristoffer'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+      - name: Parse commit message
+        id: parse
+        run: |
+          COMMENT_BODY="${{ github.event.comment.body }}"
+          
+          # Extract commit message after "/commit "
+          if [[ "$COMMENT_BODY" =~ ^/commit[[:space:]]+(.+) ]]; then
+            COMMIT_MSG="${BASH_REMATCH[1]}"
+            echo "commit_message=$COMMIT_MSG" >> $GITHUB_OUTPUT
+          else
+            echo "commit_message=Quick commit via GitHub Actions" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Stage and commit changes
+        run: |
+          # Check if there are any changes to commit
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "status=no-changes" >> $GITHUB_ENV
+          else
+            git add .
+            git commit -m "${{ steps.parse.outputs.commit_message }}"
+            echo "status=committed" >> $GITHUB_ENV
+          fi
+          
+      - name: Push changes
+        if: env.status == 'committed'
+        run: |
+          git push origin main
+          echo "status=pushed" >> $GITHUB_ENV
+          
+      - name: Report success
+        if: env.status == 'pushed'
+        run: |
+          gh api repos/${{ github.repository }}/issues/comments \
+            --method POST \
+            --field body="✅ **Commit and Push Completed**
+            
+            Successfully committed and pushed changes with message:
+            > ${{ steps.parse.outputs.commit_message }}
+            
+            Changes are now live on the main branch."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Report no changes
+        if: env.status == 'no-changes'
+        run: |
+          gh api repos/${{ github.repository }}/issues/comments \
+            --method POST \
+            --field body="ℹ️ **No Changes to Commit**
+            
+            There are no staged or unstaged changes in the repository.
+            
+            **Usage:** \`/commit Your commit message here\`"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

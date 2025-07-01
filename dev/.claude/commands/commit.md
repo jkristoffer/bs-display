@@ -4,43 +4,34 @@ description: "Fast intelligent git commit with auto-generated conventional commi
 
 # Claude Code Fast Commit
 
-One-click intelligent git commit that analyzes changes and creates conventional commits in 2-5 seconds.
+Lean, fast, one-click intelligent git commit with conventional commit messages.
 
 !bash -c '
-# Claude Code Fast Commit - Single execution block
 set -euo pipefail
-
-echo "🚀 Claude Code Fast Commit starting..."
-START_TIME=$(date +%s)
 
 # Quick change check
 if git diff --quiet && git diff --cached --quiet; then
-  echo "⚠️  No changes detected to commit"
+  echo "⚠️  No changes to commit"
   exit 0
 fi
 
-# Get changed files
+# Get and filter changed files
 CHANGED_FILES=$(git diff --name-only 2>/dev/null || echo "")
 if [ -z "$CHANGED_FILES" ]; then
-  echo "⚠️  No unstaged changes found"
+  echo "⚠️  No unstaged changes"
   exit 0
 fi
 
-echo "ℹ️  Analyzing $(echo "$CHANGED_FILES" | wc -l) changed file(s)..."
-
-# Fast file filtering - exclude unwanted files
 FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -v -E "\\.(log|tmp|cache)$|node_modules/|\\.DS_Store|temp|\\.git/" | grep -v "^\\.\\./" | sed "s|^dev/||" || echo "")
-
 if [ -z "$FILTERED_FILES" ]; then
-  echo "⚠️  No relevant files to commit (filtered out temp/log files)"
+  echo "⚠️  No relevant files (filtered out temp files)"
   exit 0
 fi
 
-# Commit type detection
+# Detect commit type and scope
 COMMIT_TYPE="feat"
 SCOPE=""
 
-# Analyze file patterns for commit type
 case "$CHANGED_FILES" in
   *\\.md*|*README*|*docs/*) COMMIT_TYPE="docs" ;;
   *package*.json*) COMMIT_TYPE="chore" ;;
@@ -49,7 +40,6 @@ case "$CHANGED_FILES" in
   *\\.github/workflows/*) COMMIT_TYPE="ci" ;;
 esac
 
-# Analyze directory structure for scope
 case "$CHANGED_FILES" in
   *src/components/*) SCOPE="components" ;;
   *src/pages/*) SCOPE="pages" ;;
@@ -57,7 +47,7 @@ case "$CHANGED_FILES" in
   *\\.github/workflows/*) SCOPE="ci" ;;
 esac
 
-# Generate description
+# Generate commit message
 FILE_COUNT=$(echo "$FILTERED_FILES" | wc -l)
 if [ $FILE_COUNT -eq 1 ]; then
   MAIN_FILE=$(echo "$FILTERED_FILES" | head -1)
@@ -66,55 +56,33 @@ else
   DESCRIPTION="update $FILE_COUNT files"
 fi
 
-# Build commit message
 if [ -n "$SCOPE" ]; then
   COMMIT_MSG="$COMMIT_TYPE($SCOPE): $DESCRIPTION"
 else
   COMMIT_MSG="$COMMIT_TYPE: $DESCRIPTION"
 fi
 
-echo "ℹ️  Generated commit message: \"$COMMIT_MSG\""
-echo ""
-echo "ℹ️  Files to commit:"
-echo "$FILTERED_FILES" | sed "s/^/  📝 /"
-echo ""
+echo "📝 $COMMIT_MSG"
+echo "$FILTERED_FILES" | sed "s/^/  /"
 
-# Stage files
-echo "ℹ️  Staging files..."
+# Stage, commit, and push
 echo "$FILTERED_FILES" | while IFS= read -r file; do
-  if [ -f "$file" ]; then
-    git add "$file" && echo "  ✅ Added: $file"
-  else
-    echo "  ⚠️  Skipping missing file: $file"
-  fi
+  [ -f "$file" ] && git add "$file"
 done
 
-# Create commit
-echo "ℹ️  Creating commit..."
 git commit -m "$COMMIT_MSG
 
 🤖 Generated with [Claude Code](https://claude.ai/code)
 
 Co-Authored-By: Claude <noreply@anthropic.com>"
 
-# Push to origin
-echo "ℹ️  Pushing to origin..."
 git push origin main
-
-# Calculate total time
-END_TIME=$(date +%s)
-TOTAL_TIME=$((END_TIME - START_TIME))
-
-echo ""
-echo "✅ Fast commit completed in ${TOTAL_TIME}s!"
-echo "✅ Commit: $COMMIT_MSG"
-echo "✅ Files: $FILE_COUNT committed and pushed"
+echo "✅ Committed and pushed!"
 '
 
 **Features:**
-- ⚡ **One-click execution** - Single bash command, no prompts
-- 🧠 **Intelligent analysis**: Conventional commit format (type(scope): description)  
-- 🗂️ **Smart filtering**: Excludes logs, temp files, node_modules automatically
-- 🎯 **Scope detection**: components, pages, scripts, ci
-- 🏷️ **Type detection**: feat, fix, docs, style, chore, test, ci
-- 🔄 **Complete automation**: analyze → stage → commit → push
+- ⚡ **One-click** - No prompts, no interruptions
+- 🧠 **Smart commits** - Conventional format (type(scope): description)  
+- 🗂️ **Auto-filtering** - Skips logs, temp files, node_modules
+- 🎯 **Auto-scoping** - Detects components, pages, scripts, ci
+- 🔄 **Complete flow** - analyze → stage → commit → push

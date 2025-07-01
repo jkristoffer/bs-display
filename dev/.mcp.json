@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "bs-display-automation": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "claude-commit-mcp-server.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

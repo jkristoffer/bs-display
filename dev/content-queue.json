@@ -1,31 +1,8 @@
 {
   "version": "1.0",
   "lastUpdated": "2025-06-26",
-  "nextPostDate": "2025-07-01",
+  "nextPostDate": "2025-07-04",
   "scheduledPosts": [
-    {
-      "id": "005",
-      "title": "4K vs 8K Interactive Displays: When Ultra-High Resolution Matters",
-      "description": "Analyze the benefits and costs of 4K versus 8K resolution interactive displays, including content requirements, viewing distances, and future-proofing considerations.",
-      "category": "Display Technology",
-      "template": "comparison",
-      "priority": "medium",
-      "keywords": [
-        "4K displays",
-        "8K displays",
-        "ultra high resolution",
-        "interactive display resolution"
-      ],
-      "targetAudience": "business_decision_makers",
-      "estimatedReadTime": "9 minutes",
-      "data": {
-        "mainTopic": "4K vs 8K Interactive Display Resolution",
-        "techA": "4K Interactive Displays",
-        "techB": "8K Interactive Displays",
-        "hook": "Higher resolution promises better visual quality, but do you really need 8K for your interactive applications?",
-        "cta": "Find the optimal resolution for your display needs while maximizing your technology investment."
-      }
-    },
     {
       "id": "006",
       "title": "Interactive Display Maintenance: Extending Lifespan and Performance",

@@ -15,7 +15,36 @@
 
 ---
 
-## 🧠 RAG PROJECT MEMORY (NEW!)
+## ⚡ MCP INTEGRATION (ACTIVE!)
+
+**Native automation tools available directly in Claude Code via Model Context Protocol.**
+
+### **Quick MCP Commands**
+```bash
+# Available as native Claude Code tools:
+/commit                    # Intelligent git commits
+/code-review --file [path] # Automated code review
+/seo-analyze --file [path] # SEO analysis for content
+/blog-generate             # AI blog post generation
+/type-check               # TypeScript validation  
+/build                    # Production build
+/dev-server              # Start development server
+/performance-check       # Performance analysis
+```
+
+### **MCP Setup Status**
+- ✅ **Auto-configured**: Works immediately in this project directory
+- ✅ **Team-ready**: Configuration checked into version control  
+- ✅ **Fully tested**: All 8 automation tools verified and working
+- ✅ **Secure**: Project-scoped with approval prompts
+
+### **Learn More**
+- **[MCP Setup Guide](./MCP_SETUP_GUIDE.md)** - Complete configuration details
+- **[Verification Script](./verify-mcp-setup.js)** - Test MCP functionality
+
+---
+
+## 🧠 RAG PROJECT MEMORY
 
 **Transform from stateless AI to project-aware assistant with comprehensive codebase memory.**
 

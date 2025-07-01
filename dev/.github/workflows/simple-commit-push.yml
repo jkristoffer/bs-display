@@ -1,10 +1,10 @@
-name: Claude Code Commit and Push
+name: Claude Code Fast Commit
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  claude-commit-push:
+  fast-commit:
     if: startsWith(github.event.comment.body, '/commit') && github.event.comment.user.login == 'jkristoffer'
     runs-on: ubuntu-latest
     steps:
@@ -12,201 +12,100 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # Full history for better analysis
+          fetch-depth: 1  # Only latest commit for speed
           
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          
-      - name: Configure Git
+      - name: Fast commit analysis and push
         run: |
+          # Configure Git
           git config --global user.name "Claude Code AI"
           git config --global user.email "claude-code@anthropic.com"
           
-      - name: Analyze changes and create intelligent commit
-        id: claude-commit
-        run: |
-          # Check if there are any changes
+          # Quick change check
           if git diff --quiet && git diff --cached --quiet; then
-            echo "status=no-changes" >> $GITHUB_OUTPUT
+            echo "status=no-changes" >> $GITHUB_ENV
             exit 0
           fi
           
-          # Get changed files with detailed diff
+          # Get changed files (fast, no detailed diff)
           CHANGED_FILES=$(git diff --name-only)
-          DIFF_STATS=$(git diff --stat)
-          FULL_DIFF=$(git diff --unified=2)
           
-          # Create context for Claude Code AI
-          CLAUDE_PROMPT="Analyze these git changes and create an intelligent commit:
-
-          CHANGED FILES:
-          $CHANGED_FILES
-
-          DIFF STATISTICS:
-          $DIFF_STATS
-
-          FULL DIFF (first 50 lines):
-          $(echo "$FULL_DIFF" | head -50)
-
-          TASK: 
-          1. Identify the most relevant changed files (ignore test files, logs, temp files)
-          2. Create a concise, conventional commit message following format: type(scope): description
-          3. Use conventional commit types: feat, fix, docs, style, refactor, perf, test, chore
-          4. Keep description under 50 characters
-          5. Focus on the primary change, not every minor detail
-
-          Return only the commit message, nothing else."
+          # Fast filtering - exclude unwanted files in one pass
+          FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -v -E '\.(log|tmp|cache)$|node_modules/|\.DS_Store|temp|\.git/' | grep -v '^\.\./' | tr '\n' ' ')
           
-          # Use git diff to identify primary changes and create smart commit message
-          # Analyze file types and changes to determine commit type and scope
+          if [ -z "$FILTERED_FILES" ]; then
+            echo "status=no-relevant-changes" >> $GITHUB_ENV
+            exit 0
+          fi
+          
+          # Ultra-fast commit type detection
           COMMIT_TYPE="feat"
           SCOPE=""
-          DESCRIPTION=""
           
-          # Determine commit type based on file patterns
-          if echo "$CHANGED_FILES" | grep -q "\.md$\|README\|docs/"; then
-            COMMIT_TYPE="docs"
-          elif echo "$CHANGED_FILES" | grep -q "package\.json\|package-lock\.json"; then
-            COMMIT_TYPE="chore"
-          elif echo "$CHANGED_FILES" | grep -q "test\|spec"; then
-            COMMIT_TYPE="test"
-          elif echo "$FULL_DIFF" | grep -q "bug\|fix\|error\|issue"; then
-            COMMIT_TYPE="fix"
-          elif echo "$CHANGED_FILES" | grep -q "\.css\|\.scss\|style"; then
-            COMMIT_TYPE="style"
-          fi
+          # Single-pass file analysis
+          case "$CHANGED_FILES" in
+            *\.md*|*README*|*docs/*) COMMIT_TYPE="docs" ;;
+            *package*.json*) COMMIT_TYPE="chore" ;;
+            *test*|*spec*) COMMIT_TYPE="test" ;;
+            *\.css*|*\.scss*|*style*) COMMIT_TYPE="style" ;;
+          esac
           
-          # Determine scope from directory structure
-          if echo "$CHANGED_FILES" | grep -q "^src/components/"; then
-            SCOPE="components"
-          elif echo "$CHANGED_FILES" | grep -q "^\.github/workflows/"; then
-            SCOPE="ci"
-          elif echo "$CHANGED_FILES" | grep -q "^scripts/"; then
-            SCOPE="scripts"
-          elif echo "$CHANGED_FILES" | grep -q "^src/pages/"; then
-            SCOPE="pages"
-          fi
+          # Quick scope detection
+          case "$CHANGED_FILES" in
+            *src/components/*) SCOPE="components" ;;
+            *src/pages/*) SCOPE="pages" ;;
+            *scripts/*) SCOPE="scripts" ;;
+            *.github/workflows/*) SCOPE="ci" ;;
+          esac
           
-          # Create description based on most common changes
-          FILE_COUNT=$(echo "$CHANGED_FILES" | wc -l)
+          # Simple description
+          FILE_COUNT=$(echo "$CHANGED_FILES" | wc -w)
           if [ $FILE_COUNT -eq 1 ]; then
-            MAIN_FILE=$(echo "$CHANGED_FILES" | head -1)
-            DESCRIPTION="update $(basename "$MAIN_FILE")"
+            DESCRIPTION="update $(basename $CHANGED_FILES)"
           else
             DESCRIPTION="update $FILE_COUNT files"
           fi
           
-          # Construct commit message
+          # Build commit message
           if [ -n "$SCOPE" ]; then
-            COMMIT_MESSAGE="$COMMIT_TYPE($SCOPE): $DESCRIPTION"
+            COMMIT_MSG="$COMMIT_TYPE($SCOPE): $DESCRIPTION"
           else
-            COMMIT_MESSAGE="$COMMIT_TYPE: $DESCRIPTION"
+            COMMIT_MSG="$COMMIT_TYPE: $DESCRIPTION"
           fi
           
-          echo "commit_message=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
-          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-          echo "status=ready" >> $GITHUB_OUTPUT
-          
-      - name: Stage relevant changes intelligently
-        if: steps.claude-commit.outputs.status == 'ready'
-        run: |
-          # Get the changed files
-          CHANGED_FILES="${{ steps.claude-commit.outputs.changed_files }}"
-          
-          # Filter out files that shouldn't be committed automatically
-          FILTERED_FILES=""
-          while IFS= read -r file; do
-            # Skip if file doesn't exist or is empty
-            if [ ! -f "$file" ] || [ ! -s "$file" ]; then
-              continue
-            fi
-            
-            # Skip certain file patterns
-            case "$file" in
-              *.log|*.tmp|*temp*|node_modules/*|.DS_Store|*.cache)
-                echo "Skipping: $file (temporary/cache file)"
-                continue
-                ;;
-              ../*)
-                echo "Skipping: $file (outside repository)"
-                continue
-                ;;
-              *)
-                FILTERED_FILES="$FILTERED_FILES$file "
-                echo "Including: $file"
-                ;;
-            esac
-          done <<< "$CHANGED_FILES"
-          
-          # Stage only the filtered files
-          if [ -n "$FILTERED_FILES" ]; then
-            echo "Staging files: $FILTERED_FILES"
-            git add $FILTERED_FILES
-            echo "status=staged" >> $GITHUB_ENV
-          else
-            echo "No relevant files to stage"
-            echo "status=no-relevant-changes" >> $GITHUB_ENV
-          fi
-          
-      - name: Commit changes
-        if: env.status == 'staged'
-        run: |
-          git commit -m "${{ steps.claude-commit.outputs.commit_message }}
+          # Stage, commit, and push in one block
+          git add $FILTERED_FILES
+          git commit -m "$COMMIT_MSG
 
           🤖 Generated with [Claude Code](https://claude.ai/code)
 
           Co-Authored-By: Claude <noreply@anthropic.com>"
-          echo "status=committed" >> $GITHUB_ENV
-          
-      - name: Push changes
-        if: env.status == 'committed'
-        run: |
           git push origin main
-          echo "status=pushed" >> $GITHUB_ENV
           
-      - name: Report success
-        if: env.status == 'pushed'
+          # Store for reporting
+          echo "commit_message=$COMMIT_MSG" >> $GITHUB_ENV
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_ENV
+          
+      - name: Fast report
         run: |
-          CHANGED_FILES="${{ steps.claude-commit.outputs.changed_files }}"
-          FILE_LIST=$(echo "$CHANGED_FILES" | sed 's/^/• /' | head -10)
-          
-          gh api repos/${{ github.repository }}/issues/comments \
-            --method POST \
-            --field body="✅ **Claude Code Commit Completed**
-            
-            **Commit Message:** \`${{ steps.claude-commit.outputs.commit_message }}\`
-            
-            **Files Committed:**
-            $FILE_LIST
-            
-            Changes intelligently analyzed and committed by Claude Code AI."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Report no changes
-        if: steps.claude-commit.outputs.status == 'no-changes'
-        run: |
-          gh api repos/${{ github.repository }}/issues/comments \
-            --method POST \
-            --field body="ℹ️ **No Changes Detected**
-            
-            Claude Code AI found no staged or unstaged changes in the repository.
-            
-            **Usage:** Make changes first, then use \`/commit\` to auto-commit with AI-generated message."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Report filtered out
-        if: env.status == 'no-relevant-changes'
-        run: |
-          gh api repos/${{ github.repository }}/issues/comments \
-            --method POST \
-            --field body="⚠️ **No Relevant Changes to Commit**
-            
-            Claude Code AI detected changes but filtered them out (temp files, logs, cache, etc.).
-            
-            Only meaningful code changes are committed automatically."
+          if [ "${{ env.status }}" = "success" ]; then
+            FILE_LIST=$(echo "${{ env.changed_files }}" | tr ' ' '\n' | head -5 | sed 's/^/• /')
+            gh api repos/${{ github.repository }}/issues/comments \
+              --method POST \
+              --field body="⚡ **Fast Commit Completed** 
+              
+              **Message:** \`${{ env.commit_message }}\`
+              **Files:** $(echo "${{ env.changed_files }}" | wc -w) files committed
+              
+              $FILE_LIST"
+          elif [ "${{ env.status }}" = "no-changes" ]; then
+            gh api repos/${{ github.repository }}/issues/comments \
+              --method POST \
+              --field body="ℹ️ **No changes to commit**"
+          else
+            gh api repos/${{ github.repository }}/issues/comments \
+              --method POST \
+              --field body="⚠️ **No relevant changes** (filtered out temp files)"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -23,10 +23,7 @@
     "tools:blog-generate": "node scripts/generate-blog-post.js",
     "tools:seo-analyze": "node scripts/seo-agent.js",
     "tools:seo-optimize": "node scripts/seo-optimizer.js",
-    "tools:seo-cli": "node scripts/claude-seo.js",
-    "orchestrator": "python3 orchestrator/run.py",
-    "orchestrator:list": "python3 orchestrator/run.py --list-templates",
-    "orchestrator:test": "python3 orchestrator/run.py --task \"function/utility:function_name=test,function_description=Test function\" --dry-run"
+    "tools:seo-cli": "node scripts/claude-seo.js"
   },
   "author": "Kris",
   "license": "ISC",

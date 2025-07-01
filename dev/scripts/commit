@@ -37,7 +37,7 @@ fi
 log_info "Analyzing $(echo "$CHANGED_FILES" | wc -l) changed file(s)..."
 
 # Fast file filtering - exclude unwanted files in one pass  
-FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -v -E '\.(log|tmp|cache)$|node_modules/|\.DS_Store|temp|\.git/' | grep -v '^\.\./' || echo "")
+FILTERED_FILES=$(echo "$CHANGED_FILES" | grep -v -E '\.(log|tmp|cache)$|node_modules/|\.DS_Store|temp|\.git/' | grep -v '^\.\./' | sed 's|^dev/||' || echo "")
 
 if [ -z "$FILTERED_FILES" ]; then
   log_warning "No relevant files to commit (filtered out temp/log files)"

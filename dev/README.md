@@ -32,7 +32,7 @@ cd bs-display/dev
 npm install
 
 # Start development server
-npm run dev
+npm run dev:server:server
 ```
 
 Visit `http://localhost:4321` to see the platform running locally.
@@ -40,10 +40,11 @@ Visit `http://localhost:4321` to see the platform running locally.
 ### Essential Commands
 
 ```bash
-npm run dev          # Start Astro development server
-npm run build        # Build for production  
-npm run preview      # Preview production build locally
-npm run check        # Run Astro type checking
+npm run dev:server:server   # Start Astro development server
+npm run dev:server:build    # Build for production  
+npm run dev:server:preview  # Preview production build locally
+npm run code:typecheck # Run TypeScript type checking
+npm run help         # See all available commands
 ```
 
 ## Technology Stack
@@ -131,13 +132,13 @@ See [CLAUDE.md](./CLAUDE.md) for complete AI development guidance including:
 ### **Essential Commands**
 ```bash
 # View all automation tools
-npm run tools
+npm run help
 
 # Code quality enforcement  
-npm run tools:code-review -- --file [file]
+npm run code:review -- --file [file]
 
 # Content SEO optimization
-npm run tools:seo-analyze -- --file [blog-post]
+npm run content:seo:analyze -- --file [blog-post]
 ```
 
 ## Development Workflow
@@ -229,10 +230,10 @@ bs-display/dev/
 npm install
 
 # Start development server  
-npm run dev
+npm run dev:server
 
 # Run type checking
-npm run check
+npm run code:typecheck
 
 # Test code quality (for any modified files)
 node scripts/code-review-agent.js --file [your-file]
@@ -266,10 +267,10 @@ The platform is deployed on **Vercel** with automatic deployments from the main 
 
 ```bash
 # Build for production
-npm run build
+npm run dev:build
 
 # Preview production build  
-npm run preview
+npm run dev:preview
 ```
 
 ### **Environment Variables**
@@ -320,7 +321,7 @@ This project is proprietary software. All rights reserved.
 For new contributors or AI assistants:
 
 - [ ] **Clone repository** and run `npm install`
-- [ ] **Start development server** with `npm run dev`
+- [ ] **Start development server** with `npm run dev:server`
 - [ ] **Read CLAUDE.md** for comprehensive development guidance
 - [ ] **Review development standards** in `/src/development-standards/standards/`
 - [ ] **Test code review agent** with a sample file

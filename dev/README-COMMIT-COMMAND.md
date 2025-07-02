@@ -1,33 +1,48 @@
-# 🚀 Claude Code Fast Commit Commands
+# 🚀 BS Display Git Commands
 
-Multiple ways to use intelligent fast git commits with Claude Code!
+**Note**: Slash commands have been deprecated. Use the unified npm interface instead.
 
-## **Method 1: Self-Contained Slash Command (Recommended)**
+## **Current Method: Unified NPM Interface (Recommended)**
 
-### Usage:
+### Basic Usage:
 ```bash
-/project:commit
+npm run git:commit          # Smart commit with conventional format
+npm run git:status          # Check repository status
+npm run git:push            # Push to remote
+```
+
+### AI-Enhanced Usage:
+```bash
+npm run git:commit:ai -- --dry-run    # Preview commit without executing
+npm run git:commit:ai -- --json       # JSON output for parsing
+npm run git:commit:ai -- --verbose    # Detailed execution logs
+npm run git:status:json               # Structured status output
 ```
 
 ### Setup:
-✅ **Already configured** in this project at `.claude/commands/commit.md`
+✅ **Already configured** - No additional setup required
 
-- **Self-contained**: All logic embedded in the slash command
-- **No dependencies**: Works even if script files are deleted  
-- **2-5 seconds**: Same speed as before
-- **Fully portable**: Complete independence from external files
+- **Consistent**: Same pattern as all other tools (`npm run [category]:[action]`)
+- **AI-Friendly**: Predictable interface with dry-run, JSON, and verbose modes
+- **Fast**: 2-5 seconds for intelligent commits
+- **Discoverable**: `npm run help` shows all available commands
 
 ---
 
-## **Method 2: Universal Slash Command**
+## **Deprecated Methods**
 
-### Usage:
+### ~~Method 1: Slash Commands~~ (Removed)
 ```bash
+# These no longer work:
+/project:commit
 /user:fastcommit
 ```
 
-### Setup:
-✅ **Already configured** globally at `~/.claude/commands/fastcommit.md`
+### ~~Method 2: Direct Scripts~~ (Deprecated)
+```bash
+# Still works but shows deprecation warning:
+./scripts/commit
+```
 
 - Works in **any git repository**
 - Uses Claude AI to analyze changes and generate commits

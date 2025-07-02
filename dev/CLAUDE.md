@@ -15,32 +15,40 @@
 
 ---
 
-## ⚡ MCP INTEGRATION (ACTIVE!)
+## ⚡ UNIFIED TOOL INTERFACE
 
-**Native automation tools available directly in Claude Code via Model Context Protocol.**
+**All project tools accessible through consistent npm commands.**
 
-### **Quick MCP Commands**
+### **Quick Access**
 ```bash
-# Available as native Claude Code tools:
-/commit                    # Intelligent git commits
-/code-review --file [path] # Automated code review
-/seo-analyze --file [path] # SEO analysis for content
-/blog-generate             # AI blog post generation
-/type-check               # TypeScript validation  
-/build                    # Production build
-/dev-server              # Start development server
-/performance-check       # Performance analysis
+npm run help                    # See all available commands
+npm run git:commit             # Intelligent git commits
+npm run code:review -- --file [path]  # Automated code review
+npm run content:blog:generate  # AI blog post generation
+npm run vps:manage            # VPS infrastructure management
+npm run rag:query             # AI memory system
 ```
 
-### **MCP Setup Status**
-- ✅ **Auto-configured**: Works immediately in this project directory
-- ✅ **Team-ready**: Configuration checked into version control  
-- ✅ **Fully tested**: All 8 automation tools verified and working
-- ✅ **Secure**: Project-scoped with approval prompts
+### **No Slash Commands**
+Previous `/commit` slash commands have been deprecated. Use `npm run git:commit` instead.
 
-### **Learn More**
-- **[MCP Setup Guide](./MCP_SETUP_GUIDE.md)** - Complete configuration details
-- **[Verification Script](./verify-mcp-setup.js)** - Test MCP functionality
+### **AI-Enhanced Features**
+```bash
+# Dry-run any destructive operation
+npm run git:commit:ai -- --dry-run
+npm run vps:cleanup:ai -- --dry-run
+
+# JSON output for parsing
+npm run git:status:json
+npm run code:review -- --file test.js --json
+
+# Verbose logging for debugging
+./scripts/verbose-wrapper.sh [command] --verbose
+
+# Contextual help
+npm run help git:commit
+npm run help code:review
+```
 
 ---
 
@@ -51,14 +59,14 @@
 ### **Quick Commands**
 ```bash
 # Project-aware queries with full context
-/gemini "How does the ProductCard component work?"
-/debug "Images are 404ing on product pages"
-/review "Quiz component for functional programming standards"  
-/architect "How should I implement user authentication?"
+npm run rag:query -- "How does the ProductCard component work?"
+npm run rag:query -- "Images are 404ing on product pages"
+npm run rag:query -- "Quiz component for functional programming standards"
+npm run rag:query -- "How should I implement user authentication?"
 
 # Project maintenance
-/gemini-context     # Initial setup (one-time)
-/gemini-update      # Re-ingest after major changes
+npm run rag:setup      # Initial setup (one-time)
+npm run rag:clean      # Clean and re-ingest after major changes
 ```
 
 ### **Learn More**
@@ -72,16 +80,16 @@
 ### **Automation Failures**
 ```bash
 # Code review agent issues
-npm run tools:code-review -- --file test.js
+npm run code:review -- --file test.js
 
 # SEO system failures  
-npm run tools:seo-analyze -- --file src/content/blog/[post].md
+npm run content:seo:analyze -- --file src/content/blog/[post].md
 
 # Blog generation problems
-npm run tools:blog-generate
+npm run content:blog:generate
 
 # Check all automation tools
-npm run tools
+npm run help
 ```
 
 ### **Path Issues**
@@ -159,23 +167,23 @@ npm run tools
 ### **Quality Gates**
 ```bash
 # After implementing any code changes
-npm run tools:code-review -- --file [modified-file]
+npm run code:review -- --file [modified-file]
 
 # Before considering task complete
-npm run check          # TypeScript validation
-npm run build          # Ensure build succeeds
+npm run code:typecheck  # TypeScript validation
+npm run dev:build       # Ensure build succeeds
 ```
 
 ### **Error Recovery Patterns**
 
 #### **TypeScript Errors**
-1. Run `npm run check` to see specific errors
+1. Run `npm run code:typecheck` to see specific errors
 2. Check `/src/development-standards/standards/component-standards.md` for patterns
 3. Verify imports match file naming conventions
 
 #### **Build Failures**
 1. Check console output for specific errors
-2. Run `npm run build:fast` to skip image optimization
+2. Run `npm run dev:build:fast` to skip image optimization
 3. Verify all imports use correct paths and extensions
 
 #### **Context Confusion**
@@ -235,39 +243,40 @@ src/
 ### **Code Quality**
 ```bash
 # Essential code review (run after every change)
-npm run tools:code-review -- --file [file]
+npm run code:review -- --file [file]
 
 # Full directory analysis
-npm run tools:code-review -- --batch src/components/
+npm run code:review -- --batch src/components/
 
 # Performance tracking
-npm run tools:performance
+npm run ai:performance
 ```
 
 ### **Content & SEO**
 ```bash
 # Analyze blog post SEO
-npm run tools:seo-analyze -- --file src/content/blog/[post].md
+npm run content:seo:analyze -- --file src/content/blog/[post].md
 
 # Auto-optimize content
-npm run tools:seo-optimize -- --file src/content/blog/[post].md
+npm run content:seo:optimize -- --file src/content/blog/[post].md
 
 # Generate new blog post
-npm run tools:blog-generate
+npm run content:blog:generate
 ```
 
 ### **Development Commands**
 ```bash
-npm run dev              # Start development server
-npm run dev:expose       # Start server accessible externally
-npm run build            # Build for production
-npm run check            # TypeScript checking
-npm run preview          # Preview production build
+npm run dev:server        # Start development server
+npm run dev:server:expose # Start server accessible externally
+npm run dev:build         # Build for production
+npm run code:typecheck    # TypeScript checking
+npm run dev:preview       # Preview production build
 ```
 
 ### **Essential Tools List**
 ```bash
-npm run tools            # Show all available automation tools
+npm run help             # Show all available commands
+npm run ai:tools:list    # Show detailed automation tools
 ```
 
 ---
@@ -293,10 +302,10 @@ npm run tools            # Show all available automation tools
 4. Follow content quality standards
 
 ### **Testing Changes**
-1. Run `npm run dev` to test locally
-2. Use `npm run build` to verify production build
-3. Run `npm run check` for TypeScript validation
-4. Use code review agent for quality assurance
+1. Run `npm run dev:server` to test locally
+2. Use `npm run dev:build` to verify production build
+3. Run `npm run code:typecheck` for TypeScript validation
+4. Use `npm run code:review -- --file [file]` for quality assurance
 
 ---
 

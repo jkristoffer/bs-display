@@ -1,5 +1,16 @@
 #!/usr/bin/env node
 
+// DEPRECATION WARNING
+console.warn(`
+⚠️  DEPRECATION WARNING: Direct script usage is deprecated!
+   Please use: npm run content:blog:generate
+   This direct script will be removed in next major version.
+   Continuing in 3 seconds...
+`);
+
+// Give user time to see warning
+await new Promise(resolve => setTimeout(resolve, 3000));
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

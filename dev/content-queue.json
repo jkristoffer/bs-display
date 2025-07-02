@@ -1,50 +1,8 @@
 {
   "version": "1.0",
   "lastUpdated": "2025-06-26",
-  "nextPostDate": "2025-07-04",
-  "scheduledPosts": [
-    {
-      "id": "006",
-      "title": "Interactive Display Maintenance: Extending Lifespan and Performance",
-      "description": "Essential maintenance practices for interactive displays including cleaning procedures, calibration schedules, software updates, and preventive care tips.",
-      "category": "Maintenance Guide",
-      "template": "how-to",
-      "priority": "medium",
-      "keywords": [
-        "display maintenance",
-        "interactive board care",
-        "touchscreen cleaning"
-      ],
-      "targetAudience": "facility_managers",
-      "estimatedReadTime": "11 minutes",
-      "data": {
-        "mainTopic": "Interactive Display Maintenance",
-        "hook": "Proper maintenance can double the lifespan of your interactive displays while maintaining peak performance.",
-        "cta": "Implement a maintenance program that protects your display investment and ensures consistent performance."
-      }
-    },
-    {
-      "id": "007",
-      "title": "Manufacturing Interactive Displays: Streamlining Production and Training",
-      "description": "How interactive displays optimize manufacturing operations through digital work instructions, quality control visualization, and workforce training programs.",
-      "category": "Industry Applications",
-      "template": "use-case",
-      "priority": "medium",
-      "keywords": [
-        "manufacturing displays",
-        "industrial interactive boards",
-        "production optimization"
-      ],
-      "targetAudience": "manufacturing_professionals",
-      "estimatedReadTime": "10 minutes",
-      "data": {
-        "mainTopic": "Manufacturing Interactive Displays",
-        "industry": "Manufacturing",
-        "hook": "Interactive displays are revolutionizing manufacturing floors, improving both efficiency and worker safety.",
-        "cta": "Explore how interactive displays can transform your manufacturing operations and workforce development."
-      }
-    }
-  ],
+  "nextPostDate": "2025-07-05",
+  "scheduledPosts": [],
   "templates": {
     "comparison": {
       "name": "Technology Comparison",

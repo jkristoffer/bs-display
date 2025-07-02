@@ -27,6 +27,7 @@ npm run code:review -- --file [path]  # Automated code review
 npm run content:blog:generate  # AI blog post generation
 npm run vps:manage            # VPS infrastructure management
 npm run rag:query             # AI memory system
+npm run mcp:pdf:setup         # Setup PDF analyzer MCP server
 ```
 
 ### **No Slash Commands**
@@ -72,6 +73,40 @@ npm run rag:clean      # Clean and re-ingest after major changes
 ### **Learn More**
 - **[RAG System Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Complete documentation
 - **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage examples
+
+---
+
+## 📄 PDF ANALYSIS (MCP SERVER)
+
+**Analyze PDF files using Gemini CLI through Claude Code integration.**
+
+### **Quick Commands**
+```bash
+# Setup MCP server (one-time)
+npm run mcp:pdf:setup
+
+# Build/rebuild server
+npm run mcp:pdf:build
+
+# Test server functionality
+npm run mcp:pdf:test
+
+# Claude Code integration
+npm run mcp:claude:add      # Add server to Claude Code
+npm run mcp:claude:list     # List configured servers
+npm run mcp:claude:remove   # Remove server
+```
+
+### **Usage in Claude Code**
+Once configured, the PDF analyzer is available as:
+- **Tool name**: `mcp__pdf-analyzer__analyze_pdf`
+- **Analysis types**: extract, summarize, pricing, specifications
+- **Example**: Analyze `quotation_for_85inch_smart_board.pdf` for pricing information
+
+### **Configuration**
+- **Server config**: `.mcp.json` (project-scoped, team-shared)
+- **Source code**: `scripts/mcp-servers/pdf-analyzer/`
+- **Dependencies**: Gemini CLI (must be in PATH)
 
 ---
 

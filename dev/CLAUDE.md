@@ -9,32 +9,105 @@
 **These rules must be followed for every task:**
 
 1. **Always verify context first** - Use Glob/LS tools before coding to confirm files exist
-2. **Follow functional programming** - Pure functions, immutability, composition ([Standards](/src/development-standards/functional-programming.md))
-3. **Run code review agent** - After generating code: `npm run tools:code-review -- --file [file]`
+2. **Follow functional programming** - Pure functions, immutability, composition ([Standards](./docs/development/standards/development-standards/functional-programming.md))
+3. **Run code review agent** - After generating code: `npm run code:review -- --file [file]`
 4. **Use TodoWrite tool** - For complex tasks requiring planning and tracking
 
 ---
 
-## 🧠 RAG PROJECT MEMORY (NEW!)
+## ⚡ UNIFIED TOOL INTERFACE
+
+**All project tools accessible through consistent npm commands.**
+
+### **Quick Access**
+```bash
+npm run help                    # See all available commands
+npm run git:commit             # Intelligent git commits
+npm run code:review -- --file [path]  # Automated code review
+npm run content:blog:generate  # AI blog post generation
+npm run vps:manage            # VPS infrastructure management
+npm run rag:query             # AI memory system
+npm run mcp:pdf:setup         # Setup PDF analyzer MCP server
+```
+
+### **No Slash Commands**
+Previous `/commit` slash commands have been deprecated. Use `npm run git:commit` instead.
+
+### **AI-Enhanced Features**
+```bash
+# Dry-run any destructive operation
+npm run git:commit:ai -- --dry-run
+npm run vps:cleanup:ai -- --dry-run
+
+# JSON output for parsing
+npm run git:status:json
+npm run code:review -- --file test.js --json
+
+# Verbose logging for debugging
+./scripts/verbose-wrapper.sh [command] --verbose
+
+# Contextual help
+npm run help git:commit
+npm run help code:review
+```
+
+---
+
+## 🧠 RAG PROJECT MEMORY
 
 **Transform from stateless AI to project-aware assistant with comprehensive codebase memory.**
 
 ### **Quick Commands**
 ```bash
 # Project-aware queries with full context
-/gemini "How does the ProductCard component work?"
-/debug "Images are 404ing on product pages"
-/review "Quiz component for functional programming standards"  
-/architect "How should I implement user authentication?"
+npm run rag:query -- "How does the ProductCard component work?"
+npm run rag:query -- "Images are 404ing on product pages"
+npm run rag:query -- "Quiz component for functional programming standards"
+npm run rag:query -- "How should I implement user authentication?"
 
 # Project maintenance
-/gemini-context     # Initial setup (one-time)
-/gemini-update      # Re-ingest after major changes
+npm run rag:setup      # Initial setup (one-time)
+npm run rag:clean      # Clean and re-ingest after major changes
 ```
 
 ### **Learn More**
 - **[RAG System Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Complete documentation
 - **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage examples
+- **[RAG System Overview](./docs/RAG_SYSTEM_OVERVIEW.md)** - Technical architecture and setup
+
+---
+
+## 📄 PDF ANALYSIS (MCP SERVER)
+
+**Analyze PDF files using Gemini CLI through Claude Code integration.**
+
+### **Quick Commands**
+```bash
+# Setup MCP server (one-time)
+npm run mcp:pdf:setup
+
+# Build/rebuild server
+npm run mcp:pdf:build
+
+# Test server functionality
+npm run mcp:pdf:test
+
+# Claude Code integration
+npm run mcp:claude:add      # Add server to Claude Code
+npm run mcp:claude:list     # List configured servers
+npm run mcp:claude:remove   # Remove server
+```
+
+### **Usage in Claude Code**
+Once configured, the PDF analyzer is available as:
+- **Tool name**: `mcp__pdf-analyzer__analyze_pdf`
+- **Analysis types**: extract, summarize, pricing, specifications
+- **Example**: Analyze `quotation_for_85inch_smart_board.pdf` for pricing information
+
+### **Configuration**
+- **Server config**: `.mcp.json` (project-scoped, team-shared)
+- **Source code**: `scripts/mcp-servers/pdf-analyzer/`
+- **Dependencies**: Gemini CLI (must be in PATH)
 
 ---
 
@@ -43,16 +116,16 @@
 ### **Automation Failures**
 ```bash
 # Code review agent issues
-npm run tools:code-review -- --file test.js
+npm run code:review -- --file test.js
 
 # SEO system failures  
-npm run tools:seo-analyze -- --file src/content/blog/[post].md
+npm run content:seo:analyze -- --file src/content/blog/[post].md
 
 # Blog generation problems
-npm run tools:blog-generate
+npm run content:blog:generate
 
 # Check all automation tools
-npm run tools
+npm run help
 ```
 
 ### **Path Issues**
@@ -66,7 +139,7 @@ npm run tools
 - **Import errors**: Check `/src/development-standards/standards/file-naming.md`
 - **Type errors**: Run `npm run check` for Astro type checking
 
-### **Full Emergency Procedures**: [EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)
+### **Full Emergency Procedures**: [Troubleshooting Guide](./docs/quick-start/troubleshooting.md)
 
 ---
 
@@ -130,29 +203,29 @@ npm run tools
 ### **Quality Gates**
 ```bash
 # After implementing any code changes
-npm run tools:code-review -- --file [modified-file]
+npm run code:review -- --file [modified-file]
 
 # Before considering task complete
-npm run check          # TypeScript validation
-npm run build          # Ensure build succeeds
+npm run code:typecheck  # TypeScript validation
+npm run dev:build       # Ensure build succeeds
 ```
 
 ### **Error Recovery Patterns**
 
 #### **TypeScript Errors**
-1. Run `npm run check` to see specific errors
-2. Check `/src/development-standards/standards/component-standards.md` for patterns
+1. Run `npm run code:typecheck` to see specific errors
+2. Check [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md) for patterns
 3. Verify imports match file naming conventions
 
 #### **Build Failures**
 1. Check console output for specific errors
-2. Run `npm run build:fast` to skip image optimization
+2. Run `npm run dev:build:fast` to skip image optimization
 3. Verify all imports use correct paths and extensions
 
 #### **Context Confusion**
 1. Use Glob tool to find files: `*.tsx`, `**/*.astro`
 2. Use LS tool to explore directory structure
-3. Reference [EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)
+3. Reference [Troubleshooting Guide](./docs/quick-start/troubleshooting.md)
 
 ---
 
@@ -194,10 +267,10 @@ src/
 - **Centralized exports**: Import from `/src/data/models.all.js`
 
 ### **Development Standards Reference**
-- **Component Standards**: `/src/development-standards/standards/component-standards.md`
-- **Styling Patterns**: `/src/development-standards/standards/styling-patterns.md`  
-- **File Naming**: `/src/development-standards/standards/file-naming.md`
-- **Functional Programming**: `/src/development-standards/functional-programming.md`
+- **Component Standards**: [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md)
+- **Styling Patterns**: [Styling Patterns](./docs/development/standards/development-standards/standards/styling-patterns.md)  
+- **File Naming**: [File Naming](./docs/development/standards/development-standards/standards/file-naming.md)
+- **Functional Programming**: [Functional Programming](./docs/development/standards/development-standards/functional-programming.md)
 
 ---
 
@@ -206,39 +279,40 @@ src/
 ### **Code Quality**
 ```bash
 # Essential code review (run after every change)
-npm run tools:code-review -- --file [file]
+npm run code:review -- --file [file]
 
 # Full directory analysis
-npm run tools:code-review -- --batch src/components/
+npm run code:review -- --batch src/components/
 
 # Performance tracking
-npm run tools:performance
+npm run ai:performance
 ```
 
 ### **Content & SEO**
 ```bash
 # Analyze blog post SEO
-npm run tools:seo-analyze -- --file src/content/blog/[post].md
+npm run content:seo:analyze -- --file src/content/blog/[post].md
 
 # Auto-optimize content
-npm run tools:seo-optimize -- --file src/content/blog/[post].md
+npm run content:seo:optimize -- --file src/content/blog/[post].md
 
 # Generate new blog post
-npm run tools:blog-generate
+npm run content:blog:generate
 ```
 
 ### **Development Commands**
 ```bash
-npm run dev              # Start development server
-npm run dev:expose       # Start server accessible externally
-npm run build            # Build for production
-npm run check            # TypeScript checking
-npm run preview          # Preview production build
+npm run dev:server        # Start development server
+npm run dev:server:expose # Start server accessible externally
+npm run dev:build         # Build for production
+npm run code:typecheck    # TypeScript checking
+npm run dev:preview       # Preview production build
 ```
 
 ### **Essential Tools List**
 ```bash
-npm run tools            # Show all available automation tools
+npm run help             # Show all available commands
+npm run ai:tools:list    # Show detailed automation tools
 ```
 
 ---
@@ -251,7 +325,7 @@ npm run tools            # Show all available automation tools
 3. Product pages auto-generate from dynamic routes
 
 ### **Creating New Components**
-1. Follow standards in `/src/development-standards/standards/component-standards.md`
+1. Follow standards in [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md)
 2. Use TypeScript (.tsx) with functional programming patterns
 3. Create SCSS module for styling
 4. Export via index.ts file
@@ -264,24 +338,29 @@ npm run tools            # Show all available automation tools
 4. Follow content quality standards
 
 ### **Testing Changes**
-1. Run `npm run dev` to test locally
-2. Use `npm run build` to verify production build
-3. Run `npm run check` for TypeScript validation
-4. Use code review agent for quality assurance
+1. Run `npm run dev:server` to test locally
+2. Use `npm run dev:build` to verify production build
+3. Run `npm run code:typecheck` for TypeScript validation
+4. Use `npm run code:review -- --file [file]` for quality assurance
 
 ---
 
 ## 📚 DETAILED DOCUMENTATION REFERENCES
 
 ### **For Comprehensive Information**
-- **README.md** - Project overview, installation, architecture
-- **DOCS.md** - Daily development commands and navigation
-- **EMERGENCY_PROCEDURES.md** - System recovery and troubleshooting
+- **[README.md](./README.md)** - Project overview, installation, architecture
+- **[DOCS.md](./DOCS.md)** - Daily development commands and navigation  
+- **[Emergency Procedures](./docs/quick-start/troubleshooting.md)** - System recovery and troubleshooting
 
-### **For Specialized Systems**
-- **CODE_REVIEW_AGENT.md** - Automated quality enforcement details
-- **BLOG_AUTOMATION_README.md** - Content generation and SEO pipeline
-- **SEO_QUICK_REFERENCE.md** - SEO optimization commands
+### **For Development & Operations**
+- **[Development Standards](./src/development-standards/README.md)** - Code standards and patterns
+- **[AI Workflows](./docs/development/ai-workflows.md)** - AI-specific development patterns
+- **[Daily Commands](./docs/development/commands.md)** - Common development commands
+
+### **For Research & Technical Documentation**
+- **[Documentation Hub](./docs/README.md)** - Centralized documentation index
+- **[MCP Building Guidelines](./docs/MCP_BUILDING_GUIDELINES.md)** - MCP server development standards
+- **[Technical Architecture Decisions](./docs/TECHNICAL_ARCHITECTURE_DECISIONS_RESEARCH.md)** - System design decisions
 
 ### **For Development Standards**
 - **Component Standards** - `/src/development-standards/standards/component-standards.md`

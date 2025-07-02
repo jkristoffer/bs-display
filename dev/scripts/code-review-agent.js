@@ -1,5 +1,16 @@
 #!/usr/bin/env node
 
+// DEPRECATION WARNING
+console.warn(`
+⚠️  DEPRECATION WARNING: Direct script usage is deprecated!
+   Please use: npm run code:review -- --file [path]
+   This direct script will be removed in next major version.
+   Continuing in 3 seconds...
+`);
+
+// Give user time to see warning
+await new Promise(resolve => setTimeout(resolve, 3000));
+
 /**
  * Code Review Agent - Automated Standards Compliance Checker
  * 

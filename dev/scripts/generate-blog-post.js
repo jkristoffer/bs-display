@@ -1,5 +1,16 @@
 #!/usr/bin/env node
 
+// DEPRECATION WARNING
+console.warn(`
+⚠️  DEPRECATION WARNING: Direct script usage is deprecated!
+   Please use: npm run content:blog:generate
+   This direct script will be removed in next major version.
+   Continuing in 3 seconds...
+`);
+
+// Give user time to see warning
+await new Promise(resolve => setTimeout(resolve, 3000));
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -1191,7 +1202,39 @@ _Ready to make the right choice for your organization? [Contact our experts →]
 
 // CLI execution
 if (import.meta.url === `file://${process.argv[1]}`) {
+  const args = process.argv.slice(2);
+  const isDryRun = args.includes('--dry-run');
+  
   const generator = new BlogPostGenerator();
+  
+  if (isDryRun) {
+    console.log('🔍 DRY RUN MODE: Blog generation preview');
+    console.log('📝 Would generate blog post from queue');
+    console.log('📊 Queue status: checking...');
+    
+    try {
+      // Check queue and show what would happen
+      const queue = generator.loadQueue();
+      if (queue.scheduledPosts && queue.scheduledPosts.length > 0) {
+        const nextPost = queue.scheduledPosts.find(post => post.priority === 'high') || queue.scheduledPosts[0];
+        console.log(`📋 Would generate: ${nextPost.title}`);
+        console.log(`📁 Would create: ${generator.generateSlug(nextPost.title)}.md`);
+        console.log(`📊 Template: ${nextPost.template}`);
+        console.log(`⏱️ Estimated read time: ${nextPost.estimatedReadTime}`);
+      } else {
+        console.log('📋 Queue is empty - would show interactive prompt');
+        console.log('📝 Would generate sample blog post from templates');
+      }
+      
+      console.log('✅ DRY RUN completed - no files modified');
+      process.exit(0);
+    } catch (error) {
+      console.log(`⚠️ DRY RUN: Would handle error: ${error.message}`);
+      console.log('✅ DRY RUN completed - no files modified');
+      process.exit(0);
+    }
+  }
+  
   const result = generator.generateBlogPost();
   
   if (!result.success) {

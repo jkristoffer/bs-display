@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "pdf-analyzer": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["scripts/mcp-servers/pdf-analyzer/dist/index.js"],
+      "env": {
+        "MCP_SERVER_NAME": "PDF Analyzer",
+        "MCP_SERVER_VERSION": "1.0.0",
+        "DEBUG": "false"
+      }
+    }
+  }
+}
+EOF < /dev/null

@@ -1,0 +1,33 @@
+{
+  "name": "pdf-analyzer-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for analyzing PDF files using Gemini CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "pdf-analyzer-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "npm run build && echo 'Test input' | node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "claude-code",
+    "pdf",
+    "gemini",
+    "ai"
+  ],
+  "author": "BS Display Team",
+  "license": "MIT"
+}

@@ -118,5 +118,41 @@
     "panelLife": "Not specified",
     "audioOutput": "Not specified",
     "powerConsumption": "Not specified"
+  },
+  {
+    "id": "qeoyo-85-uhd",
+    "brand": "Qeoyo",
+    "model": "Qeoyo 85” UHD Interactive Smart Panel",
+    "size": 85,
+    "resolution": "3840x2160",
+    "os": "Android 14.0",
+    "touchTechnology": "20points Finger or touch pen",
+    "features": [
+      "4K UHD resolution",
+      "20points Finger or touch pen",
+      "Android 14.0, 4G ram, 32G storage",
+      "4mm Toughened AG glass",
+      "15W*2pcs speakers",
+      "50000H service life",
+      "Wireless connection for phone and ipad",
+      "Built-in whiteboard software",
+      "Google store",
+      "Wifi",
+      "Zero boning Technology",
+      "Multi-Touch Capability",
+      "Dual band Wi-Fi 2.4gHz & 5gHz",
+      "Bluetooth",
+      "Screen Transmission"
+    ],
+    "warranty": "1 year",
+    "priceRange": "$1564",
+    "image": "/assets/models/qeoyo-QEOYO85AW.png",
+    "brightness": "450 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "responseTime": "6ms",
+    "panelLife": "50000H",
+    "audioOutput": "15W*2pcs",
+    "powerConsumption": "238W"
   }
 ]

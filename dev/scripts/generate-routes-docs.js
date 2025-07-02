@@ -479,7 +479,7 @@ npm run docs:routes
 
 1. Create new files in \`src/pages/\`
 2. Run \`npm run docs:routes\` to update documentation
-3. Commit both route files and updated \`ROUTES.md\`
+3. Commit both route files and updated \`docs/development/routes.md\`
 
 ### Sitemap Configuration
 
@@ -541,7 +541,7 @@ Route priorities and change frequencies are configured in \`astro.config.mjs\` u
    * Write the generated documentation to file
    */
   async writeDocumentation(markdown) {
-    const outputPath = path.join(projectRoot, 'ROUTES.md');
+    const outputPath = path.join(projectRoot, 'docs', 'development', 'routes.md');
     fs.writeFileSync(outputPath, markdown, 'utf-8');
   }
 }

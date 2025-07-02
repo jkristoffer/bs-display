@@ -2,6 +2,13 @@
 # Claude Code Fast Commit - Local intelligent git commit
 # Usage: ./scripts/commit  OR  alias /commit='./scripts/commit'
 
+# DEPRECATION WARNING
+echo "⚠️  DEPRECATION WARNING: Direct script usage is deprecated!"
+echo "   Please use: npm run git:commit"
+echo "   This direct script will be removed in next major version."
+echo "   Continuing in 3 seconds..."
+sleep 3
+
 set -euo pipefail
 
 # Colors for output

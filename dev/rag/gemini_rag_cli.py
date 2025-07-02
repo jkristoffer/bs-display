@@ -162,6 +162,9 @@ class GeminiRAGSystem:
         
         genai.configure(api_key=GEMINI_API_KEY)
         logger.info("Initialized Gemini API client")
+        
+        # Initialize vector database when the RAG system is created
+        self.initialize_vector_db()
     
     def initialize_vector_db(self, force_recreate: bool = False):
         """Initialize ChromaDB client and collection."""
@@ -184,8 +187,10 @@ class GeminiRAGSystem:
                 self.collection = self.chroma_client.get_collection(name=collection_name)
                 count = self.collection.count()
                 if count > 0:
-                    raise ValueError(f"Collection '{collection_name}' already exists with {count} chunks. "
-                                   f"Use --force to recreate or run /gemini-update for incremental changes.")
+                    # If collection exists and has data, don't raise error during initialization
+                    # This allows subsequent queries to use the existing database
+                    logger.info(f"Collection '{collection_name}' already exists with {count} chunks. Using existing collection.")
+                    return
             
             if collection_exists and force_recreate:
                 # Delete existing collection and recreate
@@ -375,8 +380,10 @@ class GeminiRAGSystem:
     
     def retrieve_context(self, query_text: str, top_k: int = 5) -> List[Dict[str, Any]]:
         """Retrieve relevant context using similarity search."""
+        # The collection should already be initialized in __init__
         if not self.collection:
-            self.initialize_vector_db()
+            logger.error("ChromaDB collection not initialized.")
+            return []
         
         # Generate query embedding
         query_embedding = self.generate_embedding(query_text)

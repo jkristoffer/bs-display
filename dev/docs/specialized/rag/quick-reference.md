@@ -2,6 +2,8 @@
 
 **Fast access guide for daily development with RAG-powered project memory.**
 
+📋 **Navigation**: [← RAG System Guide](./RAG_PROJECT_MEMORY_GUIDE.md) | [RAG Architecture →](./RAG_SYSTEM_OVERVIEW.md) | [↑ Documentation Hub](./README.md)
+
 ---
 
 ## ⚡ Essential Commands

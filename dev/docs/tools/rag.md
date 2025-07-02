@@ -2,6 +2,8 @@
 
 **Transform Claude Code from stateless AI into a project-aware assistant with comprehensive codebase memory.**
 
+📋 **Navigation**: [Quick Reference →](./RAG_QUICK_REFERENCE.md) | [RAG Architecture →](./RAG_SYSTEM_OVERVIEW.md) | [↑ Documentation Hub](./README.md)
+
 ---
 
 ## 🎯 Overview

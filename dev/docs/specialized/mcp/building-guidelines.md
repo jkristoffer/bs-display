@@ -4,6 +4,8 @@
 **Last Updated:** July 2, 2025  
 **Audience:** Developers, DevOps Engineers, AI Application Builders
 
+📋 **Navigation**: [MCP Research →](./MCP_RESEARCH_FINDINGS.md) | [Technical Architecture →](./TECHNICAL_ARCHITECTURE_DECISIONS_RESEARCH.md) | [↑ Documentation Hub](./README.md)
+
 ---
 
 ## Table of Contents

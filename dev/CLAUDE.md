@@ -9,7 +9,7 @@
 **These rules must be followed for every task:**
 
 1. **Always verify context first** - Use Glob/LS tools before coding to confirm files exist
-2. **Follow functional programming** - Pure functions, immutability, composition ([Standards](/src/development-standards/functional-programming.md))
+2. **Follow functional programming** - Pure functions, immutability, composition ([Standards](./docs/development/standards/development-standards/functional-programming.md))
 3. **Run code review agent** - After generating code: `npm run code:review -- --file [file]`
 4. **Use TodoWrite tool** - For complex tasks requiring planning and tracking
 
@@ -73,6 +73,7 @@ npm run rag:clean      # Clean and re-ingest after major changes
 ### **Learn More**
 - **[RAG System Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Complete documentation
 - **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage examples
+- **[RAG System Overview](./docs/RAG_SYSTEM_OVERVIEW.md)** - Technical architecture and setup
 
 ---
 
@@ -138,7 +139,7 @@ npm run help
 - **Import errors**: Check `/src/development-standards/standards/file-naming.md`
 - **Type errors**: Run `npm run check` for Astro type checking
 
-### **Full Emergency Procedures**: [EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)
+### **Full Emergency Procedures**: [Troubleshooting Guide](./docs/quick-start/troubleshooting.md)
 
 ---
 
@@ -213,7 +214,7 @@ npm run dev:build       # Ensure build succeeds
 
 #### **TypeScript Errors**
 1. Run `npm run code:typecheck` to see specific errors
-2. Check `/src/development-standards/standards/component-standards.md` for patterns
+2. Check [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md) for patterns
 3. Verify imports match file naming conventions
 
 #### **Build Failures**
@@ -224,7 +225,7 @@ npm run dev:build       # Ensure build succeeds
 #### **Context Confusion**
 1. Use Glob tool to find files: `*.tsx`, `**/*.astro`
 2. Use LS tool to explore directory structure
-3. Reference [EMERGENCY_PROCEDURES.md](./EMERGENCY_PROCEDURES.md)
+3. Reference [Troubleshooting Guide](./docs/quick-start/troubleshooting.md)
 
 ---
 
@@ -266,10 +267,10 @@ src/
 - **Centralized exports**: Import from `/src/data/models.all.js`
 
 ### **Development Standards Reference**
-- **Component Standards**: `/src/development-standards/standards/component-standards.md`
-- **Styling Patterns**: `/src/development-standards/standards/styling-patterns.md`  
-- **File Naming**: `/src/development-standards/standards/file-naming.md`
-- **Functional Programming**: `/src/development-standards/functional-programming.md`
+- **Component Standards**: [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md)
+- **Styling Patterns**: [Styling Patterns](./docs/development/standards/development-standards/standards/styling-patterns.md)  
+- **File Naming**: [File Naming](./docs/development/standards/development-standards/standards/file-naming.md)
+- **Functional Programming**: [Functional Programming](./docs/development/standards/development-standards/functional-programming.md)
 
 ---
 
@@ -324,7 +325,7 @@ npm run ai:tools:list    # Show detailed automation tools
 3. Product pages auto-generate from dynamic routes
 
 ### **Creating New Components**
-1. Follow standards in `/src/development-standards/standards/component-standards.md`
+1. Follow standards in [Component Standards](./docs/development/standards/development-standards/standards/component-standards.md)
 2. Use TypeScript (.tsx) with functional programming patterns
 3. Create SCSS module for styling
 4. Export via index.ts file
@@ -347,14 +348,19 @@ npm run ai:tools:list    # Show detailed automation tools
 ## 📚 DETAILED DOCUMENTATION REFERENCES
 
 ### **For Comprehensive Information**
-- **README.md** - Project overview, installation, architecture
-- **DOCS.md** - Daily development commands and navigation
-- **EMERGENCY_PROCEDURES.md** - System recovery and troubleshooting
+- **[README.md](./README.md)** - Project overview, installation, architecture
+- **[DOCS.md](./DOCS.md)** - Daily development commands and navigation  
+- **[Emergency Procedures](./docs/quick-start/troubleshooting.md)** - System recovery and troubleshooting
 
-### **For Specialized Systems**
-- **COMMAND_REFERENCE.md** - Complete command listing and automation tools
-- **AI_DEVELOPER_GUIDE.md** - AI-specific workflows and best practices
-- **MIGRATION_GUIDE.md** - Transition from old commands to new interface
+### **For Development & Operations**
+- **[Development Standards](./src/development-standards/README.md)** - Code standards and patterns
+- **[AI Workflows](./docs/development/ai-workflows.md)** - AI-specific development patterns
+- **[Daily Commands](./docs/development/commands.md)** - Common development commands
+
+### **For Research & Technical Documentation**
+- **[Documentation Hub](./docs/README.md)** - Centralized documentation index
+- **[MCP Building Guidelines](./docs/MCP_BUILDING_GUIDELINES.md)** - MCP server development standards
+- **[Technical Architecture Decisions](./docs/TECHNICAL_ARCHITECTURE_DECISIONS_RESEARCH.md)** - System design decisions
 
 ### **For Development Standards**
 - **Component Standards** - `/src/development-standards/standards/component-standards.md`

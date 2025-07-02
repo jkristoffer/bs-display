@@ -1,6 +1,6 @@
 # Routes Documentation
 
-> **Auto-generated on 2025-07-02T04:56:46.615Z**  
+> **Auto-generated on 2025-06-27T07:57:26.415Z**  
 > This documentation is automatically generated from the codebase.  
 > Run `npm run docs:routes` to update.
 
@@ -344,4 +344,4 @@ npm run docs:routes
 
 Route priorities and change frequencies are configured in `astro.config.mjs` under the sitemap integration.
 
-**Last updated:** 2025-07-02T04:56:46.615Z
+**Last updated:** 2025-06-27T07:57:26.415Z

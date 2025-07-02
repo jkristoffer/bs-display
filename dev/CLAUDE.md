@@ -10,7 +10,7 @@
 
 1. **Always verify context first** - Use Glob/LS tools before coding to confirm files exist
 2. **Follow functional programming** - Pure functions, immutability, composition ([Standards](/src/development-standards/functional-programming.md))
-3. **Run code review agent** - After generating code: `npm run tools:code-review -- --file [file]`
+3. **Run code review agent** - After generating code: `npm run code:review -- --file [file]`
 4. **Use TodoWrite tool** - For complex tasks requiring planning and tracking
 
 ---
@@ -352,9 +352,9 @@ npm run ai:tools:list    # Show detailed automation tools
 - **EMERGENCY_PROCEDURES.md** - System recovery and troubleshooting
 
 ### **For Specialized Systems**
-- **CODE_REVIEW_AGENT.md** - Automated quality enforcement details
-- **BLOG_AUTOMATION_README.md** - Content generation and SEO pipeline
-- **SEO_QUICK_REFERENCE.md** - SEO optimization commands
+- **COMMAND_REFERENCE.md** - Complete command listing and automation tools
+- **AI_DEVELOPER_GUIDE.md** - AI-specific workflows and best practices
+- **MIGRATION_GUIDE.md** - Transition from old commands to new interface
 
 ### **For Development Standards**
 - **Component Standards** - `/src/development-standards/standards/component-standards.md`

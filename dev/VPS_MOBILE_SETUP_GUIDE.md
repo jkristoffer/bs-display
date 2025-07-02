@@ -111,7 +111,7 @@ After deployment, use these apps to connect:
 4. **Start Development**:
    ```bash
    cd /opt/bs-display/dev
-   npm run dev -- --host 0.0.0.0
+   npm run dev:expose
    # Access: http://[IP_ADDRESS]:4321
    ```
 

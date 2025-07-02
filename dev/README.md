@@ -32,7 +32,7 @@ cd bs-display/dev
 npm install
 
 # Start development server
-npm run dev:server:server
+npm run dev:server
 ```
 
 Visit `http://localhost:4321` to see the platform running locally.
@@ -40,9 +40,9 @@ Visit `http://localhost:4321` to see the platform running locally.
 ### Essential Commands
 
 ```bash
-npm run dev:server:server   # Start Astro development server
-npm run dev:server:build    # Build for production  
-npm run dev:server:preview  # Preview production build locally
+npm run dev:server   # Start Astro development server
+npm run dev:build    # Build for production  
+npm run dev:preview  # Preview production build locally
 npm run code:typecheck # Run TypeScript type checking
 npm run help         # See all available commands
 ```
@@ -295,9 +295,9 @@ Configuration is handled through Astro's built-in environment support. Contact t
 - **[Development Standards](./src/development-standards/standards/)** - Implementation patterns
 
 ### **For Specific Systems**
-- **[Code Review Agent](./CODE_REVIEW_AGENT.md)** - Quality enforcement system
-- **[Blog Automation](./BLOG_AUTOMATION_README.md)** - Content generation pipeline
-- **[SEO Quick Reference](./SEO_QUICK_REFERENCE.md)** - SEO optimization guide
+- **[Command Reference](./COMMAND_REFERENCE.md)** - Complete command listing and automation tools
+- **[AI Developer Guide](./AI_DEVELOPER_GUIDE.md)** - AI-specific workflows and best practices
+- **[Migration Guide](./MIGRATION_GUIDE.md)** - Transition from old commands to new interface
 
 ## License & Contact
 

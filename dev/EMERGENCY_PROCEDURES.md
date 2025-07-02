@@ -9,7 +9,7 @@
 ### System Down Checklist
 1. **Check automation status**: All scripts in `/scripts/` directory
 2. **Verify GitHub Actions**: Check `.github/workflows/` for failing workflows  
-3. **Test core commands**: `npm run dev`, `npm run build`, `npm run check`
+3. **Test core commands**: `npm run dev:server`, `npm run dev:build`, `npm run code:typecheck`
 4. **Review recent changes**: `git log --oneline -10` for recent commits
 
 ### Emergency Contacts & Resources
@@ -243,8 +243,8 @@ cp -r ../backup-scripts-[DATE]/scripts/ ./
 git checkout HEAD~[N] -- scripts/
 
 # Verify restoration
-npm run build
-npm run check
+npm run dev:build
+npm run code:typecheck
 ```
 
 #### **Restore Content Queue**
@@ -290,22 +290,22 @@ npm install
 #### **Core Functionality Test**
 ```bash
 # 1. Test development environment
-npm run dev &
+npm run dev:server &
 PID=$!
 sleep 5
 curl -I http://localhost:4321
 kill $PID
 
 # 2. Test build process
-npm run build
-npm run preview &
+npm run dev:build
+npm run dev:preview &
 PID=$!
 sleep 5
 curl -I http://localhost:4322
 kill $PID
 
 # 3. Test type checking
-npm run check
+npm run code:typecheck
 ```
 
 #### **Automation Systems Test**
@@ -360,7 +360,7 @@ find src/ -name "*.ts" -o -name "*.tsx" | xargs grep -l "import.*from.*[^.]$"
 #### **Slow Build Times**
 ```bash
 # Profile build performance
-time npm run build
+time npm run dev:build
 
 # Check for large dependencies
 npm list --depth=0 --long
@@ -368,7 +368,7 @@ npm list --depth=0 --long
 # Clear caches
 rm -rf .astro/
 rm -rf dist/
-npm run build
+npm run dev:build
 ```
 
 #### **Memory Issues**
@@ -378,7 +378,7 @@ top -l 1 | grep node
 
 # Increase Node.js memory limit if needed
 export NODE_OPTIONS="--max-old-space-size=4096"
-npm run build
+npm run dev:build
 ```
 
 ---

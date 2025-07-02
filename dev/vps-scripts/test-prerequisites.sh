@@ -27,7 +27,7 @@ fi
 # Test 2: Check doctl authentication
 echo -e "${YELLOW}2. Checking doctl authentication...${NC}"
 if doctl auth list &> /dev/null; then
-    CURRENT_CONTEXT=$(doctl auth list --format Name --no-header | head -1)
+    CURRENT_CONTEXT=$(doctl auth list 2>/dev/null | awk 'NR>1 && NF>0 {print $1; exit}' || echo "authenticated")
     echo -e "   ${GREEN}✓ Authenticated as: $CURRENT_CONTEXT${NC}"
 else
     echo -e "   ${RED}✗ Not authenticated${NC}"
@@ -38,7 +38,7 @@ fi
 # Test 3: Check API connectivity
 echo -e "${YELLOW}3. Testing DigitalOcean API connectivity...${NC}"
 if doctl account get &> /dev/null; then
-    ACCOUNT_EMAIL=$(doctl account get --format Email --no-header)
+    ACCOUNT_EMAIL=$(doctl account get 2>/dev/null | awk 'NR>1 && NF>1 {print $2; exit}' || echo "verified")
     echo -e "   ${GREEN}✓ API connection successful: $ACCOUNT_EMAIL${NC}"
 else
     echo -e "   ${RED}✗ API connection failed${NC}"
@@ -48,7 +48,7 @@ fi
 
 # Test 4: Check SSH keys
 echo -e "${YELLOW}4. Checking SSH keys...${NC}"
-SSH_KEYS=$(doctl compute ssh-key list --format ID,Name --no-header)
+SSH_KEYS=$(doctl compute ssh-key list 2>/dev/null | awk 'NR>1 && NF>1 {print $1, $2}')
 if [ -n "$SSH_KEYS" ]; then
     SSH_KEY_COUNT=$(echo "$SSH_KEYS" | wc -l | tr -d ' ')
     echo -e "   ${GREEN}✓ Found $SSH_KEY_COUNT SSH key(s):${NC}"
@@ -76,7 +76,7 @@ fi
 
 # Test 5: Check available regions
 echo -e "${YELLOW}5. Checking available regions...${NC}"
-REGIONS=$(doctl compute region list --format Slug,Name,Available --no-header | grep "true" | head -3)
+REGIONS=$(doctl compute region list 2>/dev/null | awk 'NR>1 && $3=="true" {print $1, $2; count++} count>=3 {exit}')
 echo -e "   ${GREEN}✓ Available regions (showing first 3):${NC}"
 echo "$REGIONS" | while read -r region_info; do
     echo -e "     - $region_info"
@@ -84,7 +84,7 @@ done
 
 # Test 6: Check available sizes
 echo -e "${YELLOW}6. Checking available droplet sizes...${NC}"
-SIZES=$(doctl compute size list --format Slug,Memory,VCPUs,Disk,PriceMonthly --no-header | grep -E "(s-1vcpu|s-2vcpu|s-4vcpu)" | head -3)
+SIZES=$(doctl compute size list 2>/dev/null | awk 'NR>1 && $1 ~ /(s-1vcpu|s-2vcpu|s-4vcpu)/ {print $1, $2"MB", $3"vcpu", $4"GB"; count++} count>=3 {exit}')
 echo -e "   ${GREEN}✓ Recommended sizes:${NC}"
 echo "$SIZES" | while read -r size_info; do
     echo -e "     - $size_info"

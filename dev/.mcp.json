@@ -9,14 +9,6 @@
       "env": {
         "NODE_ENV": "production"
       }
-    },
-    "pdf-analyzer": {
-      "type": "stdio",
-      "command": "node",
-      "args": [
-        "scripts/mcp-servers/pdf-analyzer/dist/index.js"
-      ],
-      "env": {}
     }
   }
 }

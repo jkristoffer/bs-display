@@ -203,7 +203,57 @@
     "audioOutput": "20W x2 + 20W Subwoofer",
     "powerConsumption": "400W"
   },
-
+  {
+    "id": "metz-s-series-65sg1",
+    "brand": "METZ",
+    "model": "METZ S Series 65SG1 UHD Interactive Display",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K DLED display",
+      "Built-in camera and speakers",
+      "16GB RAM",
+      "256GB storage"
+    ],
+    "warranty": "3 years",
+    "priceRange": "N/A",
+    "image": "/assets/models/metz-interactive-board-s-series.png",
+    "brightness": "N/A",
+    "contrastRatio": "N/A",
+    "viewingAngle": "N/A",
+    "responseTime": "N/A",
+    "panelLife": "N/A",
+    "audioOutput": "N/A",
+    "powerConsumption": "N/A"
+  },
+  {
+    "id": "metz-s-series-86sg1",
+    "brand": "METZ",
+    "model": "METZ S Series 86SG1 UHD Interactive Display",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K DLED display",
+      "Built-in camera and speakers",
+      "16GB RAM",
+      "256GB storage",
+      "Up to 50 touch points"
+    ],
+    "warranty": "3 years",
+    "priceRange": "N/A",
+    "image": "/assets/models/metz-interactive-board-s-series.png",
+    "brightness": "N/A",
+    "contrastRatio": "N/A",
+    "viewingAngle": "N/A",
+    "responseTime": "N/A",
+    "panelLife": "N/A",
+    "audioOutput": "N/A",
+    "powerConsumption": "N/A"
+  },
   {
     "id": "metz-k-series-65",
     "brand": "METZ",
@@ -306,7 +356,36 @@
     "audioOutput": "15W x2",
     "powerConsumption": "400W"
   },
-
+  {
+    "id": "metz-k-series-65kd1",
+    "brand": "METZ",
+    "model": "METZ K Series 65KD1 UHD Interactive Display",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 11 + Windows (via OPS)",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Infrared touch with up to 20 points",
+      "Dual OS: Android 11 and optional Windows via OPS",
+      "Built-in Wi-Fi and Bluetooth",
+      "Integrated whiteboard with handwriting recognition",
+      "Anti-glare 4mm tempered glass",
+      "1mm writing height",
+      "0.8mm air gap for reduced parallax",
+      "Full-function Type-C port"
+    ],
+    "warranty": "3 years",
+    "priceRange": "N/A",
+    "image": "/assets/models/metz-interactive-board-k-series.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "15W x2",
+    "powerConsumption": "250W"
+  },
   {
     "id": "metz-y-series-65",
     "brand": "METZ",

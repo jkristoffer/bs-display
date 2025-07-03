@@ -76,6 +76,7 @@
     "help:git": "echo 'Git commands: commit, status, push, pull, log'",
     "help:code": "echo 'Code quality: review, lint, typecheck'",
     "help:content": "echo 'Content tools: blog:generate, seo:analyze, seo:optimize'",
+    "help:data": "echo 'Data validation: data:validate, data:validate:maxhub, data:validate:file'",
     "help:vps": "echo 'VPS tools: manage, spinup, cleanup, cost, snapshot:*'",
     "help:rag": "echo 'RAG tools: query, clean, test, setup'",
     "git:commit:ai": "./scripts/ai-wrappers/git-commit-wrapper.sh",
@@ -88,6 +89,9 @@
     "ai:validate:git": "node scripts/validate-tools.js git",
     "ai:validate:code": "node scripts/validate-tools.js code",
     "ai:validate:dry": "npm run git:commit:ai -- --dry-run && npm run vps:cleanup:ai -- --dry-run",
+    "data:validate": "node scripts/validate-json-schema.js",
+    "data:validate:maxhub": "node scripts/validate-json-schema.js maxhub",
+    "data:validate:file": "node scripts/validate-json-schema.js --file",
     "help:command": "node scripts/help-system.js"
   },
   "author": "Kris",

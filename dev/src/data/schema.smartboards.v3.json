@@ -103,6 +103,52 @@
         "type": "string",
         "description": "Typical power usage (e.g. '400W')",
         "pattern": "^([0-9]+W|Not specified)$"
+      },
+      "processor": {
+        "type": "string",
+        "description": "CPU specification (e.g. 'ARM Cortex A55 quad-core')"
+      },
+      "ram": {
+        "type": "string",
+        "description": "RAM capacity and type (e.g. '4GB DDR4')"
+      },
+      "storage": {
+        "type": "string",
+        "description": "Internal storage capacity (e.g. '32GB')"
+      },
+      "gpu": {
+        "type": "string",
+        "description": "Graphics processing unit (e.g. 'ARM Mali-G52 MP2')"
+      },
+      "connectivity": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Connectivity options (e.g. ['WiFi 6', 'Bluetooth', 'USB 3.0'])"
+      },
+      "touchAccuracy": {
+        "type": "string",
+        "description": "Touch accuracy specification (e.g. '±0.5mm')"
+      },
+      "series": {
+        "type": "string",
+        "description": "Product series name (e.g. 'H Series', 'S Series')"
+      },
+      "certifications": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Certifications and standards (e.g. ['Google EDLA', 'EnergyStar'])"
+      },
+      "cameraSpecs": {
+        "type": "string",
+        "description": "Camera specifications (e.g. '48MP AI camera with face tracking')"
+      },
+      "microphoneArray": {
+        "type": "string",
+        "description": "Microphone specifications (e.g. '8-array directional microphones')"
       }
     }
   }

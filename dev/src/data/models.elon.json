@@ -18,12 +18,22 @@
       "Remote control, cable, writing pen, antenna x2, wall mount bracket included"
     ],
     "warranty": "1 year",
-    "priceRange": "$366 - $366",
+    "priceRange": "$222 - $252",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "180W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series"
   },
   {
     "id": "elon-uhd-camera-55",
@@ -46,12 +56,24 @@
       "Built-in 8-array microphone"
     ],
     "warranty": "1 year",
-    "priceRange": "$439 - $439",
+    "priceRange": "$280 - $320",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "190W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series",
+    "cameraSpecs": "48MP basic camera with auto-focus",
+    "microphoneArray": "8-array basic microphones"
   },
   {
     "id": "elon-uhd-65",
@@ -72,12 +94,22 @@
       "Remote control, cable, writing pen, antenna x2, wall mount bracket included"
     ],
     "warranty": "1 year",
-    "priceRange": "$471 - $471",
+    "priceRange": "$455 - $499",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "200W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series"
   },
   {
     "id": "elon-uhd-camera-65",
@@ -100,12 +132,24 @@
       "Built-in 8-array microphone"
     ],
     "warranty": "1 year",
-    "priceRange": "$544 - $544",
+    "priceRange": "$520 - $580",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "210W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series",
+    "cameraSpecs": "48MP basic camera with auto-focus",
+    "microphoneArray": "8-array basic microphones"
   },
   {
     "id": "elon-uhd-75",
@@ -126,12 +170,22 @@
       "Remote control, cable, writing pen, antenna x2, wall mount bracket included"
     ],
     "warranty": "1 year",
-    "priceRange": "$600 - $600",
+    "priceRange": "$750 - $950",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "250W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series"
   },
   {
     "id": "elon-uhd-camera-75",
@@ -154,12 +208,24 @@
       "Built-in 8-array microphone"
     ],
     "warranty": "1 year",
-    "priceRange": "$672 - $672",
+    "priceRange": "$820 - $1,020",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "260W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series",
+    "cameraSpecs": "48MP basic camera with auto-focus",
+    "microphoneArray": "8-array basic microphones"
   },
   {
     "id": "elon-uhd-86",
@@ -180,12 +246,22 @@
       "Remote control, cable, writing pen, antenna x2, wall mount bracket included"
     ],
     "warranty": "1 year",
-    "priceRange": "$823 - $823",
+    "priceRange": "$705 - $890",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "300W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series"
   },
   {
     "id": "elon-uhd-camera-86",
@@ -208,12 +284,24 @@
       "Built-in 8-array microphone"
     ],
     "warranty": "1 year",
-    "priceRange": "$895 - $895",
+    "priceRange": "$780 - $980",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "310W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series",
+    "cameraSpecs": "48MP basic camera with auto-focus",
+    "microphoneArray": "8-array basic microphones"
   },
   {
     "id": "elon-uhd-98",
@@ -234,12 +322,22 @@
       "Remote control, cable, writing pen, antenna x2, wall mount bracket included"
     ],
     "warranty": "1 year",
-    "priceRange": "$1,457 - $1,457",
+    "priceRange": "$1,200 - $1,500",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "400W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series"
   },
   {
     "id": "elon-uhd-camera-98",
@@ -262,11 +360,23 @@
       "Built-in 8-array microphone"
     ],
     "warranty": "1 year",
-    "priceRange": "$1,529 - $1,529",
+    "priceRange": "$1,300 - $1,600",
     "image": "/assets/models/elon-smartboard.png",
     "viewingAngle": "178\u00b0",
     "responseTime": "\u22645 ms",
     "audioOutput": "10W x2",
-    "powerConsumption": "Not specified"
+    "powerConsumption": "410W",
+    "brightness": "250 cd/m\u00b2",
+    "contrastRatio": "1000:1",
+    "panelLife": "30000 hours",
+    "processor": "ARM Cortex A55 dual-core",
+    "ram": "2GB DDR3",
+    "storage": "16GB",
+    "gpu": "ARM Mali-G31 MP2",
+    "connectivity": ["WiFi", "Bluetooth", "USB 2.0", "HDMI"],
+    "touchAccuracy": "\u00b12mm",
+    "series": "Budget Series",
+    "cameraSpecs": "48MP basic camera with auto-focus",
+    "microphoneArray": "8-array basic microphones"
   }
 ]

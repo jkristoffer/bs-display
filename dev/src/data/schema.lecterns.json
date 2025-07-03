@@ -27,7 +27,8 @@
         "enum": [
           "METZ",
           "SMART",
-          "Infinity Pro"
+          "Infinity Pro",
+          "MAXHUB"
         ],
         "description": "Brand name"
       },

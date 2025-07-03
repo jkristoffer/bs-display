@@ -6,9 +6,8 @@
 // Import all model JSON files
 import infinityproModels from './models.infinitypro.json';
 import metzModels from './models.metz.json';
-import smart6000sv3Models from './models.smart6000sv3.json';
-import smartmxv5Models from './models.smartmxv5.json';
-import xboardv7Models from './models.xboardv7.json';
+import smartModels from './models.smart.json';
+import maxhubModels from './models.maxhub.json';
 import qeoyoModels from './models.qeoyo.json';
 import elonModels from './models.elon.json';
 
@@ -16,9 +15,8 @@ import elonModels from './models.elon.json';
 export {
     infinityproModels,
     metzModels,
-    smart6000sv3Models,
-    smartmxv5Models,
-    xboardv7Models,
+    smartModels,
+    maxhubModels,
     qeoyoModels,
     elonModels,
 };
@@ -27,9 +25,8 @@ export {
 export const allModels = [
     ...infinityproModels,
     ...metzModels,
-    ...smart6000sv3Models,
-    ...smartmxv5Models,
-    ...xboardv7Models,
+    ...smartModels,
+    ...maxhubModels,
     ...qeoyoModels,
     ...elonModels,
 ];

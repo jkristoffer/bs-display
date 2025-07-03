@@ -1,0 +1,332 @@
+[
+  {
+    "id": "maxhub-uc-m30",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-M30 4K Panoramic Camera",
+    "category": "Video Conferencing Camera",
+    "type": "Panoramic Camera",
+    "features": [
+      "4K UHD video quality (3840×2160)",
+      "180° panoramic field of view",
+      "12MP sensor with auto-tracking",
+      "Auto speaker tracking and zoom",
+      "5 video layout modes",
+      "Crystal-clear image quality",
+      "Plug-and-play setup",
+      "Bluetooth connectivity",
+      "No external USB hub required",
+      "Multiple output resolutions supported",
+      "MJPG and YUY2 format support",
+      "30fps smooth video recording"
+    ],
+    "specifications": {
+      "resolution": "4K UHD (3840×2160)",
+      "fieldOfView": "180° panoramic",
+      "sensor": "12MP",
+      "frameRate": "30fps",
+      "connectivity": ["USB", "Bluetooth"],
+      "outputFormats": ["MJPG", "YUY2"],
+      "outputResolutions": [
+        "3840×2160 (24fps)",
+        "3840×1376",
+        "3840×962",
+        "2560×1440",
+        "1920×1080",
+        "1280×720",
+        "1024×576",
+        "960×544",
+        "640×480",
+        "640×360",
+        "480×270",
+        "352×288",
+        "320×240"
+      ]
+    },
+    "warranty": "2 years",
+    "priceRange": "$400 - $600",
+    "image": "/assets/collaboration/maxhub-uc-m30.png"
+  },
+  {
+    "id": "maxhub-uc-m31",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-M31 4K Panoramic Camera",
+    "category": "Video Conferencing Camera",
+    "type": "Panoramic Camera",
+    "features": [
+      "4K UHD video quality (3840×2160)",
+      "180° ultra-wide-angle lens",
+      "12MP sensor with advanced imaging",
+      "Auto speaker tracking and recognition",
+      "Multiple video layout options",
+      "Enhanced AI-powered tracking",
+      "Professional-grade video conferencing",
+      "Compatible with major platforms",
+      "Plug-and-play operation",
+      "Premium build quality"
+    ],
+    "specifications": {
+      "resolution": "4K UHD (3840×2160)",
+      "fieldOfView": "180° ultra-wide",
+      "sensor": "12MP",
+      "frameRate": "30fps",
+      "connectivity": ["USB", "Bluetooth"],
+      "compatibility": "Teams, Zoom, Webex, etc."
+    },
+    "warranty": "2 years",
+    "priceRange": "$450 - $650",
+    "image": "/assets/collaboration/maxhub-uc-m31.png"
+  },
+  {
+    "id": "maxhub-uc-m40",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-M40 All-in-One Camera",
+    "category": "Video Conferencing Camera",
+    "type": "All-in-One Camera",
+    "features": [
+      "360° panoramic view capability",
+      "Advanced all-in-one design",
+      "Professional video conferencing features",
+      "Superior image quality",
+      "Auto-framing and tracking",
+      "Intelligent voice pickup",
+      "Premium audio processing",
+      "Multiple meeting room sizes support",
+      "Easy installation and setup",
+      "Enterprise-grade reliability"
+    ],
+    "specifications": {
+      "resolution": "4K UHD",
+      "fieldOfView": "360° panoramic",
+      "connectivity": ["USB"],
+      "compatibility": "Universal platform support"
+    },
+    "warranty": "2 years",
+    "priceRange": "$800 - $1,200",
+    "image": "/assets/collaboration/maxhub-uc-m40.png"
+  },
+  {
+    "id": "maxhub-uc-p10",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-P10 HD PTZ Camera",
+    "category": "Video Conferencing Camera",
+    "type": "PTZ Camera",
+    "features": [
+      "HD 1080p video quality",
+      "12x optical zoom capability",
+      "16x digital zoom",
+      "Pan-Tilt-Zoom functionality",
+      "Professional streaming support",
+      "Video calling optimization",
+      "Recording capabilities",
+      "Conference room focused",
+      "Study and education applications",
+      "Remote control operation"
+    ],
+    "specifications": {
+      "resolution": "HD 1080p",
+      "opticalZoom": "12x",
+      "digitalZoom": "16x",
+      "connectivity": ["USB"],
+      "controlType": "PTZ (Pan-Tilt-Zoom)"
+    },
+    "warranty": "2 years",
+    "priceRange": "$300 - $500",
+    "image": "/assets/collaboration/maxhub-uc-p10.png"
+  },
+  {
+    "id": "maxhub-uc-p20",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-P20 Professional PTZ Camera",
+    "category": "Video Conferencing Camera",
+    "type": "PTZ Camera",
+    "features": [
+      "Enhanced PTZ functionality",
+      "Professional video quality",
+      "Advanced zoom capabilities",
+      "Smooth pan and tilt operation",
+      "Conference room optimization",
+      "Remote control support",
+      "Multiple preset positions",
+      "Professional broadcasting quality",
+      "Enterprise meeting support"
+    ],
+    "specifications": {
+      "resolution": "HD 1080p+",
+      "connectivity": ["USB"],
+      "controlType": "Professional PTZ"
+    },
+    "warranty": "2 years",
+    "priceRange": "$500 - $700",
+    "image": "/assets/collaboration/maxhub-uc-p20.png"
+  },
+  {
+    "id": "maxhub-uc-p30",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-P30 Advanced PTZ Camera",
+    "category": "Video Conferencing Camera",
+    "type": "PTZ Camera",
+    "features": [
+      "Advanced PTZ control system",
+      "High-definition video capture",
+      "Professional zoom functionality",
+      "Precision pan and tilt movements",
+      "Enterprise-grade build quality",
+      "Multiple control options",
+      "Preset position memory",
+      "Professional meeting optimization",
+      "Broadcast-quality output"
+    ],
+    "specifications": {
+      "resolution": "Professional HD",
+      "connectivity": ["USB"],
+      "controlType": "Advanced PTZ"
+    },
+    "warranty": "2 years",
+    "priceRange": "$600 - $900",
+    "image": "/assets/collaboration/maxhub-uc-p30.png"
+  },
+  {
+    "id": "maxhub-uc-w10",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-W10 Wide-Angle Camera",
+    "category": "Video Conferencing Camera",
+    "type": "Wide-Angle Camera",
+    "features": [
+      "Wide-angle field of view",
+      "Professional video quality",
+      "Conference room optimization",
+      "Auto-focus capability",
+      "Enhanced low-light performance",
+      "Multiple connectivity options",
+      "Plug-and-play operation",
+      "Universal platform compatibility"
+    ],
+    "specifications": {
+      "resolution": "HD 1080p",
+      "fieldOfView": "Wide-angle",
+      "connectivity": ["USB"]
+    },
+    "warranty": "2 years",
+    "priceRange": "$200 - $400",
+    "image": "/assets/collaboration/maxhub-uc-w10.png"
+  },
+  {
+    "id": "maxhub-uc-w20",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-W20 Enhanced Wide-Angle Camera",
+    "category": "Video Conferencing Camera",
+    "type": "Wide-Angle Camera",
+    "features": [
+      "Enhanced wide-angle capture",
+      "Improved video processing",
+      "Better conference room coverage",
+      "Advanced auto-focus system",
+      "Superior low-light performance",
+      "Professional build quality",
+      "Easy installation",
+      "Enterprise compatibility"
+    ],
+    "specifications": {
+      "resolution": "HD 1080p+",
+      "fieldOfView": "Enhanced wide-angle",
+      "connectivity": ["USB"]
+    },
+    "warranty": "2 years",
+    "priceRange": "$300 - $500",
+    "image": "/assets/collaboration/maxhub-uc-w20.png"
+  },
+  {
+    "id": "maxhub-uc-w21",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-W21 Professional Wide-Angle Camera",
+    "category": "Video Conferencing Camera",
+    "type": "Wide-Angle Camera",
+    "features": [
+      "Professional wide-angle technology",
+      "High-quality video capture",
+      "Advanced conference room features",
+      "Intelligent auto-focus",
+      "Premium low-light handling",
+      "Professional-grade construction",
+      "Seamless integration",
+      "Enterprise-level reliability"
+    ],
+    "specifications": {
+      "resolution": "Professional HD",
+      "fieldOfView": "Professional wide-angle",
+      "connectivity": ["USB"]
+    },
+    "warranty": "2 years",
+    "priceRange": "$400 - $600",
+    "image": "/assets/collaboration/maxhub-uc-w21.png"
+  },
+  {
+    "id": "maxhub-uc-s07",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-S07 Compact Collaboration Device",
+    "category": "Collaboration Device",
+    "type": "Compact Device",
+    "features": [
+      "Compact design for small spaces",
+      "Essential collaboration features",
+      "Easy setup and operation",
+      "Cost-effective solution",
+      "Reliable performance",
+      "Universal compatibility",
+      "Space-saving design"
+    ],
+    "specifications": {
+      "connectivity": ["USB"],
+      "formFactor": "Compact"
+    },
+    "warranty": "2 years",
+    "priceRange": "$150 - $250",
+    "image": "/assets/collaboration/maxhub-uc-s07.png"
+  },
+  {
+    "id": "maxhub-uc-s10",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-S10 Smart Collaboration Device",
+    "category": "Collaboration Device",
+    "type": "Smart Device",
+    "features": [
+      "Smart collaboration features",
+      "Enhanced connectivity options",
+      "Improved user experience",
+      "Professional build quality",
+      "Reliable operation",
+      "Easy integration",
+      "Versatile applications"
+    ],
+    "specifications": {
+      "connectivity": ["USB"],
+      "features": "Smart collaboration"
+    },
+    "warranty": "2 years",
+    "priceRange": "$200 - $350",
+    "image": "/assets/collaboration/maxhub-uc-s10.png"
+  },
+  {
+    "id": "maxhub-uc-s10-pro",
+    "brand": "MAXHUB",
+    "model": "MAXHUB UC-S10 Pro Advanced Collaboration Device",
+    "category": "Collaboration Device",
+    "type": "Professional Device",
+    "features": [
+      "Professional-grade collaboration",
+      "Advanced connectivity suite",
+      "Premium user experience",
+      "Enterprise build quality",
+      "High reliability standards",
+      "Seamless integration capabilities",
+      "Professional applications support"
+    ],
+    "specifications": {
+      "connectivity": ["USB"],
+      "features": "Professional collaboration"
+    },
+    "warranty": "3 years",
+    "priceRange": "$300 - $500",
+    "image": "/assets/collaboration/maxhub-uc-s10-pro.png"
+  }
+]

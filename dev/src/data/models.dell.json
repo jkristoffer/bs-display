@@ -1,0 +1,187 @@
+[
+  {
+    "id": "dell-c5518qt",
+    "brand": "Dell",
+    "model": "55\" 4K Interactive Touch Monitor C5518QT",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "Display Only",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "InGlass Touch technology",
+      "Up to 20 touch points",
+      "4 pen support",
+      "Anti-glare coating",
+      "Anti-smudge coating",
+      "VESA 400x300mm mount",
+      "Dell OptiPlex Micro compatibility"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1300:1",
+    "viewingAngle": "178°",
+    "audioOutput": "10W x2",
+    "connectivity": [
+      "USB Type-C (Alternate mode DP 1.4)",
+      "HDMI",
+      "DisplayPort",
+      "USB",
+      "Audio Out",
+      "RS232",
+      "RJ45 Ethernet"
+    ],
+    "series": "C5500",
+    "certifications": [
+      "VESA"
+    ]
+  },
+  {
+    "id": "dell-c5522qt",
+    "brand": "Dell",
+    "model": "55\" 4K Interactive Touch Monitor C5522QT",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "Display Only",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "InGlass Touch technology",
+      "Up to 20 touch points",
+      "4 pen support",
+      "Anti-glare coating",
+      "Anti-smudge coating",
+      "VESA 400x300mm mount",
+      "Dell OptiPlex Micro compatibility"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1300:1",
+    "viewingAngle": "178°",
+    "audioOutput": "10W x2",
+    "connectivity": [
+      "USB Type-C (Alternate mode DP 1.4)",
+      "HDMI",
+      "DisplayPort",
+      "USB",
+      "Audio Out",
+      "RS232",
+      "RJ45 Ethernet"
+    ],
+    "series": "C5500",
+    "certifications": [
+      "VESA"
+    ]
+  },
+  {
+    "id": "dell-c7017t",
+    "brand": "Dell",
+    "model": "70\" Interactive Conference Room Monitor C7017T",
+    "size": 70,
+    "resolution": "1920x1080",
+    "os": "Display Only",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Full HD resolution",
+      "10-point multi-touch",
+      "Infrared touch technology",
+      "Anti-glare coating",
+      "Anti-smudge coating",
+      "Magnetic pen storage",
+      "Dell OptiPlex Micro compatibility",
+      "Software and hardware agnostic"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "400 cd/m²",
+    "contrastRatio": "4000:1",
+    "viewingAngle": "176°",
+    "responseTime": "6 ms",
+    "audioOutput": "10W x2",
+    "connectivity": [
+      "VGA",
+      "HDMI 1.4 x2",
+      "HDMI/MHL",
+      "DisplayPort 1.2",
+      "USB 3.0 x4",
+      "USB 2.0 (touch)",
+      "Audio Line-in",
+      "Audio Line-out",
+      "RS232",
+      "RJ45 Ethernet"
+    ],
+    "series": "C7000"
+  },
+  {
+    "id": "dell-c7520qt",
+    "brand": "Dell",
+    "model": "75\" 4K Interactive Touch Monitor C7520QT",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Display Only",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "FlatFrog InGlass Touch technology",
+      "Zero-lag touch",
+      "Up to 20 touch points",
+      "Dell Screen Drop technology",
+      "UHD IPS panel",
+      "Anti-glare coating",
+      "Dell OptiPlex Micro compatibility"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "powerConsumption": "160W",
+    "connectivity": [
+      "USB Type-C",
+      "HDMI",
+      "DisplayPort",
+      "USB",
+      "Audio Out",
+      "RS232",
+      "RJ45 Ethernet"
+    ],
+    "series": "C7500"
+  },
+  {
+    "id": "dell-c8618qt",
+    "brand": "Dell",
+    "model": "86\" 4K Interactive Touch Monitor C8618QT",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Display Only",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Interactive touch technology",
+      "Multi-touch capability",
+      "Anti-glare coating",
+      "Anti-smudge coating",
+      "Dell OptiPlex Micro compatibility",
+      "Compatible with macOS multi-touch driver"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "connectivity": [
+      "USB Type-C",
+      "HDMI",
+      "DisplayPort",
+      "USB",
+      "Audio Out",
+      "RS232",
+      "RJ45 Ethernet"
+    ],
+    "series": "C8600"
+  }
+]

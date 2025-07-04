@@ -28,6 +28,7 @@
     "code:typecheck": "astro check",
     "code:quality:all": "npm run code:lint && npm run code:typecheck",
     "content:blog:generate": "node scripts/generate-blog-post.js",
+    "data:integrate:research": "node scripts/integrate-research-data.js",
     "content:seo:analyze": "node scripts/seo-agent.js",
     "content:seo:optimize": "node scripts/seo-optimizer.js",
     "content:seo:cli": "node scripts/claude-seo.js",

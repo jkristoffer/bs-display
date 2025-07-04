@@ -1,0 +1,268 @@
+[
+  {
+    "id": "samsung-wad65",
+    "brand": "Samsung",
+    "model": "Interactive Display WAD65",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Android EDLA certified",
+      "Google Play Store access",
+      "OPS slot support",
+      "HDMI-Out function",
+      "Split screen and multi-window modes",
+      "Device management solution",
+      "Cloud-based DMS (1 year free)"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "connectivity": [
+      "HDMI",
+      "HDMI Out",
+      "VGA",
+      "Audio 3.5mm",
+      "USB-C",
+      "OPS",
+      "RS-232C",
+      "RJ45 Ethernet",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "WAD",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "samsung-wad75",
+    "brand": "Samsung",
+    "model": "Interactive Display WAD75",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Android EDLA certified",
+      "Google Play Store access",
+      "OPS slot support",
+      "HDMI-Out function",
+      "Split screen and multi-window modes",
+      "Device management solution",
+      "Cloud-based DMS (1 year free)"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "connectivity": [
+      "HDMI",
+      "HDMI Out",
+      "VGA",
+      "Audio 3.5mm",
+      "USB-C",
+      "OPS",
+      "RS-232C",
+      "RJ45 Ethernet",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "WAD",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "samsung-wad86",
+    "brand": "Samsung",
+    "model": "Interactive Display WAD86",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Android EDLA certified",
+      "Google Play Store access",
+      "OPS slot support",
+      "HDMI-Out function",
+      "Split screen and multi-window modes",
+      "Device management solution",
+      "Cloud-based DMS (1 year free)"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "connectivity": [
+      "HDMI",
+      "HDMI Out",
+      "VGA",
+      "Audio 3.5mm",
+      "USB-C",
+      "OPS",
+      "RS-232C",
+      "RJ45 Ethernet",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "WAD",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "samsung-wm55b",
+    "brand": "Samsung",
+    "model": "Flip Pro WM55B",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 20 touch points",
+      "2048 pressure points",
+      "26ms industry-best latency",
+      "Pen and brush mode",
+      "Knox security",
+      "AirPlay 2 integration",
+      "MagicINFO Remote Management",
+      "MimioConnect support"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "connectivity": [
+      "HDMI",
+      "USB",
+      "USB Type-C (15W charging)",
+      "DisplayPort",
+      "Wi-Fi",
+      "Bluetooth",
+      "OPS"
+    ],
+    "series": "Flip Pro WM",
+    "certifications": [
+      "Knox Security"
+    ]
+  },
+  {
+    "id": "samsung-wm65b",
+    "brand": "Samsung",
+    "model": "Flip Pro WM65B",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 20 touch points",
+      "2048 pressure points",
+      "26ms industry-best latency",
+      "Pen and brush mode",
+      "Knox security",
+      "AirPlay 2 integration",
+      "MagicINFO Remote Management",
+      "MimioConnect support"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "connectivity": [
+      "HDMI",
+      "USB",
+      "USB Type-C (15W charging)",
+      "DisplayPort",
+      "Wi-Fi",
+      "Bluetooth",
+      "OPS"
+    ],
+    "series": "Flip Pro WM",
+    "certifications": [
+      "Knox Security"
+    ]
+  },
+  {
+    "id": "samsung-wm75a",
+    "brand": "Samsung",
+    "model": "Flip 3 WM75A",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 20 touch points",
+      "2048 pressure points",
+      "34ms touch latency",
+      "Shatterproof glass",
+      "Antimicrobial coating",
+      "16/7 operation time support",
+      "Built-in OPS slot"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "4000:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "powerConsumption": "275W",
+    "ram": "3GB",
+    "storage": "16GB",
+    "connectivity": [
+      "HDMI x2",
+      "DisplayPort",
+      "USB 2.0/3.0",
+      "Audio Out 3.5mm",
+      "RS232",
+      "RJ45 Ethernet",
+      "Wi-Fi",
+      "Bluetooth",
+      "OPS"
+    ],
+    "series": "Flip 3 WMA"
+  },
+  {
+    "id": "samsung-wm75b",
+    "brand": "Samsung",
+    "model": "Flip Pro WM75B",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 20 touch points",
+      "2048 pressure points",
+      "26ms industry-best latency",
+      "Pen and brush mode",
+      "Knox security",
+      "AirPlay 2 integration",
+      "MagicINFO Remote Management",
+      "MimioConnect support"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "connectivity": [
+      "HDMI",
+      "USB",
+      "USB Type-C (15W charging)",
+      "DisplayPort",
+      "Wi-Fi",
+      "Bluetooth",
+      "OPS"
+    ],
+    "series": "Flip Pro WM",
+    "certifications": [
+      "Knox Security"
+    ]
+  }
+]

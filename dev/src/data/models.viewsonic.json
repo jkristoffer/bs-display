@@ -1,0 +1,537 @@
+[
+  {
+    "id": "viewsonic-ifp-g1-55",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP55G1",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "OS-Free",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40 points for Windows, 20 points for Android",
+      "BYOD friendly",
+      "WriteAway Technology"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "400 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2",
+    "connectivity": [
+      "HDMI",
+      "USB-A",
+      "USB-C",
+      "VGA",
+      "LAN",
+      "RS232"
+    ],
+    "series": "IFP-G1",
+    "certifications": [
+      "EPEAT Silver",
+      "ENERGY STAR 8.0"
+    ]
+  },
+  {
+    "id": "viewsonic-ifp-g1-65",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP65G1",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "OS-Free",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40 points for Windows, 20 points for Android",
+      "BYOD friendly",
+      "WriteAway Technology"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "400 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2",
+    "powerConsumption": "103W",
+    "connectivity": [
+      "HDMI",
+      "USB-A",
+      "USB-C",
+      "VGA",
+      "LAN",
+      "RS232"
+    ],
+    "series": "IFP-G1",
+    "certifications": [
+      "EPEAT Silver",
+      "ENERGY STAR 8.0"
+    ]
+  },
+  {
+    "id": "viewsonic-ifp-g1-75",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP75G1",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "OS-Free",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40 points for Windows, 20 points for Android",
+      "BYOD friendly",
+      "WriteAway Technology"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "400 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2",
+    "powerConsumption": "110W",
+    "connectivity": [
+      "HDMI",
+      "USB-A",
+      "USB-C",
+      "VGA",
+      "LAN",
+      "RS232"
+    ],
+    "series": "IFP-G1",
+    "certifications": [
+      "EPEAT Silver",
+      "ENERGY STAR 8.0"
+    ]
+  },
+  {
+    "id": "viewsonic-ifp-g1-86",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP86G1",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "OS-Free",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40 points for Windows, 20 points for Android",
+      "BYOD friendly",
+      "WriteAway Technology"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "400 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2",
+    "connectivity": [
+      "HDMI",
+      "USB-A",
+      "USB-C",
+      "VGA",
+      "LAN",
+      "RS232"
+    ],
+    "series": "IFP-G1",
+    "certifications": [
+      "EPEAT Silver",
+      "ENERGY STAR 8.0"
+    ]
+  },
+  {
+    "id": "viewsonic-ifp50-55",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP5550",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "Android 11",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K Ultra HD resolution",
+      "Ultra Fine Touch Technology",
+      "20-point multi-touch",
+      "myViewBoard software suite",
+      "Flicker-Free technology",
+      "Integrated TÜV certified blue light filter"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "15 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2 + 15W subwoofer",
+    "powerConsumption": "80W",
+    "processor": "Quad-core processor",
+    "connectivity": [
+      "HDMI 2.0 x3",
+      "VGA",
+      "USB Type-A 3.0 x4",
+      "USB Type-A 2.0 x3",
+      "USB Type-B x2",
+      "Audio In",
+      "Audio Out",
+      "SPDIF",
+      "LAN (RJ45)"
+    ],
+    "series": "IFP50"
+  },
+  {
+    "id": "viewsonic-ifp50-65",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP6550",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 11",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K Ultra HD resolution",
+      "Ultra Fine Touch Technology",
+      "40-point multi-touch",
+      "myViewBoard software suite",
+      "Flicker-Free technology",
+      "Integrated TÜV certified blue light filter"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "15 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2 + 15W subwoofer",
+    "powerConsumption": "120W",
+    "processor": "Quad-core processor",
+    "connectivity": [
+      "HDMI 2.0 x3",
+      "VGA",
+      "USB Type-A 3.0 x4",
+      "USB Type-A 2.0 x3",
+      "USB Type-B x2",
+      "Audio In",
+      "Audio Out",
+      "SPDIF",
+      "LAN (RJ45)"
+    ],
+    "series": "IFP50"
+  },
+  {
+    "id": "viewsonic-ifp50-75",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP7550",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 11",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K Ultra HD resolution",
+      "Ultra Fine Touch Technology",
+      "40-point multi-touch",
+      "myViewBoard software suite",
+      "Flicker-Free technology",
+      "Integrated TÜV certified blue light filter"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "15 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2 + 15W subwoofer",
+    "powerConsumption": "140W",
+    "processor": "Quad-core processor",
+    "connectivity": [
+      "HDMI 2.0 x3",
+      "VGA",
+      "USB Type-A 3.0 x4",
+      "USB Type-A 2.0 x3",
+      "USB Type-B x2",
+      "Audio In",
+      "Audio Out",
+      "SPDIF",
+      "LAN (RJ45)"
+    ],
+    "series": "IFP50"
+  },
+  {
+    "id": "viewsonic-ifp50-86",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP8650",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 11",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K Ultra HD resolution",
+      "Ultra Fine Touch Technology",
+      "40-point multi-touch",
+      "myViewBoard software suite",
+      "Flicker-Free technology",
+      "Integrated TÜV certified blue light filter"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "350 cd/m²",
+    "contrastRatio": "1200:1",
+    "viewingAngle": "178°",
+    "responseTime": "15 ms",
+    "panelLife": "50000 hours",
+    "audioOutput": "10W x2 + 15W subwoofer",
+    "powerConsumption": "162W",
+    "processor": "Quad-core processor",
+    "connectivity": [
+      "HDMI 2.0 x3",
+      "VGA",
+      "USB Type-A 3.0 x4",
+      "USB Type-A 2.0 x3",
+      "USB Type-B x2",
+      "Audio In",
+      "Audio Out",
+      "SPDIF",
+      "LAN (RJ45)"
+    ],
+    "series": "IFP50"
+  },
+  {
+    "id": "viewsonic-ifp52-2f-65",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP6552-2F",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40-point touch (Windows), 20-point touch (Android)",
+      "Google EDLA Certified"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "panelLife": "50000 hours",
+    "audioOutput": "40W",
+    "processor": "Octa-Core CPU (A73*4 + A53*4)",
+    "ram": "8GB",
+    "storage": "64GB",
+    "connectivity": [
+      "HDMI",
+      "DisplayPort",
+      "VGA",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "Wi-Fi"
+    ],
+    "series": "IFP52-2F",
+    "certifications": [
+      "Google EDLA"
+    ],
+    "microphoneArray": "8-microphone array"
+  },
+  {
+    "id": "viewsonic-ifp52-2f-75",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP7552-2F",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40-point touch (Windows), 20-point touch (Android)",
+      "Google EDLA Certified"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "panelLife": "50000 hours",
+    "audioOutput": "40W",
+    "processor": "Octa-Core CPU (A73*4 + A53*4)",
+    "ram": "8GB",
+    "storage": "64GB",
+    "connectivity": [
+      "HDMI",
+      "DisplayPort",
+      "VGA",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "Wi-Fi"
+    ],
+    "series": "IFP52-2F",
+    "certifications": [
+      "Google EDLA"
+    ],
+    "microphoneArray": "8-microphone array"
+  },
+  {
+    "id": "viewsonic-ifp52-2f-86",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP8652-2F",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra Fine Touch Technology",
+      "40-point touch (Windows), 20-point touch (Android)",
+      "Google EDLA Certified"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "panelLife": "50000 hours",
+    "audioOutput": "40W",
+    "processor": "Octa-Core CPU (A73*4 + A53*4)",
+    "ram": "8GB",
+    "storage": "64GB",
+    "connectivity": [
+      "HDMI",
+      "DisplayPort",
+      "VGA",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "Wi-Fi"
+    ],
+    "series": "IFP52-2F",
+    "certifications": [
+      "Google EDLA"
+    ],
+    "microphoneArray": "8-microphone array"
+  },
+  {
+    "id": "viewsonic-ifp53-65",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP6553",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra-fine touch technology",
+      "20 points on Android, 40 points on Windows",
+      "SSO (Single Sign-On) and NFC login"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "450 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "panelLife": "50000 hours",
+    "audioOutput": "16W x2 + 20W subwoofer",
+    "processor": "Octa-core processor",
+    "ram": "8GB",
+    "connectivity": [
+      "HDMI In",
+      "HDMI Out",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "VGA",
+      "DisplayPort"
+    ],
+    "series": "IFP53",
+    "certifications": [
+      "ENERGY STAR",
+      "EPEAT Silver"
+    ],
+    "microphoneArray": "8-microphone array"
+  },
+  {
+    "id": "viewsonic-ifp53-75",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP7553",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra-fine touch technology",
+      "20 points on Android, 40 points on Windows",
+      "SSO (Single Sign-On) and NFC login"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "450 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "panelLife": "50000 hours",
+    "audioOutput": "16W x2 + 20W subwoofer",
+    "processor": "Octa-core processor",
+    "ram": "8GB",
+    "connectivity": [
+      "HDMI In",
+      "HDMI Out",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "VGA",
+      "DisplayPort"
+    ],
+    "series": "IFP53",
+    "certifications": [
+      "ENERGY STAR",
+      "EPEAT Silver"
+    ],
+    "microphoneArray": "8-microphone array"
+  },
+  {
+    "id": "viewsonic-ifp53-86",
+    "brand": "Viewsonic",
+    "model": "ViewBoard IFP8653",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Ultra-fine touch technology",
+      "20 points on Android, 40 points on Windows",
+      "SSO (Single Sign-On) and NFC login"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "brightness": "450 cd/m²",
+    "contrastRatio": "5000:1",
+    "viewingAngle": "178°",
+    "panelLife": "50000 hours",
+    "audioOutput": "16W x2 + 20W subwoofer",
+    "processor": "Octa-core processor",
+    "ram": "8GB",
+    "connectivity": [
+      "HDMI In",
+      "HDMI Out",
+      "USB-C",
+      "USB-A",
+      "LAN",
+      "VGA",
+      "DisplayPort"
+    ],
+    "series": "IFP53",
+    "certifications": [
+      "ENERGY STAR",
+      "EPEAT Silver"
+    ],
+    "microphoneArray": "8-microphone array"
+  }
+]

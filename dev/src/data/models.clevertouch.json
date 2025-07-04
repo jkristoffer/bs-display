@@ -1,0 +1,327 @@
+[
+  {
+    "id": "clevertouch-impact-lux2-65",
+    "brand": "Clevertouch",
+    "model": "IMPACT Lux 2 65\"",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 50 touch points",
+      "Google EDLA certified",
+      "Google apps preloaded",
+      "Wi-Fi 6E",
+      "Micro antibacterial glass",
+      "DC Dimming flicker-free",
+      "Palm rejection technology"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 10W x2 subwoofers",
+    "connectivity": [
+      "Wi-Fi 6E",
+      "Bluetooth",
+      "USB-C"
+    ],
+    "series": "IMPACT Lux 2",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-impact-lux2-75",
+    "brand": "Clevertouch",
+    "model": "IMPACT Lux 2 75\"",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 50 touch points",
+      "Google EDLA certified",
+      "Google apps preloaded",
+      "Wi-Fi 6E",
+      "Micro antibacterial glass",
+      "DC Dimming flicker-free",
+      "Palm rejection technology"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 10W x2 subwoofers",
+    "connectivity": [
+      "Wi-Fi 6E",
+      "Bluetooth",
+      "USB-C"
+    ],
+    "series": "IMPACT Lux 2",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-impact-lux2-86",
+    "brand": "Clevertouch",
+    "model": "IMPACT Lux 2 86\"",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 50 touch points",
+      "Google EDLA certified",
+      "Google apps preloaded",
+      "Wi-Fi 6E",
+      "Micro antibacterial glass",
+      "DC Dimming flicker-free",
+      "Palm rejection technology"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 10W x2 subwoofers",
+    "connectivity": [
+      "Wi-Fi 6E",
+      "Bluetooth",
+      "USB-C"
+    ],
+    "series": "IMPACT Lux 2",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-impact-max2-65",
+    "brand": "Clevertouch",
+    "model": "IMPACT Max 2 65\"",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Multi-user profiles",
+      "Launch screens",
+      "Cloud accounts compatibility",
+      "64-bit System Architecture",
+      "100W USB-Charging",
+      "Echo cancellation",
+      "Noise reduction"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 16W subwoofer",
+    "processor": "Exclusive chipset",
+    "connectivity": [
+      "USB-C (100W charging)",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "IMPACT Max 2",
+    "microphoneArray": "6-array microphone"
+  },
+  {
+    "id": "clevertouch-impact-max2-75",
+    "brand": "Clevertouch",
+    "model": "IMPACT Max 2 75\"",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Multi-user profiles",
+      "Launch screens",
+      "Cloud accounts compatibility",
+      "64-bit System Architecture",
+      "100W USB-Charging",
+      "Echo cancellation",
+      "Noise reduction"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 16W subwoofer",
+    "processor": "Exclusive chipset",
+    "connectivity": [
+      "USB-C (100W charging)",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "IMPACT Max 2",
+    "microphoneArray": "6-array microphone"
+  },
+  {
+    "id": "clevertouch-impact-max2-86",
+    "brand": "Clevertouch",
+    "model": "IMPACT Max 2 86\"",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 13",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Multi-user profiles",
+      "Launch screens",
+      "Cloud accounts compatibility",
+      "64-bit System Architecture",
+      "100W USB-Charging",
+      "Echo cancellation",
+      "Noise reduction"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "audioOutput": "20W x2 + 16W subwoofer",
+    "processor": "Exclusive chipset",
+    "connectivity": [
+      "USB-C (100W charging)",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "IMPACT Max 2",
+    "microphoneArray": "6-array microphone"
+  },
+  {
+    "id": "clevertouch-x5-55",
+    "brand": "Clevertouch",
+    "model": "X5 55\"",
+    "size": 55,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 40 touch points",
+      "Google EDLA certified",
+      "Google Play Store access",
+      "Super Glide Touch technology",
+      "Microsoft 365 integration",
+      "LYNX Whiteboard app",
+      "CleverMDM integration"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "storage": "576GB expandable",
+    "connectivity": [
+      "USB-C (charging)",
+      "USB-C (front and side)",
+      "HDMI Out",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "X5",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-x5-65",
+    "brand": "Clevertouch",
+    "model": "X5 65\"",
+    "size": 65,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 40 touch points",
+      "Google EDLA certified",
+      "Google Play Store access",
+      "Super Glide Touch technology",
+      "Microsoft 365 integration",
+      "LYNX Whiteboard app",
+      "CleverMDM integration"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "storage": "576GB expandable",
+    "connectivity": [
+      "USB-C (charging)",
+      "USB-C (front and side)",
+      "HDMI Out",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "X5",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-x5-75",
+    "brand": "Clevertouch",
+    "model": "X5 75\"",
+    "size": 75,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 40 touch points",
+      "Google EDLA certified",
+      "Google Play Store access",
+      "Super Glide Touch technology",
+      "Microsoft 365 integration",
+      "LYNX Whiteboard app",
+      "CleverMDM integration"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "storage": "576GB expandable",
+    "connectivity": [
+      "USB-C (charging)",
+      "USB-C (front and side)",
+      "HDMI Out",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "X5",
+    "certifications": [
+      "Google EDLA"
+    ]
+  },
+  {
+    "id": "clevertouch-x5-86",
+    "brand": "Clevertouch",
+    "model": "X5 86\"",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "Android 14",
+    "touchTechnology": "Infrared",
+    "features": [
+      "4K UHD resolution",
+      "Up to 40 touch points",
+      "Google EDLA certified",
+      "Google Play Store access",
+      "Super Glide Touch technology",
+      "Microsoft 365 integration",
+      "LYNX Whiteboard app",
+      "CleverMDM integration"
+    ],
+    "warranty": "5 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "storage": "576GB expandable",
+    "connectivity": [
+      "USB-C (charging)",
+      "USB-C (front and side)",
+      "HDMI Out",
+      "Wi-Fi",
+      "Bluetooth"
+    ],
+    "series": "X5",
+    "certifications": [
+      "Google EDLA"
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "promethean-activpanel-9-86",
+    "brand": "Promethean",
+    "model": "ActivPanel 9 86\"",
+    "size": 86,
+    "resolution": "3840x2160",
+    "os": "ActivPanel OS",
+    "touchTechnology": "Infrared",
+    "features": [
+      "Vellum touch technology",
+      "20 points of touch",
+      "Palm rejection",
+      "Palm erase",
+      "Finger and pen differentiation"
+    ],
+    "warranty": "3 years",
+    "priceRange": "$2,000 - $3,000",
+    "image": "/assets/models/placeholder.png",
+    "viewingAngle": "178°",
+    "responseTime": "8 ms",
+    "audioOutput": "15W x2",
+    "processor": "ARM Cortex-A73",
+    "ram": "6.5 GB",
+    "storage": "32GB",
+    "gpu": "ARM Mali-G52",
+    "connectivity": [
+      "HDMI",
+      "USB-C",
+      "USB-A",
+      "DisplayPort",
+      "LAN",
+      "Wi-Fi 6",
+      "Bluetooth 5.0"
+    ],
+    "series": "ActivPanel 9",
+    "microphoneArray": "Integrated microphone array"
+  }
+]

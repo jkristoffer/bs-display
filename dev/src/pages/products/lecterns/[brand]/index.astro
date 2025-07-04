@@ -2,7 +2,7 @@
 import ProductLayout from '../../../../layouts/ProductLayout.astro';
 import { FilterUI } from '../../../../components/products/FilterUI';
 import Breadcrumbs from '../../../../components/common/Breadcrumbs/Breadcrumbs.astro';
-import allLecterns from '../../../../data/lecterns.all.js';
+import allLecterns from '../../../../data/lecterns/lecterns.all.js';
 
 export function getStaticPaths() {
   const brands = [...new Set(allLecterns.map((lectern) => lectern.brand))];

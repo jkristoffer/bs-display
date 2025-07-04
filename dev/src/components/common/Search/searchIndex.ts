@@ -1,4 +1,4 @@
-import { allModels } from '../../../data/models.all.js';
+import { allModels } from '../../../data/models/models.all.js';
 
 export interface SearchIndexItem {
   id: string;

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { allModels } from '../src/data/models.all.js';
+import { allModels } from '../src/data/models/models.all.js';
 
 console.log('🔍 Verifying Integration Results:\n');
 

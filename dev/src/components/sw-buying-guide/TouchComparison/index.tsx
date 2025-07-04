@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { allModels } from '../../../data/models.all.js';
+import { allModels } from '../../../data/models/models.all.js';
 import './TouchComparison.scss';
 
 interface Technology {

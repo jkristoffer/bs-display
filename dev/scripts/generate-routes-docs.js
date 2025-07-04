@@ -311,7 +311,7 @@ class RouteDocumentationGenerator {
       }
       
       // Load lecterns
-      const lecternsPath = path.join(projectRoot, 'src', 'data', 'lecterns.all.js');
+      const lecternsPath = path.join(projectRoot, 'src', 'data', 'lecterns', 'lecterns.all.js');
       if (fs.existsSync(lecternsPath)) {
         const lecternsContent = fs.readFileSync(lecternsPath, 'utf-8');
         this.productData.lecterns = this.parseProductData(lecternsContent);

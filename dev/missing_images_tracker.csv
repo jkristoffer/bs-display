@@ -1,0 +1,91 @@
+Group,Brand,Product_ID,Product_Name,Size,Target_Image_Filename,Image_Source_URL,Actual_File_Path_or_URL,Status,Notes
+Samsung WAD Series,Samsung,samsung-wad65,Interactive Display WAD65,65,samsung-wad-series.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung WAD Series,Samsung,samsung-wad75,Interactive Display WAD75,75,samsung-wad-series.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung WAD Series,Samsung,samsung-wad86,Interactive Display WAD86,86,samsung-wad-series.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung Flip Pro WM-B,Samsung,samsung-wm55b,Flip Pro WM55B,55,samsung-flip-pro-wmb.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung Flip Pro WM-B,Samsung,samsung-wm65b,Flip Pro WM65B,65,samsung-flip-pro-wmb.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung Flip 3 WM-A,Samsung,samsung-wm75a,Flip 3 WM75A,75,samsung-flip-3-wma.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+Samsung Flip 3 WM-A,Samsung,samsung-wm75b,Flip 3 WM75B,75,samsung-flip-3-wma.png,https://www.samsung.com/us/business/displays/interactive-displays/,,Pending,
+ViewSonic IFP G1 Series,ViewSonic,viewsonic-ifp-g1-55,ViewBoard IFP55G1,55,viewsonic-ifp-g1-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP G1 Series,ViewSonic,viewsonic-ifp-g1-65,ViewBoard IFP65G1,65,viewsonic-ifp-g1-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP G1 Series,ViewSonic,viewsonic-ifp-g1-75,ViewBoard IFP75G1,75,viewsonic-ifp-g1-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP G1 Series,ViewSonic,viewsonic-ifp-g1-86,ViewBoard IFP86G1,86,viewsonic-ifp-g1-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 50 Series,ViewSonic,viewsonic-ifp50-55,ViewBoard IFP5550,55,viewsonic-ifp-50-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 50 Series,ViewSonic,viewsonic-ifp50-65,ViewBoard IFP6550,65,viewsonic-ifp-50-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 50 Series,ViewSonic,viewsonic-ifp50-75,ViewBoard IFP7550,75,viewsonic-ifp-50-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 50 Series,ViewSonic,viewsonic-ifp50-86,ViewBoard IFP8650,86,viewsonic-ifp-50-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 52 Series,ViewSonic,viewsonic-ifp52-55,ViewBoard IFP5252,55,viewsonic-ifp-52-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 52 Series,ViewSonic,viewsonic-ifp52-65,ViewBoard IFP6552,65,viewsonic-ifp-52-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 52 Series,ViewSonic,viewsonic-ifp52-75,ViewBoard IFP7552,75,viewsonic-ifp-52-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 52 Series,ViewSonic,viewsonic-ifp52-86,ViewBoard IFP8652,86,viewsonic-ifp-52-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 64 Series,ViewSonic,viewsonic-ifp64-55,ViewBoard IFP5564,55,viewsonic-ifp-64-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+ViewSonic IFP 64 Series,ViewSonic,viewsonic-ifp64-65,ViewBoard IFP6564,65,viewsonic-ifp-64-series.png,https://www.viewsonic.com/us/viewboard-interactive-displays,,Pending,
+Clevertouch IMPACT Lux 2,Clevertouch,clevertouch-impact-lux2-55,IMPACT Lux 2 55",55,clevertouch-impact-lux2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Lux 2,Clevertouch,clevertouch-impact-lux2-65,IMPACT Lux 2 65",65,clevertouch-impact-lux2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Lux 2,Clevertouch,clevertouch-impact-lux2-75,IMPACT Lux 2 75",75,clevertouch-impact-lux2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Lux 2,Clevertouch,clevertouch-impact-lux2-86,IMPACT Lux 2 86",86,clevertouch-impact-lux2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Max 2,Clevertouch,clevertouch-impact-max2-65,IMPACT Max 2 65",65,clevertouch-impact-max2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Max 2,Clevertouch,clevertouch-impact-max2-75,IMPACT Max 2 75",75,clevertouch-impact-max2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch IMPACT Max 2,Clevertouch,clevertouch-impact-max2-86,IMPACT Max 2 86",86,clevertouch-impact-max2.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch X5 Series,Clevertouch,clevertouch-x5-55,X5 55",55,clevertouch-x5-series.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch Pro Series,Clevertouch,clevertouch-pro-75,Pro 75",75,clevertouch-pro-series.png,https://www.clevertouch.com/us/products/,,Pending,
+Clevertouch Pro Series,Clevertouch,clevertouch-pro-86,Pro 86",86,clevertouch-pro-series.png,https://www.clevertouch.com/us/products/,,Pending,
+BenQ Board Essential RE,BenQ,benq-re6504,Board Essential RE6504,65,benq-board-essential-re.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Essential RE,BenQ,benq-re7504,Board Essential RE7504,75,benq-board-essential-re.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Essential RE,BenQ,benq-re8604,Board Essential RE8604,86,benq-board-essential-re.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Master RM,BenQ,benq-rm6503,Board Master RM6503,65,benq-board-master-rm.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Master RM,BenQ,benq-rm7503,Board Master RM7503,75,benq-board-master-rm.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Master RM,BenQ,benq-rm8603,Board Master RM8603,86,benq-board-master-rm.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Pro RP,BenQ,benq-rp6504,Board Pro RP6504,65,benq-board-pro-rp.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Pro RP,BenQ,benq-rp7504,Board Pro RP7504,75,benq-board-pro-rp.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+BenQ Board Pro RP,BenQ,benq-rp8604,Board Pro RP8604,86,benq-board-pro-rp.png,https://www.benq.com/en-us/business/interactive-flat-panel/,,Pending,
+LG CreateBoard TR3DK,LG,lg-55tr3dk,CreateBoard 55TR3DK,55,lg-createboard-tr3dk.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG CreateBoard TR3DK,LG,lg-65tr3dk,CreateBoard 65TR3DK,65,lg-createboard-tr3dk.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG CreateBoard TR3DK,LG,lg-75tr3dk,CreateBoard 75TR3DK,75,lg-createboard-tr3dk.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG CreateBoard TR3DK,LG,lg-86tr3dk,CreateBoard 86TR3DK,86,lg-createboard-tr3dk.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG Interactive TR3DJ,LG,lg-55tr3dj,Interactive Display 55TR3DJ,55,lg-interactive-tr3dj.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG Interactive TR3DJ,LG,lg-65tr3dj,Interactive Display 65TR3DJ,65,lg-interactive-tr3dj.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG Interactive TR3DJ,LG,lg-75tr3dj,Interactive Display 75TR3DJ,75,lg-interactive-tr3dj.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+LG Interactive TR3DJ,LG,lg-86tr3dj,Interactive Display 86TR3DJ,86,lg-interactive-tr3dj.png,https://www.lg.com/us/business/interactive-displays,,Pending,
+Dell 4K Interactive C-QT,Dell,dell-c5518qt,55" 4K Interactive Touch Monitor C5518QT,55,dell-4k-interactive-c-qt.png,https://www.dell.com/en-us/work/shop/dell-interactive-displays/,,Pending,
+Dell 4K Interactive C-QT,Dell,dell-c5522qt,55" 4K Interactive Touch Monitor C5522QT,55,dell-4k-interactive-c-qt.png,https://www.dell.com/en-us/work/shop/dell-interactive-displays/,,Pending,
+Dell 4K Interactive C-QT,Dell,dell-c7520qt,75" 4K Interactive Touch Monitor C7520QT,75,dell-4k-interactive-c-qt.png,https://www.dell.com/en-us/work/shop/dell-interactive-displays/,,Pending,
+Dell 4K Interactive C-QT,Dell,dell-c8618qt,86" 4K Interactive Touch Monitor C8618QT,86,dell-4k-interactive-c-qt.png,https://www.dell.com/en-us/work/shop/dell-interactive-displays/,,Pending,
+Dell Conference Room,Dell,dell-c7017t,70" Interactive Conference Room Monitor C7017T,70,dell-conference-room-c7017t.png,https://www.dell.com/en-us/work/shop/dell-interactive-displays/,,Pending,
+Promethean ActivPanel 9,Promethean,promethean-activpanel-9-86,ActivPanel 9 86",86,promethean-activpanel-9.png,https://www.prometheanworld.com/products/interactive-displays/,,Pending,
+Focus Digital Lecterns,Focus Digital,bslm01,SP-Y900-E,21.5,focus-digital-lectern-series.png,https://youtube.com/shorts/u9GfGrk-xZA,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm02,SP-Y600,21.5,focus-digital-lectern-series.png,https://youtube.com/shorts/J3ifzHi_fq,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm03,FK535K 2.0,23.8,focus-digital-lectern-series.png,https://www.youtube.com/shorts/MVzTY2NbolU,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm04,ST100,23.8,focus-digital-lectern-series.png,https://youtube.com/shorts/gls23VGYYGI,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm05,FK530T 2.0,23.6,focus-digital-lectern-series.png,https://youtu.be/9R_jLc5-SuY,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm06,FK500N,21.5,focus-digital-lectern-series.png,https://www.youtube.com/shorts/ZYjwSKZp_HO,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm07,ST200,21.5,focus-digital-lectern-series.png,https://youtube.com/shorts/306a1yn_wao,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm08,FK500V,21.5,focus-digital-lectern-series.png,https://youtube.com/shorts/ZEPcmxlZCWo,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm09,S800SN,21.5,focus-digital-lectern-series.png,https://youtu.be/8cnBuO5jRB4,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm10,S700,21.5,focus-digital-lectern-series.png,https://youtu.be/uvgbAfBzJNg,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm11,FK535K-D,21.5,focus-digital-lectern-series.png,https://youtube.com/shorts/tqDESfLmYM,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm14,SP-Y670,21.5,focus-digital-lectern-series.png,https://youtu.be/1zjYkl_UoGM,,Pending,YouTube video extraction
+Focus Digital Lecterns,Focus Digital,bslm15,FK535K 1.0,21.5,focus-digital-lectern-series.png,https://youtu.be/ejwfyRjcvNM,,Pending,YouTube video extraction
+Beloong Lecterns,Beloong,beloong-bel-l1,BEL-L1,21.5,beloong-lectern-series.png,Manufacturer website or generic lectern,,Pending,
+Beloong Lecterns,Beloong,beloong-bel-l2,BEL-L2,21.5,beloong-lectern-series.png,Manufacturer website or generic lectern,,Pending,
+Beloong Lecterns,Beloong,beloong-bel-l3,BEL-L3,21.5,beloong-lectern-series.png,Manufacturer website or generic lectern,,Pending,
+Haijie Lecterns,Haijie,haijie-hj-l1,HJ-L1,21.5,haijie-lectern.png,Manufacturer website or generic lectern,,Pending,
+Haijie Lecterns,Haijie,haijie-hj-l2,HJ-L2,21.5,haijie-lectern.png,Manufacturer website or generic lectern,,Pending,
+HDFocus Lecterns,HDFocus,hdfocus-hdf-l1,HDF-L1,21.5,hdfocus-lectern.png,Manufacturer website or generic lectern,,Pending,
+HDFocus Lecterns,HDFocus,hdfocus-hdf-l2,HDF-L2,21.5,hdfocus-lectern.png,Manufacturer website or generic lectern,,Pending,
+Lirsen Lecterns,Lirsen,lirsen-lir-l1,LIR-L1,21.5,lirsen-lectern.png,Manufacturer website or generic lectern,,Pending,
+Lirsen Lecterns,Lirsen,lirsen-lir-l2,LIR-L2,21.5,lirsen-lectern.png,Manufacturer website or generic lectern,,Pending,
+Best Lecterns,Best,best-lectern-01,Best Lectern,21.5,best-lectern.png,Manufacturer website or generic lectern,,Pending,
+MAXHUB Lecterns,MAXHUB,maxhub-sl22mc,SL22MC,21.5,maxhub-sl22mc.png,Already exists: /assets/lecterns/MAXHUB_SL22MC.png,,Completed,Image already exists
+MAXHUB Collaboration UC-M,MAXHUB,maxhub-uc-m30,UC-M30,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-M,MAXHUB,maxhub-uc-m31,UC-M31,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-M,MAXHUB,maxhub-uc-m40,UC-M40,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-P,MAXHUB,maxhub-uc-p10,UC-P10,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-P,MAXHUB,maxhub-uc-p20,UC-P20,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-P,MAXHUB,maxhub-uc-p30,UC-P30,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-W,MAXHUB,maxhub-uc-w10,UC-W10,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-W,MAXHUB,maxhub-uc-w20,UC-W20,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-W,MAXHUB,maxhub-uc-w21,UC-W21,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-S,MAXHUB,maxhub-uc-s07,UC-S07,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-S,MAXHUB,maxhub-uc-s10,UC-S10,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation
+MAXHUB Collaboration UC-S,MAXHUB,maxhub-uc-s10-pro,UC-S10 Pro,,maxhub-uc-series.png,https://www.maxhub.com/en/products/collaboration-solutions/,,Pending,Directory needs creation

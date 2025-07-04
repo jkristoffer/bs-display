@@ -1,0 +1,136 @@
+@use 'src/styles/index.scss' as *;
+
+.brochureCard {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 20px 0;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.brochureContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.brochureHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.brochureIcon {
+  font-size: 28px;
+  color: var(--color-accent-primary);
+}
+
+.brochureTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.brochureDescription {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 600px;
+}
+
+.brochureButton {
+  background-color: var(--color-accent-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #007f75;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+}
+
+.iframeMode {
+  padding: 24px 0;
+  
+  .brochureContent {
+    gap: 20px;
+  }
+  
+  .brochureHeader {
+    margin-bottom: 12px;
+  }
+}
+
+.iframeContainer {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.brochureIframe {
+  width: 100%;
+  border: none;
+  display: block;
+  background-color: #f8f9fa;
+  
+  &:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brochureCard {
+    padding: 20px;
+    margin: 16px 0;
+  }
+  
+  .brochureHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .brochureTitle {
+    font-size: 18px;
+  }
+  
+  .brochureDescription {
+    font-size: 14px;
+  }
+  
+  .brochureButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .iframeMode {
+    padding: 16px 0;
+  }
+  
+  .brochureIframe {
+    height: 400px !important;
+  }
+}

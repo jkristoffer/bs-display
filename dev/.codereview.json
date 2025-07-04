@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "rules": {
+    "functionalProgramming": {
+      "enabled": true,
+      "weight": 0.25,
+      "custom": {
+        "maxFunctionLength": 50,
+        "allowConsole": false,
+        "enforceImmutability": true,
+        "requireArrowFunctions": true,
+        "maxNestedDepth": 3
+      }
+    },
+    "projectStandards": {
+      "enabled": true,
+      "weight": 0.15,
+      "custom": {
+        "enforceFileNaming": true,
+        "requireScssModules": true,
+        "maxImportDepth": 3
+      }
+    },
+    "typeScript": {
+      "enabled": true,
+      "weight": 0.15,
+      "custom": {
+        "requireTypeAnnotations": true,
+        "allowAny": false,
+        "requireReturnTypes": true,
+        "preferInterfaces": true
+      }
+    },
+    "reactPatterns": {
+      "enabled": true,
+      "weight": 0.15,
+      "custom": {
+        "requireMemo": true,
+        "requireCallback": true,
+        "maxPropsDepth": 3,
+        "enforceHooksRules": true
+      }
+    },
+    "security": {
+      "enabled": true,
+      "weight": 0.2,
+      "custom": {
+        "checkXss": true,
+        "checkSecrets": true,
+        "checkInputValidation": true,
+        "checkAuthentication": true,
+        "strictMode": true
+      }
+    },
+    "performance": {
+      "enabled": true,
+      "weight": 0.1,
+      "custom": {
+        "checkMemoryLeaks": true,
+        "checkExpensiveOps": true,
+        "checkBundleSize": true,
+        "reactOptimization": true
+      }
+    }
+  },
+  "ignore": [
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "src/components/common/BrochureCard/**"
+  ],
+  "severity": {
+    "error": [
+      "eval-usage",
+      "hardcoded-secrets",
+      "xss-vulnerabilities",
+      "authentication-bypass"
+    ],
+    "warning": [
+      "missing-types",
+      "long-functions",
+      "unused-imports",
+      "missing-memo"
+    ],
+    "info": [
+      "prefer-arrow-functions",
+      "consider-optimization"
+    ]
+  },
+  "thresholds": {
+    "excellent": 90,
+    "good": 80,
+    "acceptable": 70,
+    "failing": 60
+  },
+  "reporting": {
+    "format": "detailed",
+    "includeMetrics": true,
+    "showRecommendations": true,
+    "maxIssuesPerFile": 5,
+    "maxRecommendations": 10
+  }
+}

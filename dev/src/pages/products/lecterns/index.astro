@@ -3,6 +3,7 @@ import ProductLayout from '../../../layouts/ProductLayout.astro';
 import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import CategoryTabs from '../../../components/common/CategoryTabs/CategoryTabs.tsx';
+import { BrochureCard } from '../../../components/common/BrochureCard';
 import lecterns from '../../../data/lecterns/lecterns.all.js';
 
 const title = 'Smart Lecterns | Big Shine Display';
@@ -24,6 +25,15 @@ const description =
           features to meet your needs.
         </p>
       </div>
+
+      <BrochureCard
+        title="📖 Interactive Lecterns Brochure"
+        description="Explore our complete lectern collection with detailed specifications, features, and applications. Perfect for planning your installation."
+        brochureUrl="https://heyzine.com/flip-book/76d575522c.html"
+        displayMode="iframe"
+        iframeHeight="600px"
+        client:visible
+      />
 
       <FilterUIv2 allModels={lecterns} productType="lecterns" client:visible />
     </div>

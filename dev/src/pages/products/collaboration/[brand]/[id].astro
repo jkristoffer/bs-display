@@ -1,0 +1,66 @@
+---
+import ProductLayout from '../../../../layouts/ProductLayout.astro';
+import { ProductDetails } from '../../../../components/products/ProductDetails';
+import allCollaboration from '../../../../data/collaboration/collaboration.all.js';
+import {
+  convertModelToProductInfo,
+  generateProductSchema,
+  generateBreadcrumbSchema
+} from '../../../../utils/schema';
+
+export function getStaticPaths() {
+  return allCollaboration.map((model) => ({
+    params: {
+      brand: model.brand.toLowerCase().replace(/\s+/g, '-'),
+      id: model.id
+    },
+    props: { model }
+  }));
+}
+
+const { model } = Astro.props;
+const { brand, model: modelName } = model;
+
+const title = `${brand} ${modelName} | Big Shine Display`;
+const description = `Learn more about the ${brand} ${modelName} collaboration device. View specifications, features, and request a quote.`;
+
+// Generate structured data for SEO
+const baseUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : 'https://bigshine.display';
+const productInfo = convertModelToProductInfo(model, 'collaboration', baseUrl);
+const productSchema = generateProductSchema(productInfo);
+
+// Generate breadcrumb schema
+const breadcrumbItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Products', path: '/products/' },
+  { label: 'Collaboration', path: '/products/collaboration/' },
+  { 
+    label: brand,
+    path: `/products/collaboration/${brand.toLowerCase().replace(/\s+/g, '-')}/`
+  },
+  { label: modelName }
+];
+
+const breadcrumbSchema = generateBreadcrumbSchema({
+  items: breadcrumbItems.map((item, index) => ({
+    name: item.label,
+    item: item.path
+      ? new URL(
+          item.path.startsWith('/') ? item.path.slice(1) : item.path,
+          baseUrl
+        ).href
+      : baseUrl,
+    position: index + 1
+  }))
+});
+---
+
+<ProductLayout title={title} description={description}>
+  <!-- JSON-LD structured data for SEO -->
+  <script is:inline type="application/ld+json" set:html={productSchema} />
+  <script is:inline type="application/ld+json" set:html={breadcrumbSchema} />
+
+  <ProductDetails model={model} productType="collaboration" client:visible />
+</ProductLayout>

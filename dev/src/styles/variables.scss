@@ -99,6 +99,25 @@ $color-accent-secondary: #ffa726;
   --spacing-section-gap: var(--spacing-24);
   --spacing-component-gap: var(--spacing-12);
   
+  /* Modern Container System */
+  --container-narrow: 800px;
+  --container-default: 1200px;
+  --container-wide: 1400px;
+  --container-full: 100%;
+  
+  /* Fluid Spacing System */
+  --spacing-dynamic: clamp(2rem, 5vw, 6rem);
+  --spacing-section: clamp(3rem, 8vw, 8rem);
+  --spacing-inline: clamp(1rem, 5vw, 4rem);
+  
+  /* Modern Visual Effects */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --glass-blur: 10px;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
   /* Legacy spacing (for gradual migration) */
   --padding-s1: 15px;
   --padding-s2: 50px;

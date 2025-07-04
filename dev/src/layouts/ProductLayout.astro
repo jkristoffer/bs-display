@@ -10,14 +10,14 @@ const { title, description } = Astro.props;
 ---
 
 <MainLayout title={title} description={description}>
-  <div class="product-container">
+  <div class="product-page">
     <slot />
   </div>
   <style>
-    .product-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    .product-page {
+      padding-top: var(--spacing-sm);
+      min-height: 100vh;
+      background: var(--color-background);
     }
   </style>
 </MainLayout>

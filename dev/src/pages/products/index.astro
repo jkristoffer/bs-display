@@ -8,21 +8,23 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
-  <Breadcrumbs items={[
-    { label: 'Home', path: '/' },
-    { label: 'Products' }
-  ]} />
-  
-  <div class="products-header">
-    <h1>Interactive Display Solutions</h1>
-    <p>
-      Discover our complete range of interactive display products for education,
-      business, and training environments. From large format displays to
-      interactive lecterns, we have solutions to fit every need.
-    </p>
-  </div>
+  <section class="section">
+    <div class="container--wide">
+      <Breadcrumbs items={[
+        { label: 'Home', path: '/' },
+        { label: 'Products' }
+      ]} />
+      
+      <div class="products-header">
+        <h1>Interactive Display Solutions</h1>
+        <p>
+          Discover our complete range of interactive display products for education,
+          business, and training environments. From large format displays to
+          interactive lecterns, we have solutions to fit every need.
+        </p>
+      </div>
 
-  <div class="product-categories">
+      <div class="product-categories">
     <div class="category-card">
       <div class="category-image">
         <img
@@ -61,6 +63,8 @@ const description =
       </div>
     </div>
   </div>
+    </div>
+  </section>
 </ProductLayout>
 
 <style lang="scss">

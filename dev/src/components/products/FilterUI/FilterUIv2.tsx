@@ -3,8 +3,9 @@
  * Replaces the old fixed sidebar approach with better UX
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import type { ProductModel } from '../../../types/product';
+import ProductCard from '../../common/ProductCard/ProductCard';
 
 interface FilterUIv2Props {
   allModels: ProductModel[];
@@ -106,6 +107,21 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
   const clearAllFilters = () => {
     setActiveFilters({});
   };
+
+  // Product action handlers
+  const handleViewDetails = useCallback((product: ProductModel) => {
+    const brandSlug = product.brand.toLowerCase().replace(/\s+/g, '-');
+    window.location.href = `/products/${productType}/${brandSlug}/${product.id}`;
+  }, [productType]);
+
+  const handleRequestQuote = useCallback((product: ProductModel) => {
+    // Navigate to contact page with product info
+    const params = new URLSearchParams({
+      product: `${product.brand} ${product.model}`,
+      type: productType || 'smartboards'
+    });
+    window.location.href = `/contact?${params.toString()}`;
+  }, [productType]);
 
   return (
     <div style={{ background: '#fff', minHeight: '100vh' }}>
@@ -323,7 +339,7 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
               <div style={{ marginBottom: '24px' }}>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '16px', fontWeight: '600' }}>Touch Technology</h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {filterData.touchTechs.map(tech => (
+                  {filterData.touchTechs.map(tech => tech && (
                     <label key={tech} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                       <input
                         type="checkbox"
@@ -344,45 +360,29 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
         <div style={{ flex: 1, padding: '20px' }}>
           <div style={{
             display: viewMode === 'grid' ? 'grid' : 'flex',
-            gridTemplateColumns: viewMode === 'grid' ? 'repeat(auto-fill, minmax(280px, 1fr))' : 'none',
+            gridTemplateColumns: viewMode === 'grid' ? 'repeat(auto-fill, minmax(320px, 1fr))' : 'none',
             flexDirection: viewMode === 'list' ? 'column' : 'row',
-            gap: '20px'
+            gap: '24px'
           }}>
             {filteredAndSortedModels.map((model, index) => (
-              <div
+              <ProductCard
                 key={model.id || index}
-                style={{
-                  border: '1px solid #eee',
-                  borderRadius: '8px',
-                  padding: '16px',
-                  background: 'white',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                product={model}
+                displayMode={viewMode}
+                productType={productType as 'smartboards' | 'lecterns' | 'accessories'}
+                actions={{
+                  viewDetails: {
+                    label: 'View Details',
+                    onClick: handleViewDetails
+                  },
+                  requestQuote: {
+                    label: 'Request Quote',
+                    onClick: handleRequestQuote
+                  }
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-                }}
-              >
-                <div style={{ fontWeight: 'bold', marginBottom: '8px', color: '#333' }}>
-                  {model.brand}
-                </div>
-                <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>
-                  {model.name || model.model}
-                </div>
-                <div style={{ fontSize: '14px', color: 'var(--color-accent-primary)', fontWeight: '500' }}>
-                  {model.size}" Display
-                </div>
-                {model.touchTechnology && (
-                  <div style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>
-                    {model.touchTechnology}
-                  </div>
-                )}
-              </div>
+                context="filter"
+                maxFeatures={3}
+              />
             ))}
           </div>
           

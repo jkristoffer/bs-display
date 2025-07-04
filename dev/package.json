@@ -21,6 +21,8 @@
     "git:pull": "git pull origin main",
     "git:log": "git log --oneline -10",
     "code:review": "node scripts/code-review-agent.js",
+    "code:review:config": "node scripts/generate-codereview-config.js",
+    "code:review:config:interactive": "node scripts/generate-codereview-config.js --interactive",
     "code:review:api": "node scripts/code-review-api-simple.js --port 3001",
     "code:review:full": "node scripts/code-review-api.js",
     "code:lint": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\"",

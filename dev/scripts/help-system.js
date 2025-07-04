@@ -28,16 +28,33 @@ const helpDatabase = {
     category: 'git'
   },
   'code:review': {
-    description: 'Analyze code for functional programming compliance',
-    usage: 'npm run code:review -- --file [path] [--json]',
+    description: 'Enhanced code analysis with security & performance auditing',
+    usage: 'npm run code:review -- --file [path] | --batch [dir] [options]',
     options: {
-      '--file': 'Specify file to review (required)',
-      '--json': 'Output results as JSON',
-      '--ai-mode': 'Enhanced mode for AI agents'
+      '--file': 'Analyze single file',
+      '--batch': 'Analyze directory recursively', 
+      '--format': 'Output format: detailed, json, minimal (default: detailed)',
+      '--ai-mode': 'Enhanced mode for AI workflow integration',
+      '--agent-id': 'Track which AI agent generated the code',
+      '--task-id': 'Associate analysis with specific task',
+      '--threshold-failing': 'Custom failing threshold (default: 60)'
     },
     examples: [
-      'npm run code:review -- --file src/components/Button.tsx',
-      'npm run code:review -- --file src/components/Button.tsx --json'
+      'npm run code:review -- --file src/components/Auth.tsx',
+      'npm run code:review -- --batch src/components/ --format json',
+      'npm run code:review -- --file component.tsx --ai-mode --agent-id "claude-sonnet"'
+    ],
+    category: 'code'
+  },
+  'code:review:config': {
+    description: 'Generate .codereview.json configuration file',
+    usage: 'npm run code:review:config [-- --interactive]',
+    options: {
+      '--interactive': 'Interactive configuration setup'
+    },
+    examples: [
+      'npm run code:review:config',
+      'npm run code:review:config:interactive'
     ],
     category: 'code'
   },

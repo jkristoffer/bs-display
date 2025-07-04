@@ -134,11 +134,18 @@ See [CLAUDE.md](./CLAUDE.md) for complete AI development guidance including:
 # View all automation tools
 npm run help
 
-# Code quality enforcement  
+# Enhanced code quality with security & performance analysis
 npm run code:review -- --file [file]
+npm run code:review -- --batch [directory]
+npm run code:review:config                    # Setup configuration
 
 # Content SEO optimization
 npm run content:seo:analyze -- --file [blog-post]
+
+# Development workflow
+npm run dev:server                            # Start development
+npm run code:typecheck                        # TypeScript validation
+npm run dev:build                             # Production build
 ```
 
 ## Development Workflow
@@ -196,7 +203,39 @@ bs-display/dev/
 
 ## Automation Systems
 
-### **🔍 Code Review Agent**
+### **🔍 Enhanced Code Review Agent**
+**Enterprise-grade automated code quality analysis with security & performance auditing**
+
+#### **Features**
+- **🔒 Security Analysis (20%)**: XSS detection, secrets scanning, input validation
+- **⚡ Performance Optimization (10%)**: React performance, memory leaks, bundle analysis
+- **📋 Functional Programming (25%)**: Pure functions, immutability, composition
+- **🔷 TypeScript Quality (15%)**: Type safety, interfaces, avoiding `any`
+- **⚛️ React Patterns (15%)**: Hooks compliance, component optimization
+- **📏 Project Standards (15%)**: File naming, imports, styling consistency
+
+#### **Usage**
+```bash
+# Single file analysis with full report
+npm run code:review -- --file src/components/Auth.tsx
+
+# Batch analysis for security audit
+npm run code:review -- --batch src/components/auth/ --format json
+
+# Configuration management
+npm run code:review:config                    # Generate .codereview.json
+npm run code:review:config:interactive        # Interactive setup
+
+# AI workflow integration
+npm run code:review -- --file new-component.tsx --ai-mode --agent-id "claude-sonnet"
+```
+
+#### **Configuration System**
+Flexible configuration via `.codereview.json`:
+- **Rule weights** and thresholds customization
+- **Ignore patterns** for files/directories
+- **Custom security** and performance rules
+- **Output formats** (detailed, JSON, minimal)
 - **Automated standards enforcement** with scoring system (A-F grades)
 - **Functional programming compliance** verification
 - **GitHub Actions integration** for PR analysis
@@ -235,8 +274,8 @@ npm run dev:server
 # Run type checking
 npm run code:typecheck
 
-# Test code quality (for any modified files)
-node scripts/code-review-agent.js --file [your-file]
+# Test code quality with enhanced security & performance analysis
+npm run code:review -- --file [your-file]
 ```
 
 ### **Pull Request Process**
@@ -248,9 +287,11 @@ node scripts/code-review-agent.js --file [your-file]
 5. **Submit PR** with clear description and acceptance criteria
 
 **Automated PR checks include:**
-- Code review agent analysis with scoring
-- SEO analysis for content changes  
-- Type checking and build verification
+- **Enhanced code review** analysis with security & performance scoring
+- **SEO analysis** for content changes  
+- **TypeScript** type checking and build verification
+- **Security audit** for potential vulnerabilities
+- **Performance optimization** recommendations
 
 ### **AI-First Development Notes**
 

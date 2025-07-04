@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './ProductDetails.module.scss';
 import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
 import type { ProductDetailsProps, ProductModel } from '../../../types/product';
+import { generateProductSpecifications, type ProductCategory } from '../../../utils/product-specs';
+import { generateProductBreadcrumbs } from '../../../utils/breadcrumb-generator';
+import { getProductActions } from '../../../utils/product-actions';
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ model, productType = 'smartboards' }) => {
   if (!model) {
@@ -16,39 +19,19 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ model, productType = 's
   const {
     brand,
     model: modelName,
-    size,
-    resolution,
-    os,
-    touchTechnology,
     features,
-    warranty,
-    image,
-    brightness,
-    contrastRatio,
-    viewingAngle,
-    responseTime,
-    panelLife,
-    audioOutput,
-    powerConsumption
+    image
   }: ProductModel = model;
+
+  const specifications = generateProductSpecifications(model, productType as ProductCategory);
+  const breadcrumbItems = generateProductBreadcrumbs(model, productType as ProductCategory);
+  const actions = getProductActions(productType as ProductCategory);
 
   return (
     <div className={styles.productDetails}>
       <div className={styles.header}>
         <Breadcrumbs 
-          items={[
-            { label: 'Home', path: '/' },
-            { label: 'Products', path: '/products/' },
-            { 
-              label: productType === 'smartboards' ? 'Smart Boards' : 'Lecterns',
-              path: `/products/${productType}/`
-            },
-            { 
-              label: brand,
-              path: `/products/${productType}/${brand.toLowerCase().replace(/\s+/g, '-')}/`
-            },
-            { label: modelName }
-          ]}
+          items={breadcrumbItems}
           className={styles.breadcrumbs}
         />
         <h1 className={styles.title}>
@@ -66,8 +49,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ model, productType = 's
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.primaryButton}>Request Quote</button>
-            <button className={styles.secondaryButton}>Book a Demo</button>
+            {actions.map((action, index) => (
+              <button
+                key={index}
+                className={action.primary ? styles.primaryButton : styles.secondaryButton}
+              >
+                {action.label}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -76,54 +65,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ model, productType = 's
             <h2>Specifications</h2>
             <table>
               <tbody>
-                <tr>
-                  <th>Screen Size</th>
-                  <td>{size}"</td>
-                </tr>
-                <tr>
-                  <th>Resolution</th>
-                  <td>{resolution}</td>
-                </tr>
-                <tr>
-                  <th>Operating System</th>
-                  <td>{os}</td>
-                </tr>
-                <tr>
-                  <th>Touch Technology</th>
-                  <td>{touchTechnology}</td>
-                </tr>
-                <tr>
-                  <th>Brightness</th>
-                  <td>{brightness}</td>
-                </tr>
-                <tr>
-                  <th>Contrast Ratio</th>
-                  <td>{contrastRatio}</td>
-                </tr>
-                <tr>
-                  <th>Viewing Angle</th>
-                  <td>{viewingAngle}</td>
-                </tr>
-                <tr>
-                  <th>Response Time</th>
-                  <td>{responseTime}</td>
-                </tr>
-                <tr>
-                  <th>Panel Life</th>
-                  <td>{panelLife}</td>
-                </tr>
-                <tr>
-                  <th>Audio Output</th>
-                  <td>{audioOutput}</td>
-                </tr>
-                <tr>
-                  <th>Power Consumption</th>
-                  <td>{powerConsumption}</td>
-                </tr>
-                <tr>
-                  <th>Warranty</th>
-                  <td>{warranty}</td>
-                </tr>
+                {specifications.map((spec, index) => (
+                  <tr key={index}>
+                    <th>{spec.label}</th>
+                    <td>{spec.value}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "stylus-smart-pen-01",
+    "brand": "SMART",
+    "model": "Board Pen Set",
+    "category": "stylus",
+    "compatibility": ["SMART Board MX", "SMART Board 6000S", "SMART Board 7000R"],
+    "features": ["Magnetic attachment", "Color coding", "Pressure sensitive", "Palm rejection"],
+    "priceRange": "$50-$100",
+    "image": "/images/products/accessories/stylus/smart-pen-set.jpg",
+    "warranty": "1 year"
+  },
+  {
+    "id": "stylus-maxhub-pen-01",
+    "brand": "MAXHUB",
+    "model": "Smart Stylus SP-20",
+    "category": "stylus",
+    "compatibility": ["MAXHUB V5", "MAXHUB E3"],
+    "features": ["Wireless charging", "Palm rejection", "4096 pressure levels", "Tilt detection"],
+    "priceRange": "$80-$120",
+    "image": "/images/products/accessories/stylus/maxhub-sp20.jpg",
+    "warranty": "1 year"
+  },
+  {
+    "id": "remote-smart-control-01",
+    "brand": "SMART",
+    "model": "Remote Control RC-1",
+    "category": "stylus",
+    "compatibility": ["SMART Board MX", "SMART Board 6000S"],
+    "features": ["Wireless", "Presenter functions", "Volume control", "Power management"],
+    "priceRange": "$30-$60",
+    "image": "/images/products/accessories/stylus/smart-rc1.jpg",
+    "warranty": "2 years"
+  },
+  {
+    "id": "laser-pointer-universal-01",
+    "brand": "Universal",
+    "model": "Wireless Presenter LP-200",
+    "category": "stylus",
+    "compatibility": ["Most interactive displays"],
+    "features": ["Laser pointer", "Slide navigation", "Volume control", "Timer function"],
+    "priceRange": "$40-$70",
+    "image": "/images/products/accessories/stylus/universal-lp200.jpg",
+    "warranty": "1 year"
+  }
+]

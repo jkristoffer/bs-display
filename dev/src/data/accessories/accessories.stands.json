@@ -1,0 +1,46 @@
+[
+  {
+    "id": "stand-mobile-smart-01",
+    "brand": "SMART",
+    "model": "Mobile Stand MS-1",
+    "category": "stands",
+    "compatibility": ["SMART Board MX", "SMART Board 6000S", "SMART Board 7000R"],
+    "features": ["Height adjustable", "Locking wheels", "Cable management", "Tilt adjustment"],
+    "priceRange": "$800-$1,200",
+    "image": "/images/products/accessories/stands/smart-ms1.jpg",
+    "warranty": "2 years"
+  },
+  {
+    "id": "stand-wall-smart-02",
+    "brand": "SMART",
+    "model": "Wall Mount WM-2",
+    "category": "stands",
+    "compatibility": ["SMART Board MX", "SMART Board 6000S"],
+    "features": ["VESA compatible", "Tilt adjustment", "Quick release", "Security lock"],
+    "priceRange": "$200-$400",
+    "image": "/images/products/accessories/stands/smart-wm2.jpg",
+    "warranty": "3 years"
+  },
+  {
+    "id": "stand-mobile-maxhub-01",
+    "brand": "MAXHUB",
+    "model": "Mobile Cart MC-75",
+    "category": "stands",
+    "compatibility": ["MAXHUB V5", "MAXHUB E3", "MAXHUB UC"],
+    "features": ["Electric height adjustment", "Swivel base", "Storage shelf", "Cable routing"],
+    "priceRange": "$1,000-$1,500",
+    "image": "/images/products/accessories/stands/maxhub-mc75.jpg",
+    "warranty": "2 years"
+  },
+  {
+    "id": "stand-ceiling-universal-01",
+    "brand": "Universal",
+    "model": "Ceiling Mount CM-100",
+    "category": "stands",
+    "compatibility": ["Most 55-98 inch displays"],
+    "features": ["360° rotation", "Height adjustment", "Cable management", "Safety lock"],
+    "priceRange": "$600-$800",
+    "image": "/images/products/accessories/stands/universal-cm100.jpg",
+    "warranty": "5 years"
+  }
+]

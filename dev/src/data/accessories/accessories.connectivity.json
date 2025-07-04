@@ -1,0 +1,57 @@
+[
+  {
+    "id": "cable-hdmi-4k-01",
+    "brand": "Universal",
+    "model": "4K HDMI Cable 3m",
+    "category": "connectivity",
+    "compatibility": ["All HDMI devices"],
+    "features": ["4K support", "3 meter length", "Gold plated", "High speed"],
+    "priceRange": "$20-$40",
+    "image": "/images/products/accessories/connectivity/hdmi-4k-3m.jpg",
+    "warranty": "Lifetime"
+  },
+  {
+    "id": "adapter-usb-c-hub-01",
+    "brand": "Universal",
+    "model": "USB-C Hub 7-in-1",
+    "category": "connectivity",
+    "compatibility": ["USB-C devices", "Laptops", "Tablets"],
+    "features": ["7 ports", "4K HDMI", "USB 3.0", "SD card reader", "Power delivery"],
+    "priceRange": "$50-$80",
+    "image": "/images/products/accessories/connectivity/usbc-hub-7in1.jpg",
+    "warranty": "2 years"
+  },
+  {
+    "id": "wireless-display-adapter-01",
+    "brand": "SMART",
+    "model": "Wireless Display Adapter WDA-1",
+    "category": "connectivity",
+    "compatibility": ["SMART Board MX", "Windows", "macOS", "iOS", "Android"],
+    "features": ["Wireless mirroring", "Multi-device support", "4K streaming", "Low latency"],
+    "priceRange": "$150-$250",
+    "image": "/images/products/accessories/connectivity/smart-wda1.jpg",
+    "warranty": "2 years"
+  },
+  {
+    "id": "document-camera-01",
+    "brand": "MAXHUB",
+    "model": "Document Camera DC-8M",
+    "category": "connectivity",
+    "compatibility": ["MAXHUB displays", "Most interactive boards"],
+    "features": ["8MP camera", "Auto focus", "LED lighting", "USB connection"],
+    "priceRange": "$300-$500",
+    "image": "/images/products/accessories/connectivity/maxhub-dc8m.jpg",
+    "warranty": "3 years"
+  },
+  {
+    "id": "audio-soundbar-01",
+    "brand": "SMART",
+    "model": "Audio Soundbar AS-20",
+    "category": "connectivity",
+    "compatibility": ["SMART Board MX", "SMART Board 6000S"],
+    "features": ["20W speakers", "Bluetooth", "3.5mm input", "Wall mountable"],
+    "priceRange": "$200-$300",
+    "image": "/images/products/accessories/connectivity/smart-as20.jpg",
+    "warranty": "2 years"
+  }
+]

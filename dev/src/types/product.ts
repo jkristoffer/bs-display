@@ -21,6 +21,21 @@ export interface ProductModel {
   panelLife?: string;
   audioOutput?: string;
   powerConsumption?: string;
+  
+  // Lectern-specific fields
+  motorizedFeatures?: string[];
+  microphone?: {
+    type: 'gooseneck' | 'wireless' | 'handheld';
+    quantity: number;
+  };
+  audio?: {
+    amplifier?: string;
+    speakers?: string;
+  };
+  
+  // Accessory-specific fields
+  category?: 'stands' | 'stylus' | 'connectivity' | 'other';
+  compatibility?: string[];
 }
 
 export interface FilterState {
@@ -57,7 +72,8 @@ export interface ProductDetailsProps {
 
 export interface FilterUIProps {
   allModels: ProductModel[];
-  productType?: string;
+  productType?: 'smartboards' | 'lecterns' | 'accessories';
+  customFilters?: import('./filter.types').FilterConfig[];
 }
 
 export interface FilterOptionProps {

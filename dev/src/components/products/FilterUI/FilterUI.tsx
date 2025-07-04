@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import FilterPanel from './FilterPanel/FilterPanel';
+import DynamicFilterPanel from './FilterPanel/DynamicFilterPanel';
 import ModelDisplay from './ModelDisplay/ModelDisplay';
 import styles from './FilterUI.module.scss';
+import { getFilterConfigForProductType } from './configs/filterConfigs';
 import type { ProductModel, FilterState, FilterUIProps } from '../../../types/product';
+import type { DynamicFilterState } from '../../../types/filter.types';
 
-const FilterUI: React.FC<FilterUIProps> = ({ allModels, productType = 'smartboards' }) => {
-  const [filters, setFilters] = useState<FilterState>({
-    brands: [],
-    sizes: [],
-    touchTechs: [],
-    contrastRatios: []
-  });
+const FilterUI: React.FC<FilterUIProps> = ({ allModels, productType = 'smartboards', customFilters }) => {
+  const [dynamicFilters, setDynamicFilters] = useState<DynamicFilterState>({});
   const [mobileFiltersVisible, setMobileFiltersVisible] = useState<boolean>(false);
 
+  const filterConfig = customFilters || getFilterConfigForProductType(productType);
+
   const filtered = allModels.filter((model: ProductModel) => {
-    const matchBrand =
-      filters.brands.length === 0 || filters.brands.includes(model.brand);
-
-    const matchSize =
-      filters.sizes.length === 0 || filters.sizes.includes(model.size);
-
-    const matchTouchTech =
-      filters.touchTechs.length === 0 ||
-      (model.touchTechnology && filters.touchTechs.includes(model.touchTechnology));
-
-    const matchContrastRatio =
-      filters.contrastRatios.length === 0 ||
-      (model.contrastRatio && filters.contrastRatios.includes(model.contrastRatio));
-
-    return matchBrand && matchSize && matchTouchTech && matchContrastRatio;
+    return filterConfig.every(config => {
+      const filterValues = dynamicFilters[config.id] || [];
+      if (filterValues.length === 0) return true;
+      
+      const modelValue = config.accessor(model);
+      
+      if (modelValue === undefined || modelValue === null) return false;
+      
+      // Handle array values (like motorizedFeatures, compatibility)
+      if (Array.isArray(modelValue)) {
+        return modelValue.some(item => filterValues.includes(String(item)));
+      }
+      
+      // Handle single values
+      return filterValues.includes(String(modelValue));
+    });
   });
 
   const toggleMobileFilters = (): void => {
@@ -47,7 +48,24 @@ const FilterUI: React.FC<FilterUIProps> = ({ allModels, productType = 'smartboar
       <div
         className={`${styles.filterPanel} ${mobileFiltersVisible ? styles.visible : ''}`}
       >
-        <FilterPanel allModels={allModels} onFilterChange={setFilters} />
+        {productType === 'smartboards' ? (
+          <FilterPanel allModels={allModels} onFilterChange={(legacyFilters: FilterState) => {
+            // Convert legacy filters to dynamic format for backward compatibility
+            const dynamicFormat: DynamicFilterState = {
+              brand: legacyFilters.brands,
+              size: legacyFilters.sizes.map(String),
+              touchTechnology: legacyFilters.touchTechs,
+              contrastRatio: legacyFilters.contrastRatios
+            };
+            setDynamicFilters(dynamicFormat);
+          }} />
+        ) : (
+          <DynamicFilterPanel 
+            allModels={allModels}
+            filterConfig={filterConfig}
+            onFilterChange={setDynamicFilters}
+          />
+        )}
       </div>
 
       <div className={styles.modelDisplay}>

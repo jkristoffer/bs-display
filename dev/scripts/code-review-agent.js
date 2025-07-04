@@ -27,21 +27,25 @@ await new Promise(resolve => setTimeout(resolve, 3000));
  */
 
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
 class CodeReviewAgent {
   constructor(options = {}) {
+    // Load configuration
+    this.config = this.loadConfiguration();
+    
     this.options = {
       aiMode: options.aiMode || false,
       agentId: options.agentId || null,
       taskId: options.taskId || null,
-      outputFormat: options.outputFormat || 'detailed', // 'detailed', 'json', 'minimal'
+      outputFormat: options.outputFormat || this.config.reporting?.format || 'detailed',
       thresholds: {
-        excellent: (options.thresholds && options.thresholds.excellent) || 90,
-        good: (options.thresholds && options.thresholds.good) || 80,
-        acceptable: (options.thresholds && options.thresholds.acceptable) || 70,
-        failing: (options.thresholds && options.thresholds.failing) || 60
+        excellent: (options.thresholds && options.thresholds.excellent) || this.config.thresholds?.excellent || 90,
+        good: (options.thresholds && options.thresholds.good) || this.config.thresholds?.good || 80,
+        acceptable: (options.thresholds && options.thresholds.acceptable) || this.config.thresholds?.acceptable || 70,
+        failing: (options.thresholds && options.thresholds.failing) || this.config.thresholds?.failing || 60
       },
       ...options
     };
@@ -64,8 +68,87 @@ class CodeReviewAgent {
     };
   }
 
+  loadConfiguration() {
+    const configPaths = [
+      path.join(process.cwd(), '.codereview.json'),
+      path.join(process.cwd(), '.codereview.js'),
+      path.join(process.cwd(), 'codereview.config.json'),
+      path.join(process.cwd(), 'codereview.config.js')
+    ];
+
+    for (const configPath of configPaths) {
+      try {
+        const configData = fsSync.readFileSync(configPath, 'utf-8');
+        const config = JSON.parse(configData);
+        
+        if (this.options && this.options.outputFormat !== 'json' && this.options.outputFormat !== 'minimal') {
+          console.log(`📋 Loaded configuration from: ${configPath}`);
+        }
+        
+        return config;
+      } catch (error) {
+        // Continue to next config file
+      }
+    }
+
+    // Return default configuration if no config file found
+    return {
+      rules: {
+        functionalProgramming: { enabled: true, weight: 0.25 },
+        projectStandards: { enabled: true, weight: 0.15 },
+        typeScript: { enabled: true, weight: 0.15 },
+        reactPatterns: { enabled: true, weight: 0.15 },
+        security: { enabled: true, weight: 0.20 },
+        performance: { enabled: true, weight: 0.10 }
+      },
+      thresholds: {
+        excellent: 90,
+        good: 80,
+        acceptable: 70,
+        failing: 60
+      }
+    };
+  }
+
+  isRuleEnabled(ruleName) {
+    return this.config.rules?.[ruleName]?.enabled !== false;
+  }
+
+  getRuleWeight(ruleName) {
+    return this.config.rules?.[ruleName]?.weight || 0.1;
+  }
+
+  getRuleCustomSettings(ruleName) {
+    return this.config.rules?.[ruleName]?.custom || {};
+  }
+
+  shouldIgnoreFile(filePath) {
+    if (!this.config.ignore) return false;
+    
+    const ignorePatterns = this.config.ignore;
+    const relativePath = path.relative(process.cwd(), filePath);
+    
+    return ignorePatterns.some(pattern => {
+      // Simple glob pattern matching
+      const regexPattern = pattern
+        .replace(/\*\*/g, '.*')
+        .replace(/\*/g, '[^/]*')
+        .replace(/\?/g, '.');
+      
+      return new RegExp(regexPattern).test(relativePath);
+    });
+  }
+
   async analyzeFile(filePath) {
     try {
+      // Check if file should be ignored
+      if (this.shouldIgnoreFile(filePath)) {
+        if (this.options.outputFormat !== 'json' && this.options.outputFormat !== 'minimal') {
+          console.log(`⏭️  Skipping ignored file: ${filePath}`);
+        }
+        return null;
+      }
+
       const content = await fs.readFile(filePath, 'utf-8');
       const fileExtension = path.extname(filePath);
       
@@ -76,14 +159,28 @@ class CodeReviewAgent {
       const fileResult = {
         path: filePath,
         extension: fileExtension,
-        functionalProgramming: this.checkFunctionalProgramming(content, filePath),
-        projectStandards: this.checkProjectStandards(content, filePath),
-        typeScript: this.checkTypeScript(content, filePath),
-        reactPatterns: this.checkReactPatterns(content, filePath),
-        security: this.checkSecurity(content, filePath),
-        performance: this.checkPerformance(content, filePath),
         score: 0
       };
+
+      // Only run enabled checks
+      if (this.isRuleEnabled('functionalProgramming')) {
+        fileResult.functionalProgramming = this.checkFunctionalProgramming(content, filePath);
+      }
+      if (this.isRuleEnabled('projectStandards')) {
+        fileResult.projectStandards = this.checkProjectStandards(content, filePath);
+      }
+      if (this.isRuleEnabled('typeScript')) {
+        fileResult.typeScript = this.checkTypeScript(content, filePath);
+      }
+      if (this.isRuleEnabled('reactPatterns')) {
+        fileResult.reactPatterns = this.checkReactPatterns(content, filePath);
+      }
+      if (this.isRuleEnabled('security')) {
+        fileResult.security = this.checkSecurity(content, filePath);
+      }
+      if (this.isRuleEnabled('performance')) {
+        fileResult.performance = this.checkPerformance(content, filePath);
+      }
 
       // Calculate file score
       fileResult.score = this.calculateFileScore(fileResult);
@@ -274,6 +371,351 @@ class CodeReviewAgent {
       score -= 10;
       issues.push('Excessive forEach usage');
       recommendations.push('Use map for transformations, filter for selections');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkSecurity(content, filePath) {
+    const checks = {
+      score: 100,
+      issues: [],
+      recommendations: [],
+      patterns: {
+        xssVulnerabilities: this.checkXSSVulnerabilities(content),
+        secretsExposure: this.checkSecretsExposure(content),
+        unsafePatterns: this.checkUnsafePatterns(content),
+        inputValidation: this.checkInputValidation(content),
+        authenticationIssues: this.checkAuthenticationIssues(content)
+      }
+    };
+
+    const patternScores = Object.values(checks.patterns).map(p => p.score);
+    checks.score = Math.round(patternScores.reduce((sum, score) => sum + score, 0) / patternScores.length);
+
+    Object.values(checks.patterns).forEach(pattern => {
+      checks.issues.push(...pattern.issues);
+      checks.recommendations.push(...pattern.recommendations);
+    });
+
+    return checks;
+  }
+
+  checkXSSVulnerabilities(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for dangerouslySetInnerHTML usage
+    const dangerousHTML = content.match(/dangerouslySetInnerHTML\s*=\s*{/g);
+    if (dangerousHTML) {
+      score -= 30;
+      issues.push('Potential XSS vulnerability: dangerouslySetInnerHTML usage detected');
+      recommendations.push('Avoid dangerouslySetInnerHTML - use sanitization libraries or secure alternatives');
+    }
+
+    // Check for unescaped user input in JSX
+    const directUserInput = content.match(/{\s*[a-zA-Z_$][a-zA-Z0-9_$]*\.(innerHTML|outerHTML)\s*}/g);
+    if (directUserInput) {
+      score -= 25;
+      issues.push('Direct HTML injection detected in JSX');
+      recommendations.push('Sanitize HTML content before rendering');
+    }
+
+    // Check for eval() usage
+    const evalUsage = content.match(/eval\s*\(/g);
+    if (evalUsage) {
+      score -= 40;
+      issues.push('Critical: eval() usage detected');
+      recommendations.push('Never use eval() - use safe alternatives like JSON.parse()');
+    }
+
+    // Check for Function constructor
+    const functionConstructor = content.match(/new\s+Function\s*\(/g);
+    if (functionConstructor) {
+      score -= 35;
+      issues.push('Function constructor usage detected');
+      recommendations.push('Avoid Function constructor - use proper function declarations');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkSecretsExposure(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for hardcoded API keys
+    const apiKeyPatterns = [
+      /(?:api[_-]?key|apikey)\s*[:=]\s*['"][a-zA-Z0-9_-]{20,}['"]/gi,
+      /(?:secret|token|password)\s*[:=]\s*['"][a-zA-Z0-9_-]{16,}['"]/gi,
+      /(?:aws[_-]?access[_-]?key|access[_-]?key[_-]?id)\s*[:=]\s*['"][A-Z0-9]{16,}['"]/gi
+    ];
+
+    apiKeyPatterns.forEach(pattern => {
+      const matches = content.match(pattern);
+      if (matches) {
+        score -= 50;
+        issues.push(`Potential hardcoded credentials detected: ${matches.length} instances`);
+        recommendations.push('Move sensitive credentials to environment variables');
+      }
+    });
+
+    // Check for console.log with sensitive data
+    const consoleSecrets = content.match(/console\.log\([^)]*(?:password|token|secret|key|auth)[^)]*\)/gi);
+    if (consoleSecrets) {
+      score -= 20;
+      issues.push('Console logging of sensitive data detected');
+      recommendations.push('Remove console.log statements containing sensitive information');
+    }
+
+    // Check for localStorage/sessionStorage with sensitive data
+    const storageSecrets = content.match(/(?:localStorage|sessionStorage)\.(?:setItem|getItem)\([^)]*(?:password|token|secret|key|auth)[^)]*\)/gi);
+    if (storageSecrets) {
+      score -= 25;
+      issues.push('Browser storage of sensitive data detected');
+      recommendations.push('Use secure storage mechanisms or avoid storing sensitive data client-side');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkUnsafePatterns(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for document.write usage
+    const documentWrite = content.match(/document\.write\s*\(/g);
+    if (documentWrite) {
+      score -= 30;
+      issues.push('Unsafe document.write usage detected');
+      recommendations.push('Use modern DOM manipulation methods instead of document.write');
+    }
+
+    // Check for innerHTML with user input
+    const innerHTML = content.match(/innerHTML\s*=\s*[^'"]/g);
+    if (innerHTML) {
+      score -= 25;
+      issues.push('Potential innerHTML injection vulnerability');
+      recommendations.push('Use textContent or secure DOM methods instead of innerHTML');
+    }
+
+    // Check for window.open with user input
+    const windowOpen = content.match(/window\.open\s*\([^)]*[a-zA-Z_$][a-zA-Z0-9_$]*[^)]*\)/g);
+    if (windowOpen) {
+      score -= 20;
+      issues.push('Potential window.open with user input detected');
+      recommendations.push('Validate and sanitize URLs before using window.open');
+    }
+
+    // Check for postMessage without origin validation
+    const postMessage = content.match(/postMessage\s*\([^)]*\)/g);
+    const originValidation = content.match(/\.origin\s*===\s*['"][^'"]*['"]/g);
+    if (postMessage && !originValidation) {
+      score -= 30;
+      issues.push('postMessage without origin validation detected');
+      recommendations.push('Always validate message origin in postMessage handlers');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkInputValidation(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for direct form input usage without validation
+    const formInputs = content.match(/(?:input|textarea|select).*value\s*=\s*{[^}]*}/g);
+    const validationPatterns = content.match(/(?:validate|sanitize|clean|escape)/gi);
+    
+    if (formInputs && formInputs.length > 2 && (!validationPatterns || validationPatterns.length === 0)) {
+      score -= 20;
+      issues.push('Form inputs without apparent validation detected');
+      recommendations.push('Implement input validation and sanitization for all form fields');
+    }
+
+    // Check for SQL-like string concatenation
+    const sqlLike = content.match(/['"][^'"]*\s*\+\s*[a-zA-Z_$][a-zA-Z0-9_$]*\s*\+\s*['"][^'"]*/g);
+    if (sqlLike) {
+      score -= 25;
+      issues.push('Potential SQL injection pattern detected');
+      recommendations.push('Use parameterized queries or prepared statements');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkAuthenticationIssues(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for weak session management
+    const sessionManagement = content.match(/(?:sessionStorage|localStorage)\.setItem\([^)]*(?:session|auth|token)[^)]*\)/gi);
+    if (sessionManagement) {
+      score -= 15;
+      issues.push('Client-side session management detected');
+      recommendations.push('Consider server-side session management for better security');
+    }
+
+    // Check for authentication bypass patterns
+    const authBypass = content.match(/if\s*\([^)]*(?:admin|auth|login)[^)]*\)\s*{[^}]*return\s+true/gi);
+    if (authBypass) {
+      score -= 40;
+      issues.push('Potential authentication bypass pattern detected');
+      recommendations.push('Implement proper authentication checks on server-side');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkPerformance(content, filePath) {
+    const checks = {
+      score: 100,
+      issues: [],
+      recommendations: [],
+      patterns: {
+        reactPerformance: this.checkReactPerformance(content),
+        memoryLeaks: this.checkMemoryLeaks(content),
+        expensiveOperations: this.checkExpensiveOperations(content),
+        bundleSize: this.checkBundleSize(content, filePath)
+      }
+    };
+
+    const patternScores = Object.values(checks.patterns).map(p => p.score);
+    checks.score = Math.round(patternScores.reduce((sum, score) => sum + score, 0) / patternScores.length);
+
+    Object.values(checks.patterns).forEach(pattern => {
+      checks.issues.push(...pattern.issues);
+      checks.recommendations.push(...pattern.recommendations);
+    });
+
+    return checks;
+  }
+
+  checkReactPerformance(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for missing React.memo on components
+    const componentExports = content.match(/export\s+(?:default\s+)?(?:function|const)\s+[A-Z][a-zA-Z0-9]*/g);
+    const memoUsage = content.match(/React\.memo\s*\(/g);
+    
+    if (componentExports && componentExports.length > 0 && !memoUsage) {
+      score -= 15;
+      issues.push('Components without React.memo detected');
+      recommendations.push('Consider wrapping components in React.memo to prevent unnecessary re-renders');
+    }
+
+    // Check for inline object/array creation in JSX
+    const inlineObjects = content.match(/(?:style|className)\s*=\s*{{\s*[^}]+\s*}}/g);
+    if (inlineObjects && inlineObjects.length > 3) {
+      score -= 20;
+      issues.push('Excessive inline object creation in JSX');
+      recommendations.push('Extract inline objects to avoid re-creation on every render');
+    }
+
+    // Check for missing useCallback on event handlers
+    const eventHandlers = content.match(/(?:onClick|onChange|onSubmit|onFocus|onBlur)\s*=\s*{[^}]*}/g);
+    const useCallbackUsage = content.match(/useCallback\s*\(/g);
+    
+    if (eventHandlers && eventHandlers.length > 2 && !useCallbackUsage) {
+      score -= 25;
+      issues.push('Event handlers without useCallback detected');
+      recommendations.push('Wrap event handlers in useCallback to prevent child re-renders');
+    }
+
+    // Check for missing useMemo on expensive calculations
+    const expensiveCalcs = content.match(/(?:filter|map|sort|reduce)\s*\([^)]*\)(?:\s*\.(?:filter|map|sort|reduce)\s*\([^)]*\)){2,}/g);
+    const useMemoUsage = content.match(/useMemo\s*\(/g);
+    
+    if (expensiveCalcs && !useMemoUsage) {
+      score -= 20;
+      issues.push('Expensive calculations without useMemo detected');
+      recommendations.push('Wrap expensive calculations in useMemo');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkMemoryLeaks(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for missing cleanup in useEffect
+    const effectsWithListeners = content.match(/useEffect\s*\([^,]*(?:addEventListener|setInterval|setTimeout)/g);
+    const effectsWithCleanup = content.match(/useEffect\s*\([^}]*return\s*\([^)]*\)\s*=>/g);
+    
+    if (effectsWithListeners && !effectsWithCleanup) {
+      score -= 30;
+      issues.push('useEffect with event listeners missing cleanup');
+      recommendations.push('Always cleanup event listeners, timers, and subscriptions in useEffect');
+    }
+
+    // Check for global variable assignments
+    const globalAssignments = content.match(/window\.[a-zA-Z_$][a-zA-Z0-9_$]*\s*=/g);
+    if (globalAssignments) {
+      score -= 20;
+      issues.push('Global variable assignments detected');
+      recommendations.push('Avoid global variable assignments that can cause memory leaks');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkExpensiveOperations(content) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for nested loops
+    const nestedLoops = content.match(/for\s*\([^)]*\)\s*{[^}]*for\s*\([^)]*\)\s*{/g);
+    if (nestedLoops) {
+      score -= 25;
+      issues.push('Nested loops detected - O(n²) complexity');
+      recommendations.push('Consider optimizing nested loops or using more efficient algorithms');
+    }
+
+    // Check for inefficient array operations
+    const inefficientArrayOps = content.match(/\.(?:find|filter|some|every)\s*\([^)]*\)(?:\s*\.(?:find|filter|some|every)\s*\([^)]*\)){2,}/g);
+    if (inefficientArrayOps) {
+      score -= 20;
+      issues.push('Chained array operations detected');
+      recommendations.push('Consider combining array operations or using more efficient methods');
+    }
+
+    return { score: Math.max(0, score), issues, recommendations };
+  }
+
+  checkBundleSize(content, filePath) {
+    const issues = [];
+    const recommendations = [];
+    let score = 100;
+
+    // Check for large imports
+    const largeLibraryImports = content.match(/import\s+.*\s+from\s+['"](?:moment|lodash|rxjs|chart\.js|three)['"];?/g);
+    if (largeLibraryImports) {
+      score -= 15;
+      issues.push('Large library imports detected');
+      recommendations.push('Consider using tree-shaking or lighter alternatives');
+    }
+
+    // Check for unused imports
+    const imports = content.match(/import\s+(?:{[^}]*}|\*\s+as\s+\w+|\w+)\s+from\s+['"][^'"]*['"];?/g);
+    if (imports) {
+      imports.forEach(importStatement => {
+        const importName = importStatement.match(/import\s+({[^}]*}|\*\s+as\s+(\w+)|(\w+))/)?.[1];
+        if (importName && !content.includes(importName.replace(/[{}]/g, ''))) {
+          score -= 5;
+          issues.push(`Potentially unused import: ${importName}`);
+          recommendations.push('Remove unused imports to reduce bundle size');
+        }
+      });
     }
 
     return { score: Math.max(0, score), issues, recommendations };
@@ -617,24 +1059,20 @@ class CodeReviewAgent {
   }
 
   calculateFileScore(fileResult) {
-    const weights = {
-      functionalProgramming: 0.4,
-      projectStandards: 0.2,
-      typeScript: 0.2,
-      reactPatterns: 0.2
-    };
-
     let totalScore = 0;
     let totalWeight = 0;
 
-    Object.entries(weights).forEach(([category, weight]) => {
-      if (fileResult[category] && fileResult[category].score !== undefined) {
+    const categories = ['functionalProgramming', 'projectStandards', 'typeScript', 'reactPatterns', 'security', 'performance'];
+    
+    categories.forEach(category => {
+      if (fileResult[category] && fileResult[category].score !== undefined && this.isRuleEnabled(category)) {
+        const weight = this.getRuleWeight(category);
         totalScore += fileResult[category].score * weight;
         totalWeight += weight;
       }
     });
 
-    return Math.round(totalScore / totalWeight);
+    return totalWeight > 0 ? Math.round(totalScore / totalWeight) : 0;
   }
 
   generateReport() {
@@ -670,7 +1108,7 @@ class CodeReviewAgent {
     console.log();
 
     // Score breakdown
-    const categories = ['functionalProgramming', 'projectStandards', 'typeScript', 'reactPatterns'];
+    const categories = ['functionalProgramming', 'projectStandards', 'typeScript', 'reactPatterns', 'security', 'performance'];
     categories.forEach(category => {
       const scores = this.results.files
         .map(f => f[category]?.score)
@@ -693,7 +1131,9 @@ class CodeReviewAgent {
         ...file.functionalProgramming.issues,
         ...file.projectStandards.issues,
         ...file.typeScript.issues,
-        ...file.reactPatterns.issues
+        ...file.reactPatterns.issues,
+        ...file.security.issues,
+        ...file.performance.issues
       ].slice(0, 3); // Top 3 issues
 
       if (allIssues.length > 0) {
@@ -709,7 +1149,9 @@ class CodeReviewAgent {
       ...file.functionalProgramming.recommendations,
       ...file.projectStandards.recommendations,
       ...file.typeScript.recommendations,
-      ...file.reactPatterns.recommendations
+      ...file.reactPatterns.recommendations,
+      ...file.security.recommendations,
+      ...file.performance.recommendations
     ]);
 
     // Get top recommendations by frequency
@@ -743,7 +1185,9 @@ class CodeReviewAgent {
         functionalProgramming: this.getCategoryAverage('functionalProgramming'),
         projectStandards: this.getCategoryAverage('projectStandards'),
         typeScript: this.getCategoryAverage('typeScript'),
-        reactPatterns: this.getCategoryAverage('reactPatterns')
+        reactPatterns: this.getCategoryAverage('reactPatterns'),
+        security: this.getCategoryAverage('security'),
+        performance: this.getCategoryAverage('performance')
       },
       issues: this.getTopIssues(),
       recommendations: this.getTopRecommendations(),
@@ -855,7 +1299,9 @@ class CodeReviewAgent {
       ...file.functionalProgramming.issues,
       ...file.projectStandards.issues,
       ...file.typeScript.issues,
-      ...file.reactPatterns.issues
+      ...file.reactPatterns.issues,
+      ...file.security.issues,
+      ...file.performance.issues
     ]);
 
     // Count issue frequency
@@ -874,7 +1320,9 @@ class CodeReviewAgent {
       ...file.functionalProgramming.recommendations,
       ...file.projectStandards.recommendations,
       ...file.typeScript.recommendations,
-      ...file.reactPatterns.recommendations
+      ...file.reactPatterns.recommendations,
+      ...file.security.recommendations,
+      ...file.performance.recommendations
     ]);
 
     // Remove duplicates and return top recommendations
@@ -886,7 +1334,9 @@ class CodeReviewAgent {
       ...file.functionalProgramming.issues,
       ...file.projectStandards.issues,
       ...file.typeScript.issues,
-      ...file.reactPatterns.issues
+      ...file.reactPatterns.issues,
+      ...file.security.issues,
+      ...file.performance.issues
     ];
   }
 
@@ -895,7 +1345,9 @@ class CodeReviewAgent {
       functionalProgramming: '⚡',
       projectStandards: '📏',
       typeScript: '🔷',
-      reactPatterns: '⚛️'
+      reactPatterns: '⚛️',
+      security: '🔒',
+      performance: '⚡'
     };
     return emojis[category] || '📊';
   }
@@ -905,7 +1357,9 @@ class CodeReviewAgent {
       functionalProgramming: 'Functional Programming',
       projectStandards: 'Project Standards',
       typeScript: 'TypeScript',
-      reactPatterns: 'React Patterns'
+      reactPatterns: 'React Patterns',
+      security: 'Security',
+      performance: 'Performance'
     };
     return names[category] || category;
   }

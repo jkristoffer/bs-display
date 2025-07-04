@@ -115,8 +115,13 @@ Once configured, the PDF analyzer is available as:
 
 ### **Automation Failures**
 ```bash
-# Code review agent issues
+# Code review agent issues (enhanced with security & performance)
 npm run code:review -- --file test.js
+npm run code:review:config                    # Regenerate configuration
+npm run code:review -- --file test.js --format json  # Machine-readable output
+
+# Security audit failures
+npm run code:review -- --batch src/ --format json | grep "security"
 
 # SEO system failures  
 npm run content:seo:analyze -- --file src/content/blog/[post].md
@@ -202,12 +207,18 @@ npm run help
 
 ### **Quality Gates**
 ```bash
-# After implementing any code changes
+# After implementing any code changes (enhanced security & performance analysis)
 npm run code:review -- --file [modified-file]
+
+# Security-focused review for sensitive components
+npm run code:review -- --file [auth-component] --ai-mode --format json
 
 # Before considering task complete
 npm run code:typecheck  # TypeScript validation
 npm run dev:build       # Ensure build succeeds
+
+# Batch quality check for entire feature
+npm run code:review -- --batch src/components/[feature]/ --threshold-failing 75
 ```
 
 ### **Error Recovery Patterns**
@@ -276,16 +287,81 @@ src/
 
 ## 🛠️ TOOL INTEGRATION
 
-### **Code Quality**
+### **Code Quality & Security**
 ```bash
 # Essential code review (run after every change)
 npm run code:review -- --file [file]
 
-# Full directory analysis
+# Full directory analysis with security & performance checks
 npm run code:review -- --batch src/components/
 
-# Performance tracking
-npm run ai:performance
+# Configuration management
+npm run code:review:config                    # Generate default .codereview.json
+npm run code:review:config:interactive        # Interactive configuration setup
+
+# Output formats for different use cases
+npm run code:review -- --file [file] --format detailed   # Full human-readable report
+npm run code:review -- --file [file] --format json       # Machine-readable JSON
+npm run code:review -- --file [file] --format minimal    # Concise score summary
+
+# AI-optimized workflows with metadata tracking
+npm run code:review -- --file [file] --ai-mode --agent-id "claude-dev" --task-id "security-audit"
+
+# Custom thresholds for different quality gates
+npm run code:review -- --file [file] --threshold-failing 70 --threshold-excellent 95
+```
+
+#### **Enhanced Analysis Categories (Weighted Scoring)**
+- **🔒 Security (20%)**: XSS vulnerabilities, secrets exposure, input validation, authentication issues
+- **⚡ Functional Programming (25%)**: Pure functions, immutability, composition, side effects
+- **🚀 Performance (10%)**: React optimization, memory leaks, expensive operations, bundle size
+- **📏 Project Standards (15%)**: File naming, imports, exports, styling patterns
+- **🔷 TypeScript (15%)**: Type annotations, interfaces, generics, avoiding `any`
+- **⚛️ React Patterns (15%)**: Hooks rules, component patterns, memoization, props management
+
+#### **Configuration System (.codereview.json)**
+```json
+{
+  "rules": {
+    "security": {
+      "enabled": true,
+      "weight": 0.20,
+      "custom": {
+        "checkXss": true,
+        "checkSecrets": true,
+        "strictMode": true
+      }
+    }
+  },
+  "ignore": ["**/*.test.tsx", "**/dist/**"],
+  "thresholds": {
+    "excellent": 90,
+    "failing": 60
+  }
+}
+```
+
+#### **Security Analysis Features**
+- **XSS Prevention**: Detects `dangerouslySetInnerHTML`, `eval()`, direct HTML injection
+- **Secrets Detection**: Finds hardcoded API keys, passwords, tokens in code
+- **Input Validation**: Identifies unvalidated form inputs, SQL injection patterns
+- **Authentication Security**: Checks for weak session management, auth bypasses
+- **Safe DOM Practices**: Flags unsafe `document.write`, `innerHTML` usage
+
+#### **Performance Optimization Checks**
+- **React Performance**: Missing `React.memo`, `useCallback`, `useMemo` opportunities
+- **Memory Leak Detection**: Missing cleanup in `useEffect`, global variable issues
+- **Algorithm Efficiency**: Nested loops, inefficient array operations
+- **Bundle Size**: Large library imports, unused dependencies
+
+#### **AI Workflow Integration**
+```bash
+# Generate code with AI agent tracking
+npm run code:review -- --file new-component.tsx --ai-mode --agent-id "claude-sonnet" --task-id "create-auth-component"
+
+# Exit codes for CI/CD integration
+# 0: Success (score above threshold)
+# 1: Failure (score below threshold)
 ```
 
 ### **Content & SEO**

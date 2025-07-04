@@ -1,23 +1,28 @@
-# Code Review Agent - Standards Compliance System
+# Enhanced Code Review Agent - Enterprise Security & Performance Analysis
 
-> **Purpose**: Automated enforcement of functional programming principles and project development standards
+> **Purpose**: Comprehensive code quality analysis with security vulnerability detection, performance optimization, and functional programming compliance
 > 
-> **Status**: ✅ **Production Ready** - Fully tested and integrated for AI orchestrator workflows
+> **Status**: ✅ **Production Ready** - Enhanced with security auditing, performance analysis, and flexible configuration system
 
 ## Quick Start
 
 ```bash
-# Single file analysis
-node scripts/code-review-agent.js --file src/components/MyComponent.tsx
+# Single file analysis with enhanced security & performance checks
+npm run code:review -- --file src/components/MyComponent.tsx
 
-# AI agent workflow (recommended)
-node scripts/code-review-agent.js --file src/components/MyComponent.tsx --ai-mode --agent-id "claude-dev-1" --task-id "create-component" --format json
+# Batch directory analysis
+npm run code:review -- --batch src/components/
 
-# PR analysis  
-node scripts/code-review-agent.js --pr 123
+# Configuration management
+npm run code:review:config                    # Generate .codereview.json
+npm run code:review:config:interactive        # Interactive setup
 
-# Batch analysis
-node scripts/code-review-agent.js --batch src/components/
+# AI agent workflow with metadata tracking
+npm run code:review -- --file component.tsx --ai-mode --agent-id "claude-sonnet" --task-id "security-audit"
+
+# Different output formats
+npm run code:review -- --file component.tsx --format json      # Machine-readable
+npm run code:review -- --file component.tsx --format minimal   # Quick summary
 ```
 
 ## Scoring System
@@ -28,14 +33,16 @@ node scripts/code-review-agent.js --batch src/components/
 - **60-69**: D (Needs Improvement) - Significant changes required
 - **0-59**: F (Major Issues) - Comprehensive refactoring needed
 
-## Analysis Categories
+## Enhanced Analysis Categories
 
 | Category | Weight | Focus Areas |
 |----------|--------|-------------|
-| **Functional Programming** | 40% | Pure functions, immutability, composition |
-| **Project Standards** | 20% | File naming, imports, SCSS modules |
-| **TypeScript** | 20% | Type annotations, interfaces, avoiding `any` |
-| **React Patterns** | 20% | Hooks, memoization, functional components |
+| **🔒 Security** | 20% | XSS prevention, secrets detection, input validation, authentication |
+| **⚡ Functional Programming** | 25% | Pure functions, immutability, composition, side effects |
+| **🚀 Performance** | 10% | React optimization, memory leaks, bundle size, expensive operations |
+| **📏 Project Standards** | 15% | File naming, imports, SCSS modules, consistency |
+| **🔷 TypeScript** | 15% | Type annotations, interfaces, avoiding `any`, generics |
+| **⚛️ React Patterns** | 15% | Hooks compliance, memoization, component optimization |
 
 ## GitHub Integration
 
@@ -70,6 +77,98 @@ node scripts/code-review-agent.js --batch src/components/
 - No direct DOM manipulation outside React
 - Proper async error handling
 - useEffect for side effects
+
+## Security Analysis Features ✅
+
+### XSS Vulnerability Detection
+- `dangerouslySetInnerHTML` usage flagged
+- `eval()` and Function constructor detection
+- Direct HTML injection prevention
+- Unsafe DOM manipulation identification
+
+### Secrets & Credentials Detection
+- Hardcoded API keys, passwords, tokens
+- Console logging of sensitive data
+- Browser storage of credentials
+- Environment variable enforcement
+
+### Input Validation & Safety
+- Unvalidated form inputs detection
+- SQL injection pattern detection
+- Authentication bypass prevention
+- Safe postMessage origin validation
+
+## Performance Optimization Analysis ✅
+
+### React Performance Monitoring
+- Missing `React.memo` opportunities
+- `useCallback` and `useMemo` recommendations
+- Inline object creation detection
+- Component re-render optimization
+
+### Memory Leak Prevention
+- Missing cleanup in `useEffect`
+- Global variable assignment detection
+- Subscription management validation
+- Event listener cleanup verification
+
+### Algorithm & Bundle Efficiency
+- Nested loop complexity detection
+- Inefficient array operation chains
+- Large library import identification
+- Unused dependency detection
+
+## Configuration System (.codereview.json)
+
+### Default Configuration
+```json
+{
+  "version": "1.0.0",
+  "rules": {
+    "security": {
+      "enabled": true,
+      "weight": 0.20,
+      "custom": {
+        "checkXss": true,
+        "checkSecrets": true,
+        "strictMode": true
+      }
+    },
+    "functionalProgramming": {
+      "enabled": true,
+      "weight": 0.25,
+      "custom": {
+        "maxFunctionLength": 50,
+        "allowConsole": false,
+        "enforceImmutability": true
+      }
+    }
+  },
+  "ignore": ["**/*.test.tsx", "**/dist/**"],
+  "thresholds": {
+    "excellent": 90,
+    "failing": 60
+  }
+}
+```
+
+### Configuration Management
+```bash
+# Generate default configuration
+npm run code:review:config
+
+# Interactive configuration setup
+npm run code:review:config:interactive
+
+# Test configuration
+npm run code:review -- --file test.tsx --format json
+```
+
+### Customization Options
+- **Rule weights**: Adjust category importance
+- **Ignore patterns**: Skip files/directories
+- **Custom thresholds**: Set quality gates
+- **Rule-specific settings**: Fine-tune analysis
 
 ## AI Orchestrator Integration
 

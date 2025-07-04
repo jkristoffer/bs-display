@@ -24,54 +24,67 @@ export interface ProductCardProps {
   productType?: 'smartboards' | 'lecterns';
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  displayMode = 'grid',
-  showMatchScore = false,
-  matchPercentage,
-  actions,
-  maxFeatures = 5,
-  getRelevantFeatures,
-  context,
-  productType = 'smartboards'
-}) => {
+// Helper functions for ProductCard component
+const useImageLoader = (image: string) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const img = imgRef.current;
-    if (img && img.complete) {
-      setImageLoading(false);
-    }
-  }, []);
+    // Reset loading state when image source changes
+    setImageLoading(() => true);
+    setImageError(() => false);
+    
+    // Check if image is already loaded
+    const checkImageLoad = () => {
+      const img = imgRef.current;
+      if (img && img.complete && img.naturalHeight !== 0) {
+        setImageLoading(() => false);
+      }
+    };
+    
+    checkImageLoad();
+    
+    // Set a timeout as fallback to hide loading animation
+    const fallbackTimeout = setTimeout(() => {
+      setImageLoading(() => false);
+    }, 3000);
+    
+    return () => clearTimeout(fallbackTimeout);
+  }, [image]);
 
-  const {
-    id,
-    brand,
-    model: modelName,
-    size,
-    touchTechnology,
-    features = [],
-    image
-  } = product;
+  return { imageError, imageLoading, imgRef, setImageError, setImageLoading };
+};
 
-  // Get features to display
+const getDisplayFeatures = (
+  product: Product,
+  getRelevantFeatures?: (product: Product, context?: string) => string[],
+  context?: string,
+  maxFeatures = 5
+) => {
   const displayFeatures = getRelevantFeatures
     ? getRelevantFeatures(product, context)
-    : features;
+    : product.features || [];
 
-  const featuresToShow = displayFeatures.slice(0, maxFeatures);
-  const hasMoreFeatures = displayFeatures.length > maxFeatures;
+  return {
+    featuresToShow: displayFeatures.slice(0, maxFeatures),
+    hasMoreFeatures: displayFeatures.length > maxFeatures,
+    totalFeatures: displayFeatures.length
+  };
+};
 
-  // Handle default actions if not provided
+const createActionHandlers = (
+  product: Product,
+  actions?: ProductCardProps['actions'],
+  productType = 'smartboards'
+) => {
   const handleViewDetails = () => {
     if (actions?.viewDetails?.onClick) {
       actions.viewDetails.onClick(product);
     } else {
       // Default behavior
-      const brandSlug = brand.toLowerCase().replace(/\s+/g, '-');
-      window.location.href = `/products/${productType}/${brandSlug}/${id}`;
+      const brandSlug = product.brand.toLowerCase().replace(/\s+/g, '-');
+      window.location.href = `/products/${productType}/${brandSlug}/${product.id}`;
     }
   };
 
@@ -83,6 +96,42 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       window.location.href = '/contact';
     }
   };
+
+  return { handleViewDetails, handleRequestQuote };
+};
+
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  displayMode = 'grid',
+  showMatchScore = false,
+  matchPercentage,
+  actions,
+  maxFeatures = 5,
+  getRelevantFeatures,
+  context,
+  productType = 'smartboards'
+}) => {
+  const {
+    id,
+    brand,
+    model: modelName,
+    size,
+    touchTechnology,
+    image
+  } = product;
+
+  const { imageError, imageLoading, imgRef, setImageError, setImageLoading } = useImageLoader(image);
+  const { featuresToShow, hasMoreFeatures, totalFeatures } = getDisplayFeatures(
+    product,
+    getRelevantFeatures,
+    context,
+    maxFeatures
+  );
+  const { handleViewDetails, handleRequestQuote } = createActionHandlers(
+    product,
+    actions,
+    productType
+  );
 
   return (
     <div
@@ -97,6 +146,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
         <SmartProductImage
+          ref={imgRef}
           src={
             imageError
               ? '/assets/iboard-placeholder.jpeg'
@@ -105,10 +155,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           alt={`${brand} ${modelName} interactive display`}
           className={`${styles.image} ${imageLoading ? styles.imageLoading : ''}`}
           loading="lazy"
-          onLoad={() => setImageLoading(false)}
+          onLoad={() => setImageLoading(() => false)}
           onError={() => {
-            setImageError(true);
-            setImageLoading(false);
+            setImageError(() => true);
+            setImageLoading(() => false);
           }}
         />
         <div className={styles.brandBadge}>{brand}</div>
@@ -148,7 +198,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </ul>
           {hasMoreFeatures && (
             <div className={styles.moreFeatures}>
-              +{displayFeatures.length - maxFeatures} more features
+              +{totalFeatures - maxFeatures} more features
             </div>
           )}
         </div>

@@ -195,7 +195,7 @@ const faqCategories = {
                         <h5>Related Products:</h5>
                         <div class="product-links">
                           {faq.relatedProducts.map((product: any) => (
-                            <a href={`/products/interactive-displays/${product.brand.toLowerCase().replace(/\s+/g, '-')}/${product.id || product.model.toLowerCase().replace(/\s+/g, '-')}`} class="product-link">
+                            <a href={`/products/smartboards/${product.brand.toLowerCase().replace(/\s+/g, '-')}/${product.id || product.model.toLowerCase().replace(/\s+/g, '-')}`} class="product-link">
                               {product.model} ({product.size}")
                             </a>
                           ))}

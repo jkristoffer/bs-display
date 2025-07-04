@@ -87,7 +87,7 @@ const getBestModel = (brand: BrandInfo): any => {
 const getModelUrl = (model: any): string => {
   const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
   const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
-  return `/products/interactive-displays/${brand}/${modelId}`;
+  return `/products/smartboards/${brand}/${modelId}`;
 };
 ---
 
@@ -142,7 +142,7 @@ const getModelUrl = (model: any): string => {
                           )}
                           <div class="model-actions">
                             <a href={getModelUrl(bestModel)} class="btn-primary">View Details</a>
-                            <a href={`/products/${brand.name.toLowerCase()}`} class="btn-secondary">All {brand.name} Models</a>
+                            <a href={`/products/smartboards/${brand.name.toLowerCase().replace(/\s+/g, '-')}`} class="btn-secondary">All {brand.name} Models</a>
                           </div>
                         </div>
                       )}
@@ -173,7 +173,7 @@ const getModelUrl = (model: any): string => {
       <div class="brand-links">
         {
           Object.values(brandData).map((brand: BrandInfo) => (
-            <a href={`/products/${brand.name.toLowerCase()}`} class="brand-link">
+            <a href={`/products/smartboards/${brand.name.toLowerCase().replace(/\s+/g, '-')}`} class="brand-link">
               <span class="brand-name">{brand.name}</span>
               <span class="brand-count">{brand.models.length} models</span>
             </a>
@@ -191,7 +191,7 @@ const getModelUrl = (model: any): string => {
           <h4>Take Our Quiz</h4>
           <p>Answer 5 questions to get personalized recommendations</p>
         </a>
-        <a href="/products/" class="helper-card">
+        <a href="/products/smartboards/" class="helper-card">
           <span class="helper-icon">🔍</span>
           <h4>Browse All Products</h4>
           <p>Compare all models side by side with filters</p>

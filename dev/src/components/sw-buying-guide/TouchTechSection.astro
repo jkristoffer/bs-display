@@ -129,7 +129,7 @@ const technologies: TouchTech[] = [
 const getModelUrl = (model: any): string => {
   const brand = model.brand.toLowerCase().replace(/\s+/g, '-');
   const modelId = model.id || model.model.toLowerCase().replace(/\s+/g, '-');
-  return `/products/interactive-displays/${brand}/${modelId}`;
+  return `/products/smartboards/${brand}/${modelId}`;
 };
 ---
 

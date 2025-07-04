@@ -1,6 +1,6 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
-import { FilterUI } from '../../../components/products/FilterUI';
+import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import accessories from '../../../data/accessories/accessories.all.js';
 
@@ -10,14 +10,10 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
-  <Breadcrumbs items={[
-    { label: 'Home', path: '/' },
-    { label: 'Products', path: '/products/' },
-    { label: 'Accessories' }
-  ]} />
-  
   <section class="section">
     <div class="container--wide">
+      <Breadcrumbs productType="accessories" />
+      
       <div class="accessories-header">
         <h1>Display Accessories</h1>
         <p>
@@ -28,7 +24,7 @@ const description =
         </p>
       </div>
 
-      <FilterUI allModels={accessories} productType="accessories" client:visible />
+      <FilterUIv2 allModels={accessories} productType="accessories" client:visible />
     </div>
   </section>
 

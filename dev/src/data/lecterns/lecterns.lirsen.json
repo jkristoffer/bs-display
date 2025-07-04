@@ -1,0 +1,54 @@
+[
+  {
+    "id": "bslm12",
+    "brand": "Lirsen",
+    "model": "SP01",
+    "size": 21.5,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "8GB DDR RAM",
+      "256GB SDD",
+      "Detachable side trays"
+    ],
+    "warranty": "1 year warranty",
+    "priceRange": "1355-1394",
+    "image": "",
+    "productURL": "https://example.com/no-product-url",
+    "motorizedFeatures": [
+      "height adjustment",
+      "screen flip"
+    ],
+    "microphone": {
+      "quantity": 1
+    }
+  },
+  {
+    "id": "bslm13",
+    "brand": "Lirsen",
+    "model": "SP02",
+    "size": 23.8,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD",
+      "Detachable side trays",
+      "27 inch front display",
+      "1 touch pen"
+    ],
+    "warranty": "1 year warranty",
+    "priceRange": "1705-1744",
+    "image": "",
+    "productURL": "https://youtube.com/shorts/B01SrPL3Elo",
+    "motorizedFeatures": [
+      "height adjustment",
+      "screen flip"
+    ],
+    "microphone": {
+      "quantity": 2
+    }
+  }
+]

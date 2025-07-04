@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "SmartBoardModel",
+  "title": "LecternModel",
   "type": "array",
   "items": {
     "type": "object",
@@ -11,7 +11,6 @@
       "size",
       "resolution",
       "os",
-      "touchTechnology",
       "features",
       "warranty",
       "priceRange",
@@ -24,12 +23,6 @@
       },
       "brand": {
         "type": "string",
-        "enum": [
-          "METZ",
-          "SMART",
-          "Infinity Pro",
-          "MAXHUB"
-        ],
         "description": "Brand name"
       },
       "model": {
@@ -37,7 +30,7 @@
         "description": "Full marketing model name"
       },
       "size": {
-        "type": "integer",
+        "type": "number",
         "description": "Diagonal screen size in inches"
       },
       "resolution": {
@@ -48,17 +41,6 @@
       "os": {
         "type": "string",
         "description": "Operating system or systems supported"
-      },
-      "touchTechnology": {
-        "type": "string",
-        "enum": [
-          "Infrared",
-          "Capacitive",
-          "Optical Bonded",
-          "HyPr Touch (InGlass)",
-          "10-point capacitive multitouch with palm rejection"
-        ],
-        "description": "Touch input technology"
       },
       "features": {
         "type": "array",
@@ -79,33 +61,47 @@
         "type": "string",
         "description": "Path to the product image"
       },
-      "brightness": {
+      "productURL": {
         "type": "string",
-        "description": "Panel brightness"
+        "format": "uri",
+        "description": "URL to the product page or video"
       },
-      "contrastRatio": {
-        "type": "string",
-        "description": "Contrast ratio"
+      "motorizedFeatures": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "height adjustment",
+            "screen flip"
+          ]
+        }
       },
-      "viewingAngle": {
-        "type": "string",
-        "description": "Viewing angle"
+      "audio": {
+        "type": "object",
+        "properties": {
+          "amplifier": {
+            "type": "string"
+          },
+          "speakers": {
+            "type": "string"
+          }
+        }
       },
-      "responseTime": {
-        "type": "string",
-        "description": "Response time"
-      },
-      "panelLife": {
-        "type": "string",
-        "description": "Panel lifespan"
-      },
-      "audioOutput": {
-        "type": "string",
-        "description": "Speaker output"
-      },
-      "powerConsumption": {
-        "type": "string",
-        "description": "Power usage"
+      "microphone": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "gooseneck",
+              "wireless",
+              "handheld"
+            ]
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
       }
     }
   }

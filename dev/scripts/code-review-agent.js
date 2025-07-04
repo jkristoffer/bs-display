@@ -51,6 +51,8 @@ class CodeReviewAgent {
       projectStandards: { score: 0, issues: [], recommendations: [] },
       typeScript: { score: 0, issues: [], recommendations: [] },
       reactPatterns: { score: 0, issues: [], recommendations: [] },
+      security: { score: 0, issues: [], recommendations: [] },
+      performance: { score: 0, issues: [], recommendations: [] },
       overallScore: 0,
       files: [],
       metadata: {
@@ -78,6 +80,8 @@ class CodeReviewAgent {
         projectStandards: this.checkProjectStandards(content, filePath),
         typeScript: this.checkTypeScript(content, filePath),
         reactPatterns: this.checkReactPatterns(content, filePath),
+        security: this.checkSecurity(content, filePath),
+        performance: this.checkPerformance(content, filePath),
         score: 0
       };
 

@@ -1,0 +1,128 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import { FilterUI } from '../../../components/products/FilterUI';
+import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import collaboration from '../../../data/collaboration/collaboration.all.js';
+
+const title = 'Collaboration Solutions | Big Shine Display';
+const description =
+  'Advanced video conferencing cameras and collaboration devices for modern workplaces. PTZ cameras, panoramic solutions, and smart devices for seamless meetings.';
+---
+
+<ProductLayout title={title} description={description}>
+  <section class="section">
+    <div class="container--wide">
+      <Breadcrumbs productType="collaboration" />
+      
+      <div class="collaboration-header">
+        <h1>Collaboration Solutions</h1>
+        <p>
+          Transform your meeting spaces with our advanced collaboration technology.
+          From 4K panoramic cameras to professional PTZ systems, we offer complete
+          solutions for video conferencing, remote collaboration, and hybrid
+          workplace environments.
+        </p>
+      </div>
+
+      <FilterUI allModels={collaboration} productType="collaboration" client:visible />
+    </div>
+  </section>
+
+  <section class="section section--with-background">
+    <div class="container">
+      <div class="collaboration-cta">
+        <h2>Need Help Choosing the Right Solution?</h2>
+        <p>
+          Our collaboration experts can help you design the perfect setup for your
+          meeting rooms, conference spaces, and hybrid work environments.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="button button-primary">Get Expert Advice</a>
+          <a href="/quiz" class="button button-ghost">Take Our Quiz</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ProductLayout>
+
+<style lang="scss">
+  .collaboration-header {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    color: var(--color-text-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent-primary);
+  }
+
+  p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+    font-size: var(--font-size-body-large);
+    line-height: 1.6;
+  }
+
+  .collaboration-cta {
+    background-color: #f5f7fa;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .button-primary {
+    background-color: var(--color-accent-primary);
+    color: white;
+    
+    &:hover {
+      background-color: #007a6b;
+    }
+  }
+
+  .button-ghost {
+    background-color: transparent;
+    color: var(--color-accent-primary);
+    border: 1px solid var(--color-accent-primary);
+    
+    &:hover {
+      background-color: rgba(0, 150, 136, 0.05);
+    }
+  }
+</style>

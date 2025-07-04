@@ -1,0 +1,20 @@
+[
+  {
+    "id": "bsl04",
+    "brand": "Best",
+    "model": "BEST27",
+    "size": 27,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i3 CPU",
+      "4GB DDR RAM",
+      "128GB SDD",
+      "Has wheels below"
+    ],
+    "warranty": "2-year warranty. Parts sent via DHL",
+    "priceRange": "1310-1335",
+    "image": "",
+    "productURL": "https://youtube.com/shorts/7Bxj1drwt4w"
+  }
+]

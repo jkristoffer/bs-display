@@ -1,6 +1,6 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
-import { FilterUI } from '../../../components/products/FilterUI';
+import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import lecterns from '../../../data/lecterns/lecterns.all.js';
 
@@ -23,7 +23,7 @@ const description =
         </p>
       </div>
 
-      <FilterUI allModels={lecterns} productType="lecterns" client:visible />
+      <FilterUIv2 allModels={lecterns} productType="lecterns" client:visible />
     </div>
   </section>
 </ProductLayout>

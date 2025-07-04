@@ -1,6 +1,6 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
-import { FilterUI } from '../../../components/products/FilterUI';
+import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
 import models from '../../../data/models/models.all.js';
 
@@ -23,7 +23,7 @@ const description =
         </p>
       </div>
 
-      <FilterUI allModels={models} productType="smartboards" client:visible />
+      <FilterUIv2 allModels={models} productType="smartboards" client:visible />
     </div>
   </section>
 </ProductLayout>

@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import type { Product } from '../../quiz/types';
+import type { ProductModel } from '../../../types/product';
 import styles from './ProductCard.module.scss';
 import SmartProductImage from '../SmartProductImage/SmartProductImage';
 
 export interface ProductCardAction {
   label: string;
-  onClick: (product: Product) => void;
+  onClick: (product: ProductModel) => void;
   variant?: 'primary' | 'secondary';
 }
 
 export interface ProductCardProps {
-  product: Product;
+  product: ProductModel;
   displayMode?: 'grid' | 'list';
   showMatchScore?: boolean;
   matchPercentage?: number;
@@ -19,9 +19,9 @@ export interface ProductCardProps {
     requestQuote?: ProductCardAction;
   };
   maxFeatures?: number;
-  getRelevantFeatures?: (product: Product, context?: string) => string[];
+  getRelevantFeatures?: (product: ProductModel, context?: string) => string[];
   context?: string;
-  productType?: 'smartboards' | 'lecterns';
+  productType?: 'smartboards' | 'lecterns' | 'accessories';
 }
 
 // Helper functions for ProductCard component
@@ -57,8 +57,8 @@ const useImageLoader = (image: string) => {
 };
 
 const getDisplayFeatures = (
-  product: Product,
-  getRelevantFeatures?: (product: Product, context?: string) => string[],
+  product: ProductModel,
+  getRelevantFeatures?: (product: ProductModel, context?: string) => string[],
   context?: string,
   maxFeatures = 5
 ) => {
@@ -73,8 +73,67 @@ const getDisplayFeatures = (
   };
 };
 
+const getProductSpecs = (product: ProductModel, productType: string): string[] => {
+  switch (productType) {
+    case 'smartboards':
+      return [
+        ...(product.size > 0 ? [`${product.size}"`] : []),
+        ...(product.touchTechnology ? [product.touchTechnology] : [])
+      ];
+      
+    case 'lecterns':
+      return [
+        ...(product.size > 0 ? [`${product.size}"`] : []),
+        ...(product.motorizedFeatures && product.motorizedFeatures.length > 0 
+          ? [product.motorizedFeatures[0]] 
+          : [])
+      ];
+      
+    case 'accessories':
+      return [
+        ...(product.category 
+          ? [product.category.charAt(0).toUpperCase() + product.category.slice(1)] 
+          : []),
+        ...(product.compatibility && product.compatibility.length > 0 
+          ? [`Compatible with ${product.compatibility[0]}`] 
+          : [])
+      ];
+      
+    default:
+      return product.size > 0 ? [`${product.size}"`] : [];
+  }
+};
+
+const getProductAltText = (product: ProductModel, productType: string) => {
+  const { brand, model } = product;
+  
+  switch (productType) {
+    case 'smartboards':
+      return `${brand} ${model} interactive smart board`;
+    case 'lecterns':
+      return `${brand} ${model} smart lectern`;
+    case 'accessories':
+      return `${brand} ${model} display accessory`;
+    default:
+      return `${brand} ${model} interactive display`;
+  }
+};
+
+const getPlaceholderImage = (productType: string) => {
+  switch (productType) {
+    case 'smartboards':
+      return '/assets/iboard-placeholder.jpeg';
+    case 'lecterns':
+      return '/assets/lectern-placeholder.jpeg';
+    case 'accessories':
+      return '/assets/accessory-placeholder.jpeg';
+    default:
+      return '/assets/iboard-placeholder.jpeg';
+  }
+};
+
 const createActionHandlers = (
-  product: Product,
+  product: ProductModel,
   actions?: ProductCardProps['actions'],
   productType = 'smartboards'
 ) => {
@@ -112,15 +171,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   productType = 'smartboards'
 }) => {
   const {
-    id,
     brand,
     model: modelName,
-    size,
-    touchTechnology,
     image
   } = product;
 
-  const { imageError, imageLoading, imgRef, setImageError, setImageLoading } = useImageLoader(image);
+  const { imageError, imageLoading, imgRef, setImageError, setImageLoading } = useImageLoader(image || '');
   const { featuresToShow, hasMoreFeatures, totalFeatures } = getDisplayFeatures(
     product,
     getRelevantFeatures,
@@ -132,6 +188,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     actions,
     productType
   );
+  const productSpecs = getProductSpecs(product, productType);
+  const altText = getProductAltText(product, productType);
+  const placeholderImage = getPlaceholderImage(productType);
 
   return (
     <div
@@ -149,10 +208,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ref={imgRef}
           src={
             imageError
-              ? '/assets/iboard-placeholder.jpeg'
-              : image || '/assets/iboard-placeholder.jpeg'
+              ? placeholderImage
+              : image || placeholderImage
           }
-          alt={`${brand} ${modelName} interactive display`}
+          alt={altText}
           className={`${styles.image} ${imageLoading ? styles.imageLoading : ''}`}
           loading="lazy"
           onLoad={() => setImageLoading(() => false)}
@@ -173,10 +232,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h4>
 
           <div className={styles.specs}>
-            <span className={styles.spec}>{size}"</span>
-            {touchTechnology && (
-              <span className={styles.spec}>{touchTechnology}</span>
-            )}
+            {productSpecs.map((spec, index) => (
+              <span key={index} className={styles.spec}>{spec}</span>
+            ))}
             {showMatchScore && matchPercentage && (
               <span className={`${styles.spec} ${styles.matchScore}`}>
                 {matchPercentage}% Match

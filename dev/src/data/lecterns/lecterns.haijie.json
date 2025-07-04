@@ -1,0 +1,50 @@
+[
+  {
+    "id": "bslm16",
+    "brand": "Haijie",
+    "model": "HJ-YJ27Pro+",
+    "size": 23.8,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "8GB DDR RAM",
+      "512GB SDD"
+    ],
+    "warranty": "1 year warranty (TBC)",
+    "priceRange": "2059-2069",
+    "image": "",
+    "productURL": "https://youtu.be/RYPQ7TUDPfw",
+    "motorizedFeatures": [
+      "height adjustment",
+      "screen flip"
+    ],
+    "microphone": {
+      "quantity": 1
+    }
+  },
+  {
+    "id": "bslm18",
+    "brand": "Haijie",
+    "model": "HJ-YJ27H-A",
+    "size": 23.8,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "8GB DDR RAM",
+      "512GB SDD"
+    ],
+    "warranty": "1 year warranty (TBC)",
+    "priceRange": "2360-2370",
+    "image": "",
+    "productURL": "https://www.youtube.com/watch?v=hOOPDIOUVd8",
+    "motorizedFeatures": [
+      "height adjustment",
+      "screen flip"
+    ],
+    "microphone": {
+      "quantity": 1
+    }
+  }
+]

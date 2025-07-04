@@ -28,7 +28,7 @@ const description =
     <div class="category-card">
       <div class="category-image">
         <img
-          src="/assets/conference_room_interactive_display_16x9.jpeg"
+          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
           alt="Interactive Smart Boards"
         />
       </div>
@@ -60,6 +60,42 @@ const description =
           environment.
         </p>
         <a href="/products/lecterns/" class="cta-button">Browse Lecterns</a>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <div class="category-image">
+        <img
+          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
+          alt="Display Accessories"
+        />
+      </div>
+      <div class="category-content">
+        <h2>Display Accessories</h2>
+        <p>
+          Enhance your display experience with stands, mounts, stylus pens,
+          and connectivity solutions. Complete your interactive setup with
+          professional-grade accessories.
+        </p>
+        <a href="/products/accessories/" class="cta-button">Browse Accessories</a>
+      </div>
+    </div>
+
+    <div class="category-card">
+      <div class="category-image">
+        <img
+          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
+          alt="Collaboration Solutions"
+        />
+      </div>
+      <div class="category-content">
+        <h2>Collaboration Solutions</h2>
+        <p>
+          Advanced video conferencing cameras and collaboration devices for
+          modern workplaces. PTZ cameras, panoramic solutions, and smart
+          devices for seamless meetings.
+        </p>
+        <a href="/products/collaboration/" class="cta-button">Browse Collaboration</a>
       </div>
     </div>
   </div>
@@ -102,9 +138,13 @@ const description =
 
   .product-categories {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 40px;
     margin: 20px 0 60px;
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .category-card {

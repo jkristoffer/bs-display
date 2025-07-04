@@ -1,5 +1,5 @@
 import type { CategoryType, Product } from '../types';
-import { allModels } from '../../../data/models.all';
+import { allModels } from '../../../data/models/models.all';
 
 /**
  * Types for product matching functionality
@@ -62,13 +62,21 @@ const categoryToProductCriteria: Record<string, ProductMatchingCriteria> = {
     category: 'general',
     touchTechnology: ['Capacitive', 'Infrared', 'Optical', 'IR Touch'],
     size: [65, 75, 86, 98],
-    features: ['Moderate visual clarity', 'Cloud access', 'Multi-platform compatibility']
+    features: [
+      'Moderate visual clarity',
+      'Cloud access',
+      'Multi-platform compatibility'
+    ]
   },
 
   // Hybrid categories with specialized criteria
   'education-corporate': {
     category: 'education-corporate',
-    touchTechnology: ['IR Touch with Multi-User Support', 'Infrared', 'Capacitive'],
+    touchTechnology: [
+      'IR Touch with Multi-User Support',
+      'Infrared',
+      'Capacitive'
+    ],
     size: [75, 86],
     features: [
       'Cloud integration',
@@ -81,7 +89,11 @@ const categoryToProductCriteria: Record<string, ProductMatchingCriteria> = {
 
   'education-creative': {
     category: 'education-creative',
-    touchTechnology: ['Pressure-Sensitive Stylus', 'Optical Bonded', 'EMR Touch'],
+    touchTechnology: [
+      'Pressure-Sensitive Stylus',
+      'Optical Bonded',
+      'EMR Touch'
+    ],
     size: [65, 75, 86],
     features: [
       'Color accuracy',
@@ -128,11 +140,7 @@ const categoryToProductCriteria: Record<string, ProductMatchingCriteria> = {
     category: 'education-general',
     touchTechnology: ['Optical', 'Infrared', 'IR Touch'],
     size: [65, 75, 86],
-    features: [
-      'Simplified interface',
-      'Content variety',
-      'Quick-switch modes'
-    ]
+    features: ['Simplified interface', 'Content variety', 'Quick-switch modes']
   },
 
   'corporate-education': {
@@ -166,10 +174,13 @@ const categoryToProductCriteria: Record<string, ProductMatchingCriteria> = {
  * @param criteria - The matching criteria
  * @returns A score from 0-100 indicating match quality
  */
-function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria): number {
+function scoreProductMatch(
+  product: Product,
+  criteria: ProductMatchingCriteria
+): number {
   let score = 0;
   // const maxScore = 100; // Keep for potential future use
-  
+
   // Category weights for different attributes
   const weights = {
     touchTechnology: 30,
@@ -177,15 +188,15 @@ function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria):
     features: 30,
     resolution: 15
   };
-  
+
   // Score touch technology (30%)
   if (criteria.touchTechnology && product.touchTechnology) {
-    const matchingTech = criteria.touchTechnology.some(tech => 
+    const matchingTech = criteria.touchTechnology.some((tech) =>
       product.touchTechnology?.toLowerCase().includes(tech.toLowerCase())
     );
     if (matchingTech) score += weights.touchTechnology;
   }
-  
+
   // Score size (25%)
   if (criteria.size && criteria.size.includes(product.size)) {
     score += weights.size;
@@ -194,32 +205,38 @@ function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria):
   } else if (criteria.maxSize && product.size <= criteria.maxSize) {
     score += weights.size;
   }
-  
+
   // Score features (30%)
   if (criteria.features && product.features) {
     let featureMatches = 0;
     for (const criteriaFeature of criteria.features) {
       for (const productFeature of product.features) {
-        if (productFeature.toLowerCase().includes(criteriaFeature.toLowerCase())) {
+        if (
+          productFeature.toLowerCase().includes(criteriaFeature.toLowerCase())
+        ) {
           featureMatches++;
           break; // Found a match for this criteria feature
         }
       }
     }
-    
+
     // Calculate percentage of matching features
     const featureMatchPercentage = featureMatches / criteria.features.length;
     score += weights.features * featureMatchPercentage;
   }
-  
+
   // Score resolution (15%)
-  if (criteria.resolution && product.resolution && criteria.resolution.includes(product.resolution)) {
+  if (
+    criteria.resolution &&
+    product.resolution &&
+    criteria.resolution.includes(product.resolution)
+  ) {
     score += weights.resolution;
   } else if (product.resolution && product.resolution.includes('3840x2160')) {
     // Bonus for 4K UHD
     score += weights.resolution * 0.8;
   }
-  
+
   return score;
 }
 
@@ -229,31 +246,36 @@ function scoreProductMatch(product: Product, criteria: ProductMatchingCriteria):
  * @param limit - Maximum number of products to return
  * @returns An array of matching products sorted by match quality
  */
-export function findMatchingProducts(category: CategoryType, limit = 3): Product[] {
+export function findMatchingProducts(
+  category: CategoryType,
+  limit = 3
+): Product[] {
   // Get the criteria for this category
   const criteria = categoryToProductCriteria[category];
-  
+
   if (!criteria) {
-    console.warn(`No product matching criteria found for category: ${category}`);
+    console.warn(
+      `No product matching criteria found for category: ${category}`
+    );
     return [];
   }
-  
+
   // Score all products against the criteria
-  const scoredProducts = allModels.map(product => ({
+  const scoredProducts = allModels.map((product) => ({
     product,
     score: scoreProductMatch(product, criteria)
   }));
-  
+
   // Sort by score (descending) and take the top matches
   const topMatches = scoredProducts
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map(item => ({
+    .map((item) => ({
       ...item.product,
       matchScore: item.score,
       matchPercentage: Math.round(item.score)
     }));
-  
+
   return topMatches;
 }
 
@@ -263,53 +285,81 @@ export function findMatchingProducts(category: CategoryType, limit = 3): Product
  * @param context - The quiz category or context string
  * @returns An array of the most relevant features for this category
  */
-export function getRelevantFeatures(product: Product, context?: string | CategoryType): string[] {
+export function getRelevantFeatures(
+  product: Product,
+  context?: string | CategoryType
+): string[] {
   if (!product || !product.features) return [];
-  
+
   // Default to 'general' if no context provided
   const category = context || 'general';
-  
+
   const featurePriorities: Record<string, string[]> = {
     education: [
-      'whiteboard', 'lesson', 'classroom', 'teaching', 'multi-user', 
-      'annotation', 'simple', 'education'
+      'whiteboard',
+      'lesson',
+      'classroom',
+      'teaching',
+      'multi-user',
+      'annotation',
+      'simple',
+      'education'
     ],
     corporate: [
-      'meeting', 'conference', 'presentation', 'wireless', 'sharing',
-      'video conferencing', 'cloud', 'collaboration'
+      'meeting',
+      'conference',
+      'presentation',
+      'wireless',
+      'sharing',
+      'video conferencing',
+      'cloud',
+      'collaboration'
     ],
     creative: [
-      'color', 'accuracy', 'precision', 'pressure', 'drawing', 'design',
-      'stylus', 'creative'
+      'color',
+      'accuracy',
+      'precision',
+      'pressure',
+      'drawing',
+      'design',
+      'stylus',
+      'creative'
     ],
     general: [
-      'compatibility', 'multiple', 'flexible', 'versatile', 
-      'multitasking', 'various'
+      'compatibility',
+      'multiple',
+      'flexible',
+      'versatile',
+      'multitasking',
+      'various'
     ]
   };
-  
+
   // For hybrid categories, combine the relevant keywords
   const primaryCategory = category.split('-')[0] as CategoryType;
   const secondaryCategory = category.split('-')[1] as CategoryType;
-  
+
   let priorityKeywords = featurePriorities[primaryCategory] || [];
   if (secondaryCategory && featurePriorities[secondaryCategory]) {
-    priorityKeywords = [...priorityKeywords, ...featurePriorities[secondaryCategory]];
+    priorityKeywords = [
+      ...priorityKeywords,
+      ...featurePriorities[secondaryCategory]
+    ];
   }
-  
+
   // Find features that match priority keywords
   const relevantFeatures = product.features.filter((feature: string) => {
     const featureLower = feature.toLowerCase();
-    return priorityKeywords.some(keyword => 
+    return priorityKeywords.some((keyword) =>
       featureLower.includes(keyword.toLowerCase())
     );
   });
-  
+
   // If we found enough relevant features, return them
   if (relevantFeatures.length >= 3) {
     return relevantFeatures.slice(0, 4); // Return top 4 relevant features
   }
-  
+
   // Otherwise, return the first few features
   return product.features.slice(0, 4);
 }
@@ -328,18 +378,20 @@ export interface ProductResult {
  * @param category - The quiz result category
  * @returns Object containing matching products and relevant features
  */
-export function getProductsForQuizResult(result: string | CategoryType): ProductResult {
+export function getProductsForQuizResult(
+  result: string | CategoryType
+): ProductResult {
   const category = result as CategoryType; // Cast to CategoryType for internal use
   const products = findMatchingProducts(category, 3);
-  
+
   // Collect all relevant features across products
   const allFeatures = new Set<string>();
-  products.forEach(product => {
-    getRelevantFeatures(product, category).forEach(feature => {
+  products.forEach((product) => {
+    getRelevantFeatures(product, category).forEach((feature) => {
       allFeatures.add(feature);
     });
   });
-  
+
   return {
     products,
     allFeatures: Array.from(allFeatures).slice(0, 6) // Limit to top 6 features

@@ -46,6 +46,13 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
       description: 'Stands, mounts, and enhancement tools',
       image: '/assets/images/marketing/interactive-board.png',
       href: '/products/accessories'
+    },
+    {
+      id: 'collaboration',
+      title: 'Collaboration',
+      description: 'Video conferencing and collaboration devices',
+      image: '/assets/images/marketing/conference_room_interactive_display_16x9.jpeg',
+      href: '/products/collaboration'
     }
   ];
 
@@ -70,10 +77,18 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
       model: '6000S V3 Series',
       image: '/assets/models/SMARTBoard-6000S-V3.webp',
       href: '/products/smartboards/smart/smart-6000s-v3-65'
+    },
+    {
+      id: 'maxhub-v5-classic-65',
+      brand: 'MAXHUB',
+      model: 'V5 Classic Series 65" UHD',
+      image: '/assets/models/maxhub-v5-classic.png',
+      href: '/products/smartboards/maxhub/maxhub-v5-classic-65'
     }
   ];
 
   const quickActions = [
+    { label: 'All Products', href: '/products', icon: '🏢' },
     { label: 'Get Quote', href: '/contact', icon: '💬' },
     { label: 'Book Demo', href: '/demo', icon: '📋' },
     { label: 'Compare', href: '/compare', icon: '⚖️' },

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "bsl05",
+    "brand": "HD Focus",
+    "model": "HD-215F",
+    "size": 21.5,
+    "resolution": "1920x1080",
+    "os": "Windows 10/11 trail version",
+    "features": [
+      "i3/i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD"
+    ],
+    "warranty": "1 year",
+    "priceRange": "836",
+    "image": "",
+    "productURL": "https://youtube.com/shorts/iVICU2ayvvc"
+  },
+  {
+    "id": "bslm17",
+    "brand": "HD Focus",
+    "model": "SP03",
+    "size": 32,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD",
+      "Top interactive panel 10.1\"",
+      "Front display panel 21.5\"",
+      "2 removable laptop trays",
+      "Touch pen"
+    ],
+    "warranty": "1 year warranty",
+    "priceRange": "2557-2596",
+    "image": "",
+    "productURL": "https://www.youtube.com/shorts/aySpMj7PPms",
+    "motorizedFeatures": [
+      "height adjustment"
+    ],
+    "audio": {
+      "speakers": "2x10W"
+    },
+    "microphone": {
+      "quantity": 2
+    }
+  }
+]

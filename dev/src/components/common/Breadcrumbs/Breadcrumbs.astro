@@ -36,8 +36,23 @@ const breadcrumbItems = items || (() => {
 
   // Add product type breadcrumb
   if (productType) {
+    let label = 'Products';
+    switch (productType) {
+      case 'smartboards':
+        label = 'Smart Boards';
+        break;
+      case 'lecterns':
+        label = 'Lecterns';
+        break;
+      case 'accessories':
+        label = 'Accessories';
+        break;
+      case 'collaboration':
+        label = 'Collaboration';
+        break;
+    }
     items.push({
-      label: productType === 'smartboards' ? 'Smart Boards' : 'Lecterns',
+      label,
       path: `/products/${productType}/`
     });
   }

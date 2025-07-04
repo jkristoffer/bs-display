@@ -6,6 +6,7 @@ export interface ProductModel {
   id: string;
   brand: string;
   model: string;
+  name?: string;
   size: number;
   resolution?: string;
   os?: string;
@@ -72,7 +73,7 @@ export interface ProductDetailsProps {
 
 export interface FilterUIProps {
   allModels: ProductModel[];
-  productType?: 'smartboards' | 'lecterns' | 'accessories';
+  productType?: 'smartboards' | 'lecterns' | 'accessories' | 'collaboration';
   customFilters?: import('./filter.types').FilterConfig[];
 }
 

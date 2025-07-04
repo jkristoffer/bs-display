@@ -25,8 +25,11 @@ const createNavigationConfig = (): ReadonlyArray<NavItemType> => [
     path: '/products',
     megaMenu: true,
     items: [
+      { path: '/products', label: 'All Products' },
       { path: '/products/smartboards', label: 'Smart Boards' },
-      { path: '/products/lecterns', label: 'Lecterns' }
+      { path: '/products/lecterns', label: 'Lecterns' },
+      { path: '/products/accessories', label: 'Accessories' },
+      { path: '/products/collaboration', label: 'Collaboration' }
     ]
   },
   {

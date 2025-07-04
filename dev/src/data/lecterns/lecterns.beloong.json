@@ -1,0 +1,53 @@
+[
+  {
+    "id": "bsl01-s-b-w",
+    "brand": "Beloong",
+    "model": "K base",
+    "size": 32,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD"
+    ],
+    "warranty": "1 year warranty for the panel and 3 years for accessories",
+    "priceRange": "451-551",
+    "image": "",
+    "productURL": "https://youtu.be/cov2CWaXt0o"
+  },
+  {
+    "id": "bsl02-b-w",
+    "brand": "Beloong",
+    "model": "U base with light",
+    "size": 32,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD"
+    ],
+    "warranty": "1 year warranty for the panel and 3 years for accessories",
+    "priceRange": "541-551",
+    "image": "",
+    "productURL": "https://www.youtube.com/shorts/EyRo9NCYarQ"
+  },
+  {
+    "id": "bsl03-b-w",
+    "brand": "Beloong",
+    "model": "S base",
+    "size": 32,
+    "resolution": "1920x1080",
+    "os": "Windows 10",
+    "features": [
+      "i5 CPU",
+      "4GB DDR RAM",
+      "128GB SDD"
+    ],
+    "warranty": "1 year warranty for the panel and 3 years for accessories",
+    "priceRange": "423-451",
+    "image": "",
+    "productURL": "https://youtu.be/0Cqz6OSakKc"
+  }
+]

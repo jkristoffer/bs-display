@@ -68,7 +68,7 @@ export interface ModelCardProps {
 
 export interface ProductDetailsProps {
   model: ProductModel;
-  productType?: string;
+  productType?: 'smartboards' | 'lecterns' | 'accessories' | 'collaboration';
 }
 
 export interface FilterUIProps {

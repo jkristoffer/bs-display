@@ -1,0 +1,153 @@
+/**
+ * CategoryTabs SCSS Module
+ * Following project design tokens and responsive patterns
+ */
+
+.categoryTabs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin: var(--spacing-16) 0 var(--spacing-24) 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  @media (max-width: 768px) {
+    gap: var(--spacing-2);
+    margin: var(--spacing-12) 0 var(--spacing-16) 0;
+    padding: 0 var(--spacing-4);
+  }
+}
+
+.categoryTab {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-primary);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-nav-primary);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scroll-snap-align: start;
+  
+  // Ensure minimum touch target for mobile
+  min-height: 44px;
+  
+  &:hover:not(.categoryTab--active) {
+    background: var(--color-surface-muted);
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--spacing-2);
+  }
+}
+
+.categoryTab--active {
+  background: var(--color-accent-primary);
+  color: white;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 2px 12px rgba(0, 150, 136, 0.3);
+
+  &:hover {
+    background: var(--color-accent-primary);
+    transform: none;
+  }
+}
+
+.categoryIcon {
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-base);
+  }
+}
+
+.categoryLabel {
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+// Responsive grid for very small screens (alternative layout)
+@media (max-width: 360px) {
+  .categoryTabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2);
+    overflow-x: visible;
+  }
+
+  .categoryTab {
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-2);
+    
+    .categoryLabel {
+      display: block;
+      font-size: var(--font-size-xs);
+    }
+  }
+}
+
+// Animation for dynamic content changes
+.categoryTabs[data-loading="true"] {
+  .categoryTab {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .categoryTab {
+    border-width: 2px;
+    
+    &:focus {
+      outline-width: 3px;
+    }
+  }
+
+  .categoryTab--active {
+    border-color: var(--color-text-primary);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .categoryTab {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}

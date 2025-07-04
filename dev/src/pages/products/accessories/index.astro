@@ -2,6 +2,7 @@
 import ProductLayout from '../../../layouts/ProductLayout.astro';
 import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import CategoryTabs from '../../../components/common/CategoryTabs/CategoryTabs.tsx';
 import accessories from '../../../data/accessories/accessories.all.js';
 
 const title = 'Display Accessories | Big Shine Display';
@@ -13,6 +14,7 @@ const description =
   <section class="section">
     <div class="container--wide">
       <Breadcrumbs productType="accessories" />
+      <CategoryTabs activeCategory="accessories" client:visible />
       
       <div class="accessories-header">
         <h1>Display Accessories</h1>

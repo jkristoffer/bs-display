@@ -2,6 +2,7 @@
 import ProductLayout from '../../../layouts/ProductLayout.astro';
 import { FilterUIv2 } from '../../../components/products/FilterUI';
 import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import CategoryTabs from '../../../components/common/CategoryTabs/CategoryTabs.tsx';
 import lecterns from '../../../data/lecterns/lecterns.all.js';
 
 const title = 'Smart Lecterns | Big Shine Display';
@@ -13,6 +14,7 @@ const description =
   <section class="section">
     <div class="container--wide">
       <Breadcrumbs productType="lecterns" />
+      <CategoryTabs activeCategory="lecterns" client:visible />
       
       <div class="products-header">
         <h1>Interactive Smart Lecterns</h1>

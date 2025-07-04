@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import NavItem from './NavItem.tsx';
 import ProductsMegaMenu from './ProductsMegaMenu.tsx';
 import { Search } from '../Search';
@@ -64,6 +64,11 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
     Record<number, boolean>
   >({});
   const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
+  
+  // Refs for focus management
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
 
   // Memoized navigation items
   const navItems = useMemo(() => createNavigationConfig(), []);
@@ -71,7 +76,13 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
   // Check if viewport is mobile
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      
+      // Close mobile menu when switching to desktop
+      if (!mobile && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
     };
 
     checkIfMobile();
@@ -80,12 +91,39 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
     return () => {
       window.removeEventListener('resize', checkIfMobile);
     };
+  }, [mobileMenuOpen]);
+
+  // Body scroll lock utility
+  const lockBodyScroll = useCallback(() => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+  }, []);
+  
+  const unlockBodyScroll = useCallback(() => {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
   }, []);
 
   // Memoized event handlers
   const toggleMobileMenu = useCallback(() => {
-    setMobileMenuOpen(prev => !prev);
-  }, []);
+    setMobileMenuOpen(prev => {
+      const newState = !prev;
+      
+      if (newState) {
+        lockBodyScroll();
+        // Focus first menu item after animation
+        setTimeout(() => {
+          firstMenuItemRef.current?.focus();
+        }, 100);
+      } else {
+        unlockBodyScroll();
+        // Return focus to menu button
+        menuButtonRef.current?.focus();
+      }
+      
+      return newState;
+    });
+  }, [lockBodyScroll, unlockBodyScroll]);
 
   const toggleDropdown = useCallback((index: number) => {
     if (isMobile) {
@@ -122,6 +160,39 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
   const closeMobileSearch = useCallback(() => {
     setMobileSearchOpen(false);
   }, []);
+  
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+        unlockBodyScroll();
+      }
+    };
+    
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        if (mobileMenuOpen) {
+          setMobileMenuOpen(false);
+          unlockBodyScroll();
+          menuButtonRef.current?.focus();
+        }
+        if (mobileSearchOpen) {
+          setMobileSearchOpen(false);
+        }
+      }
+    };
+    
+    if (mobileMenuOpen || mobileSearchOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [mobileMenuOpen, mobileSearchOpen, unlockBodyScroll]);
 
 
   // Close all dropdowns when mobile menu is closed
@@ -129,8 +200,9 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
     if (!mobileMenuOpen) {
       setActiveDropdowns({});
       setShowProductsMegaMenu(false);
+      unlockBodyScroll();
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, unlockBodyScroll]);
 
   // Close mobile search when mobile menu is opened
   useEffect(() => {
@@ -138,6 +210,13 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
       setMobileSearchOpen(false);
     }
   }, [mobileMenuOpen]);
+  
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      unlockBodyScroll();
+    };
+  }, [unlockBodyScroll]);
 
   return (
     <nav className={styles.nav}>
@@ -153,7 +232,12 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
         </div>
 
         <div
+          ref={mobileMenuRef}
+          id="mobile-navigation"
           className={`${styles.nav__items} ${mobileMenuOpen ? styles.nav__items_active : ''}`}
+          role="navigation"
+          aria-label="Main navigation"
+          aria-hidden={!mobileMenuOpen}
         >
           {navItems.map((item, index) =>
             item.dropdown ? (
@@ -171,7 +255,22 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
                   <span className={styles.nav__dropdown_arrow}>▾</span>
                 </div>
                 {item.megaMenu ? (
-                  <ProductsMegaMenu isVisible={showProductsMegaMenu} />
+                  // On mobile, show dropdown menu instead of mega menu
+                  isMobile ? (
+                    <div className={styles.nav__dropdown_menu}>
+                      {item.items?.map((subItem, subIndex) => (
+                        <NavItem
+                          key={`dropdown-item-${index}-${subIndex}`}
+                          href={subItem.path}
+                          active={isActiveRoute(currentPath, subItem.path)}
+                        >
+                          {subItem.label}
+                        </NavItem>
+                      ))}
+                    </div>
+                  ) : (
+                    <ProductsMegaMenu isVisible={showProductsMegaMenu} />
+                  )
                 ) : (
                   <div className={styles.nav__dropdown_menu}>
                     {item.items?.map((subItem, subIndex) => (
@@ -192,6 +291,7 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
                 href={item.path || '#'}
                 active={isActiveRoute(currentPath, item.path)}
                 cta={isCTAItem(item)}
+                ref={index === 0 ? firstMenuItemRef : undefined}
               >
                 {item.label}
               </NavItem>
@@ -231,9 +331,12 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
 
           {/* Mobile menu toggle */}
           <button
+            ref={menuButtonRef}
             id="mobile-menu-toggle"
             className={`${styles.nav__mobile_toggle} ${mobileMenuOpen ? styles.nav__mobile_toggle_active : ''}`}
-            aria-label="Toggle menu"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={toggleMobileMenu}
           >
             <span className={styles.nav__mobile_toggle_bar}></span>
@@ -244,11 +347,25 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
 
         {/* Mobile Search Overlay */}
         {mobileSearchOpen && (
-          <Search
-            isMobile={true}
-            autoFocus={true}
-            onClose={closeMobileSearch}
-            placeholder="Search products, articles..."
+          <div className={styles.nav__mobileSearchOverlay}>
+            <Search
+              isMobile={true}
+              autoFocus={true}
+              onClose={closeMobileSearch}
+              placeholder="Search products, articles..."
+            />
+          </div>
+        )}
+        
+        {/* Mobile Menu Backdrop */}
+        {mobileMenuOpen && (
+          <div 
+            className={styles.nav__mobileBackdrop}
+            onClick={() => {
+              setMobileMenuOpen(false);
+              unlockBodyScroll();
+            }}
+            aria-hidden="true"
           />
         )}
       </div>

@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - 'dev/src/content/blog/**/*.md'
+      - 'src/content/blog/**/*.md'
   workflow_dispatch:
     inputs:
       pr_number:
@@ -26,15 +26,15 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
-        cache-dependency-path: 'dev/package-lock.json'
+        cache: 'npm'
         
     - name: Install dependencies
-      run: cd dev && npm ci
+      run: npm ci
       
     - name: Run SEO Analysis
       id: seo-analysis
       run: |
-        cd dev
+        # Run SEO analysis from project root
         PR_NUM="${{ github.event.pull_request.number || inputs.pr_number }}"
         
         # Run SEO analysis and capture output

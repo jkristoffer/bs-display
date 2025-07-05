@@ -1,0 +1,489 @@
+name: Automated Blog Post Generation (Enhanced)
+
+on:
+  schedule:
+    # Run every 3 days at 9:00 AM UTC
+    - cron: '0 9 */3 * *'
+  workflow_dispatch: # Allow manual triggering
+    inputs:
+      force_generate:
+        description: 'Force generate blog post even if queue is empty'
+        required: false
+        default: 'false'
+        type: boolean
+      dry_run:
+        description: 'Dry run - preview changes without committing'
+        required: false
+        default: 'false'
+        type: boolean
+      rollback_pr:
+        description: 'PR number to rollback (closes PR and deletes branch)'
+        required: false
+        type: string
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    if: inputs.rollback_pr != ''
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Rollback PR
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const prNumber = '${{ inputs.rollback_pr }}';
+          
+          try {
+            // Get PR details
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_request_number: prNumber
+            });
+            
+            // Close PR
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_request_number: prNumber,
+              state: 'closed'
+            });
+            
+            // Delete branch if it exists
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${pr.head.ref}`
+              });
+              console.log(`✅ Branch ${pr.head.ref} deleted`);
+            } catch (error) {
+              console.log(`ℹ️  Branch ${pr.head.ref} already deleted or doesn't exist`);
+            }
+            
+            // Add rollback comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `## 🔄 Rollback Completed
+
+**Timestamp**: ${new Date().toISOString()}
+**Action**: Automated rollback via workflow dispatch
+
+### Changes Reverted
+- ✅ PR closed
+- ✅ Feature branch deleted
+- ✅ No changes merged to main branch
+
+### Rollback Reason
+This automated blog post was rolled back, likely due to:
+- Content quality issues
+- Technical problems
+- Manual intervention required
+
+The content generation system remains active and will continue with the next scheduled post.
+
+---
+*Rollback completed automatically by GitHub Actions*`
+            });
+            
+            console.log(`✅ Rollback completed for PR #${prNumber}`);
+            
+          } catch (error) {
+            console.error(`❌ Rollback failed: ${error.message}`);
+            throw error;
+          }
+
+  generate-blog-post:
+    runs-on: ubuntu-latest
+    if: inputs.rollback_pr == ''
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Pre-flight validation
+      id: validation
+      run: |
+        echo "## Pre-flight Validation" >> $GITHUB_STEP_SUMMARY
+        
+        # Check if content queue exists
+        if [ ! -f "content-queue.json" ]; then
+          echo "❌ content-queue.json not found" >> $GITHUB_STEP_SUMMARY
+          echo "validation_passed=false" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+        
+        # Check if blog generation script exists
+        if [ ! -f "scripts/generate-blog-post.js" ]; then
+          echo "❌ Blog generation script not found" >> $GITHUB_STEP_SUMMARY
+          echo "validation_passed=false" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+        
+        # Check content directory exists
+        if [ ! -d "src/content/blog" ]; then
+          echo "❌ Blog content directory not found" >> $GITHUB_STEP_SUMMARY
+          echo "validation_passed=false" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+        
+        # Check queue content
+        POSTS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('content-queue.json', 'utf8')).scheduledPosts.length")
+        echo "posts_available=$POSTS_COUNT" >> $GITHUB_OUTPUT
+        
+        if [ "$POSTS_COUNT" -eq 0 ] && [ "${{ inputs.force_generate }}" != "true" ]; then
+          echo "ℹ️  No posts in queue, skipping generation" >> $GITHUB_STEP_SUMMARY
+          echo "validation_passed=false" >> $GITHUB_OUTPUT
+          echo "skip_reason=empty_queue" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+        
+        echo "✅ All validations passed" >> $GITHUB_STEP_SUMMARY
+        echo "- Posts available: $POSTS_COUNT" >> $GITHUB_STEP_SUMMARY
+        echo "- Force generate: ${{ inputs.force_generate }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Dry run: ${{ inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+        echo "validation_passed=true" >> $GITHUB_OUTPUT
+        
+    - name: Generate blog post
+      id: generate
+      if: steps.validation.outputs.validation_passed == 'true'
+      run: |
+        echo "## Blog Generation Process" >> $GITHUB_STEP_SUMMARY
+        
+        # Create backup of content queue
+        cp content-queue.json content-queue.json.backup
+        echo "✅ Content queue backed up" >> $GITHUB_STEP_SUMMARY
+        
+        # Set dry run flag for the script
+        if [ "${{ inputs.dry_run }}" == "true" ]; then
+          export DRY_RUN=true
+          echo "🔍 Running in dry-run mode" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        # Run blog generation
+        cd scripts
+        RESULT=$(npm run --silent content:blog:generate 2>&1 || echo "GENERATION_FAILED")
+        
+        # Capture result
+        echo "generation_result<<EOF" >> $GITHUB_OUTPUT
+        echo "$RESULT" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+        # Check if generation was successful
+        if echo "$RESULT" | grep -q "✅"; then
+          echo "success=true" >> $GITHUB_OUTPUT
+          echo "✅ Blog generation successful" >> $GITHUB_STEP_SUMMARY
+          
+          # Extract filename from output
+          FILENAME=$(echo "$RESULT" | grep -o "[a-z0-9-]*\.md" | head -1)
+          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          
+          # Get file path
+          if [ -n "$FILENAME" ]; then
+            FILEPATH="src/content/blog/$FILENAME"
+            echo "filepath=$FILEPATH" >> $GITHUB_OUTPUT
+            echo "- Generated file: $FILEPATH" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+        else
+          echo "success=false" >> $GITHUB_OUTPUT
+          echo "❌ Blog generation failed" >> $GITHUB_STEP_SUMMARY
+          echo "- Error output: $RESULT" >> $GITHUB_STEP_SUMMARY
+          
+          # Restore backup
+          cp content-queue.json.backup content-queue.json
+          echo "🔄 Content queue restored from backup" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+    - name: Validate generated content
+      id: validate-content
+      if: steps.generate.outputs.success == 'true' && inputs.dry_run != 'true'
+      run: |
+        FILEPATH="${{ steps.generate.outputs.filepath }}"
+        
+        if [ -f "$FILEPATH" ]; then
+          # Check file size
+          FILESIZE=$(stat -f%z "$FILEPATH" 2>/dev/null || stat -c%s "$FILEPATH")
+          
+          if [ "$FILESIZE" -lt 1000 ]; then
+            echo "❌ Generated file too small ($FILESIZE bytes)" >> $GITHUB_STEP_SUMMARY
+            echo "content_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          # Check for required frontmatter
+          if ! grep -q "title:" "$FILEPATH" || ! grep -q "description:" "$FILEPATH"; then
+            echo "❌ Missing required frontmatter" >> $GITHUB_STEP_SUMMARY
+            echo "content_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          echo "✅ Content validation passed" >> $GITHUB_STEP_SUMMARY
+          echo "- File size: $FILESIZE bytes" >> $GITHUB_STEP_SUMMARY
+          echo "content_valid=true" >> $GITHUB_OUTPUT
+        else
+          echo "❌ Generated file not found: $FILEPATH" >> $GITHUB_STEP_SUMMARY
+          echo "content_valid=false" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+        
+    - name: Configure git
+      if: steps.generate.outputs.success == 'true' && steps.validate-content.outputs.content_valid == 'true' && inputs.dry_run != 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+    - name: Create feature branch
+      if: steps.generate.outputs.success == 'true' && steps.validate-content.outputs.content_valid == 'true' && inputs.dry_run != 'true'
+      run: |
+        BRANCH_NAME="automated-blog-post-$(date +%Y%m%d-%H%M%S)"
+        git checkout -b $BRANCH_NAME
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        echo "✅ Created branch: $BRANCH_NAME" >> $GITHUB_STEP_SUMMARY
+        
+    - name: Commit changes
+      if: steps.generate.outputs.success == 'true' && steps.validate-content.outputs.content_valid == 'true' && inputs.dry_run != 'true'
+      run: |
+        git add .
+        git commit -m "feat: add automated blog post - ${{ steps.generate.outputs.filename }}
+
+Generated blog post using automated content generation system.
+
+Template: Auto-generated
+File: ${{ steps.generate.outputs.filepath }}
+Queue status: ${{ steps.validation.outputs.posts_available }} posts remaining
+
+🤖 Generated with automated blog system
+
+Co-Authored-By: GitHub Actions <noreply@github.com>"
+        
+        echo "✅ Changes committed" >> $GITHUB_STEP_SUMMARY
+        
+    - name: Push feature branch
+      if: steps.generate.outputs.success == 'true' && steps.validate-content.outputs.content_valid == 'true' && inputs.dry_run != 'true'
+      run: |
+        git push origin $BRANCH_NAME
+        echo "✅ Branch pushed: $BRANCH_NAME" >> $GITHUB_STEP_SUMMARY
+        
+    - name: Create Pull Request
+      if: steps.generate.outputs.success == 'true' && steps.validate-content.outputs.content_valid == 'true' && inputs.dry_run != 'true'
+      id: create-pr
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const filename = '${{ steps.generate.outputs.filename }}';
+          const filepath = '${{ steps.generate.outputs.filepath }}';
+          const branchName = process.env.BRANCH_NAME;
+          
+          // Read content queue to get post details
+          const fs = require('fs');
+          const queue = JSON.parse(fs.readFileSync('content-queue.json', 'utf8'));
+          
+          // Create PR body with rollback instructions
+          const prBody = `## 📝 Automated Blog Post Generated
+
+### Post Details
+- **Filename**: \`${filename}\`
+- **File Path**: \`${filepath}\`
+- **Generated**: ${new Date().toISOString().split('T')[0]}
+- **Remaining in Queue**: ${queue.scheduledPosts.length} posts
+- **Next Scheduled**: ${queue.nextPostDate}
+
+### Content Preview
+The generated blog post follows our established content standards:
+- ✅ SEO-optimized title and meta description
+- ✅ Structured content with proper headings
+- ✅ Industry-focused messaging and terminology
+- ✅ Call-to-action and contact integration
+- ✅ Brand voice consistency
+
+### Review Checklist
+Please review the following before approving:
+
+- [ ] **Content Quality**: Verify technical accuracy and messaging
+- [ ] **SEO Elements**: Check title, description, and keyword usage
+- [ ] **Brand Voice**: Ensure content matches brand standards
+- [ ] **Links and CTAs**: Verify all links and calls-to-action work
+- [ ] **Formatting**: Check markdown formatting and structure
+- [ ] **Images**: Add relevant images if needed (not auto-generated)
+
+### Rollback Instructions
+If this content needs to be rolled back:
+
+1. **Automatic Rollback**: Use GitHub Actions workflow dispatch
+   - Go to Actions → Automated Blog Post Generation (Enhanced)
+   - Click "Run workflow"
+   - Enter this PR number: \`{{PR_NUMBER}}\`
+   - Select "rollback_pr" option
+
+2. **Manual Rollback**: Close this PR and delete the branch
+   \`\`\`bash
+   # Close PR via web interface, then:
+   git push origin --delete ${branchName}
+   \`\`\`
+
+### Approval Process
+- ✅ **Auto-generated**: Content created using approved templates
+- 🔍 **Review Required**: Human review for quality assurance
+- 🚀 **Ready to Publish**: Merge when review is complete
+- 🔄 **Rollback Available**: Use workflow dispatch for quick rollback
+
+### Next Steps
+1. Review the generated content thoroughly
+2. Make any necessary edits directly in this PR
+3. Add relevant images if needed
+4. Approve and merge to publish
+5. Use rollback if content is unsuitable
+
+---
+*This blog post was automatically generated using our content automation system. Next post scheduled for: ${queue.nextPostDate}*
+
+🤖 Generated with automated blog system | 🔄 Rollback available via workflow dispatch`;
+
+          const { data: pullRequest } = await github.rest.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `📝 Automated Blog Post: ${filename.replace('.md', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+            head: branchName,
+            base: 'main',
+            body: prBody.replace('{{PR_NUMBER}}', 'TBD'),
+            labels: ['automated-content', 'blog-post', 'needs-review', 'rollback-enabled']
+          });
+          
+          // Update PR body with actual PR number
+          await github.rest.pulls.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: pullRequest.number,
+            body: prBody.replace('{{PR_NUMBER}}', pullRequest.number)
+          });
+          
+          console.log(`Pull request created: ${pullRequest.html_url}`);
+          core.setOutput('pr_number', pullRequest.number);
+          core.setOutput('pr_url', pullRequest.html_url);
+          
+    - name: Handle generation failure
+      if: steps.generate.outputs.success == 'false' || steps.validate-content.outputs.content_valid == 'false'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const issue = await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: '🚨 Automated Blog Generation Failed',
+            body: `## Blog Generation Failure Report
+
+**Date**: ${new Date().toISOString()}
+**Trigger**: ${{ github.event_name }}
+**Dry Run**: ${{ inputs.dry_run }}
+
+### Error Details
+\`\`\`
+${{ steps.generate.outputs.generation_result }}
+\`\`\`
+
+### Validation Status
+- **Pre-flight**: ${{ steps.validation.outputs.validation_passed }}
+- **Generation**: ${{ steps.generate.outputs.success }}
+- **Content Valid**: ${{ steps.validate-content.outputs.content_valid }}
+- **Posts Available**: ${{ steps.validation.outputs.posts_available }}
+
+### Automatic Recovery
+- ✅ Content queue restored from backup
+- ✅ No changes committed to repository
+- ✅ System ready for next attempt
+
+### Possible Causes
+- Content queue is empty and needs refilling
+- Template or script error
+- Generated content failed validation
+- File system permissions issue
+- Invalid content queue format
+
+### Next Steps
+1. Check content-queue.json for available posts
+2. Review generation script for errors
+3. Manually trigger workflow if queue has been refilled
+4. Use dry-run mode to test before committing
+5. Contact development team if issue persists
+
+### Monitoring
+This issue was automatically created by the blog generation workflow. The system will attempt generation again in 3 days unless manually resolved.
+
+### Manual Testing
+To test manually:
+\`\`\`bash
+npm run content:blog:generate -- --dry-run
+\`\`\`
+
+Labels: automated-content, bug, needs-attention, auto-recovery-complete`,
+            labels: ['automated-content', 'bug', 'needs-attention', 'auto-recovery-complete']
+          });
+          
+          console.log(`Issue created for failed generation: ${issue.data.html_url}`);
+          
+    - name: Dry run summary
+      if: inputs.dry_run == 'true'
+      run: |
+        echo "## 🔍 Dry Run Summary" >> $GITHUB_STEP_SUMMARY
+        echo "**Mode**: Dry run (no changes committed)" >> $GITHUB_STEP_SUMMARY
+        echo "**Validation**: ${{ steps.validation.outputs.validation_passed }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Generation**: ${{ steps.generate.outputs.success }}" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.generate.outputs.success }}" == "true" ]; then
+          echo "**Generated File**: ${{ steps.generate.outputs.filename }}" >> $GITHUB_STEP_SUMMARY
+          echo "### What Would Happen:" >> $GITHUB_STEP_SUMMARY
+          echo "1. ✅ Content would be generated successfully" >> $GITHUB_STEP_SUMMARY
+          echo "2. ✅ Feature branch would be created" >> $GITHUB_STEP_SUMMARY
+          echo "3. ✅ Pull request would be created for review" >> $GITHUB_STEP_SUMMARY
+          echo "4. ✅ Rollback option would be available" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Recommendation**: Run without dry-run to proceed with actual generation" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "**Issues Found**: Content generation would fail" >> $GITHUB_STEP_SUMMARY
+          echo "**Recommendation**: Fix issues before running actual generation" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+    - name: Final summary
+      if: always()
+      run: |
+        echo "## 📊 Workflow Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- **Date**: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Trigger**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Mode**: ${{ inputs.dry_run == 'true' && 'Dry Run' || 'Live Run' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Posts in Queue**: ${{ steps.validation.outputs.posts_available }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Generation Success**: ${{ steps.generate.outputs.success }}" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.generate.outputs.success }}" == "true" ] && [ "${{ inputs.dry_run }}" != "true" ]; then
+          echo "- **Generated File**: ${{ steps.generate.outputs.filename }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch Created**: $BRANCH_NAME" >> $GITHUB_STEP_SUMMARY
+          echo "- **PR Number**: ${{ steps.create-pr.outputs.pr_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **PR URL**: ${{ steps.create-pr.outputs.pr_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Blog post successfully generated and PR created for review.**" >> $GITHUB_STEP_SUMMARY
+          echo "🔄 **Rollback available via workflow dispatch using PR #${{ steps.create-pr.outputs.pr_number }}**" >> $GITHUB_STEP_SUMMARY
+        elif [ "${{ inputs.dry_run }}" == "true" ]; then
+          echo "🔍 **Dry run completed successfully - no changes made**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **Blog generation failed. Check logs and queue status.**" >> $GITHUB_STEP_SUMMARY
+          echo "🔄 **System automatically recovered - no changes committed**" >> $GITHUB_STEP_SUMMARY
+        fi

@@ -32,7 +32,7 @@ cd bs-display/dev
 npm install
 
 # Start development server
-npm run dev:server
+npm run dev
 ```
 
 Visit `http://localhost:4321` to see the platform running locally.
@@ -40,10 +40,10 @@ Visit `http://localhost:4321` to see the platform running locally.
 ### Essential Commands
 
 ```bash
-npm run dev:server   # Start Astro development server
-npm run dev:build    # Build for production  
-npm run dev:preview  # Preview production build locally
-npm run code:typecheck # Run TypeScript type checking
+npm run dev          # Start Astro development server
+npm run build        # Build for production  
+npm run preview      # Preview production build locally
+npm run check        # Run TypeScript type checking
 npm run help         # See all available commands
 ```
 
@@ -85,8 +85,8 @@ Expert-written guides covering display technologies, installation processes, and
 ### 🤖 **Automated Content Generation**
 AI-powered blog post generation with SEO optimization and quality assurance.
 
-### 🔧 **The Forge System**
-Production-ready AI-first development tool for autonomous file generation and project orchestration with 95% test success rate.
+### 🔧 **Unified Tool Interface**
+Streamlined command system with 56% fewer commands (98→44) through systematic consolidation and deduplication.
 
 ## Architecture Overview
 
@@ -143,9 +143,9 @@ npm run code:review:config                    # Setup configuration
 npm run content:seo:analyze -- --file [blog-post]
 
 # Development workflow
-npm run dev:server                            # Start development
-npm run code:typecheck                        # TypeScript validation
-npm run dev:build                             # Production build
+npm run dev                                   # Start development
+npm run check                                 # TypeScript validation
+npm run build                                 # Production build
 ```
 
 ## Development Workflow
@@ -179,10 +179,7 @@ bs-display/dev/
 │   ├── layouts/        # Page layout templates
 │   ├── pages/          # Route definitions
 │   └── styles/         # Global SCSS and variables
-├── 📁 forge/           # 🔧 Forge System (Production Ready)
-│   ├── forge.py        # Main CLI application
-│   ├── tests/          # 28 unit tests (100% pass rate)
-│   └── *.md            # Status and test documentation
+├── 📁 scripts/         # Automation and utility scripts
 ├── 📁 scripts/         # Automation and utility scripts
 ├── 📁 public/          # Static assets and images
 ├── 📄 CLAUDE.md        # AI assistant comprehensive guide
@@ -269,10 +266,10 @@ Flexible configuration via `.codereview.json`:
 npm install
 
 # Start development server  
-npm run dev:server
+npm run dev
 
 # Run type checking
-npm run code:typecheck
+npm run check
 
 # Test code quality with enhanced security & performance analysis
 npm run code:review -- --file [your-file]
@@ -308,10 +305,10 @@ The platform is deployed on **Vercel** with automatic deployments from the main 
 
 ```bash
 # Build for production
-npm run dev:build
+npm run build
 
 # Preview production build  
-npm run dev:preview
+npm run preview
 ```
 
 ### **Environment Variables**
@@ -362,7 +359,7 @@ This project is proprietary software. All rights reserved.
 For new contributors or AI assistants:
 
 - [ ] **Clone repository** and run `npm install`
-- [ ] **Start development server** with `npm run dev:server`
+- [ ] **Start development server** with `npm run dev`
 - [ ] **Read CLAUDE.md** for comprehensive development guidance
 - [ ] **Review development standards** in `/src/development-standards/standards/`
 - [ ] **Test code review agent** with a sample file

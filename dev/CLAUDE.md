@@ -25,9 +25,8 @@ npm run help                    # See all available commands
 npm run git:commit             # Intelligent git commits
 npm run code:review -- --file [path]  # Automated code review
 npm run content:blog:generate  # AI blog post generation
-npm run vps:manage            # VPS infrastructure management
-npm run rag:query             # AI memory system
-npm run mcp:pdf:setup         # Setup PDF analyzer MCP server
+npm run data:validate         # JSON schema validation
+npm run ai:performance        # AI agent performance tracking
 ```
 
 ### **No Slash Commands**
@@ -37,18 +36,16 @@ Previous `/commit` slash commands have been deprecated. Use `npm run git:commit`
 ```bash
 # Dry-run any destructive operation
 npm run git:commit:ai -- --dry-run
-npm run vps:cleanup:ai -- --dry-run
+npm run ai:validate:dry
 
 # JSON output for parsing
 npm run git:status:json
 npm run code:review -- --file test.js --json
 
-# Verbose logging for debugging
-./scripts/verbose-wrapper.sh [command] --verbose
-
 # Contextual help
-npm run help git:commit
-npm run help code:review
+npm run help git       # Show git commands
+npm run help code      # Show code commands
+npm run help content   # Show content commands
 ```
 
 ---
@@ -382,16 +379,18 @@ npm run content:blog:generate
 
 ### **Development Commands**
 ```bash
-npm run dev:server        # Start development server
-npm run dev:server:expose # Start server accessible externally
-npm run dev:build         # Build for production
-npm run code:typecheck    # TypeScript checking
-npm run dev:preview       # Preview production build
+npm run dev               # Start development server
+npm run dev:expose        # Start server accessible externally
+npm run build             # Build for production
+npm run build:fast        # Build without image optimization
+npm run check             # TypeScript checking
+npm run preview           # Preview production build
 ```
 
 ### **Essential Tools List**
 ```bash
 npm run help             # Show all available commands
+npm run help [category]  # Show commands by category (git, code, content, data)
 npm run ai:tools:list    # Show detailed automation tools
 ```
 

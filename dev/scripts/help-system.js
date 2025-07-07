@@ -99,59 +99,19 @@ const helpDatabase = {
     ],
     category: 'content'
   },
-  'vps:spinup': {
-    description: 'Create new VPS instance with automatic provisioning',
-    usage: 'npm run vps:spinup [session-name] [-- --dry-run]',
+  'data:validate': {
+    description: 'Validate JSON schemas and product data',
+    usage: 'npm run data:validate [target] [-- --file path]',
     options: {
-      '--dry-run': 'Preview VPS creation without executing',
-      '--region': 'Specify region (default: sgp1)',
-      '--size': 'Specify droplet size (default: s-1vcpu-1gb)'
+      'target': 'Validation target: all, maxhub, file',
+      '--file': 'Specific file to validate'
     },
     examples: [
-      'npm run vps:spinup',
-      'npm run vps:spinup test-session',
-      'npm run vps:spinup -- --dry-run'
+      'npm run data:validate',
+      'npm run data:validate:maxhub',
+      'npm run data:validate:file -- --file product.json'
     ],
-    category: 'vps'
-  },
-  'vps:cleanup': {
-    description: 'Clean up VPS resources and droplets',
-    usage: 'npm run vps:cleanup [-- --dry-run] [-- --force]',
-    options: {
-      '--dry-run': 'Preview cleanup without executing',
-      '--force': 'Skip confirmation prompts'
-    },
-    examples: [
-      'npm run vps:cleanup',
-      'npm run vps:cleanup -- --dry-run',
-      'npm run vps:cleanup -- --force'
-    ],
-    category: 'vps'
-  },
-  'rag:query': {
-    description: 'Query project knowledge base using RAG system',
-    usage: 'npm run rag:query -- "your question"',
-    options: {
-      '--verbose': 'Show detailed query process',
-      '--local': 'Use local model instead of API'
-    },
-    examples: [
-      'npm run rag:query -- "How does ProductCard component work?"',
-      'npm run rag:query -- "Debug image 404 errors" --verbose'
-    ],
-    category: 'rag'
-  },
-  'rag:clean': {
-    description: 'Clean RAG database and vector embeddings',
-    usage: 'npm run rag:clean [-- --dry-run]',
-    options: {
-      '--dry-run': 'Preview cleanup without executing'
-    },
-    examples: [
-      'npm run rag:clean',
-      'npm run rag:clean -- --dry-run'
-    ],
-    category: 'rag'
+    category: 'data'
   },
   'ai:validate': {
     description: 'Validate all tools are working correctly',
@@ -197,16 +157,21 @@ Available Categories:
   code:*        Code quality and review
   content:*     Content generation and SEO
   dev:*         Development tools
-  vps:*         VPS management
-  rag:*         RAG/AI memory operations
+  data:*        Data validation and schemas
   ai:*          AI-specific helpers
 
 Common Commands:
   npm run help git:commit      - Get help for git commit
   npm run help code:review     - Get help for code review
-  npm run help vps:spinup      - Get help for VPS creation
+  npm run help data:validate   - Get help for data validation
   npm run git:status           - Check repository status
-  npm run ai:validate          - Validate all tools
+  npm run ai:validate:all      - Validate all tools
+
+Moved Tools (now in separate repositories):
+  VPS Tools:    /Users/kristoffersanio/git/bs-vps-tools/
+  RAG System:   /Users/kristoffersanio/git/bs-rag-tools/
+  Forge Dev:    /Users/kristoffersanio/git/bs-forge-dev/
+  MCP Servers:  /Users/kristoffersanio/git/bs-mcp-servers/
 
 AI-Friendly Features:
   --dry-run     Preview commands without executing
@@ -275,7 +240,7 @@ if (!command) {
   showCommandHelp(command);
 } else {
   // Check if it's a category
-  const categories = ['git', 'code', 'content', 'dev', 'vps', 'rag', 'ai', 'help'];
+  const categories = ['git', 'code', 'content', 'dev', 'data', 'ai', 'help'];
   if (categories.includes(command)) {
     showCategoryHelp(command);
   } else {

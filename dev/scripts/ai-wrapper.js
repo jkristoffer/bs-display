@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from 'child_process';
+
 const args = process.argv.slice(2);
 
 // Parse AI-specific flags

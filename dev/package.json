@@ -34,7 +34,6 @@
     "content:seo:auto": "npm run content:seo:cli -- seo-auto-optimize",
     "ai:performance": "node scripts/agent-performance-tracker.js --summary",
     "ai:tools:list": "node scripts/list-automation-tools.js",
-    "ai:context": "cat CLAUDE.md",
     "help": "node scripts/help-system.js",
     "git:commit:ai": "node scripts/ai-wrapper.js ./scripts/commit",
     "git:status:json": "git status --short | node scripts/json-formatter.js --type=gitStatus",
@@ -43,9 +42,7 @@
     "ai:validate:git": "node scripts/validate-tools.js git",
     "ai:validate:code": "node scripts/validate-tools.js code",
     "ai:validate:dry": "npm run git:commit:ai -- --dry-run",
-    "data:validate": "node scripts/validate-json-schema.js",
-    "data:validate:maxhub": "node scripts/validate-json-schema.js maxhub",
-    "data:validate:file": "node scripts/validate-json-schema.js --file"
+    "data:validate": "node scripts/validate-json-schema.js"
   },
   "author": "Kris",
   "license": "ISC",

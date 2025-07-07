@@ -57,17 +57,21 @@ npm run help code:review
 
 **Transform from stateless AI to project-aware assistant with comprehensive codebase memory.**
 
-### **Quick Commands**
-```bash
-# Project-aware queries with full context
-npm run rag:query -- "How does the ProductCard component work?"
-npm run rag:query -- "Images are 404ing on product pages"
-npm run rag:query -- "Quiz component for functional programming standards"
-npm run rag:query -- "How should I implement user authentication?"
+⚠️ **The RAG system has been moved to a separate repository for better modularity.**
 
-# Project maintenance
-npm run rag:setup      # Initial setup (one-time)
-npm run rag:clean      # Clean and re-ingest after major changes
+### **New Location & Setup**
+```bash
+# Clone the separate RAG tools repository
+git clone /Users/kristoffersanio/git/bs-rag-tools
+cd bs-rag-tools
+
+# Setup for this project
+pip install -r requirements.txt
+export GEMINI_API_KEY="your_api_key_here"
+
+# Project-aware queries with full context
+./gemini_rag_wrapper.sh "How does the ProductCard component work?"
+./gemini_rag_wrapper.sh "Images are 404ing on product pages"
 ```
 
 ### **Learn More**
@@ -81,21 +85,21 @@ npm run rag:clean      # Clean and re-ingest after major changes
 
 **Analyze PDF files using Gemini CLI through Claude Code integration.**
 
-### **Quick Commands**
+⚠️ **The MCP PDF analyzer has been moved to a separate repository for better modularity.**
+
+### **New Location & Setup**
 ```bash
-# Setup MCP server (one-time)
-npm run mcp:pdf:setup
+# Clone the separate MCP servers repository
+git clone /Users/kristoffersanio/git/bs-mcp-servers
+cd bs-mcp-servers/pdf-analyzer
 
-# Build/rebuild server
-npm run mcp:pdf:build
-
-# Test server functionality
-npm run mcp:pdf:test
+# Setup and build
+npm install && npm run build
 
 # Claude Code integration
-npm run mcp:claude:add      # Add server to Claude Code
-npm run mcp:claude:list     # List configured servers
-npm run mcp:claude:remove   # Remove server
+claude mcp add pdf-analyzer -s project -- node /Users/kristoffersanio/git/bs-mcp-servers/pdf-analyzer/dist/index.js
+claude mcp list     # List configured servers
+claude mcp remove pdf-analyzer  # Remove server
 ```
 
 ### **Usage in Claude Code**

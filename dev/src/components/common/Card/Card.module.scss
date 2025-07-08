@@ -1,0 +1,233 @@
+/* Enhanced Card Component for Redesign */
+
+.card {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-smooth);
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  
+  /* Default variant */
+  &--default {
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Glass variant */
+  &--glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Gradient variant */
+  &--gradient {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    
+    .cardTitle,
+    .cardText {
+      color: white;
+    }
+  }
+  
+  /* Outlined variant */
+  &--outlined {
+    background: transparent;
+    border: 2px solid var(--color-border-default);
+    box-shadow: none;
+  }
+  
+  /* Hoverable effect */
+  &--hoverable {
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      
+      .cardImage img {
+        transform: scale(1.05);
+      }
+      
+      &.card--gradient {
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+      }
+      
+      &.card--glass {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+    
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+  
+  /* Padding variants */
+  &--padding-sm {
+    .cardContent {
+      padding: var(--space-sm);
+    }
+  }
+  
+  &--padding-md {
+    .cardContent {
+      padding: var(--space-md);
+    }
+  }
+  
+  &--padding-lg {
+    .cardContent {
+      padding: var(--space-lg);
+    }
+  }
+}
+
+/* Card sections */
+.cardImage {
+  position: relative;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-smooth);
+  }
+}
+
+.cardContent {
+  padding: var(--space-card);
+  
+  &:first-child {
+    padding-top: var(--space-card);
+  }
+  
+  &:last-child {
+    padding-bottom: var(--space-card);
+  }
+}
+
+.cardFooter {
+  padding: var(--space-md) var(--space-card);
+  border-top: 1px solid var(--color-border-light);
+  background: var(--color-surface-muted);
+  
+  .card--gradient & {
+    border-top-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .card--glass & {
+    border-top-color: var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.cardTitle {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-headers);
+  color: var(--color-text-primary);
+  
+  .card--gradient & {
+    color: white;
+  }
+}
+
+.cardText {
+  margin: 0 0 var(--space-md) 0;
+  font-size: var(--font-size-body-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-text-secondary);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  .card--gradient & {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    border-radius: 0.75rem;
+    
+    &--hoverable:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  .cardContent {
+    padding: var(--space-md);
+  }
+  
+  .cardTitle {
+    font-size: var(--font-size-h5);
+  }
+  
+  .cardText {
+    font-size: var(--font-size-body-small);
+  }
+}
+
+/* Animation enhancements */
+@media (prefers-reduced-motion: no-preference) {
+  .card--hoverable {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-normal) var(--ease-smooth);
+    }
+    
+    &:hover::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Card grid utilities */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+/* Special card effects */
+.cardFloating {
+  animation: float 6s ease-in-out infinite;
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.cardPulse {
+  animation: pulse 3s ease-in-out infinite;
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

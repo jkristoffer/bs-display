@@ -1,0 +1,2 @@
+export { Card, CardImage, CardContent, CardFooter, CardTitle, CardText } from './Card';
+export type { CardProps, CardImageProps, CardContentProps, CardFooterProps, CardTitleProps, CardTextProps } from './Card';

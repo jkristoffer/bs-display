@@ -63,9 +63,9 @@
 }
 
 .quiz-container {
-  max-width: 960px;
+  max-width: var(--container-default);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 var(--space-md);
   position: relative;
 
   // Hybrid badge styles
@@ -561,25 +561,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-small);
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-body);
     color: var(--color-text-secondary);
+    padding: var(--space-md);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-md);
 
     .progress-text {
-      margin-right: var(--spacing-sm);
+      margin-right: var(--space-sm);
+      font-weight: var(--font-weight-medium);
     }
 
     .progress-bar {
-      width: 200px;
-      height: 6px;
-      background-color: rgba(var(--color-accent-primary-rgb), 0.2);
-      border-radius: 3px;
+      width: 240px;
+      height: 8px;
+      background: var(--glass-bg);
+      border-radius: var(--radius-full);
       overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 
       .progress-fill {
         height: 100%;
-        background-color: var(--color-accent-primary);
-        transition: width 0.3s ease;
+        background: var(--gradient-primary);
+        transition: width var(--duration-normal) var(--ease-smooth);
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 100%
+          );
+          animation: progress-shimmer 1.5s infinite;
+        }
       }
     }
   }
@@ -1464,40 +1490,41 @@
   }
 }
 
-// Modern CTA button styling
+// Modern CTA button styling with Phase 1 design system
 .cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--gradient-primary);
   color: white;
   border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: var(--font-size-body-regular);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-body);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--duration-normal) var(--ease-bounce);
   text-decoration: none;
   text-align: center;
   min-width: 160px;
-  gap: var(--spacing-sm);
+  gap: var(--space-sm);
   position: relative;
   overflow: hidden;
-  animation: fadeInUp 0.8s ease-out 0.7s both;
+  animation: animate-fade-up 0.8s ease-out 0.7s both;
+  box-shadow: var(--shadow-lg);
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    background: var(--gradient-success);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
 
     &::before {
       opacity: 1;
@@ -1513,21 +1540,38 @@
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
 
     &::before {
       opacity: 0;
     }
   }
 
+  // Glass variant for Phase 1 integration
+  &.cta-button--glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-primary);
+
+    &::before {
+      background: var(--gradient-primary);
+    }
+
+    &:hover {
+      color: white;
+      border-color: transparent;
+    }
+  }
+
   // Alternative button styles
   &.cta-button--secondary {
     background: transparent;
-    border: 2px solid rgba(59, 130, 246, 0.3);
-    color: #3b82f6;
+    border: 2px solid var(--glass-border);
+    color: var(--color-primary);
 
     &::before {
-      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      background: var(--gradient-primary);
     }
 
     &:hover {
@@ -1537,15 +1581,17 @@
   }
 }
 
-// Modern question container
+// Modern question container with Phase 1 design
 .questions-container {
-  background: white;
-  border-radius: 24px;
-  padding: calc(var(--spacing-xl) * 1.5);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-section);
+  box-shadow: var(--shadow-2xl);
   position: relative;
   overflow: hidden;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--space-xl);
 
   &::before {
     content: '';
@@ -1554,7 +1600,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    background: var(--gradient-primary);
   }
 }
 
@@ -1604,15 +1650,17 @@
   }
 
   .option-button {
-    padding: var(--spacing-lg);
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    background: white;
+    padding: var(--space-card);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
     text-align: left;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--duration-normal) var(--ease-bounce);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
 
     &::before {
       content: '';
@@ -1621,16 +1669,17 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+      background: var(--gradient-primary);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform var(--duration-normal) var(--ease-smooth);
     }
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--color-primary);
+      background: var(--glass-bg-hover);
 
       &::before {
         transform: scaleX(1);
@@ -1638,13 +1687,14 @@
     }
 
     &.selected {
-      border-color: #3b82f6;
+      border-color: var(--color-primary);
       background: linear-gradient(
         135deg,
-        rgba(59, 130, 246, 0.05) 0%,
-        rgba(139, 92, 246, 0.05) 100%
+        rgba(59, 130, 246, 0.1) 0%,
+        rgba(139, 92, 246, 0.1) 100%
       );
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+      box-shadow: var(--shadow-2xl);
+      transform: scale(1.02);
 
       &::before {
         transform: scaleX(1);
@@ -1664,14 +1714,17 @@
   }
 }
 
-// Modern results container
+// Modern results container with Phase 1 design
 .quiz-results {
-  background: white;
-  border-radius: 24px;
-  padding: calc(var(--spacing-xl) * 1.5);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-section);
+  box-shadow: var(--shadow-2xl);
   position: relative;
   overflow: hidden;
+  animation: animate-fade-up 0.6s ease-out;
 
   &::before {
     content: '';
@@ -1680,7 +1733,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #10b981 0%, #22c55e 100%);
+    background: var(--gradient-success);
   }
 }
 
@@ -3340,5 +3393,26 @@
         }
       }
     }
+  }
+}
+
+// Phase 1 Quiz Animation Keyframes
+@keyframes progress-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes animate-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

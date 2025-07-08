@@ -51,64 +51,115 @@ stats.commonFeatures = Object.entries(featureCount)
 
 ---
 
-<section id="what-is" class="content-section">
-  <div class="container">
-    <div class="whatis-header">
-      <h2>What is a Smart Whiteboard?</h2>
-      <p class="section-intro">
+<section id="what-is" class="what-is-section">
+  <!-- Background Elements -->
+  <div class="what-is-bg-elements">
+    <div class="bg-pattern"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+  </div>
+  
+  <div class="section-container">
+    <div class="section-header animate-fade-up">
+      <div class="section-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        Interactive Technology
+      </div>
+      <h2 class="section-title">What is a Smart Whiteboard?</h2>
+      <p class="section-subtitle">
         Discover how interactive displays are revolutionizing collaboration across industries
       </p>
     </div>
 
-    <div class="whatis-hero">
-      <div class="hero-content">
-        <div class="definition-section">
+    <div class="definition-hero">
+      <div class="hero-content animate-fade-up">
+        <div class="definition-section glass-light">
+          <div class="definition-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+              <circle cx="9" cy="9" r="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 15L16 10L5 21" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
           <h3>Interactive Digital Display</h3>
           <p>
-            A smart whiteboard is a <span class="highlight1">large-format touchscreen display</span> 
+            A smart whiteboard is a <span class="highlight-primary">large-format touchscreen display</span> 
             that combines the functionality of a traditional whiteboard with 
-            <span class="highlight1">advanced digital capabilities</span>. These interactive displays 
-            enable <span class="highlight2">real-time collaboration</span>, 
-            <span class="highlight2">multimedia presentations</span>, and 
-            <span class="highlight2">wireless connectivity</span> for modern workspaces.
+            <span class="highlight-primary">advanced digital capabilities</span>. These interactive displays 
+            enable <span class="highlight-success">real-time collaboration</span>, 
+            <span class="highlight-success">multimedia presentations</span>, and 
+            <span class="highlight-success">wireless connectivity</span> for modern workspaces.
           </p>
         </div>
-        <div class="hero-image">
-          <img
-            src={whatIsSmartWhiteboard}
-            alt="Smart Whiteboard Interactive Display"
-            width={350}
-          />
+        <div class="hero-image animate-fade-up">
+          <div class="image-container glass-light">
+            <img
+              src={whatIsSmartWhiteboard}
+              alt="Smart Whiteboard Interactive Display"
+              width={350}
+            />
+            <div class="image-overlay"></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="whatis-stats">
+    <div class="stats-section">
       <div class="stats-grid">
-        <div class="stat-card">
+        <div class="stat-card glass-light animate-fade-up" style="animation-delay: 0.1s">
+          <div class="stat-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21H17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <span class="stat-number">{stats.totalModels}+</span>
           <span class="stat-label">Available Models</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card glass-light animate-fade-up" style="animation-delay: 0.2s">
+          <div class="stat-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <span class="stat-number">{stats.sizeRange.min}" - {stats.sizeRange.max}"</span>
           <span class="stat-label">Size Range</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card glass-light animate-fade-up" style="animation-delay: 0.3s">
+          <div class="stat-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89317 18.7122 8.75608 18.1676 9.45768C17.623 10.1593 16.8604 10.6597 16 10.88M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <span class="stat-number">{stats.brands.length}</span>
           <span class="stat-label">Leading Brands</span>
         </div>
-        <div class="stat-card">
+        <div class="stat-card glass-light animate-fade-up" style="animation-delay: 0.4s">
+          <div class="stat-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M9 12L11 14L15 10M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <span class="stat-number">{stats.touchTechnologies.length}</span>
           <span class="stat-label">Touch Technologies</span>
         </div>
       </div>
     </div>
 
-    <div class="whatis-capabilities">
-      <h3>Core Capabilities</h3>
+    <div class="capabilities-section">
+      <div class="capabilities-header animate-fade-up">
+        <h3>Core Capabilities</h3>
+        <p>Explore the powerful features that make smart whiteboards essential for modern collaboration</p>
+      </div>
       <div class="capabilities-grid">
-        <div class="capability-card">
-          <div class="capability-icon">✍️</div>
+        <div class="capability-card glass-light animate-fade-up" style="animation-delay: 0.1s">
+          <div class="capability-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M17 3C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V19C19 19.5304 18.7893 20.0391 18.4142 20.4142C18.0391 20.7893 17.5304 21 17 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17ZM17 19V5H7V19H17ZM17.5 22C17.7652 22 18.0196 21.8946 18.2071 21.7071C18.3946 21.5196 18.5 21.2652 18.5 21C18.5 20.7348 18.3946 20.4804 18.2071 20.2929C18.0196 20.1054 17.7652 20 17.5 20C17.2348 20 16.9804 20.1054 16.7929 20.2929C16.6054 20.4804 16.5 20.7348 16.5 21C16.5 21.2652 16.6054 21.5196 16.7929 21.7071C16.9804 21.8946 17.2348 22 17.5 22Z" fill="currentColor"/>
+            </svg>
+          </div>
           <h4>Touch & Write</h4>
           <p>Multi-point touch recognition with stylus support for natural writing and drawing</p>
           <div class="tech-tags">
@@ -117,8 +168,12 @@ stats.commonFeatures = Object.entries(featureCount)
             ))}
           </div>
         </div>
-        <div class="capability-card">
-          <div class="capability-icon">📱</div>
+        <div class="capability-card glass-light animate-fade-up" style="animation-delay: 0.2s">
+          <div class="capability-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6ZM12 18C10.9 18 10 17.1 10 16S10.9 14 12 14 14 14.9 14 16 13.1 18 12 18ZM16 10H8V6H16V10Z" fill="currentColor"/>
+            </svg>
+          </div>
           <h4>Wireless Connectivity</h4>
           <p>Connect devices wirelessly to share content, present, and collaborate seamlessly</p>
           <div class="tech-tags">
@@ -127,8 +182,14 @@ stats.commonFeatures = Object.entries(featureCount)
             <span class="tech-tag">Screen Mirroring</span>
           </div>
         </div>
-        <div class="capability-card">
-          <div class="capability-icon">🎯</div>
+        <div class="capability-card glass-light animate-fade-up" style="animation-delay: 0.3s">
+          <div class="capability-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+              <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
+              <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
           <h4>High-Resolution Display</h4>
           <p>Crystal clear visuals with support for 4K content and detailed presentations</p>
           <div class="tech-tags">
@@ -137,8 +198,14 @@ stats.commonFeatures = Object.entries(featureCount)
             ))}
           </div>
         </div>
-        <div class="capability-card">
-          <div class="capability-icon">🖥️</div>
+        <div class="capability-card glass-light animate-fade-up" style="animation-delay: 0.4s">
+          <div class="capability-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L10.5 14.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 20L18 22L22 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <h4>Built-in Computing</h4>
           <p>Android OS with apps, cloud storage, and standalone functionality</p>
           <div class="tech-tags">
@@ -150,12 +217,21 @@ stats.commonFeatures = Object.entries(featureCount)
       </div>
     </div>
 
-
-    <div class="whatis-applications">
-      <h3>Where Are Smart Whiteboards Used?</h3>
+    <div class="applications-section">
+      <div class="applications-header animate-fade-up">
+        <h3>Where Are Smart Whiteboards Used?</h3>
+        <p>From classrooms to boardrooms, discover how interactive displays transform collaboration</p>
+      </div>
       <div class="applications-grid">
-        <div class="application-card education">
-          <h4>🎓 Education</h4>
+        <div class="application-card education glass-light animate-fade-up" style="animation-delay: 0.1s">
+          <div class="application-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M22 10V6C22 5.46957 21.7893 4.96086 21.4142 4.58579C21.0391 4.21071 20.5304 4 20 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V10C2 10.5304 2.21071 11.0391 2.58579 11.4142C2.96086 11.7893 3.46957 12 4 12H20C20.5304 12 21.0391 11.7893 21.4142 11.4142C21.7893 11.0391 22 10.5304 22 10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 20H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Education</h4>
           <ul>
             <li>Interactive classroom learning</li>
             <li>Student collaboration</li>
@@ -163,8 +239,13 @@ stats.commonFeatures = Object.entries(featureCount)
             <li>Remote learning support</li>
           </ul>
         </div>
-        <div class="application-card business">
-          <h4>💼 Business</h4>
+        <div class="application-card business glass-light animate-fade-up" style="animation-delay: 0.2s">
+          <div class="application-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>Business</h4>
           <ul>
             <li>Meeting room presentations</li>
             <li>Brainstorming sessions</li>
@@ -172,8 +253,18 @@ stats.commonFeatures = Object.entries(featureCount)
             <li>Project collaboration</li>
           </ul>
         </div>
-        <div class="application-card creative">
-          <h4>🎨 Creative Industries</h4>
+        <div class="application-card creative glass-light animate-fade-up" style="animation-delay: 0.3s">
+          <div class="application-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+              <path d="M12 2C13.1046 2 14 2.89543 14 4C14 5.10457 13.1046 6 12 6C10.8954 6 10 5.10457 10 4C10 2.89543 10.8954 2 12 2Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Creative Industries</h4>
           <ul>
             <li>Design studios</li>
             <li>Architecture planning</li>
@@ -184,18 +275,721 @@ stats.commonFeatures = Object.entries(featureCount)
       </div>
     </div>
 
-    <div class="whatis-cta">
-      <div class="cta-content">
-        <h3>Ready to Explore Smart Whiteboard Options?</h3>
-        <p>Browse our complete selection of interactive displays or take our quiz to find the perfect match for your needs</p>
-        <div class="cta-buttons">
-          <a href="/products/smartboards/" class="btn-primary">View All Products</a>
-          <a href="/quiz" class="btn-secondary">Take Product Quiz</a>
+    <div class="cta-section">
+      <div class="cta-container glass-light animate-fade-up">
+        <div class="cta-content">
+          <div class="cta-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Ready to Explore Smart Whiteboard Options?</h3>
+          <p>Browse our complete selection of interactive displays or take our quiz to find the perfect match for your needs</p>
+          <div class="cta-buttons">
+            <a href="/products/smartboards/" class="btn-primary">
+              View All Products
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/quiz" class="btn-secondary">
+              Take Product Quiz
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <style lang="scss">
-  @use './WhatIsSection.scss';
+  .what-is-section {
+    padding: var(--space-section) 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background Elements */
+  .what-is-bg-elements {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+  }
+
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.05;
+  }
+
+  .bg-glow-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+    top: -250px;
+    right: -250px;
+    animation: glow1Float 35s ease-in-out infinite;
+  }
+
+  .bg-glow-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    bottom: -200px;
+    left: -200px;
+    animation: glow2Float 30s ease-in-out infinite reverse;
+  }
+
+  .section-container {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-section);
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--gradient-success);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .section-title {
+    font-size: var(--text-hero);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--text-hero-line-height);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-lg) 0;
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: var(--text-subsection);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Definition Hero */
+  .definition-hero {
+    margin-bottom: var(--space-section);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+  }
+
+  .definition-section {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-card);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-success);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+  }
+
+  .definition-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin-bottom: var(--space-lg);
+  }
+
+  .definition-section h3 {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .definition-section p {
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .highlight-primary {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .highlight-success {
+    color: var(--color-success);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .image-container {
+    position: relative;
+    border-radius: var(--radius-card-lg);
+    overflow: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-2xl);
+    transition: all var(--duration-normal) var(--ease-bounce);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-success);
+      z-index: 1;
+    }
+
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-3xl);
+    }
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--duration-normal) var(--ease-smooth);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.1) 0%, 
+      rgba(59, 130, 246, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+  }
+
+  .image-container:hover .image-overlay {
+    opacity: 0.3;
+  }
+
+  .image-container:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Stats Section */
+  .stats-section {
+    margin-bottom: var(--space-section);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-bounce);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-success);
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--ease-smooth);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+    
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow-2xl);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .stat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin: 0 auto var(--space-md) auto;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+  }
+
+  .stat-label {
+    font-size: var(--text-body);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Capabilities Section */
+  .capabilities-section {
+    margin-bottom: var(--space-section);
+  }
+
+  .capabilities-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    
+    h3 {
+      font-size: var(--text-section);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-md) 0;
+    }
+    
+    p {
+      font-size: var(--text-subsection);
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .capability-card {
+    padding: var(--space-card);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-bounce);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-success);
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--ease-smooth);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+    
+    &:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-2xl);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .capability-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin-bottom: var(--space-lg);
+  }
+
+  .capability-card h4 {
+    font-size: var(--text-subsection);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  .capability-card p {
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .tech-tag {
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--gradient-success);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Applications Section */
+  .applications-section {
+    margin-bottom: var(--space-section);
+  }
+
+  .applications-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    
+    h3 {
+      font-size: var(--text-section);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-md) 0;
+    }
+    
+    p {
+      font-size: var(--text-subsection);
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .application-card {
+    padding: var(--space-card);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-bounce);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-success);
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--ease-smooth);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+    
+    &:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-2xl);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .application-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin-bottom: var(--space-lg);
+  }
+
+  .application-card h4 {
+    font-size: var(--text-subsection);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .application-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .application-card li {
+    padding: var(--space-xs) 0;
+    color: var(--color-text-secondary);
+    position: relative;
+    padding-left: var(--space-lg);
+    
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /* CTA Section */
+  .cta-section {
+    margin-top: var(--space-section);
+  }
+
+  .cta-container {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card-lg);
+    padding: var(--space-section);
+    text-align: center;
+    box-shadow: var(--shadow-2xl);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-success);
+      border-radius: var(--radius-card-lg) var(--radius-card-lg) 0 0;
+    }
+  }
+
+  .cta-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
+    margin: 0 auto var(--space-lg) auto;
+  }
+
+  .cta-content h3 {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  .cta-content p {
+    font-size: var(--text-subsection);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--space-xl) auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-button);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-bounce);
+    position: relative;
+    overflow: hidden;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform var(--duration-normal) var(--ease-smooth);
+    }
+    
+    &:hover svg {
+      transform: translateX(4px);
+    }
+  }
+
+  .btn-primary {
+    background: var(--gradient-success);
+    color: white;
+    box-shadow: var(--shadow-lg);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-2xl);
+    }
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-success);
+    border: 2px solid var(--color-success);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--color-success);
+      transition: width var(--duration-normal) var(--ease-smooth);
+      z-index: -1;
+    }
+    
+    &:hover {
+      color: white;
+      
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+
+  /* Animations */
+  @keyframes glow1Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-30px, -25px) rotate(120deg); }
+    66% { transform: translate(25px, -30px) rotate(240deg); }
+  }
+
+  @keyframes glow2Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(35px, -20px) rotate(-120deg); }
+    66% { transform: translate(-20px, -35px) rotate(-240deg); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+    }
+    
+    .capabilities-grid, .applications-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bg-glow-1, .bg-glow-2 {
+      animation: none !important;
+    }
+    
+    .what-is-section {
+      backdrop-filter: none;
+    }
+    
+    * {
+      transition: none !important;
+    }
+  }
 </style>

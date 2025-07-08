@@ -1,47 +1,8 @@
 {
   "version": "1.0",
   "lastUpdated": "2025-07-04",
-  "nextPostDate": "2025-07-07",
+  "nextPostDate": "2025-07-11",
   "scheduledPosts": [
-    {
-      "id": "smart-board-setup-guide-2025",
-      "title": "How to Set Up Smart Boards for Maximum Classroom Engagement",
-      "description": "Step-by-step guide to installing and configuring smart boards for optimal educational outcomes and student engagement.",
-      "template": "how-to",
-      "category": "Installation Guide",
-      "scheduledDate": "2025-07-10",
-      "keywords": [
-        "smart board setup",
-        "classroom technology",
-        "educational displays",
-        "installation guide"
-      ],
-      "estimatedReadTime": "12 min read",
-      "data": {
-        "mainTopic": "Smart Board Installation and Setup",
-        "hook": "Proper smart board setup is crucial for creating an engaging and effective learning environment."
-      }
-    },
-    {
-      "id": "corporate-digital-signage-case-study",
-      "title": "Corporate Digital Signage: Transforming Modern Workplace Communication",
-      "description": "Real-world case study showing how digital signage solutions improved internal communications and employee engagement in corporate environments.",
-      "template": "use-case",
-      "category": "Case Study",
-      "scheduledDate": "2025-07-13",
-      "keywords": [
-        "digital signage",
-        "corporate communication",
-        "workplace technology",
-        "employee engagement"
-      ],
-      "estimatedReadTime": "10 min read",
-      "data": {
-        "industry": "Corporate Communications",
-        "mainTopic": "Digital Signage Implementation",
-        "hook": "Modern corporations are revolutionizing internal communications through strategic digital signage deployment."
-      }
-    },
     {
       "id": "interactive-display-buyers-guide-2025",
       "title": "Interactive Display Buyer's Guide 2025: Everything You Need to Know",

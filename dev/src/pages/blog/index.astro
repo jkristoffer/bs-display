@@ -56,97 +56,188 @@ function formatDate(date: Date): string {
     subtitle="Insights, guides, and industry news about smart display technologies"
   />
   
-  <section class="section">
-    <div class="container blog-index-container">
-      <div class="blog-posts-grid" id="blog-posts-container">
-      {
-        currentPosts.map((post) => (
-          <article class="blog-card">
-            {post.data.image && (
-              <div class="blog-card-image">
-                <img
-                  src={post.data.image}
-                  alt={post.data.title}
-                  loading="lazy"
-                />
-              </div>
-            )}
-            <div class="blog-card-content">
-              <div class="blog-card-header">
-                {post.data.category && (
-                  <span class="blog-category">{post.data.category}</span>
-                )}
-                {post.data.publishDate && (
-                  <time datetime={post.data.publishDate.toISOString()} class="blog-date">
-                    {formatDate(post.data.publishDate)}
-                  </time>
-                )}
-              </div>
-              
-              <h2>
-                <a href={`/blog/${post.id}`}>{post.data.title}</a>
-              </h2>
-              
-              <p class="blog-excerpt">{post.data.description}</p>
-              
-              <div class="blog-card-footer">
-                <div class="blog-meta">
-                  {post.data.author && (
-                    <div class="blog-author">
-                      <span class="author-avatar"></span>
-                      <span>By {post.data.author}</span>
-                    </div>
-                  )}
+  <!-- Background Elements -->
+  <div class="blog-bg-elements">
+    <div class="bg-pattern"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+  </div>
+
+  <section class="blog-listing-modern">
+    <div class="blog-container">
+      <!-- Featured Article (First Post) -->
+      {currentPosts.length > 0 && (
+        <article class="featured-blog-card animate-fade-up">
+          <div class="featured-visual">
+            <div class="featured-image">
+              <img
+                src={currentPosts[0].data.image || '/assets/default-blog-featured.jpg'}
+                alt={currentPosts[0].data.title}
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'"
+              />
+              <div class="image-overlay"></div>
+            </div>
+            
+            <!-- Floating Stats -->
+            <div class="floating-stats">
+              <div class="stat-card">
+                <div class="stat-icon">📖</div>
+                <div class="stat-content">
+                  <div class="stat-number">5min</div>
+                  <div class="stat-label">Read</div>
                 </div>
-                
-                <a href={`/blog/${post.id}`} class="read-more-link">
-                  Read more <span class="read-more-arrow">→</span>
-                </a>
               </div>
             </div>
-          </article>
-        ))
-      }
+          </div>
+          
+          <div class="featured-content">
+            <div class="featured-meta">
+              {currentPosts[0].data.category && (
+                <span class="category-tag featured-category">
+                  {currentPosts[0].data.category}
+                </span>
+              )}
+              <time datetime={currentPosts[0].data.publishDate.toISOString()} class="publish-date">
+                {formatDate(currentPosts[0].data.publishDate)}
+              </time>
+            </div>
+            
+            <h1 class="featured-title">
+              <a href={`/blog/${currentPosts[0].id}`}>{currentPosts[0].data.title}</a>
+            </h1>
+            
+            <p class="featured-excerpt">{currentPosts[0].data.description}</p>
+            
+            <div class="featured-cta">
+              <a href={`/blog/${currentPosts[0].id}`} class="button-gradient animate-float">
+                Read Full Article
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+            
+            {currentPosts[0].data.author && (
+              <div class="featured-author">
+                <div class="author-avatar"></div>
+                <div class="author-info">
+                  <span class="author-name">By {currentPosts[0].data.author}</span>
+                  <span class="author-title">Content Specialist</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </article>
+      )}
+
+      <!-- Recent Articles Grid -->
+      {currentPosts.length > 1 && (
+        <div class="articles-section">
+          <div class="articles-header animate-fade-up">
+            <h2 class="articles-title">Latest Articles</h2>
+            <div class="articles-count">{currentPosts.length - 1} more posts</div>
+          </div>
+          
+          <div class="articles-grid" id="blog-posts-container">
+            {currentPosts.slice(1).map((post, index) => (
+              <article class="blog-card glass-light animate-fade-up" style={`animation-delay: ${index * 0.1}s`}>
+                <div class="card-image">
+                  <img
+                    src={post.data.image || '/assets/default-blog-article.jpg'}
+                    alt={post.data.title}
+                    loading="lazy"
+                    onerror="this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'"
+                  />
+                  <div class="card-overlay">
+                    <a href={`/blog/${post.id}`} class="overlay-link">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <div class="card-content">
+                  <div class="card-meta">
+                    {post.data.category && (
+                      <span class="category-tag">{post.data.category}</span>
+                    )}
+                    <time datetime={post.data.publishDate.toISOString()} class="card-date">
+                      {formatDate(post.data.publishDate)}
+                    </time>
+                  </div>
+                  
+                  <h3 class="card-title">
+                    <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                  </h3>
+                  
+                  <p class="card-excerpt">{post.data.description}</p>
+                  
+                  <div class="card-footer">
+                    <div class="reading-time">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      5 min read
+                    </div>
+                    {post.data.author && (
+                      <span class="card-author">By {post.data.author}</span>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
 
-    <div class="pagination-container">
-      {/* Server-side pagination controls */}
-      <div class="pagination-links">
-        {
-          hasPrevPage && (
-            <a href={prevPageUrl} class="pagination-link" rel="prev">
-              &larr; Previous
+      <!-- Modern Pagination -->
+      <div class="pagination-modern animate-fade-up">
+        <div class="pagination-info">
+          <span class="current-page">Page {currentPage}</span>
+          <span class="total-pages">of {totalPages}</span>
+        </div>
+        
+        <div class="pagination-controls">
+          {hasPrevPage && (
+            <a href={prevPageUrl} class="button-glass" rel="prev">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Previous
             </a>
-          )
-        }
-
-        <span class="pagination-info">Page {currentPage} of {totalPages}</span>
-
-        {
-          hasNextPage && (
-            <a href={nextPageUrl} class="pagination-link" rel="next">
-              Next &rarr;
+          )}
+          
+          {hasNextPage && (
+            <a href={nextPageUrl} class="button-gradient" rel="next">
+              Next
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </a>
-          )
-        }
-      </div>
-
-      {/* Client-side load more button */}
-      {
-        hasNextPage && (
+          )}
+        </div>
+        
+        {hasNextPage && (
           <button
             id="load-more-btn"
-            class="load-more-button"
+            class="button-glass load-more-enhanced"
             data-next-page={currentPage + 1}
             data-total-pages={totalPages}
           >
-            Load More
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 1V9M21 12H13M12 23V15M3 12H11" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Load More Articles
           </button>
-        )
-      }
+        )}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <script>
     // TypeScript interface for blog post
@@ -219,30 +310,46 @@ function formatDate(date: Date): string {
     // Helper function to create a post element from post data
     function createPostElement(post: BlogPost) {
       const article = document.createElement('article');
-      article.className = 'blog-card';
+      article.className = 'blog-card glass-light animate-fade-up';
 
       let html = '';
 
-      // Add image if available
+      // Add image with overlay
       if (post.image) {
         html += `
-        <div class="blog-card-image">
-          <img src="${post.image}" alt="${post.title}" loading="lazy" />
+        <div class="card-image">
+          <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'" />
+          <div class="card-overlay">
+            <a href="/blog/${post.slug}" class="overlay-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
         </div>
       `;
       }
 
-      // Add content
+      // Add content with modern styling
       html += `
-      <div class="blog-card-content">
-        ${post.category ? `<span class="blog-category">${post.category}</span>` : ''}
-        <h2>
+      <div class="card-content">
+        <div class="card-meta">
+          ${post.category ? `<span class="category-tag">${post.category}</span>` : ''}
+          ${post.publishDate ? `<time datetime="${post.publishDate}" class="card-date">${formatDate(new Date(post.publishDate))}</time>` : ''}
+        </div>
+        <h3 class="card-title">
           <a href="/blog/${post.slug}">${post.title}</a>
-        </h2>
-        <p class="blog-excerpt">${post.description}</p>
-        <div class="blog-meta">
-          ${post.publishDate ? `<time datetime="${post.publishDate}">${formatDate(new Date(post.publishDate))}</time>` : ''}
-          ${post.author ? `<span class="blog-author">By ${post.author}</span>` : ''}
+        </h3>
+        <p class="card-excerpt">${post.description}</p>
+        <div class="card-footer">
+          <div class="reading-time">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            5 min read
+          </div>
+          ${post.author ? `<span class="card-author">By ${post.author}</span>` : ''}
         </div>
       </div>
     `;
@@ -261,311 +368,629 @@ function formatDate(date: Date): string {
     }
   </script>
 
-  <style>
-    /* Hero Banner Styles */
-    .blog-hero-banner {
-      background: linear-gradient(135deg, rgba(var(--color-accent-primary-rgb), 0.9) 0%, rgba(var(--color-accent-primary-rgb), 0.7) 100%), url('/images/blog-hero.jpg') no-repeat center center;
-      background-size: cover;
-      width: 100%;
-      padding: var(--spacing-xxl) 0;
-      text-align: center;
-      color: var(--color-background);
-      margin-bottom: var(--spacing-xl);
+  <style lang="scss">
+    /* Blog Background Elements */
+    .blog-bg-elements {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .blog-hero-content {
-      max-width: 800px;
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+    }
+
+    .bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.05;
+    }
+
+    .bg-glow-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+      top: -250px;
+      right: -250px;
+      animation: glow1Float 20s ease-in-out infinite;
+    }
+
+    .bg-glow-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #10b981 0%, transparent 70%);
+      bottom: -200px;
+      left: -200px;
+      animation: glow2Float 15s ease-in-out infinite reverse;
+    }
+
+    /* Modern Blog Layout */
+    .blog-listing-modern {
+      position: relative;
+      padding: var(--space-section) 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+    }
+
+    .blog-container {
+      max-width: var(--container-default);
       margin: 0 auto;
-      padding: 0 var(--spacing-md);
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 2;
     }
 
-    .blog-hero-banner h1 {
-      font-size: var(--font-size-h1);
-      margin-bottom: var(--spacing-md);
-      font-weight: var(--font-weight-bold);
-    }
-
-    .blog-hero-banner p {
-      font-size: var(--font-size-body-large);
-      margin-bottom: 0;
-      opacity: 0.9;
-    }
-
-    @media (max-width: var(--breakpoint-md)) {
-      .blog-hero-banner {
-        padding: var(--spacing-xl) 0;
+    /* Featured Article */
+    .featured-blog-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: calc(var(--space-xl) * 2);
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-card);
+      box-shadow: var(--shadow-2xl);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
       }
       
-      .blog-hero-banner h1 {
-        font-size: calc(var(--font-size-h1) * 0.8);
+      @media (max-width: $breakpoint-lg) {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
     }
 
-    /* Blog Container Styles */
-    .blog-index-container {
-      max-width: var(--spacing-container-max-width);
-      margin: 0 auto;
-      padding: var(--spacing-lg) var(--spacing-md);
-    }
-
-    /* Blog header styles removed as replaced by hero banner */
-
-    .blog-posts-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: var(--spacing-lg);
-    }
-
-    @media (min-width: var(--breakpoint-md)) {
-      .blog-posts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: var(--breakpoint-lg)) {
-      .blog-posts-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .blog-card {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: var(--box-shadow-1);
-      transition: all 0.3s ease;
-      background-color: var(--color-surface);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+    .featured-visual {
       position: relative;
+      height: 400px;
     }
 
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(33, 33, 33, 0.2);
-    }
-    
-    .blog-card:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .blog-card:hover:before {
-      opacity: 1;
-    }
-
-    .blog-card-image {
-      height: 200px;
-      overflow: hidden;
+    .featured-image {
       position: relative;
+      width: 100%;
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      
+      &:hover img {
+        transform: scale(1.05);
+      }
     }
 
-    .blog-card-image:after {
-      content: '';
+    .image-overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 30%;
-      background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(59, 130, 246, 0.1) 0%, 
+        rgba(139, 92, 246, 0.1) 100%
+      );
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    .blog-card:hover .blog-card-image:after {
+    .featured-image:hover .image-overlay {
       opacity: 1;
     }
 
-    .blog-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .blog-card:hover .blog-card-image img {
-      transform: scale(1.05);
-    }
-
-    .blog-card-content {
-      padding: var(--spacing-md);
+    /* Floating Stats */
+    .floating-stats {
+      position: absolute;
+      top: 20px;
+      right: 20px;
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
-      height: 100%;
+      gap: var(--space-sm);
     }
 
-    .blog-category {
-      display: inline-block;
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-      color: var(--color-accent-primary);
-      padding: var(--spacing-xs) var(--spacing-sm);
-      border-radius: 1rem;
-      font-size: var(--font-size-smaller);
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 12px 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--glass-border);
+      animation: statFloat 3s ease-in-out infinite;
+    }
+
+    .stat-icon {
+      font-size: 20px;
+    }
+
+    .stat-number {
+      font-size: 16px;
       font-weight: var(--font-weight-bold);
-      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-primary);
+      line-height: 1;
     }
 
-    .blog-card-header {
+    .stat-label {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1;
+    }
+
+    /* Featured Content */
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .featured-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-sm);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
     }
 
-    .blog-card h2 {
-      font-size: var(--font-size-h3);
-      margin-bottom: var(--spacing-sm);
-      line-height: var(--line-height-headers);
-      transition: color 0.3s ease;
+    .featured-category {
+      background: var(--gradient-primary);
+      color: white;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-full);
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
     }
 
-    .blog-card h2 a {
+    .publish-date {
+      font-size: var(--text-body);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .featured-title {
+      font-size: var(--text-section);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--text-section-line-height);
+      margin: 0;
+      
+      a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        transition: all var(--duration-normal) var(--ease-smooth);
+        
+        &:hover {
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+    }
+
+    .featured-excerpt {
+      font-size: var(--text-body);
+      line-height: var(--text-body-line-height);
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .featured-cta {
+      .button-gradient {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        
+        svg {
+          width: 18px;
+          height: 18px;
+          transition: transform var(--duration-normal) var(--ease-smooth);
+        }
+        
+        &:hover svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+
+    .featured-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .author-name {
+      font-weight: var(--font-weight-semibold);
       color: var(--color-text-primary);
+    }
+
+    .author-title {
+      font-size: var(--text-body);
+      color: var(--color-text-secondary);
+    }
+
+    /* Articles Section */
+    .articles-section {
+      margin-bottom: calc(var(--space-xl) * 2);
+    }
+
+    .articles-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-xl);
+      
+      @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+      }
+    }
+
+    .articles-title {
+      font-size: var(--text-section);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+
+    .articles-count {
+      font-size: var(--text-body);
+      color: var(--color-text-secondary);
+      background: rgba(59, 130, 246, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .blog-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: cardSlideUp 0.6s ease-out both;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-2xl);
+        background: rgba(255, 255, 255, 0.15);
+        
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    .card-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay-link {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3b82f6;
       text-decoration: none;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
 
-    .blog-card h2 a:hover {
-      color: var(--color-accent-primary);
+    .blog-card:hover .card-overlay {
+      opacity: 1;
     }
 
-    .blog-excerpt {
-      color: var(--color-text-primary);
-      opacity: 0.8;
-      margin-bottom: var(--spacing-md);
-      font-size: var(--font-size-body-regular);
-      line-height: var(--line-height-default);
+    .blog-card:hover .overlay-link {
+      transform: scale(1);
+    }
+
+    .blog-card:hover .card-image img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--text-body);
+    }
+
+    .category-tag {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-full);
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+    }
+
+    .card-date {
+      color: var(--color-text-secondary);
+      font-size: var(--text-body);
+    }
+
+    .card-title {
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.3;
+      margin: 0;
+      
+      a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: #3b82f6;
+        }
+      }
+    }
+
+    .card-excerpt {
+      font-size: var(--text-body);
+      line-height: var(--text-body-line-height);
+      color: var(--color-text-secondary);
+      margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .blog-card-footer {
+    .card-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: auto;
-      padding-top: var(--spacing-sm);
-      border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
-    }
-    
-    .blog-meta {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-      font-size: var(--font-size-small);
-      color: var(--color-text-primary);
-      opacity: 0.7;
-    }
-    
-    .blog-date {
-      font-size: var(--font-size-smaller);
-      color: var(--color-text-primary);
-      opacity: 0.6;
-    }
-    
-    .blog-author {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-xs);
-    }
-    
-    .author-avatar {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background-color: rgba(var(--color-accent-primary-rgb), 0.2);
-      display: inline-block;
-    }
-    
-    .read-more-link {
-      font-size: var(--font-size-small);
-      font-weight: var(--font-weight-bold);
-      color: var(--color-accent-primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-xs);
-      transition: all 0.3s ease;
-    }
-    
-    .read-more-link:hover {
-      opacity: 0.8;
-    }
-    
-    .read-more-arrow {
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-    
-    .read-more-link:hover .read-more-arrow {
-      transform: translateX(4px);
+      padding-top: var(--space-sm);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: var(--text-body);
     }
 
-    /* Pagination styles */
-    .pagination-container {
-      margin-top: var(--spacing-xl);
+    .reading-time {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-text-secondary);
+      
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    .card-author {
+      color: var(--color-text-secondary);
+      font-size: var(--text-body);
+    }
+
+    /* Modern Pagination */
+    .pagination-modern {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--spacing-lg);
-    }
-
-    .pagination-links {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .pagination-link {
-      padding: var(--spacing-xs) var(--spacing-md);
-      border-radius: 4px;
-      background-color: var(--color-surface);
-      color: var(--color-text-primary);
-      border: 1px solid var(--color-border);
-      text-decoration: none;
-      font-weight: var(--font-weight-bold);
-      transition: all 0.3s ease;
-    }
-
-    .pagination-link:hover {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-      border-color: var(--color-accent-primary);
-      color: var(--color-accent-primary);
+      gap: var(--space-lg);
+      margin-top: calc(var(--space-xl) * 2);
+      padding: var(--space-lg);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--glass-border);
     }
 
     .pagination-info {
-      color: #666;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--text-body);
+      color: var(--color-text-secondary);
     }
 
-    .load-more-button {
-      padding: 12px 24px;
-      background-color: var(--color-button-primary-background);
-      color: var(--color-button-primary-text);
-      border: none;
-      border-radius: 4px;
+    .current-page {
       font-weight: var(--font-weight-bold);
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      color: var(--color-text-primary);
     }
 
-    .load-more-button:hover {
-      background-color: #fb8c00;
+    .pagination-controls {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
     }
 
-    .load-more-button:disabled {
-      background-color: var(--color-button-disabled-border);
-      color: var(--color-button-disabled-text);
-      cursor: not-allowed;
+    .pagination-controls .button-glass,
+    .pagination-controls .button-gradient {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .load-more-enhanced {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      
+      svg {
+        width: 20px;
+        height: 20px;
+        animation: rotate 2s linear infinite;
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        
+        svg {
+          animation-play-state: paused;
+        }
+      }
+    }
+
+    /* Animations */
+    @keyframes glow1Float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-30px, -20px) rotate(180deg); }
+    }
+
+    @keyframes glow2Float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(20px, -15px) rotate(-180deg); }
+    }
+
+    @keyframes cardSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes statFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: $breakpoint-lg) {
+      .featured-blog-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .featured-visual {
+        order: -1;
+      }
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      .pagination-controls {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .pagination-controls .button-glass,
+      .pagination-controls .button-gradient {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </MainLayout>

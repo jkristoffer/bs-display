@@ -21,6 +21,18 @@
         "type": "number | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "currentSlug",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "limit",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -69,6 +81,92 @@
       {
         "name": "items",
         "type": "{ label: string; path?: string; }[] | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "brand",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "brandLabel",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productId",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productLabel",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "any",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "BrochureCard",
+    "path": "src/components/common/BrochureCard/BrochureCard.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "brochureUrl",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "displayMode",
+        "type": "\"iframe\" | \"button\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "iframeHeight",
+        "type": "string | undefined",
         "required": false,
         "description": ""
       }
@@ -139,6 +237,200 @@
         "type": "\"left\" | \"right\" | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "href",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "id",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "iconPosition",
+        "type": "any",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "Card",
+    "path": "src/components/common/Card/Card.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"default\" | \"glass\" | \"gradient\" | \"outlined\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hoverable",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "padding",
+        "type": "\"sm\" | \"md\" | \"lg\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "type": "(() => void) | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "CategoryTab",
+    "path": "src/components/common/CategoryTabs/CategoryTab.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "category",
+        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/src/components/common/CategoryTabs/types\").CategoryConfig",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "type": "((categoryKey: import(\"/Users/kristoffersanio/git/bs-display/dev/src/components/common/CategoryTabs/types\").CategoryType) => void) | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "CategoryTabs",
+    "path": "src/components/common/CategoryTabs/CategoryTabs.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "activeCategory",
+        "type": "CategoryType",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "showCounts",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "EmptyState",
+    "path": "src/components/common/EmptyState/EmptyState.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "action",
+        "type": "{ label: string; onClick: () => void; } | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "suggestions",
+        "type": "string[] | undefined",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -154,6 +446,34 @@
     "name": "Footer",
     "path": "src/components/common/Footer/Footer.astro",
     "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "FormCheckbox",
+    "path": "src/components/common/Form/FormCheckbox.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "FormInput",
+    "path": "src/components/common/Form/FormInput.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "FormSelect",
+    "path": "src/components/common/Form/FormSelect.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "FormTextarea",
+    "path": "src/components/common/Form/FormTextarea.tsx",
+    "type": "React",
     "props": [],
     "description": ""
   },
@@ -185,8 +505,105 @@
         "type": "number | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "name",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "alt",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
+    "description": ""
+  },
+  {
+    "name": "Spinner",
+    "path": "src/components/common/Loading/Spinner.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"default\" | \"gradient\" | \"white\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "LoadingSpinner",
+    "path": "src/components/common/LoadingSpinner/LoadingSpinner.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "size",
+        "type": "\"small\" | \"medium\" | \"large\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "message",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "Nav",
+    "path": "src/components/common/Nav/Nav.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "NavItem",
+    "path": "src/components/common/Nav/NavItem.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ProductsMegaMenu",
+    "path": "src/components/common/Nav/ProductsMegaMenu.tsx",
+    "type": "React",
+    "props": [],
     "description": ""
   },
   {
@@ -194,6 +611,68 @@
     "path": "src/components/common/Nav/index.astro",
     "type": "Astro",
     "props": [],
+    "description": ""
+  },
+  {
+    "name": "ProductCard",
+    "path": "src/components/common/ProductCard/ProductCard.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "product",
+        "type": "ProductModel",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "displayMode",
+        "type": "\"grid\" | \"list\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showMatchScore",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "matchPercentage",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "actions",
+        "type": "{ viewDetails?: ProductCardAction; requestQuote?: ProductCardAction; } | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxFeatures",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "getRelevantFeatures",
+        "type": "((product: ProductModel, context?: string) => string[]) | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "context",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "\"smartboards\" | \"lecterns\" | \"accessories\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
@@ -296,8 +775,280 @@
         "type": "{ name?: string; property?: string; content: string; httpEquiv?: string; }[] | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "ogTitle",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ogDescription",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ogImage",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "ogType",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterCard",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterTitle",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterDescription",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterImage",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "canonicalUrl",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "structuredData",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "viewport",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "noindex",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nofollow",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "additionalTags",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
+    "description": ""
+  },
+  {
+    "name": "Search",
+    "path": "src/components/common/Search/Search.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "SearchInput",
+    "path": "src/components/common/Search/SearchInput.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onFocus",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onBlur",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onKeyDown",
+        "type": "((e: React.KeyboardEvent<HTMLInputElement>) => void) | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "autoFocus",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "SearchItem",
+    "path": "src/components/common/Search/SearchItem.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "result",
+        "type": "SearchResult",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "tabIndex",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "role",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-describedby",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "SearchResults",
+    "path": "src/components/common/Search/SearchResults.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "results",
+        "type": "SearchResult[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "activeCategory",
+        "type": "\"all\" | \"products\" | \"articles\" | \"resources\"",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isSearching",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "recentSearches",
+        "type": "string[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onCategoryChange",
+        "type": "(category: SearchCategory) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onResultSelect",
+        "type": "(result: SearchResult) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onRecentSearchSelect",
+        "type": "(search: string) => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "SmartProductImage",
+    "path": "src/components/common/SmartProductImage/SmartProductImage.tsx",
+    "type": "React",
+    "props": [],
     "description": ""
   },
   {
@@ -328,6 +1079,30 @@
         "type": "string | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "badge",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "badgeIcon",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -346,6 +1121,18 @@
       {
         "name": "subtitle",
         "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
         "required": true,
         "description": ""
       }
@@ -374,6 +1161,18 @@
         "name": "subtitle",
         "type": "string | undefined",
         "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": true,
         "description": ""
       }
     ],
@@ -415,6 +1214,24 @@
         "type": "string",
         "required": true,
         "description": ""
+      },
+      {
+        "name": "name",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "logoSrc",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "path",
+        "type": "any",
+        "required": true,
+        "description": ""
       }
     ],
     "description": ""
@@ -446,6 +1263,24 @@
       {
         "name": "points",
         "type": "string[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "image",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "any",
         "required": true,
         "description": ""
       }
@@ -489,6 +1324,18 @@
         "type": "number | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "limit",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -507,6 +1354,18 @@
       {
         "name": "itemsPerPage",
         "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "limit",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "any",
         "required": false,
         "description": ""
       }
@@ -568,6 +1427,36 @@
         "type": "boolean | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "image",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "recommendedModels",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isReversed",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -576,7 +1465,14 @@
     "name": "UsecasesSection",
     "path": "src/components/home/UsecasesSection/UsecasesSection.astro",
     "type": "Astro",
-    "props": [],
+    "props": [
+      {
+        "name": "usecases",
+        "type": "any",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
@@ -608,6 +1504,240 @@
         "type": "string",
         "required": true,
         "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "videoSrc",
+        "type": "any",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "DynamicFilterPanel",
+    "path": "src/components/products/FilterUI/FilterPanel/DynamicFilterPanel.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "allModels",
+        "type": "ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "filterConfig",
+        "type": "FilterConfig[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onFilterChange",
+        "type": "(filters: DynamicFilterState) => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "FilterOption",
+    "path": "src/components/products/FilterUI/FilterPanel/FilterOption.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "checked",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onChange",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "count",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "FilterPanel",
+    "path": "src/components/products/FilterUI/FilterPanel/FilterPanel.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "allModels",
+        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/src/types/product\").ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onFilterChange",
+        "type": "(filters: FilterState) => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "FilterPanelBackup",
+    "path": "src/components/products/FilterUI/FilterPanel/FilterPanelBackup.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "allModels",
+        "type": "ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onFilterChange",
+        "type": "(filters: import(\"/Users/kristoffersanio/git/bs-display/dev/src/types/product\").FilterState) => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "FilterUI",
+    "path": "src/components/products/FilterUI/FilterUI.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "allModels",
+        "type": "ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "\"smartboards\" | \"lecterns\" | \"accessories\" | \"collaboration\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "customFilters",
+        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/src/types/filter.types\").FilterConfig[] | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "FilterUIv2",
+    "path": "src/components/products/FilterUI/FilterUIv2.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "allModels",
+        "type": "ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ModelCard",
+    "path": "src/components/products/FilterUI/ModelDisplay/ModelCard.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "model",
+        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/src/types/product\").ProductModel",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "displayMode",
+        "type": "\"grid-3\" | \"grid-2\" | \"list\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ModelDisplay",
+    "path": "src/components/products/FilterUI/ModelDisplay/ModelDisplay.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "models",
+        "type": "ProductModel[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ProductDetails",
+    "path": "src/components/products/ProductDetails/ProductDetails.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "model",
+        "type": "ProductModel",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "productType",
+        "type": "\"smartboards\" | \"lecterns\" | \"accessories\" | \"collaboration\" | undefined",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -620,6 +1750,71 @@
     "description": ""
   },
   {
+    "name": "AlternativeRecommendations",
+    "path": "src/components/quiz/components/AlternativeRecommendations.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "secondaryRecommendations",
+        "type": "{ category: string; scorePercent: number; reason: string; }[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "results",
+        "type": "Record<string, import(\"/Users/kristoffersanio/git/bs-display/dev/src/components/quiz/types\").Result>",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getProductsForQuizResult",
+        "type": "(result: string) => { products: Product[]; allFeatures?: string[]; }",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getRelevantFeatures",
+        "type": "(product: Product, context?: string) => string[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "CategoryScores",
+    "path": "src/components/quiz/components/CategoryScores.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ProductRecommendations",
+    "path": "src/components/quiz/components/ProductRecommendations.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "result",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getProductsForQuizResult",
+        "type": "(result: string) => { products: Product[]; allFeatures?: string[]; }",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getRelevantFeatures",
+        "type": "(product: Product, context?: string) => string[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
     "name": "QuizErrorBoundary",
     "path": "src/components/quiz/components/QuizErrorBoundary.tsx",
     "type": "React",
@@ -627,9 +1822,111 @@
     "description": ""
   },
   {
+    "name": "QuizIntro",
+    "path": "src/components/quiz/components/QuizIntro.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "QuizQuestions",
+    "path": "src/components/quiz/components/QuizQuestions.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "questions",
+        "type": "Question[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isOptionSelected",
+        "type": "(questionId: string, option: Option) => boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getSelectionCount",
+        "type": "(questionId: string) => number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "toggleOption",
+        "type": "(questionId: string, option: Option, isMulti: boolean, maxSelections: number) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "allQuestionsAnswered",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onSubmit",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "QuizResultHeader",
+    "path": "src/components/quiz/components/QuizResultHeader.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isHybridResult",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "result",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getCategoryColor",
+        "type": "(category: string) => string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "secondaryCategory",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
     "name": "index",
     "path": "src/components/quiz/index.astro",
     "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "BackToTopButton",
+    "path": "src/components/sw-buying-guide/BackToTopButton.tsx",
+    "type": "React",
     "props": [],
     "description": ""
   },
@@ -656,6 +1953,18 @@
         "type": "string | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "ctaText",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ctaLink",
+        "type": "any",
+        "required": false,
+        "description": ""
       }
     ],
     "description": ""
@@ -671,7 +1980,20 @@
     "name": "ExpertAdviceSection",
     "path": "src/components/sw-buying-guide/ExpertAdviceSection.astro",
     "type": "Astro",
-    "props": [],
+    "props": [
+      {
+        "name": "title",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
@@ -697,6 +2019,32 @@
         "type": "string",
         "required": true,
         "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "MobileTableOfContents",
+    "path": "src/components/sw-buying-guide/MobileTableOfContents.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "items",
+        "type": "TocItem[]",
+        "required": true,
+        "description": ""
       }
     ],
     "description": ""
@@ -705,7 +2053,20 @@
     "name": "RelatedPostsSection",
     "path": "src/components/sw-buying-guide/RelatedPostsSection.astro",
     "type": "Astro",
-    "props": [],
+    "props": [
+      {
+        "name": "title",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "any",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
@@ -730,6 +2091,38 @@
         "type": "\"\" | \"bg-light\" | \"bg-accent\" | undefined",
         "required": false,
         "description": ""
+      },
+      {
+        "name": "id",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "bgClass",
+        "type": "any",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "StickyTableOfContents",
+    "path": "src/components/sw-buying-guide/StickyTableOfContents.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "items",
+        "type": "TocItem[]",
+        "required": true,
+        "description": ""
       }
     ],
     "description": ""
@@ -742,6 +2135,12 @@
       {
         "name": "items",
         "type": "TocItem[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "any",
         "required": true,
         "description": ""
       }

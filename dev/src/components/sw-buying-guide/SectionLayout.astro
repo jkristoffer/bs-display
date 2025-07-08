@@ -2,15 +2,126 @@
 interface Props {
   id?: string;
   title: string;
-  bgClass?: 'bg-light' | 'bg-accent' | '';
+  subtitle?: string;
+  bgClass?: 'bg-light' | 'bg-accent' | 'bg-glass' | '';
+  variant?: 'default' | 'hero' | 'minimal';
 }
 
-const { id, title, bgClass = '' } = Astro.props;
+const { id, title, subtitle, bgClass = '', variant = 'default' } = Astro.props;
 ---
 
-<section id={id} class={`content-section ${bgClass}`}>
-  <div class="container">
-    <h2>{title}</h2>
-    <slot />
+<section id={id} class={`buying-guide-section ${bgClass} ${variant}`}>
+  <div class="section-container">
+    <div class="section-header animate-fade-up">
+      <h2 class="section-title">{title}</h2>
+      {subtitle && <p class="section-subtitle">{subtitle}</p>}
+    </div>
+    <div class="section-content">
+      <slot />
+    </div>
   </div>
 </section>
+
+<style lang="scss">
+  .buying-guide-section {
+    padding: var(--space-section) 0;
+    position: relative;
+    
+    &.bg-light {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+      backdrop-filter: blur(10px);
+    }
+    
+    &.bg-accent {
+      background: var(--gradient-primary);
+      color: white;
+    }
+    
+    &.bg-glass {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-backdrop);
+    }
+    
+    &.hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    &.minimal {
+      padding: var(--space-lg) 0;
+    }
+  }
+
+  .section-container {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-section);
+  }
+
+  .section-title {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--gradient-success);
+      border-radius: var(--radius-full);
+    }
+    
+    .bg-accent & {
+      color: white;
+      
+      &::after {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+      }
+    }
+  }
+
+  .section-subtitle {
+    font-size: var(--text-subsection);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    
+    .bg-accent & {
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  .section-content {
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .buying-guide-section {
+      padding: var(--space-lg) 0;
+      
+      &.hero {
+        min-height: 60vh;
+      }
+    }
+    
+    .section-header {
+      margin-bottom: var(--space-lg);
+    }
+  }
+</style>

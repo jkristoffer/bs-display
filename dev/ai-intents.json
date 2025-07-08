@@ -1,0 +1,19 @@
+{
+  "intents": {
+    "generate-blog-post": {
+      "description": "Generates a new blog post using the content automation tool.",
+      "command": "npm run content:blog:generate",
+      "params": [
+        { "name": "title", "required": false, "description": "Optional: Title for the blog post." }
+      ]
+    },
+    "validate-project": {
+      "description": "Runs all project validation checks and provides structured JSON output.",
+      "command": "npm run validate:project:json",
+      "params": []
+    },
+    "list-intents": {
+      "description": "Lists all available intents and their parameters in a machine-readable format."
+    }
+  }
+}

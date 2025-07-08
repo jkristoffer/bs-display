@@ -63,18 +63,37 @@
 }
 
 .mainImage {
-  background: var(--color-surface);
-  box-shadow: 
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
-  border-radius: var(--border-radius-md);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-card);
   width: 100%;
   overflow: hidden;
   margin-bottom: var(--spacing-lg);
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
   
   &:hover {
-    transform: scale(1.02);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
@@ -86,22 +105,26 @@
 
 .priceTag {
   position: relative;
-  background: var(--color-surface);
-  border-radius: var(--border-radius-lg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-card);
   padding: var(--spacing-lg) var(--spacing-xl);
   margin-bottom: var(--spacing-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  box-shadow: var(--shadow-lg);
   
   &::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    background: linear-gradient(45deg, var(--color-accent-primary), var(--color-accent-secondary));
-    border-radius: var(--border-radius-lg);
-    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
   }
   
   &::after {
@@ -347,7 +370,7 @@
   }
 }
 
-@media (max-width: $breakpoint-md) {
+@media (max-width: 768px) {
   .title {
     font-size: 28px;
   }
@@ -358,7 +381,7 @@
   }
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: 480px) {
   .actions {
     flex-direction: column;
   }

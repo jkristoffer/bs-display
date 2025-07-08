@@ -62,5 +62,55 @@ const breadcrumbSchema = generateBreadcrumbSchema({
   <script is:inline type="application/ld+json" set:html={productSchema} />
   <script is:inline type="application/ld+json" set:html={breadcrumbSchema} />
 
-  <ProductDetails model={model} productType="smartboards" client:visible />
+  <section class="product-detail-section">
+    <div class="container--wide">
+      <div class="product-detail-container glass-container">
+        <ProductDetails model={model} productType="smartboards" client:visible />
+      </div>
+    </div>
+  </section>
 </ProductLayout>
+
+<style lang="scss">
+  .product-detail-section {
+    padding: var(--space-section) 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.02) 100%);
+    min-height: 100vh;
+  }
+
+  .glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .glass-container {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .glass-container {
+      padding: 1rem;
+    }
+  }
+}</style>

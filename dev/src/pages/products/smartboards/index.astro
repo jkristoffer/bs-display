@@ -11,65 +11,197 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
-  <section class="section">
-    <div class="container--wide">
-      <Breadcrumbs productType="smartboards" />
-      <CategoryTabs activeCategory="smartboards" client:visible />
-      
-      <div class="products-header">
-        <h1>Interactive Smart Boards</h1>
-        <p>
-          Find the perfect interactive display for your classroom, office, or
-          training center. Our selection includes top brands with various sizes and
-          features to meet your needs.
-        </p>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="container--wide">
+        <Breadcrumbs productType="smartboards" />
+        <CategoryTabs activeCategory="smartboards" client:visible />
+        
+        <div class="hero-text">
+          <h1 class="hero-title">Interactive Smart Boards</h1>
+          <p class="hero-subtitle">
+            Find the perfect interactive display for your classroom, office, or
+            training center. Our selection includes top brands with various sizes and
+            features to meet your needs.
+          </p>
+        </div>
       </div>
+    </div>
+    
+    <!-- Animated Background Elements -->
+    <div class="hero-bg-elements">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+    </div>
+  </section>
 
-      <FilterUIv2 allModels={models} productType="smartboards" client:visible />
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container--wide">
+      <div class="filter-container glass-container">
+        <FilterUIv2 allModels={models} productType="smartboards" client:visible />
+      </div>
     </div>
   </section>
 </ProductLayout>
 
 <style lang="scss">
-  .products-header {
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: var(--font-size-h2);
-    color: var(--color-text-primary);
-    margin-bottom: 15px;
+  // Hero Section
+  .hero-section {
     position: relative;
-    display: inline-block;
+    min-height: 60vh;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: var(--space-section);
   }
 
-  h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background-color: var(--color-accent-primary);
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: var(--space-section) 0;
   }
 
-  p {
+  .hero-text {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 800px;
     margin: 0 auto;
-    color: #666;
-    font-size: var(--font-size-body-large);
     line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
   }
 
-  @media (max-width: $breakpoint-md) {
-    h1 {
-      font-size: 28px;
+  // Animated Background Elements
+  .hero-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+
+    &.shape-1 {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
     }
 
-    p {
-      font-size: var(--font-size-body-regular);
+    &.shape-2 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    &.shape-3 {
+      width: 100px;
+      height: 100px;
+      bottom: 30%;
+      left: 70%;
+      animation-delay: 4s;
+    }
+  }
+
+  // Products Section
+  .products-section {
+    padding: var(--space-section) 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.02) 100%);
+    min-height: 50vh;
+  }
+
+  .glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+  }
+
+  // Animations
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 50vh;
+    }
+
+    .glass-container {
+      padding: 1.5rem;
+    }
+
+    .floating-shape {
+      display: none; // Hide floating shapes on mobile for performance
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-text {
+      margin-top: 1rem;
+    }
+
+    .glass-container {
+      padding: 1rem;
     }
   }
 </style>

@@ -1,0 +1,90 @@
+{
+  "optimizationName": "Intent Discovery and Self-Help for AI Agents",
+  "purpose": "To enable AI agents to programmatically discover and understand the full range of available intents and their parameters within the project, fostering greater autonomy and reducing reliance on human-readable documentation for capability discovery.",
+  "aiFirstPrinciples": [
+    "Self-Description: The system itself provides a machine-readable API for its own capabilities (intents), eliminating the need for external, unstructured documentation for AI agents.",
+    "Autonomy: AI agents can dynamically query the system to learn what actions they can perform, allowing them to adapt to new features or project changes without manual updates to their internal knowledge bases.",
+    "Efficiency: Reduces the overhead for AI agents to onboard to new projects or new features by providing a direct, structured method for capability discovery."
+  ],
+  "implementationDetails": {
+    "description": "This optimization involves extending the existing `ai-do.js` script and `ai-intents.json` configuration to support a new 'discovery' intent. When this intent is invoked, `ai-do.js` will read and return the structured content of `ai-intents.json`.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Add a new intent to `ai-intents.json` for intent discovery.",
+        "file": "ai-intents.json",
+        "action": "add_entry",
+        "entry": {
+          "intentName": "list-intents",
+          "description": "Lists all available intents and their parameters in a machine-readable format.",
+          "command": "node scripts/ai-do.js --list-intents",
+          "params": []
+        },
+        "notes": "The `command` for `list-intents` will be a special internal flag for `ai-do.js` to trigger the discovery logic, rather than executing an external command."
+      },
+      {
+        "step": 2,
+        "description": "Modify `scripts/ai-do.js` to handle the new `list-intents` flag.",
+        "file": "scripts/ai-do.js",
+        "action": "modify_script",
+        "modifications": [
+          {
+            "type": "add_conditional_logic",
+            "location": "beginning of `main` function, after argument parsing",
+            "code": "if (intentName === '--list-intents') {\n  const intentsConfig = JSON.parse(await fs.readFile(intentsFilePath, 'utf-8'));\n  console.log(JSON.stringify(intentsConfig.intents, null, 2));\n  logEvent({\n    type: 'ai_do_invocation',\n    status: 'success',\n    intent: 'list-intents',\n    reason: 'intents_listed'\n  });\n  process.exit(0);\n}"
+          },
+          {
+            "type": "update_runCommand_call",
+            "location": "within `main` function, where `runCommand` is called",
+            "oldCode": "await runCommand(finalCommand, [], intentName);",
+            "newCode": "await runCommand(finalCommand, intentParams, intentName);"
+          },
+          {
+            "type": "update_runCommand_signature",
+            "location": "function definition of `runCommand`",
+            "oldCode": "async function runCommand(command, args) {",
+            "newCode": "async function runCommand(command, args, intentName) {"
+          }
+        ],
+        "notes": "The `list-intents` flag should bypass normal command execution and directly output the `ai-intents.json` content. Ensure `intentName` is correctly passed to `logEvent` within `runCommand`."
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "name": "ai-intents.json",
+      "type": "file",
+      "description": "The source of truth for intent definitions.",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "stdout",
+      "type": "string",
+      "format": "JSON",
+      "description": "When `list-intents` is invoked, the script will output the contents of `ai-intents.json` (specifically the `intents` object) to stdout in a pretty-printed JSON format."
+    },
+    {
+      "name": ".ai-events.log",
+      "type": "file",
+      "format": "JSONL",
+      "description": "Logs the invocation of the `list-intents` action, similar to other `ai-do` invocations."
+    }
+  ],
+  "dependencies": [
+    { "name": "Node.js", "version": ">=14.0.0" },
+    { "name": "fs/promises", "description": "For reading `ai-intents.json`." },
+    { "name": "path", "description": "For path resolution." },
+    { "name": "./ai-log.js", "description": "For structured event logging." }
+  ],
+  "limitations": [
+    "The `list-intents` output currently includes all internal details of `ai-intents.json`. A more refined version might expose a curated view for external consumption.",
+    "The `list-intents` command itself is hardcoded. A more dynamic approach might involve reflecting on the `ai-intents.json` structure to generate help commands."
+  ],
+  "futureImprovements": [
+    "Implement filtering for `list-intents` (e.g., `ai:do list-intents --category 'blog'`).",
+    "Add detailed help for individual intents (e.g., `ai:do help generate-blog-post`).",
+    "Generate human-readable markdown documentation from `ai-intents.json` for consistency."
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI-First Documentation Schema",
+  "description": "A schema defining the structure for AI-first documentation files within the project, optimized for machine readability and AI consumption.",
+  "type": "object",
+  "properties": {
+    "entityName": {
+      "type": "string",
+      "description": "The name of the entity being documented (e.g., script name, component name, intent name)."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "A concise description of the entity's primary function or goal."
+    },
+    "aiFirstPrinciples": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "A list of AI-First principles that this entity's design or documentation adheres to."
+    },
+    "implementationDetails": {
+      "type": "object",
+      "description": "Detailed information about the entity's implementation, including steps, code modifications, and notes.",
+      "properties": {
+        "description": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step": { "type": "integer" },
+              "description": { "type": "string" },
+              "file": { "type": "string" },
+              "action": { "type": "string" },
+              "entry": { "type": "object" },
+              "modifications": { "type": "array" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "description": { "type": "string" },
+          "required": { "type": "boolean" },
+          "schemaReference": { "type": "string" }
+        },
+        "required": ["name", "type", "description"]
+      },
+      "description": "A list of inputs required by the entity, including their names, types, and descriptions."
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "format": { "type": "string" },
+          "location": { "type": "string" },
+          "description": { "type": "string" },
+          "schema": { "type": "object" }
+        },
+        "required": ["name", "type", "description"]
+      },
+      "description": "A list of outputs produced by the entity, including their names, types, formats, and locations."
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "required": ["name", "description"]
+      },
+      "description": "A list of external dependencies required for the entity to function."
+    },
+    "executionCommand": {
+      "type": "string",
+      "description": "The primary command used to execute the entity."
+    },
+    "operationalDetails": {
+      "type": "object",
+      "description": "Details about how the entity operates, including internal logic, error handling, and logging integration."
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Known limitations or constraints of the entity."
+    },
+    "futureImprovements": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Potential enhancements or future development areas for the entity."
+    }
+  },
+  "required": ["entityName", "purpose", "aiFirstPrinciples"]
+}

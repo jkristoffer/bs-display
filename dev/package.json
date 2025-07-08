@@ -44,7 +44,8 @@
     "ai:validate:dry": "npm run git:commit:ai -- --dry-run",
     "data:validate": "node scripts/validate-json-schema.js",
     "validate:project:json": "node scripts/validate-project.js",
-    "components:manifest": "node scripts/generate-component-manifest.js"
+    "components:manifest": "node scripts/generate-component-manifest.js",
+    "ai:do": "node scripts/ai-do.js"
   },
   "author": "Kris",
   "license": "ISC",

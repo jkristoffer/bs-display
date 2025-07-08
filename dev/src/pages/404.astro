@@ -7,72 +7,355 @@ const description = 'The page you are looking for does not exist or has been mov
 ---
 
 <MainLayout title={title} description={description}>
-  <div class="error-container container">
-    <div class="error-content">
-      <h1>404</h1>
-      <h2>Page Not Found</h2>
-      <p>The page you are looking for doesn't exist or has been moved.</p>
+  <!-- Error Background Elements -->
+  <div class="error-bg-elements">
+    <div class="bg-pattern"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+  </div>
+
+  <div class="error-container">
+    <div class="error-content glass-light animate-fade-up">
+      <!-- Error Icon -->
+      <div class="error-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M9 9H15L13 13H11L9 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Error Content -->
+      <div class="error-text">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-description">
+          The page you are looking for doesn't exist or has been moved. 
+          Don't worry, let's get you back on track.
+        </p>
+      </div>
+
+      <!-- Helpful Suggestions -->
+      <div class="error-suggestions">
+        <h3>What can you do?</h3>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M3 3H21V21H3V3Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9 9L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 9L9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Browse our interactive smart boards
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Use our navigation menu to explore
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 11H15M9 15H15M17 21V13.25L21 9.25V21C21 21.5304 20.7893 22.0391 20.4142 22.4142C20.0391 22.7893 19.5304 23 19 23H5C4.46957 23 3.96086 22.7893 3.58579 22.4142C3.21071 22.0391 3 21.5304 3 21V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H12L21 9.25V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Check our helpful blog articles
+          </li>
+        </ul>
+      </div>
+
+      <!-- Action Buttons -->
       <div class="error-actions">
-        <Button variant="primary" href="/">Return to Home</Button>
-        <Button variant="ghost" href="/contact.astro">Contact Support</Button>
+        <Button variant="primary" href="/" size="lg">Return to Home</Button>
+        <Button variant="ghost" href="/contact" size="lg">Contact Support</Button>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="quick-links">
+        <span class="quick-links-label">Popular pages:</span>
+        <div class="link-group">
+          <a href="/products/smartboards" class="quick-link">Smart Boards</a>
+          <a href="/quiz" class="quick-link">Product Quiz</a>
+          <a href="/smart-whiteboard-buying-guide" class="quick-link">Buying Guide</a>
+          <a href="/blog" class="quick-link">Blog</a>
+        </div>
       </div>
     </div>
   </div>
 </MainLayout>
 
 <style lang="scss">
+  /* Error Background Elements */
+  .error-bg-elements {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 30% 70%, rgba(239, 68, 68, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+  }
+
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.05;
+  }
+
+  .bg-glow-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #ef4444 0%, transparent 70%);
+    top: -300px;
+    right: -300px;
+    animation: glow1Float 30s ease-in-out infinite;
+  }
+
+  .bg-glow-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    bottom: -250px;
+    left: -250px;
+    animation: glow2Float 25s ease-in-out infinite reverse;
+  }
+
+  /* Modern Error Container */
   .error-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
-    padding: var(--spacing-xl) 0;
-    text-align: center;
+    min-height: 80vh;
+    padding: var(--space-section) var(--space-md);
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+    backdrop-filter: blur(10px);
   }
 
   .error-content {
-    max-width: 600px;
-    padding: var(--spacing-lg);
-    background-color: var(--color-surface);
-    border-radius: 8px;
-    box-shadow: var(--box-shadow-1);
+    max-width: 700px;
+    padding: var(--space-section);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card-lg);
+    box-shadow: var(--shadow-2xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ef4444 0%, #3b82f6 100%);
+    }
   }
 
-  h1 {
-    font-size: 6rem;
-    margin: 0;
-    color: var(--color-accent-primary);
+  /* Error Icon */
+  .error-icon {
+    margin-bottom: var(--space-lg);
+    
+    svg {
+      color: #ef4444;
+      filter: drop-shadow(0 4px 8px rgba(239, 68, 68, 0.2));
+    }
+  }
+
+  /* Error Text */
+  .error-text {
+    margin-bottom: var(--space-xl);
+  }
+
+  .error-code {
+    font-size: clamp(5rem, 12vw, 8rem);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--space-md) 0;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1;
+    text-shadow: 0 4px 8px rgba(239, 68, 68, 0.1);
   }
 
-  h2 {
-    font-size: var(--font-size-h2);
-    margin-top: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+  .error-title {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
+    margin: 0 0 var(--space-md) 0;
   }
 
-  p {
-    font-size: var(--font-size-body-large);
-    margin-bottom: var(--spacing-lg);
+  .error-description {
+    font-size: var(--text-subsection);
+    line-height: var(--text-body-line-height);
     color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
+  /* Error Suggestions */
+  .error-suggestions {
+    margin-bottom: var(--space-xl);
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+    h3 {
+      font-size: var(--text-subsection);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-lg) 0;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--text-body);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+
+      svg {
+        color: var(--color-primary);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  /* Action Buttons */
   .error-actions {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--space-md);
     flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
   }
 
+  /* Quick Links */
+  .quick-links {
+    border-top: 1px solid var(--glass-border);
+    padding-top: var(--space-lg);
+    
+    .quick-links-label {
+      display: block;
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-md);
+    }
+    
+    .link-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    
+    .quick-link {
+      padding: var(--space-xs) var(--space-sm);
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: var(--radius-full);
+      font-size: var(--text-caption);
+      font-weight: var(--font-weight-medium);
+      transition: all var(--duration-normal) var(--ease-smooth);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+
+      &:hover {
+        background: var(--gradient-primary);
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+        border-color: transparent;
+      }
+    }
+  }
+
+  /* Animations */
+  @keyframes glow1Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-40px, -30px) rotate(120deg); }
+    66% { transform: translate(30px, -35px) rotate(240deg); }
+  }
+
+  @keyframes glow2Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(35px, -25px) rotate(-120deg); }
+    66% { transform: translate(-25px, -40px) rotate(-240deg); }
+  }
+
+  /* Responsive Design */
   @media (max-width: 768px) {
-    h1 {
-      font-size: 4rem;
+    .error-container {
+      padding: var(--space-lg) var(--space-sm);
+      min-height: 70vh;
+    }
+    
+    .error-content {
+      padding: var(--space-lg);
     }
     
     .error-actions {
       flex-direction: column;
       align-items: center;
+    }
+    
+    .error-suggestions {
+      text-align: center;
+      
+      ul {
+        text-align: left;
+      }
+    }
+    
+    .quick-links .link-group {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .error-code {
+      font-size: 4rem;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .bg-glow-1, .bg-glow-2 {
+      animation: none !important;
+    }
+    
+    .error-container {
+      backdrop-filter: none;
+    }
+    
+    * {
+      transition: none !important;
     }
   }
 </style>

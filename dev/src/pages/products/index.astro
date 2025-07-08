@@ -8,236 +8,414 @@ const description =
 ---
 
 <ProductLayout title={title} description={description}>
-  <section class="section">
-    <div class="container--wide">
-      <Breadcrumbs items={[
-        { label: 'Home', path: '/' },
-        { label: 'Products' }
-      ]} />
-      
-      <div class="products-header">
-        <h1>Interactive Display Solutions</h1>
-        <p>
-          Discover our complete range of interactive display products for education,
-          business, and training environments. From large format displays to
-          interactive lecterns, we have solutions to fit every need.
-        </p>
+  <!-- Hero Section with Gradient Background -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="container--wide">
+        <Breadcrumbs items={[
+          { label: 'Home', path: '/' },
+          { label: 'Products' }
+        ]} />
+        
+        <div class="hero-text">
+          <h1 class="hero-title">Interactive Display Solutions</h1>
+          <p class="hero-subtitle">
+            Discover our complete range of interactive display products for education,
+            business, and training environments. From large format displays to
+            interactive lecterns, we have solutions to fit every need.
+          </p>
+        </div>
       </div>
+    </div>
+    
+    <!-- Animated Background Elements -->
+    <div class="hero-bg-elements">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container--wide">
 
       <div class="product-categories">
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
-          alt="Interactive Smart Boards"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Interactive Smart Boards</h2>
-        <p>
-          Large format interactive displays for classrooms, meeting rooms, and
-          training centers. Available in various sizes with advanced touch
-          technology.
-        </p>
-        <a href="/products/smartboards/" class="cta-button"
-          >Browse Smart Boards</a
-        >
-      </div>
-    </div>
+        <div class="category-card glass-card">
+          <div class="category-image">
+            <img
+              src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
+              alt="Interactive Smart Boards"
+            />
+            <div class="category-overlay">
+              <span class="category-badge">Most Popular</span>
+            </div>
+          </div>
+          <div class="category-content">
+            <h2>Interactive Smart Boards</h2>
+            <p>
+              Large format interactive displays for classrooms, meeting rooms, and
+              training centers. Available in various sizes with advanced touch
+              technology.
+            </p>
+            <a href="/products/smartboards/" class="cta-button gradient-button">
+              Browse Smart Boards
+            </a>
+          </div>
+        </div>
 
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/images/marketing/lecture_hall_smart_lectern_16x9.jpeg"
-          alt="Interactive Lecterns"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Interactive Lecterns</h2>
-        <p>
-          Digital podiums and lecterns with built-in displays and annotation
-          capabilities. Perfect for presentations and lectures in any
-          environment.
-        </p>
-        <a href="/products/lecterns/" class="cta-button">Browse Lecterns</a>
-      </div>
-    </div>
+        <div class="category-card glass-card">
+          <div class="category-image">
+            <img
+              src="/assets/images/marketing/lecture_hall_smart_lectern_16x9.jpeg"
+              alt="Interactive Lecterns"
+            />
+            <div class="category-overlay">
+              <span class="category-badge">Education</span>
+            </div>
+          </div>
+          <div class="category-content">
+            <h2>Interactive Lecterns</h2>
+            <p>
+              Digital podiums and lecterns with built-in displays and annotation
+              capabilities. Perfect for presentations and lectures in any
+              environment.
+            </p>
+            <a href="/products/lecterns/" class="cta-button gradient-button">
+              Browse Lecterns
+            </a>
+          </div>
+        </div>
 
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
-          alt="Display Accessories"
-        />
-      </div>
-      <div class="category-content">
-        <h2>Display Accessories</h2>
-        <p>
-          Enhance your display experience with stands, mounts, stylus pens,
-          and connectivity solutions. Complete your interactive setup with
-          professional-grade accessories.
-        </p>
-        <a href="/products/accessories/" class="cta-button">Browse Accessories</a>
-      </div>
-    </div>
+        <div class="category-card glass-card">
+          <div class="category-image">
+            <img
+              src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
+              alt="Display Accessories"
+            />
+            <div class="category-overlay">
+              <span class="category-badge">Essential</span>
+            </div>
+          </div>
+          <div class="category-content">
+            <h2>Display Accessories</h2>
+            <p>
+              Enhance your display experience with stands, mounts, stylus pens,
+              and connectivity solutions. Complete your interactive setup with
+              professional-grade accessories.
+            </p>
+            <a href="/products/accessories/" class="cta-button gradient-button">
+              Browse Accessories
+            </a>
+          </div>
+        </div>
 
-    <div class="category-card">
-      <div class="category-image">
-        <img
-          src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
-          alt="Collaboration Solutions"
-        />
+        <div class="category-card glass-card">
+          <div class="category-image">
+            <img
+              src="/assets/images/marketing/conference_room_interactive_display_16x9.jpeg"
+              alt="Collaboration Solutions"
+            />
+            <div class="category-overlay">
+              <span class="category-badge">Business</span>
+            </div>
+          </div>
+          <div class="category-content">
+            <h2>Collaboration Solutions</h2>
+            <p>
+              Advanced video conferencing cameras and collaboration devices for
+              modern workplaces. PTZ cameras, panoramic solutions, and smart
+              devices for seamless meetings.
+            </p>
+            <a href="/products/collaboration/" class="cta-button gradient-button">
+              Browse Collaboration
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="category-content">
-        <h2>Collaboration Solutions</h2>
-        <p>
-          Advanced video conferencing cameras and collaboration devices for
-          modern workplaces. PTZ cameras, panoramic solutions, and smart
-          devices for seamless meetings.
-        </p>
-        <a href="/products/collaboration/" class="cta-button">Browse Collaboration</a>
-      </div>
-    </div>
-  </div>
     </div>
   </section>
 </ProductLayout>
 
 <style lang="scss">
-  .products-header {
-    margin-bottom: 50px;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: var(--font-size-h2);
-    color: var(--color-text-primary);
-    margin-bottom: 15px;
+  // Hero Section
+  .hero-section {
     position: relative;
-    display: inline-block;
+    min-height: 60vh;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: var(--space-section);
   }
 
-  h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background-color: var(--color-accent-primary);
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: var(--space-section) 0;
   }
 
-  p {
+  .hero-text {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 800px;
     margin: 0 auto;
-    color: #666;
-    font-size: var(--font-size-body-large);
     line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  // Animated Background Elements
+  .hero-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+
+    &.shape-1 {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    &.shape-2 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    &.shape-3 {
+      width: 100px;
+      height: 100px;
+      bottom: 30%;
+      left: 70%;
+      animation-delay: 4s;
+    }
+  }
+
+  // Products Section
+  .products-section {
+    padding: var(--space-section) 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.02) 100%);
   }
 
   .product-categories {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
-    margin: 20px 0 60px;
+    gap: 2rem;
+    margin: 2rem 0 4rem;
     
     @media (min-width: $breakpoint-md) {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  .category-card {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+
+      &::before {
+        opacity: 1;
+      }
     }
   }
 
   .category-image {
     height: 280px;
     overflow: hidden;
+    position: relative;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .category-card:hover & img {
-      transform: scale(1.05);
+    .glass-card:hover & img {
+      transform: scale(1.1);
     }
   }
 
+  .category-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+  }
+
+  .category-badge {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
   .category-content {
-    padding: 25px;
-    background-color: #fff;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   h2 {
     font-size: var(--font-size-h3);
     color: var(--color-text-primary);
-    margin-bottom: 12px;
+    margin-bottom: 1rem;
+    font-weight: 600;
   }
 
   .category-content p {
-    margin: 0 0 20px;
-    color: #666;
-    line-height: 1.5;
+    margin: 0 0 1.5rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
     font-size: var(--font-size-body-regular);
   }
 
-  .cta-button {
+  .gradient-button {
     display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--color-accent-primary);
+    padding: 0.875rem 2rem;
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
-    font-weight: 500;
+    border-radius: 50px;
+    font-weight: 600;
     text-align: center;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-top: auto;
     align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
 
     &:hover {
-      background-color: var(--color-accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+      &::before {
+        left: 100%;
+      }
     }
   }
 
+  // Animations
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  // Responsive Design
   @media (max-width: $breakpoint-md) {
+    .hero-section {
+      min-height: 50vh;
+    }
+
     .product-categories {
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 1.5rem;
     }
 
-    h1 {
-      font-size: 28px;
+    .category-content {
+      padding: 1.5rem;
     }
 
-    h2 {
-      font-size: 22px;
+    .floating-shape {
+      display: none; // Hide floating shapes on mobile for performance
     }
+  }
 
-    p {
-      font-size: var(--font-size-body-regular);
+  @media (max-width: $breakpoint-sm) {
+    .hero-text {
+      margin-top: 1rem;
     }
 
     .category-image {
-      height: 280px;
+      height: 240px;
     }
   }
 </style>

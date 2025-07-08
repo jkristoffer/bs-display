@@ -1,0 +1,81 @@
+{
+  "scriptName": "generate-component-manifest.js",
+  "purpose": "To create a structured, machine-readable manifest of all UI components in the project. This manifest serves as a programmatic API for other AI agents to understand and interact with the project's UI layer.",
+  "aiFirstPrinciples": [
+    "Self-Description: Provides programmatic access to component metadata (name, path, type, props, description), enabling AI agents to understand the UI landscape without manual code inspection.",
+    "Self-Validation: The structured output can be used by other AI agents to validate component usage, ensuring correct prop types and adherence to component APIs.",
+    "Intent-Driven: Facilitates higher-level component manipulation by other AI agents. Instead of instructing 'change line X in file Y', an AI can be instructed 'add prop Z to component A', with this manifest providing the necessary context for the underlying code modification."
+  ],
+  "inputs": [
+    {
+      "name": "src/components/",
+      "type": "directory",
+      "description": "The root directory containing all UI component files (.tsx for React, .astro for Astro). The script recursively traverses this directory.",
+      "required": true
+    },
+    {
+      "name": "tsconfig.json",
+      "type": "file",
+      "description": "TypeScript configuration file. Used by 'ts-morph' to establish the project's TypeScript context, enabling accurate type resolution and AST parsing for .tsx files.",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "component-manifest.json",
+      "type": "file",
+      "format": "JSON",
+      "location": "project root",
+      "description": "A JSON array where each element represents a UI component found in the project. This file is designed for direct consumption by other AI agents.",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "description": "The inferred name of the component (e.g., 'ProductCard', 'Button'). Derived from the filename." },
+            "path": { "type": "string", "description": "The relative path from the project root to the component's source file." },
+            "type": { "type": "string", "enum": ["React", "Astro"], "description": "The technology used for the component (React for .tsx, Astro for .astro)." },
+            "props": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "description": "The name of the component prop (e.g., 'product', 'onClick')." },
+                  "type": { "type": "string", "description": "The TypeScript type of the prop (e.g., 'string', 'boolean', 'ProductModel[]', '() => void')." },
+                  "required": { "type": "boolean", "description": "Indicates if the prop is mandatory (true) or optional (false)." },
+                  "description": { "type": "string", "description": "The JSDoc comment associated with the prop, if available in the source code." }
+                },
+                "required": ["name", "type", "required"]
+              },
+              "description": "An array of objects, each describing a prop accepted by the component. Includes name, type, required status, and description."
+            },
+            "description": { "type": "string", "description": "The JSDoc comment associated with the component itself, providing a high-level description of its purpose and functionality." }
+          },
+          "required": ["name", "path", "type", "props", "description"]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    { "name": "ts-morph", "version": "latest", "description": "A TypeScript AST API for programmatically inspecting and transforming TypeScript code. Essential for robust prop and JSDoc extraction from .tsx files and parsing TypeScript within Astro frontmatter." },
+    { "name": "typescript", "version": "latest", "description": "The TypeScript compiler, a peer dependency for ts-morph, providing the underlying parsing and type analysis capabilities." }
+  ],
+  "executionCommand": "npm run components:manifest",
+  "operationalDetails": {
+    "reactComponentExtraction": "For .tsx files, 'ts-morph' is used to parse the AST. It identifies functional components (via VariableDeclaration or FunctionDeclaration) and extracts their props by inspecting the first parameter's type. JSDoc comments for both the component and individual props are extracted directly from the AST.",
+    "astroComponentExtraction": "For .astro files, the script first extracts the frontmatter script block. This block is then treated as a temporary TypeScript file and parsed by 'ts-morph'. It attempts to identify props defined via 'Astro.props' destructuring or explicit interface/type declarations within the frontmatter. Due to Astro's unique compilation, JSDoc extraction for individual props in Astro files is less reliable and may require further refinement.",
+    "errorHandling": "The script logs errors to stderr for individual files that cannot be fully processed (e.g., due to parsing issues or unexpected syntax), but it continues to attempt to generate the manifest for other components, ensuring partial success rather than complete failure."
+  },
+  "limitations": [
+    "Astro prop extraction, particularly for complex types or JSDoc comments on individual props, is less robust than React prop extraction due to the current parsing approach for Astro's frontmatter.",
+    "Does not currently support component frameworks other than React (.tsx) and Astro (.astro).",
+    "Relies on a correctly configured 'tsconfig.json' for accurate type resolution in .tsx files. An incorrect or incomplete 'tsconfig' can lead to parsing errors or inaccurate type information.",
+    "The 'description' field for components and props is only populated if JSDoc comments are present in the source code."
+  ],
+  "futureImprovements": [
+    "Integrate a dedicated Astro parser (if available) for more accurate and comprehensive Astro prop extraction and JSDoc support.",
+    "Add support for extracting other component metadata, such as events, slots, CSS variables used, or associated SCSS module paths.",
+    "Implement schema validation for the generated 'component-manifest.json' to ensure its integrity and consistency.",
+    "Optimize performance for very large codebases by potentially caching ASTs or using incremental parsing."
+  ]
+}

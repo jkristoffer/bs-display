@@ -33,18 +33,32 @@ interface ComponentNameProps {
   title: string;
   isActive?: boolean;
   onAction?: () => void;
+  variant?: 'default' | 'gradient' | 'glass';
 }
 
 export function ComponentName({ 
   title, 
   isActive = false, 
-  onAction 
+  onAction,
+  variant = 'default'
 }: ComponentNameProps) {
+  const getVariantClass = () => {
+    switch (variant) {
+      case 'gradient': return 'gradient-bg-primary';
+      case 'glass': return 'glass-light';
+      default: return '';
+    }
+  };
+
   return (
-    <div className={`component-name ${isActive ? 'component-name--active' : ''}`}>
-      <h2>{title}</h2>
+    <div className={`component-name ${isActive ? 'component-name--active' : ''} ${getVariantClass()}`}>
+      <h2 className={variant === 'gradient' ? 'gradient-text-primary' : ''}>{title}</h2>
       {onAction && (
-        <button onClick={onAction} type="button">
+        <button 
+          onClick={onAction} 
+          type="button"
+          className="button-gradient"
+        >
           Action
         </button>
       )}
@@ -87,10 +101,48 @@ import type { User } from './types';
 - Import as: `import styles from './Component.module.scss'`
 - Use: `className={styles.componentName}`
 
-### Global Styles
+### Global Styles & New Gradient System
 - Use global classes for layout and utility styles
+- **NEW**: Gradient utility classes available globally
+- **NEW**: Glassmorphism effects and animations
 - Available through automatic SCSS injection
 - BEM naming: `.component-name__element--modifier`
+
+### Modern Gradient System (Available Globally)
+```typescript
+// Background gradients
+<div className="gradient-bg-primary">Primary gradient background</div>
+<div className="gradient-bg-success">Success gradient background</div>
+<div className="gradient-bg-warning">Warning gradient background</div>
+
+// Text gradients
+<h1 className="gradient-text-primary">Gradient text effect</h1>
+<h2 className="gradient-text-success">Success gradient text</h2>
+
+// Glassmorphism effects
+<div className="glass-light">Light glass effect</div>
+<div className="glass-dark">Dark glass effect</div>
+<div className="glass-strong">Strong glass effect</div>
+
+// Icon containers
+<div className="icon-container-gradient">🎨</div>
+<div className="icon-container-glass">💎</div>
+
+// Animations
+<div className="animate-float">Floating animation</div>
+<div className="animate-pulse">Pulsing animation</div>
+<div className="animate-fade-up">Fade up animation</div>
+```
+
+### Enhanced Button System
+```typescript
+// Modern button variants (use with Button component)
+<Button variant="primary">Primary Button</Button>
+<Button variant="gradient">Gradient Button</Button>
+<Button variant="glass">Glass Button</Button>
+<Button variant="success">Success Button</Button>
+<Button variant="warning">Warning Button</Button>
+```
 
 ## Common Patterns
 

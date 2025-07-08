@@ -23,7 +23,9 @@ interface ProductsMegaMenuProps {
   isVisible: boolean;
 }
 
-const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
+// Performance optimization
+const ProductsMegaMenu = React.memo<ProductsMegaMenuProps>(({ isVisible }) => {
+
   const productCategories: ProductCategory[] = [
     {
       id: 'smartboards',
@@ -98,16 +100,20 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
   if (!isVisible) return null;
 
   return (
-    <div className={styles.megaMenu}>
+    <div className={styles.megaMenu} role="menu" aria-label="Products navigation">
       <div className={styles.megaMenu__container}>
-        <div className={styles.megaMenu__section}>
-          <h3 className={styles.megaMenu__sectionTitle}>Product Categories</h3>
+        <div className={styles.megaMenu__section} role="group" aria-labelledby="categories-heading">
+          <h3 id="categories-heading" className={styles.megaMenu__sectionTitle}>
+            <span className={styles.megaMenu__titleText}>Product Categories</span>
+            <div className={styles.megaMenu__titleGradient}></div>
+          </h3>
           <div className={styles.megaMenu__categories}>
             {productCategories.map((category) => (
               <a
                 key={category.id}
                 href={category.href}
                 className={styles.megaMenu__categoryCard}
+                aria-label={`Browse ${category.title} - ${category.description}`}
               >
                 <div className={styles.megaMenu__categoryImage}>
                   <img
@@ -134,14 +140,18 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
           </div>
         </div>
 
-        <div className={styles.megaMenu__section}>
-          <h3 className={styles.megaMenu__sectionTitle}>Featured Products</h3>
+        <div className={styles.megaMenu__section} role="group" aria-labelledby="featured-heading">
+          <h3 id="featured-heading" className={styles.megaMenu__sectionTitle}>
+            <span className={styles.megaMenu__titleText}>Featured Products</span>
+            <div className={styles.megaMenu__titleGradient}></div>
+          </h3>
           <div className={styles.megaMenu__featured}>
             {featuredProducts.map((product) => (
               <a
                 key={product.id}
                 href={product.href}
                 className={styles.megaMenu__productCard}
+                aria-label={`View ${product.brand} ${product.model}`}
               >
                 <div className={styles.megaMenu__productImage}>
                   <img
@@ -163,14 +173,18 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
           </div>
         </div>
 
-        <div className={styles.megaMenu__section}>
-          <h3 className={styles.megaMenu__sectionTitle}>Quick Actions</h3>
+        <div className={styles.megaMenu__section} role="group" aria-labelledby="actions-heading">
+          <h3 id="actions-heading" className={styles.megaMenu__sectionTitle}>
+            <span className={styles.megaMenu__titleText}>Quick Actions</span>
+            <div className={styles.megaMenu__titleGradient}></div>
+          </h3>
           <div className={styles.megaMenu__actions}>
             {quickActions.map((action) => (
               <a
                 key={action.label}
                 href={action.href}
                 className={styles.megaMenu__actionButton}
+                aria-label={action.label}
               >
                 <span className={styles.megaMenu__actionIcon}>
                   {action.icon}
@@ -183,6 +197,8 @@ const ProductsMegaMenu: React.FC<ProductsMegaMenuProps> = ({ isVisible }) => {
       </div>
     </div>
   );
-};
+});
+
+ProductsMegaMenu.displayName = 'ProductsMegaMenu';
 
 export default ProductsMegaMenu;

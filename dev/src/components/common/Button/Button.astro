@@ -1,12 +1,15 @@
 ---
 interface Props {
-  variant?: 'primary' | 'ghost' | 'faint';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'ghost' | 'glass' | 'gradient' | 'success' | 'warning' | 'faint';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   href?: string;
   class?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  loading?: boolean;
   id?: string;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
 }
 
 const {
@@ -16,36 +19,54 @@ const {
   class: className = '',
   type = 'button',
   disabled = false,
-  id
+  loading = false,
+  id,
+  icon,
+  iconPosition = 'left'
 } = Astro.props;
 
 // Determine the CSS class based on variant
 const variantClass = `button-${variant}`;
 
 // Determine size class
-const sizeClass = size !== 'md' ? size : '';
+const sizeClass = size !== 'md' ? `button-${size}` : '';
+
+// Determine state classes
+const stateClasses = [];
+if (disabled) stateClasses.push('button-disabled');
+if (loading) stateClasses.push('button-loading');
 
 // Combine all classes
-const classes = [variantClass, sizeClass, className].filter(Boolean).join(' ');
+const classes = [variantClass, sizeClass, ...stateClasses, className].filter(Boolean).join(' ');
 ---
 
 {
   href ? (
     <a href={href} class={classes} id={id}>
+      {icon && iconPosition === 'left' && <span class="button-icon">{icon}</span>}
       <slot />
+      {icon && iconPosition === 'right' && <span class="button-icon">{icon}</span>}
     </a>
   ) : (
-    <button class={classes} type={type} disabled={disabled} id={id}>
+    <button class={classes} type={type} disabled={disabled || loading} id={id}>
+      {icon && iconPosition === 'left' && <span class="button-icon">{icon}</span>}
       <slot />
+      {icon && iconPosition === 'right' && <span class="button-icon">{icon}</span>}
     </button>
   )
 }
 
 <style>
-  /* Base styles are in global.css */
-  /* Component-specific styles can be added here */
+  /* Enhanced button styles - base styles are in global.scss */
+  .button-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.1em;
+  }
+  
+  /* Legacy size override - will be removed after full migration */
   .lg {
-    font-size: 1.2rem;
-    padding: 14px 28px;
+    font-size: var(--font-size-body-large);
+    padding: calc(var(--spacing-button-padding) * 1.25) calc(var(--spacing-button-padding) * 2.5);
   }
 </style>

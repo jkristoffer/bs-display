@@ -191,8 +191,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
           )}
 
           {categoryScores && (
-            <div className="score-breakdown">
-              <h5>Compatibility Score Breakdown:</h5>
+            <>
               <CategoryScores 
                 categoryScores={categoryScores} 
                 getCategoryColor={getCategoryColor} 
@@ -202,38 +201,9 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
                 {isHybridResult && secondaryCategory &&
                   ` You may also want to consider ${secondaryCategory} options.`}
               </p>
-            </div>
+            </>
           )}
 
-          <div className="result-ctas">
-            {results[result].cta.map((ctaText, index) => (
-              <button
-                key={index}
-                className="cta-button"
-                onClick={() => {
-                  const textLower = ctaText.toLowerCase();
-                  if (textLower.includes('model')) {
-                    window.location.href = '/products';
-                  } else if (textLower.includes('demo')) {
-                    window.location.href = '/contact?subject=DemoRequest';
-                  } else if (
-                    textLower.includes('quote') ||
-                    textLower.includes('pricing')
-                  ) {
-                    window.location.href = '/contact?subject=QuoteRequest';
-                  } else {
-                    window.location.href = '/contact';
-                  }
-                }}
-              >
-                {ctaText}
-              </button>
-            ))}
-          </div>
-
-          <button className="cta-button secondary" onClick={startQuiz}>
-            Start Over
-          </button>
         </div>
       )}
     </div>

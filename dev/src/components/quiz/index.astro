@@ -3,20 +3,44 @@
 import quizDataRaw from './quizdata.json';
 import type { QuizData } from './types';
 import { FinalQuiz } from './Quiz';
-import PageHeader from '../common/page-header/index.astro';
+import PageHeaderModern from '../common/page-header/PageHeaderModern.astro';
 
 const quizData = quizDataRaw as QuizData;
 ---
 
-<PageHeader
-  title="Find Your Perfect Smartboard"
-  subtitle="Answer a few questions and we'll recommend the best display solution for your needs"
+<PageHeaderModern
+  title="Find Your Perfect Smart Display"
+  subtitle="Answer 6 quick questions and get personalized recommendations for your education or business needs"
+  badge="Expert Quiz"
+  badgeIcon="🎯"
 />
 
-<section class="section">
-  <div class="container">
+<section class="quiz-section">
+  <div class="quiz-section__container">
     <div class="quiz-client-wrapper">
       <FinalQuiz client:load quizData={quizData} />
     </div>
   </div>
 </section>
+
+<style lang="scss">
+  .quiz-section {
+    padding: calc(var(--spacing-xl) * 2) 0;
+    background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%);
+    position: relative;
+    min-height: 80vh;
+  }
+
+  .quiz-section__container {
+    max-width: var(--spacing-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  .quiz-client-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+</style>

@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import type { Question, Option } from '../types';
 
 interface QuizQuestionsProps {
@@ -16,7 +17,7 @@ interface QuizQuestionsProps {
 }
 
 /**
- * QuizQuestions component that displays all the quiz questions and handles user interactions.
+ * Modern QuizQuestions component with enhanced design and interactions.
  */
 export const QuizQuestions: FC<QuizQuestionsProps> = ({
   questions,
@@ -26,81 +27,209 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
   allQuestionsAnswered,
   onSubmit
 }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showProgressAnimation, setShowProgressAnimation] = useState(false);
+
+  const answeredCount = questions.filter((q) => getSelectionCount(q.id) > 0).length;
+  const progressPercentage = (answeredCount / questions.length) * 100;
+
+  // Trigger progress animation when progress changes
+  useEffect(() => {
+    setShowProgressAnimation(true);
+    const timer = setTimeout(() => setShowProgressAnimation(false), 600);
+    return () => clearTimeout(timer);
+  }, [answeredCount]);
+
+  const handleSubmit = async () => {
+    if (!allQuestionsAnswered) return;
+    
+    setIsSubmitting(true);
+    // Add a small delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 800));
+    onSubmit();
+    setIsSubmitting(false);
+  };
+
+  const smoothScrollToQuestion = (questionId: string) => {
+    const element = document.getElementById(`question-${questionId}`);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  };
+
   return (
-    <div className="questions-container">
-      {/* Progress Indicator */}
-      <div className="quiz-progress">
-        {questions.filter((q) => getSelectionCount(q.id) > 0).length} of{' '}
-        {questions.length} questions answered
+    <div className="modern-questions-container">
+      {/* Modern Progress Bar */}
+      <div className="modern-progress-section">
+        <div className="progress-header">
+          <h3 className="progress-title">Your Progress</h3>
+          <div className="progress-counter">
+            <span className="answered-count">{answeredCount}</span>
+            <span className="total-count">/{questions.length}</span>
+          </div>
+        </div>
+        
+        <div className="progress-bar-container">
+          <div 
+            className={`progress-bar-fill ${showProgressAnimation ? 'animate' : ''}`}
+            style={{ 
+              width: `${progressPercentage}%`,
+              background: progressPercentage === 100 
+                ? 'linear-gradient(90deg, #10b981 0%, #22c55e 100%)'
+                : 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)'
+            }}
+          />
+          <div className="progress-percentage">
+            {Math.round(progressPercentage)}%
+          </div>
+        </div>
+        
+        {progressPercentage === 100 && (
+          <div className="progress-celebration">
+            <span className="celebration-icon">🎉</span>
+            <span className="celebration-text">All questions answered!</span>
+          </div>
+        )}
       </div>
 
       {/* All Questions (Vertical Layout) */}
-      {questions.map((question, index) => {
-        const isAnswered = getSelectionCount(question.id) > 0;
-        const isMulti = question.type === 'multi';
-        const maxSelections = question.maxSelections || 1;
+      <div className="questions-grid">
+        {questions.map((question, index) => {
+          const isAnswered = getSelectionCount(question.id) > 0;
+          const isMulti = question.type === 'multi';
+          const maxSelections = question.maxSelections || 1;
+          const selectionCount = getSelectionCount(question.id);
 
-        return (
-          <div
-            key={question.id}
-            className={`quiz-question ${isAnswered ? 'question-answered' : ''}`}
-          >
-            <div className="question-header">
-              <h3>Question {index + 1}</h3>
-              <div className="question-status">
-                {isAnswered ? 'Answered' : 'Needs answer'}
+          return (
+            <div
+              key={question.id}
+              id={`question-${question.id}`}
+              className={`modern-question-card ${isAnswered ? 'answered' : ''}`}
+            >
+              <div className="question-card-header">
+                <div className="question-number-badge">
+                  <span className="question-number">{index + 1}</span>
+                </div>
+                <div className="question-status-indicator">
+                  {isAnswered ? (
+                    <div className="status-answered">
+                      <span className="check-icon">✓</span>
+                      <span>Answered</span>
+                    </div>
+                  ) : (
+                    <div className="status-pending">
+                      <span className="pending-icon">◯</span>
+                      <span>Pending</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="question-content">
+                <h3 className="question-title">{question.question}</h3>
+                
+                {isMulti && (
+                  <div className="selection-guidance">
+                    <span className="selection-text">
+                      Select up to {maxSelections} options
+                    </span>
+                    {selectionCount > 0 && (
+                      <span className="selection-count">
+                        ({selectionCount}/{maxSelections} selected)
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="modern-options-container">
+                {question.options.map((option, optionIndex) => {
+                  const optionId =
+                    option.id || `${question.id}-option-${optionIndex}`;
+                  const isSelected = isOptionSelected(question.id, option);
+
+                  return (
+                    <button
+                      key={optionId}
+                      className={`modern-option-button ${isSelected ? 'selected' : ''}`}
+                      onClick={() =>
+                        toggleOption(question.id, option, isMulti, maxSelections)
+                      }
+                      style={{ 
+                        animationDelay: `${optionIndex * 0.1}s` 
+                      }}
+                    >
+                      <div className="option-content">
+                        <div className="option-text">
+                          {option.label}
+                        </div>
+                        <div className="option-indicator">
+                          {isMulti ? (
+                            <div className={`checkbox-indicator ${isSelected ? 'checked' : ''}`}>
+                              {isSelected && <span className="checkmark">✓</span>}
+                            </div>
+                          ) : (
+                            <div className={`radio-indicator ${isSelected ? 'selected' : ''}`}>
+                              {isSelected && <span className="dot" />}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {isSelected && (
+                        <div className="selection-overlay" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
+          );
+        })}
+      </div>
 
-            <p>{question.question}</p>
+      {/* Modern Submit Section */}
+      <div className="modern-submit-section">
+        <div className="submit-card">
+          <div className="submit-header">
+            <h3 className="submit-title">Ready to See Your Results?</h3>
+            <p className="submit-description">
+              Get personalized recommendations based on your answers
+            </p>
+          </div>
 
-            <div className="options-container">
-              {question.options.map((option, optionIndex) => {
-                const optionId =
-                  option.id || `${question.id}-option-${optionIndex}`;
-                const isSelected = isOptionSelected(question.id, option);
+          <div className="submit-actions">
+            <button
+              className={`modern-submit-button ${allQuestionsAnswered ? 'ready' : 'disabled'} ${isSubmitting ? 'submitting' : ''}`}
+              disabled={!allQuestionsAnswered || isSubmitting}
+              onClick={handleSubmit}
+            >
+              <span className="submit-text">
+                {isSubmitting ? 'Analyzing Your Answers...' : 'See Your Results'}
+              </span>
+              <span className="submit-icon">
+                {isSubmitting ? (
+                  <div className="loading-spinner" />
+                ) : (
+                  <span className="arrow-icon">→</span>
+                )}
+              </span>
+            </button>
 
-                return (
-                  <button
-                    key={optionId}
-                    className={`option-button ${isSelected ? 'selected' : ''}`}
-                    onClick={() =>
-                      toggleOption(question.id, option, isMulti, maxSelections)
-                    }
-                  >
-                    {option.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {isMulti && (
-              <div className="selection-info">
-                <p className="selection-hint">
-                  Select up to {maxSelections} options
-                </p>
+            {!allQuestionsAnswered && (
+              <div className="submit-hint">
+                <span className="hint-icon">ℹ️</span>
+                <span className="hint-text">
+                  Please answer all {questions.length} questions to continue
+                </span>
               </div>
             )}
-
-            <hr className="question-divider" />
           </div>
-        );
-      })}
-
-      {/* Submit Button */}
-      <div className="quiz-submit-container">
-        <button
-          className="cta-button"
-          disabled={!allQuestionsAnswered}
-          onClick={onSubmit}
-        >
-          See Your Results
-        </button>
-        {!allQuestionsAnswered && (
-          <p className="submit-hint">
-            Please answer all questions to see your results.
-          </p>
-        )}
+        </div>
       </div>
     </div>
   );

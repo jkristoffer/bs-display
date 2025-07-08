@@ -1,11 +1,32 @@
 ---
 import MainLayout from '@layouts/MainLayout.astro';
 import QuizComponent from '@components/quiz/index.astro';
+
+// SEO Configuration for Quiz Page
+const seoProps = {
+  title: 'Smart Display Quiz | Find Your Perfect Match | Big Shine Display',
+  description: 'Not sure which interactive smart board is right for you? Take our expert quiz and get personalized recommendations for education and business displays.',
+  ogTitle: 'Interactive Smart Board Quiz | Find Your Perfect Display Solution',
+  ogDescription: 'Get personalized smart board recommendations based on your specific needs. Expert quiz for education and business interactive displays.',
+  ogImage: '/assets/images/quiz-social-share.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Smart Display Quiz | Big Shine Display',
+  twitterDescription: 'Find your perfect interactive smart board with our expert quiz. Personalized recommendations for education and business.',
+  canonicalUrl: new URL('/quiz', Astro.site).href,
+  noindex: false,
+  nofollow: false,
+  additionalTags: [
+    { name: 'author', content: 'Big Shine Display' },
+    {
+      name: 'keywords',
+      content: 'smart board quiz, interactive display finder, smart display recommendations, education technology quiz, business display solutions'
+    },
+    { property: 'og:locale', content: 'en_SG' }
+  ]
+};
 ---
 
-<MainLayout
-  title="Smart Whiteboard Quiz | Find Your Best Match"
-  description="Not sure which smartboard is right for you? Answer a few questions and we’ll match you with the best option."
->
+<MainLayout {...seoProps}>
   <QuizComponent />
 </MainLayout>

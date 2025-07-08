@@ -1,13 +1,13 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Banner from '../components/home/Banner/Banner.astro';
+import VideoBanner from '../components/home/VideoBanner/VideoBanner.astro';
 import { BuyingGuideSection } from '../components/home/BuyingGuideSection';
-import UsecasesSection from '../components/home/UsecasesSection/UsecasesSection.astro';
-import BlogHighlights from '../components/home/BlogHighlights/BlogHighlights.astro';
-import QuizPromotion from '../components/home/QuizPromotion/QuizPromotion.astro';
-import CategoryNavigation from '../components/home/CategoryNavigation/CategoryNavigation.astro';
+import UsecasesSection from '../components/home/UsecasesSection/UsecasesSectionModern.astro';
+import BlogHighlights from '../components/home/BlogHighlights/BlogHighlightsModern.astro';
+import QuizPromotion from '../components/home/QuizPromotion/QuizPromotionSleek.astro';
+import CategoryNavigation from '../components/home/CategoryNavigation/CategoryNavigationModern.astro';
 import Button from '../components/common/Button/Button.astro';
-import DataTable from '../components/home/DataTable';
+import DataTable from '../components/home/DataTable/DataTableModern.astro';
 
 // SEO Configuration for Homepage
 const seoProps = {
@@ -39,42 +39,33 @@ const seoProps = {
 ---
 
 <MainLayout {...seoProps}>
-  <Banner
+  <VideoBanner
     title="BIG SHINE DISPLAY"
     subtitle="Premium Interactive Smart Boards for Education and Business"
+    videoSrc="/assets/home-banner-video.mp4"
   />
 
-  <section class="section">
-    <div class="container">
-      <QuizPromotion />
-    </div>
+  <!-- Full-width section backgrounds -->
+  <QuizPromotion />
+
+  <CategoryNavigation />
+
+  <section class="section--usecase">
+    <UsecasesSection />
   </section>
 
-  <section class="section">
-    <div class="container">
-      <CategoryNavigation />
-    </div>
+  <section class="section--buying-guide">
+    <BuyingGuideSection />
   </section>
 
-  <section class="section section--with-background section--usecase">
-    <div class="container">
-      <UsecasesSection />
-    </div>
-  </section>
-
-  <section class="section section--with-background section--buying-guide">
-    <div class="container">
-      <BuyingGuideSection />
-    </div>
-  </section>
-
-  <section class="section section--wide section--flexible-payment">
+  <section class="section--flexible-payment">
     <div class="container">
       <div class="flexible-payment-promo">
         <h2>Flexible Payment Options Available</h2>
         <p>
-          Make your smart display investment more affordable with our flexible payment plans. 
-          Choose from installment options, bank loans, or buy-now-pay-later solutions to fit your budget.
+          Make your smart display investment more affordable with our flexible
+          payment plans. Choose from installment options, bank loans, or
+          buy-now-pay-later solutions to fit your budget.
         </p>
         <div class="payment-highlights">
           <div class="payment-option">
@@ -91,10 +82,12 @@ const seoProps = {
           </div>
         </div>
         <Button
-          variant="primary"
+          variant="glass"
           size="lg"
           href="/flexible-payment"
-          id="flexible-payment-cta">Learn More About Payment Options</Button>
+          class="animate-float"
+          id="flexible-payment-cta">Learn More About Payment Options</Button
+        >
       </div>
     </div>
   </section>
@@ -120,9 +113,14 @@ const seoProps = {
             variant="primary"
             size="lg"
             href="/contact"
+            class="button-gradient animate-float"
             id="homepage-primary-cta">Request Expert Advice</Button
           >
-          <Button variant="ghost" href="/demo" id="homepage-secondary-cta"
+          <Button 
+            variant="glass" 
+            href="/demo" 
+            class="animate-pulse"
+            id="homepage-secondary-cta"
             >See It In Action</Button
           >
         </div>
@@ -132,21 +130,77 @@ const seoProps = {
 </MainLayout>
 
 <style lang="scss">
+  /* Modern section transitions with Phase 1 enhancements */
+  .section {
+    position: relative;
+    transition: all var(--duration-normal) var(--ease-smooth);
+  }
+
+  /* Add subtle animations on scroll using Phase 1 system */
+  .section > .container > * {
+    animation: fadeInUp var(--duration-slow) var(--ease-smooth);
+  }
+
+  .section.animate-fade-up {
+    opacity: 0;
+    transform: translateY(2rem);
+    animation: fadeInUp var(--duration-slow) var(--ease-smooth) forwards;
+  }
+
+  .section.stagger-children > * {
+    animation: fadeInUp var(--duration-slow) var(--ease-smooth) forwards;
+  }
+
   /* Section-specific styles */
   .section--buying-guide {
-    background-color: #f6f9fc;
+    background: var(--gradient-premium);
     background-image: linear-gradient(
         135deg,
-        rgba(0, 0, 0, 0.15) 0%,
-        rgba(11, 43, 85, 0.75) 100%
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(59, 130, 246, 0.8) 100%
       ),
       url(/assets/images/marketing/conference_room_interactive_display_16x9.jpeg);
     background-size: cover;
     background-position: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+  }
+
+  .section--buying-guide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 100%
+    );
+    pointer-events: none;
   }
 
   .section--usecase {
-    background-color: #fff;
+    background: var(--gradient-bg-subtle, linear-gradient(135deg, #ffffff 0%, #f8fafb 100%));
+    position: relative;
+    padding: var(--space-section) 0;
+  }
+
+  .section--usecase::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(59, 130, 246, 0.2) 50%,
+      transparent 100%
+    );
   }
 
   /* Testimonial component styles */
@@ -182,87 +236,217 @@ const seoProps = {
     top: -10px;
   }
 
-  /* CTA Banner styles */
+  /* Modern CTA Banner styles with Phase 1 enhancements */
   .cta-banner {
-    background: #f0f8ff;
-    padding: var(--spacing-xl);
+    background: var(--gradient-primary);
+    padding: var(--space-card);
     text-align: center;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow-1);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .cta-banner.glass-light {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+  }
+
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 70%
+    );
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .cta-banner h3 {
     margin-top: 0;
-    color: var(--color-text-primary);
-    font-size: var(--font-size-h3);
+    color: white;
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--text-section-line-height);
+    position: relative;
+    z-index: 1;
   }
 
   .cta-banner p {
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-body-large);
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: white;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
   }
 
   .cta-buttons {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--space-md);
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
 
-  /* Flexible Payment Section styles */
+  .cta-buttons .button-primary {
+    background: white;
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cta-buttons .button-primary:hover {
+    background: var(--color-surface);
+    transform: translateY(-2px);
+  }
+
+  /* Modern Flexible Payment Section with Phase 1 */
   .section--flexible-payment {
-    background: linear-gradient(135deg, #f8fafb 0%, #e8f5e8 100%);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--gradient-success);
+    position: relative;
+    overflow: hidden;
+    padding: var(--space-section) 0;
+  }
+
+  .section--flexible-payment::before,
+  .section--flexible-payment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(59, 130, 246, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .section--flexible-payment::before {
+    top: 0;
+  }
+
+  .section--flexible-payment::after {
+    bottom: 0;
   }
 
   .flexible-payment-promo {
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    position: relative;
+
+    padding: calc(var(--spacing-xl) * 2) 0;
   }
 
   .flexible-payment-promo h2 {
-    color: var(--color-text-primary);
-    font-size: var(--font-size-h2);
-    margin-bottom: var(--spacing-lg);
-    font-weight: 600;
+    color: white;
+    font-size: var(--text-hero);
+    line-height: var(--text-hero-line-height);
+    margin-bottom: var(--space-lg);
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .flexible-payment-promo > p {
-    font-size: var(--font-size-body-large);
-    color: var(--color-text-primary);
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.6;
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: white;
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
   }
 
   .payment-highlights {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
   }
 
   .payment-option {
-    background: rgba(255, 255, 255, 0.8);
-    padding: var(--spacing-lg);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    padding: var(--space-card);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--space-md);
+    transition: all var(--duration-normal) var(--ease-smooth);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .payment-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .payment-option:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .payment-option:hover::before {
+    transform: translateX(0);
   }
 
   .payment-option strong {
-    color: var(--color-accent-primary);
-    font-size: var(--font-size-body-regular);
-    font-weight: 600;
+    color: white;
+    font-size: var(--text-subsection);
+    font-weight: var(--font-weight-bold);
   }
 
   .payment-option span {
-    color: var(--color-text-primary);
-    font-size: var(--font-size-small);
-    opacity: 0.8;
+    color: white;
+    font-size: var(--text-body);
+    opacity: 0.9;
+    line-height: var(--text-body-line-height);
+  }
+
+  /* Animation keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: $breakpoint-md) {
@@ -270,7 +454,7 @@ const seoProps = {
       grid-template-columns: 1fr;
       gap: var(--spacing-md);
     }
-    
+
     .flexible-payment-promo h2 {
       font-size: var(--font-size-h3);
     }

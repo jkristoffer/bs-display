@@ -1,16 +1,677 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import SpacingGuide from '../components/design-system/SpacingGuide.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 /**
- * Design System page
- * This page is for internal development purposes only
+ * Enhanced Design System page
+ * Showcasing Phase 1 redesign components
  */
 ---
 
-<MainLayout
-  title="Design System | BigShine Display"
-  description="Internal design system and component library for BigShine Display website development"
+<BaseLayout 
+  title="Design System - Phase 1 Components | BigShine Display"
+  description="Enhanced design system showcase featuring the new gradient-based components for the redesign"
 >
-  <SpacingGuide />
-</MainLayout>
+  <div class="design-system-showcase">
+    <div class="container">
+      <header class="showcase-header">
+        <h1 class="heading-hero gradient-text-primary">Enhanced Design System</h1>
+        <p class="subtitle-large">Phase 1 Components - Redesign Implementation</p>
+        <div class="showcase-stats">
+          <div class="stat-badge glass-light">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Utility Classes</span>
+          </div>
+          <div class="stat-badge glass-light">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Gradient Variants</span>
+          </div>
+          <div class="stat-badge glass-light">
+            <span class="stat-number">7</span>
+            <span class="stat-label">Button Types</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Typography Section -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Enhanced Typography</h2>
+        <div class="section-description">
+          <p>Fluid typography system that scales beautifully across all devices using CSS clamp() functions.</p>
+        </div>
+        
+        <div class="typography-examples">
+          <div class="type-demo">
+            <h1 class="heading-hero">Hero Heading</h1>
+            <code>heading-hero</code>
+          </div>
+          <div class="type-demo">
+            <h2 class="heading-section">Section Heading</h2>
+            <code>heading-section</code>
+          </div>
+          <div class="type-demo">
+            <p class="subtitle-large">Large Subtitle Text</p>
+            <code>subtitle-large</code>
+          </div>
+          <div class="type-demo">
+            <p class="text-fluid-sm">Fluid body text that scales beautifully across all devices and screen sizes.</p>
+            <code>text-fluid-sm</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gradient Backgrounds -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Gradient Backgrounds</h2>
+        <div class="section-description">
+          <p>Premium gradient backgrounds designed for modern interfaces and brand consistency.</p>
+        </div>
+        
+        <div class="gradient-grid">
+          <div class="gradient-demo gradient-bg-primary">
+            <h3>Primary</h3>
+            <p>Main brand gradient</p>
+            <code>gradient-bg-primary</code>
+          </div>
+          <div class="gradient-demo gradient-bg-success">
+            <h3>Success</h3>
+            <p>Positive actions</p>
+            <code>gradient-bg-success</code>
+          </div>
+          <div class="gradient-demo gradient-bg-premium">
+            <h3>Premium</h3>
+            <p>Enterprise features</p>
+            <code>gradient-bg-premium</code>
+          </div>
+          <div class="gradient-demo gradient-bg-attention">
+            <h3>Attention</h3>
+            <p>Important notices</p>
+            <code>gradient-bg-attention</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gradient Text -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Gradient Text Effects</h2>
+        <div class="section-description">
+          <p>Eye-catching gradient text effects that maintain readability and accessibility.</p>
+        </div>
+        
+        <div class="text-examples">
+          <div class="text-demo">
+            <h3 class="gradient-text-primary">Primary Gradient Text</h3>
+            <code>gradient-text-primary</code>
+          </div>
+          <div class="text-demo">
+            <h3 class="gradient-text-success">Success Gradient Text</h3>
+            <code>gradient-text-success</code>
+          </div>
+          <div class="text-demo">
+            <h3 class="gradient-text-warning">Warning Gradient Text</h3>
+            <code>gradient-text-warning</code>
+          </div>
+          <div class="text-demo">
+            <h3 class="gradient-text-info">Info Gradient Text</h3>
+            <code>gradient-text-info</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Button System -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Enhanced Button System</h2>
+        <div class="section-description">
+          <p>Comprehensive button system with multiple variants, sizes, and interactive states.</p>
+        </div>
+        
+        <div class="button-showcase">
+          <div class="button-group-demo">
+            <h4>Primary Buttons</h4>
+            <div class="button-row">
+              <button class="button-primary button-sm">Small</button>
+              <button class="button-primary">Default</button>
+              <button class="button-primary button-lg">Large</button>
+              <button class="button-primary button-xl">Extra Large</button>
+            </div>
+          </div>
+          
+          <div class="button-group-demo">
+            <h4>Gradient & Glass</h4>
+            <div class="button-row">
+              <button class="button-gradient">Gradient</button>
+              <button class="button-gradient animate-float">With Animation</button>
+              <button class="button-glass">Glass Effect</button>
+              <button class="button-ghost">Ghost Button</button>
+            </div>
+          </div>
+          
+          <div class="button-group-demo">
+            <h4>Contextual Variants</h4>
+            <div class="button-row">
+              <button class="button-success">Success</button>
+              <button class="button-warning">Warning</button>
+              <button class="button-fab">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Glassmorphism Effects -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Glassmorphism Effects</h2>
+        <div class="section-description">
+          <p>Modern glass effects with backdrop blur for creating depth and visual hierarchy.</p>
+        </div>
+        
+        <div class="glass-showcase">
+          <div class="glass-demo glass-light">
+            <h4>Light Glass</h4>
+            <p>Subtle glass effect for light backgrounds</p>
+            <code>glass-light</code>
+          </div>
+          <div class="glass-demo glass-dark">
+            <h4>Dark Glass</h4>
+            <p>Enhanced glass for dark themes</p>
+            <code>glass-dark</code>
+          </div>
+          <div class="glass-demo glass-strong">
+            <h4>Strong Glass</h4>
+            <p>Heavy blur for overlays and modals</p>
+            <code>glass-strong</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Icon Containers -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Icon Containers</h2>
+        <div class="section-description">
+          <p>Beautiful icon containers with gradient and glass effects in multiple sizes.</p>
+        </div>
+        
+        <div class="icon-demo-grid">
+          <div class="icon-demo">
+            <div class="icon-container-gradient sm">🎨</div>
+            <p>Small Gradient</p>
+            <code>icon-container-gradient sm</code>
+          </div>
+          <div class="icon-demo">
+            <div class="icon-container-gradient">⚡</div>
+            <p>Default Gradient</p>
+            <code>icon-container-gradient</code>
+          </div>
+          <div class="icon-demo">
+            <div class="icon-container-gradient lg">🚀</div>
+            <p>Large Gradient</p>
+            <code>icon-container-gradient lg</code>
+          </div>
+          <div class="icon-demo">
+            <div class="icon-container-glass">💎</div>
+            <p>Glass Effect</p>
+            <code>icon-container-glass</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Animations -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Hardware-Accelerated Animations</h2>
+        <div class="section-description">
+          <p>Smooth 60fps animations that respect user preferences for reduced motion.</p>
+        </div>
+        
+        <div class="animation-grid">
+          <div class="animation-demo">
+            <div class="demo-box animate-float">Float</div>
+            <p>Gentle floating animation</p>
+            <code>animate-float</code>
+          </div>
+          <div class="animation-demo">
+            <div class="demo-box animate-pulse">Pulse</div>
+            <p>Breathing effect</p>
+            <code>animate-pulse</code>
+          </div>
+          <div class="animation-demo">
+            <div class="demo-box animate-fade-up">Fade Up</div>
+            <p>Entrance animation</p>
+            <code>animate-fade-up</code>
+          </div>
+          <div class="animation-demo">
+            <div class="demo-box animate-rotate">Rotate</div>
+            <p>Continuous rotation</p>
+            <code>animate-rotate</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stagger Animation -->
+      <section class="showcase-section animate-fade-up">
+        <h2 class="heading-section">Stagger Animation System</h2>
+        <div class="section-description">
+          <p>Coordinated animations that create engaging entrance effects for multiple elements.</p>
+        </div>
+        
+        <div class="stagger-children">
+          <div class="stagger-item glass-light">Item 1</div>
+          <div class="stagger-item glass-light">Item 2</div>
+          <div class="stagger-item glass-light">Item 3</div>
+          <div class="stagger-item glass-light">Item 4</div>
+          <div class="stagger-item glass-light">Item 5</div>
+          <div class="stagger-item glass-light">Item 6</div>
+        </div>
+        <div class="code-example">
+          <code>stagger-children</code> - Apply to parent container
+        </div>
+      </section>
+
+      <!-- Implementation Notes -->
+      <section class="showcase-section">
+        <div class="implementation-notes glass-light">
+          <h3>Implementation Status</h3>
+          <div class="status-grid">
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Variables & Design Tokens</span>
+            </div>
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Enhanced Button System</span>
+            </div>
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Gradient Utilities</span>
+            </div>
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Glassmorphism Effects</span>
+            </div>
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Animation System</span>
+            </div>
+            <div class="status-item">
+              <span class="status-indicator status-complete"></span>
+              <span>Typography System</span>
+            </div>
+          </div>
+          <p class="phase-note">
+            <strong>Phase 1 Complete:</strong> Foundation design system with enhanced variables, 
+            button system, gradients, and animations. Ready for Phase 2 implementation.
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .design-system-showcase {
+    padding: var(--space-section) 0;
+    background: var(--color-background);
+  }
+
+  .showcase-header {
+    text-align: center;
+    margin-bottom: var(--space-section);
+  }
+
+  .showcase-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .stat-badge {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 1rem;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: var(--font-size-body-small);
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .showcase-section {
+    margin-bottom: var(--space-section);
+  }
+
+  .section-description {
+    margin-bottom: var(--space-xl);
+    max-width: 600px;
+  }
+
+  .section-description p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body-large);
+  }
+
+  /* Typography Examples */
+  .typography-examples {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .type-demo {
+    padding: var(--space-lg);
+    border: 2px solid var(--color-border-light);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+
+  .type-demo > *:first-child {
+    margin-bottom: var(--space-md);
+  }
+
+  .type-demo code {
+    background: var(--color-surface-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-body-small);
+    color: var(--color-text-secondary);
+  }
+
+  /* Gradient Examples */
+  .gradient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .gradient-demo {
+    padding: var(--space-xl);
+    border-radius: 1rem;
+    text-align: center;
+    color: white;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .gradient-demo h3 {
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: 600;
+    font-size: var(--font-size-h4);
+  }
+
+  .gradient-demo p {
+    margin: 0 0 var(--space-md) 0;
+    opacity: 0.9;
+  }
+
+  .gradient-demo code {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-caption);
+    opacity: 0.8;
+  }
+
+  /* Text Examples */
+  .text-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .text-demo {
+    padding: var(--space-lg);
+    border: 2px solid var(--color-border-light);
+    border-radius: 1rem;
+    background: var(--color-surface);
+    text-align: center;
+  }
+
+  .text-demo h3 {
+    margin-bottom: var(--space-md);
+  }
+
+  .text-demo code {
+    background: var(--color-surface-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-body-small);
+    color: var(--color-text-secondary);
+  }
+
+  /* Button Showcase */
+  .button-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .button-group-demo h4 {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  /* Glass Showcase */
+  .glass-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    background: var(--gradient-primary);
+    padding: var(--space-xl);
+    border-radius: 1rem;
+  }
+
+  .glass-demo {
+    padding: var(--space-xl);
+    border-radius: 1rem;
+    text-align: center;
+    color: white;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .glass-demo h4 {
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: 600;
+  }
+
+  .glass-demo p {
+    margin: 0 0 var(--space-md) 0;
+    opacity: 0.9;
+  }
+
+  .glass-demo code {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-caption);
+    opacity: 0.8;
+  }
+
+  /* Icon Demo */
+  .icon-demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .icon-demo {
+    text-align: center;
+    padding: var(--space-lg);
+    border: 2px solid var(--color-border-light);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+
+  .icon-demo p {
+    margin: var(--space-md) 0 var(--space-sm) 0;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .icon-demo code {
+    background: var(--color-surface-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+  }
+
+  /* Animation Demo */
+  .animation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .animation-demo {
+    text-align: center;
+    padding: var(--space-lg);
+    border: 2px solid var(--color-border-light);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+
+  .demo-box {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-primary);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin: 0 auto var(--space-md);
+  }
+
+  .animation-demo p {
+    margin: 0 0 var(--space-sm) 0;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .animation-demo code {
+    background: var(--color-surface-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: var(--font-size-caption);
+    color: var(--color-text-secondary);
+  }
+
+  /* Stagger Demo */
+  .stagger-children {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .stagger-item {
+    padding: var(--space-lg);
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .code-example {
+    text-align: center;
+  }
+
+  .code-example code {
+    background: var(--color-surface-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: var(--font-size-body-regular);
+    color: var(--color-text-secondary);
+  }
+
+  /* Implementation Notes */
+  .implementation-notes {
+    padding: var(--space-xl);
+    border-radius: 1rem;
+    margin-top: var(--space-section);
+  }
+
+  .implementation-notes h3 {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-primary);
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .status-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-complete {
+    background: var(--gradient-success);
+  }
+
+  .phase-note {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .showcase-stats {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .gradient-grid,
+    .glass-showcase,
+    .button-showcase,
+    .text-examples {
+      grid-template-columns: 1fr;
+    }
+    
+    .icon-demo-grid,
+    .animation-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stagger-children {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .status-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -22,65 +22,18 @@
 ### **Quick Access**
 ```bash
 npm run help                    # See all available commands
-npm run ai:do <intent> [params] # Execute high-level AI intents
-npm run git:commit             # Intelligent git commits
-npm run code:review -- --file [path]  # Automated code review
-npm run content:blog:generate  # AI blog post generation
-npm run data:validate         # JSON schema validation
-npm run ai:performance        # AI agent performance tracking
+npm run ai:do <intent> [params] # Primary entry point for AI-driven tasks
 ```
 
-### **No Slash Commands**
-Previous `/commit` slash commands have been deprecated. Use `npm run git:commit` instead.
-
-### **AI-Enhanced Features**
-```bash
-# Dry-run any destructive operation
-npm run git:commit:ai -- --dry-run
-npm run ai:validate:dry
-
-# JSON output for parsing
-npm run git:status:json
-npm run code:review -- --file test.js --json
-
-# Contextual help
-npm run help git       # Show git commands
-npm run help code      # Show code commands
-npm run help content   # Show content commands
-```
+This project utilizes a unified `npm run` command interface. For a comprehensive, machine-readable list of all available intents and their parameters, use `npm run ai:do list-intents`.
 
 ---
 
 ## 🤖 AI-FIRST ARCHITECTURE & TOOLING
 
-This project is designed with AI-First principles, providing structured, machine-readable interfaces for enhanced AI collaboration and autonomy.
+This project is built on AI-First principles, providing structured, machine-readable interfaces for enhanced AI collaboration and autonomy. Key components include `ai-config.json` (centralized AI configuration), `ai-intents.json` (high-level intent mapping), `component-manifest.json` (programmatic UI inventory), and `.ai-events.log` (structured action logging). All AI-First documentation adheres to `ai-doc-schema.json` for consistent machine-readability.
 
-### **Core AI-First Components:**
-
-*   **`ai-config.json`**: Centralized configuration for AI agents, defining critical rules, quality gates, and key project paths in a machine-readable format.
-    *   **Location**: Project root
-    *   **Purpose**: Provides unambiguous, directly parsable instructions for AI operations.
-*   **`ai-intents.json`**: Defines a high-level "intent" layer, mapping abstract tasks to concrete `npm` commands.
-    *   **Location**: Project root
-    *   **Purpose**: Decouples AI reasoning from command-line syntax, enhancing resilience to changes and enabling self-discovery of capabilities.
-    *   **Usage**: `npm run ai:do <intentName> [params...]`
-*   **`component-manifest.json`**: A dynamically generated, structured inventory of all UI components, including their names, paths, types, and detailed prop definitions.
-    *   **Location**: Project root (generated)
-    *   **Purpose**: Provides a programmatic API for understanding the project's UI building blocks, enabling confident component usage and modification by AI.
-    *   **Generation**: `npm run components:manifest`
-*   **`.ai-events.log`**: An append-only log of all AI-initiated actions and their outcomes.
-    *   **Location**: Project root
-    *   **Purpose**: Provides a persistent, machine-readable history for debugging, auditing, and AI learning.
-*   **`ai-doc-schema.json`**: The JSON Schema defining the structure for all AI-First documentation files.
-    *   **Location**: `docs/internal/ai-docs/`
-    *   **Purpose**: Ensures consistency, predictability, and machine-readability across all AI-specific documentation.
-
-### **Key AI-First Scripts:**
-
-*   **`scripts/ai-do.js`**: The core "intent layer" script. It interprets high-level intents from `ai-intents.json` and executes the corresponding commands. Also handles intent discovery (`npm run ai:do list-intents`).
-*   **`scripts/validate-project.js`**: Provides structured, JSON-formatted output for project health checks (type-checking, linting, build). Designed for programmatic consumption by AI for automated analysis and potential remediation.
-*   **`scripts/generate-component-manifest.js`**: Generates `component-manifest.json` by robustly parsing component files using `ts-morph`.
-*   **`scripts/ai-log.js`**: Utility for writing structured events to `.ai-events.log`.
+For detailed, machine-readable specifications of these components and their associated scripts (`scripts/ai-do.js`, `scripts/validate-project.js`, `scripts/generate-component-manifest.js`, `scripts/ai-log.js`), refer to the JSON documentation files located in [./docs/internal/ai-docs/](./docs/internal/ai-docs/).
 
 ---
 
@@ -88,27 +41,7 @@ This project is designed with AI-First principles, providing structured, machine
 
 **Transform from stateless AI to project-aware assistant with comprehensive codebase memory.**
 
-⚠️ **The RAG system has been moved to a separate repository for better modularity.**
-
-### **New Location & Setup**
-```bash
-# Clone the separate RAG tools repository
-git clone /Users/kristoffersanio/git/bs-rag-tools
-cd bs-rag-tools
-
-# Setup for this project
-pip install -r requirements.txt
-export GEMINI_API_KEY="your_api_key_here"
-
-# Project-aware queries with full context
-./gemini_rag_wrapper.sh "How does the ProductCard component work?"
-./gemini_rag_wrapper.sh "Images are 404ing on product pages"
-```
-
-### **Learn More**
-- **[RAG System Guide](./docs/RAG_PROJECT_MEMORY_GUIDE.md)** - Complete documentation
-- **[RAG Quick Reference](./docs/RAG_QUICK_REFERENCE.md)** - Daily usage examples
-- **[RAG System Overview](./docs/RAG_SYSTEM_OVERVIEW.md)** - Technical architecture and setup
+⚠️ **The RAG system has been moved to a separate repository for better modularity.** Refer to the [bs-rag-tools repository](https://github.com/kristoffersanio/bs-rag-tools) for setup and usage.
 
 ---
 
@@ -116,71 +49,18 @@ export GEMINI_API_KEY="your_api_key_here"
 
 **Analyze PDF files using Gemini CLI through Claude Code integration.**
 
-⚠️ **The MCP PDF analyzer has been moved to a separate repository for better modularity.**
-
-### **New Location & Setup**
-```bash
-# Clone the separate MCP servers repository
-git clone /Users/kristoffersanio/git/bs-mcp-servers
-cd bs-mcp-servers/pdf-analyzer
-
-# Setup and build
-npm install && npm run build
-
-# Claude Code integration
-claude mcp add pdf-analyzer -s project -- node /Users/kristoffersanio/git/bs-mcp-servers/pdf-analyzer/dist/index.js
-claude mcp list     # List configured servers
-claude mcp remove pdf-analyzer  # Remove server
-```
-
-### **Usage in Claude Code**
-Once configured, the PDF analyzer is available as:
-- **Tool name**: `mcp__pdf-analyzer__analyze_pdf`
-- **Analysis types**: extract, summarize, pricing, specifications
-- **Example**: Analyze `quotation_for_85inch_smart_board.pdf` for pricing information
-
-### **Configuration**
-- **Server config**: `.mcp.json` (project-scoped, team-shared)
-- **Source code**: `scripts/mcp-servers/pdf-analyzer/`
-- **Dependencies**: Gemini CLI (must be in PATH)
+⚠️ **The MCP PDF analyzer has been moved to a separate repository for better modularity.** Refer to the [bs-mcp-servers repository](https://github.com/kristoffersanio/bs-mcp-servers) for setup and usage.
 
 ---
 
 ## 🆘 EMERGENCY QUICK ACCESS
 
-### **Automation Failures**
-```bash
-# Code review agent issues (enhanced with security & performance)
-npm run code:review -- --file test.js
-npm run code:review:config                    # Regenerate configuration
-npm run code:review -- --file test.js --format json  # Machine-readable output
+For immediate troubleshooting and system health checks, utilize the AI-First validation and intent discovery tools.
 
-# Security audit failures
-npm run code:review -- --batch src/ --format json | grep "security"
+*   **General Project Validation**: `npm run ai:do validate-project` (provides structured JSON output for analysis).
+*   **Discover Troubleshooting Commands**: `npm run ai:do list-intents` (to find specific intents for various issues).
 
-# SEO system failures  
-npm run content:seo:analyze -- --file src/content/blog/[post].md
-
-# Blog generation problems
-npm run content:blog:generate
-
-# Check all automation tools
-npm run help
-```
-
-### **Path Issues**
-- **Development Standards**: `/docs/development/standards/standards/`
-- **Components**: `/src/components/`
-- **Product Data**: `/src/data/models.[brand].json`
-- **Automation Scripts**: `/scripts/`
-- **NEW**: **Gradient System Test**: `/test-gradients`
-
-### **Context Problems**
-- **File not found**: Use Glob tool with pattern matching
-- **Import errors**: Check `/docs/development/standards/standards/file-naming.md`
-- **Type errors**: Run `npm run check` for Astro type checking
-
-### **Full Emergency Procedures**: [Troubleshooting Guide](./docs/quick-start/troubleshooting.md)
+For detailed emergency procedures, refer to the [Troubleshooting Guide](./docs/quick-start/troubleshooting.md).
 
 ---
 
@@ -328,111 +208,9 @@ src/
 
 ## 🛠️ TOOL INTEGRATION
 
-### **Code Quality & Security**
-```bash
-# Essential code review (run after every change)
-npm run code:review -- --file [file]
+This project features a robust suite of automated tools for code quality, security, content management, and development workflows. These tools are integrated into the AI-First architecture to streamline development and ensure high standards.
 
-# Full directory analysis with security & performance checks
-npm run code:review -- --batch src/components/
-
-# Configuration management
-npm run code:review:config                    # Generate default .codereview.json
-npm run code:review:config:interactive        # Interactive configuration setup
-
-# Output formats for different use cases
-npm run code:review -- --file [file] --format detailed   # Full human-readable report
-npm run code:review -- --file [file] --format json       # Machine-readable JSON
-npm run code:review -- --file [file] --format minimal    # Concise score summary
-
-# AI-optimized workflows with metadata tracking
-npm run code:review -- --file [file] --ai-mode --agent-id "claude-dev" --task-id "security-audit"
-
-# Custom thresholds for different quality gates
-npm run code:review -- --file [file] --threshold-failing 70 --threshold-excellent 95
-```
-
-#### **Enhanced Analysis Categories (Weighted Scoring)**
-- **🔒 Security (20%)**: XSS vulnerabilities, secrets exposure, input validation, authentication issues
-- **⚡ Functional Programming (25%)**: Pure functions, immutability, composition, side effects
-- **🚀 Performance (10%)**: React optimization, memory leaks, expensive operations, bundle size
-- **📏 Project Standards (15%)**: File naming, imports, exports, styling patterns
-- **🔷 TypeScript (15%)**: Type annotations, interfaces, generics, avoiding `any`
-- **⚛️ React Patterns (15%)**: Hooks rules, component patterns, memoization, props management
-
-#### **Configuration System (.codereview.json)**
-```json
-{
-  "rules": {
-    "security": {
-      "enabled": true,
-      "weight": 0.20,
-      "custom": {
-        "checkXss": true,
-        "checkSecrets": true,
-        "strictMode": true
-      }
-    }
-  },
-  "ignore": ["**/*.test.tsx", "**/dist/**"],
-  "thresholds": {
-    "excellent": 90,
-    "failing": 60
-  }
-}
-```
-
-#### **Security Analysis Features**
-- **XSS Prevention**: Detects `dangerouslySetInnerHTML`, `eval()`, direct HTML injection
-- **Secrets Detection**: Finds hardcoded API keys, passwords, tokens in code
-- **Input Validation**: Identifies unvalidated form inputs, SQL injection patterns
-- **Authentication Security**: Checks for weak session management, auth bypasses
-- **Safe DOM Practices**: Flags unsafe `document.write`, `innerHTML` usage
-
-#### **Performance Optimization Checks**
-- **React Performance**: Missing `React.memo`, `useCallback`, `useMemo` opportunities
-- **Memory Leak Detection**: Missing cleanup in `useEffect`, global variable issues
-- **Algorithm Efficiency**: Nested loops, inefficient array operations
-- **Bundle Size**: Large library imports, unused dependencies
-
-#### **AI Workflow Integration**
-```bash
-# Generate code with AI agent tracking
-npm run code:review -- --file new-component.tsx --ai-mode --agent-id "claude-sonnet" --task-id "create-auth-component"
-
-# Exit codes for CI/CD integration
-# 0: Success (score above threshold)
-# 1: Failure (score below threshold)
-```
-
-### **Content & SEO**
-```bash
-# Analyze blog post SEO
-npm run content:seo:analyze -- --file src/content/blog/[post].md
-
-# Auto-optimize content
-npm run content:seo:optimize -- --file src/content/blog/[post].md
-
-# Generate new blog post
-npm run content:blog:generate
-```
-
-### **Development Commands**
-```bash
-npm run dev               # Start development server
-npm run dev:expose        # Start server accessible externally
-npm run build             # Build for production
-npm run build:fast        # Build without image optimization
-npm run check             # TypeScript checking
-npm run preview           # Preview production build
-```
-
-### **Essential Tools List**
-```bash
-npm run help             # Show all available commands
-npm run help [category]  # Show commands by category (git, code, content, data)
-npm run ai:tools:list    # Show detailed automation tools
-```
+For detailed, machine-readable specifications of these tools and their usage, refer to the AI-First documentation files located in [./docs/internal/ai-docs/](./docs/internal/ai-docs/). Specific tool configurations and advanced usage patterns are also documented within the relevant AI-First JSON files (e.g., `ai-config.json`, `ai-intents.json`).
 
 ---
 

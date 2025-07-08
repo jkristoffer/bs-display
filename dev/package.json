@@ -42,7 +42,9 @@
     "ai:validate:git": "node scripts/validate-tools.js git",
     "ai:validate:code": "node scripts/validate-tools.js code",
     "ai:validate:dry": "npm run git:commit:ai -- --dry-run",
-    "data:validate": "node scripts/validate-json-schema.js"
+    "data:validate": "node scripts/validate-json-schema.js",
+    "validate:project:json": "node scripts/validate-project.js",
+    "components:manifest": "node scripts/generate-component-manifest.js"
   },
   "author": "Kris",
   "license": "ISC",
@@ -82,6 +84,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.87.0",
+    "ts-morph": "^26.0.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.0",
     "vite-plugin-eslint": "^1.8.1"

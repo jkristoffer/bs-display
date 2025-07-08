@@ -1,0 +1,786 @@
+[
+  {
+    "name": "RelatedBlogPosts",
+    "path": "src/components/blog/RelatedBlogPosts.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "currentSlug",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "category",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "limit",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "Breadcrumbs",
+    "path": "src/components/common/Breadcrumbs/Breadcrumbs.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "productType",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "brand",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "brandLabel",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "productId",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "productLabel",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "{ label: string; path?: string; }[] | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "Button",
+    "path": "src/components/common/Button/Button.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "variant",
+        "type": "\"primary\" | \"ghost\" | \"glass\" | \"gradient\" | \"success\" | \"warning\" | \"faint\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "href",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "\"button\" | \"submit\" | \"reset\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "iconPosition",
+        "type": "\"left\" | \"right\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ErrorBoundary",
+    "path": "src/components/common/ErrorBoundary/ErrorBoundary.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "Footer",
+    "path": "src/components/common/Footer/Footer.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "Icons",
+    "path": "src/components/common/Icons/Icons.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "name",
+        "type": "\"collaboration\" | \"network\" | \"learning\" | \"versatile\"",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "alt",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "index",
+    "path": "src/components/common/Nav/index.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "SEO",
+    "path": "src/components/common/SEO.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "ogTitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ogDescription",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ogImage",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ogType",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterCard",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterTitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterDescription",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "twitterImage",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "canonicalUrl",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "structuredData",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "viewport",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "noindex",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nofollow",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "additionalTags",
+        "type": "{ name?: string; property?: string; content: string; httpEquiv?: string; }[] | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "PageHeaderModern",
+    "path": "src/components/common/page-header/PageHeaderModern.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "badge",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "badgeIcon",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "index",
+    "path": "src/components/common/page-header/index.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "SpacingGuide",
+    "path": "src/components/design-system/SpacingGuide.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "Banner",
+    "path": "src/components/home/Banner/Banner.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "BlogHighlights",
+    "path": "src/components/home/BlogHighlights/BlogHighlights.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "BlogHighlightsModern",
+    "path": "src/components/home/BlogHighlights/BlogHighlightsModern.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "BrandCard",
+    "path": "src/components/home/BrandsSection/BrandCard.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "logoSrc",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "BrandsSection",
+    "path": "src/components/home/BrandsSection/BrandsSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "BuyingGuideItem",
+    "path": "src/components/home/BuyingGuideSection/BuyingGuideItem.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "string[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "BuyingGuideSection",
+    "path": "src/components/home/BuyingGuideSection/BuyingGuideSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "CategoryNavigation",
+    "path": "src/components/home/CategoryNavigation/CategoryNavigation.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "CategoryNavigationModern",
+    "path": "src/components/home/CategoryNavigation/CategoryNavigationModern.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "DataTable",
+    "path": "src/components/home/DataTable/DataTable.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "limit",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "DataTableModern",
+    "path": "src/components/home/DataTable/DataTableModern.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "limit",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "QuizPromotion",
+    "path": "src/components/home/QuizPromotion/QuizPromotion.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "QuizPromotionModern",
+    "path": "src/components/home/QuizPromotion/QuizPromotionModern.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "QuizPromotionSleek",
+    "path": "src/components/home/QuizPromotion/QuizPromotionSleek.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "UsecaseItem",
+    "path": "src/components/home/UsecasesSection/UsecaseItem.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "image",
+        "type": "ImageMetadata",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "string[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "recommendedModels",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "isReversed",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "UsecasesSection",
+    "path": "src/components/home/UsecasesSection/UsecasesSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "UsecasesSectionModern",
+    "path": "src/components/home/UsecasesSection/UsecasesSectionModern.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "VideoBanner",
+    "path": "src/components/home/VideoBanner/VideoBanner.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "videoSrc",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "Quiz",
+    "path": "src/components/quiz/Quiz.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "QuizErrorBoundary",
+    "path": "src/components/quiz/components/QuizErrorBoundary.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "index",
+    "path": "src/components/quiz/index.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "BrandsSection",
+    "path": "src/components/sw-buying-guide/BrandsSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ComparisonChartSection",
+    "path": "src/components/sw-buying-guide/ComparisonChartSection.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "ctaText",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "ctaLink",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "DisplayTechSection",
+    "path": "src/components/sw-buying-guide/DisplayTechSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ExpertAdviceSection",
+    "path": "src/components/sw-buying-guide/ExpertAdviceSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "FaqsSection",
+    "path": "src/components/sw-buying-guide/FaqsSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "Header",
+    "path": "src/components/sw-buying-guide/Header.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "RelatedPostsSection",
+    "path": "src/components/sw-buying-guide/RelatedPostsSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "SectionLayout",
+    "path": "src/components/sw-buying-guide/SectionLayout.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "bgClass",
+        "type": "\"\" | \"bg-light\" | \"bg-accent\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "TableOfContents",
+    "path": "src/components/sw-buying-guide/TableOfContents.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "items",
+        "type": "TocItem[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "index",
+    "path": "src/components/sw-buying-guide/TouchComparison/index.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "TouchTechSection",
+    "path": "src/components/sw-buying-guide/TouchTechSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "UseCasesSection",
+    "path": "src/components/sw-buying-guide/UseCasesSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "WhatIsSection",
+    "path": "src/components/sw-buying-guide/WhatIsSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "WhyChooseSection",
+    "path": "src/components/sw-buying-guide/WhyChooseSection.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  }
+]

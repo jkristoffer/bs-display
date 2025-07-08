@@ -1,0 +1,502 @@
+---
+import Button from '../../common/Button/Button.astro';
+
+// Image paths
+const img1 = '/assets/images/use-cases/bsdisplay-iboard-usecase-classroom.jpeg';
+const img2 = '/assets/images/use-cases/bsdisplay-iboard-usecase-office.jpeg';
+const img3 = '/assets/images/use-cases/bsdisplay-iboard-usecase-training.jpeg';
+
+interface Usecase {
+  title: string;
+  subtitle: string;
+  image: string;
+  features: Array<{
+    icon: string;
+    title: string;
+    description: string;
+  }>;
+  recommendedModels: string[];
+  gradient: string;
+}
+
+const usecases: Usecase[] = [
+  {
+    title: 'Education',
+    subtitle: 'Transform Learning Experiences',
+    image: img1,
+    features: [
+      {
+        icon: 'touch',
+        title: 'Interactive Learning',
+        description: 'Multi-touch capabilities keep students engaged and participative'
+      },
+      {
+        icon: 'collaborate',
+        title: 'Real-time Collaboration',
+        description: 'Teachers and students work together seamlessly on digital whiteboards'
+      },
+      {
+        icon: 'mirror',
+        title: 'Device Integration',
+        description: 'Screen mirroring from any device for enhanced classroom interaction'
+      }
+    ],
+    recommendedModels: ['METZ 75"', 'Infinity Pro 86"'],
+    gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)'
+  },
+  {
+    title: 'Business',
+    subtitle: 'Elevate Meeting Productivity',
+    image: img2,
+    features: [
+      {
+        icon: 'video',
+        title: 'Hybrid Meetings',
+        description: 'Built-in video conferencing for seamless remote collaboration'
+      },
+      {
+        icon: 'annotate',
+        title: 'Live Annotations',
+        description: 'Mark up documents and presentations in real-time'
+      },
+      {
+        icon: 'integrate',
+        title: 'App Integration',
+        description: 'Native support for Zoom, Teams, and enterprise applications'
+      }
+    ],
+    recommendedModels: ['SMART 65"', 'METZ 75"'],
+    gradient: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
+  },
+  {
+    title: 'Training',
+    subtitle: 'Engage and Empower Learners',
+    image: img3,
+    features: [
+      {
+        icon: 'stylus',
+        title: 'Dynamic Presentations',
+        description: 'Stylus-enabled interactions for more engaging training sessions'
+      },
+      {
+        icon: 'record',
+        title: 'Session Recording',
+        description: 'Capture and share training content for on-demand learning'
+      },
+      {
+        icon: 'multiuser',
+        title: 'Group Activities',
+        description: 'Multiple users can interact simultaneously for collaborative learning'
+      }
+    ],
+    recommendedModels: ['Infinity Pro 86"', 'SMART 75"'],
+    gradient: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+  }
+];
+---
+
+<section class="usecases-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-gradient">Real-World Applications</span>
+      </h2>
+      <p class="section-subtitle">
+        See how our smart displays transform different environments
+      </p>
+    </div>
+
+    <div class="usecases-grid">
+      {usecases.map((usecase, index) => (
+        <div class="usecase-card" style={`animation-delay: ${index * 0.15}s`}>
+          <div class="card-visual">
+            <div class="image-container">
+              <img src={usecase.image} alt={`${usecase.title} use case`} loading="lazy" />
+              <div class="image-overlay" style={`background: ${usecase.gradient}`}></div>
+            </div>
+            <div class="card-badge" style={`background: ${usecase.gradient}`}>
+              <span class="badge-number">0{index + 1}</span>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="content-header">
+              <h3 class="card-title">{usecase.title}</h3>
+              <p class="card-subtitle">{usecase.subtitle}</p>
+            </div>
+            
+            <div class="features-list">
+              {usecase.features.map(feature => (
+                <div class="feature-item">
+                  <div class="feature-icon">
+                    {feature.icon === 'touch' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 14v-2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-5z"/>
+                        <path d="M8 14H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5"/>
+                        <circle cx="12" cy="16" r="1"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'collaborate' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'mirror' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/>
+                        <path d="M21 3h-6v6"/>
+                        <path d="M21 3l-10 10"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'video' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 7l-7 5 7 5V7z"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'annotate' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'integrate' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M9 9h6v6H9z"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'stylus' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                        <path d="M2 2l7.586 7.586"/>
+                        <circle cx="11" cy="11" r="2"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'record' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    )}
+                    {feature.icon === 'multiuser' && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="8.5" cy="7" r="4"/>
+                        <path d="M20 8v6"/>
+                        <path d="M23 11h-6"/>
+                      </svg>
+                    )}
+                  </div>
+                  <div class="feature-content">
+                    <h4 class="feature-title">{feature.title}</h4>
+                    <p class="feature-description">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div class="models-section">
+              <p class="models-label">Recommended Models</p>
+              <div class="models-list">
+                {usecase.recommendedModels.map(model => (
+                  <span class="model-tag">{model}</span>
+                ))}
+              </div>
+            </div>
+            
+            <div class="card-actions">
+              <Button variant="primary" href="/demo" size="md">
+                Book a Demo
+              </Button>
+              <Button variant="ghost" href="/contact" size="md">
+                Get Quote
+              </Button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .usecases-section {
+    padding: calc(var(--spacing-xl) * 2) 0;
+    background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: var(--spacing-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-xl) * 2);
+  }
+
+  .section-title {
+    font-size: clamp(32px, 5vw, 48px);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+  }
+
+  .title-gradient {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  /* Use Cases Grid */
+  .usecases-grid {
+    display: grid;
+    gap: calc(var(--spacing-xl) * 2);
+  }
+
+  /* Use Case Card */
+  .usecase-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: calc(var(--spacing-xl) * 1.5);
+    align-items: center;
+    animation: fadeInUp 0.8s ease-out both;
+    
+    &:nth-child(even) {
+      grid-template-columns: 1.2fr 1fr;
+      
+      .card-visual {
+        order: 2;
+      }
+      
+      .card-content {
+        order: 1;
+      }
+    }
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+      
+      &:nth-child(even) {
+        grid-template-columns: 1fr;
+        
+        .card-visual,
+        .card-content {
+          order: unset;
+        }
+      }
+    }
+  }
+
+  /* Card Visual */
+  .card-visual {
+    position: relative;
+  }
+
+  .image-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    
+    &:hover {
+      img {
+        transform: scale(1.05);
+      }
+      
+      .image-overlay {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Card Content */
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .content-header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .card-title {
+    font-size: clamp(28px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .card-subtitle {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  /* Features List */
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .feature-item {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      color: #3b82f6;
+    }
+  }
+
+  .feature-content {
+    flex: 1;
+  }
+
+  .feature-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 4px 0;
+  }
+
+  .feature-description {
+    font-size: 14px;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Models Section */
+  .models-section {
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .models-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .models-list {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .model-tag {
+    padding: 6px 16px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* Card Actions */
+  .card-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      
+      > * {
+        width: 100%;
+      }
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .usecase-card {
+      animation: none;
+    }
+    
+    .image-container img {
+      transition: none;
+    }
+  }
+</style>

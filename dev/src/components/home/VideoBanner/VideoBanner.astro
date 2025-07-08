@@ -1,0 +1,396 @@
+---
+import Button from '../../common/Button/Button.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  videoSrc: string;
+}
+
+const { title, subtitle, videoSrc } = Astro.props;
+---
+
+<section class="video-banner full-width-container">
+  <!-- Background Video -->
+  <div class="video-background">
+    <video
+      class="banner-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/assets/abstract-bg-1.jpeg"
+      onloadeddata="this.play()"
+    >
+      <source src={videoSrc} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="content-wrapper">
+      <h1>{title}</h1>
+      {subtitle && <p class="subtitle">{subtitle}</p>}
+      
+      <!-- Interactive Feature Cards -->
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7V17C2 19.21 3.79 21 6 21H18C20.21 21 22 19.21 22 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Multi-Touch</h3>
+          <p>20-point touch recognition</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>Zero latency response</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L12 16L16 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Cloud Ready</h3>
+          <p>Seamless integration</p>
+        </div>
+      </div>
+      
+      <div class="cta-holder">
+        <Button variant="primary" size="lg" href="/contact" id="banner-quote-cta">
+          Get Your Free Quote
+        </Button>
+        <Button variant="ghost" href="/products" id="banner-products-cta">
+          View All Products
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <p>Scroll to explore</p>
+  </div>
+</section>
+
+<script>
+  // Ensure video plays on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.banner-video') as HTMLVideoElement;
+    if (video) {
+      video.muted = true; // Ensure muted for autoplay
+      video.play().catch(err => {
+        console.log('Video autoplay failed:', err);
+      });
+    }
+  });
+</script>
+
+<style lang="scss">
+  .video-banner {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Video Background */
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: url('/assets/abstract-bg-1.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(11, 43, 85, 0.6) 100%
+    );
+    z-index: 2;
+  }
+
+  /* Content */
+  .content {
+    position: relative;
+    z-index: 10;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .content-wrapper {
+    text-align: center;
+  }
+
+  /* Simple clean title */
+  h1 {
+    color: #ffffff;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin: 0 0 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+
+  .subtitle {
+    font-size: clamp(18px, 3vw, 28px);
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Feature Cards */
+  .feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    animation: fadeInUp 1s ease-out 0.7s both;
+  }
+
+  .feature-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-card);
+    padding: var(--space-card);
+    text-align: center;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    cursor: pointer;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .feature-card h3 {
+    color: white;
+    font-size: var(--text-subsection);
+    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .feature-card p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-body);
+    margin: 0;
+    line-height: var(--text-body-line-height);
+  }
+
+  /* CTA Buttons with Phase 1 enhancements */
+  .cta-holder {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp var(--duration-slow) var(--ease-smooth) 0.9s both;
+  }
+
+  /* Ghost button styling for video background */
+  .video-banner :global(.button--ghost) {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
+  .video-banner :global(.button--ghost:hover) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    color: white;
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+  }
+
+  .mouse {
+    width: 26px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 13px;
+    margin: 0 auto 10px;
+    position: relative;
+  }
+
+  .wheel {
+    width: 4px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 1.5s infinite;
+  }
+
+  .scroll-indicator p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
+  @keyframes scroll {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: clamp(48px, 12vw, 80px);
+      letter-spacing: -2px;
+    }
+
+    .feature-cards {
+      grid-template-columns: 1fr;
+      max-width: 300px;
+    }
+
+    .feature-card {
+      padding: 20px;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .cta-holder {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-holder > :global(*) {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .banner-video {
+      display: none;
+    }
+    
+    .video-background::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/abstract-bg-1.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+  }
+</style>

@@ -1,0 +1,839 @@
+---
+import { getCollection } from 'astro:content';
+import Button from '../../common/Button/Button.astro';
+
+// Get latest blog posts (most recent 3)
+const allBlogPosts = await getCollection('blog');
+const latestPosts = allBlogPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+
+// Format date function
+function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(date);
+}
+
+// Get reading time estimate
+function getReadingTime(content: string): string {
+  const wordsPerMinute = 200;
+  const words = content.split(' ').length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+}
+---
+
+<section class="blog-highlights-modern">
+  <!-- Background Elements -->
+  <div class="bg-elements">
+    <div class="bg-pattern"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+  </div>
+  
+  <div class="blog-highlights__container">
+    <!-- Header Section -->
+    <div class="section-header">
+      <div class="header-badge">
+        <span class="badge-icon">📚</span>
+        <span class="badge-text">Knowledge Hub</span>
+      </div>
+      
+      <h2 class="section-title">
+        <span class="title-gradient">Latest Insights & Resources</span>
+      </h2>
+      
+      <p class="section-description">
+        Expert advice, industry trends, and practical guides to help you make informed decisions about smart display technology
+      </p>
+    </div>
+
+    <!-- Featured Article (First Post) -->
+    {latestPosts.length > 0 && (
+      <div class="featured-article">
+        <div class="featured-content">
+          <div class="featured-meta">
+            <div class="meta-left">
+              {latestPosts[0].data.category && (
+                <span class="category-tag featured-category">
+                  {latestPosts[0].data.category}
+                </span>
+              )}
+              <span class="reading-time">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                  <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {getReadingTime(latestPosts[0].body || '')}
+              </span>
+            </div>
+            <time datetime={latestPosts[0].data.publishDate.toISOString()} class="publish-date">
+              {formatDate(latestPosts[0].data.publishDate)}
+            </time>
+          </div>
+          
+          <h3 class="featured-title">
+            <a href={`/blog/${latestPosts[0].id}`}>{latestPosts[0].data.title}</a>
+          </h3>
+          
+          <p class="featured-excerpt">{latestPosts[0].data.description}</p>
+          
+          <div class="featured-cta">
+            <a href={`/blog/${latestPosts[0].id}`} class="read-more-link">
+              Read Full Article
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="featured-visual">
+          <div class="featured-image">
+            <img
+              src={latestPosts[0].data.image || `/assets/default-blog-${latestPosts[0].data.category ? latestPosts[0].data.category.toLowerCase().replace(/\s+/g, '-') : 'article'}.jpg`}
+              alt={latestPosts[0].data.title}
+              loading="lazy"
+              onerror={`this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'`}
+            />
+            <div class="image-overlay"></div>
+          </div>
+          
+          <!-- Floating Stats -->
+          <div class="floating-stats">
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-content">
+                <div class="stat-number">2.5K</div>
+                <div class="stat-label">Readers</div>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">💡</div>
+              <div class="stat-content">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Helpful</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- Recent Articles Grid -->
+    {latestPosts.length > 1 && (
+      <div class="articles-section">
+        <div class="articles-header">
+          <h3 class="articles-title">More Articles</h3>
+          <div class="articles-count">{latestPosts.length - 1} recent posts</div>
+        </div>
+        
+        <div class="articles-grid">
+          {latestPosts.slice(1).map((post, index) => (
+            <article class="article-card" style={`animation-delay: ${index * 0.1}s`}>
+              <div class="card-image">
+                <img
+                  src={post.data.image || `/assets/default-blog-${post.data.category ? post.data.category.toLowerCase().replace(/\s+/g, '-') : 'article'}.jpg`}
+                  alt={post.data.title}
+                  loading="lazy"
+                  onerror={`this.onerror=null; this.src='/assets/abstract-bg-1.jpeg'`}
+                />
+                <div class="card-overlay">
+                  <a href={`/blog/${post.id}`} class="overlay-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              
+              <div class="card-content">
+                <div class="card-meta">
+                  {post.data.category && (
+                    <span class="category-tag">{post.data.category}</span>
+                  )}
+                  <time datetime={post.data.publishDate.toISOString()} class="card-date">
+                    {formatDate(post.data.publishDate)}
+                  </time>
+                </div>
+                
+                <h4 class="card-title">
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                </h4>
+                
+                <p class="card-excerpt">{post.data.description}</p>
+                
+                <div class="card-footer">
+                  <span class="reading-time">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                      <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {getReadingTime(post.body || '')}
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Footer CTA -->
+    <div class="section-footer">
+      <div class="footer-content">
+        <h3 class="footer-title">Explore Our Complete Resource Library</h3>
+        <p class="footer-description">
+          Access buying guides, technical comparisons, case studies, and industry insights
+        </p>
+        <Button variant="primary" size="lg" href="/blog" class="button-gradient animate-float" id="view-all-blogs-cta">
+          View All Articles
+        </Button>
+      </div>
+      
+      <!-- Newsletter Signup -->
+      <div class="newsletter-section">
+        <div class="newsletter-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="22 6 12 13 2 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="newsletter-content">
+          <h4>Stay Updated</h4>
+          <p>Get the latest insights delivered to your inbox</p>
+          <Button variant="glass" href="/newsletter" size="md" class="animate-pulse">
+            Subscribe
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .blog-highlights-modern {
+    position: relative;
+    padding: var(--space-section) 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+    overflow: hidden;
+  }
+
+  /* Background Elements */
+  .bg-elements {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+  }
+
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.1;
+  }
+
+  .bg-glow-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    top: -300px;
+    right: -300px;
+    animation: glow1Float 20s ease-in-out infinite;
+  }
+
+  .bg-glow-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+    bottom: -200px;
+    left: -200px;
+    animation: glow2Float 15s ease-in-out infinite reverse;
+  }
+
+  .blog-highlights__container {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    color: #3b82f6;
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-lg);
+  }
+
+  .badge-icon {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: var(--text-hero);
+    line-height: var(--text-hero-line-height);
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .title-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-description {
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Featured Article */
+  .featured-article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-card);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  .featured-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .featured-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .meta-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .featured-category {
+    background: var(--gradient-primary);
+    color: white;
+  }
+
+  .category-tag {
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-radius: var(--radius-full);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .reading-time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-body);
+    color: var(--color-text-secondary);
+    
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .publish-date {
+    font-size: var(--text-body);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .featured-title {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--text-section-line-height);
+    margin: 0;
+    
+    a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: all var(--duration-normal) var(--ease-smooth);
+      
+      &:hover {
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+
+  .featured-excerpt {
+    font-size: var(--text-body);
+    line-height: var(--text-body-line-height);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: #3b82f6;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform var(--duration-normal) var(--ease-smooth);
+    }
+    
+    &:hover {
+      color: #8b5cf6;
+      
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  /* Featured Visual */
+  .featured-visual {
+    position: relative;
+    height: 400px;
+  }
+
+  .featured-image {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.1) 0%, 
+      rgba(139, 92, 246, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .featured-image:hover .image-overlay {
+    opacity: 1;
+  }
+
+  /* Floating Stats */
+  .floating-stats {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: statFloat 3s ease-in-out infinite;
+    
+    &:nth-child(2) {
+      animation-delay: 1.5s;
+    }
+  }
+
+  .stat-icon {
+    font-size: 20px;
+  }
+
+  .stat-number {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    line-height: 1;
+  }
+
+  /* Articles Section */
+  .articles-section {
+    margin-bottom: calc(var(--spacing-xl) * 2);
+  }
+
+  .articles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      text-align: center;
+    }
+  }
+
+  .articles-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .articles-count {
+    font-size: 14px;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  /* Articles Grid */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .article-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: cardSlideUp 0.6s ease-out both;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay-link {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+    text-decoration: none;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .article-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .article-card:hover .overlay-link {
+    transform: scale(1);
+  }
+
+  .article-card:hover .card-image img {
+    transform: scale(1.1);
+  }
+
+  .card-content {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .card-date {
+    color: var(--color-text-primary);
+    opacity: 0.7;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+    
+    a {
+      color: var(--color-text-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #3b82f6;
+      }
+    }
+  }
+
+  .card-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  /* Section Footer */
+  .section-footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: calc(var(--spacing-xl) * 2);
+    align-items: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 24px;
+    padding: calc(var(--spacing-xl) * 1.5);
+    
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  .footer-title {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .footer-description {
+    font-size: 16px;
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    margin: 0 0 var(--spacing-lg) 0;
+    line-height: 1.6;
+  }
+
+  /* Newsletter Section */
+  .newsletter-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .newsletter-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .newsletter-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 4px 0;
+  }
+
+  .newsletter-content p {
+    font-size: 14px;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  /* Animations */
+  @keyframes glow1Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-50px, -30px) rotate(180deg); }
+  }
+
+  @keyframes glow2Float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(30px, -20px) rotate(-180deg); }
+  }
+
+  @keyframes cardSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes statFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

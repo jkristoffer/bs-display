@@ -1,0 +1,385 @@
+---
+// Define the interface for category items
+interface CategoryItem {
+  title: string;
+  description: string;
+  icon: string;
+  url: string;
+  gradient: string;
+  features: string[];
+}
+
+// Define the categories
+const categories: CategoryItem[] = [
+  {
+    title: 'Smart Boards',
+    description: 'Interactive displays for dynamic collaboration',
+    icon: 'display-screen',
+    url: '/products/smartboards/',
+    gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+    features: ['Touch-enabled', '4K Resolution', 'Multi-user']
+  },
+  {
+    title: 'Digital Lecterns',
+    description: 'Professional podiums for impactful presentations',
+    icon: 'podium',
+    url: '/products/lecterns/',
+    gradient: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
+    features: ['Height Adjustable', 'Built-in Display', 'Wireless']
+  },
+  {
+    title: 'Accessories',
+    description: 'Complete your setup with premium add-ons',
+    icon: 'accessories',
+    url: '/products/accessories/',
+    gradient: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+    features: ['Stands & Mounts', 'Cameras', 'Audio Systems']
+  }
+];
+---
+
+<section class="category-navigation">
+  <div class="category-navigation__container">
+    <div class="category-navigation__header">
+      <h2 class="category-navigation__title">
+        <span class="title-gradient">Explore Our Product Categories</span>
+      </h2>
+      <p class="category-navigation__subtitle">
+        Professional display solutions tailored to your needs
+      </p>
+    </div>
+    
+    <div class="category-navigation__grid">
+      {categories.map((category, index) => (
+        <a href={category.url} class="category-card" style={`animation-delay: ${index * 0.1}s`}>
+          <div class="card-header">
+            <div class="icon-container" style={`background: ${category.gradient}`}>
+              {category.icon === 'display-screen' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                  <circle cx="12" cy="10" r="2" />
+                </svg>
+              )}
+              {category.icon === 'podium' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 4h8l-2 8h4l-8 12v-8H6l2-8H4l8-8v4z" />
+                </svg>
+              )}
+              {category.icon === 'accessories' && (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              )}
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <h3 class="card-title">{category.title}</h3>
+            <p class="card-description">{category.description}</p>
+            
+            <div class="feature-tags">
+              {category.features.map(feature => (
+                <span class="feature-tag">{feature}</span>
+              ))}
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <span class="explore-link">
+              Explore {category.title}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                <path d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
+            </span>
+          </div>
+          
+          <div class="card-glow" style={`background: ${category.gradient}`}></div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="view-all-container">
+      <a href="/products" class="view-all-link">
+        View All Products
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14m-7-7 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .category-navigation {
+    padding: calc(var(--spacing-xl) * 2) 0;
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+  }
+
+  .category-navigation__container {
+    max-width: var(--spacing-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  /* Modern Header */
+  .category-navigation__header {
+    text-align: center;
+    margin-bottom: calc(var(--spacing-xl) * 2);
+  }
+
+  .category-navigation__title {
+    font-size: clamp(32px, 5vw, 48px);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+  }
+
+  .title-gradient {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .category-navigation__subtitle {
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  /* Grid Layout */
+  .category-navigation__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: calc(var(--spacing-xl) * 1.5);
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Modern Card Design */
+  .category-card {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    padding: calc(var(--spacing-lg) * 1.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    animation: fadeInUp 0.6s ease-out both;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      
+      &::before {
+        transform: scaleX(1);
+      }
+      
+      .icon-container {
+        transform: rotate(5deg) scale(1.1);
+      }
+      
+      .arrow-icon {
+        transform: translateX(4px);
+      }
+      
+      .card-glow {
+        opacity: 0.15;
+      }
+    }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+    position: relative;
+    
+    svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+      z-index: 1;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 20px;
+      background: inherit;
+      filter: blur(15px);
+      opacity: 0.4;
+      z-index: -1;
+    }
+  }
+
+  .card-content {
+    flex: 1;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .card-description {
+    font-size: 16px;
+    color: var(--color-text-primary);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-md) 0;
+  }
+
+  .feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .feature-tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+
+  .explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: #3b82f6;
+    font-weight: 600;
+    font-size: 16px;
+    
+    .arrow-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  /* View All Link */
+  .view-all-container {
+    text-align: center;
+  }
+
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) calc(var(--spacing-lg) * 1.5);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .category-card {
+      animation: none;
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    .icon-container,
+    .arrow-icon {
+      transition: none;
+    }
+  }
+</style>

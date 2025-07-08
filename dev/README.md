@@ -148,6 +148,35 @@ npm run check                                 # TypeScript validation
 npm run build                                 # Production build
 ```
 
+### **AI-First Architecture & Tooling**
+
+This project is designed with advanced AI-First principles, providing structured, machine-readable interfaces for enhanced AI collaboration and autonomy.
+
+*   **`ai-config.json`**: Centralized configuration for AI agents, defining critical rules, quality gates, and key project paths in a machine-readable format.
+    *   **Location**: Project root
+    *   **Purpose**: Provides unambiguous, directly parsable instructions for AI operations.
+*   **`ai-intents.json`**: Defines a high-level "intent" layer, mapping abstract tasks to concrete `npm` commands.
+    *   **Location**: Project root
+    *   **Purpose**: Decouples AI reasoning from command-line syntax, enhancing resilience to changes and enabling self-discovery of capabilities.
+    *   **Usage**: `npm run ai:do <intentName> [params...]`
+*   **`component-manifest.json`**: A dynamically generated, structured inventory of all UI components, including their names, paths, types, and detailed prop definitions.
+    *   **Location**: Project root (generated)
+    *   **Purpose**: Provides a programmatic API for understanding the project's UI building blocks, enabling confident component usage and modification by AI.
+    *   **Generation**: `npm run components:manifest`
+*   **`.ai-events.log`**: An append-only log of all AI-initiated actions and their outcomes.
+    *   **Location**: Project root
+    *   **Purpose**: Provides a persistent, machine-readable history for debugging, auditing, and AI learning.
+*   **`ai-doc-schema.json`**: The JSON Schema defining the structure for all AI-First documentation files.
+    *   **Location**: `docs/internal/ai-docs/`
+    *   **Purpose**: Ensures consistency, predictability, and machine-readability across all AI-specific documentation.
+
+**Key AI-First Scripts:**
+
+*   **`scripts/ai-do.js`**: The core "intent layer" script. It interprets high-level intents from `ai-intents.json` and executes the corresponding commands. Also handles intent discovery (`npm run ai:do list-intents`).
+*   **`scripts/validate-project.js`**: Provides structured, JSON-formatted output for project health checks (type-checking, linting, build). Designed for programmatic consumption by AI for automated analysis and potential remediation.
+*   **`scripts/generate-component-manifest.js`**: Generates `component-manifest.json` by robustly parsing component files using `ts-morph`.
+*   **`scripts/ai-log.js`**: Utility for writing structured events to `.ai-events.log`.
+
 ## Development Workflow
 
 ### **For Simple Tasks (30min-2hrs)**

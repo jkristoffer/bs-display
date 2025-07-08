@@ -4,12 +4,13 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
+  /* Fallback for browsers without backdrop-filter support */
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: var(--glass-backdrop-strong);
+  -webkit-backdrop-filter: var(--glass-backdrop-strong);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-2xl);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: var(--spacing-xl);
   min-width: 800px;
   max-width: 900px;
@@ -118,8 +119,8 @@
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   border-radius: var(--radius-xl);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: var(--shadow-md);
   transition: all var(--duration-normal) var(--ease-bounce);
   text-decoration: none;
@@ -140,8 +141,8 @@
   
   &:hover {
     transform: translateY(-2px) scale(1.01);
-    background: var(--glass-bg);
-    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(16, 185, 129, 0.5);
     box-shadow: var(--shadow-xl);
     
     &::before {
@@ -167,8 +168,8 @@
   height: 45px;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   
   img {
     width: 100%;
@@ -253,8 +254,8 @@
   gap: var(--spacing-sm);
   padding: var(--spacing-sm);
   border-radius: var(--radius-xl);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   transition: all var(--duration-normal) var(--ease-bounce);
   text-decoration: none;
   position: relative;
@@ -272,8 +273,8 @@
   }
   
   &:hover {
-    background: var(--glass-bg);
-    border-color: rgba(16, 185, 129, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(16, 185, 129, 0.4);
     transform: translateX(4px);
     box-shadow: var(--shadow-md);
     
@@ -299,8 +300,8 @@
   height: 30px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   
   img {
     width: 100%;
@@ -472,6 +473,13 @@
   .megaMenu__categoryImage {
     width: 50px;
     height: 40px;
+  }
+}
+
+/* Progressive Enhancement: Better backdrop support */
+@supports (backdrop-filter: blur(10px)) {
+  .megaMenu {
+    background: rgba(255, 255, 255, 0.92);
   }
 }
 

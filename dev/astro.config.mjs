@@ -147,7 +147,17 @@ export default defineConfig({
               'sr-only',
               'visually-hidden',
               'container',
-              'full-width-container'
+              'full-width-container',
+              // New gradient system classes
+              /gradient-/,
+              /glass-/,
+              /animate-/,
+              /stagger-/,
+              /button-/,
+              /heading-/,
+              /subtitle-/,
+              /text-fluid-/,
+              /icon-container-/
             ],
             // Extract dynamic classes from templates
             extractors: [

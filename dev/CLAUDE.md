@@ -22,6 +22,7 @@
 ### **Quick Access**
 ```bash
 npm run help                    # See all available commands
+npm run ai:do <intent> [params] # Execute high-level AI intents
 npm run git:commit             # Intelligent git commits
 npm run code:review -- --file [path]  # Automated code review
 npm run content:blog:generate  # AI blog post generation

@@ -7,20 +7,18 @@
   background: var(--glass-bg);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
-  border-radius: var(--radius-card-lg);
-  box-shadow: var(--shadow-3xl);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
   border: 1px solid var(--glass-border);
-  padding: var(--space-xl);
+  padding: var(--spacing-xl);
   min-width: 800px;
   max-width: 900px;
   z-index: 200;
   opacity: 0;
   animation: megaMenuFadeIn var(--duration-normal) var(--ease-bounce) forwards;
   overflow: hidden;
-  position: relative;
   
   /* Hardware acceleration */
-  transform: translateZ(0);
   will-change: transform, opacity;
   
   &::before {
@@ -31,7 +29,7 @@
     right: 0;
     height: 4px;
     background: var(--gradient-success);
-    border-radius: var(--radius-card-lg) var(--radius-card-lg) 0 0;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
   }
 }
 
@@ -59,7 +57,7 @@
 .megaMenu__container {
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
-  gap: var(--space-lg);
+  gap: var(--spacing-lg);
   align-items: start;
   max-height: 500px;
   overflow: visible;
@@ -69,7 +67,7 @@
 .megaMenu__section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--spacing-md);
 }
 
 /* Element: megaMenu__sectionTitle - Enhanced Phase 1 Design */
@@ -77,7 +75,7 @@
   font-size: var(--text-subsection);
   font-weight: var(--font-weight-bold);
   margin: 0;
-  padding-bottom: var(--space-sm);
+  padding-bottom: var(--spacing-sm);
   position: relative;
   overflow: hidden;
 }
@@ -110,16 +108,16 @@
 .megaMenu__categories {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--spacing-sm);
 }
 
 /* Element: megaMenu__categoryCard - Enhanced Phase 1 Card */
 .megaMenu__categoryCard {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  border-radius: var(--radius-card);
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-xl);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-md);
@@ -152,7 +150,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-success);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
   }
 }
@@ -167,7 +165,7 @@
   position: relative;
   width: 60px;
   height: 45px;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -210,7 +208,7 @@
   color: white;
   font-size: var(--text-caption);
   font-weight: var(--font-weight-bold);
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -230,7 +228,7 @@
   font-size: var(--text-body);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-xs) 0;
+  margin: 0 0 var(--spacing-xs) 0;
 }
 
 /* Element: megaMenu__categoryDescription */
@@ -245,16 +243,16 @@
 .megaMenu__featured {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--spacing-sm);
 }
 
 /* Element: megaMenu__productCard - Enhanced Product Cards */
 .megaMenu__productCard {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  border-radius: var(--radius-card);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-xl);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   transition: all var(--duration-normal) var(--ease-bounce);
@@ -285,7 +283,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-success);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
   }
 }
@@ -299,7 +297,7 @@
 .megaMenu__productImage {
   width: 40px;
   height: 30px;
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -327,7 +325,7 @@
 /* Element: megaMenu__productBrand */
 .megaMenu__productBrand {
   font-size: var(--text-caption);
-  color: var(--color-success);
+  color: var(--color-accent-primary);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -338,7 +336,7 @@
 .megaMenu__productModel {
   font-size: var(--text-caption);
   color: var(--color-text-primary);
-  margin: var(--space-xs) 0 0 0;
+  margin: var(--spacing-xs) 0 0 0;
   font-weight: var(--font-weight-medium);
   white-space: nowrap;
   overflow: hidden;
@@ -349,16 +347,16 @@
 .megaMenu__actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--spacing-xs);
 }
 
 /* Element: megaMenu__actionButton - Enhanced Action Buttons */
 .megaMenu__actionButton {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-button);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-lg);
   background: var(--gradient-success);
   color: white;
   font-size: var(--text-caption);
@@ -401,7 +399,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-success);
+    outline: 2px solid var(--color-accent-primary);
     outline-offset: 2px;
   }
 }
@@ -428,12 +426,12 @@
 @media (max-width: 1024px) {
   .megaMenu {
     min-width: 700px;
-    padding: var(--space-lg);
+    padding: var(--spacing-lg);
   }
   
   .megaMenu__container {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
+    gap: var(--spacing-lg);
   }
   
   .megaMenu__section:last-child {
@@ -457,18 +455,18 @@
     min-width: auto;
     max-width: none;
     border-radius: 0;
-    padding: var(--space-md);
-    margin: 0 var(--space-md);
-    border-radius: var(--radius-card-lg);
+    padding: var(--spacing-md);
+    margin: 0 var(--spacing-md);
+    border-radius: var(--radius-2xl);
   }
   
   .megaMenu__container {
     grid-template-columns: 1fr;
-    gap: var(--space-md);
+    gap: var(--spacing-md);
   }
   
   .megaMenu__categoryCard {
-    padding: var(--space-sm);
+    padding: var(--spacing-sm);
   }
   
   .megaMenu__categoryImage {

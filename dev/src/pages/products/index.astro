@@ -1,6 +1,7 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
-import ProductsNavigationBar from '../../components/products/ProductsNavigationBar/ProductsNavigationBar.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import CategoryTabs from '../../components/common/CategoryTabs/CategoryTabs';
 
 const title = 'Display Products | Big Shine Display';
 const description =
@@ -12,15 +13,6 @@ const description =
   <section class="hero-section">
     <div class="hero-content">
       <div class="container--wide">
-        <ProductsNavigationBar
-          breadcrumbItems={[
-            { label: 'Home', path: '/' },
-            { label: 'Products' }
-          ]}
-          activeCategory={null}
-          showCounts={true}
-        />
-        
         <div class="hero-text">
           <h1 class="hero-title">Interactive Display Solutions</h1>
           <p class="hero-subtitle">
@@ -37,6 +29,23 @@ const description =
       <div class="floating-shape shape-1"></div>
       <div class="floating-shape shape-2"></div>
       <div class="floating-shape shape-3"></div>
+    </div>
+  </section>
+
+  <!-- Navigation Section -->
+  <section class="navigation-section">
+    <div class="container--wide">
+      <Breadcrumbs 
+        items={[
+          { label: 'Home', path: '/' },
+          { label: 'Products' }
+        ]}
+      />
+      <CategoryTabs 
+        activeCategory={null} 
+        showCounts={true}
+        client:load 
+      />
     </div>
   </section>
 
@@ -150,7 +159,18 @@ const description =
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin-bottom: var(--space-section);
+  }
+
+  // Navigation Section
+  .navigation-section {
+    background: var(--color-background);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border-light);
+    
+    // Override CategoryTabs excessive margins
+    :global(.categoryTabs) {
+      margin: var(--spacing-md) 0 var(--spacing-sm) !important;
+    }
   }
 
   .hero-content {
@@ -162,7 +182,6 @@ const description =
 
   .hero-text {
     text-align: center;
-    margin-top: 2rem;
   }
 
   .hero-title {
@@ -228,7 +247,7 @@ const description =
 
   // Products Section
   .products-section {
-    padding: var(--space-section) 0;
+    padding: var(--spacing-xl) 0;
     background: linear-gradient(135deg, 
       rgba(255, 255, 255, 0.05) 0%, 
       rgba(255, 255, 255, 0.02) 100%);

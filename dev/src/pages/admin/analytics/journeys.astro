@@ -1,0 +1,10 @@
+---
+import AdminLayout from '@layouts/AdminLayout.astro';
+import JourneysDashboard from '@components/admin/dashboards/JourneysDashboard';
+
+export const prerender = false;
+---
+
+<AdminLayout title="Customer Journeys" description="Customer Journey Analytics Dashboard">
+  <JourneysDashboard client:load />
+</AdminLayout>

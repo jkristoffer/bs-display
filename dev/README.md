@@ -45,6 +45,7 @@ npm run build        # Build for production
 npm run preview      # Preview production build locally
 npm run check        # Run TypeScript type checking
 npm run help         # See all available commands
+npm run ai:do <intent> [params] # Primary entry point for AI-driven tasks
 ```
 
 ## Technology Stack
@@ -131,8 +132,8 @@ See [CLAUDE.md](./CLAUDE.md) for complete AI development guidance including:
 
 ### **Essential Commands**
 ```bash
-# View all automation tools
-npm run help
+npm run help                    # See all available commands
+npm run ai:do <intent> [params] # Primary entry point for AI-driven tasks
 
 # Enhanced code quality with security & performance analysis
 npm run code:review -- --file [file]
@@ -150,32 +151,9 @@ npm run build                                 # Production build
 
 ### **AI-First Architecture & Tooling**
 
-This project is designed with advanced AI-First principles, providing structured, machine-readable interfaces for enhanced AI collaboration and autonomy.
+This project is built on advanced AI-First principles, providing structured, machine-readable interfaces for enhanced AI collaboration and autonomy. Key components include `ai-config.json` (centralized AI configuration), `ai-intents.json` (high-level intent mapping), `component-manifest.json` (programmatic UI inventory), and `.ai-events.log` (structured action logging). All AI-First documentation adheres to `ai-doc-schema.json` for consistent machine-readability.
 
-*   **`ai-config.json`**: Centralized configuration for AI agents, defining critical rules, quality gates, and key project paths in a machine-readable format.
-    *   **Location**: Project root
-    *   **Purpose**: Provides unambiguous, directly parsable instructions for AI operations.
-*   **`ai-intents.json`**: Defines a high-level "intent" layer, mapping abstract tasks to concrete `npm` commands.
-    *   **Location**: Project root
-    *   **Purpose**: Decouples AI reasoning from command-line syntax, enhancing resilience to changes and enabling self-discovery of capabilities.
-    *   **Usage**: `npm run ai:do <intentName> [params...]`
-*   **`component-manifest.json`**: A dynamically generated, structured inventory of all UI components, including their names, paths, types, and detailed prop definitions.
-    *   **Location**: Project root (generated)
-    *   **Purpose**: Provides a programmatic API for understanding the project's UI building blocks, enabling confident component usage and modification by AI.
-    *   **Generation**: `npm run components:manifest`
-*   **`.ai-events.log`**: An append-only log of all AI-initiated actions and their outcomes.
-    *   **Location**: Project root
-    *   **Purpose**: Provides a persistent, machine-readable history for debugging, auditing, and AI learning.
-*   **`ai-doc-schema.json`**: The JSON Schema defining the structure for all AI-First documentation files.
-    *   **Location**: `docs/internal/ai-docs/`
-    *   **Purpose**: Ensures consistency, predictability, and machine-readability across all AI-specific documentation.
-
-**Key AI-First Scripts:**
-
-*   **`scripts/ai-do.js`**: The core "intent layer" script. It interprets high-level intents from `ai-intents.json` and executes the corresponding commands. Also handles intent discovery (`npm run ai:do list-intents`).
-*   **`scripts/validate-project.js`**: Provides structured, JSON-formatted output for project health checks (type-checking, linting, build). Designed for programmatic consumption by AI for automated analysis and potential remediation.
-*   **`scripts/generate-component-manifest.js`**: Generates `component-manifest.json` by robustly parsing component files using `ts-morph`.
-*   **`scripts/ai-log.js`**: Utility for writing structured events to `.ai-events.log`.
+For detailed, machine-readable specifications of these components and their associated scripts, refer to the JSON documentation files located in [./docs/internal/ai-docs/](./docs/internal/ai-docs/). For a comprehensive AI development guide, see [CLAUDE.md](./CLAUDE.md).
 
 ## Development Workflow
 
@@ -322,8 +300,8 @@ npm run code:review -- --file [your-file]
 ### **AI-First Development Notes**
 
 This project uses **human-AI collaboration** extensively. Contributors should:
-- **Understand AI development patterns** in CLAUDE.md
-- **Use automation tools** for quality assurance
+- **Understand AI development patterns** in [CLAUDE.md](./CLAUDE.md)
+- **Use AI-First tools** for quality assurance and streamlined workflows (e.g., `npm run ai:do` for high-level tasks, `npm run validate:project:json` for structured validation, `npm run components:manifest` for UI component insights).
 - **Follow established standards** rather than creating new patterns
 - **Document architectural decisions** for future AI assistants
 
@@ -352,19 +330,12 @@ Configuration is handled through Astro's built-in environment support. Contact t
 
 ## Documentation Hierarchy
 
-### **For Quick Reference**
-- **README.md** (this file) - Project overview and setup
-- **[Quick Reference](./CLAUDE.md#-at-a-glance-quick-reference)** - Essential commands and paths
+This project utilizes a structured documentation hierarchy to provide comprehensive guidance for both human and AI collaborators. Key documentation entry points include:
 
-### **For AI Assistants**
-- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive development guide
-- **[Emergency Procedures](./EMERGENCY_PROCEDURES.md)** - System recovery guide
-- **[Development Standards](./src/development-standards/standards/)** - Implementation patterns
-
-### **For Specific Systems**
-- **[Command Reference](./COMMAND_REFERENCE.md)** - Complete command listing and automation tools
-- **[AI Developer Guide](./AI_DEVELOPER_GUIDE.md)** - AI-specific workflows and best practices
-- **[Migration Guide](./MIGRATION_GUIDE.md)** - Transition from old commands to new interface
+*   **[README.md](./README.md)** (this file): Project overview, quick start, and high-level architecture.
+*   **[CLAUDE.md](./CLAUDE.md)**: The primary AI development guide, outlining critical rules, AI-First architecture, and core development patterns.
+*   **[Documentation Hub](./docs/README.md)**: A centralized index for all human-readable documentation.
+*   **[AI-First Documentation](./docs/internal/ai-docs/)**: A dedicated directory containing machine-readable JSON documentation files for AI agents, adhering to `ai-doc-schema.json`.
 
 ## License & Contact
 

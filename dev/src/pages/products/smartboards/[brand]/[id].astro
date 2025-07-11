@@ -42,7 +42,7 @@ const breadcrumbItems = [
   },
   { label: modelName }
 ];
-console.log(breadcrumbItems);
+
 const breadcrumbSchema = generateBreadcrumbSchema({
   items: breadcrumbItems.map((item, index) => ({
     name: item.label,
@@ -71,7 +71,7 @@ const breadcrumbSchema = generateBreadcrumbSchema({
   </section>
 </ProductLayout>
 
-<style lang="scss">
+<style>
   .product-detail-section {
     padding: var(--space-section) 0;
     background: linear-gradient(135deg, 
@@ -89,17 +89,17 @@ const breadcrumbSchema = generateBreadcrumbSchema({
     padding: 2rem;
     margin-bottom: 2rem;
     position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-primary);
-      border-radius: var(--radius-card) var(--radius-card) 0 0;
-    }
+  }
+  
+  .glass-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
   }
 
   @media (max-width: 768px) {
@@ -113,4 +113,4 @@ const breadcrumbSchema = generateBreadcrumbSchema({
       padding: 1rem;
     }
   }
-}</style>
+</style>

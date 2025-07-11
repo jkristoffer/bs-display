@@ -216,110 +216,28 @@ For detailed, machine-readable specifications of these tools and their usage, re
 
 ## ⚡ COMMON DEVELOPMENT PATTERNS
 
-### **Adding New Products**
-1. Add JSON data to appropriate `/src/data/models.[brand].json` file
-2. Update imports in `/src/data/models.all.js`
-3. Product pages auto-generate from dynamic routes
+This section outlines common development patterns and best practices within the project. For detailed, machine-readable guidance on specific patterns (e.g., component creation, data handling, design system usage), refer to the relevant AI-First documentation files in [./docs/internal/ai-docs/](./docs/internal/ai-docs/) and the human-readable documentation linked in the 'DETAILED DOCUMENTATION REFERENCES' section.
 
-### **Creating New Components**
-1. Follow standards in [Component Standards](./docs/development/standards/standards/component-standards.md)
-2. Use TypeScript (.tsx) with functional programming patterns
-3. **✅ LEVERAGE PHASE 1**: Use existing Card, Form, Loading components from `/src/components/common/`
-4. Create SCSS module for styling OR use enhanced gradient utility classes
-5. Export via index.ts file
-6. Run code review agent on completion
-
-### **Using the Enhanced Design System (Phase 1 Complete)**
-1. **Gradient Backgrounds**: Use `gradient-bg-primary`, `gradient-bg-success`, `gradient-bg-premium`, `gradient-bg-attention`
-2. **Glass Effects**: Apply `glass-light`, `glass-dark`, `glass-strong` for modern interfaces
-3. **Enhanced Buttons**: 7 variants including `button-gradient`, `button-glass`, `button-fab`
-4. **Typography**: Use `heading-hero`, `heading-section`, `subtitle-large`, `text-fluid-sm`
-5. **Animations**: Hardware-accelerated `animate-float`, `animate-pulse`, `animate-fade-up`, `animate-rotate`
-6. **Modern Components**: Import from `/src/components/common/` - Card, Form, Loading components
-7. **View System**: Visit `/design-system` to see all components and utilities
-
-```typescript
-// Phase 1 Components Available
-import { Card, CardContent, CardTitle } from '@/components/common/Card';
-import { FormInput, FormSelect, FormCheckbox } from '@/components/common/Form';
-import { Spinner, LoadingOverlay, ProgressBar } from '@/components/common/Loading';
-
-// Enhanced styling with new utilities
-<Card variant="glass" hoverable>
-  <CardContent>
-    <h2 className="heading-section gradient-text-primary">Modern Design</h2>
-    <p className="text-fluid-sm">Enhanced with Phase 1 components</p>
-    <button className="button-gradient animate-float">Action</button>
-  </CardContent>
-</Card>
-```
-
-### **Working with Content**
-1. Blog posts go in `/src/content/blog/` as markdown files
-2. Use Astro content collections for structured data
-3. Run SEO analysis on content before publishing
-4. Follow content quality standards
-
-### **Testing Changes**
-1. Run `npm run dev:server` to test locally
-2. Use `npm run dev:build` to verify production build
-3. Run `npm run code:typecheck` for TypeScript validation
-4. Use `npm run code:review -- --file [file]` for quality assurance
+Key areas include:
+*   **Adding New Products**: Structured data integration.
+*   **Creating New Components**: Adherence to component standards and leveraging existing design system elements.
+*   **Using the Enhanced Design System**: Application of styling utilities, modern components, and animations.
+*   **Working with Content**: Content collection, SEO analysis, and quality standards.
+*   **Testing Changes**: Local verification, build validation, and quality assurance processes.
 
 ---
 
 ## 📚 DETAILED DOCUMENTATION REFERENCES
 
-### **For Comprehensive Information**
-- **[README.md](./README.md)** - Project overview, installation, architecture
-- **[DOCS.md](./DOCS.md)** - Daily development commands and navigation  
-- **[Emergency Procedures](./docs/quick-start/troubleshooting.md)** - System recovery and troubleshooting
+For comprehensive, machine-readable documentation on various aspects of the project, including AI-specific workflows, component details, and tool configurations, refer to the structured JSON files located in [./docs/internal/ai-docs/](./docs/internal/ai-docs/).
 
-### **For Development & Operations**
-- **[Development Standards](./src/development-standards/README.md)** - Code standards and patterns
-- **[AI Workflows](./docs/development/ai-workflows.md)** - AI-specific development patterns
-- **[Daily Commands](./docs/development/commands.md)** - Common development commands
-
-### **For Research & Technical Documentation**
-- **[Documentation Hub](./docs/README.md)** - Centralized documentation index
-- **[MCP Building Guidelines](./docs/MCP_BUILDING_GUIDELINES.md)** - MCP server development standards
-- **[Technical Architecture Decisions](./docs/TECHNICAL_ARCHITECTURE_DECISIONS_RESEARCH.md)** - System design decisions
-
-### **For Development Standards**
-- **Component Standards** - `/docs/development/standards/standards/component-standards.md`
-- **Functional Programming** - `/docs/development/standards/functional-programming.md`
-- **Styling Patterns** - `/docs/development/standards/standards/styling-patterns.md`
-- **File Naming** - `/docs/development/standards/standards/file-naming.md`
-- **✅ COMPLETE**: **Enhanced Gradient System** - `/docs/development/standards/standards/GRADIENT_SYSTEM_QUICK_REFERENCE.md`
+For human-readable documentation, refer to the project's main [README.md](./README.md) and the [Documentation Hub](./docs/README.md).
 
 ---
 
 ## 🎯 AI-SPECIFIC BEST PRACTICES
 
-### **Context Management**
-- **Always verify file existence** before coding
-- **Use progressive disclosure** - start with simple patterns
-- **Reference standards** rather than duplicating patterns
-- **Ask clarifying questions** when requirements are ambiguous
-
-### **Implementation Approach**
-- **Start with TypeScript interfaces** for clear contracts
-- **Write pure functions first** then compose larger functionality
-- **✅ LEVERAGE PHASE 1**: Use existing Card, Form, Loading components from `/src/components/common/`
-- **Use enhanced design system**: Apply gradient utilities, modern animations, and glass effects
-- **Test incrementally** rather than implementing entire features
-
-### **Quality Assurance**
-- **Run code review agent** after every code generation
-- **Verify functional programming compliance** 
-- **Check TypeScript compilation** before finalizing
-- **Validate against acceptance criteria**
-
-### **Communication**
-- **Show incremental progress** for complex changes
-- **Reference specific files and line numbers** when discussing code
-- **Document architectural decisions** for future AI assistants
-- **Use TodoWrite** for task planning and progress tracking
+This section outlines the core principles and practices for AI agents working on this project. For detailed, machine-readable guidance on context management, implementation approaches, quality assurance, and communication patterns, refer to the AI-First documentation files located in [./docs/internal/ai-docs/](./docs/internal/ai-docs/).
 
 ---
 

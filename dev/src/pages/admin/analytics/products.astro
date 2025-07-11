@@ -1,0 +1,10 @@
+---
+import AdminLayout from '@layouts/AdminLayout.astro';
+import ProductsDashboard from '@components/admin/dashboards/ProductsDashboard';
+
+export const prerender = false;
+---
+
+<AdminLayout title="Product Analytics" description="Product Analytics Dashboard">
+  <ProductsDashboard client:load />
+</AdminLayout>

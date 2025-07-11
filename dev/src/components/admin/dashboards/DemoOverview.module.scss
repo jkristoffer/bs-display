@@ -1,0 +1,40 @@
+.demoOverview {
+  .header {
+    margin-bottom: 2rem;
+    
+    h2 {
+      margin-bottom: 0.5rem;
+      color: var(--color-admin-text);
+    }
+    
+    p {
+      color: var(--color-admin-text-secondary);
+      margin: 0;
+    }
+  }
+  
+  .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .tableSection {
+    h3 {
+      margin-bottom: 1rem;
+      color: var(--color-admin-text);
+    }
+  }
+}

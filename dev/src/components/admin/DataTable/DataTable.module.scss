@@ -1,0 +1,112 @@
+.dataTableWrapper {
+  background: var(--color-admin-surface);
+  border-radius: 8px;
+  box-shadow: var(--admin-shadow-sm);
+  overflow: hidden;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  
+  thead {
+    background: var(--color-admin-bg);
+    border-bottom: 2px solid var(--color-admin-border);
+  }
+  
+  th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-admin-text);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    
+    &.sortable {
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+      
+      &:hover {
+        background: var(--color-admin-border);
+      }
+    }
+  }
+  
+  .thContent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .sortIcon {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  
+  tbody tr {
+    border-bottom: 1px solid var(--color-admin-border);
+    transition: background 0.2s;
+    
+    &:hover {
+      background: var(--color-admin-bg);
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  td {
+    padding: 0.875rem 1rem;
+    color: var(--color-admin-text);
+    font-size: 0.875rem;
+  }
+  
+  .noData {
+    text-align: center;
+    color: var(--color-admin-text-secondary);
+    padding: 2rem;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-top: 1px solid var(--color-admin-border);
+  background: var(--color-admin-bg);
+}
+
+.paginationBtn {
+  padding: 0.5rem 1rem;
+  background: var(--color-admin-surface);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 4px;
+  color: var(--color-admin-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover:not(:disabled) {
+    background: var(--color-admin-bg);
+    border-color: var(--chart-primary);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.pageInfo {
+  font-size: 0.875rem;
+  color: var(--color-admin-text-secondary);
+}

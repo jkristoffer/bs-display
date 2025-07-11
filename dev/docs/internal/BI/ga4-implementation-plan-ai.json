@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Google Analytics 4 Integration Implementation Plan",
+    "version": "1.0.0",
+    "created": "2025-01-11",
+    "purpose": "Machine-readable implementation guide for AI coding agent to integrate GA4 with BigShine Display BI Dashboard",
+    "dependencies": {
+      "google_analytics_data_api": "v1",
+      "astro": "5.x",
+      "vercel": "latest"
+    }
+  },
+  "prerequisites": {
+    "manual_setup_required": {
+      "description": "These steps must be completed by a human with Google Cloud Console access",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Create Google Cloud Project",
+          "url": "https://console.cloud.google.com/projectcreate",
+          "note": "Save the project ID for configuration"
+        },
+        {
+          "step": 2,
+          "action": "Enable Google Analytics Data API v1",
+          "url": "https://console.cloud.google.com/apis/library/analyticsdata.googleapis.com",
+          "note": "Enable for the created project"
+        },
+        {
+          "step": 3,
+          "action": "Create Service Account",
+          "navigation": "IAM & Admin > Service Accounts > Create Service Account",
+          "details": {
+            "name": "bigshine-ga4-reader",
+            "role": "Viewer",
+            "key_type": "JSON"
+          },
+          "note": "Download JSON key file and save securely"
+        },
+        {
+          "step": 4,
+          "action": "Grant GA4 Property Access",
+          "navigation": "Google Analytics > Admin > Property Access Management",
+          "email": "Service account email from step 3",
+          "role": "Viewer",
+          "note": "Add service account email to GA4 property"
+        },
+        {
+          "step": 5,
+          "action": "Retrieve GA4 Property ID",
+          "navigation": "Google Analytics > Admin > Property Settings",
+          "format": "XXXXXXXXX (9 digits)",
+          "note": "Save for configuration"
+        }
+      ],
+      "environment_variables_needed": {
+        "GA4_PROPERTY_ID": "Google Analytics 4 property ID",
+        "GA4_SERVICE_ACCOUNT_KEY": "Base64 encoded service account JSON key"
+      }
+    }
+  },
+  "implementation_phases": [
+    {
+      "phase": 1,
+      "name": "Environment Setup",
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "task_id": "1.1",
+          "description": "Install Google Analytics Data API client",
+          "command": "npm install @google-analytics/data",
+          "verify": "Check package.json for @google-analytics/data dependency"
+        },
+        {
+          "task_id": "1.2",
+          "description": "Create environment configuration file",
+          "file_path": "/src/config/analytics.config.ts",
+          "content": {
+            "template": "typescript",
+            "code": "export const GA4_CONFIG = {\n  propertyId: import.meta.env.GA4_PROPERTY_ID,\n  serviceAccountKey: import.meta.env.GA4_SERVICE_ACCOUNT_KEY\n    ? JSON.parse(Buffer.from(import.meta.env.GA4_SERVICE_ACCOUNT_KEY, 'base64').toString())\n    : null,\n  defaultDateRange: {\n    startDate: '7daysAgo',\n    endDate: 'today'\n  },\n  cacheTTL: 300000 // 5 minutes\n};\n\nexport const GA4_METRICS = {\n  overview: [\n    'totalUsers',\n    'newUsers',\n    'sessions',\n    'screenPageViews',\n    'averageSessionDuration',\n    'bounceRate',\n    'conversions'\n  ],\n  realtime: [\n    'activeUsers'\n  ],\n  products: [\n    'itemsViewed',\n    'itemsAddedToCart',\n    'itemsPurchased',\n    'itemRevenue'\n  ]\n};\n\nexport const GA4_DIMENSIONS = {\n  common: [\n    'date',\n    'sessionDefaultChannelGroup',\n    'deviceCategory'\n  ],\n  pages: [\n    'pagePath',\n    'pageTitle'\n  ],\n  products: [\n    'itemName',\n    'itemBrand',\n    'itemCategory'\n  ]\n};"
+          }
+        },
+        {
+          "task_id": "1.3",
+          "description": "Update .env.example with new variables",
+          "file_path": "/.env.example",
+          "append": "\n# Google Analytics 4 Configuration\nGA4_PROPERTY_ID=your_property_id_here\nGA4_SERVICE_ACCOUNT_KEY=base64_encoded_service_account_json"
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "GA4 Client Implementation",
+      "estimated_time": "1-2 hours",
+      "tasks": [
+        {
+          "task_id": "2.1",
+          "description": "Create GA4 client utility",
+          "file_path": "/src/utils/analytics/ga4Client.ts",
+          "content": {
+            "template": "typescript",
+            "code": "import { BetaAnalyticsDataClient } from '@google-analytics/data';\nimport { GA4_CONFIG } from '@/config/analytics.config';\n\nlet analyticsClient: BetaAnalyticsDataClient | null = null;\n\nexport function getGA4Client(): BetaAnalyticsDataClient {\n  if (!analyticsClient && GA4_CONFIG.serviceAccountKey) {\n    analyticsClient = new BetaAnalyticsDataClient({\n      credentials: GA4_CONFIG.serviceAccountKey\n    });\n  }\n  \n  if (!analyticsClient) {\n    throw new Error('GA4 client not initialized. Check service account configuration.');\n  }\n  \n  return analyticsClient;\n}\n\nexport async function runGA4Report({\n  metrics,\n  dimensions = [],\n  dateRanges = [GA4_CONFIG.defaultDateRange],\n  dimensionFilter = null,\n  limit = 10\n}: {\n  metrics: string[];\n  dimensions?: string[];\n  dateRanges?: Array<{ startDate: string; endDate: string }>;\n  dimensionFilter?: any;\n  limit?: number;\n}) {\n  try {\n    const client = getGA4Client();\n    \n    const [response] = await client.runReport({\n      property: `properties/${GA4_CONFIG.propertyId}`,\n      dateRanges,\n      dimensions: dimensions.map(name => ({ name })),\n      metrics: metrics.map(name => ({ name })),\n      dimensionFilter,\n      limit\n    });\n    \n    return response;\n  } catch (error) {\n    console.error('GA4 Report Error:', error);\n    throw new Error(`Failed to fetch GA4 data: ${error.message}`);\n  }\n}\n\nexport async function runGA4RealtimeReport({\n  metrics,\n  dimensions = []\n}: {\n  metrics: string[];\n  dimensions?: string[];\n}) {\n  try {\n    const client = getGA4Client();\n    \n    const [response] = await client.runRealtimeReport({\n      property: `properties/${GA4_CONFIG.propertyId}`,\n      dimensions: dimensions.map(name => ({ name })),\n      metrics: metrics.map(name => ({ name }))\n    });\n    \n    return response;\n  } catch (error) {\n    console.error('GA4 Realtime Report Error:', error);\n    throw new Error(`Failed to fetch GA4 realtime data: ${error.message}`);\n  }\n}"
+          }
+        },
+        {
+          "task_id": "2.2",
+          "description": "Create data transformation utilities",
+          "file_path": "/src/utils/analytics/ga4Transformer.ts",
+          "content": {
+            "template": "typescript",
+            "code": "import type { RunReportResponse } from '@google-analytics/data';\n\nexport function transformGA4Response(response: RunReportResponse) {\n  const headers = [\n    ...(response.dimensionHeaders || []).map(h => h.name),\n    ...(response.metricHeaders || []).map(h => h.name)\n  ];\n  \n  const rows = (response.rows || []).map(row => {\n    const values = [\n      ...(row.dimensionValues || []).map(v => v.value),\n      ...(row.metricValues || []).map(v => v.value)\n    ];\n    \n    return headers.reduce((obj, header, index) => {\n      obj[header] = values[index];\n      return obj;\n    }, {} as Record<string, string>);\n  });\n  \n  return { headers, rows };\n}\n\nexport function calculateMetricTotals(rows: Array<Record<string, string>>, metricNames: string[]) {\n  return metricNames.reduce((totals, metric) => {\n    totals[metric] = rows.reduce((sum, row) => {\n      const value = parseFloat(row[metric] || '0');\n      return sum + (isNaN(value) ? 0 : value);\n    }, 0);\n    return totals;\n  }, {} as Record<string, number>);\n}\n\nexport function formatGA4DateRange(period: string): { startDate: string; endDate: string } {\n  const endDate = 'today';\n  let startDate = '7daysAgo';\n  \n  switch (period) {\n    case '24h':\n      startDate = 'yesterday';\n      break;\n    case '7d':\n      startDate = '7daysAgo';\n      break;\n    case '30d':\n      startDate = '30daysAgo';\n      break;\n    case '90d':\n      startDate = '90daysAgo';\n      break;\n  }\n  \n  return { startDate, endDate };\n}\n\nexport function mapGA4ToOverviewData(ga4Data: any) {\n  // Transform GA4 response to match existing dashboard format\n  const { rows } = transformGA4Response(ga4Data);\n  const totals = calculateMetricTotals(rows, ['totalUsers', 'sessions', 'screenPageViews']);\n  \n  return {\n    totalVisitors: Math.round(totals.totalUsers || 0),\n    uniqueVisitors: Math.round(totals.newUsers || 0),\n    pageViews: Math.round(totals.screenPageViews || 0),\n    avgSessionDuration: Math.round(totals.averageSessionDuration || 180),\n    bounceRate: parseFloat((totals.bounceRate || 0.35).toFixed(1)),\n    conversionRate: parseFloat((totals.conversions || 0).toFixed(1))\n  };\n}"
+          }
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "API Endpoint Integration",
+      "estimated_time": "2-3 hours",
+      "tasks": [
+        {
+          "task_id": "3.1",
+          "description": "Create GA4 data fetcher for overview dashboard",
+          "file_path": "/src/utils/analytics/ga4DataFetcher.ts",
+          "content": {
+            "template": "typescript",
+            "code": "import { runGA4Report } from './ga4Client';\nimport { GA4_METRICS, GA4_DIMENSIONS } from '@/config/analytics.config';\nimport { transformGA4Response, mapGA4ToOverviewData, formatGA4DateRange } from './ga4Transformer';\n\nexport async function fetchGA4OverviewData(period: string = '7d') {\n  try {\n    const dateRange = formatGA4DateRange(period);\n    \n    // Fetch main metrics\n    const metricsResponse = await runGA4Report({\n      metrics: GA4_METRICS.overview,\n      dateRanges: [dateRange]\n    });\n    \n    // Fetch trends data\n    const trendsResponse = await runGA4Report({\n      metrics: ['totalUsers', 'screenPageViews', 'conversions'],\n      dimensions: ['date'],\n      dateRanges: [dateRange]\n    });\n    \n    // Fetch top pages\n    const pagesResponse = await runGA4Report({\n      metrics: ['screenPageViews', 'averageSessionDuration', 'bounceRate'],\n      dimensions: GA4_DIMENSIONS.pages,\n      dateRanges: [dateRange],\n      limit: 10\n    });\n    \n    // Fetch device data\n    const deviceResponse = await runGA4Report({\n      metrics: ['totalUsers'],\n      dimensions: ['deviceCategory'],\n      dateRanges: [dateRange]\n    });\n    \n    // Fetch referrer data\n    const referrerResponse = await runGA4Report({\n      metrics: ['sessions'],\n      dimensions: ['sessionDefaultChannelGroup'],\n      dateRanges: [dateRange]\n    });\n    \n    return {\n      summary: mapGA4ToOverviewData(metricsResponse),\n      trends: formatTrendsData(trendsResponse),\n      topPages: formatPagesData(pagesResponse),\n      devices: formatDeviceData(deviceResponse),\n      referrers: formatReferrerData(referrerResponse)\n    };\n  } catch (error) {\n    console.error('GA4 Data Fetch Error:', error);\n    throw error;\n  }\n}\n\nfunction formatTrendsData(response: any) {\n  const { rows } = transformGA4Response(response);\n  \n  return {\n    visitors: rows.map(row => ({\n      date: row.date,\n      value: parseInt(row.totalUsers || '0')\n    })),\n    pageViews: rows.map(row => ({\n      date: row.date,\n      value: parseInt(row.screenPageViews || '0')\n    })),\n    conversions: rows.map(row => ({\n      date: row.date,\n      value: parseInt(row.conversions || '0')\n    }))\n  };\n}\n\nfunction formatPagesData(response: any) {\n  const { rows } = transformGA4Response(response);\n  \n  return rows.map(row => ({\n    path: row.pagePath || '/',\n    views: parseInt(row.screenPageViews || '0'),\n    avgTime: Math.round(parseFloat(row.averageSessionDuration || '0')),\n    bounceRate: parseFloat((parseFloat(row.bounceRate || '0') * 100).toFixed(1))\n  }));\n}\n\nfunction formatDeviceData(response: any) {\n  const { rows } = transformGA4Response(response);\n  const deviceMap: Record<string, number> = { desktop: 0, mobile: 0, tablet: 0 };\n  \n  rows.forEach(row => {\n    const device = row.deviceCategory?.toLowerCase() || 'desktop';\n    deviceMap[device] = parseInt(row.totalUsers || '0');\n  });\n  \n  const total = Object.values(deviceMap).reduce((sum, val) => sum + val, 0);\n  \n  return {\n    desktop: Math.round((deviceMap.desktop / total) * 100),\n    mobile: Math.round((deviceMap.mobile / total) * 100),\n    tablet: Math.round((deviceMap.tablet / total) * 100)\n  };\n}\n\nfunction formatReferrerData(response: any) {\n  const { rows } = transformGA4Response(response);\n  const total = rows.reduce((sum, row) => sum + parseInt(row.sessions || '0'), 0);\n  \n  return rows.slice(0, 5).map(row => {\n    const visits = parseInt(row.sessions || '0');\n    return {\n      source: row.sessionDefaultChannelGroup || 'Direct',\n      visits,\n      percentage: parseFloat(((visits / total) * 100).toFixed(1))\n    };\n  });\n}"
+          }
+        },
+        {
+          "task_id": "3.2",
+          "description": "Update overview API endpoint to use GA4 data",
+          "file_path": "/src/pages/api/analytics/overview.ts",
+          "modifications": [
+            {
+              "action": "add_import",
+              "line": 2,
+              "code": "import { fetchGA4OverviewData } from '@utils/analytics/ga4DataFetcher';"
+            },
+            {
+              "action": "replace_function",
+              "function_name": "GET",
+              "new_code": "export const GET: APIRoute = async ({ request }) => {\n  try {\n    const url = new URL(request.url);\n    const period = url.searchParams.get('period') || '7d';\n    const cacheKey = `overview-${period}`;\n    \n    // Check cache\n    const cached = cache.get(cacheKey);\n    if (cached) {\n      return new Response(JSON.stringify(createAPIResponse(cached)), {\n        headers: { 'Content-Type': 'application/json' },\n      });\n    }\n    \n    // Try to fetch real GA4 data\n    let data;\n    try {\n      data = await fetchGA4OverviewData(period);\n    } catch (ga4Error) {\n      console.error('GA4 fetch failed, using mock data:', ga4Error);\n      // Fallback to mock data if GA4 fails\n      data = generateMockOverviewData(period);\n    }\n    \n    // Cache the result\n    cache.set(cacheKey, data);\n    \n    return new Response(JSON.stringify(createAPIResponse(data)), {\n      headers: {\n        'Content-Type': 'application/json',\n        'Cache-Control': 'private, max-age=300',\n      },\n    });\n  } catch (error) {\n    return handleAPIError(error);\n  }\n};"
+            },
+            {
+              "action": "add_function",
+              "after_line": 98,
+              "code": "// Preserve existing mock data generator as fallback\nfunction generateMockOverviewData(period: string) {\n  // Move existing mock data generation logic here\n  const baseVisitors = 15000;\n  const randomFactor = () => 0.8 + Math.random() * 0.4;\n  \n  return {\n    summary: {\n      totalVisitors: Math.floor(baseVisitors * randomFactor()),\n      uniqueVisitors: Math.floor(baseVisitors * 0.6 * randomFactor()),\n      pageViews: Math.floor(baseVisitors * 3 * randomFactor()),\n      avgSessionDuration: Math.floor(180 + Math.random() * 120),\n      bounceRate: parseFloat((35 + Math.random() * 20).toFixed(1)),\n      conversionRate: parseFloat((2 + Math.random() * 3).toFixed(1)),\n    },\n    trends: {\n      visitors: generateTrendData('visitors', 7),\n      pageViews: generateTrendData('pageViews', 7),\n      conversions: generateTrendData('conversions', 7),\n    },\n    topPages: [\n      { path: '/', views: Math.floor(12000 + Math.random() * 2000), avgTime: 45, bounceRate: 35.2 },\n      { path: '/products', views: Math.floor(8000 + Math.random() * 1000), avgTime: 120, bounceRate: 42.1 },\n      { path: '/products/smartboards', views: Math.floor(5000 + Math.random() * 1000), avgTime: 180, bounceRate: 28.5 },\n      { path: '/quiz', views: Math.floor(3000 + Math.random() * 500), avgTime: 300, bounceRate: 15.3 },\n      { path: '/blog', views: Math.floor(2000 + Math.random() * 500), avgTime: 90, bounceRate: 55.7 },\n    ],\n    devices: { desktop: 65, mobile: 30, tablet: 5 },\n    referrers: [\n      { source: 'Google', visits: Math.floor(5000 + Math.random() * 1000), percentage: 35.6 },\n      { source: 'Direct', visits: Math.floor(4000 + Math.random() * 500), percentage: 28.3 },\n      { source: 'LinkedIn', visits: Math.floor(2000 + Math.random() * 500), percentage: 15.4 },\n      { source: 'Facebook', visits: Math.floor(1500 + Math.random() * 500), percentage: 12.3 },\n      { source: 'Other', visits: Math.floor(1000 + Math.random() * 300), percentage: 8.4 },\n    ],\n  };\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Testing and Validation",
+      "estimated_time": "1 hour",
+      "tasks": [
+        {
+          "task_id": "4.1",
+          "description": "Create GA4 connection test utility",
+          "file_path": "/src/utils/analytics/ga4Test.ts",
+          "content": {
+            "template": "typescript",
+            "code": "import { getGA4Client, runGA4Report } from './ga4Client';\nimport { GA4_CONFIG } from '@/config/analytics.config';\n\nexport async function testGA4Connection() {\n  const results = {\n    configurationValid: false,\n    connectionSuccessful: false,\n    dataFetchSuccessful: false,\n    errors: [] as string[]\n  };\n  \n  // Test 1: Configuration\n  try {\n    if (!GA4_CONFIG.propertyId) {\n      results.errors.push('GA4_PROPERTY_ID not configured');\n    }\n    if (!GA4_CONFIG.serviceAccountKey) {\n      results.errors.push('GA4_SERVICE_ACCOUNT_KEY not configured');\n    }\n    results.configurationValid = results.errors.length === 0;\n  } catch (error) {\n    results.errors.push(`Configuration error: ${error.message}`);\n  }\n  \n  // Test 2: Connection\n  if (results.configurationValid) {\n    try {\n      const client = getGA4Client();\n      results.connectionSuccessful = true;\n    } catch (error) {\n      results.errors.push(`Connection error: ${error.message}`);\n    }\n  }\n  \n  // Test 3: Data Fetch\n  if (results.connectionSuccessful) {\n    try {\n      const response = await runGA4Report({\n        metrics: ['totalUsers'],\n        dateRanges: [{ startDate: 'yesterday', endDate: 'today' }]\n      });\n      results.dataFetchSuccessful = !!response;\n    } catch (error) {\n      results.errors.push(`Data fetch error: ${error.message}`);\n    }\n  }\n  \n  return results;\n}"
+          }
+        },
+        {
+          "task_id": "4.2",
+          "description": "Create API test endpoint",
+          "file_path": "/src/pages/api/analytics/test-ga4.ts",
+          "content": {
+            "template": "typescript",
+            "code": "import type { APIRoute } from 'astro';\nimport { testGA4Connection } from '@utils/analytics/ga4Test';\nimport { createAPIResponse, handleAPIError } from '@utils/api/apiHelpers';\n\nexport const prerender = false;\n\nexport const GET: APIRoute = async () => {\n  try {\n    const testResults = await testGA4Connection();\n    \n    return new Response(JSON.stringify(createAPIResponse({\n      ...testResults,\n      allTestsPassed: testResults.configurationValid && \n                      testResults.connectionSuccessful && \n                      testResults.dataFetchSuccessful\n    })), {\n      headers: { 'Content-Type': 'application/json' }\n    });\n  } catch (error) {\n    return handleAPIError(error);\n  }\n};"
+          }
+        },
+        {
+          "task_id": "4.3",
+          "description": "Update test-api.html with GA4 test",
+          "file_path": "/public/test-api.html",
+          "modifications": [
+            {
+              "action": "add_html",
+              "after_selector": "#test-export",
+              "html": "<div id=\"test-ga4\">\n  <h3>Test GA4 Connection</h3>\n  <button onclick=\"testGA4()\">Test Google Analytics</button>\n  <pre id=\"ga4-result\"></pre>\n</div>"
+            },
+            {
+              "action": "add_script",
+              "after_function": "testExport",
+              "code": "async function testGA4() {\n  const resultElement = document.getElementById('ga4-result');\n  resultElement.textContent = 'Testing GA4 connection...';\n  \n  try {\n    const response = await fetch('/api/analytics/test-ga4');\n    const result = await response.json();\n    resultElement.textContent = JSON.stringify(result, null, 2);\n  } catch (error) {\n    resultElement.textContent = `Error: ${error.message}`;\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Documentation and Deployment",
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "task_id": "5.1",
+          "description": "Create GA4 setup documentation",
+          "file_path": "/docs/internal/BI/ga4-setup-guide.md",
+          "content": {
+            "template": "markdown",
+            "text": "# Google Analytics 4 Setup Guide\n\n## Prerequisites Completed\n\n- [ ] Google Cloud Project created\n- [ ] GA4 Data API enabled\n- [ ] Service Account created with JSON key\n- [ ] Service Account added to GA4 property\n- [ ] GA4 Property ID retrieved\n\n## Environment Configuration\n\n1. **Local Development (.env)**\n```bash\nGA4_PROPERTY_ID=123456789\nGA4_SERVICE_ACCOUNT_KEY=base64_encoded_json_key\n```\n\n2. **Vercel Production**\n- Go to Vercel Dashboard > Settings > Environment Variables\n- Add `GA4_PROPERTY_ID` with your property ID\n- Add `GA4_SERVICE_ACCOUNT_KEY` with base64 encoded JSON\n\n## Base64 Encoding Service Account Key\n\n```bash\n# On macOS/Linux\nbase64 -i service-account-key.json | tr -d '\\n'\n\n# On Windows PowerShell\n[Convert]::ToBase64String([System.IO.File]::ReadAllBytes(\"service-account-key.json\"))\n```\n\n## Testing the Integration\n\n1. **Local Testing**\n```bash\nnpm run dev\n# Visit http://localhost:4321/test-api.html\n# Click \"Test Google Analytics\" button\n```\n\n2. **Production Testing**\n```bash\n# After deployment\ncurl https://your-domain.com/api/analytics/test-ga4\n```\n\n## Troubleshooting\n\n### Common Issues\n\n1. **\"GA4 client not initialized\"**\n   - Check if service account key is properly base64 encoded\n   - Verify environment variables are loaded\n\n2. **\"Permission denied\" errors**\n   - Ensure service account email is added to GA4 property\n   - Check that Viewer role is granted\n\n3. **\"Property not found\"**\n   - Verify GA4_PROPERTY_ID is correct (9 digits)\n   - Ensure it's from GA4, not Universal Analytics\n\n## Monitoring\n\n- Check `/admin` dashboard for real data\n- Monitor API response times\n- Set up alerts for API failures"
+          }
+        },
+        {
+          "task_id": "5.2",
+          "description": "Update main BI documentation",
+          "file_path": "/docs/internal/BI/README.md",
+          "modifications": [
+            {
+              "action": "add_section",
+              "after_heading": "## Timeline",
+              "content": "## ✅ Phase 6: Real Data Integration (NEW)\n\n### Google Analytics 4 Integration\n- **Status**: Implemented with fallback to mock data\n- **Features**: \n  - Real visitor and page view data\n  - Device and referrer analytics\n  - Trend analysis with historical data\n  - Automatic fallback when GA4 unavailable\n- **Setup**: See [GA4 Setup Guide](./ga4-setup-guide.md)"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "validation_checklist": {
+    "pre_deployment": [
+      {
+        "check": "Environment variables configured",
+        "command": "grep GA4_ .env",
+        "expected": "Both GA4_PROPERTY_ID and GA4_SERVICE_ACCOUNT_KEY present"
+      },
+      {
+        "check": "Dependencies installed",
+        "command": "npm ls @google-analytics/data",
+        "expected": "Package found in node_modules"
+      },
+      {
+        "check": "API endpoint updated",
+        "command": "grep fetchGA4OverviewData src/pages/api/analytics/overview.ts",
+        "expected": "Function import found"
+      }
+    ],
+    "post_deployment": [
+      {
+        "check": "GA4 connection test passes",
+        "endpoint": "/api/analytics/test-ga4",
+        "expected_response": {
+          "success": true,
+          "data": {
+            "allTestsPassed": true
+          }
+        }
+      },
+      {
+        "check": "Dashboard loads with real data",
+        "endpoint": "/api/analytics/overview?period=7d",
+        "validate": "Response contains non-zero totalVisitors"
+      }
+    ]
+  },
+  "rollback_procedure": {
+    "description": "If GA4 integration fails, the system automatically falls back to mock data",
+    "manual_rollback": [
+      {
+        "step": 1,
+        "action": "Remove GA4 environment variables from Vercel",
+        "effect": "Forces use of mock data"
+      },
+      {
+        "step": 2,
+        "action": "Redeploy application",
+        "command": "vercel --prod"
+      }
+    ]
+  },
+  "success_criteria": {
+    "technical": [
+      "GA4 API successfully connects and returns data",
+      "Dashboard performance remains under 2 second load time",
+      "Automatic fallback works when GA4 is unavailable",
+      "No TypeScript errors in build"
+    ],
+    "business": [
+      "Real visitor data displayed in dashboard",
+      "Historical trends available for selected period",
+      "Top pages reflect actual site usage",
+      "Device and referrer data matches GA4 reports"
+    ]
+  },
+  "notes_for_ai_agent": {
+    "important": [
+      "Preserve existing mock data logic as fallback",
+      "Maintain exact same response format for dashboard compatibility",
+      "Use try-catch blocks for all GA4 operations",
+      "Cache responses to minimize API calls",
+      "Test thoroughly before removing mock data"
+    ],
+    "dependencies_context": {
+      "@google-analytics/data": "Official Google client library",
+      "import.meta.env": "Astro's environment variable access method",
+      "Buffer": "Available in Node.js runtime for base64 decoding"
+    },
+    "common_pitfalls": [
+      "Service account key must be base64 encoded for environment variable",
+      "GA4 property ID is different from Universal Analytics ID",
+      "Date ranges use relative date strings like '7daysAgo'",
+      "Metrics names changed from UA to GA4 (pageviews → screenPageViews)"
+    ]
+  }
+}

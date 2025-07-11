@@ -1,0 +1,98 @@
+.metricCard {
+  background: var(--color-admin-surface);
+  border-radius: 8px;
+  padding: var(--admin-spacing-lg);
+  box-shadow: var(--admin-shadow-sm);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  &:hover {
+    box-shadow: var(--admin-shadow-md);
+    transform: translateY(-2px);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  &.primary {
+    --accent-color: var(--chart-primary);
+  }
+  
+  &.success {
+    --accent-color: var(--chart-secondary);
+  }
+  
+  &.warning {
+    --accent-color: var(--chart-tertiary);
+  }
+  
+  &.danger {
+    --accent-color: var(--chart-danger);
+  }
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--admin-spacing-md);
+  opacity: 0.8;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-spacing-sm);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-admin-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-admin-text);
+  line-height: 1.2;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-spacing-sm);
+  font-size: 0.875rem;
+  
+  &.positive {
+    color: var(--chart-secondary);
+  }
+  
+  &.negative {
+    color: var(--chart-danger);
+  }
+}
+
+.changeValue {
+  font-weight: 600;
+}
+
+.changeLabel {
+  color: var(--color-admin-text-secondary);
+}

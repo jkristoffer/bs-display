@@ -1,0 +1,211 @@
+.productsDashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    h1 {
+      margin: 0;
+      color: var(--color-admin-text);
+    }
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
+  
+  .headerActions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+  }
+  
+  .filters {
+    display: flex;
+    gap: 1rem;
+    
+    @media (max-width: 480px) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+  
+  .exportButton {
+    padding: 0.5rem 1rem;
+    background: var(--chart-secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+    
+    &:hover {
+      background: #38a169;
+    }
+  }
+  
+  .filter {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-admin-border);
+    border-radius: 4px;
+    background: var(--color-admin-surface);
+    color: var(--color-admin-text);
+    font-size: 0.875rem;
+    min-width: 150px;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--chart-primary);
+    }
+  }
+  
+  .summaryCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .summaryCard {
+    background: var(--color-admin-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--admin-shadow-sm);
+    text-align: center;
+    
+    h3 {
+      margin: 0 0 1rem 0;
+      font-size: 0.875rem;
+      color: var(--color-admin-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-admin-text);
+    }
+  }
+  
+  .chartsSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .topPerformers {
+    background: var(--color-admin-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--admin-shadow-sm);
+    margin-bottom: 2rem;
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: var(--color-admin-text);
+    }
+  }
+  
+  .performersList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .performerItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-admin-bg);
+    border-radius: 6px;
+    transition: background 0.2s;
+    
+    &:hover {
+      background: var(--color-admin-border);
+    }
+  }
+  
+  .performerRank {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--chart-primary);
+    min-width: 2rem;
+  }
+  
+  .performerInfo {
+    flex: 1;
+  }
+  
+  .performerName {
+    font-weight: 600;
+    color: var(--color-admin-text);
+    margin-bottom: 0.25rem;
+  }
+  
+  .performerBrand {
+    font-size: 0.875rem;
+    color: var(--color-admin-text-secondary);
+  }
+  
+  .performerMetrics {
+    text-align: right;
+  }
+  
+  .performerRevenue {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--chart-secondary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .performerConversions {
+    font-size: 0.875rem;
+    color: var(--color-admin-text-secondary);
+  }
+  
+  .productTable {
+    background: var(--color-admin-surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--admin-shadow-sm);
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: var(--color-admin-text);
+    }
+  }
+  
+  .error {
+    padding: 2rem;
+    text-align: center;
+    color: var(--chart-danger);
+    background: rgba(245, 101, 101, 0.1);
+    border: 1px solid var(--chart-danger);
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+}

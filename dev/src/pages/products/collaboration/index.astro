@@ -1,8 +1,7 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
 import { FilterUIv2 } from '../../../components/products/FilterUI';
-import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
-import CategoryTabs from '../../../components/common/CategoryTabs/CategoryTabs.tsx';
+import ProductsNavigationBar from '../../../components/products/ProductsNavigationBar/ProductsNavigationBar.astro';
 import collaboration from '../../../data/collaboration/collaboration.all.js';
 
 const title = 'Collaboration Solutions | Big Shine Display';
@@ -13,8 +12,15 @@ const description =
 <ProductLayout title={title} description={description}>
   <section class="section">
     <div class="container--wide">
-      <Breadcrumbs productType="collaboration" />
-      <CategoryTabs activeCategory="collaboration" client:visible />
+      <ProductsNavigationBar
+        breadcrumbItems={[
+          { label: 'Home', path: '/' },
+          { label: 'Products', path: '/products/' },
+          { label: 'Collaboration' }
+        ]}
+        activeCategory="collaboration"
+        showCounts={true}
+      />
       
       <div class="collaboration-header">
         <h1>Collaboration Solutions</h1>

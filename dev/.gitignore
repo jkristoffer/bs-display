@@ -6,3 +6,11 @@ __pycache__/
 
 # RAG database files
 rag/chroma_db/
+
+# Test files
+test-auth.html
+test-api.html
+
+# Environment variables
+.env
+.env.local

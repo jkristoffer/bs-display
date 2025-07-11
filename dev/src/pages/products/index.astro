@@ -1,6 +1,6 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
-import Breadcrumbs from '../../components/common/Breadcrumbs/Breadcrumbs.astro';
+import ProductsNavigationBar from '../../components/products/ProductsNavigationBar/ProductsNavigationBar.astro';
 
 const title = 'Display Products | Big Shine Display';
 const description =
@@ -12,10 +12,14 @@ const description =
   <section class="hero-section">
     <div class="hero-content">
       <div class="container--wide">
-        <Breadcrumbs items={[
-          { label: 'Home', path: '/' },
-          { label: 'Products' }
-        ]} />
+        <ProductsNavigationBar
+          breadcrumbItems={[
+            { label: 'Home', path: '/' },
+            { label: 'Products' }
+          ]}
+          activeCategory={null}
+          showCounts={true}
+        />
         
         <div class="hero-text">
           <h1 class="hero-title">Interactive Display Solutions</h1>

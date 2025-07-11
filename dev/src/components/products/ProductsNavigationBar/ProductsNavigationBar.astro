@@ -1,0 +1,44 @@
+---
+import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs.astro';
+import CategoryTabs from '../../common/CategoryTabs/CategoryTabs';
+import type { CategoryType } from '../../common/CategoryTabs/types';
+
+export interface Props {
+  breadcrumbItems?: Array<{
+    label: string;
+    path?: string;
+  }>;
+  activeCategory?: CategoryType | null;
+  showCounts?: boolean;
+  className?: string;
+}
+
+const { 
+  breadcrumbItems, 
+  activeCategory = null, 
+  showCounts = true,
+  className = ''
+} = Astro.props;
+---
+
+<div class={`products-navigation-bar ${className}`}>
+  <div class="navigation-container">
+    {breadcrumbItems && (
+      <div class="breadcrumbs-wrapper">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
+    )}
+    
+    <div class="category-tabs-wrapper">
+      <CategoryTabs 
+        activeCategory={activeCategory as any} 
+        showCounts={showCounts}
+        client:load 
+      />
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use './ProductsNavigationBar.module.scss';
+</style>

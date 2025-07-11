@@ -1,0 +1,10 @@
+---
+import AdminLayout from '@layouts/AdminLayout.astro';
+import RealtimeDashboard from '@components/admin/dashboards/RealtimeDashboard';
+
+export const prerender = false;
+---
+
+<AdminLayout title="Real-time Analytics" description="Real-time Analytics Dashboard">
+  <RealtimeDashboard client:load />
+</AdminLayout>

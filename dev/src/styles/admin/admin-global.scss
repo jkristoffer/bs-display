@@ -1,0 +1,179 @@
+// Admin-specific CSS variables
+:root {
+  // Admin color scheme
+  --color-admin-bg: #f5f7fa;
+  --color-admin-surface: #ffffff;
+  --color-admin-text: #2d3748;
+  --color-admin-text-secondary: #718096;
+  --color-admin-border: #e2e8f0;
+  --color-admin-sidebar-bg: #1a202c;
+  --color-admin-sidebar-text: #e2e8f0;
+  --color-admin-sidebar-hover: #2d3748;
+  
+  // Chart colors
+  --chart-primary: #4299e1;
+  --chart-secondary: #48bb78;
+  --chart-tertiary: #ed8936;
+  --chart-quaternary: #9f7aea;
+  --chart-danger: #f56565;
+  
+  // Spacing
+  --admin-spacing-xs: 0.25rem;
+  --admin-spacing-sm: 0.5rem;
+  --admin-spacing-md: 1rem;
+  --admin-spacing-lg: 1.5rem;
+  --admin-spacing-xl: 2rem;
+  
+  // Shadows
+  --admin-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --admin-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --admin-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-admin-bg: #1a202c;
+    --color-admin-surface: #2d3748;
+    --color-admin-text: #e2e8f0;
+    --color-admin-text-secondary: #a0aec0;
+    --color-admin-border: #4a5568;
+  }
+}
+
+// Admin global styles
+.admin-layout {
+  * {
+    box-sizing: border-box;
+  }
+  
+  // Typography
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-admin-text);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.125rem; }
+  
+  p {
+    color: var(--color-admin-text);
+    line-height: 1.6;
+  }
+  
+  a {
+    color: var(--chart-primary);
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  // Common patterns
+  .card {
+    background: var(--color-admin-surface);
+    border-radius: 8px;
+    padding: var(--admin-spacing-lg);
+    box-shadow: var(--admin-shadow-sm);
+    transition: box-shadow 0.2s;
+    
+    &:hover {
+      box-shadow: var(--admin-shadow-md);
+    }
+  }
+  
+  .grid {
+    display: grid;
+    gap: var(--admin-spacing-lg);
+    
+    &.cols-2 { 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    }
+    &.cols-3 { 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    }
+    &.cols-4 { 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    }
+  }
+  
+  // Form elements
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-admin-border);
+    border-radius: 4px;
+    background: var(--color-admin-surface);
+    color: var(--color-admin-text);
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--chart-primary);
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+    }
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &.primary {
+      background: var(--chart-primary);
+      color: white;
+      
+      &:hover {
+        background: #3182ce;
+      }
+    }
+    
+    &.secondary {
+      background: var(--color-admin-bg);
+      color: var(--color-admin-text);
+      border: 1px solid var(--color-admin-border);
+      
+      &:hover {
+        background: var(--color-admin-border);
+      }
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  // Utility classes
+  .text-muted {
+    color: var(--color-admin-text-secondary);
+  }
+  
+  .text-small {
+    font-size: 0.875rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-1 { margin-top: var(--admin-spacing-sm); }
+  .mt-2 { margin-top: var(--admin-spacing-md); }
+  .mt-3 { margin-top: var(--admin-spacing-lg); }
+  .mt-4 { margin-top: var(--admin-spacing-xl); }
+  
+  .mb-1 { margin-bottom: var(--admin-spacing-sm); }
+  .mb-2 { margin-bottom: var(--admin-spacing-md); }
+  .mb-3 { margin-bottom: var(--admin-spacing-lg); }
+  .mb-4 { margin-bottom: var(--admin-spacing-xl); }
+}

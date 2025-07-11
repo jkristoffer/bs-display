@@ -1,0 +1,81 @@
+---
+import SEO from '@components/common/SEO.astro';
+import AdminSidebar from '@components/admin/AdminSidebar/AdminSidebar';
+import AdminHeader from '@components/admin/AdminHeader/AdminHeader';
+import '@styles/admin/admin-global.scss';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'BigShine Display Admin Dashboard' } = Astro.props;
+
+// Make sure this layout is server-rendered for auth
+export const prerender = false;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <SEO 
+      title={`${title} | Admin Dashboard`} 
+      description={description}
+      noindex={true}
+      nofollow={true}
+    />
+  </head>
+  <body class="admin-layout">
+    <div class="admin-container">
+      <AdminSidebar client:load />
+      <div class="admin-main">
+        <AdminHeader client:load title={title} />
+        <main class="admin-content">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .admin-layout {
+    --sidebar-width: 250px;
+    --header-height: 60px;
+    
+    margin: 0;
+    padding: 0;
+    background: var(--color-admin-bg);
+    color: var(--color-admin-text);
+    font-family: var(--font-family-base);
+  }
+  
+  .admin-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .admin-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-content {
+    flex: 1;
+    padding: 2rem;
+    margin-top: var(--header-height);
+    overflow-y: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .admin-layout {
+      --sidebar-width: 0;
+    }
+    
+    .admin-main {
+      margin-left: 0;
+    }
+  }
+</style>

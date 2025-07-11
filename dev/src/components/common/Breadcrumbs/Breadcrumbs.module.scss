@@ -1,10 +1,25 @@
 .breadcrumbs {
   margin-bottom: var(--spacing-xl);
-  background-color: var(--color-surface);
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-sm);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0.8;
+  }
   
   ol {
     list-style: none;
@@ -25,36 +40,54 @@
     a {
       color: var(--color-text-secondary);
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.3s var(--ease-out);
       position: relative;
       padding: 4px 8px;
       border-radius: 4px;
+      font-weight: 500;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--gradient-primary);
+        opacity: 0;
+        border-radius: 4px;
+        transition: opacity 0.3s var(--ease-out);
+        z-index: -1;
+      }
       
       &:hover {
-        color: var(--color-accent-primary);
-        background-color: rgba(0, 0, 0, 0.03);
+        color: white;
+        transform: translateY(-1px);
+        
+        &::before {
+          opacity: 1;
+        }
       }
     }
     
     &.active {
-      font-weight: 500;
+      font-weight: 600;
       color: var(--color-text-primary);
       
       span {
         padding: 4px 8px;
-        background-color: var(--color-accent-primary);
+        background: var(--gradient-primary);
         color: white;
         border-radius: 4px;
-        font-weight: 500;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
       }
     }
   }
   
   .separator {
-    margin: 0 2px;
+    margin: 0 4px;
     color: var(--color-text-secondary);
-    opacity: 0.5;
+    opacity: 0.4;
     font-size: 14px;
+    font-weight: 300;
   }
 
   @media (max-width: 767px) {

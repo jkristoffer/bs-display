@@ -1,0 +1,143 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--color-admin-surface);
+  border-radius: 8px;
+  box-shadow: var(--admin-shadow-lg);
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-admin-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  h2 {
+    margin: 0;
+    color: var(--color-admin-text);
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-admin-text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    
+    &:hover {
+      background: var(--color-admin-bg);
+      color: var(--color-admin-text);
+    }
+  }
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-admin-text);
+  }
+  
+  select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-admin-border);
+    border-radius: 4px;
+    background: var(--color-admin-surface);
+    color: var(--color-admin-text);
+    font-size: 0.875rem;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--chart-primary);
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+    }
+  }
+}
+
+.info {
+  background: var(--color-admin-bg);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-admin-text-secondary);
+  }
+}
+
+.footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-admin-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancelButton,
+.exportButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background: var(--color-admin-bg);
+  color: var(--color-admin-text);
+  border: 1px solid var(--color-admin-border);
+  
+  &:hover:not(:disabled) {
+    background: var(--color-admin-border);
+  }
+}
+
+.exportButton {
+  background: var(--chart-primary);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background: #3182ce;
+  }
+}

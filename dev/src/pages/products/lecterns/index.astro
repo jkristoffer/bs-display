@@ -1,8 +1,7 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
 import { FilterUIv2 } from '../../../components/products/FilterUI';
-import Breadcrumbs from '../../../components/common/Breadcrumbs/Breadcrumbs.astro';
-import CategoryTabs from '../../../components/common/CategoryTabs/CategoryTabs.tsx';
+import ProductsNavigationBar from '../../../components/products/ProductsNavigationBar/ProductsNavigationBar.astro';
 import { BrochureCard } from '../../../components/common/BrochureCard';
 import lecterns from '../../../data/lecterns/lecterns.all.js';
 
@@ -14,8 +13,15 @@ const description =
 <ProductLayout title={title} description={description}>
   <section class="section">
     <div class="container--wide">
-      <Breadcrumbs productType="lecterns" />
-      <CategoryTabs activeCategory="lecterns" client:visible />
+      <ProductsNavigationBar
+        breadcrumbItems={[
+          { label: 'Home', path: '/' },
+          { label: 'Products', path: '/products/' },
+          { label: 'Lecterns' }
+        ]}
+        activeCategory="lecterns"
+        showCounts={true}
+      />
       
       <div class="products-header">
         <h1>Interactive Smart Lecterns</h1>

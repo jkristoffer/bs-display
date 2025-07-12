@@ -1,0 +1,206 @@
+---
+import AdminLayout from '@layouts/AdminLayout.astro';
+export const prerender = false;
+---
+
+<AdminLayout title="Analytics Test" activeItem="/admin/analytics-test">
+  <div class="analytics-test">
+    <h1>Analytics Implementation Test</h1>
+    
+    <div class="test-section">
+      <h2>Test Analytics Events</h2>
+      <p>Click the buttons below to test different analytics events:</p>
+      
+      <div class="button-grid">
+        <button id="test-pageview" class="test-button">
+          Test Page View
+        </button>
+        
+        <button id="test-interaction" class="test-button">
+          Test Interaction
+        </button>
+        
+        <button id="test-conversion" class="test-button">
+          Test Conversion
+        </button>
+        
+        <button id="test-custom" class="test-button">
+          Test Custom Event
+        </button>
+      </div>
+      
+      <div id="event-log" class="event-log">
+        <h3>Event Log</h3>
+        <div id="log-entries"></div>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h2>Dashboard Status</h2>
+      <div id="dashboard-status">Loading...</div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  import { Analytics } from '@utils/analytics/client';
+  
+  // Test buttons
+  document.getElementById('test-pageview')?.addEventListener('click', () => {
+    Analytics.pageView('/admin/analytics-test/manual');
+    logEvent('Page View', { path: '/admin/analytics-test/manual' });
+  });
+  
+  document.getElementById('test-interaction')?.addEventListener('click', () => {
+    Analytics.interaction('button_click', 'test', { buttonId: 'test-interaction' });
+    logEvent('Interaction', { action: 'button_click', category: 'test' });
+  });
+  
+  document.getElementById('test-conversion')?.addEventListener('click', () => {
+    Analytics.conversion('test_conversion', 100, { source: 'manual_test' });
+    logEvent('Conversion', { type: 'test_conversion', value: 100 });
+  });
+  
+  document.getElementById('test-custom')?.addEventListener('click', () => {
+    Analytics.custom('test_event', { timestamp: Date.now(), random: Math.random() });
+    logEvent('Custom Event', { name: 'test_event' });
+  });
+  
+  // Event logging
+  function logEvent(type: string, data: any) {
+    const logEntries = document.getElementById('log-entries');
+    if (logEntries) {
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `
+        <span class="timestamp">${new Date().toLocaleTimeString()}</span>
+        <span class="event-type">${type}</span>
+        <code>${JSON.stringify(data, null, 2)}</code>
+      `;
+      logEntries.insertBefore(entry, logEntries.firstChild);
+      
+      // Keep only last 10 entries
+      while (logEntries.children.length > 10) {
+        logEntries.removeChild(logEntries.lastChild);
+      }
+    }
+  }
+  
+  // Check dashboard status
+  async function checkDashboardStatus() {
+    const statusEl = document.getElementById('dashboard-status');
+    if (!statusEl) return;
+    
+    try {
+      const response = await fetch('/api/analytics/dashboard?period=24h');
+      if (response.ok) {
+        const data = await response.json();
+        statusEl.innerHTML = `
+          <div class="status-success">
+            <h3>✅ Dashboard API Active</h3>
+            <p>Generated: ${new Date(data.generated).toLocaleString()}</p>
+            <p>Total Visitors: ${data.overview.totalVisitors}</p>
+            <p>Page Views: ${data.overview.pageViews}</p>
+            <p>Conversions: ${data.overview.conversions}</p>
+          </div>
+        `;
+      } else {
+        statusEl.innerHTML = '<div class="status-error">❌ Dashboard API Error</div>';
+      }
+    } catch (error) {
+      statusEl.innerHTML = '<div class="status-error">❌ Failed to connect to Dashboard API</div>';
+    }
+  }
+  
+  // Initial check
+  checkDashboardStatus();
+  
+  // Auto refresh every 30 seconds
+  setInterval(checkDashboardStatus, 30000);
+</script>
+
+<style>
+  .analytics-test {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .test-section {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .test-button {
+    padding: 1rem 2rem;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+  
+  .test-button:hover {
+    background: #3182ce;
+  }
+  
+  .event-log {
+    margin-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+  }
+  
+  .log-entry {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #f7fafc;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.875rem;
+  }
+  
+  .timestamp {
+    color: #718096;
+    margin-right: 1rem;
+  }
+  
+  .event-type {
+    font-weight: bold;
+    color: #2d3748;
+    margin-right: 1rem;
+  }
+  
+  code {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #edf2f7;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+  
+  .status-success {
+    color: #2f855a;
+  }
+  
+  .status-error {
+    color: #c53030;
+  }
+  
+  .status-success h3,
+  .status-error {
+    margin: 0 0 0.5rem 0;
+  }
+</style>

@@ -16,3 +16,8 @@ test-api.html
 .env.local
 .env*.local
 .vercel
+
+# Site health check reports
+site-health-reports/
+link-check-report.md
+link-check-report.txt

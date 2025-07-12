@@ -14,6 +14,47 @@
     },
     "list-intents": {
       "description": "Lists all available intents and their parameters in a machine-readable format."
+    },
+    "check-site-health": {
+      "description": "Checks the site for broken images, dead links, and other health issues using Puppeteer",
+      "command": "node scripts/check-site-health.js",
+      "params": [
+        { "name": "baseUrl", "required": false, "description": "Base URL to check (default: http://localhost:4321)", "env": "BASE_URL" },
+        { "name": "maxDepth", "required": false, "description": "Maximum crawl depth (default: 3)", "env": "MAX_DEPTH" },
+        { "name": "outputFormat", "required": false, "description": "Output format: json, text, or both (default: both)", "env": "OUTPUT_FORMAT" },
+        { "name": "checkExternal", "required": false, "description": "Check external links: true/false (default: false)", "env": "CHECK_EXTERNAL" },
+        { "name": "screenshotErrors", "required": false, "description": "Take screenshots on errors (default: true)", "env": "SCREENSHOT_ERRORS" },
+        { "name": "timeout", "required": false, "description": "Page timeout in ms (default: 30000)", "env": "TIMEOUT" },
+        { "name": "concurrency", "required": false, "description": "Concurrent page checks (default: 3)", "env": "CONCURRENCY" }
+      ]
+    },
+    "check-site-quick": {
+      "description": "Quick site health check with depth 1",
+      "command": "MAX_DEPTH=1 node scripts/check-site-health.js",
+      "params": [
+        { "name": "baseUrl", "required": false, "description": "Base URL to check (default: http://localhost:4321)", "env": "BASE_URL" }
+      ]
+    },
+    "check-site-full": {
+      "description": "Full site health check with depth 5 and external link checking",
+      "command": "MAX_DEPTH=5 CHECK_EXTERNAL=true node scripts/check-site-health.js",
+      "params": [
+        { "name": "baseUrl", "required": false, "description": "Base URL to check (default: http://localhost:4321)", "env": "BASE_URL" }
+      ]
+    },
+    "check-site-prod": {
+      "description": "Check production site health",
+      "command": "BASE_URL={{baseUrl}} node scripts/check-site-health.js",
+      "params": [
+        { "name": "baseUrl", "required": true, "description": "Production URL to check (e.g., https://your-site.com)" }
+      ]
+    },
+    "check-links": {
+      "description": "Check for broken links and images (legacy script)",
+      "command": "node scripts/check-links-images.js",
+      "params": [
+        { "name": "baseUrl", "required": false, "description": "Base URL to check (default: http://localhost:4321)", "env": "BASE_URL" }
+      ]
     }
   }
 }

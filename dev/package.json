@@ -45,9 +45,7 @@
     "data:validate": "node scripts/validate-json-schema.js",
     "validate:project:json": "node scripts/validate-project.js",
     "components:manifest": "node scripts/generate-component-manifest.js",
-    "ai:do": "node scripts/ai-do.js",
-    "check:links": "node scripts/check-links-images.js",
-    "check:links:prod": "BASE_URL=https://your-production-url.com node scripts/check-links-images.js"
+    "ai:do": "node scripts/ai-do.js"
   },
   "author": "Kris",
   "license": "ISC",

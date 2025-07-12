@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { 
   useQuizState,
   ProductMatchingService,
@@ -11,6 +11,7 @@ import {
   CategoryScores
 } from './index';
 import type { QuizData } from './types';
+import { Analytics } from '@utils/analytics/client';
 import './quiz-styles.scss';
 
 /**
@@ -55,6 +56,35 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
 
   const { title, questions, results } = quizData;
 
+  // Track quiz start
+  useEffect(() => {
+    if (currentScreen === 'questions') {
+      Analytics.quizEvent('start', {
+        quizType: 'product_recommendation',
+        totalQuestions: questions.length
+      });
+    }
+  }, [currentScreen, questions.length]);
+
+  // Track quiz completion
+  useEffect(() => {
+    if (currentScreen === 'results' && result) {
+      Analytics.quizEvent('complete', {
+        result,
+        isHybrid: isHybridResult,
+        primaryCategory: result,
+        secondaryCategory: secondaryCategory || null,
+        scores: categoryScores
+      });
+
+      // Track as conversion
+      Analytics.conversion('quiz_completion', 1, {
+        category: result,
+        isHybrid: isHybridResult
+      });
+    }
+  }, [currentScreen, result, isHybridResult, secondaryCategory, categoryScores]);
+
   // Memoized product fetching functions for performance
   const getProductsForQuizResult = useCallback(
     (resultKey: string) => ProductMatchingService.getRecommendations(resultKey),
@@ -65,6 +95,16 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
     (product: any, context?: string) => ProductMatchingService.getRelevantFeatures(product, context),
     []
   );
+
+  // Track option selection
+  const handleToggleOption = useCallback((questionId: string, optionId: string) => {
+    Analytics.quizEvent('question', {
+      questionId,
+      optionId,
+      action: isOptionSelected(questionId, optionId) ? 'deselect' : 'select'
+    });
+    toggleOption(questionId, optionId);
+  }, [toggleOption, isOptionSelected]);
 
 
   return (
@@ -85,7 +125,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
           questions={questions}
           isOptionSelected={isOptionSelected}
           getSelectionCount={getSelectionCount}
-          toggleOption={toggleOption}
+          toggleOption={handleToggleOption}
           allQuestionsAnswered={allQuestionsAnswered}
           onSubmit={submitQuiz}
         />

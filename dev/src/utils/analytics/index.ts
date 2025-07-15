@@ -29,6 +29,11 @@ export type {
   EventHandler
 } from './types';
 
+import type { AnalyticsConfig, EventType, EventProperties, JourneyStage } from './types';
+import { AnalyticsEngine } from './core/AnalyticsEngine';
+import { DashboardEngine } from './realtime/DashboardEngine';
+import { MetricsCollector } from './realtime/MetricsCollector';
+
 // Convenience initialization function
 export const initializeAnalytics = (config: AnalyticsConfig) => {
   const analyticsEngine = new AnalyticsEngine(config);
@@ -121,7 +126,7 @@ export const isBrowserSupported = (): boolean => {
   return !!(
     window.localStorage &&
     window.sessionStorage &&
-    window.fetch &&
+    typeof window.fetch === 'function' &&
     window.URL &&
     window.MutationObserver
   );
@@ -193,7 +198,7 @@ export const PerformanceMonitor = {
               resource_url: resourceEntry.name,
               duration: resourceEntry.duration,
               size: resourceEntry.transferSize,
-              type: resourceEntry.initiatorType
+              resource_type: resourceEntry.initiatorType
             });
           }
         }
@@ -261,8 +266,6 @@ export const ErrorTracker = {
 declare global {
   interface Window {
     bs_analytics?: ReturnType<typeof initializeAnalytics>;
-    gtag?: (...args: any[]) => void;
-    mixpanel?: any;
   }
 }
 

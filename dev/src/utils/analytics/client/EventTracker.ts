@@ -1,5 +1,5 @@
 import { compress } from 'lz-string';
-import type { AnalyticsEvent } from '@types/analytics';
+import type { AnalyticsEvent } from '../types';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 
 export class EventTracker {
@@ -56,16 +56,35 @@ export class EventTracker {
     // Also queue raw event if needed for detailed analysis
     if (type === 'conversion' || type === 'quiz_event') {
       this.eventQueue.push({
-        id: this.generateEventId(),
+        event_id: this.generateEventId(),
+        event_type: type,
         type,
-        timestamp: Date.now(),
-        sessionId: this.sessionId,
-        data,
-        metadata: {
-          url: window.location.href,
-          referrer: document.referrer,
-          userAgent: navigator.userAgent,
-          samplingRate: sampleRate
+        timestamp: new Date(),
+        session_id: this.sessionId,
+        user_id: undefined,
+        properties: data,
+        context: {
+          device: {
+            type: 'desktop', // Default, should be detected properly
+            os: navigator.platform,
+            screen_resolution: `${screen.width}x${screen.height}`,
+            viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+          },
+          browser: {
+            name: 'unknown', // Default, should be detected properly
+            version: 'unknown',
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            user_agent: navigator.userAgent,
+            cookies_enabled: navigator.cookieEnabled,
+            javascript_enabled: true
+          },
+          location: {
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+          },
+          is_returning_visitor: false, // Default
+          session_count: 1, // Default
+          referrer: document.referrer
         }
       });
     }
@@ -136,11 +155,11 @@ export class EventTracker {
   }
   
   private generateSessionId(): string {
-    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
   }
   
   private generateEventId(): string {
-    return `${this.sessionId}-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+    return `${this.sessionId}-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
   }
   
   private hashEvent(type: string, data: Record<string, any>): string {

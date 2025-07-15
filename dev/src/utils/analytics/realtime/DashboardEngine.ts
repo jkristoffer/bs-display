@@ -5,7 +5,6 @@ import type {
   SessionMetrics,
   CustomerJourney 
 } from '../types';
-import { EventProcessor } from '../core/EventProcessor';
 import { SessionManager } from '../core/SessionManager';
 
 export class DashboardEngine {
@@ -15,7 +14,7 @@ export class DashboardEngine {
   private metricsCache: Map<string, RealTimeMetric> = new Map();
   private subscribers: Map<string, DashboardSubscriber[]> = new Map();
   private updateInterval: NodeJS.Timeout | null = null;
-  private isConnected = false;
+  private connected = false;
   private connectionRetryCount = 0;
   private readonly MAX_RETRY_ATTEMPTS = 5;
   private readonly RETRY_DELAY = 2000;
@@ -52,7 +51,7 @@ export class DashboardEngine {
 
     this.websocket.onopen = () => {
       console.log('Dashboard WebSocket connected');
-      this.isConnected = true;
+      this.connected = true;
       this.connectionRetryCount = 0;
       this.notifyConnectionChange(true);
     };
@@ -68,14 +67,14 @@ export class DashboardEngine {
 
     this.websocket.onclose = () => {
       console.log('Dashboard WebSocket disconnected');
-      this.isConnected = false;
+      this.connected = false;
       this.notifyConnectionChange(false);
       this.attemptReconnection();
     };
 
     this.websocket.onerror = (error) => {
       console.error('WebSocket error:', error);
-      this.isConnected = false;
+      this.connected = false;
       this.notifyConnectionChange(false);
     };
   }
@@ -91,7 +90,7 @@ export class DashboardEngine {
 
     this.eventSource.onopen = () => {
       console.log('Dashboard SSE connected');
-      this.isConnected = true;
+      this.connected = true;
       this.connectionRetryCount = 0;
       this.notifyConnectionChange(true);
     };
@@ -107,7 +106,7 @@ export class DashboardEngine {
 
     this.eventSource.onerror = () => {
       console.error('SSE connection error');
-      this.isConnected = false;
+      this.connected = false;
       this.notifyConnectionChange(false);
       this.attemptReconnection();
     };
@@ -260,7 +259,7 @@ export class DashboardEngine {
 
   // Public API
   public subscribe(type: string, callback: (data: any) => void): string {
-    const subscriberId = `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const subscriberId = `sub_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
     
     if (!this.subscribers.has(type)) {
       this.subscribers.set(type, []);
@@ -299,11 +298,11 @@ export class DashboardEngine {
   }
 
   public isConnected(): boolean {
-    return this.isConnected;
+    return this.connected;
   }
 
   public async sendEvent(event: AnalyticsEvent): Promise<void> {
-    if (!this.isConnected) {
+    if (!this.connected) {
       console.warn('Dashboard not connected, queuing event');
       // Could implement local queuing here
       return;

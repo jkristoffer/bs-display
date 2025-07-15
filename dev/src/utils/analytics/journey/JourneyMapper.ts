@@ -204,7 +204,7 @@ export class JourneyMapper {
     return journey;
   }
 
-  private createTouchPoint(event: AnalyticsEvent, type: 'first' | 'last'): TouchPoint {
+  private createTouchPoint(event: AnalyticsEvent, _type: 'first' | 'last'): TouchPoint {
     return {
       source: event.properties.utm_source || 'direct',
       medium: event.properties.utm_medium || 'none',
@@ -392,7 +392,16 @@ export class JourneyMapper {
       'click_event': 1,
       'scroll_milestone': 1,
       'page_exit': 0,
-      'error_encounter': -1
+      'error_encounter': -1,
+      'product_interaction': 4,
+      'form_interaction': 3,
+      'conversion': 20,
+      'quiz_event': 5,
+      'interaction': 2,
+      'custom': 1,
+      'network_status': 0,
+      'slow_resource': -1,
+      'page_load': 1
     };
     
     return eventImpacts[event.event_type] || 1;
@@ -557,7 +566,7 @@ export class JourneyMapper {
   }
 
   private getOptimizationRecommendation(eventType: string): string {
-    const recommendations = {
+    const recommendations: Record<string, string> = {
       'product_view': 'Optimize product pages with clearer CTAs and detailed specifications',
       'quiz_interaction': 'Improve quiz flow and add personalized recommendations',
       'demo_request': 'Streamline demo booking process and follow-up communications',

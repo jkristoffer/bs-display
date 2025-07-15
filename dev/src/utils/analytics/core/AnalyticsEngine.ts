@@ -9,7 +9,6 @@ import type {
   BrowserInfo,
   LocationInfo,
   JourneyStage,
-  CustomerJourney,
   ConversionEvent,
   AttributionData,
   TouchPoint
@@ -52,8 +51,8 @@ export class AnalyticsEngine {
   private async initializeSession(): Promise<void> {
     const sessionId = this.generateSessionId();
     const deviceInfo = this.getDeviceInfo();
-    const browserInfo = this.getBrowserInfo();
-    const locationInfo = await this.getLocationInfo();
+    const _browserInfo = this.getBrowserInfo();
+    const _locationInfo = await this.getLocationInfo();
     
     this.sessionData = {
       id: sessionId,
@@ -78,11 +77,11 @@ export class AnalyticsEngine {
   }
 
   private generateSessionId(): string {
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
 
   private generateEventId(): string {
-    return `event_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `event_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
 
   private getDeviceInfo(): DeviceInfo {
@@ -359,9 +358,10 @@ export class AnalyticsEngine {
     const event: AnalyticsEvent = {
       event_id: this.generateEventId(),
       event_type: eventType,
+      type: eventType,
       timestamp: new Date(),
       session_id: this.sessionData.id,
-      user_id: this.userId,
+      user_id: this.userId || undefined,
       properties: {
         ...properties,
         page_url: window.location.href,
@@ -458,7 +458,7 @@ export class AnalyticsEngine {
     localStorage.setItem('bs_analytics_journey_stage', stage);
   }
 
-  private calculateLeadScoreImpact(eventType: EventType, properties: EventProperties): number {
+  private calculateLeadScoreImpact(eventType: EventType, _properties: EventProperties): number {
     const scoreMap: Record<EventType, number> = {
       'page_view': 1,
       'product_view': 3,
@@ -476,7 +476,16 @@ export class AnalyticsEngine {
       'click_event': 1,
       'scroll_milestone': 1,
       'page_exit': 0,
-      'error_encounter': -1
+      'error_encounter': -1,
+      'product_interaction': 4,
+      'form_interaction': 6,
+      'conversion': 25,
+      'quiz_event': 5,
+      'interaction': 2,
+      'custom': 1,
+      'network_status': 0,
+      'slow_resource': -1,
+      'page_load': 1
     };
 
     return scoreMap[eventType] || 0;

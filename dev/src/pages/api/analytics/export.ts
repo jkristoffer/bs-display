@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { createAPIResponse, handleAPIError } from '@utils/api/apiHelpers';
+import { handleAPIError } from '@utils/api/apiHelpers';
 
 export const prerender = false;
 

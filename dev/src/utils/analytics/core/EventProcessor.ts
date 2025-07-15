@@ -598,7 +598,7 @@ export class EventProcessor {
 
   private getProductValueTier(price?: string): string {
     const range = this.categorizePriceRange(price);
-    const tierMap = {
+    const tierMap: Record<string, string> = {
       'budget': 'entry',
       'mid-range': 'professional',
       'premium': 'enterprise'
@@ -759,7 +759,7 @@ export class EventProcessor {
     return 'minimal';
   }
 
-  private summarizeEngagement(event: AnalyticsEvent): string {
+  private summarizeEngagement(_event: AnalyticsEvent): string {
     // Simple engagement summary
     return 'session_completed';
   }
@@ -783,7 +783,7 @@ export class EventProcessor {
     };
   }
 
-  private calculateTimeSpent(event: AnalyticsEvent): number {
+  private calculateTimeSpent(_event: AnalyticsEvent): number {
     // Placeholder for time calculation
     return 0;
   }

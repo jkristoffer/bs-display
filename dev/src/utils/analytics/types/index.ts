@@ -3,6 +3,7 @@ export interface AnalyticsEvent {
   // Core Event Properties
   event_id: string;
   event_type: EventType;
+  type: EventType;
   timestamp: Date;
   session_id: string;
   user_id?: string;
@@ -34,7 +35,16 @@ export type EventType =
   | 'conversion_event'
   | 'click_event'
   | 'scroll_milestone'
-  | 'page_exit';
+  | 'page_exit'
+  | 'product_interaction'
+  | 'form_interaction'
+  | 'conversion'
+  | 'quiz_event'
+  | 'interaction'
+  | 'custom'
+  | 'network_status'
+  | 'slow_resource'
+  | 'page_load';
 
 export interface EventProperties {
   // Product-specific
@@ -89,6 +99,104 @@ export interface EventProperties {
   milestone_percent?: number;
   x_position?: number;
   y_position?: number;
+  
+  // Quiz-specific
+  quiz_step?: number;
+  
+  // Additional properties for analytics processing
+  product_value_tier?: string;
+  page_category?: string;
+  button_type?: string;
+  href?: string;
+  form_data?: any;
+  error_type?: string;
+  
+  // Search-specific
+  search_query?: string;
+  search_results_count?: number;
+  search_intent?: string;
+  
+  // Form-specific extended
+  form_type?: string;
+  
+  // Filter-specific
+  filters_applied?: any;
+  filter_complexity?: string | number;
+  
+  // Engagement-specific
+  engagement_level?: string;
+  
+  // Lead scoring
+  priority_lead?: boolean;
+  
+  // Quiz extended
+  quiz_progress?: number;
+  
+  // Time tracking
+  time_spent_calculation?: number;
+  
+  // Error handling
+  error_message?: string;
+  
+  // Additional event-specific properties
+  high_intent_signal?: boolean;
+  high_intent_action?: boolean;
+  follow_up_urgency?: string;
+  content_value?: string;
+  commercial_signal?: boolean;
+  evaluation_stage?: boolean;
+  products_compared?: number;
+  download_type?: string;
+  platform?: string;
+  content_shared?: string;
+  advocacy_signal?: boolean;
+  high_value_conversion?: boolean;
+  
+  // Processing enriched properties
+  deep_engagement?: boolean;
+  content_consumption?: string;
+  scroll_engagement?: string;
+  journey_stage?: string;
+  behavioral_intent?: string;
+  session_depth?: string;
+  exit_intent?: boolean;
+  session_value?: string;
+  user_segment?: string;
+  click_importance?: string;
+  user_experience_degradation?: boolean;
+  negative_experience?: boolean;
+  session_end?: boolean;
+  interaction_quality?: string;
+  conversion_stage?: string;
+  lead_magnet_interaction?: boolean;
+  high_purchase_intent?: boolean;
+  research_behavior?: boolean;
+  sales_qualified?: boolean;
+  requires_follow_up?: boolean;
+  quiz_answers?: any;
+  quiz_score?: number;
+  
+  // Error tracking
+  stack?: string;
+  error_file?: string;
+  error_line?: number;
+  
+  // Performance tracking
+  load_time?: number;
+  resource_url?: string;
+  resource_type?: string;
+  duration?: number;
+  dns_time?: number;
+  connect_time?: number;
+  response_time?: number;
+  dom_ready_time?: number;
+  size?: number;
+  
+  // Network status
+  status?: string;
+  
+  // Error details
+  error_column?: number;
 }
 
 export interface EventContext {

@@ -1,5 +1,11 @@
 import type { APIRoute } from 'astro';
 import { Redis } from '@upstash/redis';
+
+// Initialize Redis client
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 import LZString from 'lz-string';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 
@@ -29,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (rawEvents && rawEvents.length > 0) {
       const key = `${ANALYTICS_CONFIG.kvKeys.rawEvents}${timestamp}`;
       promises.push(
-        kv.setex(key, ANALYTICS_CONFIG.ttl.rawEvents, rawEvents)
+        redis.setex(key, ANALYTICS_CONFIG.ttl.rawEvents, rawEvents)
       );
     }
     
@@ -47,7 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
     
     // Update session activity
     promises.push(
-      kv.setex(
+      redis.setex(
         `session:${sessionId}`,
         3600, // 1 hour TTL
         { lastActivity: timestamp, eventCount: rawEvents?.length || 0 }
@@ -70,7 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
 async function mergeAggregate(key: string, newData: any, ttl: number) {
   try {
     // Get existing aggregate
-    const existing = await kv.get(key) as any;
+    const existing = await redis.get(key) as any;
     
     if (existing) {
       // Merge counts and data
@@ -81,10 +87,10 @@ async function mergeAggregate(key: string, newData: any, ttl: number) {
         lastUpdated: Date.now()
       };
       
-      await kv.setex(key, ttl, merged);
+      await redis.setex(key, ttl, merged);
     } else {
       // First aggregate for this key
-      await kv.setex(key, ttl, {
+      await redis.setex(key, ttl, {
         ...newData,
         lastUpdated: Date.now()
       });
@@ -92,7 +98,7 @@ async function mergeAggregate(key: string, newData: any, ttl: number) {
   } catch (error) {
     console.error('Merge aggregate error:', error);
     // Fallback: just set the new data
-    await kv.setex(key, ttl, newData);
+    await redis.setex(key, ttl, newData);
   }
 }
 

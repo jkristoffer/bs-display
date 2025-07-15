@@ -1,9 +1,8 @@
 import type { APIRoute } from 'astro';
 import { kv } from '@vercel/kv';
-import { get, has } from '@vercel/edge-config';
 import LZString from 'lz-string';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
-import type { AggregatedData, DashboardSummary } from '@types/analytics';
+import type { AggregatedData, DashboardSummary } from '../../../types/analytics';
 
 export const prerender = false;
 

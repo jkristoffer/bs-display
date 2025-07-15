@@ -135,16 +135,19 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       if (!window.performance || !analyticsInstance) return;
 
       window.addEventListener('load', () => {
-        const timing = window.performance.timing;
-        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        // Use modern Performance API
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        if (navigation) {
+          const loadTime = navigation.loadEventEnd - navigation.loadEventStart;
 
-        analyticsInstance.track('page_load', {
-          load_time: loadTime,
-          dns_time: timing.domainLookupEnd - timing.domainLookupStart,
-          connect_time: timing.connectEnd - timing.connectStart,
-          response_time: timing.responseEnd - timing.requestStart,
-          dom_ready_time: timing.domContentLoadedEventEnd - timing.navigationStart
-        });
+          analyticsInstance.track('page_load', {
+            load_time: loadTime,
+            dns_time: navigation.domainLookupEnd - navigation.domainLookupStart,
+            connect_time: navigation.connectEnd - navigation.connectStart,
+            response_time: navigation.responseEnd - navigation.requestStart,
+            dom_ready_time: navigation.domContentLoadedEventEnd - navigation.loadEventStart
+          });
+        }
       });
     };
 

@@ -113,7 +113,7 @@ function generateActiveSessions() {
   for (let i = 0; i < numSessions; i++) {
     const country = countries[Math.floor(Math.random() * countries.length)];
     sessions.push({
-      sessionId: `session_${Math.random().toString(36).substr(2, 9)}`,
+      sessionId: `session_${Math.random().toString(36).substring(2, 11)}`,
       page: pages[Math.floor(Math.random() * pages.length)],
       duration: Math.floor(Math.random() * 300) + 30, // 30-330 seconds
       country: country.code,

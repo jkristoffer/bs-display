@@ -81,7 +81,10 @@ export const prerender = false;
       
       // Keep only last 10 entries
       while (logEntries.children.length > 10) {
-        logEntries.removeChild(logEntries.lastChild);
+        const lastChild = logEntries.lastChild;
+        if (lastChild) {
+          logEntries.removeChild(lastChild);
+        }
       }
     }
   }

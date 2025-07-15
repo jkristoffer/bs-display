@@ -1,9 +1,6 @@
 import type { 
   AnalyticsEvent, 
-  RealTimeMetric, 
-  SessionMetrics, 
-  CustomerJourney,
-  EventType 
+  RealTimeMetric 
 } from '../types';
 import { SessionManager } from '../core/SessionManager';
 import { EventProcessor } from '../core/EventProcessor';
@@ -179,7 +176,6 @@ export class MetricsCollector {
   }
 
   private collectQuizMetrics(event: any): void {
-    const properties = event.properties;
     const quizData = event.processed_data?.quiz_insights;
     
     if (quizData?.progress_percentage >= 100) {
@@ -499,7 +495,7 @@ export class MetricsCollector {
     }
   }
 
-  private calculateStageConversionRate(stageName: string, count: number): number {
+  private calculateStageConversionRate(_stageName: string, count: number): number {
     // Simplified conversion rate calculation
     const totalEvents = this.getTotalEventsToday();
     return totalEvents > 0 ? (count / totalEvents) * 100 : 0;

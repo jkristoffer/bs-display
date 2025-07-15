@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { kv } from '@vercel/kv';
 import { get } from '@vercel/edge-config';
-import { decompress } from 'lz-string';
+import LZString from 'lz-string';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 import type { DashboardSummary } from '@types/analytics';
 
@@ -64,7 +64,7 @@ async function getDashboardData(period: string, refresh: boolean): Promise<Dashb
   try {
     const compressed = await kv.get(ANALYTICS_CONFIG.kvKeys.backup) as string;
     if (compressed) {
-      const decompressed = decompress(compressed);
+      const decompressed = LZString.decompress(compressed);
       if (decompressed) {
         summary = JSON.parse(decompressed);
         if (summary && Date.now() - summary.generated < 600000) { // 10 minutes
@@ -88,7 +88,7 @@ async function getDashboardData(period: string, refresh: boolean): Promise<Dashb
       kv.setex(
         ANALYTICS_CONFIG.kvKeys.backup,
         ANALYTICS_CONFIG.ttl.dashboardCache,
-        compress(JSON.stringify(summary))
+        LZString.compress(JSON.stringify(summary))
       )
     ]);
   }

@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import NavItem from './NavItem.tsx';
 import ProductsMegaMenu from './ProductsMegaMenu.tsx';
+import { MobileMenuGrid } from './MobileMenuGrid';
 import { Search } from '../Search';
+import { mobileNavigationConfig } from '../../../data/navigation';
+import type { MobileNavItem } from '../../../types/navigation';
 import styles from './Nav.module.scss';
 
 interface NavItemType {
@@ -64,6 +67,7 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
     Record<number, boolean>
   >({});
   const [showProductsMegaMenu, setShowProductsMegaMenu] = useState(false);
+  const useMobileGrid = true; // Always use mobile grid for mobile navigation
   
   // Refs for focus management
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -157,6 +161,18 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
     });
   }, []);
 
+  // Handle mobile navigation item clicks
+  const handleMobileNavItemClick = useCallback((item: MobileNavItem) => {
+    if (item.path) {
+      // Navigate to the path (this will be handled by router/astro)
+      window.location.href = item.path;
+    }
+    
+    // Close mobile menu
+    setMobileMenuOpen(false);
+    unlockBodyScroll();
+  }, [unlockBodyScroll]);
+
   const closeMobileSearch = useCallback(() => {
     setMobileSearchOpen(false);
   }, []);
@@ -239,63 +255,88 @@ const Nav = React.memo<NavProps>(({ currentPath = window.location.pathname }) =>
           aria-label="Main navigation"
           aria-hidden={!mobileMenuOpen}
         >
-          {navItems.map((item, index) =>
-            item.dropdown ? (
-              <div
-                key={`dropdown-${index}`}
-                className={`${styles.nav__dropdown} ${activeDropdowns[index] ? styles.nav__dropdown_active : ''}`}
-                onMouseEnter={item.megaMenu ? handleProductsMouseEnter : undefined}
-                onMouseLeave={item.megaMenu ? handleProductsMouseLeave : undefined}
-              >
-                <div
-                  className={styles.nav__dropdown_trigger}
-                  onClick={() => toggleDropdown(index)}
-                >
-                  {item.label}{' '}
-                  <span className={styles.nav__dropdown_arrow}>▾</span>
-                </div>
-                {item.megaMenu ? (
-                  // On mobile, show dropdown menu instead of mega menu
-                  isMobile ? (
-                    <div className={styles.nav__dropdown_menu}>
-                      {item.items?.map((subItem, subIndex) => (
-                        <NavItem
-                          key={`dropdown-item-${index}-${subIndex}`}
-                          href={subItem.path}
-                          active={isActiveRoute(currentPath, subItem.path)}
-                        >
-                          {subItem.label}
-                        </NavItem>
-                      ))}
+          {/* Mobile Grid Navigation (768px and below) */}
+          {isMobile && useMobileGrid ? (
+            <MobileMenuGrid
+              sections={mobileNavigationConfig.sections}
+              isOpen={mobileMenuOpen}
+              onClose={() => {
+                setMobileMenuOpen(false);
+                unlockBodyScroll();
+              }}
+              onItemClick={handleMobileNavItemClick}
+              currentPath={currentPath}
+              className={styles.nav__mobileGrid}
+              defaultColumns={2}
+              adaptiveColumns={true}
+              ariaLabel="Mobile navigation grid"
+              animationDuration={300}
+              staggerDelay={50}
+              hapticFeedback={true}
+              touchSensitivity="medium"
+            />
+          ) : (
+            /* Fallback: Original Mobile Navigation (for desktop hover menus) */
+            <>
+              {navItems.map((item, index) =>
+                item.dropdown ? (
+                  <div
+                    key={`dropdown-${index}`}
+                    className={`${styles.nav__dropdown} ${activeDropdowns[index] ? styles.nav__dropdown_active : ''}`}
+                    onMouseEnter={item.megaMenu ? handleProductsMouseEnter : undefined}
+                    onMouseLeave={item.megaMenu ? handleProductsMouseLeave : undefined}
+                  >
+                    <div
+                      className={styles.nav__dropdown_trigger}
+                      onClick={() => toggleDropdown(index)}
+                    >
+                      {item.label}{' '}
+                      <span className={styles.nav__dropdown_arrow}>▾</span>
                     </div>
-                  ) : (
-                    <ProductsMegaMenu isVisible={showProductsMegaMenu} />
-                  )
-                ) : (
-                  <div className={styles.nav__dropdown_menu}>
-                    {item.items?.map((subItem, subIndex) => (
-                      <NavItem
-                        key={`dropdown-item-${index}-${subIndex}`}
-                        href={subItem.path}
-                        active={isActiveRoute(currentPath, subItem.path)}
-                      >
-                        {subItem.label}
-                      </NavItem>
-                    ))}
+                    {item.megaMenu ? (
+                      // On mobile, show dropdown menu instead of mega menu
+                      isMobile ? (
+                        <div className={styles.nav__dropdown_menu}>
+                          {item.items?.map((subItem, subIndex) => (
+                            <NavItem
+                              key={`dropdown-item-${index}-${subIndex}`}
+                              href={subItem.path}
+                              active={isActiveRoute(currentPath, subItem.path)}
+                            >
+                              {subItem.label}
+                            </NavItem>
+                          ))}
+                        </div>
+                      ) : (
+                        <ProductsMegaMenu isVisible={showProductsMegaMenu} />
+                      )
+                    ) : (
+                      <div className={styles.nav__dropdown_menu}>
+                        {item.items?.map((subItem, subIndex) => (
+                          <NavItem
+                            key={`dropdown-item-${index}-${subIndex}`}
+                            href={subItem.path}
+                            active={isActiveRoute(currentPath, subItem.path)}
+                          >
+                            {subItem.label}
+                          </NavItem>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ) : (
-              <NavItem
-                key={`nav-item-${index}`}
-                href={item.path || '#'}
-                active={isActiveRoute(currentPath, item.path)}
-                cta={isCTAItem(item)}
-                ref={index === 0 ? firstMenuItemRef : undefined}
-              >
-                {item.label}
-              </NavItem>
-            )
+                ) : (
+                  <NavItem
+                    key={`nav-item-${index}`}
+                    href={item.path || '#'}
+                    active={isActiveRoute(currentPath, item.path)}
+                    cta={isCTAItem(item)}
+                    ref={index === 0 ? firstMenuItemRef : undefined}
+                  >
+                    {item.label}
+                  </NavItem>
+                )
+              )}
+            </>
           )}
         </div>
 

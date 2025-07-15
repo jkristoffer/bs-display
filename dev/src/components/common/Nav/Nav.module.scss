@@ -583,6 +583,43 @@
   }
 }
 
+/* Mobile Grid Navigation Styles */
+.nav__mobileGrid {
+  width: 100%;
+  height: 100%;
+  padding: 0; /* Remove default padding since MobileMenuGrid handles its own */
+  
+  /* Ensure grid takes full height of mobile menu */
+  display: flex;
+  flex-direction: column;
+  
+  /* Override any inherited styles from nav__items */
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  border: none;
+  
+  /* Remove any gap or spacing that might interfere */
+  gap: 0;
+  margin: 0;
+}
+
+/* Ensure mobile grid is properly displayed when active */
+@media (max-width: 768px) {
+  .nav__items_active .nav__mobileGrid {
+    display: flex;
+  }
+  
+  /* Hide traditional navigation items when mobile grid is active */
+  .nav__items_active:has(.nav__mobileGrid) > *:not(.nav__mobileGrid) {
+    display: none;
+  }
+}
+
 /* Mobile backdrop */
 .nav__mobileBackdrop {
   position: fixed;

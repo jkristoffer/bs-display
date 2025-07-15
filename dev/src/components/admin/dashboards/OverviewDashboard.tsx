@@ -39,7 +39,12 @@ export default function OverviewDashboard() {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(`/api/analytics/dashboard?period=${period}`);
+      
+      // Use absolute URL without credentials to avoid fetch error
+      const url = `${window.location.protocol}//${window.location.host}/api/analytics/dashboard?period=${period}`;
+      const response = await fetch(url, {
+        credentials: 'include'
+      });
       
       if (response.ok) {
         const result = await response.json();

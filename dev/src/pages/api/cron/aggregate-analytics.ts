@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { kv } from '@vercel/kv';
 import { get, has } from '@vercel/edge-config';
-import { compress } from 'lz-string';
+import LZString from 'lz-string';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 import type { AggregatedData, DashboardSummary } from '@types/analytics';
 
@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ request }) => {
       kv.setex(
         ANALYTICS_CONFIG.kvKeys.backup,
         ANALYTICS_CONFIG.ttl.dashboardCache,
-        compress(JSON.stringify(summary))
+        LZString.compress(JSON.stringify(summary))
       ),
       updateEdgeConfig(ANALYTICS_CONFIG.edgeConfig.aggregationStatus, {
         lastRun: Date.now(),

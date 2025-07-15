@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Redis } from '@upstash/redis';
-import { decompress } from 'lz-string';
+import LZString from 'lz-string';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 
 export const prerender = false;
@@ -11,7 +11,7 @@ export const POST: APIRoute = async ({ request }) => {
     const compressed = await request.text();
     
     // Decompress
-    const decompressed = decompress(compressed);
+    const decompressed = LZString.decompress(compressed);
     if (!decompressed) {
       return new Response(JSON.stringify({ error: 'Invalid data' }), {
         status: 400,

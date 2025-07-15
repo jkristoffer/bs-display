@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductCard } from '../../../common/ProductCard';
 import type { ModelCardProps } from '../../../../types/product';
-import type { Product } from '../../../quiz/types';
+import type { ProductModel } from '../../../../types/product';
 
 const ModelCard: React.FC<ModelCardProps> = ({ model, displayMode = 'grid-3', productType = 'smartboards' }) => {
   const viewDetails = (): void => {
@@ -16,19 +16,8 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, displayMode = 'grid-3', pr
     window.open('/contact', '_self');
   };
 
-  // Convert model data to Product interface format
-  const productData: Product = {
-    id: model.id,
-    brand: model.brand,
-    model: model.model,
-    size: model.size,
-    touchTechnology: model.touchTechnology,
-    features: model.features || [],
-    image: model.image
-  };
-
   // Create enhanced features list that includes OS
-  const getEnhancedFeatures = (product: Product): string[] => {
+  const getEnhancedFeatures = (product: ProductModel): string[] => {
     const baseFeatures = product.features || [];
     const enhancedFeatures = [...baseFeatures];
     
@@ -42,7 +31,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ model, displayMode = 'grid-3', pr
 
   return (
     <ProductCard
-      product={productData}
+      product={model}
       displayMode={displayMode === 'list' ? 'list' : 'grid'}
       productType={productType as 'smartboards' | 'lecterns'}
       maxFeatures={5}

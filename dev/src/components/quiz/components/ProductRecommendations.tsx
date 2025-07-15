@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import type { Product } from '../types';
+import type { ProductModel } from '../../../types/product';
 import { ProductCard } from '../../common/ProductCard/ProductCard';
 
 interface ProductRecommendationsProps {
@@ -7,6 +8,32 @@ interface ProductRecommendationsProps {
   getProductsForQuizResult: (result: string) => { products: Product[]; allFeatures?: string[] };
   getRelevantFeatures: (product: Product, context?: string) => string[];
 }
+
+// Convert Product type to ProductModel type for ProductCard component
+const convertProductToProductModel = (product: Product): ProductModel => {
+  return {
+    id: product.id,
+    brand: product.brand,
+    model: product.model,
+    size: product.size,
+    touchTechnology: product.touchTechnology,
+    resolution: product.resolution,
+    features: product.features || [],
+    image: product.image,
+    // Add any additional ProductModel properties with defaults
+    name: `${product.brand} ${product.model}`,
+    warranty: undefined,
+    priceRange: undefined,
+    brightness: undefined,
+    contrastRatio: undefined,
+    viewingAngle: undefined,
+    responseTime: undefined,
+    panelLife: undefined,
+    audioOutput: undefined,
+    powerConsumption: undefined,
+    os: undefined
+  };
+};
 
 /**
  * ProductRecommendations component that displays a list of recommended products
@@ -24,7 +51,7 @@ export const ProductRecommendations: FC<ProductRecommendationsProps> = ({
     return null;
   }
 
-  const handleViewDetails = (product: Product) => {
+  const handleViewDetails = (product: ProductModel) => {
     const brand = product.brand.toLowerCase().replace(/\s+/g, '-');
     window.location.href = `/products/smartboards/${brand}/${product.id}`;
   };
@@ -35,15 +62,16 @@ export const ProductRecommendations: FC<ProductRecommendationsProps> = ({
       <div className="product-list" role="list">
         {products.map((product) => {
           const matchPercentage = product.matchPercentage || 95;
+          const productModel = convertProductToProductModel(product);
           
           return (
             <ProductCard
               key={product.id}
-              product={product}
+              product={productModel}
               showMatchScore={true}
               matchPercentage={matchPercentage}
               maxFeatures={3}
-              getRelevantFeatures={getRelevantFeatures}
+              getRelevantFeatures={() => getRelevantFeatures(product, result)}
               context={result}
               actions={{
                 viewDetails: {

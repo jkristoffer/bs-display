@@ -10,7 +10,7 @@ import {
   AlternativeRecommendations,
   CategoryScores
 } from './index';
-import type { QuizData } from './types';
+import type { QuizData, Option } from './types';
 import { Analytics } from '@utils/analytics/client';
 import './quiz-styles.scss';
 
@@ -97,13 +97,14 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
   );
 
   // Track option selection
-  const handleToggleOption = useCallback((questionId: string, optionId: string) => {
+  const handleToggleOption = useCallback((questionId: string, option: Option, isMulti: boolean, maxSelections: number) => {
+    const optionId = option.id || `${questionId}-option-${option.label}`;
     Analytics.quizEvent('question', {
       questionId,
       optionId,
-      action: isOptionSelected(questionId, optionId) ? 'deselect' : 'select'
+      action: isOptionSelected(questionId, option) ? 'deselect' : 'select'
     });
-    toggleOption(questionId, optionId);
+    toggleOption(questionId, option, isMulti, maxSelections);
   }, [toggleOption, isOptionSelected]);
 
 

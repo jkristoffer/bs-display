@@ -14,7 +14,7 @@ export interface CategoryConfig {
 }
 
 export interface CategoryTabsProps {
-  readonly activeCategory: CategoryType;
+  readonly activeCategory: CategoryType | null;
   readonly showCounts?: boolean;
   readonly className?: string;
 }

@@ -37,14 +37,18 @@ const navItems: NavItem[] = [
   },
 ];
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+  activeItem?: string;
+}
+
+export default function AdminSidebar({ activeItem }: AdminSidebarProps = {}) {
   const [isOpen, setIsOpen] = useState(true);
   const [expandedItems, setExpandedItems] = useState<string[]>(['Analytics']);
   const [currentPath, setCurrentPath] = useState('');
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setCurrentPath(window.location.pathname);
+    setCurrentPath(activeItem || window.location.pathname);
     
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);

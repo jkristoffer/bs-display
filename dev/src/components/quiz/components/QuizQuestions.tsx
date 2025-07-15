@@ -50,16 +50,6 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
     setIsSubmitting(false);
   };
 
-  const smoothScrollToQuestion = (questionId: string) => {
-    const element = document.getElementById(`question-${questionId}`);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
-  };
 
   return (
     <div className="modern-questions-container">

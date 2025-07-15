@@ -1,4 +1,4 @@
-import type { FilterConfig, ProductFilterPreset } from '../../../../types/filter.types';
+import type { FilterConfig } from '../../../../types/filter.types';
 
 export const smartBoardFilters: FilterConfig[] = [
   {

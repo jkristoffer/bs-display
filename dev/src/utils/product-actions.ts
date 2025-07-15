@@ -29,5 +29,5 @@ export const getProductActions = (
   productType: ProductCategory,
   customActions?: ProductAction[]
 ): ProductAction[] => {
-  return customActions || PRODUCT_ACTION_CONFIG[productType];
+  return customActions || [...PRODUCT_ACTION_CONFIG[productType]];
 };

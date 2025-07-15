@@ -99,10 +99,14 @@ export const generateProductSpecifications = (
       value: model[field as keyof ProductModel]
     }))
     .filter(({ value }) => value !== undefined && value !== null && value !== '')
-    .map(({ field, value }) => ({
-      label: config.fieldLabels[field as keyof typeof config.fieldLabels],
-      value: config.formatters[field as keyof typeof config.formatters] 
-        ? config.formatters[field as keyof typeof config.formatters](value as any)
-        : String(value)
-    }));
+    .map(({ field, value }) => {
+      const formatters = config.formatters as Record<string, ((value: any) => string) | undefined>;
+      const formatter = formatters[field];
+      return {
+        label: config.fieldLabels[field as keyof typeof config.fieldLabels],
+        value: formatter && typeof formatter === 'function'
+          ? formatter(value)
+          : String(value)
+      };
+    });
 };

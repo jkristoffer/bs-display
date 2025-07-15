@@ -62,5 +62,5 @@ const breadcrumbSchema = generateBreadcrumbSchema({
   <script is:inline type="application/ld+json" set:html={productSchema} />
   <script is:inline type="application/ld+json" set:html={breadcrumbSchema} />
 
-  <ProductDetails model={model} productType="collaboration" client:visible />
+  <ProductDetails model={model as any} productType="collaboration" client:visible />
 </ProductLayout>

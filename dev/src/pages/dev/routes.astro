@@ -17,7 +17,6 @@ if (existsSync(routesPath)) {
 }
 
 const title = 'Route Explorer - Development';
-const description = 'Interactive route explorer for development';
 ---
 
 <!DOCTYPE html>
@@ -236,7 +235,7 @@ const description = 'Interactive route explorer for development';
   </div>
 
   <script>
-    async function updateDocs() {
+    async function _updateDocs() {
       try {
         const response = await fetch('/api/update-routes-docs', {
           method: 'POST'
@@ -254,17 +253,33 @@ const description = 'Interactive route explorer for development';
 
     // Extract stats from markdown content
     function parseStats() {
-      const content = document.getElementById('markdown-content').textContent;
+      const contentElement = document.getElementById('markdown-content');
+      if (!contentElement) return;
+      
+      const content = contentElement.textContent;
+      if (!content) return;
       
       const totalMatch = content.match(/\*\*Total Routes\*\* \| \*\*(\d+)\*\*/);
       const staticMatch = content.match(/Static Routes \| (\d+)/);
       const dynamicMatch = content.match(/Dynamic Routes \| (\d+)/);
       const apiMatch = content.match(/API Endpoints \| (\d+)/);
       
-      if (totalMatch) document.getElementById('total-routes').textContent = totalMatch[1];
-      if (staticMatch) document.getElementById('static-routes').textContent = staticMatch[1];
-      if (dynamicMatch) document.getElementById('dynamic-routes').textContent = dynamicMatch[1];
-      if (apiMatch) document.getElementById('api-routes').textContent = apiMatch[1];
+      if (totalMatch) {
+        const totalElement = document.getElementById('total-routes');
+        if (totalElement) totalElement.textContent = totalMatch[1];
+      }
+      if (staticMatch) {
+        const staticElement = document.getElementById('static-routes');
+        if (staticElement) staticElement.textContent = staticMatch[1];
+      }
+      if (dynamicMatch) {
+        const dynamicElement = document.getElementById('dynamic-routes');
+        if (dynamicElement) dynamicElement.textContent = dynamicMatch[1];
+      }
+      if (apiMatch) {
+        const apiElement = document.getElementById('api-routes');
+        if (apiElement) apiElement.textContent = apiMatch[1];
+      }
     }
 
     // Parse stats on load

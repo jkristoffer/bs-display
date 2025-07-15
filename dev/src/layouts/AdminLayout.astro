@@ -7,9 +7,10 @@ import '@styles/admin/admin-global.scss';
 export interface Props {
   title: string;
   description?: string;
+  activeItem?: string;
 }
 
-const { title, description = 'BigShine Display Admin Dashboard' } = Astro.props;
+const { title, description = 'BigShine Display Admin Dashboard', activeItem } = Astro.props;
 
 // Make sure this layout is server-rendered for auth
 export const prerender = false;
@@ -27,7 +28,7 @@ export const prerender = false;
   </head>
   <body class="admin-layout">
     <div class="admin-container">
-      <AdminSidebar client:load />
+      <AdminSidebar client:load activeItem={activeItem} />
       <div class="admin-main">
         <AdminHeader client:load title={title} />
         <main class="admin-content">

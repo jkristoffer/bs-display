@@ -872,7 +872,7 @@ const structuredData =
       const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
       
       if (wordCountEl) wordCountEl.textContent = wordCount.toLocaleString();
-      if (readTimeEl) readTimeEl.textContent = readingTime;
+      if (readTimeEl) readTimeEl.textContent = readingTime.toString();
       
       // Share Functionality
       const shareButtons = document.querySelectorAll('.share-btn');

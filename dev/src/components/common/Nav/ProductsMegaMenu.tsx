@@ -10,21 +10,14 @@ interface ProductCategory {
   badge?: string;
 }
 
-interface FeaturedProduct {
-  id: string;
-  brand: string;
-  model: string;
-  image: string;
-  href: string;
-  price?: string;
-}
-
 interface ProductsMegaMenuProps {
-  isVisible: boolean;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-// Performance optimization
-const ProductsMegaMenu = React.memo<ProductsMegaMenuProps>(({ isVisible }) => {
+// Simple functional component without forwardRef
+export default function ProductsMegaMenu({ isOpen, onClose }: ProductsMegaMenuProps) {
+  if (!isOpen) return null;
 
   const productCategories: ProductCategory[] = [
     {
@@ -51,154 +44,76 @@ const ProductsMegaMenu = React.memo<ProductsMegaMenuProps>(({ isVisible }) => {
     },
     {
       id: 'collaboration',
-      title: 'Collaboration',
-      description: 'Video conferencing and collaboration devices',
-      image: '/assets/images/marketing/conference_room_interactive_display_16x9.jpeg',
+      title: 'Collaboration Tools',
+      description: 'Software and hardware for team collaboration',
+      image: '/assets/images/marketing/collaboration-tools.png',
       href: '/products/collaboration'
     }
   ];
 
-  const featuredProducts: FeaturedProduct[] = [
+  const featuredProducts = [
     {
-      id: 'metz-h-series',
-      brand: 'METZ',
-      model: 'H Series 65" UHD',
-      image: '/assets/models/metz-interactive-board-h-series.webp',
-      href: '/products/smartboards/metz/metz-h-series-65'
+      id: 'metz-86',
+      brand: 'Metz',
+      model: '86" Interactive Display',
+      href: '/products/smartboards/metz/86-inch-display'
     },
     {
-      id: 'infinity-pro-x',
-      brand: 'Infinity Pro',
-      model: 'X Series 55" UHD',
-      image: '/assets/models/InfinityPro-X-Series-Interactive-Display-1.webp',
-      href: '/products/smartboards/infinitypro/infinitypro-x-series-55'
-    },
-    {
-      id: 'smart-6000s',
-      brand: 'SMART',
-      model: '6000S V3 Series',
-      image: '/assets/models/SMARTBoard-6000S-V3.webp',
-      href: '/products/smartboards/smart/smart-6000s-v3-65'
-    },
-    {
-      id: 'maxhub-v5-classic-65',
-      brand: 'MAXHUB',
-      model: 'V5 Classic Series 65" UHD',
-      image: '/assets/models/maxhub-v5-classic.png',
-      href: '/products/smartboards/maxhub/maxhub-v5-classic-65'
+      id: 'i3-pro',
+      brand: 'i3-Technologies',
+      model: 'i3TOUCH E-ONE',
+      href: '/products/smartboards/i3/touch-e-one'
     }
   ];
 
-  const quickActions = [
-    { label: 'All Products', href: '/products', icon: '🏢' },
-    { label: 'Get Quote', href: '/contact', icon: '💬' },
-    { label: 'Book Demo', href: '/demo', icon: '📋' },
-    { label: 'Compare', href: '/compare', icon: '⚖️' },
-    { label: 'Take Quiz', href: '/quiz', icon: '🎯' }
-  ];
-
-  if (!isVisible) return null;
-
   return (
-    <div className={styles.megaMenu} role="menu" aria-label="Products navigation">
-      <div className={styles.megaMenu__container}>
-        <div className={styles.megaMenu__section} role="group" aria-labelledby="categories-heading">
-          <h3 id="categories-heading" className={styles.megaMenu__sectionTitle}>
-            <span className={styles.megaMenu__titleText}>Product Categories</span>
-            <div className={styles.megaMenu__titleGradient}></div>
-          </h3>
-          <div className={styles.megaMenu__categories}>
+    <div className={styles.megaMenu}>
+      <div className={styles.megaMenuContainer}>
+        <div className={styles.categoriesSection}>
+          <h3 className={styles.sectionTitle}>Product Categories</h3>
+          <div className={styles.categoriesGrid}>
             {productCategories.map((category) => (
               <a
                 key={category.id}
                 href={category.href}
-                className={styles.megaMenu__categoryCard}
-                aria-label={`Browse ${category.title} - ${category.description}`}
+                className={styles.categoryCard}
+                onClick={onClose}
               >
-                <div className={styles.megaMenu__categoryImage}>
-                  <img
-                    src={category.image}
-                    alt={category.title}
-                    loading="lazy"
-                  />
+                <div className={styles.categoryImage}>
+                  <img src={category.image} alt={category.title} loading="lazy" />
                   {category.badge && (
-                    <span className={styles.megaMenu__badge}>
-                      {category.badge}
-                    </span>
+                    <span className={styles.badge}>{category.badge}</span>
                   )}
                 </div>
-                <div className={styles.megaMenu__categoryContent}>
-                  <h4 className={styles.megaMenu__categoryTitle}>
-                    {category.title}
-                  </h4>
-                  <p className={styles.megaMenu__categoryDescription}>
-                    {category.description}
-                  </p>
+                <div className={styles.categoryContent}>
+                  <h4>{category.title}</h4>
+                  <p>{category.description}</p>
                 </div>
               </a>
             ))}
           </div>
         </div>
 
-        <div className={styles.megaMenu__section} role="group" aria-labelledby="featured-heading">
-          <h3 id="featured-heading" className={styles.megaMenu__sectionTitle}>
-            <span className={styles.megaMenu__titleText}>Featured Products</span>
-            <div className={styles.megaMenu__titleGradient}></div>
-          </h3>
-          <div className={styles.megaMenu__featured}>
+        <div className={styles.featuredSection}>
+          <h3 className={styles.sectionTitle}>Featured Products</h3>
+          <div className={styles.featuredList}>
             {featuredProducts.map((product) => (
               <a
                 key={product.id}
                 href={product.href}
-                className={styles.megaMenu__productCard}
-                aria-label={`View ${product.brand} ${product.model}`}
+                className={styles.featuredItem}
+                onClick={onClose}
               >
-                <div className={styles.megaMenu__productImage}>
-                  <img
-                    src={product.image}
-                    alt={`${product.brand} ${product.model}`}
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.megaMenu__productInfo}>
-                  <span className={styles.megaMenu__productBrand}>
-                    {product.brand}
-                  </span>
-                  <h4 className={styles.megaMenu__productModel}>
-                    {product.model}
-                  </h4>
-                </div>
+                <span className={styles.brand}>{product.brand}</span>
+                <span className={styles.model}>{product.model}</span>
               </a>
             ))}
           </div>
-        </div>
-
-        <div className={styles.megaMenu__section} role="group" aria-labelledby="actions-heading">
-          <h3 id="actions-heading" className={styles.megaMenu__sectionTitle}>
-            <span className={styles.megaMenu__titleText}>Quick Actions</span>
-            <div className={styles.megaMenu__titleGradient}></div>
-          </h3>
-          <div className={styles.megaMenu__actions}>
-            {quickActions.map((action) => (
-              <a
-                key={action.label}
-                href={action.href}
-                className={styles.megaMenu__actionButton}
-                aria-label={action.label}
-              >
-                <span className={styles.megaMenu__actionIcon}>
-                  {action.icon}
-                </span>
-                {action.label}
-              </a>
-            ))}
-          </div>
+          <a href="/products" className={styles.viewAllLink} onClick={onClose}>
+            View All Products →
+          </a>
         </div>
       </div>
     </div>
   );
-});
-
-ProductsMegaMenu.displayName = 'ProductsMegaMenu';
-
-export default ProductsMegaMenu;
+}

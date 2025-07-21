@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ProductsMegaMenu from './ProductsMegaMenu';
+import SimpleSearch from './SimpleSearch';
 import styles from './Nav.module.scss';
 
 interface NavProps {
@@ -50,13 +52,23 @@ export default function Nav({ currentPath = '/' }: NavProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Close dropdowns on Escape key
+  // Keyboard navigation support
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Escape key - close all overlays
       if (e.key === 'Escape') {
         setActiveDropdown(null);
         setSearchOpen(false);
         setMobileMenuOpen(false);
+      }
+      
+      // Enter key on dropdown buttons
+      if (e.key === 'Enter' && e.target instanceof HTMLElement) {
+        const button = e.target.closest('button[aria-expanded]');
+        if (button) {
+          e.preventDefault();
+          button.click();
+        }
       }
     };
     
@@ -126,29 +138,11 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                     </button>
                     
                     {/* Products Dropdown */}
-                    {item.label === 'Products' && activeDropdown === 'Products' && (
-                      <div className={styles.dropdown}>
-                        <div className={styles.megaMenu}>
-                          <div className={styles.megaMenuContent}>
-                            <div className={styles.productCategory}>
-                              <h3>Smart Boards</h3>
-                              <a href="/products/smartboards">View All Smart Boards</a>
-                            </div>
-                            <div className={styles.productCategory}>
-                              <h3>Lecterns</h3>
-                              <a href="/products/lecterns">View All Lecterns</a>
-                            </div>
-                            <div className={styles.productCategory}>
-                              <h3>Accessories</h3>
-                              <a href="/products/accessories">View Accessories</a>
-                            </div>
-                            <div className={styles.productCategory}>
-                              <h3>Collaboration</h3>
-                              <a href="/products/collaboration">Collaboration Tools</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    {item.label === 'Products' && (
+                      <ProductsMegaMenu 
+                        isOpen={activeDropdown === 'Products'}
+                        onClose={() => setActiveDropdown(null)}
+                      />
                     )}
                     
                     {/* Resources Dropdown */}
@@ -244,26 +238,11 @@ export default function Nav({ currentPath = '/' }: NavProps) {
         </div>
       )}
 
-      {/* Search Overlay - Placeholder for Phase 3 */}
-      {searchOpen && (
-        <div className={styles.searchOverlay}>
-          <div className={styles.searchContent}>
-            <button
-              className={styles.searchClose}
-              onClick={() => setSearchOpen(false)}
-              aria-label="Close search"
-            >
-              ×
-            </button>
-            <input
-              type="search"
-              className={styles.searchInput}
-              placeholder="Search products..."
-              autoFocus
-            />
-          </div>
-        </div>
-      )}
+      {/* Search Overlay */}
+      <SimpleSearch 
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </nav>
   );
 }

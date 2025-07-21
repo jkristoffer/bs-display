@@ -1,0 +1,205 @@
+# Phase 5: Cleanup and Optimization - Execution Plan
+
+phase_name: "Cleanup and Optimization"
+estimated_duration: "2-3 hours"
+focus: "Remove technical debt and optimize codebase"
+
+execution_steps:
+  - step: "Delete unused files"
+    files_to_remove:
+      - "src/components/common/Nav/NavWrapper.tsx"
+      - "src/components/common/Nav/NavItem.tsx (if consolidated)"
+      - "src/components/common/Nav/NavButton.tsx"
+      - "src/components/common/Nav/NavSection.tsx"
+      - "src/components/common/Nav/MobileMenuGrid.tsx (if consolidated)"
+      - "Any other unused components"
+    
+    commands: |
+      # Remove unused files
+      rm src/components/common/Nav/NavWrapper.tsx
+      rm src/components/common/Nav/NavButton.tsx
+      rm src/components/common/Nav/NavSection.tsx
+      # etc...
+      
+      # Verify removal
+      ls -la src/components/common/Nav/
+    
+    verification: "Ensure no broken imports after deletion"
+    
+  - step: "Simplify type definitions"
+    current_file: "src/types/navigation.ts"
+    lines_count: "346 lines"
+    target: "< 100 lines"
+    
+    types_to_keep: |
+      // Only essential types
+      export interface NavItem {
+        href: string;
+        label: string;
+        isActive?: boolean;
+        isCTA?: boolean;
+        hasDropdown?: boolean;
+      }
+      
+      export interface MobileNavSection {
+        title: string;
+        items: NavItem[];
+      }
+      
+      // Remove all unused branded types, complex unions, etc.
+    
+    types_to_remove:
+      - "Branded types (NavItemId, SectionId, etc.)"
+      - "Unused interfaces (NavAnalyticsEvent, PerformanceMetrics)"
+      - "Complex conditional types"
+      - "Overly specific prop types"
+    
+  - step: "Consolidate types into Nav component"
+    approach: |
+      // Move essential types directly into Nav.tsx
+      interface NavProps {
+        currentPath?: string;
+      }
+      
+      interface NavItem {
+        href: string;
+        label: string;
+        hasDropdown?: boolean;
+        isCTA?: boolean;
+      }
+      
+      // Delete navigation.ts if all types moved
+    
+  - step: "Remove unnecessary memoization"
+    patterns_to_remove:
+      - "useCallback for simple event handlers"
+      - "useMemo for static data"
+      - "React.memo on simple components"
+    
+    example_cleanup: |
+      // Before
+      const handleClick = useCallback(() => {
+        setOpen(!open);
+      }, [open]);
+      
+      // After
+      const handleClick = () => {
+        setOpen(!open);
+      };
+    
+  - step: "Optimize event handlers"
+    consolidation:
+      - "Combine similar handlers"
+      - "Remove duplicate logic"
+      - "Simplify event delegation"
+    
+    example: |
+      // Single handler for all dropdowns
+      const handleDropdownClick = (dropdown: string) => {
+        setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
+      };
+    
+  - step: "Clean up imports"
+    tasks:
+      - "Remove unused imports"
+      - "Organize import order"
+      - "Use index exports where appropriate"
+    
+    import_order: |
+      // 1. React and core libraries
+      import React, { useState, useEffect } from 'react';
+      
+      // 2. Types
+      import type { NavProps } from './types';
+      
+      // 3. Components
+      import { Search } from '../Search';
+      
+      // 4. Styles and assets
+      import styles from './Nav.module.scss';
+      
+      // 5. Data and utils
+      import { navigationItems } from './data';
+    
+  - step: "Consolidate SCSS files"
+    current_scss_files:
+      - "Nav.module.scss"
+      - "NavItem.module.scss"
+      - "NavButton.module.scss"
+      - "NavSection.module.scss"
+      - "MobileMenuGrid.module.scss"
+      - "ProductsMegaMenu.module.scss"
+    
+    target: "2-3 SCSS files maximum"
+    
+    consolidation_plan:
+      - "Nav.module.scss - Main navigation styles"
+      - "MobileMenu.module.scss - Mobile-specific styles (optional)"
+      - "Remove redundant style definitions"
+    
+  - step: "Document simplified structure"
+    create_file: "src/components/common/Nav/README.md"
+    content: |
+      # Navigation Component
+      
+      Simplified navigation component for BigShine Display.
+      
+      ## Structure
+      - Nav.tsx - Main navigation component
+      - ProductsMegaMenu.tsx - Products dropdown mega menu
+      - Nav.module.scss - All navigation styles
+      
+      ## Key Changes from Previous Version
+      - Removed all forwardRef usage (fixes hydration errors)
+      - Consolidated from 8+ components to 2-3
+      - Simplified type system from 346 to <100 lines
+      - Single source of state management
+      
+      ## Usage
+      ```astro
+      <Nav client:only="react" currentPath={Astro.url.pathname} />
+      ```
+
+code_metrics:
+  before:
+    - "Components: 8+"
+    - "Type definitions: 346 lines"
+    - "forwardRef usage: 5 components"
+    - "State pieces: 9+ across components"
+    - "SCSS files: 6"
+  
+  after_target:
+    - "Components: 2-3"
+    - "Type definitions: <100 lines"
+    - "forwardRef usage: 0"
+    - "State pieces: 4-5 in single component"
+    - "SCSS files: 1-2"
+
+testing_after_cleanup:
+  - "[ ] Build succeeds"
+  - "[ ] No TypeScript errors"
+  - "[ ] All imports resolve"
+  - "[ ] Styles still apply correctly"
+  - "[ ] No functional regressions"
+  - "[ ] Bundle size reduced"
+
+git_commits:
+  - "git add -A"
+  - "git commit -m 'refactor: Remove unused Nav components and types'"
+  - "git commit -m 'refactor: Consolidate Nav styles into single file'"
+  - "git commit -m 'refactor: Simplify type definitions and remove memoization'"
+
+deliverables:
+  - "Minimal file structure (2-3 components)"
+  - "Simplified type system"
+  - "Consolidated styles"
+  - "Clean, maintainable code"
+  - "Documentation of changes"
+  - "50%+ code reduction"
+
+success_criteria:
+  - "All unused code removed ✓"
+  - "Type complexity reduced significantly ✓"
+  - "File count minimized ✓"
+  - "No performance regressions ✓"
+  - "Code is clean and maintainable ✓"

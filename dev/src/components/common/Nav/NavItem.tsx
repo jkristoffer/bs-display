@@ -1,4 +1,4 @@
-import { useMemo, forwardRef } from 'react';
+import React, { useMemo } from 'react';
 import type { ReactNode } from 'react';
 import styles from './NavItem.module.scss';
 
@@ -9,7 +9,7 @@ interface NavItemProps {
   children: ReactNode;
 }
 
-const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(({ href, active = false, cta = false, children }, ref) => {
+const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(function NavItem({ href, active = false, cta = false, children }, ref) {
   const linkClass = useMemo(() => [
     styles.nav__link,
     active && styles.nav__link_active,
@@ -26,7 +26,5 @@ const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(({ href, active = fa
     </a>
   );
 });
-
-NavItem.displayName = 'NavItem';
 
 export default NavItem;

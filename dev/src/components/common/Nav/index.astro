@@ -1,5 +1,6 @@
 ---
 import Nav from './Nav.tsx';
+const currentPath = Astro.url.pathname;
 ---
 
-<Nav client:only="react" />
+<Nav client:only="react" currentPath={currentPath} />

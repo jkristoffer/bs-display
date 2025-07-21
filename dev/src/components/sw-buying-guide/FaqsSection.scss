@@ -7,8 +7,8 @@
   }
 
   .faqs-stats {
-    @include mixins.stats-grid;
     margin-bottom: var(--spacing-xxl);
+    @include mixins.stats-grid;
   }
 
   .faq-categories {

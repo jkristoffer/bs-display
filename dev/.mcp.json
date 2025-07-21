@@ -3,9 +3,7 @@
     "bs-display-automation": {
       "type": "stdio",
       "command": "node",
-      "args": [
-        "claude-commit-mcp-server.js"
-      ],
+      "args": ["claude-commit-mcp-server.js"],
       "env": {
         "NODE_ENV": "production"
       }
@@ -13,10 +11,14 @@
     "pdf-analyzer": {
       "type": "stdio",
       "command": "node",
-      "args": [
-        "scripts/mcp-servers/pdf-analyzer/dist/index.js"
-      ],
+      "args": ["scripts/mcp-servers/pdf-analyzer/dist/index.js"],
       "env": {}
+    },
+    "planning": {
+      "command": "/Users/$(whoami)/.claude-mcp-servers/utilities/planning-server/venv/bin/python",
+      "args": [
+        "/Users/$(whoami)/.claude-mcp-servers/utilities/planning-server/mcp_planning_server.py"
+      ]
     }
   }
 }

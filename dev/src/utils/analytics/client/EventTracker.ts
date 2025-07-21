@@ -1,5 +1,5 @@
-import { compress } from 'lz-string';
-import type { AnalyticsEvent } from '../types';
+import LZString from 'lz-string';
+import type { AnalyticsEvent, EventContext } from '../types';
 import { ANALYTICS_CONFIG } from '@config/analytics-storage.config';
 
 export class EventTracker {
@@ -12,7 +12,9 @@ export class EventTracker {
   
   private constructor() {
     this.sessionId = this.generateSessionId();
-    this.setupUnloadHandler();
+    if (typeof window !== 'undefined') {
+      this.setupUnloadHandler();
+    }
   }
   
   static getInstance(): EventTracker {
@@ -63,29 +65,7 @@ export class EventTracker {
         session_id: this.sessionId,
         user_id: undefined,
         properties: data,
-        context: {
-          device: {
-            type: 'desktop', // Default, should be detected properly
-            os: navigator.platform,
-            screen_resolution: `${screen.width}x${screen.height}`,
-            viewport_size: `${window.innerWidth}x${window.innerHeight}`,
-          },
-          browser: {
-            name: 'unknown', // Default, should be detected properly
-            version: 'unknown',
-            language: navigator.language,
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            user_agent: navigator.userAgent,
-            cookies_enabled: navigator.cookieEnabled,
-            javascript_enabled: true
-          },
-          location: {
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-          },
-          is_returning_visitor: false, // Default
-          session_count: 1, // Default
-          referrer: document.referrer
-        }
+        context: this.getBrowserContext()
       });
     }
     
@@ -100,7 +80,7 @@ export class EventTracker {
     }
     
     // Schedule timed flush
-    if (!this.flushTimer) {
+    if (!this.flushTimer && typeof window !== 'undefined') {
       this.flushTimer = window.setTimeout(() => {
         this.flush();
       }, ANALYTICS_CONFIG.batching.flushIntervalMs);
@@ -109,6 +89,7 @@ export class EventTracker {
   
   private flush() {
     if (this.eventQueue.length === 0 && this.aggregates.size === 0) return;
+    if (typeof window === 'undefined') return;
     
     const payload = {
       sessionId: this.sessionId,
@@ -121,7 +102,7 @@ export class EventTracker {
     };
     
     // Compress payload
-    const compressed = compress(JSON.stringify(payload));
+    const compressed = LZString.compress(JSON.stringify(payload));
     
     // Use sendBeacon for reliability
     const sent = navigator.sendBeacon('/api/analytics/ingest', compressed);
@@ -190,5 +171,57 @@ export class EventTracker {
         this.recentEventHashes.delete(hash);
       }
     }
+  }
+
+  private getBrowserContext(): EventContext {
+    if (typeof window === 'undefined') {
+      return {
+        device: { 
+          type: 'desktop' as const,
+          os: 'server',
+          screen_resolution: '0x0',
+          viewport_size: '0x0'
+        },
+        browser: { 
+          name: 'server',
+          version: '1.0',
+          language: 'en',
+          timezone: 'UTC',
+          user_agent: 'server',
+          cookies_enabled: false,
+          javascript_enabled: true
+        },
+        location: { 
+          timezone: 'UTC' 
+        },
+        is_returning_visitor: false,
+        session_count: 1,
+        referrer: ''
+      };
+    }
+
+    return {
+      device: {
+        type: 'desktop' as const, // Default, should be detected properly
+        os: navigator.platform || 'unknown',
+        screen_resolution: `${screen.width}x${screen.height}`,
+        viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+      },
+      browser: {
+        name: 'unknown', // Default, should be detected properly
+        version: 'unknown',
+        language: navigator.language || 'en',
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        user_agent: navigator.userAgent || 'unknown',
+        cookies_enabled: navigator.cookieEnabled || false,
+        javascript_enabled: true
+      },
+      location: {
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      },
+      is_returning_visitor: false, // Default
+      session_count: 1, // Default
+      referrer: document.referrer || ''
+    };
   }
 }

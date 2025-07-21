@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { useRef, useImperativeHandle } from 'react';
 import type { 
   MobileMenuGridProps, 
   MobileMenuGridRef,
@@ -17,7 +17,7 @@ import styles from './MobileMenuGrid.module.scss';
  * - Smooth animations with stagger effects
  * - Performance optimized for mobile devices
  */
-const MobileMenuGrid = forwardRef<MobileMenuGridRef, MobileMenuGridProps>(({
+const MobileMenuGrid = React.forwardRef<MobileMenuGridRef, MobileMenuGridProps>(function MobileMenuGrid({
   sections,
   isOpen,
   onClose,
@@ -33,7 +33,7 @@ const MobileMenuGrid = forwardRef<MobileMenuGridRef, MobileMenuGridProps>(({
   hapticFeedback = true,
   touchSensitivity = 'medium',
   ...props
-}, ref) => {
+}, ref) {
   const gridRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
@@ -133,7 +133,5 @@ const MobileMenuGrid = forwardRef<MobileMenuGridRef, MobileMenuGridProps>(({
     </div>
   );
 });
-
-MobileMenuGrid.displayName = 'MobileMenuGrid';
 
 export { MobileMenuGrid };

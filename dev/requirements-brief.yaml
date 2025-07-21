@@ -1,0 +1,127 @@
+# Navigation Component Refactoring Requirements Brief
+
+project: Navigation Component Refactoring
+priority: URGENT
+reason: Current implementation causing hydration errors preventing navigation from rendering
+
+## Goals
+primary_objective: Remove all unnecessary complexity while maintaining exact current functionality
+specific_goals:
+  - Eliminate all forwardRef usage causing React hydration errors
+  - Reduce component hierarchy depth
+  - Simplify state management
+  - Remove unused code and types
+  - Maintain all current user-facing features
+
+## Current State Analysis
+problems_identified:
+  - forwardRef_overuse: All nav components use forwardRef unnecessarily
+  - state_complexity: 9+ pieces of state across multiple components
+  - props_drilling: Props passed through 4+ levels of components
+  - type_overengineering: 346 lines of types, many unused
+  - imperative_apis: Extensive useImperativeHandle exposing unused methods
+  - event_handling: Complex mixed touch/mouse/keyboard handlers
+  - unused_code: NavWrapper.tsx and numerous type definitions
+
+## Functional Requirements
+must_preserve:
+  desktop_features:
+    - Sticky navigation header
+    - Logo and main navigation links
+    - Products dropdown with mega menu
+    - Resources dropdown menu
+    - Search functionality
+    - Active state indicators
+    - CTA button styling
+  
+  mobile_features:
+    - Hamburger menu toggle
+    - Full-screen mobile menu
+    - Grid-based navigation sections
+    - Touch-optimized interactions
+    - Mobile search toggle
+    - Body scroll locking when menu open
+  
+  interactions:
+    - Keyboard navigation support
+    - Click outside to close dropdowns
+    - Escape key to close menus
+    - Smooth animations
+    - Responsive behavior at 1024px breakpoint
+
+## Technical Requirements
+must_remove:
+  - All React.forwardRef usage
+  - All useImperativeHandle implementations
+  - Unused components (NavWrapper.tsx)
+  - Unused type definitions
+  - Complex ref management patterns
+
+must_simplify:
+  - Component hierarchy (flatten from 5+ levels to 2-3)
+  - State management (consolidate into single source)
+  - Event handling (unified approach)
+  - Type definitions (only what's needed)
+  - Props passing (use composition or context)
+
+must_maintain:
+  - TypeScript type safety
+  - Astro integration compatibility
+  - Current SCSS module styling
+  - Accessibility features
+  - SEO-friendly markup
+
+## Constraints
+technical_constraints:
+  - Must work with Astro's client:only hydration
+  - Must use React 18.3.1 (current version)
+  - Cannot change public-facing HTML structure
+  - Must maintain current CSS class names for styling
+  
+time_constraints:
+  - Urgent implementation required
+  - Single refactor, not incremental
+  - Must fix hydration error immediately
+
+## Success Criteria
+functional_success:
+  - Navigation renders without hydration errors
+  - All current features work identically
+  - No visual or behavioral changes
+  - Maintains responsive behavior
+
+technical_success:
+  - Zero forwardRef usage
+  - Reduced to max 3 component levels
+  - Single state management approach
+  - 50%+ reduction in code complexity
+  - Clean, maintainable code structure
+
+## Implementation Approach
+recommended_strategy:
+  1. Create single Nav component with internal sub-components
+  2. Use composition over complex hierarchies  
+  3. Replace imperative APIs with declarative patterns
+  4. Consolidate state into top-level component
+  5. Use CSS for animations instead of JS where possible
+  6. Remove all ref forwarding and imperative handles
+
+## Testing Requirements
+validation_approach:
+  - Manual testing of all navigation features
+  - Desktop and mobile responsive testing
+  - Keyboard navigation verification
+  - Production build testing
+  - Hydration error verification
+
+## Risk Mitigation
+potential_risks:
+  - Breaking existing functionality
+  - CSS styling dependencies
+  - Hidden feature dependencies
+
+mitigation_strategy:
+  - Keep original components as backup
+  - Test thoroughly before replacing
+  - Document any behavioral differences
+  - Maintain same HTML structure

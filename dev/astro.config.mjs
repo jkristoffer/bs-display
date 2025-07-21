@@ -6,7 +6,9 @@ import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bigshine-display.com',
-  integrations: [react(), sitemap({
+  integrations: [react({
+    experimentalReactChildren: true
+  }), sitemap({
     filter: (page) => !page.includes('/404'),
     customPages: [
       'https://bigshine-display.com/quote-request',
@@ -102,6 +104,16 @@ export default defineConfig({
 
   vite: {
     plugins: [],
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react/jsx-runtime'],
+      exclude: [],
+    },
+    ssr: {
+      noExternal: ['@astrojs/react'],
+    },
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
     css: {
       postcss: {
         plugins: [
@@ -190,8 +202,18 @@ export default defineConfig({
           manualChunks(id) {
             // Vendor libraries
             if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'vendor-react';
+              // Ensure React is in its own chunk and loaded first
+              if (id.includes('react-dom/client')) {
+                return 'react-dom-client';
+              }
+              if (id.includes('react-dom')) {
+                return 'react-dom';
+              }
+              if (id.includes('react/jsx-runtime')) {
+                return 'react-jsx-runtime';
+              }
+              if (id.includes('react')) {
+                return 'react';
               }
               if (id.includes('react-icons')) {
                 return 'vendor-icons';

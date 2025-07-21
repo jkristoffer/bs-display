@@ -1,4 +1,4 @@
-import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { useState, useRef, useImperativeHandle } from 'react';
 import type { NavButtonProps, NavButtonRef } from '../../../types/navigation';
 import styles from './NavButton.module.scss';
 
@@ -13,7 +13,7 @@ import styles from './NavButton.module.scss';
  * - ARIA accessibility compliance
  * - Badge display for notifications/labels
  */
-const NavButton = forwardRef<NavButtonRef, NavButtonProps>(({
+const NavButton = React.forwardRef<NavButtonRef, NavButtonProps>(function NavButton({
   item,
   isActive = false,
   onClick,
@@ -33,7 +33,7 @@ const NavButton = forwardRef<NavButtonRef, NavButtonProps>(({
   style,
   disabled = false,
   ...buttonProps
-}, ref) => {
+}, ref) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isPressed, setIsPressed] = useState(false);
   const [isLongPressed, setIsLongPressed] = useState(false);
@@ -233,7 +233,5 @@ const NavButton = forwardRef<NavButtonRef, NavButtonProps>(({
     </button>
   );
 });
-
-NavButton.displayName = 'NavButton';
 
 export { NavButton };

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import type { NavSectionProps } from '../../../types/navigation';
 import { NavButton } from './NavButton';
 import styles from './NavSection.module.scss';
@@ -13,7 +13,7 @@ import styles from './NavSection.module.scss';
  * - Responsive design adaptation
  * - Accessibility with proper heading hierarchy
  */
-const NavSection = forwardRef<HTMLElement, NavSectionProps>(({
+const NavSection = React.forwardRef<HTMLElement, NavSectionProps>(function NavSection({
   section,
   currentPath,
   onItemClick,
@@ -23,7 +23,7 @@ const NavSection = forwardRef<HTMLElement, NavSectionProps>(({
   animationDelay = 0,
   headingLevel = 2,
   ...props
-}, ref) => {
+}, ref) {
   
   const handleItemClick = (item: typeof section.items[0]) => {
     onItemClick?.(item);
@@ -107,7 +107,5 @@ const NavSection = forwardRef<HTMLElement, NavSectionProps>(({
     </section>
   );
 });
-
-NavSection.displayName = 'NavSection';
 
 export { NavSection };

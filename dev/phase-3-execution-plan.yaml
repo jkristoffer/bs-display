@@ -1,0 +1,188 @@
+# Phase 3: Desktop Features Implementation - Execution Plan
+
+phase_name: "Desktop Features Implementation"
+estimated_duration: "3-4 hours"
+focus: "Complete desktop navigation with all menus and interactions"
+
+execution_steps:
+  - step: "Create ProductsMegaMenu component"
+    file: "src/components/common/Nav/ProductsMegaMenu.tsx"
+    requirements:
+      - "Simple functional component (no forwardRef)"
+      - "Receives products data as props"
+      - "Grid layout for product categories"
+      - "Reuse existing SCSS classes"
+    implementation_outline: |
+      interface ProductsMegaMenuProps {
+        isOpen: boolean;
+        onClose: () => void;
+      }
+      
+      function ProductsMegaMenu({ isOpen, onClose }: ProductsMegaMenuProps) {
+        if (!isOpen) return null;
+        
+        return (
+          <div className={styles.megaMenu}>
+            <div className={styles.megaMenuContent}>
+              {/* Product categories grid */}
+            </div>
+          </div>
+        );
+      }
+    
+    product_categories:
+      - "Smart Boards"
+      - "Lecterns"
+      - "Accessories"
+      - "Collaboration Tools"
+    
+  - step: "Build Resources dropdown"
+    implementation:
+      structure: |
+        const resourcesItems = [
+          { href: '/blog', label: 'Expert Articles' },
+          { href: '/use-cases', label: 'Customer Stories' },
+          { href: '/smart-whiteboard-buying-guide', label: 'Buying Guide' },
+          { href: '/quiz', label: 'Product Finder' }
+        ];
+      
+      dropdown_component: |
+        function ResourcesDropdown({ isOpen }) {
+          if (!isOpen) return null;
+          
+          return (
+            <div className={styles.dropdown}>
+              {resourcesItems.map(item => (
+                <a key={item.href} href={item.href} className={styles.dropdownItem}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          );
+        }
+    
+  - step: "Integrate Search component"
+    tasks:
+      - "Import existing Search component"
+      - "Remove any forwardRef from Search if present"
+      - "Add search toggle button"
+      - "Position search overlay"
+    implementation: |
+      import { Search } from '../Search';
+      
+      // In Nav component
+      {searchOpen && (
+        <Search 
+          isOpen={searchOpen}
+          onClose={() => setSearchOpen(false)}
+        />
+      )}
+    
+  - step: "Implement keyboard navigation"
+    keyboard_handlers:
+      Tab: "Navigate through focusable elements"
+      Enter: "Activate focused element"
+      Escape: "Close open dropdowns/search"
+      ArrowKeys: "Navigate within dropdowns (optional)"
+    
+    implementation: |
+      useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
+            setActiveDropdown(null);
+            setSearchOpen(false);
+          }
+        };
+        
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+      }, []);
+    
+  - step: "Add click-outside detection"
+    implementation: |
+      useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+          const nav = document.getElementById('main-nav');
+          if (nav && !nav.contains(e.target as Node)) {
+            setActiveDropdown(null);
+          }
+        };
+        
+        if (activeDropdown) {
+          document.addEventListener('click', handleClickOutside);
+          return () => document.removeEventListener('click', handleClickOutside);
+        }
+      }, [activeDropdown]);
+    
+  - step: "Ensure CSS animations"
+    animation_classes:
+      - "dropdown enter/exit transitions"
+      - "mega menu slide down"
+      - "search overlay fade"
+    approach: "Use CSS transitions, not JS animations"
+    example: |
+      .dropdown {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s, transform 0.2s;
+        
+        &.open {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+testing_checklist:
+  products_mega_menu:
+    - "[ ] Opens on Products click/hover"
+    - "[ ] Displays all product categories"
+    - "[ ] Links navigate correctly"
+    - "[ ] Closes on outside click"
+    - "[ ] Smooth animation"
+  
+  resources_dropdown:
+    - "[ ] Opens on Resources click"
+    - "[ ] Shows all resource links"
+    - "[ ] Links work correctly"
+    - "[ ] Closes on outside click"
+    - "[ ] Proper styling"
+  
+  search_integration:
+    - "[ ] Search icon clickable"
+    - "[ ] Search overlay appears"
+    - "[ ] Search functionality works"
+    - "[ ] Can close with X or Escape"
+    - "[ ] No forwardRef errors"
+  
+  keyboard_navigation:
+    - "[ ] Tab moves through all items"
+    - "[ ] Enter activates links/buttons"
+    - "[ ] Escape closes dropdowns"
+    - "[ ] Focus indicators visible"
+  
+  interactions:
+    - "[ ] Click outside closes dropdowns"
+    - "[ ] Only one dropdown open at a time"
+    - "[ ] Smooth transitions"
+
+potential_issues:
+  - "Search component may need refactoring if using forwardRef"
+  - "Product data structure might need adjustment"
+  - "SCSS class names must match existing styles"
+  - "Z-index layering for dropdowns"
+
+deliverables:
+  - "Full desktop navigation with all features"
+  - "Working Products mega menu"
+  - "Resources dropdown functional"
+  - "Search integration complete"
+  - "Keyboard navigation support"
+  - "Click-outside detection"
+  - "CSS-based animations"
+
+success_criteria:
+  - "All desktop features working as original ✓"
+  - "No forwardRef usage maintained ✓"
+  - "Smooth user experience ✓"
+  - "Keyboard accessible ✓"
+  - "Performance optimized ✓"

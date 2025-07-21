@@ -1,0 +1,67 @@
+---
+project: Interactive Panels Comparison Tool
+date: 2025-07-18
+version: 1.0
+
+# Project Overview
+title: "Side-by-Side Interactive Panels Comparison Page"
+description: "A standalone comparison tool for sales personnel to highlight differences between interactive panels and recommend specifications based on customer needs"
+
+# Core Requirements
+functionality:
+  panel_selection:
+    - source: "Existing product catalog"
+    - limit: "Up to 2 panels simultaneously"
+    - method: "User selection from catalog"
+  
+  comparison_criteria:
+    - technical_specifications: "Full spec comparison"
+    - size_availability: "Available sizes and dimensions"
+    - touch_technology: "Touch capabilities and technology type"
+    - camera_availability: "Camera presence and specifications"
+  
+  display_format:
+    - layout: "Side-by-side comparison layout"
+    - specs_table: "Technical specifications table"
+    - pros_cons: "Pros/cons for use case recommendations"
+  
+  filtering_integration:
+    - leverage: "Existing filtering system"
+    - reuse: "Current product filtering logic"
+
+# Target Audience
+primary_users:
+  - role: "Sales personnel"
+  - use_case: "Highlight product differences to customers"
+  - goal: "Recommend appropriate specifications based on customer needs"
+
+# Technical Requirements
+data_integration:
+  - source: "Product catalog data"
+  - format: "Existing JSON structure in /src/data/models.*.json"
+  - fields: "Technical specs, sizes, touch tech, camera info"
+
+# Navigation & Integration
+site_integration:
+  - type: "Standalone comparison tool"
+  - access_points:
+    - "Link from buying guide section"
+    - "Link from quiz page (future integration)"
+  - navigation: "Not part of main navigation"
+  - quiz_integration: "Future capability - quiz results can lead to comparison"
+
+# Success Criteria
+acceptance_criteria:
+  - "Sales personnel can select any 2 panels from catalog"
+  - "Clear side-by-side technical specifications display"
+  - "Pros/cons recommendations for different use cases"
+  - "Leverages existing filtering system"
+  - "Accessible from buying guide and quiz pages"
+  - "Mobile-responsive design"
+
+# Implementation Notes
+technical_considerations:
+  - reuse_components: "Leverage existing product filtering components"
+  - data_structure: "Use existing product data format"
+  - styling: "Follow existing design system and patterns"
+  - responsive: "Ensure mobile compatibility for field sales use"

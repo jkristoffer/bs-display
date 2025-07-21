@@ -7,8 +7,8 @@
   }
 
   .expert-services {
-    @include mixins.responsive-grid(350px, var(--spacing-xl));
     margin-bottom: var(--spacing-xxl);
+    @include mixins.responsive-grid(350px, var(--spacing-xl));
   }
 
   .service-card {
@@ -42,9 +42,9 @@
       }
 
       .service-benefits {
-        @include mixins.icon-list;
         flex: 1;
         margin-bottom: var(--spacing-xl);
+        @include mixins.icon-list;
       }
 
       .service-action {

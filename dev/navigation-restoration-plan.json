@@ -1,0 +1,434 @@
+{
+  "title": "Navigation Restoration Plan - Hybrid Approach",
+  "version": "1.0.0",
+  "approach": "option_3_hybrid",
+  "description": "AI-First implementation plan to restore key visual components and functionality from backup navigation while maintaining simplified structure",
+  "project_context": {
+    "current_state": {
+      "navigation_file": "/src/components/common/Nav/Nav.tsx",
+      "styling_file": "/src/components/common/Nav/Nav.module.scss",
+      "architecture": "monolithic_component",
+      "mobile_navigation": "side_sliding_basic",
+      "search_integration": "simple_overlay",
+      "missing_features": [
+        "advanced_mobile_grid",
+        "full_search_integration",
+        "proper_focus_management",
+        "body_scroll_locking",
+        "accessibility_features"
+      ]
+    },
+    "backup_location": "/src/components/common/Nav.backup/",
+    "target_architecture": "hybrid_modular_simplified"
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "title": "Visual Component Restoration",
+      "priority": "high",
+      "estimated_effort": "2-3 hours",
+      "tasks": [
+        {
+          "task_id": "1.1",
+          "title": "Create NavItem Component",
+          "description": "Extract and create a dedicated NavItem component with proper styling and props",
+          "ai_instructions": {
+            "context": "Create a reusable navigation item component based on backup design",
+            "input_files": [
+              "/src/components/common/Nav.backup/NavItem.tsx",
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/NavItem.tsx",
+            "requirements": [
+              "Extract NavItem component from backup",
+              "Remove forwardRef to avoid hydration issues",
+              "Include hover states, active states, CTA styling",
+              "Support accessibility attributes (aria-current, role)",
+              "Include TypeScript interfaces for props"
+            ],
+            "styling_requirements": [
+              "Maintain all visual styles from backup",
+              "Include hover animations and transitions",
+              "Support CTA button styling",
+              "Include focus indicators for accessibility"
+            ]
+          }
+        },
+        {
+          "task_id": "1.2",
+          "title": "Create NavButton Component",
+          "description": "Create a specialized button component for dropdown triggers",
+          "ai_instructions": {
+            "context": "Create dropdown trigger button component",
+            "input_files": [
+              "/src/components/common/Nav.backup/NavButton.tsx",
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/NavButton.tsx",
+            "requirements": [
+              "Create button component for dropdown triggers",
+              "Remove forwardRef, use standard React patterns",
+              "Include arrow animation on hover",
+              "Support expanded/collapsed states",
+              "Include proper ARIA attributes"
+            ],
+            "styling_requirements": [
+              "Maintain button hover effects",
+              "Include arrow rotation animations",
+              "Support active/expanded visual states"
+            ]
+          }
+        },
+        {
+          "task_id": "1.3",
+          "title": "Update Nav.tsx to Use New Components",
+          "description": "Refactor main Nav.tsx to use the new NavItem and NavButton components",
+          "ai_instructions": {
+            "context": "Update main navigation to use modular components",
+            "input_files": [
+              "/src/components/common/Nav/Nav.tsx",
+              "/src/components/common/Nav/NavItem.tsx",
+              "/src/components/common/Nav/NavButton.tsx"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.tsx",
+            "requirements": [
+              "Replace inline nav links with NavItem components",
+              "Replace dropdown triggers with NavButton components",
+              "Maintain current simplified state management",
+              "Keep existing mobile menu structure for now",
+              "Ensure no forwardRef usage to avoid hydration issues"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "title": "Mobile Navigation Enhancement",
+      "priority": "high",
+      "estimated_effort": "3-4 hours",
+      "tasks": [
+        {
+          "task_id": "2.1",
+          "title": "Create Enhanced Mobile Overlay",
+          "description": "Replace current side-sliding menu with full-screen overlay",
+          "ai_instructions": {
+            "context": "Create full-screen mobile navigation overlay with improved styling",
+            "input_files": [
+              "/src/components/common/Nav.backup/Nav.tsx",
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.tsx",
+            "requirements": [
+              "Replace current mobile menu with full-screen overlay",
+              "Add backdrop blur and proper z-index stacking",
+              "Include close button and proper header",
+              "Add body scroll locking when menu is open",
+              "Include fade-in/fade-out animations",
+              "Maintain simplified structure (no MobileMenuGrid dependency)"
+            ],
+            "styling_requirements": [
+              "Full viewport overlay (position: fixed, inset: 0)",
+              "Backdrop blur effect and semi-transparent background",
+              "Smooth fade animations (opacity and transform)",
+              "Proper mobile typography and spacing",
+              "Touch-friendly button sizes (min 44px)"
+            ]
+          }
+        },
+        {
+          "task_id": "2.2",
+          "title": "Improve Mobile Grid Layout",
+          "description": "Enhance mobile navigation grid without complex MobileMenuGrid component",
+          "ai_instructions": {
+            "context": "Create better mobile navigation grid layout within the overlay",
+            "input_files": [
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.module.scss",
+            "requirements": [
+              "Create responsive grid layout for mobile navigation",
+              "Use CSS Grid with 2-column layout on mobile",
+              "Add proper spacing and visual hierarchy",
+              "Include section headers and grouping",
+              "Add subtle animations for menu items"
+            ],
+            "styling_requirements": [
+              "Responsive grid: 1 column on small screens, 2 on larger mobile",
+              "Proper gap spacing between sections and items",
+              "Section headers with distinct typography",
+              "Hover/tap effects for interactive elements",
+              "Consistent padding and margins"
+            ]
+          }
+        },
+        {
+          "task_id": "2.3",
+          "title": "Add Mobile Menu Utilities",
+          "description": "Add essential mobile navigation utilities (scroll lock, keyboard handling)",
+          "ai_instructions": {
+            "context": "Add utility functions for mobile navigation behavior",
+            "input_files": [
+              "/src/components/common/Nav.backup/Nav.tsx"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.tsx",
+            "requirements": [
+              "Add body scroll lock/unlock functions",
+              "Add escape key handler to close menu",
+              "Add click outside handler",
+              "Add focus management for accessibility",
+              "Ensure proper cleanup on component unmount"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "title": "Search Integration Improvement",
+      "priority": "medium",
+      "estimated_effort": "2-3 hours",
+      "tasks": [
+        {
+          "task_id": "3.1",
+          "title": "Enhance Desktop Search",
+          "description": "Improve desktop search integration while keeping SimpleSearch",
+          "ai_instructions": {
+            "context": "Improve desktop search functionality and integration",
+            "input_files": [
+              "/src/components/common/Nav/SimpleSearch.tsx",
+              "/src/components/common/Nav.backup/Nav.tsx"
+            ],
+            "output_file": "/src/components/common/Nav/SimpleSearch.tsx",
+            "requirements": [
+              "Enhance SimpleSearch with better styling and functionality",
+              "Add proper keyboard navigation (arrow keys, enter, escape)",
+              "Include search suggestions or recent searches",
+              "Add loading states and error handling",
+              "Improve search overlay animations and backdrop"
+            ],
+            "styling_requirements": [
+              "Better search overlay with proper backdrop blur",
+              "Improved search input styling and focus states",
+              "Loading spinner and search results styling",
+              "Smooth open/close animations",
+              "Responsive behavior on mobile"
+            ]
+          }
+        },
+        {
+          "task_id": "3.2",
+          "title": "Integrate Search in Mobile Menu",
+          "description": "Add search functionality to mobile navigation overlay",
+          "ai_instructions": {
+            "context": "Add search button and integration to mobile navigation",
+            "input_files": [
+              "/src/components/common/Nav/Nav.tsx",
+              "/src/components/common/Nav/SimpleSearch.tsx"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.tsx",
+            "requirements": [
+              "Add search button to mobile navigation header",
+              "Include search functionality in mobile menu",
+              "Ensure search can be accessed from mobile overlay",
+              "Add proper mobile search button styling",
+              "Ensure search works well on mobile devices"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "title": "Essential Accessibility Features",
+      "priority": "medium",
+      "estimated_effort": "1-2 hours",
+      "tasks": [
+        {
+          "task_id": "4.1",
+          "title": "Add Keyboard Navigation",
+          "description": "Implement essential keyboard navigation support",
+          "ai_instructions": {
+            "context": "Add keyboard navigation support to navigation components",
+            "input_files": [
+              "/src/components/common/Nav/Nav.tsx",
+              "/src/components/common/Nav.backup/Nav.tsx"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.tsx",
+            "requirements": [
+              "Add Tab/Shift+Tab navigation through menu items",
+              "Add Enter/Space activation for buttons and links",
+              "Add Escape key to close dropdowns and mobile menu",
+              "Add Arrow key navigation for dropdowns",
+              "Include proper focus indicators and management"
+            ]
+          }
+        },
+        {
+          "task_id": "4.2",
+          "title": "Enhance ARIA Attributes",
+          "description": "Add comprehensive ARIA attributes for screen readers",
+          "ai_instructions": {
+            "context": "Add proper ARIA attributes throughout navigation components",
+            "input_files": [
+              "/src/components/common/Nav/Nav.tsx",
+              "/src/components/common/Nav/NavItem.tsx",
+              "/src/components/common/Nav/NavButton.tsx"
+            ],
+            "requirements": [
+              "Add aria-expanded for dropdown buttons",
+              "Add aria-current for active navigation items",
+              "Add aria-label for icon buttons (search, mobile menu)",
+              "Add role='navigation' and proper landmarks",
+              "Add aria-hidden for decorative elements",
+              "Include aria-describedby for complex interactions"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "phase": 5,
+      "title": "Styling Refinement and Polish",
+      "priority": "low",
+      "estimated_effort": "2-3 hours",
+      "tasks": [
+        {
+          "task_id": "5.1",
+          "title": "Restore Advanced Animations",
+          "description": "Add sophisticated animations and transitions from backup",
+          "ai_instructions": {
+            "context": "Add advanced animations and micro-interactions",
+            "input_files": [
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.module.scss",
+            "requirements": [
+              "Add stagger animations for mobile menu items",
+              "Include sophisticated hover effects for desktop items",
+              "Add logo glow effect on hover",
+              "Include dropdown arrow rotation animations",
+              "Add subtle entrance animations for dropdowns"
+            ]
+          }
+        },
+        {
+          "task_id": "5.2",
+          "title": "Responsive Design Enhancement",
+          "description": "Improve responsive behavior across all breakpoints",
+          "ai_instructions": {
+            "context": "Enhance responsive design and cross-device compatibility",
+            "input_files": [
+              "/src/components/common/Nav.backup/Nav.module.scss"
+            ],
+            "output_file": "/src/components/common/Nav/Nav.module.scss",
+            "requirements": [
+              "Add tablet-specific navigation styles",
+              "Improve touch targets for mobile devices",
+              "Add proper breakpoint handling",
+              "Ensure navigation works on all screen sizes",
+              "Test and fix any layout issues"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "validation_criteria": {
+    "visual_requirements": [
+      "Navigation matches original backup design visually",
+      "All hover states and animations work correctly",
+      "Mobile overlay displays as full-screen with proper backdrop",
+      "Logo, nav items, and search are properly aligned",
+      "CTA button styling matches original design"
+    ],
+    "functional_requirements": [
+      "Desktop dropdown menus work on hover",
+      "Mobile navigation opens as full-screen overlay",
+      "Search functionality works on both desktop and mobile",
+      "Body scroll is locked when mobile menu is open",
+      "All keyboard navigation works properly"
+    ],
+    "technical_requirements": [
+      "No React hydration errors",
+      "Components use proper TypeScript interfaces",
+      "CSS modules work correctly with BEM naming",
+      "No accessibility warnings in browser dev tools",
+      "Navigation works with JavaScript disabled (progressive enhancement)"
+    ],
+    "performance_requirements": [
+      "Navigation renders without layout shifts",
+      "Animations are smooth (60fps) on mobile devices",
+      "Component bundle size remains reasonable",
+      "No memory leaks from event listeners",
+      "Fast navigation transitions"
+    ]
+  },
+  "ai_agent_instructions": {
+    "general_guidelines": [
+      "Always preserve existing functionality while adding new features",
+      "Maintain the current simplified architecture - do not add complex dependencies",
+      "Test each change by running the dev server and checking in browser",
+      "Use TypeScript interfaces for all component props",
+      "Follow BEM CSS naming convention for new styles",
+      "Avoid forwardRef usage to prevent hydration issues",
+      "Include proper error handling and edge cases",
+      "Write clean, maintainable code with clear comments"
+    ],
+    "coding_standards": [
+      "Use functional components with hooks",
+      "Use CSS Modules with SCSS",
+      "Follow project's existing code style and patterns",
+      "Include proper TypeScript types for all props and functions",
+      "Use semantic HTML elements",
+      "Include proper ARIA attributes for accessibility",
+      "Use modern JavaScript (ES2020+) features appropriately"
+    ],
+    "testing_approach": [
+      "Test each phase incrementally",
+      "Verify navigation works on desktop and mobile browsers",
+      "Test keyboard navigation thoroughly",
+      "Check accessibility with screen reader tools",
+      "Validate responsive design on multiple screen sizes",
+      "Ensure no console errors or warnings"
+    ]
+  },
+  "deliverables": {
+    "phase_1": [
+      "NavItem.tsx component",
+      "NavButton.tsx component", 
+      "Updated Nav.tsx using new components"
+    ],
+    "phase_2": [
+      "Enhanced mobile navigation overlay",
+      "Improved mobile grid layout",
+      "Mobile utility functions (scroll lock, keyboard handling)"
+    ],
+    "phase_3": [
+      "Enhanced SimpleSearch component",
+      "Mobile search integration"
+    ],
+    "phase_4": [
+      "Keyboard navigation support",
+      "Complete ARIA attribute implementation"
+    ],
+    "phase_5": [
+      "Advanced animations and transitions",
+      "Responsive design improvements"
+    ]
+  },
+  "success_metrics": {
+    "user_experience": [
+      "Navigation feels smooth and responsive",
+      "Mobile navigation is intuitive and easy to use",
+      "Search functionality is discoverable and functional",
+      "Visual design matches original backup quality"
+    ],
+    "technical_quality": [
+      "Zero hydration errors in production",
+      "All accessibility audits pass",
+      "Performance metrics remain good",
+      "Code maintainability is high"
+    ]
+  }
+}

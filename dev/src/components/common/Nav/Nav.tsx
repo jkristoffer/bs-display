@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import NavItem from './NavItem';
+import NavButton from './NavButton';
 import ProductsMegaMenu from './ProductsMegaMenu';
 import SimpleSearch from './SimpleSearch';
 import styles from './Nav.module.scss';
@@ -150,14 +152,13 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                 onMouseEnter={() => !isMobile && setActiveDropdown(item.label)}
                 onMouseLeave={() => !isMobile && setActiveDropdown(null)}
               >
-                <button
-                  className={styles.nav__dropdown_trigger}
+                <NavButton
                   onClick={() => isMobile && toggleDropdown(item.label)}
-                  aria-expanded={activeDropdown === item.label}
+                  expanded={activeDropdown === item.label}
+                  aria-controls={`dropdown-${item.label.toLowerCase()}`}
                 >
                   {item.label}
-                  <span className={styles.nav__dropdown_arrow}>▾</span>
-                </button>
+                </NavButton>
                 
                 {/* Products Dropdown */}
                 {item.label === 'Products' && (
@@ -169,27 +170,32 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                 
                 {/* Resources Dropdown */}
                 {item.label === 'Resources' && activeDropdown === 'Resources' && (
-                  <div className={styles.nav__dropdown_menu}>
+                  <div 
+                    className={styles.nav__dropdown_menu}
+                    id="dropdown-resources"
+                    role="menu"
+                  >
                     {resourcesItems.map((resource) => (
-                      <a
+                      <NavItem
                         key={resource.href}
                         href={resource.href}
-                        className={styles.nav__dropdown_item}
+                        active={isActive(resource.href)}
                       >
                         {resource.label}
-                      </a>
+                      </NavItem>
                     ))}
                   </div>
                 )}
               </div>
             ) : (
-              <a
+              <NavItem
                 key={`nav-${index}`}
                 href={item.href}
-                className={`${styles.nav__link} ${isActive(item.href) ? styles.nav__link_active : ''} ${item.isCTA ? styles.nav__link_cta : ''}`}
+                active={isActive(item.href)}
+                cta={item.isCTA}
               >
                 {item.label}
-              </a>
+              </NavItem>
             )
           ))}
         </div>
@@ -250,100 +256,192 @@ export default function Nav({ currentPath = '/' }: NavProps) {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobile && mobileMenuOpen && (
-        <div className={styles.mobileMenuOverlay}>
-          <div className={styles.mobileMenuContent}>
-            <div className={styles.mobileMenuHeader}>
-              <a href="/" className={styles.mobileLogo}>
-                BigShine Display
-              </a>
+      {/* Mobile Menu Overlay - Full Screen */}
+      {mobileMenuOpen && (
+        <div 
+          className={`${styles.nav__mobileOverlay} ${mobileMenuOpen ? styles.nav__mobileOverlay_active : ''}`}
+          aria-hidden={!mobileMenuOpen}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-menu-title"
+        >
+          {/* Backdrop */}
+          <div 
+            className={styles.nav__mobileBackdrop}
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          
+          {/* Content Container */}
+          <div className={styles.nav__mobileContent}>
+            {/* Header */}
+            <div className={styles.nav__mobileHeader}>
+              <div className={styles.nav__mobileLogo}>
+                <a href="/" onClick={() => setMobileMenuOpen(false)}>
+                  <img
+                    src="/assets/logo3.png"
+                    alt="Big Shine Display Logo"
+                    className={styles.nav__logo_image}
+                  />
+                </a>
+              </div>
+              
               <button
-                className={styles.closeButton}
+                className={styles.nav__mobileClose}
                 onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
+                aria-label="Close navigation menu"
+                type="button"
               >
-                ×
+                <svg 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path 
+                    d="M18 6L6 18M6 6l12 12" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
             </div>
 
-            <nav className={styles.mobileNav}>
-              {/* Mobile Search */}
-              <button 
-                className={styles.mobileSearchButton}
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setSearchOpen(true);
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M9 17A8 8 0 109 1a8 8 0 000 16zM19 19l-4.35-4.35"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span>Search</span>
-              </button>
+            {/* Main Navigation Content */}
+            <nav 
+              className={styles.nav__mobileNav}
+              id="mobile-menu-title"
+              role="navigation"
+              aria-label="Mobile navigation"
+            >
+              {/* Mobile Search Button */}
+              <div className={styles.nav__mobileSearchWrapper}>
+                <button 
+                  className={styles.nav__mobileSearchButton}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setSearchOpen(true);
+                  }}
+                  type="button"
+                  aria-label="Open search"
+                >
+                  <svg 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 20 20" 
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle cx="9" cy="9" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                  </svg>
+                  <span>Search Products & Articles</span>
+                </button>
+              </div>
 
               {/* Mobile Navigation Grid */}
-              <div className={styles.mobileNavGrid}>
+              <div className={styles.nav__mobileGrid}>
                 {/* Main Section */}
-                <div className={styles.mobileNavSection}>
-                  <h3 className={styles.sectionTitle}>Main</h3>
-                  <div className={styles.sectionLinks}>
-                    <a href="/" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                <div 
+                  className={styles.nav__mobileSection}
+                  style={{ '--section-index': 0 } as React.CSSProperties}
+                >
+                  <h3 className={styles.nav__mobileSectionTitle}>Main</h3>
+                  <div className={styles.nav__mobileSectionLinks}>
+                    <NavItem 
+                      href="/" 
+                      active={isActive('/')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Home
-                    </a>
-                    <a href="/products" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                    </NavItem>
+                    <NavItem 
+                      href="/products" 
+                      active={isActive('/products')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       All Products
-                    </a>
-                    <a href="/contact" className={`${styles.mobileNavLink} ${styles.cta}`} onClick={() => setMobileMenuOpen(false)}>
+                    </NavItem>
+                    <NavItem 
+                      href="/contact" 
+                      active={isActive('/contact')}
+                      cta={true}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Get Quote
-                    </a>
+                    </NavItem>
                   </div>
                 </div>
 
                 {/* Products Section */}
-                <div className={styles.mobileNavSection}>
-                  <h3 className={styles.sectionTitle}>Products</h3>
-                  <div className={styles.sectionLinks}>
-                    <a href="/products/smartboards" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                <div 
+                  className={styles.nav__mobileSection}
+                  style={{ '--section-index': 1 } as React.CSSProperties}
+                >
+                  <h3 className={styles.nav__mobileSectionTitle}>Products</h3>
+                  <div className={styles.nav__mobileSectionLinks}>
+                    <NavItem 
+                      href="/products/smartboards" 
+                      active={isActive('/products/smartboards')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Smart Boards
-                    </a>
-                    <a href="/products/lecterns" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                    </NavItem>
+                    <NavItem 
+                      href="/products/lecterns" 
+                      active={isActive('/products/lecterns')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Lecterns
-                    </a>
-                    <a href="/products/accessories" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                    </NavItem>
+                    <NavItem 
+                      href="/products/accessories" 
+                      active={isActive('/products/accessories')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Accessories
-                    </a>
-                    <a href="/products/collaboration" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                    </NavItem>
+                    <NavItem 
+                      href="/products/collaboration" 
+                      active={isActive('/products/collaboration')}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Collaboration
-                    </a>
+                    </NavItem>
                   </div>
                 </div>
 
                 {/* Resources Section */}
-                <div className={styles.mobileNavSection}>
-                  <h3 className={styles.sectionTitle}>Resources</h3>
-                  <div className={styles.sectionLinks}>
-                    <a href="/blog" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-                      Expert Articles
-                    </a>
-                    <a href="/use-cases" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-                      Customer Stories
-                    </a>
-                    <a href="/smart-whiteboard-buying-guide" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-                      Buying Guide
-                    </a>
-                    <a href="/quiz" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-                      Product Finder
-                    </a>
+                <div 
+                  className={styles.nav__mobileSection}
+                  style={{ '--section-index': 2 } as React.CSSProperties}
+                >
+                  <h3 className={styles.nav__mobileSectionTitle}>Resources</h3>
+                  <div className={styles.nav__mobileSectionLinks}>
+                    {resourcesItems.map((resource) => (
+                      <NavItem 
+                        key={resource.href}
+                        href={resource.href} 
+                        active={isActive(resource.href)}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {resource.label}
+                      </NavItem>
+                    ))}
                   </div>
                 </div>
               </div>
             </nav>
+            
+            {/* Footer or additional content can be added here */}
+            <div className={styles.nav__mobileFooter}>
+              <p className={styles.nav__mobileFooterText}>
+                © 2024 BigShine Display
+              </p>
+            </div>
           </div>
         </div>
       )}

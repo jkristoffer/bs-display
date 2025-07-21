@@ -41,7 +41,7 @@
   }
 }
 
-/* Element: nav__container */
+/* Element: .container */
 .nav__container {
   width: 100%;
   max-width: var(--spacing-container-max-width);
@@ -56,7 +56,7 @@
   gap: var(--spacing-8); /* Consistent gap between sections */
 }
 
-/* Element: nav__logo */
+/* Element: .logo */
 .nav__logo {
   grid-area: logo;
   width: 100px; /* Further reduced for better proportion */
@@ -66,7 +66,7 @@
   justify-self: start; /* Align to start of grid area */
 }
 
-/* Element: nav__logo-image */
+/* Element: .logo-image */
 .nav__logo_image {
   width: 100%;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,7 +104,7 @@
   }
 }
 
-/* Element: nav__items */
+/* Element: .items */
 .nav__items {
   grid-area: nav;
   display: flex;
@@ -114,7 +114,70 @@
   height: 100%;
 }
 
-/* Element: nav__dropdown */
+/* Element: .nav__link */
+.nav__link {
+  font-size: var(--font-size-nav-primary);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  padding: var(--spacing-5) var(--spacing-8);
+  border-radius: var(--radius-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  white-space: nowrap;
+  
+  &:hover {
+    color: var(--color-accent-primary);
+    background: var(--color-surface-muted);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &_active {
+    color: var(--color-accent-primary);
+    font-weight: var(--font-weight-semibold);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: var(--spacing-8);
+      right: var(--spacing-8);
+      height: 3px;
+      background: var(--color-accent-primary);
+      border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+    }
+  }
+  
+  &_cta {
+    background: var(--gradient-brand);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-5) var(--spacing-10);
+    
+    &:hover {
+      background: var(--gradient-brand-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      color: var(--color-text-inverse);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+/* Element: .dropdown */
 .nav__dropdown {
   position: relative;
   cursor: pointer;
@@ -123,7 +186,7 @@
   align-items: center;
 }
 
-/* Element: nav__dropdown-trigger */
+/* Element: .dropdown-trigger */
 .nav__dropdown_trigger {
   font-size: var(--font-size-nav-primary);
   font-weight: var(--font-weight-medium);
@@ -140,6 +203,9 @@
   height: 48px; /* Fixed height for consistency */
   color: var(--color-text-primary);
   white-space: nowrap; /* Prevent text wrapping */
+  background: none;
+  border: none;
+  cursor: pointer;
   
   /* Enhanced interaction states */
   &:hover {
@@ -153,10 +219,10 @@
   }
 }
 
-/* Element: nav__dropdown-trigger hover state */
+/* Element: .dropdown-trigger hover state */
 /* Hover state now handled in main selector above */
 
-/* Element: nav__dropdown-arrow */
+/* Element: .dropdown-arrow */
 .nav__dropdown_arrow {
   font-size: 12px;
   margin-left: var(--spacing-2);
@@ -194,7 +260,7 @@
   }
 }
 
-/* Element: nav__dropdown-menu */
+/* Element: .dropdown-menu */
 .nav__dropdown_menu {
   position: absolute;
   top: calc(100% + var(--spacing-2)); /* Slight gap from trigger */
@@ -251,7 +317,31 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Element: nav__search */
+/* Element: .dropdown-item */
+.nav__dropdown_item {
+  padding: var(--spacing-4) var(--spacing-6);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  margin: 0 var(--spacing-2);
+  
+  &:hover {
+    background: var(--color-surface-muted);
+    color: var(--color-accent-primary);
+    transform: translateX(4px);
+  }
+  
+  &:active {
+    transform: translateX(2px);
+  }
+}
+
+/* Element: .search */
 .nav__search {
   grid-area: search;
   justify-self: end; /* Align to end of grid area */
@@ -259,13 +349,13 @@
   max-width: 100%; /* Responsive constraint */
 }
 
-/* Element: nav__searchComponent */
+/* Element: .searchComponent */
 .nav__searchComponent {
   width: 100%; /* Fill available space */
   max-width: 280px; /* Consistent with search area */
 }
 
-/* Element: nav__mobileControls */
+/* Element: .mobileControls */
 .nav__mobileControls {
   display: none;
   align-items: center;
@@ -274,7 +364,7 @@
   justify-self: end;
 }
 
-/* Element: nav__searchButton */
+/* Element: .searchButton */
 .nav__searchButton {
   display: flex;
   align-items: center;
@@ -339,7 +429,7 @@
   }
 }
 
-/* Element: nav__mobile-toggle */
+/* Element: .mobile-toggle */
 .nav__mobile_toggle {
   display: none;
   background: none;
@@ -364,7 +454,7 @@
   }
 }
 
-/* Element: nav__mobile-toggle-bar */
+/* Element: .mobile-toggle-bar */
 .nav__mobile_toggle_bar {
   display: block;
   width: 25px;
@@ -427,7 +517,7 @@
     box-sizing: border-box;
   }
 
-  /* Modifier: nav__items--active */
+  /* Modifier: .items--active */
   .nav__items_active {
     display: flex;
     gap: 0;
@@ -498,7 +588,7 @@
     border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
   }
 
-  /* Modifier: nav__dropdown--active */
+  /* Modifier: .dropdown--active */
   .nav__dropdown_active .nav__dropdown_menu {
     display: flex;
     visibility: visible;
@@ -528,7 +618,7 @@
     }
   }
 
-  /* Modifier: nav__mobile-toggle--active */
+  /* Modifier: .mobile-toggle--active */
   .nav__mobile_toggle_active .nav__mobile_toggle_bar:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
@@ -593,7 +683,7 @@
   display: flex;
   flex-direction: column;
   
-  /* Override any inherited styles from nav__items */
+  /* Override any inherited styles from .items */
   transform: none;
   opacity: 1;
   visibility: visible;

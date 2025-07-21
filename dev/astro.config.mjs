@@ -6,7 +6,9 @@ import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bigshine-display.com',
-  integrations: [react(), sitemap({
+  integrations: [react({
+    experimentalReactChildren: true
+  }), sitemap({
     filter: (page) => !page.includes('/404'),
     customPages: [
       'https://bigshine-display.com/quote-request',
@@ -113,15 +115,11 @@ export default defineConfig({
       },
     },
     ssr: {
-      // Remove noExternal to avoid bundling issues
-      // noExternal: ['@astrojs/react'],
+      external: ['react', 'react-dom'],
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
-      alias: {
-        'react': 'react',
-        'react-dom': 'react-dom',
-      },
+      conditions: ['browser', 'import'],
     },
     css: {
       postcss: {

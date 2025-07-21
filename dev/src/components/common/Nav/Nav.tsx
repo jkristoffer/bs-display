@@ -125,109 +125,129 @@ export default function Nav({ currentPath = '/' }: NavProps) {
     setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
   };
 
-  // Simple NavLink component (no forwardRef)
-  const NavLink = ({ href, children, isActive: active, isCTA }: {
-    href: string;
-    children: React.ReactNode;
-    isActive?: boolean;
-    isCTA?: boolean;
-  }) => {
-    const className = `${styles.navLink} ${active ? styles.active : ''} ${isCTA ? styles.cta : ''}`;
-    return <a href={href} className={className}>{children}</a>;
-  };
 
   return (
     <nav className={styles.nav}>
-      <div className={styles.container}>
+      <div className={styles.nav__container}>
         {/* Logo */}
-        <a href="/" className={styles.logo}>
-          BigShine Display
-        </a>
+        <div className={styles.nav__logo}>
+          <a href="/" className={styles.nav__logo_link}>
+            <img
+              src="/assets/logo3.png"
+              alt="Big Shine Display Logo"
+              className={styles.nav__logo_image}
+            />
+          </a>
+        </div>
 
         {/* Desktop Navigation */}
-        {!isMobile && (
-          <div className={styles.desktopNav}>
-            {navItems.map((item) => (
-              <div key={item.href} className={styles.navItemWrapper}>
-                {item.hasDropdown ? (
-                  <>
-                    <button
-                      className={`${styles.navLink} ${isActive(item.href) ? styles.active : ''}`}
-                      onClick={() => toggleDropdown(item.label)}
-                      aria-expanded={activeDropdown === item.label}
-                    >
-                      {item.label}
-                      <span className={styles.dropdownIcon}>▼</span>
-                    </button>
-                    
-                    {/* Products Dropdown */}
-                    {item.label === 'Products' && (
-                      <ProductsMegaMenu 
-                        isOpen={activeDropdown === 'Products'}
-                        onClose={() => setActiveDropdown(null)}
-                      />
-                    )}
-                    
-                    {/* Resources Dropdown */}
-                    {item.label === 'Resources' && activeDropdown === 'Resources' && (
-                      <div className={styles.dropdown}>
-                        {resourcesItems.map((resource) => (
-                          <a
-                            key={resource.href}
-                            href={resource.href}
-                            className={styles.dropdownItem}
-                          >
-                            {resource.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <NavLink
-                    href={item.href}
-                    isActive={isActive(item.href)}
-                    isCTA={item.isCTA}
-                  >
-                    {item.label}
-                  </NavLink>
+        <div className={styles.nav__items}>
+          {navItems.map((item, index) => (
+            item.hasDropdown ? (
+              <div 
+                key={`dropdown-${index}`} 
+                className={styles.nav__dropdown}
+                onMouseEnter={() => !isMobile && setActiveDropdown(item.label)}
+                onMouseLeave={() => !isMobile && setActiveDropdown(null)}
+              >
+                <button
+                  className={styles.nav__dropdown_trigger}
+                  onClick={() => isMobile && toggleDropdown(item.label)}
+                  aria-expanded={activeDropdown === item.label}
+                >
+                  {item.label}
+                  <span className={styles.nav__dropdown_arrow}>▾</span>
+                </button>
+                
+                {/* Products Dropdown */}
+                {item.label === 'Products' && (
+                  <ProductsMegaMenu 
+                    isOpen={activeDropdown === 'Products'}
+                    onClose={() => setActiveDropdown(null)}
+                  />
+                )}
+                
+                {/* Resources Dropdown */}
+                {item.label === 'Resources' && activeDropdown === 'Resources' && (
+                  <div className={styles.nav__dropdown_menu}>
+                    {resourcesItems.map((resource) => (
+                      <a
+                        key={resource.href}
+                        href={resource.href}
+                        className={styles.nav__dropdown_item}
+                      >
+                        {resource.label}
+                      </a>
+                    ))}
+                  </div>
                 )}
               </div>
-            ))}
-            
-            {/* Search Button */}
-            <button
-              className={styles.searchButton}
-              onClick={() => setSearchOpen(true)}
-              aria-label="Open search"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M9 17A8 8 0 109 1a8 8 0 000 16zM19 19l-4.35-4.35"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        )}
+            ) : (
+              <a
+                key={`nav-${index}`}
+                href={item.href}
+                className={`${styles.nav__link} ${isActive(item.href) ? styles.nav__link_active : ''} ${item.isCTA ? styles.nav__link_cta : ''}`}
+              >
+                {item.label}
+              </a>
+            )
+          ))}
+        </div>
 
-        {/* Mobile Menu Button */}
-        {isMobile && (
+        {/* Desktop Search */}
+        <div className={styles.nav__search}>
           <button
-            className={styles.mobileMenuButton}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileMenuOpen}
+            className={styles.nav__searchButton}
+            onClick={() => setSearchOpen(true)}
+            aria-label="Open search"
           >
-            <span className={`${styles.hamburger} ${mobileMenuOpen ? styles.active : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M9 17A8 8 0 109 1a8 8 0 000 16zM19 19l-4.35-4.35"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
-        )}
+        </div>
+
+        {/* Mobile controls */}
+        <div className={styles.nav__mobileControls}>
+          {/* Mobile search button */}
+          <button
+            type="button"
+            className={styles.nav__searchButton}
+            aria-label="Open search"
+            onClick={() => setSearchOpen(true)}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+
+          {/* Mobile menu toggle */}
+          <button
+            id="mobile-menu-toggle"
+            className={`${styles.nav__mobile_toggle} ${mobileMenuOpen ? styles.nav__mobile_toggle_active : ''}`}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span className={styles.nav__mobile_toggle_bar}></span>
+            <span className={styles.nav__mobile_toggle_bar}></span>
+            <span className={styles.nav__mobile_toggle_bar}></span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}

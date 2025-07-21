@@ -52,6 +52,29 @@ export default function Nav({ currentPath = '/' }: NavProps) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      
+      // Apply scroll lock
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        // Restore scroll position
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [mobileMenuOpen]);
+
   // Keyboard navigation support
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -198,7 +221,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
           >
-            <span className={styles.hamburger}>
+            <span className={`${styles.hamburger} ${mobileMenuOpen ? styles.active : ''}`}>
               <span></span>
               <span></span>
               <span></span>
@@ -225,13 +248,80 @@ export default function Nav({ currentPath = '/' }: NavProps) {
             </div>
 
             <nav className={styles.mobileNav}>
-              {/* Mobile navigation content - simplified for Phase 2 */}
-              <div className={styles.mobileNavSection}>
-                <a href="/" className={styles.mobileNavLink}>Home</a>
-                <a href="/products" className={styles.mobileNavLink}>All Products</a>
-                <a href="/contact" className={`${styles.mobileNavLink} ${styles.cta}`}>
-                  Get Quote
-                </a>
+              {/* Mobile Search */}
+              <button 
+                className={styles.mobileSearchButton}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setSearchOpen(true);
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M9 17A8 8 0 109 1a8 8 0 000 16zM19 19l-4.35-4.35"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <span>Search</span>
+              </button>
+
+              {/* Mobile Navigation Grid */}
+              <div className={styles.mobileNavGrid}>
+                {/* Main Section */}
+                <div className={styles.mobileNavSection}>
+                  <h3 className={styles.sectionTitle}>Main</h3>
+                  <div className={styles.sectionLinks}>
+                    <a href="/" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Home
+                    </a>
+                    <a href="/products" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      All Products
+                    </a>
+                    <a href="/contact" className={`${styles.mobileNavLink} ${styles.cta}`} onClick={() => setMobileMenuOpen(false)}>
+                      Get Quote
+                    </a>
+                  </div>
+                </div>
+
+                {/* Products Section */}
+                <div className={styles.mobileNavSection}>
+                  <h3 className={styles.sectionTitle}>Products</h3>
+                  <div className={styles.sectionLinks}>
+                    <a href="/products/smartboards" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Smart Boards
+                    </a>
+                    <a href="/products/lecterns" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Lecterns
+                    </a>
+                    <a href="/products/accessories" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Accessories
+                    </a>
+                    <a href="/products/collaboration" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Collaboration
+                    </a>
+                  </div>
+                </div>
+
+                {/* Resources Section */}
+                <div className={styles.mobileNavSection}>
+                  <h3 className={styles.sectionTitle}>Resources</h3>
+                  <div className={styles.sectionLinks}>
+                    <a href="/blog" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Expert Articles
+                    </a>
+                    <a href="/use-cases" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Customer Stories
+                    </a>
+                    <a href="/smart-whiteboard-buying-guide" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Buying Guide
+                    </a>
+                    <a href="/quiz" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
+                      Product Finder
+                    </a>
+                  </div>
+                </div>
               </div>
             </nav>
           </div>

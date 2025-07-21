@@ -6,9 +6,7 @@ import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bigshine-display.com',
-  integrations: [react({
-    experimentalReactChildren: true
-  }), sitemap({
+  integrations: [react(), sitemap({
     filter: (page) => !page.includes('/404'),
     customPages: [
       'https://bigshine-display.com/quote-request',
@@ -22,7 +20,7 @@ export default defineConfig({
       // Custom serialization for specific pages
       const url = new URL(item.url);
       const pathname = url.pathname;
-      
+
       // Base configuration from item
       const sitemap = {
         url: item.url,
@@ -30,7 +28,7 @@ export default defineConfig({
         priority: item.priority,
         lastmod: item.lastmod,
       };
-      
+
       // Homepage (highest priority, changes weekly)
       if (pathname === '/') {
         sitemap.changefreq = 'weekly';
@@ -38,8 +36,8 @@ export default defineConfig({
       }
       // Product category pages (high priority, changes weekly)
       else if (pathname.match(/^\/products\/(lecterns|smartboards)\/?$/) ||
-               pathname === '/lecterns' ||
-               pathname === '/smartboards') {
+        pathname === '/lecterns' ||
+        pathname === '/smartboards') {
         sitemap.changefreq = 'weekly';
         sitemap.priority = 0.9;
       }
@@ -77,11 +75,11 @@ export default defineConfig({
       else if (pathname.startsWith('/api/')) {
         return undefined; // Exclude from sitemap
       }
-      
+
       return sitemap;
     },
   })],
-  
+
 
 
   image: {
@@ -105,14 +103,25 @@ export default defineConfig({
   vite: {
     plugins: [],
     optimizeDeps: {
-      include: ['react', 'react-dom', 'react/jsx-runtime'],
-      exclude: [],
+      include: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime'],
+      exclude: ['fsevents'],
+      esbuildOptions: {
+        target: 'es2020',
+        define: {
+          global: 'globalThis',
+        },
+      },
     },
     ssr: {
-      noExternal: ['@astrojs/react'],
+      // Remove noExternal to avoid bundling issues
+      // noExternal: ['@astrojs/react'],
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
+      alias: {
+        'react': 'react',
+        'react-dom': 'react-dom',
+      },
     },
     css: {
       postcss: {
@@ -183,11 +192,11 @@ export default defineConfig({
                     .join(' ')
                     .split(/\s+/)
                     .filter(cls => cls.length > 0);
-                  
+
                   // Also match CSS classes in style tags and imports
                   const cssMatches = content.match(/\.[a-zA-Z_-][a-zA-Z0-9_-]*/g) || [];
                   const cssClasses = cssMatches.map(match => match.substring(1));
-                  
+
                   return [...classes, ...cssClasses];
                 }
               }
@@ -198,41 +207,32 @@ export default defineConfig({
     },
     build: {
       rollupOptions: {
-        output: {
-          manualChunks(id) {
-            // Vendor libraries
-            if (id.includes('node_modules')) {
-              // Ensure React is in its own chunk and loaded first
-              if (id.includes('react-dom/client')) {
-                return 'react-dom-client';
-              }
-              if (id.includes('react-dom')) {
-                return 'react-dom';
-              }
-              if (id.includes('react/jsx-runtime')) {
-                return 'react-jsx-runtime';
-              }
-              if (id.includes('react')) {
-                return 'react';
-              }
-              if (id.includes('react-icons')) {
-                return 'vendor-icons';
-              }
-              return 'vendor';
-            }
-            
-            // Quiz components and logic
-            if (id.includes('src/components/quiz/')) {
-              return 'quiz';
-            }
-            
-            // Product filtering components
-            if (id.includes('src/components/products/FilterUI/') || 
-                id.includes('src/hooks/useProductFilters')) {
-              return 'filters';
-            }
-          }
-        }
+        external: ['fsevents'],
+        // Temporarily disable manual chunks to let Vite handle React bundling
+        // output: {
+        //   manualChunks(id) {
+        //     // Vendor libraries
+        //     if (id.includes('node_modules')) {
+        //       // Don't chunk React - let Vite handle it automatically
+        //       if (id.includes('react-icons')) {
+        //         return 'vendor-icons';
+        //       }
+        //       // Let other vendor libraries be auto-chunked
+        //       return 'vendor';
+        //     }
+
+        //     // Quiz components and logic
+        //     if (id.includes('src/components/quiz/')) {
+        //       return 'quiz';
+        //     }
+
+        //     // Product filtering components
+        //     if (id.includes('src/components/products/FilterUI/') ||
+        //       id.includes('src/hooks/useProductFilters')) {
+        //       return 'filters';
+        //     }
+        //   }
+        // }
       }
     },
     css: {

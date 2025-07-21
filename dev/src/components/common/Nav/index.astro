@@ -3,4 +3,11 @@ import Nav from './Nav.tsx';
 const currentPath = Astro.url.pathname;
 ---
 
-<Nav client:only="react" currentPath={currentPath} />
+<script>
+  // Polyfill for React scheduler if needed
+  if (typeof globalThis === 'undefined') {
+    window.globalThis = window;
+  }
+</script>
+
+<Nav client:visible currentPath={currentPath} />

@@ -24,8 +24,9 @@
   /* Enhanced interaction states */
   &:hover {
     color: var(--color-accent-primary);
-    background: var(--color-surface-muted);
+    background: rgba(255, 255, 255, 0.9);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
   &:active {
@@ -42,12 +43,15 @@
 
 .nav__dropdown_trigger_active {
   color: var(--color-accent-primary);
-  background: var(--color-surface-muted);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav__dropdown_trigger_expanded {
   color: var(--color-accent-primary);
-  background: var(--color-surface-muted);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
   
   .nav__dropdown_arrow {
     transform: rotate(180deg);

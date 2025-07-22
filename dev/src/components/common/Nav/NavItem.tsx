@@ -9,6 +9,8 @@ interface NavItemProps {
   children: ReactNode;
   onClick?: () => void;
   'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | boolean;
+  role?: 'menuitem' | 'button';
+  'aria-describedby'?: string;
 }
 
 const NavItem: React.FC<NavItemProps> = ({ 
@@ -17,7 +19,9 @@ const NavItem: React.FC<NavItemProps> = ({
   cta = false, 
   children, 
   onClick,
-  'aria-current': ariaCurrent 
+  'aria-current': ariaCurrent,
+  role,
+  'aria-describedby': ariaDescribedBy
 }) => {
   const linkClass = useMemo(() => [
     styles.nav__link,
@@ -31,7 +35,8 @@ const NavItem: React.FC<NavItemProps> = ({
       className={linkClass}
       onClick={onClick}
       aria-current={active ? (ariaCurrent || 'page') : undefined}
-      role={cta ? 'button' : undefined}
+      role={role || (cta ? 'button' : undefined)}
+      aria-describedby={ariaDescribedBy}
     >
       {children}
     </a>

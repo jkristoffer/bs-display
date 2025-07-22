@@ -288,4 +288,18 @@ $color-accent-secondary: #ffa726;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 600ms;
+
+  /* Z-Index System - Consistent Layer Management */
+  --z-base: 1;
+  --z-navigation: 100;
+  --z-dropdown: 1000;
+  --z-modal: 9000;
+  --z-overlay: 9999;
+  --z-tooltip: 10000;
+  
+  /* Navigation-specific z-indices */
+  --z-nav-main: var(--z-navigation);
+  --z-nav-dropdown: var(--z-dropdown);
+  --z-nav-mobile-overlay: var(--z-overlay);
+  --z-nav-mobile-toggle: var(--z-tooltip);
 }

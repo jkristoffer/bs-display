@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavItem from './NavItem';
 import NavButton from './NavButton';
 import ProductsMegaMenu from './ProductsMegaMenu';
 import SimpleSearch from './SimpleSearch';
 import styles from './Nav.module.scss';
+import { useResponsiveNav, useScrollLock, useKeyboardNavigation, useClickOutside } from './hooks';
 
 interface NavProps {
   currentPath?: string;
@@ -18,11 +19,12 @@ interface NavItem {
 
 // No forwardRef, no useImperativeHandle - fixing hydration error
 export default function Nav({ currentPath = '/' }: NavProps) {
-  // All state consolidated here
-  const [isMobile, setIsMobile] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // State management
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  
+  // Custom hooks for complex logic
+  const { isMobile, mobileMenuOpen, setMobileMenuOpen, toggleMobileMenu } = useResponsiveNav();
 
   // Navigation items configuration
   const navItems: NavItem[] = [
@@ -40,81 +42,22 @@ export default function Nav({ currentPath = '/' }: NavProps) {
     { href: '/quiz', label: 'Product Finder' }
   ];
 
-  // Responsive behavior
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-      if (window.innerWidth >= 1024) {
-        setMobileMenuOpen(false);
-      }
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Body scroll lock when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      // Save current scroll position
-      const scrollY = window.scrollY;
-      
-      // Apply scroll lock
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      
-      return () => {
-        // Restore scroll position
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        window.scrollTo(0, scrollY);
-      };
-    }
-  }, [mobileMenuOpen]);
-
-  // Keyboard navigation support
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Escape key - close all overlays
-      if (e.key === 'Escape') {
-        setActiveDropdown(null);
-        setSearchOpen(false);
-        setMobileMenuOpen(false);
-      }
-      
-      // Enter key on dropdown buttons
-      if (e.key === 'Enter' && e.target instanceof HTMLElement) {
-        const button = e.target.closest('button[aria-expanded]');
-        if (button) {
-          e.preventDefault();
-          button.click();
-        }
-      }
-    };
-    
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Click outside to close dropdowns
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const nav = document.querySelector(`.${styles.nav}`);
-      if (nav && !nav.contains(e.target as Node)) {
-        setActiveDropdown(null);
-      }
-    };
-    
-    if (activeDropdown) {
-      document.addEventListener('click', handleClickOutside);
-      return () => document.removeEventListener('click', handleClickOutside);
-    }
-  }, [activeDropdown]);
+  // Hook integrations - replacing complex useEffect blocks
+  useScrollLock(mobileMenuOpen);
+  
+  useKeyboardNavigation({
+    activeDropdown,
+    isMobile,
+    onCloseDropdown: () => setActiveDropdown(null),
+    onCloseSearch: () => setSearchOpen(false),
+    onCloseMobileMenu: () => setMobileMenuOpen(false)
+  });
+  
+  useClickOutside({
+    isActive: activeDropdown !== null,
+    onClickOutside: () => setActiveDropdown(null),
+    containerSelector: `.${styles.nav}`
+  });
 
   // Check if a path is active
   const isActive = (path: string) => {
@@ -129,7 +72,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
 
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} role="navigation" aria-label="Main navigation">
       <div className={styles.nav__container}>
         {/* Logo */}
         <div className={styles.nav__logo}>
@@ -143,7 +86,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
         </div>
 
         {/* Desktop Navigation */}
-        <div className={styles.nav__items}>
+        <div className={styles.nav__items} role="menubar" aria-label="Primary navigation">
           {navItems.map((item, index) => (
             item.hasDropdown ? (
               <div 
@@ -156,6 +99,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                   onClick={() => isMobile && toggleDropdown(item.label)}
                   expanded={activeDropdown === item.label}
                   aria-controls={`dropdown-${item.label.toLowerCase()}`}
+                  aria-label={`${item.label} menu`}
                 >
                   {item.label}
                 </NavButton>
@@ -174,12 +118,14 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                     className={styles.nav__dropdown_menu}
                     id="dropdown-resources"
                     role="menu"
+                    aria-label="Resources menu"
                   >
                     {resourcesItems.map((resource) => (
                       <NavItem
                         key={resource.href}
                         href={resource.href}
                         active={isActive(resource.href)}
+                        role="menuitem"
                       >
                         {resource.label}
                       </NavItem>
@@ -203,11 +149,12 @@ export default function Nav({ currentPath = '/' }: NavProps) {
         {/* Desktop Search */}
         <div className={styles.nav__search}>
           <button
+            type="button"
             className={styles.nav__searchButton}
             onClick={() => setSearchOpen(true)}
-            aria-label="Open search"
+            aria-label="Open search dialog"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path
                 d="M9 17A8 8 0 109 1a8 8 0 000 16zM19 19l-4.35-4.35"
                 stroke="currentColor"
@@ -224,7 +171,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
           <button
             type="button"
             className={styles.nav__searchButton}
-            aria-label="Open search"
+            aria-label="Open search dialog"
             onClick={() => setSearchOpen(true)}
           >
             <svg
@@ -234,10 +181,12 @@ export default function Nav({ currentPath = '/' }: NavProps) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              aria-hidden="true"
             >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
+            <span className={styles['sr-only']}>Search products and articles</span>
           </button>
 
           {/* Mobile menu toggle */}
@@ -247,7 +196,9 @@ export default function Nav({ currentPath = '/' }: NavProps) {
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-haspopup="dialog"
+            onClick={toggleMobileMenu}
+            type="button"
           >
             <span className={styles.nav__mobile_toggle_bar}></span>
             <span className={styles.nav__mobile_toggle_bar}></span>
@@ -264,6 +215,7 @@ export default function Nav({ currentPath = '/' }: NavProps) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="mobile-menu-title"
+          data-focus-trap="true"
         >
           {/* Backdrop */}
           <div 
@@ -317,40 +269,16 @@ export default function Nav({ currentPath = '/' }: NavProps) {
               role="navigation"
               aria-label="Mobile navigation"
             >
-              {/* Mobile Search Button */}
-              <div className={styles.nav__mobileSearchWrapper}>
-                <button 
-                  className={styles.nav__mobileSearchButton}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    setSearchOpen(true);
-                  }}
-                  type="button"
-                  aria-label="Open search"
-                >
-                  <svg 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 20 20" 
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <circle cx="9" cy="9" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
-                  </svg>
-                  <span>Search Products & Articles</span>
-                </button>
-              </div>
-
               {/* Mobile Navigation Grid */}
-              <div className={styles.nav__mobileGrid}>
+              <div className={styles.nav__mobileGrid} role="list" aria-label="Navigation sections">
                 {/* Main Section */}
                 <div 
                   className={styles.nav__mobileSection}
                   style={{ '--section-index': 0 } as React.CSSProperties}
+                  role="listitem"
                 >
-                  <h3 className={styles.nav__mobileSectionTitle}>Main</h3>
-                  <div className={styles.nav__mobileSectionLinks}>
+                  <h3 className={styles.nav__mobileSectionTitle} id="main-section">Main</h3>
+                  <div className={styles.nav__mobileSectionLinks} role="list" aria-labelledby="main-section">
                     <NavItem 
                       href="/" 
                       active={isActive('/')}
@@ -380,9 +308,10 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                 <div 
                   className={styles.nav__mobileSection}
                   style={{ '--section-index': 1 } as React.CSSProperties}
+                  role="listitem"
                 >
-                  <h3 className={styles.nav__mobileSectionTitle}>Products</h3>
-                  <div className={styles.nav__mobileSectionLinks}>
+                  <h3 className={styles.nav__mobileSectionTitle} id="products-section">Products</h3>
+                  <div className={styles.nav__mobileSectionLinks} role="list" aria-labelledby="products-section">
                     <NavItem 
                       href="/products/smartboards" 
                       active={isActive('/products/smartboards')}
@@ -418,9 +347,10 @@ export default function Nav({ currentPath = '/' }: NavProps) {
                 <div 
                   className={styles.nav__mobileSection}
                   style={{ '--section-index': 2 } as React.CSSProperties}
+                  role="listitem"
                 >
-                  <h3 className={styles.nav__mobileSectionTitle}>Resources</h3>
-                  <div className={styles.nav__mobileSectionLinks}>
+                  <h3 className={styles.nav__mobileSectionTitle} id="resources-section">Resources</h3>
+                  <div className={styles.nav__mobileSectionLinks} role="list" aria-labelledby="resources-section">
                     {resourcesItems.map((resource) => (
                       <NavItem 
                         key={resource.href}

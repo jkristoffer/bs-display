@@ -30,6 +30,7 @@ import fs from 'fs/promises';
 import fsSync from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import { Project, SyntaxKind } from 'ts-morph';
 
 class CodeReviewAgent {
   constructor(options = {}) {
@@ -66,6 +67,121 @@ class CodeReviewAgent {
         analysisMode: this.options.aiMode ? 'ai-generated' : 'human-written'
       }
     };
+
+    // Initialize TypeScript project for AST analysis
+    this.project = new Project({
+      compilerOptions: {
+        target: 'ES2020',
+        module: 'ESNext',
+        jsx: 'react-jsx',
+        allowJs: true,
+        skipLibCheck: true
+      }
+    });
+  }
+
+  // AST Utility Methods
+  getSourceFileAST(filePath, content) {
+    try {
+      // Clean up any existing source file
+      const existingFile = this.project.getSourceFile(filePath);
+      if (existingFile) {
+        this.project.removeSourceFile(existingFile);
+      }
+      
+      return this.project.createSourceFile(filePath, content, { overwrite: true });
+    } catch (error) {
+      // Fallback to basic AST if TypeScript parsing fails
+      return null;
+    }
+  }
+
+  // McCabe Cyclomatic Complexity Calculator
+  calculateCyclomaticComplexity(functionNode) {
+    let complexity = 1; // Base complexity
+
+    const decisionNodes = [
+      SyntaxKind.IfStatement,
+      SyntaxKind.WhileStatement,
+      SyntaxKind.ForStatement,
+      SyntaxKind.ForInStatement,
+      SyntaxKind.ForOfStatement,
+      SyntaxKind.DoWhileStatement,
+      SyntaxKind.SwitchStatement,
+      SyntaxKind.CaseClause,
+      SyntaxKind.ConditionalExpression, // ternary operator
+      SyntaxKind.CatchClause,
+      SyntaxKind.BinaryExpression // for && and ||
+    ];
+
+    functionNode.forEachDescendant((node) => {
+      if (decisionNodes.includes(node.getKind())) {
+        // Special handling for binary expressions (&&, ||)
+        if (node.getKind() === SyntaxKind.BinaryExpression) {
+          const operator = node.getOperatorToken().getKind();
+          if (operator === SyntaxKind.AmpersandAmpersandToken || 
+              operator === SyntaxKind.BarBarToken) {
+            complexity++;
+          }
+        } else {
+          complexity++;
+        }
+      }
+    });
+
+    return complexity;
+  }
+
+  // Complexity Classification
+  getComplexityGrade(complexity) {
+    if (complexity <= 5) return { grade: 'Simple', score: 100 };
+    if (complexity <= 10) return { grade: 'Moderate', score: 80 };
+    if (complexity <= 15) return { grade: 'Complex', score: 60 };
+    if (complexity <= 20) return { grade: 'Very Complex', score: 40 };
+    return { grade: 'Extremely Complex', score: 20 };
+  }
+
+  // Extract all functions from AST
+  extractFunctions(sourceFile) {
+    const functions = [];
+    
+    if (!sourceFile) return functions;
+
+    sourceFile.forEachDescendant((node) => {
+      if (node.getKind() === SyntaxKind.FunctionDeclaration ||
+          node.getKind() === SyntaxKind.FunctionExpression ||
+          node.getKind() === SyntaxKind.ArrowFunction ||
+          node.getKind() === SyntaxKind.MethodDeclaration) {
+        
+        const startLine = node.getStartLineNumber();
+        const endLine = node.getEndLineNumber();
+        const lineCount = endLine - startLine + 1;
+        const complexity = this.calculateCyclomaticComplexity(node);
+        const complexityGrade = this.getComplexityGrade(complexity);
+        
+        let name = 'anonymous';
+        if (node.getKind() === SyntaxKind.FunctionDeclaration) {
+          name = node.getName() || 'anonymous';
+        } else if (node.getKind() === SyntaxKind.MethodDeclaration) {
+          name = node.getName();
+        } else if (node.getParent()?.getKind() === SyntaxKind.VariableDeclaration) {
+          name = node.getParent().getName();
+        }
+
+        functions.push({
+          name,
+          lineCount,
+          complexity,
+          complexityGrade: complexityGrade.grade,
+          complexityScore: complexityGrade.score,
+          startLine,
+          endLine,
+          nodeKind: node.getKindName()
+        });
+      }
+    });
+
+    return functions;
   }
 
   loadConfiguration() {
@@ -201,7 +317,7 @@ class CodeReviewAgent {
       patterns: {
         pureFunctions: this.checkPureFunctions(content),
         immutability: this.checkImmutability(content),
-        functionComposition: this.checkFunctionComposition(content),
+        functionComposition: this.checkFunctionComposition(content, filePath),
         sideEffects: this.checkSideEffects(content),
         arrayMethods: this.checkArrayMethods(content)
       }
@@ -292,19 +408,55 @@ class CodeReviewAgent {
     return { score: Math.max(0, score), issues, recommendations };
   }
 
-  checkFunctionComposition(content) {
+  checkFunctionComposition(content, filePath) {
     const issues = [];
     const recommendations = [];
     let score = 100;
 
-    // Check for long functions (>50 lines)
-    const functions = content.match(/(?:function\s+\w+|const\s+\w+\s*=\s*(?:\([^)]*\)\s*=>|\([^)]*\)\s*:\s*[^=]*=>)|\w+\s*\([^)]*\)\s*{)[\s\S]*?(?=(?:function\s+\w+|const\s+\w+\s*=\s*(?:\([^)]*\)\s*=>|\([^)]*\)\s*:\s*[^=]*=>)|\w+\s*\([^)]*\)\s*{)|$)/g);
-    if (functions) {
-      const longFunctions = functions.filter(fn => fn.split('\n').length > 50);
-      if (longFunctions.length > 0) {
+    // Get AST-based function analysis
+    const sourceFile = this.getSourceFileAST(filePath, content);
+    const functions = this.extractFunctions(sourceFile);
+
+    // AST-based complexity analysis
+    if (functions.length > 0) {
+      const complexFunctions = functions.filter(fn => fn.complexity > 10);
+      const veryComplexFunctions = functions.filter(fn => fn.complexity > 15);
+      const longFunctions = functions.filter(fn => fn.lineCount > 50);
+
+      // Cyclomatic complexity scoring
+      if (veryComplexFunctions.length > 0) {
+        score -= 30;
+        issues.push(`${veryComplexFunctions.length} functions have very high complexity (>15)`);
+        recommendations.push('Refactor complex functions using smaller, focused functions');
+      } else if (complexFunctions.length > 0) {
         score -= 20;
+        issues.push(`${complexFunctions.length} functions have high complexity (>10)`);
+        recommendations.push('Consider breaking down complex functions into smaller parts');
+      }
+
+      // Function length analysis
+      if (longFunctions.length > 0) {
+        score -= 15;
         issues.push(`${longFunctions.length} functions exceed 50 lines`);
         recommendations.push('Break large functions into smaller, composable functions');
+      }
+
+      // Add detailed complexity breakdown to issues for very complex functions
+      veryComplexFunctions.forEach(fn => {
+        issues.push(`Function '${fn.name}' has complexity ${fn.complexity} (${fn.complexityGrade})`);
+      });
+    }
+
+    // Fallback to regex analysis if AST fails
+    if (!sourceFile) {
+      const regexFunctions = content.match(/(?:function\s+\w+|const\s+\w+\s*=\s*(?:\([^)]*\)\s*=>|\([^)]*\)\s*:\s*[^=]*=>)|\w+\s*\([^)]*\)\s*{)[\s\S]*?(?=(?:function\s+\w+|const\s+\w+\s*=\s*(?:\([^)]*\)\s*=>|\([^)]*\)\s*:\s*[^=]*=>)|\w+\s*\([^)]*\)\s*{)|$)/g);
+      if (regexFunctions) {
+        const longFunctions = regexFunctions.filter(fn => fn.split('\n').length > 50);
+        if (longFunctions.length > 0) {
+          score -= 20;
+          issues.push(`${longFunctions.length} functions exceed 50 lines (regex analysis)`);
+          recommendations.push('Break large functions into smaller, composable functions');
+        }
       }
     }
 
@@ -325,7 +477,7 @@ class CodeReviewAgent {
       recommendations.push('Use array methods like map, filter, reduce for data transformations');
     }
 
-    return { score: Math.max(0, score), issues, recommendations };
+    return { score: Math.max(0, score), issues, recommendations, functions };
   }
 
   checkSideEffects(content) {

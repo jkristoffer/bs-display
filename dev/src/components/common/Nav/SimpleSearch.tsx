@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSearch } from '../Search/useSearch';
+import type { SearchResult as SearchIndexResult } from '../Search/useSearch';
 import styles from './SimpleSearch.module.scss';
 
 interface SearchResult {
-  id: number;
+  id: string;
   title: string;
-  type: 'product' | 'article' | 'page';
+  type: 'product' | 'blog' | 'usecase' | 'page';
   href: string;
   description?: string;
   category?: string;
@@ -17,12 +19,31 @@ interface SimpleSearchProps {
 
 // Enhanced search component with keyboard navigation and better UX
 export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  
+  // Use the real search hook
+  const {
+    query,
+    results: searchResults,
+    isSearching,
+    handleSearch
+  } = useSearch({
+    minQueryLength: 2,
+    maxResults: 8,
+    debounceMs: 300
+  });
+
+  // Convert search results to SimpleSearch format
+  const results: SearchResult[] = searchResults.map((result: SearchIndexResult) => ({
+    id: result.id,
+    title: result.title,
+    type: result.type,
+    href: result.url,
+    description: result.description,
+    category: result.category
+  }));
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -30,72 +51,10 @@ export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
     }
   }, [isOpen]);
 
+  // Reset selected index when results change
   useEffect(() => {
-    if (query.length >= 2) {
-      setIsSearching(true);
-      setSelectedIndex(-1);
-      
-      // Enhanced mock search with more realistic data
-      const timer = setTimeout(() => {
-        const mockResults: SearchResult[] = [
-          { 
-            id: 1, 
-            title: 'Smart Board 86" Interactive Display', 
-            type: 'product', 
-            href: '/products/smartboards/smart-mx-v5-86',
-            description: '4K UHD touch display with multi-touch support',
-            category: 'Interactive Displays'
-          },
-          { 
-            id: 2, 
-            title: 'Interactive Display Buying Guide', 
-            type: 'article', 
-            href: '/smart-whiteboard-buying-guide',
-            description: 'Complete guide to choosing the right interactive display',
-            category: 'Buying Guides'
-          },
-          { 
-            id: 3, 
-            title: 'Smart Lectern Solutions', 
-            type: 'product', 
-            href: '/products/lecterns',
-            description: 'Professional lecterns with integrated technology',
-            category: 'Lecterns'
-          },
-          { 
-            id: 4, 
-            title: 'How Smart Boards Work', 
-            type: 'article', 
-            href: '/blog/how-smartboards-work',
-            description: 'Understanding the technology behind interactive displays',
-            category: 'Articles'
-          },
-          { 
-            id: 5, 
-            title: 'Product Finder Quiz', 
-            type: 'page', 
-            href: '/quiz',
-            description: 'Find the perfect display for your needs',
-            category: 'Tools'
-          }
-        ];
-
-        // Filter results based on query
-        const filteredResults = mockResults.filter(result =>
-          result.title.toLowerCase().includes(query.toLowerCase()) ||
-          result.description?.toLowerCase().includes(query.toLowerCase()) ||
-          result.category?.toLowerCase().includes(query.toLowerCase())
-        );
-
-        setResults(filteredResults.slice(0, 8)); // Limit to 8 results
-        setIsSearching(false);
-      }, 400);
-      return () => clearTimeout(timer);
-    } else {
-      setResults([]);
-      setSelectedIndex(-1);
-    }
-  }, [query]);
+    setSelectedIndex(-1);
+  }, [searchResults]);
 
   // Enhanced keyboard navigation
   useEffect(() => {
@@ -192,7 +151,7 @@ export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
               className={styles.searchInput}
               placeholder="Search products, articles & resources..."
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
               aria-label="Search products and articles"
               aria-describedby={results.length > 0 ? "search-results" : undefined}
               autoComplete="off"
@@ -203,8 +162,7 @@ export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
                 type="button"
                 className={styles.searchClear}
                 onClick={() => {
-                  setQuery('');
-                  setResults([]);
+                  handleSearch('');
                   inputRef.current?.focus();
                 }}
                 aria-label="Clear search"
@@ -252,7 +210,7 @@ export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
                     <div className={styles.resultContent}>
                       <div className={styles.resultHeader}>
                         <span className={`${styles.resultType} ${styles[`type-${result.type}`]}`}>
-                          {result.type}
+                          {result.type === 'blog' ? 'article' : result.type}
                         </span>
                         <span className={styles.resultCategory}>{result.category}</span>
                       </div>
@@ -293,7 +251,7 @@ export default function SimpleSearch({ isOpen, onClose }: SimpleSearchProps) {
                   key={suggestion}
                   type="button"
                   className={styles.suggestionTag}
-                  onClick={() => setQuery(suggestion.toLowerCase())}
+                  onClick={() => handleSearch(suggestion.toLowerCase())}
                 >
                   {suggestion}
                 </button>

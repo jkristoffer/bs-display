@@ -1,0 +1,168 @@
+{
+  "projectName": "BS Display - Astro E-commerce Platform",
+  "projectType": "astro-ecommerce",
+  "framework": "astro",
+  "cssFramework": "scss-modules",
+  "designSystem": "modern-gradient-system",
+  "version": "1.0.0",
+  
+  "allowedPatterns": {
+    "globalUtilities": [
+      "gradient-bg-*",
+      "gradient-text-*",
+      "glass-*",
+      "animate-*",
+      "button-*",
+      "icon-container-*",
+      "heading-*",
+      "text-fluid-*",
+      "container",
+      "grid",
+      "flex"
+    ],
+    "cssVariables": [
+      "--gradient-*",
+      "--glass-*",
+      "--spacing-*",
+      "--font-size-*",
+      "--color-*",
+      "--border-radius-*"
+    ],
+    "scssVariables": [
+      "$*-color",
+      "$*-size",
+      "$*-spacing",
+      "$breakpoint-*"
+    ],
+    "bemNaming": {
+      "componentPattern": "^[a-z][a-zA-Z0-9]*$",
+      "elementPattern": "^[a-z][a-zA-Z0-9]*(__[a-z][a-zA-Z0-9]*)?$",
+      "modifierPattern": "^[a-z][a-zA-Z0-9]*(--[a-z][a-zA-Z0-9]*)?$"
+    }
+  },
+  
+  "preferredPatterns": {
+    "gradientBackgrounds": {
+      "score": 10,
+      "patterns": ["gradient-bg-primary", "gradient-bg-success", "gradient-bg-warning", "gradient-bg-info"],
+      "description": "Use global gradient background utilities"
+    },
+    "fluidTypography": {
+      "score": 8,
+      "patterns": ["--font-size-h[1-6]", "heading-hero", "heading-section"],
+      "description": "Use fluid typography for responsive design"
+    },
+    "designTokens": {
+      "score": 15,
+      "patterns": ["var\\(--[a-z-]+\\)", "\\$[a-z-]+"],
+      "description": "Use design tokens for consistent theming"
+    },
+    "glassmorphism": {
+      "score": 5,
+      "patterns": ["glass-light", "glass-dark", "glass-strong"],
+      "description": "Use glassmorphism utilities for modern effects"
+    },
+    "modernAnimations": {
+      "score": 5,
+      "patterns": ["animate-float", "animate-pulse", "animate-fade-up", "animate-rotate"],
+      "description": "Use hardware-accelerated animations"
+    }
+  },
+  
+  "discouragedPatterns": {
+    "hardcodedColors": {
+      "penalty": 15,
+      "patterns": ["#[0-9a-fA-F]{3,8}(?!\\s*;?\\s*\\/\\/.*var)"],
+      "exceptions": ["transparent", "inherit", "currentColor"],
+      "description": "Avoid hardcoded colors - use design tokens"
+    },
+    "hardcodedSizes": {
+      "penalty": 10,
+      "patterns": ["\\d+px(?!\\s*;?\\s*\\/\\/.*var)"],
+      "exceptions": ["0px", "1px", "2px"],
+      "description": "Use spacing/sizing variables for consistency"
+    },
+    "importantDeclarations": {
+      "penalty": 12,
+      "patterns": ["!important"],
+      "description": "Avoid !important - improve selector specificity instead"
+    },
+    "universalSelectors": {
+      "penalty": 25,
+      "patterns": ["\\*[^a-zA-Z]"],
+      "description": "Universal selectors impact performance"
+    },
+    "deepNesting": {
+      "penalty": 20,
+      "threshold": 4,
+      "description": "Keep nesting depth ≤4 levels for maintainability"
+    }
+  },
+  
+  "componentStandards": {
+    "scssModules": {
+      "required": true,
+      "naming": "ComponentName.module.scss",
+      "import": "import styles from './ComponentName.module.scss'",
+      "usage": "className={styles.componentName}",
+      "bemCompliance": 0.8
+    },
+    "organizationPatterns": {
+      "fileStructure": "/src/components/[feature]/ComponentName/",
+      "stylesLocation": "ComponentName.module.scss",
+      "globalStyles": "src/styles/",
+      "maxFileSize": 50000,
+      "maxLines": 1000
+    }
+  },
+  
+  "performanceRules": {
+    "selectorComplexity": {
+      "maxParts": 4,
+      "penalty": 15
+    },
+    "nestingDepth": {
+      "maxDepth": 4,
+      "penalty": 20
+    },
+    "animationDuration": {
+      "maxDuration": "5s",
+      "penalty": 10
+    },
+    "vendorPrefixes": {
+      "autoprefix": true,
+      "maxManual": 5
+    }
+  },
+  
+  "qualityThresholds": {
+    "excellent": 90,
+    "good": 80,
+    "acceptable": 70,
+    "failing": 60
+  },
+  
+  "scoring": {
+    "weights": {
+      "selectorComplexity": 0.20,
+      "nestingDepth": 0.15,
+      "variableUsage": 0.15,
+      "duplicates": 0.15,
+      "performance": 0.20,
+      "maintainability": 0.15
+    },
+    "bonuses": {
+      "gradientSystemUsage": 10,
+      "fluidTypography": 8,
+      "designTokenUsage": 15,
+      "modernCSS": 5,
+      "bemCompliance": 10
+    }
+  },
+  
+  "documentation": {
+    "styleGuide": "docs/development/standards/standards/styling-patterns.md",
+    "componentStandards": "docs/development/standards/standards/component-standards.md",
+    "gradientSystem": "docs/development/standards/standards/GRADIENT_SYSTEM_QUICK_REFERENCE.md"
+  }
+}

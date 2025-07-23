@@ -4,7 +4,7 @@ import '../styles/index.scss';
 import '../styles/sw-buying-guide.scss';
 
 // Import components
-import PageHeader from '../components/common/page-header/index.astro';
+import PageHeaderModern from '../components/common/PageHeaderModern.astro';
 import {
   TableOfContents,
   WhatIsSection,
@@ -43,9 +43,12 @@ const tocItems = [
 
 <MainLayout title={title} description={description}>
   <div class="whiteboard-guide">
-    <PageHeader
+    <PageHeaderModern
       title="Smart Whiteboard Buying Guide"
       subtitle="Everything You Need to Know Before Choosing the Right Interactive Display"
+      badge="Ultimate Guide"
+      badgeIcon="📚"
+      theme="blue"
     />
 
     <TableOfContents items={tocItems} />

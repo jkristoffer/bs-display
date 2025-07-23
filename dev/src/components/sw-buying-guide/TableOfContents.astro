@@ -13,17 +13,51 @@ const { items } = Astro.props;
 
 <section class="table-of-contents">
   <div class="container">
-    <h2>Table of Contents</h2>
-    <nav class="toc-nav">
-      <ul>
+    <div class="toc-header">
+      <h2 class="toc-title">
+        <span class="title-icon">📋</span>
+        Quick Navigation
+      </h2>
+      <p class="toc-subtitle">
+        Jump to any section in this comprehensive guide
+      </p>
+    </div>
+
+    <nav class="toc-nav" aria-label="Table of contents navigation">
+      <div class="toc-grid">
         {
-          items.map((item) => (
-            <li>
-              <a href={item.href}>{item.text}</a>
-            </li>
+          items.map((item, index) => (
+            <a href={item.href} class="toc-card" data-index={index + 1}>
+              <div class="card-content">
+                <div class="card-text">
+                  <div class="card-number">
+                    {(index + 1).toString().padStart(2, '0')}
+                  </div>
+                  <h3 class="card-title">{item.text}</h3>
+                </div>
+                <div class="card-arrow">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 18L15 12L9 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="card-bg-glow" />
+            </a>
           ))
         }
-      </ul>
+      </div>
     </nav>
   </div>
 </section>

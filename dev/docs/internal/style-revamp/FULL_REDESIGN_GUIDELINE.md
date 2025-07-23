@@ -111,7 +111,6 @@ This document provides comprehensive guidelines for a full redesign of the BigSh
 ```scss
 // Page-Level Spacing
 --space-section: clamp(4rem, 10vw, 8rem);
---space-hero: clamp(6rem, 15vw, 12rem);
 
 // Component Spacing
 --space-card: clamp(1.5rem, 3vw, 2rem);

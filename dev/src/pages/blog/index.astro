@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
-import PageHeader from '../../components/common/page-header/index.astro';
+import PageHeaderModern from '../../components/common/PageHeaderModern.astro';
 import type { CollectionEntry } from 'astro:content';
 
 // Get all blog posts and sort by publish date (newest first)
@@ -51,17 +51,15 @@ function formatDate(date: Date): string {
   {/* Add prev/next links for SEO and accessibility */}
   {prevPageUrl && <link rel="prev" href={prevPageUrl} />}
   {nextPageUrl && <link rel="next" href={nextPageUrl} />}
-  <PageHeader
+  
+  <PageHeaderModern
     title="Display Technology Blog"
     subtitle="Insights, guides, and industry news about smart display technologies"
+    badge="Latest Articles"
+    badgeIcon="📚"
+    theme="blue"
   />
   
-  <!-- Background Elements -->
-  <div class="blog-bg-elements">
-    <div class="bg-pattern"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-  </div>
 
   <section class="blog-listing-modern">
     <div class="blog-container">
@@ -369,47 +367,7 @@ function formatDate(date: Date): string {
   </script>
 
   <style lang="scss">
-    /* Blog Background Elements */
-    .blog-bg-elements {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
 
-    .bg-pattern {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
-    }
-
-    .bg-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.05;
-    }
-
-    .bg-glow-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-      top: -250px;
-      right: -250px;
-      animation: glow1Float 20s ease-in-out infinite;
-    }
-
-    .bg-glow-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, #10b981 0%, transparent 70%);
-      bottom: -200px;
-      left: -200px;
-      animation: glow2Float 15s ease-in-out infinite reverse;
-    }
 
     /* Modern Blog Layout */
     .blog-listing-modern {

@@ -136,7 +136,6 @@ $color-accent-secondary: #ffa726;
   
   /* Enhanced Fluid Spacing System for Redesign */
   --space-section: clamp(4rem, 10vw, 8rem);
-  --space-hero: clamp(6rem, 15vw, 12rem);
   --space-card: clamp(1.5rem, 3vw, 2rem);
   --space-element: clamp(1rem, 2vw, 1.5rem);
   
@@ -153,7 +152,6 @@ $color-accent-secondary: #ffa726;
   --spacing-inline: clamp(1rem, 5vw, 4rem);
   
   /* Contextual Fluid Spacing */
-  --spacing-hero: var(--space-hero);
   --spacing-section-gap: clamp(2rem, 6vw, 8rem);
   --spacing-component-gap: clamp(1rem, 3vw, 3rem);
   --spacing-card-padding: var(--space-card);

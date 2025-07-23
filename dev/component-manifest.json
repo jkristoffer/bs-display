@@ -1,5 +1,216 @@
 [
   {
+    "name": "AdminHeader",
+    "path": "src/components/admin/AdminHeader/AdminHeader.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "AdminSidebar",
+    "path": "src/components/admin/AdminSidebar/AdminSidebar.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "activeItem",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "DataTable",
+    "path": "src/components/admin/DataTable/DataTable.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "data",
+        "type": "T[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "columns",
+        "type": "Column<T>[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ExportModal",
+    "path": "src/components/admin/ExportModal/ExportModal.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "dataType",
+        "type": "\"overview\" | \"products\" | \"visitors\" | \"journeys\"",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "LoadingState",
+    "path": "src/components/admin/LoadingState/LoadingState.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "message",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"small\" | \"medium\" | \"large\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "MetricCard",
+    "path": "src/components/admin/MetricCard/MetricCard.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "string | number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "change",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "changeLabel",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "color",
+        "type": "\"primary\" | \"success\" | \"warning\" | \"danger\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ChartWrapper",
+    "path": "src/components/admin/charts/ChartWrapper.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/node_modules/@types/react/index\").ReactElement<any, string | import(\"/Users/kristoffersanio/git/bs-display/dev/node_modules/@types/react/index\").JSXElementConstructor<any>>",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "DemoOverview",
+    "path": "src/components/admin/dashboards/DemoOverview.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "JourneysDashboard",
+    "path": "src/components/admin/dashboards/JourneysDashboard.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "OverviewDashboard",
+    "path": "src/components/admin/dashboards/OverviewDashboard.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ProductsDashboard",
+    "path": "src/components/admin/dashboards/ProductsDashboard.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "RealtimeDashboard",
+    "path": "src/components/admin/dashboards/RealtimeDashboard.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
     "name": "RelatedBlogPosts",
     "path": "src/components/blog/RelatedBlogPosts.astro",
     "type": "Astro",
@@ -378,7 +589,7 @@
     "props": [
       {
         "name": "activeCategory",
-        "type": "CategoryType",
+        "type": "CategoryType | null",
         "required": true,
         "description": ""
       },
@@ -589,26 +800,262 @@
     "name": "Nav",
     "path": "src/components/common/Nav/Nav.tsx",
     "type": "React",
-    "props": [],
+    "props": [
+      {
+        "name": "currentPath",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "NavButton",
+    "path": "src/components/common/Nav/NavButton.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "type": "(() => void) | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "expanded",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-label",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-expanded",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-controls",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
     "name": "NavItem",
     "path": "src/components/common/Nav/NavItem.tsx",
     "type": "React",
-    "props": [],
+    "props": [
+      {
+        "name": "href",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cta",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClick",
+        "type": "(() => void) | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-current",
+        "type": "boolean | \"page\" | \"step\" | \"location\" | \"date\" | \"time\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "role",
+        "type": "\"menuitem\" | \"button\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "aria-describedby",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "NavWrapper",
+    "path": "src/components/common/Nav/NavWrapper.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "currentPath",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
     "name": "ProductsMegaMenu",
     "path": "src/components/common/Nav/ProductsMegaMenu.tsx",
     "type": "React",
-    "props": [],
+    "props": [
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "SimpleSearch",
+    "path": "src/components/common/Nav/SimpleSearch.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onClose",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      }
+    ],
     "description": ""
   },
   {
     "name": "index",
     "path": "src/components/common/Nav/index.astro",
+    "type": "Astro",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "ClientNav",
+    "path": "src/components/common/Nav.backup/ClientNav.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "currentPath",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "MobileMenuGrid",
+    "path": "src/components/common/Nav.backup/MobileMenuGrid.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "Nav",
+    "path": "src/components/common/Nav.backup/Nav.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "NavButton",
+    "path": "src/components/common/Nav.backup/NavButton.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "NavItem",
+    "path": "src/components/common/Nav.backup/NavItem.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "NavSection",
+    "path": "src/components/common/Nav.backup/NavSection.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "NavWrapper",
+    "path": "src/components/common/Nav.backup/NavWrapper.tsx",
+    "type": "React",
+    "props": [
+      {
+        "name": "currentPath",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ProductsMegaMenu",
+    "path": "src/components/common/Nav.backup/ProductsMegaMenu.tsx",
+    "type": "React",
+    "props": [],
+    "description": ""
+  },
+  {
+    "name": "index",
+    "path": "src/components/common/Nav.backup/index.astro",
     "type": "Astro",
     "props": [],
     "description": ""
@@ -1683,7 +2130,7 @@
     "props": [
       {
         "name": "model",
-        "type": "import(\"/Users/kristoffersanio/git/bs-display/dev/src/types/product\").ProductModel",
+        "type": "ProductModel",
         "required": true,
         "description": ""
       },
@@ -1736,6 +2183,62 @@
       {
         "name": "productType",
         "type": "\"smartboards\" | \"lecterns\" | \"accessories\" | \"collaboration\" | undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "description": ""
+  },
+  {
+    "name": "ProductsNavigationBar",
+    "path": "src/components/products/ProductsNavigationBar/ProductsNavigationBar.astro",
+    "type": "Astro",
+    "props": [
+      {
+        "name": "breadcrumbItems",
+        "type": "{ label: string; path?: string; }[] | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "activeCategory",
+        "type": "CategoryType | null | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showCounts",
+        "type": "boolean | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "breadcrumbItems",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "activeCategory",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showCounts",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "any",
         "required": false,
         "description": ""
       }
@@ -2087,8 +2590,20 @@
         "description": ""
       },
       {
+        "name": "subtitle",
+        "type": "string | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
         "name": "bgClass",
-        "type": "\"\" | \"bg-light\" | \"bg-accent\" | undefined",
+        "type": "\"\" | \"bg-light\" | \"bg-accent\" | \"bg-glass\" | undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"default\" | \"hero\" | \"minimal\" | undefined",
         "required": false,
         "description": ""
       },
@@ -2105,7 +2620,19 @@
         "description": ""
       },
       {
+        "name": "subtitle",
+        "type": "any",
+        "required": true,
+        "description": ""
+      },
+      {
         "name": "bgClass",
+        "type": "any",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variant",
         "type": "any",
         "required": false,
         "description": ""

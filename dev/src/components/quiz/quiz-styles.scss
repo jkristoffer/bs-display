@@ -4,12 +4,12 @@
 
 // Error Boundary Styles
 .quiz-error-boundary {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-16);
   text-align: center;
   background: #f8f9fa;
   border-radius: 8px;
   border: 1px solid #e9ecef;
-  margin: var(--spacing-lg) 0;
+  margin: var(--spacing-12) 0;
 
   .quiz-error-content {
     max-width: 500px;
@@ -17,22 +17,22 @@
 
     h3 {
       color: var(--color-text-primary);
-      font-size: var(--font-size-h3);
-      margin-bottom: var(--spacing-md);
+      font-size: var(--text-subsection);
+      margin-bottom: var(--spacing-8);
     }
 
     p {
       color: var(--color-text-primary);
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       opacity: 0.8;
     }
   }
 
   .quiz-error-actions {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
     justify-content: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
 
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
@@ -42,20 +42,20 @@
 
   .quiz-error-details {
     text-align: left;
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-12);
 
     summary {
       cursor: pointer;
       font-weight: 600;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
     }
   }
 
   .quiz-error-stack {
     background: #f1f3f4;
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     border-radius: 4px;
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
@@ -72,26 +72,26 @@
   .hybrid-badge {
     display: inline-flex;
     align-items: center;
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-2) var(--spacing-8);
     border-radius: 16px;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
 
     .hybrid-badge-label {
       color: white;
       font-weight: 600;
-      font-size: var(--font-size-small);
+      font-size: var(--text-small);
     }
   }
 
   // Hybrid explanation styles
   .hybrid-explanation {
     background-color: var(--color-surface);
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     border-radius: 8px;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-8) 0;
 
     .hybrid-note {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-8);
 
       .category-highlight {
         font-weight: 600;
@@ -99,12 +99,12 @@
     }
 
     .hybrid-balance {
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-8);
 
       .balance-label {
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         font-weight: 600;
-        margin-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-2);
       }
 
       .balance-bars {
@@ -127,7 +127,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding: 0 var(--spacing-xs);
+            padding: 0 var(--spacing-2);
           }
         }
       }
@@ -136,38 +136,38 @@
 
   // Score visualization
   .score-breakdown {
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-16);
     background-color: var(--color-surface);
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     border-radius: 8px;
 
     .score-bars {
       .score-bar-container {
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: var(--spacing-4);
 
         .score-label {
           display: flex;
           justify-content: space-between;
-          margin-bottom: var(--spacing-xs);
+          margin-bottom: var(--spacing-2);
 
           .category-name {
             font-weight: 600;
           }
 
           .score-value {
-            color: var(--color-accent-primary);
+            color: var(--color-primary);
           }
         }
 
         .score-bar-wrapper {
           height: 12px;
-          background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+          background-color: rgba(var(--color-primary), 0.1);
           border-radius: 6px;
           overflow: hidden;
 
           .score-bar {
             height: 100%;
-            background-color: var(--color-accent-primary);
+            background-color: var(--color-primary);
             border-radius: 6px;
             transition: width 0.5s ease;
 
@@ -182,29 +182,29 @@
 
   // Alternative options
   .alternative-recommendation {
-    margin-top: var(--spacing-lg);
-    padding: var(--spacing-md);
+    margin-top: var(--spacing-12);
+    padding: var(--spacing-8);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background-color: var(--color-surface);
 
     .secondary-option {
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-8);
 
       h6 {
         color: var(--color-accent-secondary);
-        margin-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-2);
       }
 
       .secondary-cta {
         display: inline-block;
-        margin-top: var(--spacing-sm);
-        padding: var(--spacing-xs) var(--spacing-md);
+        margin-top: var(--spacing-4);
+        padding: var(--spacing-2) var(--spacing-8);
         border-radius: 4px;
         background-color: var(--color-accent-secondary);
         color: white;
         font-weight: 600;
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         cursor: pointer;
         border: none;
         transition: background-color 0.2s ease;
@@ -221,13 +221,13 @@
 
   // Simple Product display styles for quiz
   .product-recommendations {
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-16);
 
     .product-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
+      gap: var(--spacing-12);
+      margin-top: var(--spacing-12);
     }
   }
 
@@ -236,30 +236,30 @@
   .quiz-results,
   .questions-container {
     background-color: white;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   // Question styling
   .quiz-question {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
 
     .question-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
 
       h3 {
-        font-size: var(--font-size-h3);
+        font-size: var(--text-subsection);
         color: var(--color-text-primary);
       }
 
       .question-status {
-        font-size: var(--font-size-small);
-        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--text-small);
+        padding: var(--spacing-2) var(--spacing-4);
         border-radius: 12px;
         background-color: #f0f0f0;
         color: #666;
@@ -267,19 +267,19 @@
     }
 
     &.question-answered .question-status {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-      color: var(--color-accent-primary);
+      background-color: rgba(var(--color-primary), 0.1);
+      color: var(--color-primary);
     }
 
     .options-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-md);
+      gap: var(--spacing-4);
+      margin-top: var(--spacing-8);
     }
 
     .option-button {
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
       border: 1px solid var(--color-border);
       border-radius: 8px;
       background-color: white;
@@ -293,20 +293,20 @@
       }
 
       &.selected {
-        border-color: var(--color-accent-primary);
-        background-color: rgba(var(--color-accent-primary-rgb), 0.05);
-        box-shadow: 0 4px 8px rgba(var(--color-accent-primary-rgb), 0.1);
+        border-color: var(--color-primary);
+        background-color: rgba(var(--color-primary), 0.05);
+        box-shadow: 0 4px 8px rgba(var(--color-primary), 0.1);
       }
     }
 
     .selection-info {
-      margin-top: var(--spacing-sm);
-      font-size: var(--font-size-small);
+      margin-top: var(--spacing-4);
+      font-size: var(--text-small);
       color: #666;
     }
 
     .question-divider {
-      margin-top: var(--spacing-lg);
+      margin-top: var(--spacing-12);
       border: 0;
       height: 1px;
       background-color: var(--color-border);
@@ -316,13 +316,13 @@
   // CTA Button styles
   .cta-button {
     display: inline-block;
-    padding: var(--spacing-md) var(--spacing-lg);
-    background-color: var(--color-accent-primary);
+    padding: var(--spacing-8) var(--spacing-12);
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
@@ -332,7 +332,7 @@
     &:hover {
       background-color: color.adjust($color-accent-primary, $lightness: -10%);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(var(--color-accent-primary-rgb), 0.3);
+      box-shadow: 0 4px 12px rgba(var(--color-primary), 0.3);
     }
 
     &:active {
@@ -343,15 +343,15 @@
   // Result header styles
   .result-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+    margin-bottom: var(--spacing-16);
+    padding: var(--spacing-16) var(--spacing-12) var(--spacing-12);
     background: linear-gradient(
       135deg,
-      rgba(var(--color-accent-primary-rgb), 0.03) 0%,
-      rgba(var(--color-accent-secondary-rgb), 0.02) 100%
+      rgba(var(--color-primary), 0.03) 0%,
+      rgba(var(--color-secondary), 0.02) 100%
     );
     border-radius: 12px;
-    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--color-primary), 0.1);
     position: relative;
     overflow: hidden;
 
@@ -365,7 +365,7 @@
       bottom: 0;
       background: radial-gradient(
         circle at 20% 20%,
-        rgba(var(--color-accent-primary-rgb), 0.05) 0%,
+        rgba(var(--color-primary), 0.05) 0%,
         transparent 50%
       );
       pointer-events: none;
@@ -378,12 +378,12 @@
       background: linear-gradient(
         135deg,
         var(--color-text-primary) 0%,
-        var(--color-accent-primary) 100%
+        var(--color-primary) 100%
       );
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-8);
       line-height: 1.2;
       letter-spacing: -0.02em;
       position: relative;
@@ -392,10 +392,10 @@
 
     // Improved description styling
     > p {
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
       color: var(--color-text-secondary);
       line-height: 1.6;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
@@ -407,9 +407,9 @@
     .hybrid-badge {
       display: inline-flex;
       align-items: center;
-      padding: var(--spacing-sm) var(--spacing-lg);
+      padding: var(--spacing-4) var(--spacing-12);
       border-radius: 24px;
-      margin: var(--spacing-sm) 0 var(--spacing-md);
+      margin: var(--spacing-4) 0 var(--spacing-8);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       position: relative;
       z-index: 1;
@@ -418,14 +418,14 @@
 
       &::before {
         content: '🎯';
-        margin-right: var(--spacing-sm);
+        margin-right: var(--spacing-4);
         font-size: 1.1em;
       }
 
       .hybrid-badge-label {
         color: white;
         font-weight: 600;
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       }
     }
@@ -433,23 +433,23 @@
     // Enhanced hybrid explanation
     .hybrid-explanation {
       background: rgba(255, 255, 255, 0.9);
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
       border-radius: 12px;
-      margin-top: var(--spacing-lg);
-      border: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+      margin-top: var(--spacing-12);
+      border: 1px solid rgba(var(--color-primary), 0.1);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       position: relative;
       z-index: 1;
       backdrop-filter: blur(10px);
 
       .hybrid-note {
-        margin-bottom: var(--spacing-md);
-        font-size: var(--font-size-body-regular);
+        margin-bottom: var(--spacing-8);
+        font-size: var(--text-body);
         line-height: 1.6;
         color: var(--color-text-primary);
 
         strong {
-          color: var(--color-accent-primary);
+          color: var(--color-primary);
           font-weight: 600;
         }
 
@@ -457,7 +457,7 @@
           font-weight: 600;
           padding: 2px 6px;
           border-radius: 4px;
-          background: rgba(var(--color-accent-primary-rgb), 0.1);
+          background: rgba(var(--color-primary), 0.1);
           margin: 0 2px;
           text-transform: capitalize;
         }
@@ -467,7 +467,7 @@
     // Enhanced hybrid breakdown
     .hybrid-breakdown {
       display: flex;
-      margin-top: var(--spacing-md);
+      margin-top: var(--spacing-8);
       border-radius: 12px;
       overflow: hidden;
       height: 48px;
@@ -481,7 +481,7 @@
         justify-content: center;
         color: white;
         font-weight: 600;
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -613,16 +613,16 @@
   // Recommendation tabs
   .recommendation-tabs {
     display: flex;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     border-bottom: 1px solid var(--color-border);
 
     .tab-button {
       flex: 1;
-      padding: var(--spacing-md) var(--spacing-lg);
+      padding: var(--spacing-8) var(--spacing-12);
       background-color: transparent;
       border: none;
       border-bottom: 3px solid transparent;
-      font-size: var(--font-size-body-regular);
+      font-size: var(--text-body);
       font-weight: 600;
       color: var(--color-text-secondary);
       cursor: pointer;
@@ -630,13 +630,13 @@
 
       &:hover {
         color: var(--color-text-primary);
-        background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+        background-color: rgba(var(--color-primary), 0.05);
       }
 
       &.active {
-        color: var(--color-accent-primary);
-        border-bottom-color: var(--color-accent-primary);
-        background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+        background-color: rgba(var(--color-primary), 0.05);
       }
     }
   }
@@ -644,9 +644,9 @@
   // Result CTAs
   .result-ctas {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
     justify-content: center;
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-16);
     flex-wrap: wrap;
 
     .cta-button {
@@ -656,18 +656,18 @@
 
   // Alternative recommendations
   .alternative-recommendations {
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-16);
   }
 
   .alternatives-explanation {
     background-color: var(--color-surface);
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     border-radius: 8px;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
 
     h4 {
       color: var(--color-text-primary);
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
     }
 
     p {
@@ -679,11 +679,11 @@
   .alternatives-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
 
   .alternative-item {
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background-color: white;
@@ -699,50 +699,50 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
 
     h5 {
       color: var(--color-text-primary);
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
       margin: 0;
     }
   }
 
   .alternative-reason {
     color: var(--color-text-secondary);
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
     line-height: 1.6;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
 
   .alternative-features {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2);
   }
 
   .score-pill {
     display: inline-flex;
     align-items: center;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    background-color: rgba(var(--color-accent-secondary-rgb), 0.1);
+    padding: var(--spacing-2) var(--spacing-4);
+    background-color: rgba(var(--color-secondary), 0.1);
     color: var(--color-accent-secondary);
     border-radius: 12px;
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     font-weight: 600;
   }
 
   // Category scores
   .category-scores {
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-lg);
+    margin-top: var(--spacing-16);
+    padding: var(--spacing-12);
     background: linear-gradient(
       135deg,
-      rgba(var(--color-accent-primary-rgb), 0.02) 0%,
-      rgba(var(--color-accent-secondary-rgb), 0.01) 100%
+      rgba(var(--color-primary), 0.02) 0%,
+      rgba(var(--color-secondary), 0.01) 100%
     );
     border-radius: 16px;
-    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.08);
+    border: 1px solid rgba(var(--color-primary), 0.08);
     position: relative;
     overflow: hidden;
 
@@ -755,17 +755,17 @@
       height: 3px;
       background: linear-gradient(
         90deg,
-        var(--color-accent-primary) 0%,
+        var(--color-primary) 0%,
         var(--color-accent-secondary) 100%
       );
     }
 
     h5 {
       text-align: center;
-      font-size: var(--font-size-h4);
+      font-size: var(--text-subsection);
       font-weight: 700;
       color: var(--color-text-primary);
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       position: relative;
 
       &::after {
@@ -778,7 +778,7 @@
         height: 3px;
         background: linear-gradient(
           90deg,
-          var(--color-accent-primary) 0%,
+          var(--color-primary) 0%,
           var(--color-accent-secondary) 100%
         );
         border-radius: 2px;
@@ -789,8 +789,8 @@
     > p {
       text-align: center;
       color: var(--color-text-secondary);
-      font-size: var(--font-size-body-regular);
-      margin-bottom: var(--spacing-md);
+      font-size: var(--text-body);
+      margin-bottom: var(--spacing-8);
       line-height: 1.6;
       max-width: 500px;
       margin-left: auto;
@@ -801,14 +801,14 @@
   .scores-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
   }
 
   .score-item {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     background: rgba(255, 255, 255, 0.8);
     border-radius: 12px;
-    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--color-primary), 0.1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
     position: relative;
@@ -832,38 +832,38 @@
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(var(--color-accent-primary-rgb), 0.12);
-      border-color: rgba(var(--color-accent-primary-rgb), 0.2);
+      box-shadow: 0 8px 24px rgba(var(--color-primary), 0.12);
+      border-color: rgba(var(--color-primary), 0.2);
     }
   }
 
   .score-category {
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     text-transform: capitalize;
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
 
     &::before {
       content: '';
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
       flex-shrink: 0;
     }
   }
 
   .score-bar-container {
     position: relative;
-    background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+    background-color: rgba(var(--color-primary), 0.1);
     border-radius: 12px;
     height: 32px;
     overflow: hidden;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
 
   .score-bar-fill {
@@ -873,8 +873,8 @@
     position: relative;
     background: linear-gradient(
       90deg,
-      var(--color-accent-primary) 0%,
-      color-mix(in srgb, var(--color-accent-primary) 90%, white 10%) 100%
+      var(--color-primary) 0%,
+      color-mix(in srgb, var(--color-primary) 90%, white 10%) 100%
     );
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
@@ -895,12 +895,12 @@
 
     .score-value {
       position: absolute;
-      right: var(--spacing-sm);
+      right: var(--spacing-4);
       top: 50%;
       transform: translateY(-50%);
       color: white;
       font-weight: 700;
-      font-size: var(--font-size-small);
+      font-size: var(--text-small);
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       z-index: 1;
     }
@@ -946,46 +946,46 @@
   // Quiz submit section
   .quiz-submit-container {
     text-align: center;
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
+    margin-top: var(--spacing-16);
+    padding-top: var(--spacing-12);
     border-top: 1px solid var(--color-border);
   }
 
   .submit-hint {
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
   }
 
   .selection-hint {
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     color: var(--color-text-secondary);
-    margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-2);
     font-style: italic;
   }
 
   // Recommendation details
   .recommendation-details {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-12);
 
     h5 {
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-8);
       font-weight: 600;
       color: var(--color-text-primary);
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
     }
   }
 
   .primary-recommendation {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-16);
     background: linear-gradient(
       135deg,
-      rgba(var(--color-accent-primary-rgb), 0.03) 0%,
-      rgba(var(--color-accent-secondary-rgb), 0.03) 100%
+      rgba(var(--color-primary), 0.03) 0%,
+      rgba(var(--color-secondary), 0.03) 100%
     );
-    border: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--color-primary), 0.1);
     border-radius: 12px;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     position: relative;
 
     &::before {
@@ -997,7 +997,7 @@
       height: 3px;
       background: linear-gradient(
         90deg,
-        var(--color-accent-primary) 0%,
+        var(--color-primary) 0%,
         var(--color-accent-secondary) 100%
       );
       border-radius: 12px 12px 0 0;
@@ -1006,11 +1006,11 @@
     // Specific styling for the "Recommended Setup" section only
     > h5:first-child {
       color: var(--color-text-primary);
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
       font-weight: 600;
-      margin-bottom: var(--spacing-md);
-      border-bottom: 2px solid var(--color-accent-primary);
-      padding-bottom: var(--spacing-xs);
+      margin-bottom: var(--spacing-8);
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: var(--spacing-2);
       display: inline-block;
     }
 
@@ -1020,7 +1020,7 @@
       margin: 0;
 
       > li {
-        padding: var(--spacing-sm) 0;
+        padding: var(--spacing-4) 0;
         border-bottom: 1px solid
           rgba(var(--color-border-rgb, 221, 221, 221), 0.3);
         display: flex;
@@ -1032,9 +1032,9 @@
 
         > strong {
           min-width: 140px;
-          color: var(--color-accent-primary);
+          color: var(--color-primary);
           font-weight: 600;
-          margin-right: var(--spacing-md);
+          margin-right: var(--spacing-8);
           flex-shrink: 0;
         }
       }
@@ -1043,23 +1043,23 @@
 
   // Hybrid notice
   .hybrid-notice {
-    background-color: rgba(var(--color-accent-secondary-rgb), 0.1);
-    padding: var(--spacing-md);
+    background-color: rgba(var(--color-secondary), 0.1);
+    padding: var(--spacing-8);
     border-radius: 8px;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-8) 0;
     border-left: 4px solid var(--color-accent-secondary);
 
     p {
       margin: 0;
       color: var(--color-text-primary);
-      font-size: var(--font-size-body-regular);
+      font-size: var(--text-body);
     }
   }
 
   // Hybrid breakdown
   .hybrid-breakdown {
     display: flex;
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-8);
     border-radius: 8px;
     overflow: hidden;
     height: 40px;
@@ -1072,11 +1072,11 @@
     justify-content: center;
     color: white;
     font-weight: 600;
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     transition: all 0.3s ease;
 
     &.primary {
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
     }
 
     &.secondary {
@@ -1086,21 +1086,21 @@
 
   // Score explanation
   .score-explanation {
-    margin-top: var(--spacing-lg);
-    padding: var(--spacing-md);
+    margin-top: var(--spacing-12);
+    padding: var(--spacing-8);
     background-color: var(--color-surface);
     border-radius: 8px;
     border: 1px solid var(--color-border);
 
     h4 {
       color: var(--color-text-primary);
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
     }
 
     p {
       color: var(--color-text-secondary);
       line-height: 1.6;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
 
       &:last-child {
         margin-bottom: 0;
@@ -1120,27 +1120,27 @@
 
     // Category scores mobile adjustments
     .category-scores {
-      padding: var(--spacing-md);
-      margin-top: var(--spacing-lg);
+      padding: var(--spacing-8);
+      margin-top: var(--spacing-12);
 
       h5 {
         font-size: var(--font-size-h5);
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-8);
       }
     }
 
     .scores-container {
       grid-template-columns: 1fr;
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
 
     .score-item {
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
     }
 
     .score-category {
-      font-size: var(--font-size-body-regular);
-      margin-bottom: var(--spacing-sm);
+      font-size: var(--text-body);
+      margin-bottom: var(--spacing-4);
     }
 
     .score-bar-container {
@@ -1149,12 +1149,12 @@
 
     .score-bar-fill .score-value {
       font-size: 0.75rem;
-      right: var(--spacing-xs);
+      right: var(--spacing-2);
     }
 
     .primary-recommendation {
-      padding: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-8);
+      margin-bottom: var(--spacing-12);
 
       li {
         flex-direction: column;
@@ -1163,13 +1163,13 @@
         strong {
           min-width: auto;
           margin-right: 0;
-          margin-bottom: var(--spacing-xs);
-          font-size: var(--font-size-small);
+          margin-bottom: var(--spacing-2);
+          font-size: var(--text-small);
         }
 
         span,
         &:not(:has(strong)) {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
         }
       }
     }
@@ -1183,7 +1183,7 @@
 
         &.active {
           border-bottom-color: var(--color-border);
-          border-left-color: var(--color-accent-primary);
+          border-left-color: var(--color-primary);
         }
       }
     }
@@ -1204,8 +1204,8 @@
 
     // Enhanced mobile styles for result header
     .result-header {
-      padding: var(--spacing-lg) var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-12) var(--spacing-8);
+      margin-bottom: var(--spacing-12);
 
       h4 {
         font-size: clamp(1.5rem, 6vw, 2rem);
@@ -1213,13 +1213,13 @@
       }
 
       > p {
-        font-size: var(--font-size-body-regular);
-        margin-bottom: var(--spacing-md);
+        font-size: var(--text-body);
+        margin-bottom: var(--spacing-8);
       }
 
       .hybrid-badge {
-        padding: var(--spacing-xs) var(--spacing-md);
-        margin: var(--spacing-xs) 0 var(--spacing-sm);
+        padding: var(--spacing-2) var(--spacing-8);
+        margin: var(--spacing-2) 0 var(--spacing-4);
 
         &::before {
           font-size: 1em;
@@ -1231,33 +1231,33 @@
       }
 
       .hybrid-explanation {
-        padding: var(--spacing-md);
-        margin-top: var(--spacing-md);
+        padding: var(--spacing-8);
+        margin-top: var(--spacing-8);
 
         .hybrid-note {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           line-height: 1.5;
         }
       }
 
       .hybrid-breakdown {
         height: 40px;
-        margin-top: var(--spacing-sm);
+        margin-top: var(--spacing-4);
 
         .hybrid-segment {
           font-size: var(--font-size-smaller);
-          padding: 0 var(--spacing-xs);
+          padding: 0 var(--spacing-2);
         }
       }
     }
 
     // Enhanced mobile styles for product recommendations
     .product-recommendations {
-      margin-top: var(--spacing-lg);
+      margin-top: var(--spacing-12);
 
       h5 {
-        font-size: var(--font-size-h4);
-        padding-bottom: var(--spacing-sm);
+        font-size: var(--text-subsection);
+        padding-bottom: var(--spacing-4);
 
         &::after {
           width: 60px;
@@ -1267,7 +1267,7 @@
 
       .product-list {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
       }
 
       .product-item {
@@ -1275,11 +1275,11 @@
 
         &:hover {
           transform: translateY(-4px) scale(1.01);
-          box-shadow: 0 8px 24px rgba(var(--color-accent-primary-rgb), 0.12);
+          box-shadow: 0 8px 24px rgba(var(--color-primary), 0.12);
         }
 
         .product-content {
-          padding: var(--spacing-md);
+          padding: var(--spacing-8);
         }
 
         .product-image {
@@ -1295,26 +1295,26 @@
         }
 
         .brand-badge {
-          padding: 2px var(--spacing-xs);
+          padding: 2px var(--spacing-2);
           font-size: 0.7rem;
         }
 
         .product-name {
-          font-size: var(--font-size-body-regular);
+          font-size: var(--text-body);
           line-height: 1.2;
         }
 
         .product-specs {
-          gap: var(--spacing-xs);
+          gap: var(--spacing-2);
 
           .spec-item {
             font-size: var(--font-size-smaller);
-            padding: 2px var(--spacing-xs);
+            padding: 2px var(--spacing-2);
           }
         }
 
         .product-match {
-          padding: var(--spacing-xs);
+          padding: var(--spacing-2);
 
           .match-progress {
             width: 32px;
@@ -1337,18 +1337,18 @@
         }
 
         .product-features {
-          margin-bottom: var(--spacing-md);
+          margin-bottom: var(--spacing-8);
 
           .feature-tag {
             font-size: 0.7rem;
-            padding: 2px var(--spacing-xs);
+            padding: 2px var(--spacing-2);
             border-radius: 12px;
           }
         }
 
         .view-product-button {
-          padding: var(--spacing-sm);
-          font-size: var(--font-size-small);
+          padding: var(--spacing-4);
+          font-size: var(--text-small);
         }
       }
     }
@@ -1388,13 +1388,13 @@
 // Modern quiz intro screen
 .quiz-intro {
   text-align: center;
-  padding: calc(var(--spacing-xl) * 2);
+  padding: calc(var(--spacing-16) * 2);
   background: white;
   border-radius: 24px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   position: relative;
   overflow: hidden;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-16);
 
   // Animated top border
   &::before {
@@ -1409,7 +1409,7 @@
 
   .quiz-intro-title {
     font-size: clamp(28px, 5vw, 42px);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     color: var(--color-text-primary);
     font-weight: 700;
     background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
@@ -1421,7 +1421,7 @@
 
   .quiz-intro-description {
     font-size: clamp(16px, 2.5vw, 20px);
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    margin-bottom: calc(var(--spacing-16) * 1.5);
     color: var(--color-text-primary);
     opacity: 0.8;
     max-width: 600px;
@@ -1434,8 +1434,8 @@
   .quiz-intro-benefits {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    gap: var(--spacing-12);
+    margin-bottom: calc(var(--spacing-16) * 1.5);
     width: 100%;
     max-width: 800px;
     margin-left: auto;
@@ -1443,7 +1443,7 @@
 
     .benefit-item {
       text-align: center;
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       border-radius: 16px;
       border: 1px solid rgba(59, 130, 246, 0.1);
@@ -1468,20 +1468,20 @@
 
       .benefit-icon {
         font-size: 3rem;
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-8);
         display: block;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
 
       .benefit-title {
         font-weight: 600;
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: var(--spacing-4);
         color: var(--color-text-primary);
         font-size: 18px;
       }
 
       .benefit-description {
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         color: var(--color-text-primary);
         opacity: 0.7;
         line-height: 1.5;
@@ -1606,8 +1606,8 @@
 
 // Modern quiz question styling
 .quiz-question {
-  margin-bottom: calc(var(--spacing-xl) * 1.5);
-  padding-bottom: var(--spacing-xl);
+  margin-bottom: calc(var(--spacing-16) * 1.5);
+  padding-bottom: var(--spacing-16);
 
   &:not(:last-child) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -1617,7 +1617,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
 
     h3 {
       font-size: clamp(20px, 3vw, 28px);
@@ -1628,7 +1628,7 @@
     }
 
     .question-status {
-      font-size: var(--font-size-small);
+      font-size: var(--text-small);
       padding: 6px 12px;
       border-radius: 20px;
       background: rgba(59, 130, 246, 0.1);
@@ -1645,8 +1645,8 @@
   .options-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-12);
   }
 
   .option-button {
@@ -1703,12 +1703,12 @@
   }
 
   .selection-info {
-    margin-top: var(--spacing-md);
-    font-size: var(--font-size-small);
+    margin-top: var(--spacing-8);
+    font-size: var(--text-small);
     color: var(--color-text-primary);
     opacity: 0.7;
     text-align: center;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-4);
     background: rgba(59, 130, 246, 0.05);
     border-radius: 8px;
   }
@@ -1741,14 +1741,14 @@
 .recommendation-tabs {
   display: flex;
   gap: 4px;
-  margin-bottom: calc(var(--spacing-xl) * 1.5);
+  margin-bottom: calc(var(--spacing-16) * 1.5);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 4px;
 
   .tab-button {
     flex: 1;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-8) var(--spacing-12);
     border: none;
     border-radius: 8px;
     background: transparent;
@@ -1756,7 +1756,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
 
     &:hover {
       background: rgba(59, 130, 246, 0.1);
@@ -1774,10 +1774,10 @@
 // Modern result CTAs
 .result-ctas {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-8);
   justify-content: center;
-  margin-top: calc(var(--spacing-xl) * 1.5);
-  padding-top: var(--spacing-xl);
+  margin-top: calc(var(--spacing-16) * 1.5);
+  padding-top: var(--spacing-16);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 
   @media (max-width: $breakpoint-sm) {
@@ -1839,8 +1839,8 @@
     );
     border: 1px solid rgba(59, 130, 246, 0.1);
     border-radius: 24px;
-    padding: calc(var(--spacing-xl) * 1.5);
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    padding: calc(var(--spacing-16) * 1.5);
+    margin-bottom: calc(var(--spacing-16) * 1.5);
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
@@ -1860,7 +1860,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
 
       .progress-title {
         font-size: clamp(1.5rem, 3vw, 2rem);
@@ -1927,10 +1927,10 @@
 
       .progress-percentage {
         position: absolute;
-        right: var(--spacing-md);
+        right: var(--spacing-8);
         top: 50%;
         transform: translateY(-50%);
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         font-weight: 700;
         color: var(--color-text-primary);
         z-index: 1;
@@ -1941,9 +1941,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-md);
-      padding: var(--spacing-md);
+      gap: var(--spacing-4);
+      margin-top: var(--spacing-8);
+      padding: var(--spacing-8);
       background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
       border-radius: 12px;
       color: white;
@@ -1956,7 +1956,7 @@
       }
 
       .celebration-text {
-        font-size: var(--font-size-body-large);
+        font-size: var(--text-body);
       }
     }
   }
@@ -1965,15 +1965,15 @@
   .questions-grid {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing-xl) * 1.5);
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    gap: calc(var(--spacing-16) * 1.5);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   // Modern Question Card
   .modern-question-card {
     background: white;
     border-radius: 24px;
-    padding: calc(var(--spacing-xl) * 1.5);
+    padding: calc(var(--spacing-16) * 1.5);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2025,7 +2025,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
 
       .question-number-badge {
         display: flex;
@@ -2065,12 +2065,12 @@
         .status-answered {
           display: flex;
           align-items: center;
-          gap: var(--spacing-xs);
+          gap: var(--spacing-2);
           background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
           color: white;
-          padding: var(--spacing-sm) var(--spacing-md);
+          padding: var(--spacing-4) var(--spacing-8);
           border-radius: 20px;
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           font-weight: 600;
           box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 
@@ -2083,12 +2083,12 @@
         .status-pending {
           display: flex;
           align-items: center;
-          gap: var(--spacing-xs);
+          gap: var(--spacing-2);
           background: rgba(156, 163, 175, 0.1);
           color: #6b7280;
-          padding: var(--spacing-sm) var(--spacing-md);
+          padding: var(--spacing-4) var(--spacing-8);
           border-radius: 20px;
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           font-weight: 500;
           border: 1px solid rgba(156, 163, 175, 0.2);
 
@@ -2101,34 +2101,34 @@
     }
 
     .question-content {
-      margin-bottom: calc(var(--spacing-xl) * 1.5);
+      margin-bottom: calc(var(--spacing-16) * 1.5);
 
       .question-title {
         font-size: clamp(1.25rem, 2.5vw, 1.75rem);
         font-weight: 600;
         color: var(--color-text-primary);
         line-height: 1.4;
-        margin: 0 0 var(--spacing-md) 0;
+        margin: 0 0 var(--spacing-8) 0;
         letter-spacing: -0.01em;
       }
 
       .selection-guidance {
         display: flex;
         align-items: center;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-4);
+        padding: var(--spacing-4) var(--spacing-8);
         background: rgba(59, 130, 246, 0.05);
         border-radius: 12px;
         border: 1px solid rgba(59, 130, 246, 0.1);
 
         .selection-text {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           color: #3b82f6;
           font-weight: 500;
         }
 
         .selection-count {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           color: var(--color-text-secondary);
           font-weight: 600;
         }
@@ -2138,11 +2138,11 @@
     .modern-options-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
 
       .modern-option-button {
         position: relative;
-        padding: var(--spacing-lg);
+        padding: var(--spacing-12);
         border: 2px solid rgba(0, 0, 0, 0.06);
         border-radius: 16px;
         background: white;
@@ -2204,12 +2204,12 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: var(--spacing-md);
+          gap: var(--spacing-8);
           position: relative;
           z-index: 1;
 
           .option-text {
-            font-size: var(--font-size-body-regular);
+            font-size: var(--text-body);
             color: var(--color-text-primary);
             font-weight: 500;
             line-height: 1.5;
@@ -2278,7 +2278,7 @@
 
   // Modern Submit Section
   .modern-submit-section {
-    margin-top: calc(var(--spacing-xl) * 2);
+    margin-top: calc(var(--spacing-16) * 2);
 
     .submit-card {
       background: linear-gradient(
@@ -2288,7 +2288,7 @@
       );
       border: 1px solid rgba(59, 130, 246, 0.1);
       border-radius: 24px;
-      padding: calc(var(--spacing-xl) * 1.5);
+      padding: calc(var(--spacing-16) * 1.5);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -2306,13 +2306,13 @@
       }
 
       .submit-header {
-        margin-bottom: calc(var(--spacing-xl) * 1.5);
+        margin-bottom: calc(var(--spacing-16) * 1.5);
 
         .submit-title {
           font-size: clamp(1.75rem, 3vw, 2.25rem);
           font-weight: 700;
           color: var(--color-text-primary);
-          margin: 0 0 var(--spacing-md) 0;
+          margin: 0 0 var(--spacing-8) 0;
           background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -2321,7 +2321,7 @@
         }
 
         .submit-description {
-          font-size: var(--font-size-body-large);
+          font-size: var(--text-body);
           color: var(--color-text-secondary);
           line-height: 1.6;
           margin: 0;
@@ -2335,17 +2335,17 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-12);
 
         .modern-submit-button {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: var(--spacing-md);
-          padding: var(--spacing-lg) calc(var(--spacing-xl) * 1.5);
+          gap: var(--spacing-8);
+          padding: var(--spacing-12) calc(var(--spacing-16) * 1.5);
           border: none;
           border-radius: 50px;
-          font-size: var(--font-size-body-large);
+          font-size: var(--text-body);
           font-weight: 700;
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2435,8 +2435,8 @@
         .submit-hint {
           display: flex;
           align-items: center;
-          gap: var(--spacing-sm);
-          padding: var(--spacing-md) var(--spacing-lg);
+          gap: var(--spacing-4);
+          padding: var(--spacing-8) var(--spacing-12);
           background: rgba(251, 191, 36, 0.1);
           border: 1px solid rgba(251, 191, 36, 0.2);
           border-radius: 12px;
@@ -2447,7 +2447,7 @@
           }
 
           .hint-text {
-            font-size: var(--font-size-small);
+            font-size: var(--text-small);
             color: #d97706;
             font-weight: 500;
           }
@@ -2571,8 +2571,8 @@
   );
   border: 1px solid rgba(59, 130, 246, 0.1);
   border-radius: 24px;
-  padding: calc(var(--spacing-xl) * 2);
-  margin: calc(var(--spacing-xl) * 2) 0;
+  padding: calc(var(--spacing-16) * 2);
+  margin: calc(var(--spacing-16) * 2) 0;
   overflow: hidden;
   backdrop-filter: blur(10px);
   box-shadow: 0 16px 64px rgba(0, 0, 0, 0.05);
@@ -2591,18 +2591,18 @@
   // Modern Header Section
   .scores-header {
     text-align: center;
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
     position: relative;
     z-index: 2;
 
     .header-badge {
       display: inline-flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      padding: var(--spacing-sm) var(--spacing-lg);
+      gap: var(--spacing-4);
+      padding: var(--spacing-4) var(--spacing-12);
       background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
       border-radius: 50px;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
       animation: fadeInUp 0.6s ease-out;
 
@@ -2613,7 +2613,7 @@
       .badge-text {
         color: white;
         font-weight: 600;
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       }
     }
@@ -2621,7 +2621,7 @@
     .scores-title {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      margin: 0 0 var(--spacing-lg) 0;
+      margin: 0 0 var(--spacing-12) 0;
       line-height: 1.2;
       letter-spacing: -0.02em;
       animation: fadeInUp 0.6s ease-out 0.1s both;
@@ -2653,7 +2653,7 @@
     }
 
     .scores-subtitle {
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
       color: var(--color-text-secondary);
       line-height: 1.6;
       margin: 0;
@@ -2668,8 +2668,8 @@
   .modern-scores-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    gap: var(--spacing-16);
+    margin-bottom: calc(var(--spacing-16) * 2);
     position: relative;
     z-index: 2;
   }
@@ -2678,7 +2678,7 @@
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(59, 130, 246, 0.1);
     border-radius: 20px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-16);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -2739,14 +2739,14 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       position: relative;
       z-index: 1;
 
       .category-info {
         display: flex;
         align-items: flex-start;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
         flex: 1;
 
         .category-icon {
@@ -2772,18 +2772,18 @@
           min-width: 0;
 
           .category-name {
-            font-size: var(--font-size-body-large);
+            font-size: var(--text-body);
             font-weight: 700;
             color: var(--color-text-primary);
-            margin: 0 0 var(--spacing-xs) 0;
+            margin: 0 0 var(--spacing-2) 0;
             text-transform: capitalize;
           }
 
           .best-match-badge {
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-xs);
-            padding: 4px var(--spacing-sm);
+            gap: var(--spacing-2);
+            padding: 4px var(--spacing-4);
             background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
             border-radius: 12px;
             animation: badgePulse 2s ease-in-out infinite;
@@ -2815,7 +2815,7 @@
         }
 
         .score-label {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           color: var(--color-text-secondary);
           font-weight: 500;
           text-transform: uppercase;
@@ -2825,7 +2825,7 @@
     }
 
     .modern-progress-container {
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       position: relative;
       z-index: 1;
 
@@ -2880,7 +2880,7 @@
         position: absolute;
         right: 0;
         top: -6px;
-        font-size: var(--font-size-small);
+        font-size: var(--text-small);
         font-weight: 700;
         color: var(--color-text-primary);
         background: white;
@@ -2901,7 +2901,7 @@
         align-items: center;
 
         .compatibility-text {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
           font-weight: 600;
           color: var(--color-text-secondary);
           text-transform: uppercase;
@@ -2933,7 +2933,7 @@
   .scores-actions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
     position: relative;
     z-index: 2;
 
@@ -2942,11 +2942,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--spacing-sm);
-      padding: var(--spacing-lg) var(--spacing-xl);
+      gap: var(--spacing-4);
+      padding: var(--spacing-12) var(--spacing-16);
       border: none;
       border-radius: 50px;
-      font-size: var(--font-size-body-regular);
+      font-size: var(--text-body);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3170,11 +3170,11 @@
 
   // Responsive Design
   @media (max-width: $breakpoint-lg) {
-    padding: var(--spacing-xl);
-    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-16);
+    margin: var(--spacing-16) 0;
 
     .scores-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-16);
 
       .scores-title {
         font-size: clamp(1.75rem, 6vw, 2.5rem);
@@ -3183,26 +3183,26 @@
 
     .modern-scores-container {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-      margin-bottom: var(--spacing-xl);
+      gap: var(--spacing-12);
+      margin-bottom: var(--spacing-16);
     }
 
     .scores-actions {
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
 
       .modern-action-btn {
-        padding: var(--spacing-md) var(--spacing-lg);
-        font-size: var(--font-size-body-regular);
+        padding: var(--spacing-8) var(--spacing-12);
+        font-size: var(--text-body);
       }
     }
   }
 
   @media (max-width: $breakpoint-md) {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
 
     .modern-score-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
 
       .score-card-header {
         .category-info {
@@ -3231,13 +3231,13 @@
   }
 
   @media (max-width: $breakpoint-sm) {
-    padding: var(--spacing-md);
-    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-8);
+    margin: var(--spacing-12) 0;
 
     .scores-header {
       .header-badge {
-        padding: var(--spacing-xs) var(--spacing-md);
-        margin-bottom: var(--spacing-md);
+        padding: var(--spacing-2) var(--spacing-8);
+        margin-bottom: var(--spacing-8);
 
         .badge-text {
           font-size: var(--font-size-smaller);
@@ -3245,21 +3245,21 @@
       }
 
       .scores-subtitle {
-        font-size: var(--font-size-body-regular);
+        font-size: var(--text-body);
       }
     }
 
     .modern-score-card {
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
 
       .score-card-header {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
 
         .category-info {
           .category-details {
             .category-name {
-              font-size: var(--font-size-body-regular);
+              font-size: var(--text-body);
             }
           }
         }
@@ -3276,10 +3276,10 @@
 
     .scores-actions {
       .modern-action-btn {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: var(--spacing-4) var(--spacing-8);
 
         .btn-text {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
         }
       }
     }
@@ -3300,21 +3300,21 @@
 @media (max-width: $breakpoint-md) {
   .modern-questions-container {
     .modern-progress-section {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-16);
 
       .progress-header {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
         text-align: center;
       }
     }
 
     .modern-question-card {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-16);
 
       .question-card-header {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
         align-items: flex-start;
       }
 
@@ -3325,7 +3325,7 @@
 
     .modern-submit-section {
       .submit-card {
-        padding: var(--spacing-xl);
+        padding: var(--spacing-16);
 
         .submit-actions {
           .modern-submit-button {
@@ -3341,16 +3341,16 @@
 @media (max-width: $breakpoint-sm) {
   .modern-questions-container {
     .modern-progress-section {
-      padding: var(--spacing-lg);
-      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-12);
+      margin-bottom: var(--spacing-16);
     }
 
     .questions-grid {
-      gap: var(--spacing-xl);
+      gap: var(--spacing-16);
     }
 
     .modern-question-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
 
       .question-card-header {
         .question-number-badge {
@@ -3371,11 +3371,11 @@
 
       .modern-options-container {
         .modern-option-button {
-          padding: var(--spacing-md);
+          padding: var(--spacing-8);
 
           .option-content {
             .option-text {
-              font-size: var(--font-size-body-regular);
+              font-size: var(--text-body);
             }
           }
         }
@@ -3384,7 +3384,7 @@
 
     .modern-submit-section {
       .submit-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-12);
 
         .submit-header {
           .submit-title {

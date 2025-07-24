@@ -222,20 +222,20 @@ const seoProps = {
 <style lang="scss">
   /* Hero Section */
   .section--hero {
-    background: linear-gradient(135deg, var(--color-accent-primary) 0%, #007a6b 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #007a6b 100%);
     color: white;
     text-align: center;
   }
 
   .hero-content h1 {
-    font-size: var(--font-size-h1);
+    font-size: var(--text-hero);
     font-weight: 700;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     color: white;
   }
 
   .hero-subtitle {
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
@@ -250,7 +250,7 @@ const seoProps = {
   }
 
   .intro-content p {
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     line-height: 1.7;
     color: var(--color-text-primary);
   }
@@ -258,9 +258,9 @@ const seoProps = {
   /* Section Titles */
   .section-title {
     text-align: center;
-    font-size: var(--font-size-h2);
+    font-size: var(--text-section);
     font-weight: 600;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-16);
     color: var(--color-text-primary);
   }
 
@@ -272,14 +272,14 @@ const seoProps = {
   .payment-options-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-xl);
+    gap: var(--spacing-16);
+    margin-top: var(--spacing-16);
   }
 
   .payment-option-card {
     background: white;
     border-radius: 12px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-16);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -290,22 +290,22 @@ const seoProps = {
   }
 
   .option-header {
-    border-bottom: 2px solid var(--color-accent-primary);
-    padding-bottom: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
   }
 
   .option-header h3 {
-    color: var(--color-accent-primary);
-    font-size: var(--font-size-h3);
+    color: var(--color-primary);
+    font-size: var(--text-subsection);
     font-weight: 600;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
 
   .option-subtitle {
     color: var(--color-text-primary);
     opacity: 0.7;
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     font-style: italic;
   }
 
@@ -315,9 +315,9 @@ const seoProps = {
   }
 
   .option-details li {
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-4) 0;
     border-bottom: 1px solid #f0f0f0;
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
     line-height: 1.5;
   }
 
@@ -326,31 +326,31 @@ const seoProps = {
   }
 
   .option-details strong {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
   }
 
   /* Benefits Section */
   .benefits-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-xl);
+    gap: var(--spacing-16);
   }
 
   .benefit-item {
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
   }
 
   .benefit-icon {
     font-size: 48px;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
 
   .benefit-item h3 {
     color: var(--color-text-primary);
-    font-size: var(--font-size-h3);
+    font-size: var(--text-subsection);
     font-weight: 600;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
   }
 
   .benefit-item p {
@@ -366,7 +366,7 @@ const seoProps = {
 
   .process-steps {
     display: grid;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-16);
     max-width: 800px;
     margin: 0 auto;
   }
@@ -374,15 +374,15 @@ const seoProps = {
   .step {
     display: flex;
     align-items: flex-start;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    gap: var(--spacing-12);
+    padding: var(--spacing-12);
     background: white;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
 
   .step-number {
-    background: var(--color-accent-primary);
+    background: var(--color-primary);
     color: white;
     width: 48px;
     height: 48px;
@@ -390,16 +390,16 @@ const seoProps = {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     font-weight: 700;
     flex-shrink: 0;
   }
 
   .step-content h3 {
     color: var(--color-text-primary);
-    font-size: var(--font-size-h3);
+    font-size: var(--text-subsection);
     font-weight: 600;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
 
   .step-content p {
@@ -412,7 +412,7 @@ const seoProps = {
   .contact-card {
     background: white;
     border-radius: 16px;
-    padding: var(--spacing-xxl);
+    padding: var(--spacing-24);
     text-align: center;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     max-width: 600px;
@@ -421,28 +421,28 @@ const seoProps = {
 
   .contact-card h2 {
     color: var(--color-text-primary);
-    font-size: var(--font-size-h2);
+    font-size: var(--text-section);
     font-weight: 600;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
 
   .contact-card > p {
     color: var(--color-text-primary);
-    font-size: var(--font-size-body-large);
-    margin-bottom: var(--spacing-xl);
+    font-size: var(--text-body);
+    margin-bottom: var(--spacing-16);
   }
 
   .contact-details {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-16);
   }
 
   .contact-item {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-8) 0;
     border-bottom: 1px solid #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
 
   .contact-item:last-child {
@@ -450,12 +450,12 @@ const seoProps = {
   }
 
   .contact-item strong {
-    color: var(--color-accent-primary);
-    font-size: var(--font-size-body-regular);
+    color: var(--color-primary);
+    font-size: var(--text-body);
   }
 
   .contact-item a {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: 500;
   }
@@ -471,8 +471,8 @@ const seoProps = {
   .cta-buttons {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-16);
     flex-wrap: wrap;
   }
 
@@ -486,29 +486,29 @@ const seoProps = {
   /* Responsive Design */
   @media (max-width: $breakpoint-md) {
     .hero-content h1 {
-      font-size: var(--font-size-h2);
+      font-size: var(--text-section);
     }
 
     .payment-options-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
     }
 
     .benefits-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
     }
 
     .step {
       flex-direction: column;
       text-align: center;
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
 
     .contact-item {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-4);
     }
 
     .cta-buttons {
@@ -519,11 +519,11 @@ const seoProps = {
 
   @media (max-width: $breakpoint-sm) {
     .contact-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
     }
 
     .section-title {
-      font-size: var(--font-size-h3);
+      font-size: var(--text-subsection);
     }
   }
 </style>

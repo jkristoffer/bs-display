@@ -10,7 +10,7 @@
     
     h1 {
       margin: 0;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
     
     @media (max-width: 768px) {
@@ -44,7 +44,7 @@
   
   .exportButton {
     padding: 0.5rem 1rem;
-    background: var(--chart-secondary);
+    background: var(--color-success);
     color: white;
     border: none;
     border-radius: 4px;
@@ -61,16 +61,16 @@
   
   .filter {
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-admin-border);
+    border: 1px solid var(--color-border-muted);
     border-radius: 4px;
-    background: var(--color-admin-surface);
-    color: var(--color-admin-text);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
     min-width: 150px;
     
     &:focus {
       outline: none;
-      border-color: var(--chart-primary);
+      border-color: var(--color-primary);
     }
   }
   
@@ -82,7 +82,7 @@
   }
   
   .summaryCard {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -91,7 +91,7 @@
     h3 {
       margin: 0 0 1rem 0;
       font-size: 0.875rem;
-      color: var(--color-admin-text-secondary);
+      color: var(--color-text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -99,7 +99,7 @@
     .value {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -115,7 +115,7 @@
   }
   
   .topPerformers {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -124,7 +124,7 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -139,19 +139,19 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--color-admin-bg);
+    background: var(--color-background);
     border-radius: 6px;
     transition: background 0.2s;
     
     &:hover {
-      background: var(--color-admin-border);
+      background: var(--color-border-muted);
     }
   }
   
   .performerRank {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--chart-primary);
+    color: var(--color-primary);
     min-width: 2rem;
   }
   
@@ -161,13 +161,13 @@
   
   .performerName {
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     margin-bottom: 0.25rem;
   }
   
   .performerBrand {
     font-size: 0.875rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .performerMetrics {
@@ -177,17 +177,17 @@
   .performerRevenue {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--chart-secondary);
+    color: var(--color-success);
     margin-bottom: 0.25rem;
   }
   
   .performerConversions {
     font-size: 0.875rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .productTable {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -195,16 +195,16 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
   .error {
     padding: 2rem;
     text-align: center;
-    color: var(--chart-danger);
+    color: var(--color-error);
     background: rgba(245, 101, 101, 0.1);
-    border: 1px solid var(--chart-danger);
+    border: 1px solid var(--color-error);
     border-radius: 8px;
     margin: 2rem 0;
   }

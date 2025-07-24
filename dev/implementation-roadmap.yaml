@@ -1,0 +1,170 @@
+# CSS Architecture Cleanup Implementation Roadmap
+# Generated from requirements-brief.yaml
+
+phases:
+  - name: "Foundation & Quick Wins"
+    goals:
+      - Establish tooling infrastructure for CSS quality monitoring
+      - Implement immediate performance optimizations
+      - Create comprehensive documentation foundation
+      - Set up automated validation systems
+    activities:
+      - Configure CSS linting with stylelint for variable usage enforcement
+      - Implement CSS bundle analysis and reporting tools
+      - Fix PurgeCSS configuration and enable CSS minification
+      - Create initial style guide structure and documentation templates
+      - Set up pre-commit hooks for style validation
+      - Analyze and document current variable usage patterns
+    deliverables:
+      - Configured stylelint with custom rules for variable enforcement
+      - Working PurgeCSS and minification in build process
+      - CSS bundle size analysis reports
+      - Initial style guide with variable inventory
+      - Pre-commit hooks preventing hardcoded values
+      - Variable usage heat map and redundancy report
+    dependencies:
+      - Access to current codebase
+      - Build system permissions
+      - Development environment setup
+    duration: "1 week"
+    success_criteria:
+      - CSS bundle size reduced by 15-20% through optimization alone
+      - All new code changes pass automated linting
+      - Complete inventory of all 300+ CSS variables documented
+      - Build process optimizations verified on all environments
+    transition_conditions:
+      - Variable usage patterns fully documented
+      - Tooling infrastructure operational and tested
+      - Team trained on new validation tools
+      - Baseline metrics established for tracking progress
+    dev_guidelines:
+      - Test all build changes in isolation before integration
+      - Document every configuration change in detail
+      - Create rollback procedures for each optimization
+      - Prioritize non-breaking changes that provide immediate value
+
+  - name: "Variable Consolidation"
+    goals:
+      - Create unified design token system from 300+ variables to ~100
+      - Eliminate 3-5x redundancy in color, typography, and spacing systems
+      - Establish semantic naming conventions
+      - Build migration tooling for automated updates
+    activities:
+      - Map all variables to their usage locations across codebase
+      - Identify and merge duplicate/similar variables
+      - Create semantic design token structure (color-primary, spacing-md, etc.)
+      - Build automated migration scripts for variable replacement
+      - Update global styles to use new token system
+      - Create backward compatibility layer for gradual migration
+    deliverables:
+      - Consolidated variables.scss with ~100 semantic tokens
+      - Variable migration map (old name → new name)
+      - Automated migration scripts for codebase updates
+      - Updated global styles using new token system
+      - Deprecation warnings for old variables
+      - Token usage documentation for developers
+    dependencies:
+      - Completed variable usage analysis from Phase 1
+      - Approved design token naming conventions
+      - Test environment for migration validation
+    duration: "1 week"
+    success_criteria:
+      - Variable count reduced from 300+ to ~100 (70% reduction)
+      - All global styles updated to new token system
+      - Migration scripts tested and validated
+      - Zero visual regressions in global styles
+      - Semantic naming system fully documented
+    transition_conditions:
+      - New token system fully tested across all pages
+      - Migration scripts ready for component updates
+      - Team consensus on naming conventions
+      - Backward compatibility verified
+    dev_guidelines:
+      - Preserve exact color values during consolidation
+      - Test each variable change in isolation
+      - Document rationale for each consolidation decision
+      - Maintain compatibility layer throughout migration
+
+  - name: "Component Migration"
+    goals:
+      - Achieve 100% CSS module adoption for all components
+      - Eliminate 50+ inline styles from FilterUIv2.tsx
+      - Remove all hardcoded values (#666, 10px, etc.)
+      - Refactor quiz-styles.scss to prevent global pollution
+    activities:
+      - Prioritize components by complexity and impact
+      - Migrate FilterUIv2.tsx inline styles to CSS modules
+      - Convert hardcoded values to design token references
+      - Refactor quiz-styles.scss into component-specific modules
+      - Update each component systematically with visual testing
+      - Create reusable style utilities for common patterns
+    deliverables:
+      - All components using CSS modules exclusively
+      - FilterUIv2.module.scss with migrated inline styles
+      - Quiz components with scoped stylesheets
+      - Component migration checklist and progress tracker
+      - Visual regression test results for each component
+      - Reusable style utilities library
+    dependencies:
+      - Completed design token system from Phase 2
+      - Component inventory and priority list
+      - Visual testing setup and baseline screenshots
+    duration: "2 weeks"
+    success_criteria:
+      - 100% components using CSS modules
+      - Zero inline styles remaining in codebase
+      - All hardcoded values replaced with tokens
+      - Quiz styles no longer polluting global scope
+      - Visual regression tests passing for all components
+    transition_conditions:
+      - All high-priority components migrated
+      - Visual testing confirms zero regressions
+      - Performance metrics show expected improvements
+      - Code review completed for all migrations
+    dev_guidelines:
+      - Migrate one component at a time to isolate changes
+      - Take before/after screenshots for each component
+      - Run visual regression tests after each migration
+      - Preserve all existing class names for compatibility
+
+  - name: "Validation & Documentation"
+    goals:
+      - Ensure zero visual regressions across entire site
+      - Create comprehensive documentation for AI agents
+      - Establish long-term maintenance processes
+      - Transfer knowledge to development team
+    activities:
+      - Conduct full-site visual regression testing
+      - Update CLAUDE.md with CSS best practices and examples
+      - Create style guide with interactive examples
+      - Document migration patterns for future updates
+      - Perform final bundle size optimization
+      - Set up continuous monitoring for CSS quality
+    deliverables:
+      - Complete visual regression test report
+      - Updated CLAUDE.md with AI-specific CSS guidance
+      - Interactive style guide with usage examples
+      - CSS maintenance playbook
+      - Final performance metrics report
+      - Automated CSS quality dashboard
+    dependencies:
+      - All component migrations completed
+      - Testing environments available
+      - Documentation templates prepared
+    duration: "1 week"
+    success_criteria:
+      - Zero visual regressions confirmed across all pages
+      - CSS bundle size reduced by 50%+ from baseline
+      - CSS quality score > 85
+      - AI agents successfully using new patterns
+      - Documentation reviewed and approved by team
+    transition_conditions:
+      - Project handoff completed
+      - Team trained on new systems
+      - Monitoring tools operational
+      - All deliverables accepted
+    dev_guidelines:
+      - Test on all supported browsers and devices
+      - Include code examples in all documentation
+      - Create video walkthroughs for complex topics
+      - Ensure documentation is searchable and well-organized

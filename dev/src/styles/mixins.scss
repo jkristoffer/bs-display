@@ -2,42 +2,42 @@
 
 /* Section Layout System */
 .section {
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-16) 0;
 
   /* Create larger spacing between adjacent sections */
   & + & {
-    margin-top: var(--spacing-xxl);
+    margin-top: var(--spacing-24);
   }
 
   /* Section variants for different content needs */
   
   /* For sections with background elements - more padding */
   &--with-background {
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-24) 0;
   }
   
   /* For content-dense areas - less padding */
   &--narrow {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-8) 0;
   }
   
   /* For showcasing important content - more padding */
   &--wide {
-    padding: var(--spacing-xxl) var(--spacing-md);
+    padding: var(--spacing-24) var(--spacing-8);
   }
   
   /* For hero sections - extra padding and special treatment */
   &--hero {
-    padding: calc(var(--spacing-xxl) * 1.5) 0;
+    padding: calc(var(--spacing-24) * 1.5) 0;
     position: relative;
   }
   
   /* For grid-based content - specific spacing for grid layouts */
   &--grid-content {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-16) 0;
     & > .container {
       display: grid;
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
     }
   }
 }
@@ -45,52 +45,52 @@
 /* Responsive Section Adjustments */
 @media (max-width: 768px) {
   .section {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-12) 0;
 
     & + & {
-      margin-top: var(--spacing-xl);
+      margin-top: var(--spacing-16);
     }
 
     &--with-background {
-      padding: var(--spacing-xl) 0;
+      padding: var(--spacing-16) 0;
     }
     
     &--narrow {
-      padding: var(--spacing-sm) 0;
+      padding: var(--spacing-4) 0;
     }
     
     &--wide {
-      padding: var(--spacing-xl) var(--spacing-sm);
+      padding: var(--spacing-16) var(--spacing-4);
     }
     
     &--hero {
-      padding: var(--spacing-xl) 0;
+      padding: var(--spacing-16) 0;
     }
     
     &--grid-content > .container {
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
   }
 }
 
 /* Spacing Utilities - Following BEM Utility Prefix Convention */
-.u-margin-top-xs { margin-top: var(--spacing-xs); }
-.u-margin-top-sm { margin-top: var(--spacing-sm); }
-.u-margin-top-md { margin-top: var(--spacing-md); }
-.u-margin-top-lg { margin-top: var(--spacing-lg); }
-.u-margin-top-xl { margin-top: var(--spacing-xl); }
+.u-margin-top-xs { margin-top: var(--spacing-2); }
+.u-margin-top-sm { margin-top: var(--spacing-4); }
+.u-margin-top-md { margin-top: var(--spacing-8); }
+.u-margin-top-lg { margin-top: var(--spacing-12); }
+.u-margin-top-xl { margin-top: var(--spacing-16); }
 
-.u-margin-bottom-xs { margin-bottom: var(--spacing-xs); }
-.u-margin-bottom-sm { margin-bottom: var(--spacing-sm); }
-.u-margin-bottom-md { margin-bottom: var(--spacing-md); }
-.u-margin-bottom-lg { margin-bottom: var(--spacing-lg); }
-.u-margin-bottom-xl { margin-bottom: var(--spacing-xl); }
+.u-margin-bottom-xs { margin-bottom: var(--spacing-2); }
+.u-margin-bottom-sm { margin-bottom: var(--spacing-4); }
+.u-margin-bottom-md { margin-bottom: var(--spacing-8); }
+.u-margin-bottom-lg { margin-bottom: var(--spacing-12); }
+.u-margin-bottom-xl { margin-bottom: var(--spacing-16); }
 
-.u-padding-xs { padding: var(--spacing-xs); }
-.u-padding-sm { padding: var(--spacing-sm); }
-.u-padding-md { padding: var(--spacing-md); }
-.u-padding-lg { padding: var(--spacing-lg); }
-.u-padding-xl { padding: var(--spacing-xl); }
+.u-padding-xs { padding: var(--spacing-2); }
+.u-padding-sm { padding: var(--spacing-4); }
+.u-padding-md { padding: var(--spacing-8); }
+.u-padding-lg { padding: var(--spacing-12); }
+.u-padding-xl { padding: var(--spacing-16); }
 
 /* Section Animation for subtle transitions */
 .section {
@@ -137,7 +137,7 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--spacing-md);
+  gap: var(--spacing-8);
 }
 
 /* Typography */
@@ -150,14 +150,14 @@
 }
 
 .text-accent {
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 /* Containers */
 .container {
   max-width: var(--spacing-container-max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-8);
   box-sizing: border-box;
 }
 
@@ -229,7 +229,7 @@
   box-shadow: 
     0 4px 6px -1px rgb(0 0 0 / 0.1),
     0 2px 4px -2px rgb(0 0 0 / 0.1);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--spacing-dynamic);
 }
 
@@ -238,22 +238,22 @@
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-dynamic);
 }
 
 .container--gradient-border {
   position: relative;
   background: var(--color-background);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-dynamic);
   
   &::before {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(45deg, var(--color-accent-primary), var(--color-accent-secondary));
-    border-radius: var(--border-radius-lg);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent-secondary));
+    border-radius: var(--radius-xl);
     z-index: -1;
   }
 }
@@ -287,23 +287,23 @@
 .card {
   background-color: var(--color-surface);
   border-radius: 4px;
-  box-shadow: var(--box-shadow-1);
+  box-shadow: var(--shadow-md);
 }
 
 /* Responsive Utilities */
-@media (max-width: var(--breakpoint-sm)) {
+@media (max-width: var(576px)) {
   .hide-sm {
     display: none;
   }
 }
 
-@media (max-width: var(--breakpoint-md)) {
+@media (max-width: var(768px)) {
   .hide-md {
     display: none;
   }
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: var(768px)) {
   .show-md {
     display: block;
   }
@@ -380,7 +380,7 @@
 /* Gradient Borders */
 .gradient-border-primary {
   position: relative;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-xl);
   
   &::before {
     content: '';
@@ -394,7 +394,7 @@
 
 .gradient-border-animated {
   position: relative;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-xl);
   
   &::before {
     content: '';

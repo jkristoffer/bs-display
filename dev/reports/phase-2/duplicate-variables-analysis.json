@@ -1,0 +1,47 @@
+{
+  "analysis_date": "2025-07-24T03:24:24.509Z",
+  "color_duplicates": [],
+  "spacing_duplicates": [
+    {
+      "value": "var(--spacing-8)",
+      "variables": [
+        "--spacing-md",
+        "--spacing-container-padding"
+      ]
+    },
+    {
+      "value": "var(--spacing-24)",
+      "variables": [
+        "--spacing-xxl",
+        "--spacing-section-gap"
+      ]
+    },
+    {
+      "value": "var(--spacing-12)",
+      "variables": [
+        "--spacing-lg",
+        "--spacing-component-gap"
+      ]
+    },
+    {
+      "value": "24px",
+      "variables": [
+        "--spacing-12",
+        "--spacing-card-padding"
+      ]
+    },
+    {
+      "value": "20px",
+      "variables": [
+        "--spacing-10",
+        "--spacing-gap-between-blocks"
+      ]
+    }
+  ],
+  "summary": {
+    "total_color_variables": 41,
+    "duplicate_color_groups": 0,
+    "total_spacing_variables": 38,
+    "duplicate_spacing_groups": 5
+  }
+}

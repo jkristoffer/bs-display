@@ -327,7 +327,7 @@ function getReadingTime(content: string): string {
     align-items: center;
     margin-bottom: var(--space-xl);
     background: white;
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--radius-xl);
     padding: var(--space-card);
     box-shadow: var(--shadow-xl);
     position: relative;
@@ -382,7 +382,7 @@ function getReadingTime(content: string): string {
     font-size: var(--text-body);
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide);
+    letter-spacing: var(0.025em);
   }
 
   .reading-time {
@@ -504,13 +504,13 @@ function getReadingTime(content: string): string {
     right: 20px;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
   }
 
   .stat-card {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -544,18 +544,18 @@ function getReadingTime(content: string): string {
 
   /* Articles Section */
   .articles-section {
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   .articles-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-16);
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-4);
       text-align: center;
     }
   }
@@ -580,7 +580,7 @@ function getReadingTime(content: string): string {
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
   }
 
   .article-card {
@@ -671,10 +671,10 @@ function getReadingTime(content: string): string {
   }
 
   .card-content {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
 
   .card-meta {
@@ -720,7 +720,7 @@ function getReadingTime(content: string): string {
 
   .card-footer {
     margin-top: auto;
-    padding-top: var(--spacing-sm);
+    padding-top: var(--spacing-4);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 
@@ -728,11 +728,11 @@ function getReadingTime(content: string): string {
   .section-footer {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: calc(var(--spacing-xl) * 2);
+    gap: calc(var(--spacing-16) * 2);
     align-items: center;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-radius: 24px;
-    padding: calc(var(--spacing-xl) * 1.5);
+    padding: calc(var(--spacing-16) * 1.5);
     
     @media (max-width: $breakpoint-lg) {
       grid-template-columns: 1fr;
@@ -744,14 +744,14 @@ function getReadingTime(content: string): string {
     font-size: clamp(20px, 3vw, 28px);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: 0 0 var(--spacing-sm) 0;
+    margin: 0 0 var(--spacing-4) 0;
   }
 
   .footer-description {
     font-size: 16px;
     color: var(--color-text-primary);
     opacity: 0.8;
-    margin: 0 0 var(--spacing-lg) 0;
+    margin: 0 0 var(--spacing-12) 0;
     line-height: 1.6;
   }
 
@@ -759,9 +759,9 @@ function getReadingTime(content: string): string {
   .newsletter-section {
     display: flex;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
     background: white;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     
@@ -799,7 +799,7 @@ function getReadingTime(content: string): string {
     font-size: 14px;
     color: var(--color-text-primary);
     opacity: 0.7;
-    margin: 0 0 var(--spacing-md) 0;
+    margin: 0 0 var(--spacing-8) 0;
   }
 
   /* Animations */

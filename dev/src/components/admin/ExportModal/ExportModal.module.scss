@@ -12,7 +12,7 @@
 }
 
 .modal {
-  background: var(--color-admin-surface);
+  background: var(--color-surface);
   border-radius: 8px;
   box-shadow: var(--admin-shadow-lg);
   width: 90%;
@@ -23,21 +23,21 @@
 
 .header {
   padding: 1.5rem;
-  border-bottom: 1px solid var(--color-admin-border);
+  border-bottom: 1px solid var(--color-border-muted);
   display: flex;
   justify-content: space-between;
   align-items: center;
   
   h2 {
     margin: 0;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
   }
   
   .closeButton {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
     cursor: pointer;
     padding: 0.25rem;
     width: 2rem;
@@ -48,8 +48,8 @@
     border-radius: 4px;
     
     &:hover {
-      background: var(--color-admin-bg);
-      color: var(--color-admin-text);
+      background: var(--color-background);
+      color: var(--color-text-primary);
     }
   }
 }
@@ -65,29 +65,29 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
   }
   
   select {
     width: 100%;
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-admin-border);
+    border: 1px solid var(--color-border-muted);
     border-radius: 4px;
-    background: var(--color-admin-surface);
-    color: var(--color-admin-text);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
     
     &:focus {
       outline: none;
-      border-color: var(--chart-primary);
+      border-color: var(--color-primary);
       box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
     }
   }
 }
 
 .info {
-  background: var(--color-admin-bg);
-  border: 1px solid var(--color-admin-border);
+  background: var(--color-background);
+  border: 1px solid var(--color-border-muted);
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -95,13 +95,13 @@
   p {
     margin: 0;
     font-size: 0.875rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
 }
 
 .footer {
   padding: 1.5rem;
-  border-top: 1px solid var(--color-admin-border);
+  border-top: 1px solid var(--color-border-muted);
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -124,17 +124,17 @@
 }
 
 .cancelButton {
-  background: var(--color-admin-bg);
-  color: var(--color-admin-text);
-  border: 1px solid var(--color-admin-border);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-muted);
   
   &:hover:not(:disabled) {
-    background: var(--color-admin-border);
+    background: var(--color-border-muted);
   }
 }
 
 .exportButton {
-  background: var(--chart-primary);
+  background: var(--color-primary);
   color: white;
   
   &:hover:not(:disabled) {

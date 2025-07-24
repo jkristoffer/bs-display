@@ -42,19 +42,19 @@ import Button from '../../common/Button/Button.astro';
 
 <style lang="scss">
   .quiz-promotion {
-    padding: var(--spacing-xl) 0;
-    background: linear-gradient(135deg, rgba(var(--color-accent-primary-rgb), 0.08) 0%, rgba(var(--color-accent-secondary), 0.05) 100%);
-    border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
-    border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    padding: var(--spacing-16) 0;
+    background: linear-gradient(135deg, rgba(var(--color-primary), 0.08) 0%, rgba(var(--color-accent-secondary), 0.05) 100%);
+    border-top: 1px solid rgba(var(--color-primary), 0.1);
+    border-bottom: 1px solid rgba(var(--color-primary), 0.1);
   }
 
   .quiz-promotion__container {
     max-width: var(--spacing-container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-8);
     display: flex;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-16);
     
     @media (max-width: $breakpoint-lg) {
       flex-direction: column;
@@ -67,14 +67,14 @@ import Button from '../../common/Button/Button.astro';
   }
 
   .quiz-promotion__title {
-    font-size: var(--font-size-h2);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-section);
+    margin-bottom: var(--spacing-8);
     color: var(--color-text-primary);
   }
 
   .quiz-promotion__description {
-    font-size: var(--font-size-body-large);
-    margin-bottom: var(--spacing-lg);
+    font-size: var(--text-body);
+    margin-bottom: var(--spacing-12);
     color: var(--color-text-primary);
     opacity: 0.85;
     line-height: 1.5;
@@ -87,7 +87,7 @@ import Button from '../../common/Button/Button.astro';
   }
 
   .quiz-promotion__actions {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-8);
   }
 
   .quiz-promotion__visual {
@@ -96,13 +96,13 @@ import Button from '../../common/Button/Button.astro';
     
     @media (max-width: $breakpoint-lg) {
       width: 100%;
-      margin-top: var(--spacing-lg);
+      margin-top: var(--spacing-12);
     }
   }
 
   .quiz-promotion__cards {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     transform: translateY(-10px) rotate(2deg);
     
     @media (max-width: $breakpoint-md) {
@@ -116,8 +116,8 @@ import Button from '../../common/Button/Button.astro';
     height: 150px;
     background-color: var(--color-background);
     border-radius: 8px;
-    box-shadow: var(--box-shadow-1);
-    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-8);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,11 +164,11 @@ import Button from '../../common/Button/Button.astro';
 
   .quiz-promotion__card-icon {
     font-size: 32px;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
   
   .quiz-promotion__card h3 {
-    font-size: var(--font-size-small);
+    font-size: var(--text-small);
     margin: 0;
     text-align: center;
     color: var(--color-text-primary);

@@ -1,0 +1,5224 @@
+[
+  {
+    "variable": "--color-accent-primary",
+    "usage_count": 191,
+    "file_count": 41,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/products/FilterUI/FilterUI.module.scss",
+      "src/components/products/FilterUI/FilterUIv2.tsx",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterOption.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/sw-buying-guide/BackToTopButton.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/BrochureCard/BrochureCard.module.scss",
+      "src/components/common/EmptyState/EmptyState.module.scss",
+      "src/components/common/LoadingSpinner/LoadingSpinner.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:37",
+      "src/styles/contact.scss:102",
+      "src/styles/contact.scss:134",
+      "src/styles/variables.scss:10",
+      "src/styles/variables.scss:20"
+    ]
+  },
+  {
+    "variable": "--spacing-md",
+    "usage_count": 187,
+    "file_count": 24,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:120",
+      "src/styles/_contact-page-mixins.scss:16",
+      "src/styles/_contact-page-mixins.scss:120",
+      "src/styles/_contact-page-mixins.scss:306",
+      "src/styles/_contact-page-mixins.scss:312"
+    ]
+  },
+  {
+    "variable": "--spacing-lg",
+    "usage_count": 133,
+    "file_count": 19,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:121",
+      "src/styles/_contact-page-mixins.scss:12",
+      "src/styles/_contact-page-mixins.scss:28",
+      "src/styles/_contact-page-mixins.scss:94",
+      "src/styles/_contact-page-mixins.scss:116"
+    ]
+  },
+  {
+    "variable": "--spacing-sm",
+    "usage_count": 131,
+    "file_count": 22,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:119",
+      "src/styles/_contact-page-mixins.scss:96",
+      "src/styles/_contact-page-mixins.scss:178",
+      "src/styles/_contact-page-mixins.scss:181",
+      "src/styles/_contact-page-mixins.scss:211"
+    ]
+  },
+  {
+    "variable": "--color-text-primary",
+    "usage_count": 130,
+    "file_count": 34,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/BrochureCard/BrochureCard.module.scss",
+      "src/components/common/EmptyState/EmptyState.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:22",
+      "src/styles/contact.scss:82",
+      "src/styles/contact.scss:121",
+      "src/styles/variables.scss:9",
+      "src/styles/variables.scss:215"
+    ]
+  },
+  {
+    "variable": "--color-accent-primary-rgb",
+    "usage_count": 129,
+    "file_count": 18,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:103",
+      "src/styles/variables.scss:11",
+      "src/styles/variables.scss:267",
+      "src/styles/variables.scss:268",
+      "src/styles/_contact-page-mixins.scss:157"
+    ]
+  },
+  {
+    "variable": "--spacing-xl",
+    "usage_count": 81,
+    "file_count": 15,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:122",
+      "src/styles/sw-buying-guide.scss:32",
+      "src/styles/sw-buying-guide.scss:45",
+      "src/styles/sw-buying-guide.scss:96",
+      "src/styles/_buying-guide-mixins.scss:72"
+    ]
+  },
+  {
+    "variable": "--spacing-xs",
+    "usage_count": 78,
+    "file_count": 17,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:118",
+      "src/styles/_contact-page-mixins.scss:137",
+      "src/styles/_contact-page-mixins.scss:271",
+      "src/styles/_contact-page-mixins.scss:320",
+      "src/styles/_buying-guide-mixins.scss:155"
+    ]
+  },
+  {
+    "variable": "--color-text-secondary",
+    "usage_count": 59,
+    "file_count": 26,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/BrochureCard/BrochureCard.module.scss",
+      "src/components/common/EmptyState/EmptyState.module.scss",
+      "src/components/common/LoadingSpinner/LoadingSpinner.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:128",
+      "src/styles/variables.scss:207",
+      "src/styles/variables.scss:216",
+      "src/styles/_contact-page-mixins.scss:50",
+      "src/styles/_contact-page-mixins.scss:277"
+    ]
+  },
+  {
+    "variable": "--font-size-body-regular",
+    "usage_count": 54,
+    "file_count": 18,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:93",
+      "src/styles/contact.scss:130",
+      "src/styles/variables.scss:60",
+      "src/styles/_contact-page-mixins.scss:60",
+      "src/styles/_contact-page-mixins.scss:150"
+    ]
+  },
+  {
+    "variable": "--font-size-small",
+    "usage_count": 50,
+    "file_count": 5,
+    "files": [
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Search/SearchResults.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/_buying-guide-mixins.scss:159",
+      "src/styles/_buying-guide-mixins.scss:253",
+      "src/styles/_buying-guide-mixins.scss:267",
+      "src/styles/_buying-guide-mixins.scss:283",
+      "src/styles/_buying-guide-mixins.scss:290"
+    ]
+  },
+  {
+    "variable": "--color-admin-text",
+    "usage_count": 48,
+    "file_count": 11,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/DemoOverview.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:6",
+      "src/styles/admin/admin-global.scss:38",
+      "src/styles/admin/admin-global.scss:52",
+      "src/styles/admin/admin-global.scss:64",
+      "src/styles/admin/admin-global.scss:112"
+    ]
+  },
+  {
+    "variable": "--gradient-primary",
+    "usage_count": 47,
+    "file_count": 16,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:178",
+      "src/styles/variables.scss:201",
+      "src/styles/global.scss:87",
+      "src/styles/global.scss:129",
+      "src/styles/global.scss:180"
+    ]
+  },
+  {
+    "variable": "--color-surface",
+    "usage_count": 41,
+    "file_count": 20,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:8",
+      "src/styles/variables.scss:213",
+      "src/styles/sw-buying-guide.scss:51",
+      "src/styles/sw-buying-guide.scss:326",
+      "src/styles/global.scss:4"
+    ]
+  },
+  {
+    "variable": "--color-border",
+    "usage_count": 41,
+    "file_count": 14,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterOption.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:16",
+      "src/styles/sw-buying-guide.scss:316",
+      "src/styles/sw-buying-guide.scss:351",
+      "src/styles/_buying-guide-mixins.scss:32",
+      "src/styles/_buying-guide-mixins.scss:116"
+    ]
+  },
+  {
+    "variable": "--font-weight-bold",
+    "usage_count": 41,
+    "file_count": 17,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:91",
+      "src/styles/sw-buying-guide.scss:20",
+      "src/styles/sw-buying-guide.scss:105",
+      "src/styles/sw-buying-guide.scss:242",
+      "src/styles/sw-buying-guide.scss:322"
+    ]
+  },
+  {
+    "variable": "--spacing-4",
+    "usage_count": 39,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:104",
+      "src/styles/variables.scss:119",
+      "src/components/common/Nav.backup/NavItem.module.scss:232",
+      "src/components/common/Nav.backup/NavItem.module.scss:256",
+      "src/components/common/Nav.backup/Nav.module.scss:272"
+    ]
+  },
+  {
+    "variable": "--ease-smooth",
+    "usage_count": 33,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:282",
+      "src/styles/global.scss:76",
+      "src/styles/global.scss:94",
+      "src/components/quiz/quiz-styles.scss:591",
+      "src/components/quiz/quiz-styles.scss:1522"
+    ]
+  },
+  {
+    "variable": "--duration-normal",
+    "usage_count": 33,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:287",
+      "src/styles/global.scss:76",
+      "src/styles/global.scss:94",
+      "src/components/quiz/quiz-styles.scss:591",
+      "src/components/quiz/quiz-styles.scss:1506"
+    ]
+  },
+  {
+    "variable": "--font-weight-semibold",
+    "usage_count": 32,
+    "file_count": 17,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:26",
+      "src/styles/contact.scss:123",
+      "src/styles/variables.scss:90",
+      "src/styles/_contact-page-mixins.scss:31",
+      "src/styles/_contact-page-mixins.scss:97"
+    ]
+  },
+  {
+    "variable": "--font-size-body-large",
+    "usage_count": 32,
+    "file_count": 14,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:120",
+      "src/styles/variables.scss:59",
+      "src/styles/_contact-page-mixins.scss:49",
+      "src/styles/_contact-page-mixins.scss:269",
+      "src/styles/_contact-page-mixins.scss:304"
+    ]
+  },
+  {
+    "variable": "--font-size-body-small",
+    "usage_count": 31,
+    "file_count": 18,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:83",
+      "src/styles/variables.scss:61",
+      "src/styles/_contact-page-mixins.scss:140",
+      "src/styles/_contact-page-mixins.scss:192",
+      "src/styles/_contact-page-mixins.scss:323"
+    ]
+  },
+  {
+    "variable": "--color-accent-secondary",
+    "usage_count": 28,
+    "file_count": 12,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/BackToTopButton.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:140",
+      "src/styles/variables.scss:13",
+      "src/styles/variables.scss:26",
+      "src/styles/_contact-page-mixins.scss:287",
+      "src/styles/_contact-page-mixins.scss:327"
+    ]
+  },
+  {
+    "variable": "--spacing-6",
+    "usage_count": 28,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:106",
+      "src/styles/_contact-page-mixins.scss:146",
+      "src/styles/_contact-page-mixins.scss:188",
+      "src/components/common/Nav.backup/NavItem.module.scss:105",
+      "src/components/common/Nav.backup/NavItem.module.scss:207"
+    ]
+  },
+  {
+    "variable": "--spacing-8",
+    "usage_count": 28,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:107",
+      "src/styles/variables.scss:120",
+      "src/styles/variables.scss:127",
+      "src/styles/_contact-page-mixins.scss:188",
+      "src/components/common/Nav.backup/NavItem.module.scss:8"
+    ]
+  },
+  {
+    "variable": "--color-admin-text-secondary",
+    "usage_count": 28,
+    "file_count": 11,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/DemoOverview.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/LoadingState/LoadingState.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:7",
+      "src/styles/admin/admin-global.scss:39",
+      "src/styles/admin/admin-global.scss:159",
+      "src/components/admin/ExportModal/ExportModal.module.scss:40",
+      "src/components/admin/ExportModal/ExportModal.module.scss:98"
+    ]
+  },
+  {
+    "variable": "--font-weight-medium",
+    "usage_count": 27,
+    "file_count": 17,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/global.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:81",
+      "src/styles/variables.scss:89",
+      "src/styles/_contact-page-mixins.scss:138",
+      "src/styles/_contact-page-mixins.scss:191",
+      "src/styles/_contact-page-mixins.scss:324"
+    ]
+  },
+  {
+    "variable": "--color-admin-surface",
+    "usage_count": 27,
+    "file_count": 10,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:5",
+      "src/styles/admin/admin-global.scss:37",
+      "src/styles/admin/admin-global.scss:79",
+      "src/styles/admin/admin-global.scss:111",
+      "src/components/admin/ExportModal/ExportModal.module.scss:15"
+    ]
+  },
+  {
+    "variable": "--color-background",
+    "usage_count": 23,
+    "file_count": 11,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/Search.module.scss",
+      "src/components/common/Search/SearchResults.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:12",
+      "src/styles/contact.scss:94",
+      "src/styles/variables.scss:7",
+      "src/styles/variables.scss:27",
+      "src/styles/variables.scss:214"
+    ]
+  },
+  {
+    "variable": "--color-text-muted",
+    "usage_count": 23,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:29",
+      "src/styles/variables.scss:208",
+      "src/styles/_contact-page-mixins.scss:166",
+      "src/components/common/Form/Form.module.scss:45",
+      "src/components/common/Form/Form.module.scss:108"
+    ]
+  },
+  {
+    "variable": "--gradient-success",
+    "usage_count": 22,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:179",
+      "src/styles/variables.scss:184",
+      "src/styles/global.scss:139",
+      "src/styles/mixins.scss:314",
+      "src/components/quiz/quiz-styles.scss:1520"
+    ]
+  },
+  {
+    "variable": "--color-admin-border",
+    "usage_count": 22,
+    "file_count": 8,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:8",
+      "src/styles/admin/admin-global.scss:40",
+      "src/styles/admin/admin-global.scss:109",
+      "src/styles/admin/admin-global.scss:144",
+      "src/styles/admin/admin-global.scss:147"
+    ]
+  },
+  {
+    "variable": "--spacing-2",
+    "usage_count": 21,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:102",
+      "src/styles/variables.scss:118",
+      "src/components/common/Nav.backup/Nav.module.scss:162",
+      "src/components/common/Nav.backup/Nav.module.scss:200",
+      "src/components/common/Nav.backup/Nav.module.scss:442"
+    ]
+  },
+  {
+    "variable": "--glass-bg",
+    "usage_count": 21,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:168",
+      "src/styles/variables.scss:193",
+      "src/styles/global.scss:200",
+      "src/styles/mixins.scss:237",
+      "src/styles/mixins.scss:360"
+    ]
+  },
+  {
+    "variable": "--radius-md",
+    "usage_count": 21,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:245",
+      "src/styles/variables.scss:253",
+      "src/components/common/Nav.backup/NavItem.module.scss:17",
+      "src/components/common/Nav.backup/NavItem.module.scss:37",
+      "src/components/common/Nav.backup/NavItem.module.scss:221"
+    ]
+  },
+  {
+    "variable": "--color-admin-bg",
+    "usage_count": 20,
+    "file_count": 8,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:4",
+      "src/styles/admin/admin-global.scss:36",
+      "src/styles/admin/admin-global.scss:142",
+      "src/components/admin/ExportModal/ExportModal.module.scss:51",
+      "src/components/admin/ExportModal/ExportModal.module.scss:89"
+    ]
+  },
+  {
+    "variable": "--glass-border",
+    "usage_count": 19,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:169",
+      "src/styles/variables.scss:195",
+      "src/styles/global.scss:202",
+      "src/styles/mixins.scss:240",
+      "src/styles/mixins.scss:363"
+    ]
+  },
+  {
+    "variable": "--color-border-light",
+    "usage_count": 18,
+    "file_count": 9,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:53",
+      "src/styles/contact.scss:61",
+      "src/styles/variables.scss:236",
+      "src/styles/_contact-page-mixins.scss:84",
+      "src/styles/_contact-page-mixins.scss:232"
+    ]
+  },
+  {
+    "variable": "--spacing-xxl",
+    "usage_count": 18,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:123",
+      "src/styles/sw-buying-guide.scss:15",
+      "src/styles/sw-buying-guide.scss:42",
+      "src/styles/sw-buying-guide.scss:60",
+      "src/styles/_buying-guide-mixins.scss:7"
+    ]
+  },
+  {
+    "variable": "--radius-lg",
+    "usage_count": 18,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:246",
+      "src/styles/variables.scss:255",
+      "src/components/common/Nav.backup/NavItem.module.scss:104",
+      "src/components/common/Nav.backup/NavItem.module.scss:138",
+      "src/components/common/Nav.backup/NavItem.module.scss:259"
+    ]
+  },
+  {
+    "variable": "--chart-primary",
+    "usage_count": 18,
+    "file_count": 9,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/LoadingState/LoadingState.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:14",
+      "src/styles/admin/admin-global.scss:69",
+      "src/styles/admin/admin-global.scss:118",
+      "src/styles/admin/admin-global.scss:133",
+      "src/components/admin/ExportModal/ExportModal.module.scss:82"
+    ]
+  },
+  {
+    "variable": "--admin-shadow-sm",
+    "usage_count": 18,
+    "file_count": 8,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss",
+      "src/components/admin/DataTable/DataTable.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:28",
+      "src/styles/admin/admin-global.scss:82",
+      "src/components/admin/MetricCard/MetricCard.module.scss:5",
+      "src/components/admin/charts/ChartWrapper.module.scss:5",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss:109"
+    ]
+  },
+  {
+    "variable": "--color-accent-secondary-rgb",
+    "usage_count": 16,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:14",
+      "src/styles/_contact-page-mixins.scss:328",
+      "src/components/quiz/quiz-styles.scss:351",
+      "src/components/quiz/quiz-styles.scss:728",
+      "src/components/quiz/quiz-styles.scss:742"
+    ]
+  },
+  {
+    "variable": "--color-surface-muted",
+    "usage_count": 16,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:30",
+      "src/styles/variables.scss:232",
+      "src/components/common/Card/Card.module.scss:121",
+      "src/components/common/Nav.backup/NavItem.module.scss:25",
+      "src/components/common/Nav.backup/Nav.module.scss:147"
+    ]
+  },
+  {
+    "variable": "--shadow-md",
+    "usage_count": 16,
+    "file_count": 11,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:260",
+      "src/styles/variables.scss:273",
+      "src/components/quiz/quiz-styles.scss:572",
+      "src/components/common/Card/Card.module.scss:23",
+      "src/components/common/Nav.backup/NavItem.module.scss:148"
+    ]
+  },
+  {
+    "variable": "--gradient",
+    "usage_count": 16,
+    "file_count": 5,
+    "files": [
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavButton.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Form/Form.module.scss:275",
+      "src/components/common/Card/Card.module.scss:27",
+      "src/components/common/Card/Card.module.scss:58",
+      "src/components/common/Card/Card.module.scss:123",
+      "src/components/common/Card/Card.module.scss:141"
+    ]
+  },
+  {
+    "variable": "--border-radius-small",
+    "usage_count": 15,
+    "file_count": 7,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:38",
+      "src/styles/contact.scss:91",
+      "src/styles/variables.scss:253",
+      "src/styles/_contact-page-mixins.scss:42",
+      "src/styles/_contact-page-mixins.scss:107"
+    ]
+  },
+  {
+    "variable": "--line-height-body",
+    "usage_count": 15,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:83",
+      "src/styles/global.scss:397",
+      "src/components/common/Card/Card.module.scss:149",
+      "src/components/common/Nav.backup/NavItem.module.scss:6",
+      "src/components/common/Nav.backup/NavItem.module.scss:190"
+    ]
+  },
+  {
+    "variable": "--shadow-sm",
+    "usage_count": 15,
+    "file_count": 9,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:259",
+      "src/styles/variables.scss:272",
+      "src/components/quiz/quiz-styles.scss:1543",
+      "src/components/quiz/quiz-styles.scss:1663",
+      "src/components/common/Card/Card.module.scss:14"
+    ]
+  },
+  {
+    "variable": "--breakpoint-md",
+    "usage_count": 15,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:277",
+      "src/styles/sw-buying-guide.scss:31",
+      "src/styles/sw-buying-guide.scss:44",
+      "src/styles/sw-buying-guide.scss:147",
+      "src/styles/global.scss:411"
+    ]
+  },
+  {
+    "variable": "--border-radius-card",
+    "usage_count": 14,
+    "file_count": 9,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:50",
+      "src/styles/contact.scss:58",
+      "src/styles/variables.scss:254",
+      "src/styles/_contact-page-mixins.scss:81",
+      "src/styles/_contact-page-mixins.scss:229"
+    ]
+  },
+  {
+    "variable": "--glass-backdrop",
+    "usage_count": 14,
+    "file_count": 5,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:197",
+      "src/styles/global.scss:201",
+      "src/styles/mixins.scss:361",
+      "src/styles/mixins.scss:362",
+      "src/styles/mixins.scss:368"
+    ]
+  },
+  {
+    "variable": "--color-border-muted",
+    "usage_count": 13,
+    "file_count": 6,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:90",
+      "src/styles/variables.scss:28",
+      "src/styles/variables.scss:237",
+      "src/styles/_contact-page-mixins.scss:147",
+      "src/components/common/Form/Form.module.scss:36"
+    ]
+  },
+  {
+    "variable": "--font-size-h3",
+    "usage_count": 13,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+      "src/components/common/Search/Search.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:56",
+      "src/styles/global.scss:59",
+      "src/styles/global.scss:363",
+      "src/styles/global.scss:389",
+      "src/styles/_buying-guide-mixins.scss:65"
+    ]
+  },
+  {
+    "variable": "--spacing-button-padding",
+    "usage_count": 13,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:161",
+      "src/styles/global.scss:91",
+      "src/styles/global.scss:91",
+      "src/styles/global.scss:163",
+      "src/styles/global.scss:163"
+    ]
+  },
+  {
+    "variable": "--chart-danger",
+    "usage_count": 13,
+    "file_count": 6,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:18",
+      "src/components/admin/MetricCard/MetricCard.module.scss:45",
+      "src/components/admin/MetricCard/MetricCard.module.scss:88",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss:121",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss:123"
+    ]
+  },
+  {
+    "variable": "--letter-spacing-normal",
+    "usage_count": 12,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:95",
+      "src/styles/global.scss:418",
+      "src/components/common/Nav.backup/NavItem.module.scss:102",
+      "src/components/common/Nav.backup/NavItem.module.scss:189",
+      "src/components/common/Nav.backup/NavItem.module.scss:210"
+    ]
+  },
+  {
+    "variable": "--spacing-1",
+    "usage_count": 12,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:101",
+      "src/components/common/Nav.backup/NavItem.module.scss:220",
+      "src/components/common/Nav.backup/NavItem.module.scss:239",
+      "src/components/common/Nav/NavItem.module.scss:221",
+      "src/components/common/Nav/NavItem.module.scss:240"
+    ]
+  },
+  {
+    "variable": "--font-size-sm",
+    "usage_count": 12,
+    "file_count": 4,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:16",
+      "src/components/common/Nav.backup/NavButton.module.scss:268",
+      "src/components/common/Nav.backup/NavSection.module.scss:30",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:66",
+      "src/components/common/Nav/SimpleSearch.module.scss:178"
+    ]
+  },
+  {
+    "variable": "--font-size-h4",
+    "usage_count": 11,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:57",
+      "src/styles/_contact-page-mixins.scss:91",
+      "src/styles/_contact-page-mixins.scss:239",
+      "src/styles/terms-and-conditions.scss:91",
+      "src/styles/_legal-page-mixins.scss:71"
+    ]
+  },
+  {
+    "variable": "--font-weight-regular",
+    "usage_count": 11,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:88",
+      "src/styles/_buying-guide-mixins.scss:161",
+      "src/styles/_buying-guide-mixins.scss:268",
+      "src/components/sw-buying-guide/FaqsSection.scss:142",
+      "src/components/common/Nav.backup/NavItem.module.scss:188"
+    ]
+  },
+  {
+    "variable": "--spacing-12",
+    "usage_count": 11,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:109",
+      "src/styles/variables.scss:121",
+      "src/styles/variables.scss:129",
+      "src/components/common/Nav.backup/NavItem.module.scss:103",
+      "src/components/common/Nav.backup/Nav.module.scss:52"
+    ]
+  },
+  {
+    "variable": "--spacing-inline",
+    "usage_count": 11,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:152",
+      "src/styles/mixins.scss:172",
+      "src/styles/mixins.scss:178",
+      "src/styles/mixins.scss:184",
+      "src/styles/mixins.scss:191"
+    ]
+  },
+  {
+    "variable": "--border-radius-lg",
+    "usage_count": 11,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:166",
+      "src/styles/sw-buying-guide.scss:159",
+      "src/styles/mixins.scss:241",
+      "src/styles/mixins.scss:248",
+      "src/styles/mixins.scss:256"
+    ]
+  },
+  {
+    "variable": "--radius-full",
+    "usage_count": 11,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:250",
+      "src/styles/sw-buying-guide.scss:246",
+      "src/components/quiz/quiz-styles.scss:583",
+      "src/components/quiz/quiz-styles.scss:1502",
+      "src/components/common/Nav.backup/Nav.module.scss:287"
+    ]
+  },
+  {
+    "variable": "--ease-bounce",
+    "usage_count": 11,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:283",
+      "src/components/quiz/quiz-styles.scss:1506",
+      "src/components/quiz/quiz-styles.scss:1660",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:19",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:125"
+    ]
+  },
+  {
+    "variable": "--font-size-smaller",
+    "usage_count": 11,
+    "file_count": 5,
+    "files": [
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/common/Search/SearchItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/global.scss:330",
+      "src/styles/_buying-guide-mixins.scss:176",
+      "src/components/quiz/quiz-styles.scss:122",
+      "src/components/quiz/quiz-styles.scss:1229",
+      "src/components/quiz/quiz-styles.scss:1248"
+    ]
+  },
+  {
+    "variable": "--glass",
+    "usage_count": 11,
+    "file_count": 5,
+    "files": [
+      "src/styles/mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:236",
+      "src/components/quiz/quiz-styles.scss:1551",
+      "src/components/common/Form/Form.module.scss:60",
+      "src/components/common/Form/Form.module.scss:145",
+      "src/components/common/Form/Form.module.scss:198"
+    ]
+  },
+  {
+    "variable": "--font-size-h2",
+    "usage_count": 10,
+    "file_count": 8,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/components/common/Search/Search.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:21",
+      "src/styles/variables.scss:55",
+      "src/styles/_contact-page-mixins.scss:26",
+      "src/styles/sw-buying-guide.scss:104",
+      "src/styles/global.scss:55"
+    ]
+  },
+  {
+    "variable": "--box-shadow-card",
+    "usage_count": 10,
+    "file_count": 6,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:52",
+      "src/styles/contact.scss:60",
+      "src/styles/variables.scss:272",
+      "src/styles/_contact-page-mixins.scss:83",
+      "src/styles/_contact-page-mixins.scss:231"
+    ]
+  },
+  {
+    "variable": "--spacing-3",
+    "usage_count": 10,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:103",
+      "src/components/common/Nav.backup/Nav.module.scss:136",
+      "src/components/common/Nav.backup/Nav.module.scss:209",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:31",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:65"
+    ]
+  },
+  {
+    "variable": "--spacing-5",
+    "usage_count": 10,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:105",
+      "src/components/common/Nav.backup/NavItem.module.scss:8",
+      "src/components/common/Nav.backup/NavItem.module.scss:103",
+      "src/components/common/Nav.backup/NavItem.module.scss:184",
+      "src/components/common/Nav.backup/Nav.module.scss:133"
+    ]
+  },
+  {
+    "variable": "--container-default",
+    "usage_count": 10,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:133",
+      "src/styles/mixins.scss:176",
+      "src/styles/mixins.scss:196",
+      "src/styles/mixins.scss:203",
+      "src/styles/mixins.scss:214"
+    ]
+  },
+  {
+    "variable": "--shadow-lg",
+    "usage_count": 10,
+    "file_count": 8,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/Nav.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:261",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:69",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:118",
+      "src/components/quiz/quiz-styles.scss:1514",
+      "src/components/common/Nav.backup/NavButton.module.scss:221"
+    ]
+  },
+  {
+    "variable": "--line-height-default",
+    "usage_count": 10,
+    "file_count": 5,
+    "files": [
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/sw-buying-guide.scss:7",
+      "src/styles/global.scss:8",
+      "src/styles/_buying-guide-mixins.scss:22",
+      "src/styles/_buying-guide-mixins.scss:74",
+      "src/styles/_buying-guide-mixins.scss:207"
+    ]
+  },
+  {
+    "variable": "--color-primary",
+    "usage_count": 10,
+    "file_count": 3,
+    "files": [
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:1571",
+      "src/components/quiz/quiz-styles.scss:1681",
+      "src/components/quiz/quiz-styles.scss:1690",
+      "src/components/common/Nav.backup/NavButton.module.scss:49",
+      "src/components/common/Nav.backup/NavButton.module.scss:186"
+    ]
+  },
+  {
+    "variable": "--color-surface-elevated",
+    "usage_count": 9,
+    "file_count": 4,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Nav.backup/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:49",
+      "src/styles/contact.scss:57",
+      "src/styles/contact.scss:104",
+      "src/styles/variables.scss:231",
+      "src/styles/_contact-page-mixins.scss:80"
+    ]
+  },
+  {
+    "variable": "--font-body",
+    "usage_count": 9,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:34",
+      "src/styles/variables.scss:38",
+      "src/styles/variables.scss:39",
+      "src/styles/global.scss:82",
+      "src/styles/mixins.scss:544"
+    ]
+  },
+  {
+    "variable": "--space-md",
+    "usage_count": 9,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:145",
+      "src/components/quiz/quiz-styles.scss:68",
+      "src/components/quiz/quiz-styles.scss:567",
+      "src/components/quiz/quiz-styles.scss:1498",
+      "src/components/common/Card/Card.module.scss:82"
+    ]
+  },
+  {
+    "variable": "--radius-xl",
+    "usage_count": 9,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:247",
+      "src/styles/variables.scss:254",
+      "src/components/common/Nav.backup/Nav.module.scss:208",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:121",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:169"
+    ]
+  },
+  {
+    "variable": "--radius-2xl",
+    "usage_count": 9,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:248",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:11",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:33",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:33",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:458"
+    ]
+  },
+  {
+    "variable": "--duration-fast",
+    "usage_count": 9,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:286",
+      "src/components/common/Form/Form.module.scss:18",
+      "src/components/common/Form/Form.module.scss:27",
+      "src/components/common/Form/Form.module.scss:40",
+      "src/components/common/Form/Form.module.scss:128"
+    ]
+  },
+  {
+    "variable": "--chart-secondary",
+    "usage_count": 9,
+    "file_count": 6,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss",
+      "src/components/admin/dashboards/ProductsDashboard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:15",
+      "src/components/admin/MetricCard/MetricCard.module.scss:37",
+      "src/components/admin/MetricCard/MetricCard.module.scss:84",
+      "src/components/admin/dashboards/OverviewDashboard.module.scss:63",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss:210"
+    ]
+  },
+  {
+    "variable": "--active",
+    "usage_count": 9,
+    "file_count": 5,
+    "files": [
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Search/SearchResults.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavItem.module.scss:59",
+      "src/components/common/Nav.backup/Nav.module.scss:430",
+      "src/components/common/Nav.backup/Nav.module.scss:501",
+      "src/components/common/Nav.backup/Nav.module.scss:531",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:48"
+    ]
+  },
+  {
+    "variable": "--grid-columns",
+    "usage_count": 9,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:64",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:68",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:75",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:80",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:85"
+    ]
+  },
+  {
+    "variable": "--touch-target",
+    "usage_count": 9,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavButton.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:24",
+      "src/components/common/Nav.backup/NavButton.module.scss:25",
+      "src/components/common/Nav.backup/NavButton.module.scss:256",
+      "src/components/common/Nav.backup/NavButton.module.scss:264",
+      "src/components/common/Nav.backup/NavButton.module.scss:272"
+    ]
+  },
+  {
+    "variable": "--spacing-24",
+    "usage_count": 8,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:112",
+      "src/styles/variables.scss:123",
+      "src/styles/variables.scss:128",
+      "src/styles/_contact-page-mixins.scss:16",
+      "src/styles/_contact-page-mixins.scss:74"
+    ]
+  },
+  {
+    "variable": "--spacing-dynamic",
+    "usage_count": 8,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:150",
+      "src/styles/mixins.scss:233",
+      "src/styles/mixins.scss:242",
+      "src/styles/mixins.scss:249",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:10"
+    ]
+  },
+  {
+    "variable": "--color-text",
+    "usage_count": 8,
+    "file_count": 4,
+    "files": [
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:62",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:145",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:163",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:243",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss:85"
+    ]
+  },
+  {
+    "variable": "--error",
+    "usage_count": 8,
+    "file_count": 5,
+    "files": [
+      "src/components/common/Form/FormTextarea.tsx",
+      "src/components/common/Form/FormCheckbox.tsx",
+      "src/components/common/Form/FormSelect.tsx",
+      "src/components/common/Form/FormInput.tsx",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Form/FormTextarea.tsx:26",
+      "src/components/common/Form/FormCheckbox.tsx:23",
+      "src/components/common/Form/FormSelect.tsx:34",
+      "src/components/common/Form/FormInput.tsx:26",
+      "src/components/common/Form/Form.module.scss:93"
+    ]
+  },
+  {
+    "variable": "--line-height-relaxed",
+    "usage_count": 7,
+    "file_count": 4,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:129",
+      "src/styles/variables.scss:84",
+      "src/styles/_contact-page-mixins.scss:51",
+      "src/styles/_contact-page-mixins.scss:278",
+      "src/styles/_legal-page-mixins.scss:116"
+    ]
+  },
+  {
+    "variable": "--space-card",
+    "usage_count": 7,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:139",
+      "src/styles/variables.scss:157",
+      "src/components/quiz/quiz-styles.scss:1653",
+      "src/components/common/Card/Card.module.scss:107",
+      "src/components/common/Card/Card.module.scss:110"
+    ]
+  },
+  {
+    "variable": "--glass-backdrop-strong",
+    "usage_count": 7,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:198",
+      "src/styles/mixins.scss:375",
+      "src/styles/mixins.scss:376",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:9",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:10"
+    ]
+  },
+  {
+    "variable": "--radius-sm",
+    "usage_count": 7,
+    "file_count": 5,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss",
+      "src/components/common/Breadcrumbs/Breadcrumbs.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:244",
+      "src/components/common/Nav.backup/NavItem.module.scss:240",
+      "src/components/common/Nav/NavItem.module.scss:241",
+      "src/components/common/Nav/SimpleSearch.module.scss:156",
+      "src/components/common/Nav/SimpleSearch.module.scss:294"
+    ]
+  },
+  {
+    "variable": "--shadow-xl",
+    "usage_count": 7,
+    "file_count": 7,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Loading/Loading.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:262",
+      "src/components/quiz/quiz-styles.scss:1680",
+      "src/components/common/Card/Card.module.scss:52",
+      "src/components/common/Loading/Loading.module.scss:136",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:146"
+    ]
+  },
+  {
+    "variable": "--shadow-2xl",
+    "usage_count": 7,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:263",
+      "src/components/quiz/quiz-styles.scss:1527",
+      "src/components/quiz/quiz-styles.scss:1591",
+      "src/components/quiz/quiz-styles.scss:1696",
+      "src/components/quiz/quiz-styles.scss:1724"
+    ]
+  },
+  {
+    "variable": "--box-shadow-1",
+    "usage_count": 7,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss",
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:271",
+      "src/styles/global.scss:356",
+      "src/styles/mixins.scss:290",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:7",
+      "src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:25"
+    ]
+  },
+  {
+    "variable": "--font-size-body",
+    "usage_count": 7,
+    "file_count": 5,
+    "files": [
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss"
+    ],
+    "sample_locations": [
+      "src/styles/sw-buying-guide.scss:124",
+      "src/styles/terms-and-conditions.scss:46",
+      "src/styles/_legal-page-mixins.scss:38",
+      "src/styles/_legal-page-mixins.scss:158",
+      "src/styles/_legal-page-mixins.scss:190"
+    ]
+  },
+  {
+    "variable": "--admin-spacing-lg",
+    "usage_count": 7,
+    "file_count": 3,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:24",
+      "src/styles/admin/admin-global.scss:81",
+      "src/styles/admin/admin-global.scss:92",
+      "src/styles/admin/admin-global.scss:172",
+      "src/styles/admin/admin-global.scss:177"
+    ]
+  },
+  {
+    "variable": "--color-border-rgb",
+    "usage_count": 7,
+    "file_count": 3,
+    "files": [
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss",
+      "src/components/sw-buying-guide/StickyTableOfContents.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:1025",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:30",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:137",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:162",
+      "src/components/sw-buying-guide/MobileTableOfContents.scss:186"
+    ]
+  },
+  {
+    "variable": "--font-size-xs",
+    "usage_count": 7,
+    "file_count": 4,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:95",
+      "src/components/common/Nav.backup/NavButton.module.scss:142",
+      "src/components/common/Nav.backup/NavButton.module.scss:260",
+      "src/components/common/Nav.backup/NavSection.module.scss:98",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:116"
+    ]
+  },
+  {
+    "variable": "--color-text-primary-rgb",
+    "usage_count": 7,
+    "file_count": 3,
+    "files": [
+      "src/components/common/Search/SearchItem.module.scss",
+      "src/components/common/Search/SearchInput.module.scss",
+      "src/components/common/Search/SearchResults.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Search/SearchItem.module.scss:112",
+      "src/components/common/Search/SearchItem.module.scss:135",
+      "src/components/common/Search/SearchInput.module.scss:67",
+      "src/components/common/Search/SearchInput.module.scss:72",
+      "src/components/common/Search/SearchInput.module.scss:94"
+    ]
+  },
+  {
+    "variable": "--font-primary",
+    "usage_count": 6,
+    "file_count": 5,
+    "files": [
+      "src/styles/contact.scss",
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/styles/global.scss",
+      "src/components/common/Search/Search.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/contact.scss:92",
+      "src/styles/variables.scss:38",
+      "src/styles/_contact-page-mixins.scss:149",
+      "src/styles/_contact-page-mixins.scss:173",
+      "src/styles/global.scss:3"
+    ]
+  },
+  {
+    "variable": "--color-button-primary-text",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:23",
+      "src/styles/_buying-guide-mixins.scss:105",
+      "src/components/common/Nav.backup/NavItem.module.scss:100",
+      "src/components/common/Nav.backup/NavItem.module.scss:145",
+      "src/components/common/Nav/NavItem.module.scss:101"
+    ]
+  },
+  {
+    "variable": "--font-size-h1",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss",
+      "src/styles/global.scss",
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:54",
+      "src/styles/sw-buying-guide.scss:19",
+      "src/styles/global.scss:51",
+      "src/styles/global.scss:361",
+      "src/styles/global.scss:369"
+    ]
+  },
+  {
+    "variable": "--font-size-caption",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:62",
+      "src/components/common/Form/Form.module.scss:77",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:328",
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:363",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss:328"
+    ]
+  },
+  {
+    "variable": "--font-size-nav-primary",
+    "usage_count": 6,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:77",
+      "src/components/common/Nav.backup/NavItem.module.scss:3",
+      "src/components/common/Nav.backup/Nav.module.scss:128",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:36",
+      "src/components/common/Nav/NavItem.module.scss:3"
+    ]
+  },
+  {
+    "variable": "--line-height-headers",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:82",
+      "src/styles/global.scss:47",
+      "src/styles/global.scss:385",
+      "src/styles/global.scss:391",
+      "src/components/common/Card/Card.module.scss:138"
+    ]
+  },
+  {
+    "variable": "--container-wide",
+    "usage_count": 6,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:134",
+      "src/styles/mixins.scss:182",
+      "src/styles/mixins.scss:189",
+      "src/styles/mixins.scss:269",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:7"
+    ]
+  },
+  {
+    "variable": "--border-radius-md",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:165",
+      "src/styles/mixins.scss:232",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:167",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:245",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:255"
+    ]
+  },
+  {
+    "variable": "--color-error-new",
+    "usage_count": 6,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:227",
+      "src/components/common/Form/Form.module.scss:94",
+      "src/components/common/Form/Form.module.scss:164",
+      "src/components/common/Form/Form.module.scss:217",
+      "src/components/common/Form/Form.module.scss:251"
+    ]
+  },
+  {
+    "variable": "--color-border-default",
+    "usage_count": 6,
+    "file_count": 6,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss",
+      "src/components/common/Form/Form.module.scss",
+      "src/components/common/Card/Card.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:238",
+      "src/styles/_contact-page-mixins.scss:162",
+      "src/components/common/Form/Form.module.scss:285",
+      "src/components/common/Card/Card.module.scss:42",
+      "src/components/common/Nav.backup/Nav.module.scss:36"
+    ]
+  },
+  {
+    "variable": "--color-admin-sidebar-text",
+    "usage_count": 6,
+    "file_count": 2,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:10",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:8",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:42",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:79",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:111"
+    ]
+  },
+  {
+    "variable": "--animation-delay",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/quiz/components/CategoryScores.tsx",
+      "src/components/common/Nav.backup/NavSection.tsx",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:2688",
+      "src/components/quiz/quiz-styles.scss:2861",
+      "src/components/quiz/quiz-styles.scss:2923",
+      "src/components/quiz/components/CategoryScores.tsx:133",
+      "src/components/common/Nav.backup/NavSection.tsx:50"
+    ]
+  },
+  {
+    "variable": "--full",
+    "usage_count": 6,
+    "file_count": 4,
+    "files": [
+      "src/components/common/Form/FormTextarea.tsx",
+      "src/components/common/Form/FormSelect.tsx",
+      "src/components/common/Form/FormInput.tsx",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Form/FormTextarea.tsx:25",
+      "src/components/common/Form/FormSelect.tsx:33",
+      "src/components/common/Form/FormInput.tsx:25",
+      "src/components/common/Form/Form.module.scss:88",
+      "src/components/common/Form/Form.module.scss:158"
+    ]
+  },
+  {
+    "variable": "--stagger-delay",
+    "usage_count": 6,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:54",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:55",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:56",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:57",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:58"
+    ]
+  },
+  {
+    "variable": "--icon-size",
+    "usage_count": 6,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:109",
+      "src/components/common/Nav.backup/NavButton.module.scss:118",
+      "src/components/common/Nav.backup/NavButton.module.scss:119",
+      "src/components/common/Nav.backup/NavButton.module.scss:257",
+      "src/components/common/Nav.backup/NavButton.module.scss:265"
+    ]
+  },
+  {
+    "variable": "--letter-spacing-wide",
+    "usage_count": 5,
+    "file_count": 5,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:96",
+      "src/components/common/Nav.backup/NavItem.module.scss:5",
+      "src/components/common/Nav.backup/Nav.module.scss:130",
+      "src/components/common/Nav/NavItem.module.scss:5",
+      "src/components/common/Nav/NavButton.module.scss:6"
+    ]
+  },
+  {
+    "variable": "--spacing-10",
+    "usage_count": 5,
+    "file_count": 5,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:108",
+      "src/components/common/Nav.backup/NavItem.module.scss:260",
+      "src/components/common/Nav.backup/Nav.module.scss:418",
+      "src/components/common/Nav/NavItem.module.scss:261",
+      "src/components/common/Nav/SimpleSearch.module.scss:121"
+    ]
+  },
+  {
+    "variable": "--spacing-16",
+    "usage_count": 5,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:110",
+      "src/styles/variables.scss:122",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:10",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:23",
+      "src/components/common/Nav/SimpleSearch.module.scss:44"
+    ]
+  },
+  {
+    "variable": "--space-sm",
+    "usage_count": 5,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:144",
+      "src/components/quiz/quiz-styles.scss:575",
+      "src/components/quiz/quiz-styles.scss:1510",
+      "src/components/common/Card/Card.module.scss:76",
+      "src/components/common/Card/Card.module.scss:135"
+    ]
+  },
+  {
+    "variable": "--space-lg",
+    "usage_count": 5,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:146",
+      "src/components/quiz/quiz-styles.scss:564",
+      "src/components/quiz/quiz-styles.scss:1498",
+      "src/components/common/Card/Card.module.scss:88",
+      "src/components/common/Card/Card.module.scss:210"
+    ]
+  },
+  {
+    "variable": "--admin-spacing-sm",
+    "usage_count": 5,
+    "file_count": 2,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:22",
+      "src/styles/admin/admin-global.scss:170",
+      "src/styles/admin/admin-global.scss:175",
+      "src/components/admin/MetricCard/MetricCard.module.scss:58",
+      "src/components/admin/MetricCard/MetricCard.module.scss:80"
+    ]
+  },
+  {
+    "variable": "--admin-spacing-md",
+    "usage_count": 5,
+    "file_count": 3,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/charts/ChartWrapper.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:23",
+      "src/styles/admin/admin-global.scss:171",
+      "src/styles/admin/admin-global.scss:176",
+      "src/components/admin/MetricCard/MetricCard.module.scss:51",
+      "src/components/admin/charts/ChartWrapper.module.scss:12"
+    ]
+  },
+  {
+    "variable": "--floating",
+    "usage_count": 5,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Form/FormInput.tsx",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Form/FormInput.tsx:33",
+      "src/components/common/Form/Form.module.scss:7",
+      "src/components/common/Form/Form.module.scss:20",
+      "src/components/common/Form/Form.module.scss:73",
+      "src/components/common/Form/Form.module.scss:111"
+    ]
+  },
+  {
+    "variable": "--bg-color",
+    "usage_count": 5,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavButton.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:12",
+      "src/components/common/Nav.backup/NavButton.module.scss:174",
+      "src/components/common/Nav.backup/NavButton.module.scss:180",
+      "src/components/common/Nav.backup/NavButton.module.scss:475",
+      "src/components/common/Nav.backup/NavButton.tsx:161"
+    ]
+  },
+  {
+    "variable": "--image-size",
+    "usage_count": 5,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:125",
+      "src/components/common/Nav.backup/NavButton.module.scss:126",
+      "src/components/common/Nav.backup/NavButton.module.scss:258",
+      "src/components/common/Nav.backup/NavButton.module.scss:266",
+      "src/components/common/Nav.backup/NavButton.module.scss:274"
+    ]
+  },
+  {
+    "variable": "--color-button-primary-background",
+    "usage_count": 4,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:22",
+      "src/styles/_buying-guide-mixins.scss:104",
+      "src/components/common/Nav.backup/NavItem.module.scss:99",
+      "src/components/common/Nav/NavItem.module.scss:100"
+    ]
+  },
+  {
+    "variable": "--text-body",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:50",
+      "src/styles/mixins.scss:548",
+      "src/components/quiz/quiz-styles.scss:565",
+      "src/components/quiz/quiz-styles.scss:1504"
+    ]
+  },
+  {
+    "variable": "--spacing-32",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:113",
+      "src/styles/_contact-page-mixins.scss:82",
+      "src/styles/_contact-page-mixins.scss:230",
+      "src/styles/_contact-page-mixins.scss:301"
+    ]
+  },
+  {
+    "variable": "--spacing-container-max-width",
+    "usage_count": 4,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:126",
+      "src/styles/mixins.scss:158",
+      "src/components/common/Nav.backup/Nav.module.scss:47",
+      "src/components/common/Nav/Nav.module.scss:57"
+    ]
+  },
+  {
+    "variable": "--spacing-container-padding",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:127",
+      "src/styles/variables.scss:158",
+      "src/styles/global.scss:403",
+      "src/styles/global.scss:407"
+    ]
+  },
+  {
+    "variable": "--space-section",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:138",
+      "src/styles/variables.scss:151",
+      "src/components/quiz/quiz-styles.scss:1590",
+      "src/components/quiz/quiz-styles.scss:1723"
+    ]
+  },
+  {
+    "variable": "--spacing-card-padding",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/common/ProductCard/ProductCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:157",
+      "src/styles/variables.scss:174",
+      "src/styles/_buying-guide-mixins.scss:30",
+      "src/components/common/ProductCard/ProductCard.module.scss:122"
+    ]
+  },
+  {
+    "variable": "--border-radius-sm",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:164",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss:75",
+      "src/components/common/Nav.backup/NavButton.module.scss:127",
+      "src/components/common/Nav.backup/NavButton.module.scss:160"
+    ]
+  },
+  {
+    "variable": "--gradient-attention",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:181",
+      "src/styles/variables.scss:186",
+      "src/styles/global.scss:148",
+      "src/styles/mixins.scss:316"
+    ]
+  },
+  {
+    "variable": "--gradient-green",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:184",
+      "src/styles/variables.scss:202",
+      "src/styles/mixins.scss:319",
+      "src/styles/mixins.scss:338"
+    ]
+  },
+  {
+    "variable": "--gradient-blue",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:185",
+      "src/styles/variables.scss:204",
+      "src/styles/mixins.scss:320",
+      "src/styles/mixins.scss:352"
+    ]
+  },
+  {
+    "variable": "--gradient-orange",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:186",
+      "src/styles/variables.scss:203",
+      "src/styles/mixins.scss:321",
+      "src/styles/mixins.scss:345"
+    ]
+  },
+  {
+    "variable": "--radius-xs",
+    "usage_count": 4,
+    "file_count": 4,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:243",
+      "src/components/common/Nav.backup/NavItem.module.scss:79",
+      "src/components/common/Nav.backup/Nav.module.scss:375",
+      "src/components/common/Nav/NavItem.module.scss:80"
+    ]
+  },
+  {
+    "variable": "--admin-shadow-md",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:29",
+      "src/styles/admin/admin-global.scss:86",
+      "src/components/admin/MetricCard/MetricCard.module.scss:24",
+      "src/components/admin/dashboards/RealtimeDashboard.module.scss:75"
+    ]
+  },
+  {
+    "variable": "--font-size-h5",
+    "usage_count": 4,
+    "file_count": 4,
+    "files": [
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss",
+      "src/components/quiz/quiz-styles.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/terms-and-conditions.scss:95",
+      "src/styles/_legal-page-mixins.scss:150",
+      "src/components/quiz/quiz-styles.scss:1127",
+      "src/components/common/Card/Card.module.scss:176"
+    ]
+  },
+  {
+    "variable": "--radius-card",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/components/products/ProductDetails/ProductDetails.module.scss",
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/components/products/ProductDetails/ProductDetails.module.scss:70",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:111",
+      "src/components/quiz/quiz-styles.scss:571",
+      "src/components/quiz/quiz-styles.scss:1655"
+    ]
+  },
+  {
+    "variable": "--color-surface-hover",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss",
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss:51",
+      "src/components/common/Nav.backup/NavButton.module.scss:180",
+      "src/components/common/Nav.backup/NavButton.module.scss:243",
+      "src/components/common/Nav/Nav.module.scss:158"
+    ]
+  },
+  {
+    "variable": "--accent-color",
+    "usage_count": 4,
+    "file_count": 1,
+    "files": [
+      "src/components/admin/MetricCard/MetricCard.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/admin/MetricCard/MetricCard.module.scss:33",
+      "src/components/admin/MetricCard/MetricCard.module.scss:37",
+      "src/components/admin/MetricCard/MetricCard.module.scss:41",
+      "src/components/admin/MetricCard/MetricCard.module.scss:45"
+    ]
+  },
+  {
+    "variable": "--hoverable",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Card/Card.tsx",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.tsx:24",
+      "src/components/common/Card/Card.module.scss:47",
+      "src/components/common/Card/Card.module.scss:166",
+      "src/components/common/Card/Card.module.scss:186"
+    ]
+  },
+  {
+    "variable": "--animation-duration",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:23",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:24",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:52",
+      "src/components/common/Nav.backup/MobileMenuGrid.tsx:93"
+    ]
+  },
+  {
+    "variable": "--text-color",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavButton.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:14",
+      "src/components/common/Nav.backup/NavButton.module.scss:177",
+      "src/components/common/Nav.backup/NavButton.module.scss:197",
+      "src/components/common/Nav.backup/NavButton.tsx:162"
+    ]
+  },
+  {
+    "variable": "--font-size-lg",
+    "usage_count": 4,
+    "file_count": 3,
+    "files": [
+      "src/components/common/Nav.backup/NavSection.module.scss",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavSection.module.scss:22",
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:87",
+      "src/components/common/Nav/SimpleSearch.module.scss:59",
+      "src/components/common/Nav/SimpleSearch.module.scss:361"
+    ]
+  },
+  {
+    "variable": "--section-index",
+    "usage_count": 4,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav/Nav.tsx",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/Nav.tsx:277",
+      "src/components/common/Nav/Nav.tsx:310",
+      "src/components/common/Nav/Nav.tsx:349",
+      "src/components/common/Nav/Nav.module.scss:372"
+    ]
+  },
+  {
+    "variable": "--color-button-primary-hover",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:24",
+      "src/components/common/Nav.backup/NavItem.module.scss:144",
+      "src/components/common/Nav/NavItem.module.scss:145"
+    ]
+  },
+  {
+    "variable": "--font-heading",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:33",
+      "src/styles/mixins.scss:530",
+      "src/styles/mixins.scss:537"
+    ]
+  },
+  {
+    "variable": "--font-size-subtitle",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:58",
+      "src/styles/global.scss:241",
+      "src/styles/global.scss:395"
+    ]
+  },
+  {
+    "variable": "--font-size-nav-secondary",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:78",
+      "src/components/common/Nav.backup/NavItem.module.scss:110",
+      "src/components/common/Nav/NavItem.module.scss:111"
+    ]
+  },
+  {
+    "variable": "--line-height-tight",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:81",
+      "src/styles/global.scss:371",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:42"
+    ]
+  },
+  {
+    "variable": "--spacing-40",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:114",
+      "src/styles/_contact-page-mixins.scss:12",
+      "src/styles/_contact-page-mixins.scss:69"
+    ]
+  },
+  {
+    "variable": "--spacing-section-gap",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:128",
+      "src/styles/variables.scss:155",
+      "src/styles/global.scss:407"
+    ]
+  },
+  {
+    "variable": "--spacing-section",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/products/ProductDetails/ProductDetails.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:151",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:52",
+      "src/components/products/ProductDetails/ProductDetails.module.scss:336"
+    ]
+  },
+  {
+    "variable": "--glass-blur",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:167",
+      "src/styles/mixins.scss:238",
+      "src/styles/mixins.scss:239"
+    ]
+  },
+  {
+    "variable": "--gradient-premium",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:180",
+      "src/styles/variables.scss:185",
+      "src/styles/mixins.scss:315"
+    ]
+  },
+  {
+    "variable": "--color-accent-secondary-dark",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:210",
+      "src/styles/_buying-guide-mixins.scss:108",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss:63"
+    ]
+  },
+  {
+    "variable": "--color-surface-subtle",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:233",
+      "src/components/common/Nav/SimpleSearch.module.scss:239",
+      "src/components/common/Nav/SimpleSearch.module.scss:383"
+    ]
+  },
+  {
+    "variable": "--border-radius-button",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:255",
+      "src/styles/_buying-guide-mixins.scss:92",
+      "src/components/sw-buying-guide/ExpertAdviceSection.scss:54"
+    ]
+  },
+  {
+    "variable": "--box-shadow-card-hover",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_buying-guide-mixins.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:273",
+      "src/styles/_buying-guide-mixins.scss:39",
+      "src/components/sw-buying-guide/FaqsSection.scss:55"
+    ]
+  },
+  {
+    "variable": "--color-admin-sidebar-bg",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:9",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:7",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:41"
+    ]
+  },
+  {
+    "variable": "--color-admin-sidebar-hover",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:11",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:118",
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:123"
+    ]
+  },
+  {
+    "variable": "--chart-tertiary",
+    "usage_count": 3,
+    "file_count": 3,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/MetricCard/MetricCard.module.scss",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:16",
+      "src/components/admin/MetricCard/MetricCard.module.scss:41",
+      "src/components/admin/dashboards/JourneysDashboard.module.scss:215"
+    ]
+  },
+  {
+    "variable": "--admin-spacing-xl",
+    "usage_count": 3,
+    "file_count": 1,
+    "files": [
+      "src/styles/admin/admin-global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:25",
+      "src/styles/admin/admin-global.scss:173",
+      "src/styles/admin/admin-global.scss:178"
+    ]
+  },
+  {
+    "variable": "--narrow",
+    "usage_count": 3,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:20",
+      "src/styles/mixins.scss:58",
+      "src/styles/mixins.scss:169"
+    ]
+  },
+  {
+    "variable": "--wide",
+    "usage_count": 3,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:25",
+      "src/styles/mixins.scss:62",
+      "src/styles/mixins.scss:181"
+    ]
+  },
+  {
+    "variable": "--color-bg-secondary",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/terms-and-conditions.scss:56",
+      "src/styles/_legal-page-mixins.scss:11",
+      "src/styles/_legal-page-mixins.scss:205"
+    ]
+  },
+  {
+    "variable": "--color-bg-primary",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/styles/terms-and-conditions.scss",
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/terms-and-conditions.scss:73",
+      "src/styles/_legal-page-mixins.scss:57",
+      "src/styles/_legal-page-mixins.scss:112"
+    ]
+  },
+  {
+    "variable": "--xl",
+    "usage_count": 3,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:23",
+      "src/components/common/Loading/Loading.module.scss:62",
+      "src/components/common/Loading/Loading.module.scss:266"
+    ]
+  },
+  {
+    "variable": "--touch-sensitivity",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss",
+      "src/components/common/Nav.backup/MobileMenuGrid.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:32",
+      "src/components/common/Nav.backup/MobileMenuGrid.module.scss:36",
+      "src/components/common/Nav.backup/MobileMenuGrid.tsx:95"
+    ]
+  },
+  {
+    "variable": "--color-success",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:158",
+      "src/components/common/Nav.backup/NavButton.module.scss:372",
+      "src/components/common/Nav/SimpleSearch.module.scss:298"
+    ]
+  },
+  {
+    "variable": "--font-size-md",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:276",
+      "src/components/common/Nav.backup/NavSection.module.scss:94",
+      "src/components/common/Nav.backup/NavSection.module.scss:124"
+    ]
+  },
+  {
+    "variable": "--font-size-base",
+    "usage_count": 3,
+    "file_count": 2,
+    "files": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:91",
+      "src/components/common/Nav/SimpleSearch.module.scss:126",
+      "src/components/common/Nav/SimpleSearch.module.scss:318"
+    ]
+  },
+  {
+    "variable": "--text-hero",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:42",
+      "src/styles/mixins.scss:527"
+    ]
+  },
+  {
+    "variable": "--text-hero-line-height",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:43",
+      "src/styles/mixins.scss:528"
+    ]
+  },
+  {
+    "variable": "--text-section",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:45",
+      "src/styles/mixins.scss:534"
+    ]
+  },
+  {
+    "variable": "--text-section-line-height",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:46",
+      "src/styles/mixins.scss:535"
+    ]
+  },
+  {
+    "variable": "--text-subsection",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:48",
+      "src/styles/mixins.scss:541"
+    ]
+  },
+  {
+    "variable": "--text-body-line-height",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:51",
+      "src/styles/mixins.scss:549"
+    ]
+  },
+  {
+    "variable": "--font-weight-light",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/sw-buying-guide/FaqsSection.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:87",
+      "src/components/sw-buying-guide/FaqsSection.scss:99"
+    ]
+  },
+  {
+    "variable": "--letter-spacing-tight",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:94",
+      "src/styles/global.scss:372"
+    ]
+  },
+  {
+    "variable": "--spacing-48",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/_contact-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:115",
+      "src/styles/_contact-page-mixins.scss:23"
+    ]
+  },
+  {
+    "variable": "--spacing-component-gap",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:129",
+      "src/styles/variables.scss:156"
+    ]
+  },
+  {
+    "variable": "--container-narrow",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:132",
+      "src/styles/mixins.scss:170"
+    ]
+  },
+  {
+    "variable": "--space-xl",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:147",
+      "src/components/quiz/quiz-styles.scss:1594"
+    ]
+  },
+  {
+    "variable": "--padding-s1",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:172",
+      "src/styles/global.scss:355"
+    ]
+  },
+  {
+    "variable": "--padding-s2",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:173",
+      "src/styles/global.scss:31"
+    ]
+  },
+  {
+    "variable": "--gradient-purple",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:187",
+      "src/styles/mixins.scss:322"
+    ]
+  },
+  {
+    "variable": "--gradient-pink",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:188",
+      "src/styles/mixins.scss:323"
+    ]
+  },
+  {
+    "variable": "--gradient-teal",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:189",
+      "src/styles/mixins.scss:324"
+    ]
+  },
+  {
+    "variable": "--gradient-indigo",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:190",
+      "src/styles/mixins.scss:325"
+    ]
+  },
+  {
+    "variable": "--glass-bg-dark",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:194",
+      "src/styles/mixins.scss:367"
+    ]
+  },
+  {
+    "variable": "--glass-border-dark",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:196",
+      "src/styles/mixins.scss:370"
+    ]
+  },
+  {
+    "variable": "--shadow-xs",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav.backup/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:258",
+      "src/components/common/Nav.backup/Nav.module.scss:234"
+    ]
+  },
+  {
+    "variable": "--breakpoint-sm",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:276",
+      "src/styles/mixins.scss:294"
+    ]
+  },
+  {
+    "variable": "--breakpoint-lg",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/styles/sw-buying-guide.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:278",
+      "src/styles/sw-buying-guide.scss:142"
+    ]
+  },
+  {
+    "variable": "--duration-slow",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:288",
+      "src/components/common/Card/Card.module.scss:102"
+    ]
+  },
+  {
+    "variable": "--z-navigation",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:292",
+      "src/styles/variables.scss:299"
+    ]
+  },
+  {
+    "variable": "--z-dropdown",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:293",
+      "src/styles/variables.scss:300"
+    ]
+  },
+  {
+    "variable": "--z-overlay",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:295",
+      "src/styles/variables.scss:301"
+    ]
+  },
+  {
+    "variable": "--z-tooltip",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:296",
+      "src/styles/variables.scss:302"
+    ]
+  },
+  {
+    "variable": "--z-nav-main",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:299",
+      "src/components/common/Nav/Nav.module.scss:25"
+    ]
+  },
+  {
+    "variable": "--z-nav-dropdown",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:300",
+      "src/components/common/Nav/Nav.module.scss:119"
+    ]
+  },
+  {
+    "variable": "--z-nav-mobile-overlay",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/variables.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:301",
+      "src/components/common/Nav/Nav.module.scss:253"
+    ]
+  },
+  {
+    "variable": "--admin-shadow-lg",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/admin/admin-global.scss",
+      "src/components/admin/ExportModal/ExportModal.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:30",
+      "src/components/admin/ExportModal/ExportModal.module.scss:17"
+    ]
+  },
+  {
+    "variable": "--with-background",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:15",
+      "src/styles/mixins.scss:54"
+    ]
+  },
+  {
+    "variable": "--hero",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:30",
+      "src/styles/mixins.scss:66"
+    ]
+  },
+  {
+    "variable": "--grid-content",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:36",
+      "src/styles/mixins.scss:70"
+    ]
+  },
+  {
+    "variable": "--default",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/styles/mixins.scss",
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:175",
+      "src/components/common/Card/Card.module.scss:12"
+    ]
+  },
+  {
+    "variable": "--color-accent-dark",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/_legal-page-mixins.scss:95",
+      "src/styles/_legal-page-mixins.scss:227"
+    ]
+  },
+  {
+    "variable": "--ease-out",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss:97",
+      "src/components/products/ProductsNavigationBar/ProductsNavigationBar.module.scss:113"
+    ]
+  },
+  {
+    "variable": "--sidebar-width",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/admin/AdminSidebar/AdminSidebar.module.scss:40",
+      "src/components/admin/AdminHeader/AdminHeader.module.scss:5"
+    ]
+  },
+  {
+    "variable": "--radius-card-lg",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:1589",
+      "src/components/quiz/quiz-styles.scss:1722"
+    ]
+  },
+  {
+    "variable": "--with",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Form/FormInput.tsx",
+      "src/components/common/Form/Form.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Form/FormInput.tsx:27",
+      "src/components/common/Form/Form.module.scss:83"
+    ]
+  },
+  {
+    "variable": "--sm",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:8",
+      "src/components/common/Loading/Loading.module.scss:58"
+    ]
+  },
+  {
+    "variable": "--lg",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:18",
+      "src/components/common/Loading/Loading.module.scss:261"
+    ]
+  },
+  {
+    "variable": "--cta",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavItem.module.scss",
+      "src/components/common/Nav/NavItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavItem.module.scss:97",
+      "src/components/common/Nav/NavItem.module.scss:98"
+    ]
+  },
+  {
+    "variable": "--color-primary-subtle",
+    "usage_count": 2,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:185",
+      "src/components/common/Nav.backup/NavButton.module.scss:248"
+    ]
+  },
+  {
+    "variable": "--item-animation-delay",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/NavSection.tsx",
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavSection.tsx:101",
+      "src/components/common/Nav.backup/NavSection.module.scss:47"
+    ]
+  },
+  {
+    "variable": "--scrolled",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/Nav.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/Nav.module.scss:34",
+      "src/components/common/Nav/Nav.module.scss:44"
+    ]
+  },
+  {
+    "variable": "--text-caption",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/ProductsMegaMenu.module.scss:210",
+      "src/components/common/Nav/ProductsMegaMenu.module.scss:210"
+    ]
+  },
+  {
+    "variable": "--color-accent-primary-dark",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss",
+      "src/components/common/EmptyState/EmptyState.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss:43",
+      "src/components/common/EmptyState/EmptyState.module.scss:75"
+    ]
+  },
+  {
+    "variable": "--color-surface-primary",
+    "usage_count": 2,
+    "file_count": 2,
+    "files": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss",
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:34",
+      "src/components/common/Nav/Nav.module.scss:113"
+    ]
+  },
+  {
+    "variable": "--color-button-ghost-border",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:20"
+    ]
+  },
+  {
+    "variable": "--color-button-ghost-text",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:21"
+    ]
+  },
+  {
+    "variable": "--color-button-primary-active",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:25"
+    ]
+  },
+  {
+    "variable": "--color-button-secondary-background",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:26"
+    ]
+  },
+  {
+    "variable": "--color-button-secondary-text",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:27"
+    ]
+  },
+  {
+    "variable": "--color-button-disabled-border",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:28"
+    ]
+  },
+  {
+    "variable": "--color-button-disabled-text",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:29"
+    ]
+  },
+  {
+    "variable": "--color-button-disabled-background",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:30"
+    ]
+  },
+  {
+    "variable": "--font-mono",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:35"
+    ]
+  },
+  {
+    "variable": "--font-secondary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:39"
+    ]
+  },
+  {
+    "variable": "--font-size-micro",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:63"
+    ]
+  },
+  {
+    "variable": "--font-size-h1-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:66"
+    ]
+  },
+  {
+    "variable": "--font-size-h2-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:67"
+    ]
+  },
+  {
+    "variable": "--font-size-h3-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:68"
+    ]
+  },
+  {
+    "variable": "--font-size-h4-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:69"
+    ]
+  },
+  {
+    "variable": "--font-size-body-large-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:70"
+    ]
+  },
+  {
+    "variable": "--font-size-body-regular-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:71"
+    ]
+  },
+  {
+    "variable": "--font-size-body-small-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:72"
+    ]
+  },
+  {
+    "variable": "--font-size-caption-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:73"
+    ]
+  },
+  {
+    "variable": "--font-size-micro-legacy",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:74"
+    ]
+  },
+  {
+    "variable": "--letter-spacing-wider",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:97"
+    ]
+  },
+  {
+    "variable": "--spacing-0",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:100"
+    ]
+  },
+  {
+    "variable": "--spacing-20",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:111"
+    ]
+  },
+  {
+    "variable": "--container-full",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:135"
+    ]
+  },
+  {
+    "variable": "--space-element",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:140"
+    ]
+  },
+  {
+    "variable": "--space-xs",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:143"
+    ]
+  },
+  {
+    "variable": "--spacing-grid-gap",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:159"
+    ]
+  },
+  {
+    "variable": "--spacing-list-gap",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:160"
+    ]
+  },
+  {
+    "variable": "--spacing-gap-between-blocks",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:175"
+    ]
+  },
+  {
+    "variable": "--gradient-text-primary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:201"
+    ]
+  },
+  {
+    "variable": "--gradient-text-success",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:202"
+    ]
+  },
+  {
+    "variable": "--gradient-text-warning",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:203"
+    ]
+  },
+  {
+    "variable": "--gradient-text-info",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:204"
+    ]
+  },
+  {
+    "variable": "--color-text-subtle",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:209"
+    ]
+  },
+  {
+    "variable": "--glass-white",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:219"
+    ]
+  },
+  {
+    "variable": "--glass-dark",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:220"
+    ]
+  },
+  {
+    "variable": "--color-accent-primary-new",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:223"
+    ]
+  },
+  {
+    "variable": "--color-accent-secondary-new",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:224"
+    ]
+  },
+  {
+    "variable": "--color-success-new",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:225"
+    ]
+  },
+  {
+    "variable": "--color-warning-new",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:226"
+    ]
+  },
+  {
+    "variable": "--color-info-new",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:228"
+    ]
+  },
+  {
+    "variable": "--color-border-strong",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:239"
+    ]
+  },
+  {
+    "variable": "--radius-none",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:242"
+    ]
+  },
+  {
+    "variable": "--radius-3xl",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:249"
+    ]
+  },
+  {
+    "variable": "--shadow-inner",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:264"
+    ]
+  },
+  {
+    "variable": "--shadow-accent",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:267"
+    ]
+  },
+  {
+    "variable": "--shadow-accent-lg",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:268"
+    ]
+  },
+  {
+    "variable": "--breakpoint-xl",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:279"
+    ]
+  },
+  {
+    "variable": "--z-base",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:291"
+    ]
+  },
+  {
+    "variable": "--z-modal",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:294"
+    ]
+  },
+  {
+    "variable": "--z-nav-mobile-toggle",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/variables.scss"
+    ],
+    "sample_locations": [
+      "src/styles/variables.scss:302"
+    ]
+  },
+  {
+    "variable": "--chart-quaternary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/admin/admin-global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:17"
+    ]
+  },
+  {
+    "variable": "--admin-spacing-xs",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/admin/admin-global.scss"
+    ],
+    "sample_locations": [
+      "src/styles/admin/admin-global.scss:21"
+    ]
+  },
+  {
+    "variable": "--animate",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:97"
+    ]
+  },
+  {
+    "variable": "--fluid",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:187"
+    ]
+  },
+  {
+    "variable": "--offset-left",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:195"
+    ]
+  },
+  {
+    "variable": "--offset-right",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:202"
+    ]
+  },
+  {
+    "variable": "--breakout",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:210"
+    ]
+  },
+  {
+    "variable": "--elevated",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:227"
+    ]
+  },
+  {
+    "variable": "--gradient-border",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:245"
+    ]
+  },
+  {
+    "variable": "--prose",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:262"
+    ]
+  },
+  {
+    "variable": "--products",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:268"
+    ]
+  },
+  {
+    "variable": "--adaptive",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/mixins.scss:274"
+    ]
+  },
+  {
+    "variable": "--color-bg-hover",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/styles/_legal-page-mixins.scss"
+    ],
+    "sample_locations": [
+      "src/styles/_legal-page-mixins.scss:96"
+    ]
+  },
+  {
+    "variable": "--header-height",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/admin/AdminHeader/AdminHeader.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/admin/AdminHeader/AdminHeader.module.scss:6"
+    ]
+  },
+  {
+    "variable": "--target-width",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:532"
+    ]
+  },
+  {
+    "variable": "--secondary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:1568"
+    ]
+  },
+  {
+    "variable": "--glass-bg-hover",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/quiz-styles.scss"
+    ],
+    "sample_locations": [
+      "src/components/quiz/quiz-styles.scss:1682"
+    ]
+  },
+  {
+    "variable": "--score-percentage",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/components/CategoryScores.tsx"
+    ],
+    "sample_locations": [
+      "src/components/quiz/components/CategoryScores.tsx:134"
+    ]
+  },
+  {
+    "variable": "--primary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/components/QuizErrorBoundary.tsx"
+    ],
+    "sample_locations": [
+      "src/components/quiz/components/QuizErrorBoundary.tsx:64"
+    ]
+  },
+  {
+    "variable": "--ghost",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/quiz/components/QuizErrorBoundary.tsx"
+    ],
+    "sample_locations": [
+      "src/components/quiz/components/QuizErrorBoundary.tsx:70"
+    ]
+  },
+  {
+    "variable": "--padding",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Card/Card.tsx"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.tsx:25"
+    ]
+  },
+  {
+    "variable": "--outlined",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.module.scss:40"
+    ]
+  },
+  {
+    "variable": "--padding-sm",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.module.scss:74"
+    ]
+  },
+  {
+    "variable": "--padding-md",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.module.scss:80"
+    ]
+  },
+  {
+    "variable": "--padding-lg",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Card/Card.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Card/Card.module.scss:86"
+    ]
+  },
+  {
+    "variable": "--md",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:13"
+    ]
+  },
+  {
+    "variable": "--white",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:53"
+    ]
+  },
+  {
+    "variable": "--text",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:85"
+    ]
+  },
+  {
+    "variable": "--rectangular",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:95"
+    ]
+  },
+  {
+    "variable": "--circular",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Loading/Loading.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Loading/Loading.module.scss:99"
+    ]
+  },
+  {
+    "variable": "--color-border-hover",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavButton.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavButton.module.scss:181"
+    ]
+  },
+  {
+    "variable": "--color-text-dark",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavSection.module.scss:228"
+    ]
+  },
+  {
+    "variable": "--color-text-secondary-dark",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav.backup/NavSection.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav.backup/NavSection.module.scss:232"
+    ]
+  },
+  {
+    "variable": "--color-background-light",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss:7"
+    ]
+  },
+  {
+    "variable": "--color-error",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/ErrorBoundary/ErrorBoundary.module.scss:20"
+    ]
+  },
+  {
+    "variable": "--color-border-primary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:32"
+    ]
+  },
+  {
+    "variable": "--font-family-primary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/CategoryTabs/CategoryTabs.module.scss:38"
+    ]
+  },
+  {
+    "variable": "--product",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Search/SearchItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Search/SearchItem.module.scss:208"
+    ]
+  },
+  {
+    "variable": "--blog",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Search/SearchItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Search/SearchItem.module.scss:225"
+    ]
+  },
+  {
+    "variable": "--usecase",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Search/SearchItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Search/SearchItem.module.scss:236"
+    ]
+  },
+  {
+    "variable": "--page",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Search/SearchItem.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Search/SearchItem.module.scss:247"
+    ]
+  },
+  {
+    "variable": "--color-text-tertiary",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/EmptyState/EmptyState.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/EmptyState/EmptyState.module.scss:13"
+    ]
+  },
+  {
+    "variable": "--color-accent-primary-hover",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:185"
+    ]
+  },
+  {
+    "variable": "--color-success-rgb",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:297"
+    ]
+  },
+  {
+    "variable": "--color-info-rgb",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:302"
+    ]
+  },
+  {
+    "variable": "--color-info",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:303"
+    ]
+  },
+  {
+    "variable": "--color-warning-rgb",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:307"
+    ]
+  },
+  {
+    "variable": "--color-warning",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/SimpleSearch.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/SimpleSearch.module.scss:308"
+    ]
+  },
+  {
+    "variable": "--font-size-heading-6",
+    "usage_count": 1,
+    "file_count": 1,
+    "files": [
+      "src/components/common/Nav/Nav.module.scss"
+    ],
+    "sample_locations": [
+      "src/components/common/Nav/Nav.module.scss:377"
+    ]
+  }
+]

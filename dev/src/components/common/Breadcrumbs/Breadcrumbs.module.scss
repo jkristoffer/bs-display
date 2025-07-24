@@ -1,11 +1,11 @@
 // Modern, minimal breadcrumb design
 .breadcrumbs {
   // Minimal spacing and clean background
-  margin-bottom: var(--spacing-md);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-bottom: var(--spacing-8);
+  padding: var(--spacing-2) var(--spacing-4);
   background: var(--color-surface-muted);
-  border: 1px solid var(--color-border-light);
-  border-bottom: 1px solid var(--color-accent-primary);
+  border: 1px solid var(--color-border-muted);
+  border-bottom: 1px solid var(--color-primary);
   border-radius: var(--radius-sm);
   position: relative;
   
@@ -19,13 +19,13 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2);
   }
   
   li {
     display: flex;
     align-items: center;
-    font-size: var(--font-size-body-small);
+    font-size: var(--text-small);
     color: var(--color-text-secondary);
     line-height: 1.4;
     
@@ -38,13 +38,13 @@
       position: relative;
       
       &:hover {
-        color: var(--color-accent-primary);
+        color: var(--color-primary);
         text-decoration: underline;
         text-underline-offset: 2px;
       }
       
       &:focus-visible {
-        outline: 2px solid var(--color-accent-primary);
+        outline: 2px solid var(--color-primary);
         outline-offset: 2px;
         text-decoration: none;
       }
@@ -54,14 +54,14 @@
       font-weight: var(--font-weight-medium);
       
       span {
-        color: var(--color-accent-primary);
+        color: var(--color-primary);
         padding: var(--spacing-1) var(--spacing-2);
       }
     }
   }
   
   .separator {
-    margin: 0 var(--spacing-xs);
+    margin: 0 var(--spacing-2);
     color: var(--color-text-secondary);
     opacity: 0.3;
     font-size: 12px;
@@ -77,11 +77,11 @@
   
   // Responsive behavior
   @media (max-width: 767px) {
-    padding: var(--spacing-1) var(--spacing-xs);
-    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-1) var(--spacing-2);
+    margin-bottom: var(--spacing-4);
     
     li {
-      font-size: calc(var(--font-size-body-small) - 1px);
+      font-size: calc(var(--text-small) - 1px);
       
       a, span {
         padding: var(--spacing-1);
@@ -111,7 +111,7 @@
 
 // Ellipsis indicator for truncated breadcrumbs
 .ellipsis {
-  padding: 0 var(--spacing-xs);
+  padding: 0 var(--spacing-2);
   color: var(--color-text-secondary);
   opacity: 0.5;
   user-select: none;

@@ -211,7 +211,7 @@ const { title, subtitle, videoSrc } = Astro.props;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-backdrop);
     border: 1px solid var(--glass-border);
-    border-radius: var(--border-radius-card);
+    border-radius: var(--radius-xl);
     padding: var(--space-card);
     text-align: center;
     transition: all var(--duration-normal) var(--ease-smooth);
@@ -258,7 +258,7 @@ const { title, subtitle, videoSrc } = Astro.props;
     gap: var(--space-lg);
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp var(--duration-slow) var(--ease-smooth) 0.9s both;
+    animation: fadeInUp var(600ms) var(--ease-smooth) 0.9s both;
   }
 
   /* Ghost button styling for video background */

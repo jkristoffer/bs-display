@@ -1,0 +1,473 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  badge?: string;
+  badgeIcon?: string;
+  stats?: Array<{
+    number: string;
+    label: string;
+  }>;
+  theme?: 'blue' | 'green' | 'dark';
+}
+
+const {
+  title,
+  subtitle,
+  badge,
+  badgeIcon,
+  stats = [],
+  theme = 'blue'
+} = Astro.props;
+---
+
+<section class={`page-header-modern theme-${theme}`}>
+  <!-- Background Elements -->
+  <div class="bg-elements">
+    <div class="bg-pattern"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="header-container">
+    <div class="header-content animate-fade-up">
+      <!-- Header Badge -->
+      {
+        badge && (
+          <div class="header-badge">
+            {badgeIcon && <span class="badge-icon">{badgeIcon}</span>}
+            <span class="badge-text">{badge}</span>
+          </div>
+        )
+      }
+
+      <!-- Main Title -->
+      <h1 class="header-title">
+        <span class="title-gradient">{title}</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="header-subtitle">{subtitle}</p>
+
+      <!-- Stats Row -->
+      {
+        stats.length > 0 && (
+          <div class="header-stats">
+            {stats.map((stat, index) => (
+              <div
+                class="stat-item glass-light animate-fade-up"
+                style={`animation-delay: ${index * 0.2}s`}
+              >
+                <div class="stat-number">{stat.number}</div>
+                <div class="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  /* Base Header Styles */
+  .page-header-modern {
+    position: relative;
+    padding: calc(var(--spacing-16) * 3) 0;
+    overflow: hidden;
+  }
+
+  /* Theme Variations */
+  .theme-blue {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: var(--color-text-primary);
+  }
+
+  .theme-green {
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.05) 0%,
+      rgba(59, 130, 246, 0.05) 100%
+    );
+    color: var(--color-text-primary);
+  }
+
+  .theme-dark {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+  }
+
+  /* Background Elements */
+  .bg-elements {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .bg-pattern {
+    position: absolute;
+    inset: 0;
+  }
+
+  .theme-blue .bg-pattern {
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        rgba(59, 130, 246, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(16, 185, 129, 0.08) 0%,
+        transparent 50%
+      );
+  }
+
+  .theme-green .bg-pattern {
+    background-image: radial-gradient(
+        circle at 25% 75%,
+        rgba(16, 185, 129, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 25%,
+        rgba(59, 130, 246, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(139, 92, 246, 0.02) 0%,
+        transparent 50%
+      );
+  }
+
+  .theme-dark .bg-pattern {
+    background-image: radial-gradient(
+        circle at 25% 25%,
+        rgba(59, 130, 246, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(16, 185, 129, 0.15) 0%,
+        transparent 50%
+      );
+  }
+
+  .bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.1;
+  }
+
+  .theme-dark .bg-glow {
+    opacity: 0.2;
+    filter: blur(150px);
+  }
+
+  .bg-glow-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    top: -250px;
+    right: -250px;
+    animation: glow1Float 20s ease-in-out infinite;
+  }
+
+  .bg-glow-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+    bottom: -200px;
+    left: -200px;
+    animation: glow2Float 15s ease-in-out infinite reverse;
+  }
+
+  .floating-shapes {
+    position: absolute;
+    inset: 0;
+  }
+
+  .shape {
+    position: absolute;
+    opacity: 0.06;
+  }
+
+  .theme-dark .shape {
+    opacity: 0.1;
+  }
+
+  .shape-1 {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    top: 20%;
+    right: 15%;
+    animation: shapeFloat1 12s ease-in-out infinite;
+  }
+
+  .shape-2 {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-success);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 60%;
+    left: 10%;
+    animation: shapeFloat2 15s ease-in-out infinite;
+  }
+
+  .shape-3 {
+    width: 55px;
+    height: 55px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+    bottom: 30%;
+    right: 20%;
+    animation: shapeFloat3 18s ease-in-out infinite;
+  }
+
+  .header-container {
+    max-width: var(--container-default);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-content {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* Header Badge */
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-full);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .theme-blue .header-badge,
+  .theme-green .header-badge {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-primary);
+  }
+
+  .theme-blue .header-badge {
+    background: var(--gradient-primary);
+    color: white;
+  }
+
+  .theme-green .header-badge {
+    background: var(--gradient-success);
+    color: white;
+  }
+
+  .theme-dark .header-badge {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .badge-icon {
+    font-size: 20px;
+  }
+
+  /* Header Title */
+  .header-title {
+    font-size: var(--text-hero);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--text-hero-line-height);
+    margin: 0 0 var(--space-lg) 0;
+  }
+
+  .title-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .theme-green .title-gradient {
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .theme-dark .title-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Header Subtitle */
+  .header-subtitle {
+    font-size: var(--text-subsection);
+    line-height: var(--text-body-line-height);
+    max-width: 700px;
+    margin: 0 auto var(--space-xl) auto;
+  }
+
+  .theme-blue .header-subtitle,
+  .theme-green .header-subtitle {
+    color: var(--color-text-secondary);
+  }
+
+  .theme-dark .header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Header Stats */
+  .header-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-lg);
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-smooth);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+  }
+
+  .theme-blue .stat-item,
+  .theme-green .stat-item {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+  }
+
+  .theme-dark .stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .stat-number {
+    font-size: var(--text-section);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-xs);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .theme-green .stat-number {
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .theme-dark .stat-number {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: none;
+    -webkit-text-fill-color: white;
+  }
+
+  .stat-label {
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .theme-blue .stat-label,
+  .theme-green .stat-label {
+    color: var(--color-text-secondary);
+  }
+
+  .theme-dark .stat-label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Animations */
+  @keyframes glow1Float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-20px, -15px) rotate(180deg);
+    }
+  }
+
+  @keyframes glow2Float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(15px, -10px) rotate(-180deg);
+    }
+  }
+
+  @keyframes shapeFloat1 {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(180deg);
+    }
+  }
+
+  @keyframes shapeFloat2 {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(-90deg);
+    }
+  }
+
+  @keyframes shapeFloat3 {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-18px) rotate(45deg);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

@@ -155,9 +155,9 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
                 alignItems: 'center',
                 gap: '8px',
                 padding: '8px 16px',
-                background: drawerOpen ? 'var(--color-accent-primary)' : '#fff',
-                color: drawerOpen ? 'white' : 'var(--color-accent-primary)',
-                border: '1px solid var(--color-accent-primary)',
+                background: drawerOpen ? 'var(--color-primary)' : '#fff',
+                color: drawerOpen ? 'white' : 'var(--color-primary)',
+                border: '1px solid var(--color-primary)',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontWeight: '500',
@@ -182,7 +182,7 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
                     alignItems: 'center',
                     gap: '6px',
                     padding: '6px 12px',
-                    background: 'var(--color-accent-primary)',
+                    background: 'var(--color-primary)',
                     color: 'white',
                     borderRadius: '16px',
                     fontSize: '14px',
@@ -218,7 +218,7 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: 'var(--color-accent-primary)',
+                    color: 'var(--color-primary)',
                     cursor: 'pointer',
                     textDecoration: 'underline',
                     fontSize: '14px'
@@ -256,7 +256,7 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
                 onClick={() => setViewMode('grid')}
                 style={{
                   padding: '6px 8px',
-                  background: viewMode === 'grid' ? 'var(--color-accent-primary)' : 'white',
+                  background: viewMode === 'grid' ? 'var(--color-primary)' : 'white',
                   color: viewMode === 'grid' ? 'white' : '#666',
                   border: 'none',
                   cursor: 'pointer'
@@ -268,7 +268,7 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
                 onClick={() => setViewMode('list')}
                 style={{
                   padding: '6px 8px',
-                  background: viewMode === 'list' ? 'var(--color-accent-primary)' : 'white',
+                  background: viewMode === 'list' ? 'var(--color-primary)' : 'white',
                   color: viewMode === 'list' ? 'white' : '#666',
                   border: 'none',
                   borderLeft: '1px solid #ddd',

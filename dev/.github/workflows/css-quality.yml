@@ -1,0 +1,56 @@
+name: CSS Quality Monitoring
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**/*.scss'
+      - 'src/**/*.css'
+      - 'astro.config.mjs'
+      - '.stylelintrc.json'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/**/*.scss'
+      - 'src/**/*.css'
+      - 'astro.config.mjs'
+      - '.stylelintrc.json'
+
+jobs:
+  css-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run CSS linting
+      run: npm run lint:css
+      
+    - name: Build project
+      run: npm run build:fast
+      
+    - name: Analyze CSS bundle
+      run: npm run css:analyze
+      
+    - name: Monitor CSS quality
+      run: npm run css:monitor
+      
+    - name: Upload CSS analysis artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: css-analysis-${{ github.sha }}
+        path: |
+          reports/css-size-history.json
+          dist/client/_astro/*.css
+        retention-days: 30

@@ -1,0 +1,22 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "declaration-property-value-disallowed-list": null,
+    "custom-property-pattern": null,
+    "scss/dollar-variable-pattern": null,
+    "selector-class-pattern": null,
+    "media-feature-range-notation": null,
+    "comment-empty-line-before": null,
+    "no-descending-specificity": null,
+    "declaration-property-value-allowed-list": null,
+    "no-duplicate-selectors": null,
+    "declaration-block-no-duplicate-properties": null
+  },
+  "ignoreFiles": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "public/**/*",
+    "src/styles/_buying-guide-mixins.scss",
+    "src/components/**/quiz-styles.scss"
+  ]
+}

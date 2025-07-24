@@ -1,7 +1,7 @@
 .metricCard {
-  background: var(--color-admin-surface);
+  background: var(--color-surface);
   border-radius: 8px;
-  padding: var(--admin-spacing-lg);
+  padding: var(--spacing-12);
   box-shadow: var(--admin-shadow-sm);
   transition: all 0.3s ease;
   border: 2px solid transparent;
@@ -30,39 +30,39 @@
   }
   
   &.primary {
-    --accent-color: var(--chart-primary);
+    --accent-color: var(--color-primary);
   }
   
   &.success {
-    --accent-color: var(--chart-secondary);
+    --accent-color: var(--color-success);
   }
   
   &.warning {
-    --accent-color: var(--chart-tertiary);
+    --accent-color: var(--color-warning);
   }
   
   &.danger {
-    --accent-color: var(--chart-danger);
+    --accent-color: var(--color-error);
   }
 }
 
 .icon {
   font-size: 2.5rem;
-  margin-bottom: var(--admin-spacing-md);
+  margin-bottom: var(--spacing-8);
   opacity: 0.8;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--admin-spacing-sm);
+  gap: var(--spacing-4);
 }
 
 .title {
   margin: 0;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--color-admin-text-secondary);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -70,22 +70,22 @@
 .value {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-admin-text);
+  color: var(--color-text-primary);
   line-height: 1.2;
 }
 
 .change {
   display: flex;
   align-items: center;
-  gap: var(--admin-spacing-sm);
+  gap: var(--spacing-4);
   font-size: 0.875rem;
   
   &.positive {
-    color: var(--chart-secondary);
+    color: var(--color-success);
   }
   
   &.negative {
-    color: var(--chart-danger);
+    color: var(--color-error);
   }
 }
 
@@ -94,5 +94,5 @@
 }
 
 .changeLabel {
-  color: var(--color-admin-text-secondary);
+  color: var(--color-text-secondary);
 }

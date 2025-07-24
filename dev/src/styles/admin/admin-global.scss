@@ -49,7 +49,7 @@
   
   // Typography
   h1, h2, h3, h4, h5, h6 {
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     font-weight: 600;
     line-height: 1.2;
     margin-top: 0;
@@ -61,12 +61,12 @@
   h4 { font-size: 1.125rem; }
   
   p {
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     line-height: 1.6;
   }
   
   a {
-    color: var(--chart-primary);
+    color: var(--color-primary);
     text-decoration: none;
     
     &:hover {
@@ -76,9 +76,9 @@
   
   // Common patterns
   .card {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     border-radius: 8px;
-    padding: var(--admin-spacing-lg);
+    padding: var(--spacing-12);
     box-shadow: var(--admin-shadow-sm);
     transition: box-shadow 0.2s;
     
@@ -89,7 +89,7 @@
   
   .grid {
     display: grid;
-    gap: var(--admin-spacing-lg);
+    gap: var(--spacing-12);
     
     &.cols-2 { 
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -106,16 +106,16 @@
   input, select, textarea {
     width: 100%;
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--color-admin-border);
+    border: 1px solid var(--color-border-muted);
     border-radius: 4px;
-    background: var(--color-admin-surface);
-    color: var(--color-admin-text);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
     transition: border-color 0.2s;
     
     &:focus {
       outline: none;
-      border-color: var(--chart-primary);
+      border-color: var(--color-primary);
       box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
     }
   }
@@ -130,7 +130,7 @@
     transition: all 0.2s;
     
     &.primary {
-      background: var(--chart-primary);
+      background: var(--color-primary);
       color: white;
       
       &:hover {
@@ -139,12 +139,12 @@
     }
     
     &.secondary {
-      background: var(--color-admin-bg);
-      color: var(--color-admin-text);
-      border: 1px solid var(--color-admin-border);
+      background: var(--color-background);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-muted);
       
       &:hover {
-        background: var(--color-admin-border);
+        background: var(--color-border-muted);
       }
     }
     
@@ -156,7 +156,7 @@
   
   // Utility classes
   .text-muted {
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .text-small {
@@ -167,13 +167,13 @@
     text-align: center;
   }
   
-  .mt-1 { margin-top: var(--admin-spacing-sm); }
-  .mt-2 { margin-top: var(--admin-spacing-md); }
-  .mt-3 { margin-top: var(--admin-spacing-lg); }
-  .mt-4 { margin-top: var(--admin-spacing-xl); }
+  .mt-1 { margin-top: var(--spacing-4); }
+  .mt-2 { margin-top: var(--spacing-8); }
+  .mt-3 { margin-top: var(--spacing-12); }
+  .mt-4 { margin-top: var(--spacing-16); }
   
-  .mb-1 { margin-bottom: var(--admin-spacing-sm); }
-  .mb-2 { margin-bottom: var(--admin-spacing-md); }
-  .mb-3 { margin-bottom: var(--admin-spacing-lg); }
-  .mb-4 { margin-bottom: var(--admin-spacing-xl); }
+  .mb-1 { margin-bottom: var(--spacing-4); }
+  .mb-2 { margin-bottom: var(--spacing-8); }
+  .mb-3 { margin-bottom: var(--spacing-12); }
+  .mb-4 { margin-bottom: var(--spacing-16); }
 }

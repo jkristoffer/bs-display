@@ -81,7 +81,7 @@ const handleDropdownNavigation = (e: KeyboardEvent, activeDropdown: string): voi
  */
 const handleButtonActivation = (e: KeyboardEvent, activeDropdown: string | null): void => {
   // Handle dropdown buttons
-  const button = e.target.closest('button[aria-expanded]');
+  const button = e.target && (e.target as HTMLElement).closest('button[aria-expanded]');
   if (button) {
     e.preventDefault();
     button.click();
@@ -98,7 +98,7 @@ const handleButtonActivation = (e: KeyboardEvent, activeDropdown: string | null)
   }
   
   // Handle other interactive elements
-  const interactive = e.target.closest('a, button');
+  const interactive = e.target && (e.target as HTMLElement).closest('a, button');
   if (interactive && e.key === ' ') {
     e.preventDefault();
     (interactive as HTMLElement).click();

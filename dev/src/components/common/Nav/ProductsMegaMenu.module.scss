@@ -11,7 +11,7 @@
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-2xl);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-16);
   width: var(--container-default);
   max-width: calc(100vw - 2rem);
   z-index: 200;
@@ -58,7 +58,7 @@
 .megaMenuContainer {
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-12);
   align-items: start;
   max-height: 500px;
   overflow: visible;
@@ -68,15 +68,15 @@
 .megaMenuSection {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-8);
 }
 
 /* Element: megaMenuSectionTitle - Enhanced Phase 1 Design */
 .megaMenuSectionTitle {
-  font-size: var(--font-size-body-large);
+  font-size: var(--text-body);
   font-weight: var(--font-weight-bold);
   margin: 0;
-  padding-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-4);
   position: relative;
   overflow: hidden;
 }
@@ -109,15 +109,15 @@
 .megaMenuCategories {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-4);
 }
 
 /* Element: megaMenuCategoryCard - Enhanced Phase 1 Card */
 .megaMenuCategoryCard {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
+  gap: var(--spacing-8);
+  padding: var(--spacing-8);
   border-radius: var(--radius-xl);
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -151,7 +151,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-accent-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }
@@ -209,7 +209,7 @@
   color: white;
   font-size: var(--text-caption);
   font-weight: var(--font-weight-bold);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -226,33 +226,33 @@
 
 /* Element: megaMenu__categoryTitle - Enhanced Typography */
 .megaMenuCategoryTitle {
-  font-size: var(--font-size-body-regular);
+  font-size: var(--text-body);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-xs) 0;
+  margin: 0 0 var(--spacing-2) 0;
 }
 
 /* Element: megaMenu__categoryDescription */
 .megaMenuCategoryDescription {
-  font-size: var(--font-size-body-small);
+  font-size: var(--text-small);
   color: var(--color-text-secondary);
   margin: 0;
-  line-height: var(--line-height-body);
+  line-height: var(1.5);
 }
 
 /* Element: megaMenu__featured */
 .megaMenuFeatured {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-4);
 }
 
 /* Element: megaMenu__productCard - Enhanced Product Cards */
 .megaMenuProductCard {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm);
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
   border-radius: var(--radius-xl);
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -284,7 +284,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-accent-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }
@@ -325,8 +325,8 @@
 
 /* Element: megaMenu__productBrand */
 .megaMenuProductBrand {
-  font-size: var(--font-size-caption);
-  color: var(--color-accent-primary);
+  font-size: var(--text-caption);
+  color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -335,9 +335,9 @@
 
 /* Element: megaMenu__productModel */
 .megaMenuProductModel {
-  font-size: var(--font-size-body-small);
+  font-size: var(--text-small);
   color: var(--color-text-primary);
-  margin: var(--spacing-xs) 0 0 0;
+  margin: var(--spacing-2) 0 0 0;
   font-weight: var(--font-weight-medium);
   white-space: nowrap;
   overflow: hidden;
@@ -348,19 +348,19 @@
 .megaMenuActions {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-2);
 }
 
 /* Element: megaMenu__actionButton - Enhanced Action Buttons */
 .megaMenuActionButton {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-8);
   border-radius: var(--radius-lg);
   background: var(--gradient-success);
   color: white;
-  font-size: var(--font-size-caption);
+  font-size: var(--text-caption);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
   text-transform: uppercase;
@@ -400,7 +400,7 @@
   }
   
   &:focus-visible {
-    outline: 2px solid var(--color-accent-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }
@@ -428,12 +428,12 @@
   .megaMenu {
     width: calc(100vw - 2rem);
     max-width: calc(100vw - 2rem);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
   }
   
   .megaMenuContainer {
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
   }
   
   .megaMenuSection:last-child {
@@ -456,16 +456,16 @@
     width: calc(100vw - 2rem);
     max-width: calc(100vw - 2rem);
     border-radius: var(--radius-2xl);
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
   }
   
   .megaMenuContainer {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
   
   .megaMenu__categoryCard {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-4);
   }
   
   .megaMenuCategoryImage {

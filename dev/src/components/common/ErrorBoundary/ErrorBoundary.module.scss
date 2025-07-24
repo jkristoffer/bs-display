@@ -29,7 +29,7 @@
 }
 
 .retryButton {
-  background-color: var(--color-accent-primary);
+  background-color: var(--color-primary);
   color: white;
   border: none;
   padding: 12px 24px;
@@ -44,7 +44,7 @@
   }
 
   &:focus {
-    outline: 2px solid var(--color-accent-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }

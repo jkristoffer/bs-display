@@ -130,107 +130,97 @@ export default defineConfig({
               './public/**/*.html'
             ],
             safelist: [
-              // Astro framework classes
+              // Essential framework classes only
               /^astro-/,
-              // Data attributes
+              // Data attributes for dynamic content
               /^data-/,
-              // Quiz component classes
-              /quiz-/,
-              /cta-button/,
-              /result-/,
-              /category-/,
-              /product-/,
-              /score-/,
-              // Filter UI classes
-              /filter-/,
-              /model-/,
-              /brand-/,
-              // React/dynamic classes
-              /^react-/,
-              // Animation/transition classes
-              /fade-/,
-              /slide-/,
-              /show/,
-              /hide/,
-              /active/,
-              /selected/,
-              // Button states
-              /hover/,
-              /focus/,
-              /disabled/,
-              // Responsive utilities
-              /mobile-/,
-              /tablet-/,
-              /desktop-/,
-              // Common utility classes
+              // Essential accessibility classes
               'sr-only',
               'visually-hidden',
+              // Core layout classes
               'container',
               'full-width-container',
-              // New gradient system classes
-              /gradient-/,
-              /glass-/,
-              /animate-/,
-              /stagger-/,
-              /button-/,
-              /heading-/,
-              /subtitle-/,
-              /text-fluid-/,
-              /icon-container-/
+              // Essential dynamic classes only
+              /active$/,
+              /selected$/,
+              /disabled$/,
+              /hover$/,
+              /focus$/,
+              // Required for quiz functionality
+              /quiz-question/,
+              /quiz-answer/,
+              /quiz-result/,
+              // Required for filter functionality
+              /filter-active/,
+              /filter-option/,
+              // Critical navigation classes
+              /nav-/,
+              /mobile-menu/
             ],
-            // Extract dynamic classes from templates
+            // More aggressive extraction
             extractors: [
               {
                 extensions: ['astro', 'html', 'js', 'jsx', 'ts', 'tsx'],
                 extractor: (content) => {
-                  // Match class names in templates
-                  const classMatches = content.match(/class[Name]*\s*=\s*["'`][^"'`]*["'`]/g) || [];
-                  const classes = classMatches
-                    .map(match => match.replace(/class[Name]*\s*=\s*["'`]([^"'`]*)["'`]/, '$1'))
-                    .join(' ')
-                    .split(/\s+/)
-                    .filter(cls => cls.length > 0);
-
-                  // Also match CSS classes in style tags and imports
-                  const cssMatches = content.match(/\.[a-zA-Z_-][a-zA-Z0-9_-]*/g) || [];
-                  const cssClasses = cssMatches.map(match => match.substring(1));
-
-                  return [...classes, ...cssClasses];
+                  // More comprehensive class extraction
+                  const patterns = [
+                    // Standard class attributes
+                    /class[Name]*\s*=\s*["'`]([^"'`]*)["'`]/g,
+                    // Template literals with classes
+                    /className\s*=\s*\{[^}]*["'`]([^"'`]*?)["'`][^}]*\}/g,
+                    // CSS class references
+                    /\.[a-zA-Z_-][a-zA-Z0-9_-]*/g,
+                    // CSS modules
+                    /styles\.[a-zA-Z_-][a-zA-Z0-9_-]*/g
+                  ];
+                  
+                  const classes = new Set();
+                  
+                  patterns.forEach(pattern => {
+                    let match;
+                    while ((match = pattern.exec(content)) !== null) {
+                      if (match[1]) {
+                        // Split space-separated classes
+                        match[1].split(/\s+/).forEach(cls => {
+                          if (cls && cls.length > 0) classes.add(cls);
+                        });
+                      } else if (match[0] && match[0].startsWith('.')) {
+                        // CSS class reference
+                        classes.add(match[0].substring(1));
+                      } else if (match[0] && match[0].startsWith('styles.')) {
+                        // CSS module reference
+                        classes.add(match[0].replace('styles.', ''));
+                      }
+                    }
+                  });
+                  
+                  return Array.from(classes);
                 }
               }
-            ]
+            ],
+            // More aggressive purging options
+            variables: true,
+            keyframes: true,
+            fontFace: true,
+            rejected: false // Set to true for debugging
           })
         ]
       }
     },
     build: {
+      cssCodeSplit: true,
+      minify: 'esbuild',
       rollupOptions: {
         external: ['fsevents'],
-        // Temporarily disable manual chunks to let Vite handle React bundling
-        // output: {
-        //   manualChunks(id) {
-        //     // Vendor libraries
-        //     if (id.includes('node_modules')) {
-        //       // Don't chunk React - let Vite handle it automatically
-        //       if (id.includes('react-icons')) {
-        //         return 'vendor-icons';
-        //       }
-        //       // Let other vendor libraries be auto-chunked
-        //       return 'vendor';
-        //     }
-
-        //     // Quiz components and logic
-        //     if (id.includes('src/components/quiz/')) {
-        //       return 'quiz';
-        //     }
-
-        //     // Product filtering components
-        //     if (id.includes('src/components/products/FilterUI/') ||
-        //       id.includes('src/hooks/useProductFilters')) {
-        //       return 'filters';
-        //     }
-        //   }
-        // }
+        output: {
+          // Optimize CSS file naming
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+              return 'assets/[name].[hash].min.css';
+            }
+            return 'assets/[name].[hash][extname]';
+          }
+        }
       }
     },
     css: {

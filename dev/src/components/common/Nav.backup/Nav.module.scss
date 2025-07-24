@@ -21,9 +21,9 @@
     height: 2px;
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(var(--color-accent-primary-rgb), 0.3) 25%,
-      rgba(var(--color-accent-primary-rgb), 0.6) 50%,
-      rgba(var(--color-accent-primary-rgb), 0.3) 75%,
+      rgba(var(--color-primary), 0.3) 25%,
+      rgba(var(--color-primary), 0.6) 50%,
+      rgba(var(--color-primary), 0.3) 75%,
       transparent 100%);
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +78,7 @@
 /* Tech-inspired logo hover state */
 .nav__logo_link:hover .nav__logo_image {
   transform: scale(1.03) translateY(-1px);
-  filter: brightness(1.05) drop-shadow(0 4px 8px rgba(var(--color-accent-primary-rgb), 0.2));
+  filter: brightness(1.05) drop-shadow(0 4px 8px rgba(var(--color-primary), 0.2));
   
   /* Add subtle tech glow */
   &::after {
@@ -86,7 +86,7 @@
     position: absolute;
     inset: -4px;
     background: radial-gradient(circle at center,
-      rgba(var(--color-accent-primary-rgb), 0.1) 0%,
+      rgba(var(--color-primary), 0.1) 0%,
       transparent 60%);
     border-radius: var(--radius-lg);
     animation: logoGlow 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -125,10 +125,10 @@
 
 /* Element: nav__dropdown-trigger */
 .nav__dropdown_trigger {
-  font-size: var(--font-size-nav-primary);
+  font-size: var(--text-body);
   font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  line-height: var(--line-height-body);
+  letter-spacing: var(0.025em);
+  line-height: var(1.5);
   text-transform: none;
   padding: var(--spacing-5) var(--spacing-8); /* Enhanced padding for better proportions */
   display: flex;
@@ -143,7 +143,7 @@
   
   /* Enhanced interaction states */
   &:hover {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     background: var(--color-surface-muted);
     transform: translateY(-1px);
   }
@@ -167,7 +167,7 @@
 /* Enhanced dropdown arrow states with smooth rotation */
 .nav__dropdown:hover .nav__dropdown_arrow {
   transform: rotate(180deg);
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 /* Add subtle pulse effect for dropdowns */
@@ -176,8 +176,8 @@
   position: absolute;
   inset: -1px;
   background: linear-gradient(135deg, 
-    rgba(var(--color-accent-primary-rgb), 0.1),
-    rgba(var(--color-accent-secondary-rgb), 0.05));
+    rgba(var(--color-primary), 0.1),
+    rgba(var(--color-secondary), 0.05));
   border-radius: calc(var(--radius-md) + 1px);
   z-index: -1;
   animation: dropdownPulse 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -214,7 +214,7 @@
   transition: 
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border-muted);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -229,8 +229,8 @@
   width: 12px;
   height: 12px;
   background-color: var(--color-surface-elevated);
-  border-left: 1px solid var(--color-border-light);
-  border-top: 1px solid var(--color-border-light);
+  border-left: 1px solid var(--color-border-muted);
+  border-top: 1px solid var(--color-border-muted);
   box-shadow: var(--shadow-xs); /* Subtle shadow on arrow */
 }
 
@@ -296,7 +296,7 @@
     position: absolute;
     inset: 2px;
     background: radial-gradient(circle at 30% 30%,
-      rgba(var(--color-accent-primary-rgb), 0.1) 0%,
+      rgba(var(--color-primary), 0.1) 0%,
       transparent 50%);
     border-radius: var(--radius-full);
     opacity: 0;
@@ -312,9 +312,9 @@
   
   &:hover {
     background: var(--color-surface-muted);
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--color-accent-primary-rgb), 0.15);
+    box-shadow: 0 4px 12px rgba(var(--color-primary), 0.15);
     
     &::before {
       opacity: 1;
@@ -335,7 +335,7 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.2);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
   }
 }
 
@@ -360,7 +360,7 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.2);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.2);
   }
 }
 
@@ -436,7 +436,7 @@
 
   .nav__dropdown {
     width: 100%;
-    border-bottom: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border-bottom: 1px solid rgba(var(--color-primary), 0.1);
     flex-direction: column;
     height: auto;
     margin-bottom: var(--spacing-2);
@@ -454,7 +454,7 @@
     display: flex;
     box-sizing: border-box;
     height: 64px;
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     font-weight: var(--font-weight-semibold);
     background: transparent;
     cursor: pointer;
@@ -462,13 +462,13 @@
     
     &:hover,
     &:focus {
-      background: rgba(var(--color-accent-primary-rgb), 0.08);
+      background: rgba(var(--color-primary), 0.08);
       outline: none;
       transform: translateY(-1px);
     }
     
     &:active {
-      background: rgba(var(--color-accent-primary-rgb), 0.15);
+      background: rgba(var(--color-primary), 0.15);
       transform: translateY(0);
     }
   }
@@ -491,11 +491,11 @@
     max-width: none;
     transform: none;
     opacity: 1;
-    background: rgba(var(--color-accent-primary-rgb), 0.03);
+    background: rgba(var(--color-primary), 0.03);
     visibility: visible;
     backdrop-filter: none;
     animation: mobileDropdownSlide 0.3s ease-out;
-    border-top: 1px solid rgba(var(--color-accent-primary-rgb), 0.1);
+    border-top: 1px solid rgba(var(--color-primary), 0.1);
   }
 
   /* Modifier: nav__dropdown--active */

@@ -428,7 +428,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
 <style lang="scss">
   .products-showcase {
     position: relative;
-    padding: calc(var(--spacing-xl) * 3) 0;
+    padding: calc(var(--spacing-16) * 3) 0;
     background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
     overflow: hidden;
   }
@@ -517,7 +517,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .products-showcase__container {
     max-width: var(--spacing-container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-8);
     position: relative;
     z-index: 2;
   }
@@ -525,13 +525,13 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   /* Section Header */
   .section-header {
     text-align: center;
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   .header-badge {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     padding: 8px 16px;
     background: rgba(59, 130, 246, 0.1);
     border: 1px solid rgba(59, 130, 246, 0.2);
@@ -539,12 +539,12 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     color: #3b82f6;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
 
   .section-title {
-    font-size: clamp(32px, 5vw, 48px);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-hero);
+    margin-bottom: var(--spacing-8);
     font-weight: 700;
   }
 
@@ -561,23 +561,23 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     color: var(--color-text-primary);
     opacity: 0.7;
     max-width: 700px;
-    margin: 0 auto var(--spacing-xl) auto;
+    margin: 0 auto var(--spacing-16) auto;
   }
 
   /* Stats Row */
   .stats-row {
     display: flex;
     justify-content: center;
-    gap: calc(var(--spacing-xl) * 1.5);
-    margin-top: var(--spacing-xl);
+    gap: calc(var(--spacing-16) * 1.5);
+    margin-top: var(--spacing-16);
     
     @media (max-width: $breakpoint-md) {
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
     }
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
   }
 
@@ -606,9 +606,9 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .filter-section {
     background: white;
     border-radius: 20px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-16);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
@@ -616,11 +616,11 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     
     @media (max-width: $breakpoint-md) {
       flex-direction: column;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-4);
       text-align: center;
     }
   }
@@ -643,7 +643,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
 
   .filter-controls {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
     align-items: end;
     
     @media (max-width: $breakpoint-md) {
@@ -656,13 +656,13 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
   }
 
   .filter-label {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2);
     font-size: 14px;
     font-weight: 600;
     color: var(--color-text-primary);
@@ -692,7 +692,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .reset-button {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2);
     padding: 12px 16px;
     background: rgba(239, 68, 68, 0.1);
     color: #ef4444;
@@ -718,8 +718,8 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    gap: var(--spacing-16);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   .product-card {
@@ -751,7 +751,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
       width: 100%;
       height: 100%;
       object-fit: contain;
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
       transition: transform 0.6s ease;
     }
   }
@@ -767,7 +767,7 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
   }
 
   .brand-badge {
@@ -782,14 +782,14 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   }
 
   .product-meta {
-    padding: var(--spacing-lg) var(--spacing-lg) 0;
+    padding: var(--spacing-12) var(--spacing-12) 0;
   }
 
   .product-title {
     font-size: 18px;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: 0 0 var(--spacing-xs) 0;
+    margin: 0 0 var(--spacing-2) 0;
     line-height: 1.3;
   }
 
@@ -803,21 +803,21 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   }
 
   .card-content {
-    padding: var(--spacing-lg);
-    padding-top: var(--spacing-md);
+    padding: var(--spacing-12);
+    padding-top: var(--spacing-8);
   }
 
   .product-specs {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
   }
 
   .spec-item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     font-size: 14px;
   }
 
@@ -841,8 +841,8 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .product-features {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-12);
   }
 
   .feature-tag {
@@ -855,9 +855,9 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   }
 
   .card-footer {
-    padding: 0 var(--spacing-lg) var(--spacing-lg);
+    padding: 0 var(--spacing-12) var(--spacing-12);
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     
     > * {
       flex: 1;
@@ -871,25 +871,25 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
 
   /* Load More Section */
   .load-more-section {
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   .pagination-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
   }
 
   .nav-button {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     padding: 12px 24px;
     background: white;
     border: 2px solid rgba(59, 130, 246, 0.2);
@@ -929,10 +929,10 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
   .section-footer {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: calc(var(--spacing-xl) * 2);
+    gap: calc(var(--spacing-16) * 2);
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-radius: 24px;
-    padding: calc(var(--spacing-xl) * 1.5);
+    padding: calc(var(--spacing-16) * 1.5);
     
     @media (max-width: $breakpoint-lg) {
       grid-template-columns: 1fr;
@@ -944,20 +944,20 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
     font-size: clamp(20px, 3vw, 28px);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: 0 0 var(--spacing-sm) 0;
+    margin: 0 0 var(--spacing-4) 0;
   }
 
   .footer-description {
     font-size: 16px;
     color: var(--color-text-primary);
     opacity: 0.8;
-    margin: 0 0 var(--spacing-lg) 0;
+    margin: 0 0 var(--spacing-12) 0;
     line-height: 1.6;
   }
 
   .footer-actions {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
@@ -969,14 +969,14 @@ const popularBrands = [...new Set(allDisplayedModels.map(model => model.brand))]
       font-size: 18px;
       font-weight: 600;
       color: var(--color-text-primary);
-      margin: 0 0 var(--spacing-md) 0;
+      margin: 0 0 var(--spacing-8) 0;
     }
   }
 
   .links-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     
     a {
       color: var(--color-text-primary);

@@ -32,7 +32,7 @@
 
     .progress-bar {
       height: 100%;
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
       transition: width 0.5s ease;
       border-radius: 0 4px 4px 0;
     }
@@ -45,11 +45,11 @@
     gap: 12px;
 
     .section-number {
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
       color: white;
       padding: 4px 8px;
       border-radius: 12px;
-      font-size: var(--font-size-body-small);
+      font-size: var(--text-small);
       font-weight: var(--font-weight-bold);
       min-width: 48px;
       text-align: center;
@@ -58,7 +58,7 @@
     .section-title {
       flex: 1;
       text-align: left;
-      font-size: var(--font-size-body-small);
+      font-size: var(--text-small);
       color: var(--color-text);
       line-height: 1.4;
       overflow: hidden;
@@ -141,7 +141,7 @@
 
     h3 {
       margin: 0;
-      font-size: var(--font-size-h4);
+      font-size: var(--text-subsection);
       color: var(--color-text);
     }
 
@@ -204,23 +204,23 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+      background-color: rgba(var(--color-primary), 0.05);
     }
 
     &:active {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+      background-color: rgba(var(--color-primary), 0.1);
     }
 
     &.active {
-      background-color: rgba(var(--color-accent-primary-rgb), 0.1);
+      background-color: rgba(var(--color-primary), 0.1);
 
       .item-number {
-        background-color: var(--color-accent-primary);
+        background-color: var(--color-primary);
         color: white;
       }
 
       .item-text {
-        color: var(--color-accent-primary);
+        color: var(--color-primary);
         font-weight: var(--font-weight-bold);
       }
     }
@@ -230,7 +230,7 @@
       color: var(--color-text-secondary);
       padding: 8px 12px;
       border-radius: 20px;
-      font-size: var(--font-size-body-small);
+      font-size: var(--text-small);
       font-weight: var(--font-weight-bold);
       min-width: 36px;
       text-align: center;
@@ -245,7 +245,7 @@
     }
 
     .current-indicator {
-      color: var(--color-accent-primary);
+      color: var(--color-primary);
       
       svg {
         width: 20px;

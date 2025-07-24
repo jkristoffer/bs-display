@@ -7,8 +7,8 @@
   }
 
   .expert-services {
-    margin-bottom: var(--spacing-xxl);
-    @include mixins.responsive-grid(350px, var(--spacing-xl));
+    margin-bottom: var(--spacing-24);
+    @include mixins.responsive-grid(350px, var(--spacing-16));
   }
 
   .service-card {
@@ -16,7 +16,7 @@
 
     .service-icon {
       font-size: 3rem;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
       text-align: center;
     }
 
@@ -26,41 +26,41 @@
       flex-direction: column;
 
       h3 {
-        font-size: var(--font-size-h3);
+        font-size: var(--text-subsection);
         font-weight: var(--font-weight-bold);
         color: var(--color-text-primary);
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-8);
         text-align: center;
       }
 
       .service-description {
-        font-size: var(--font-size-body-regular);
+        font-size: var(--text-body);
         color: var(--color-text-secondary);
         line-height: var(--line-height-default);
-        margin-bottom: var(--spacing-lg);
+        margin-bottom: var(--spacing-12);
         text-align: center;
       }
 
       .service-benefits {
         flex: 1;
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: var(--spacing-16);
         @include mixins.icon-list;
       }
 
       .service-action {
-        background: var(--color-accent-primary);
+        background: var(--color-primary);
         color: var(--color-background);
-        padding: var(--spacing-sm) var(--spacing-lg);
-        border-radius: var(--border-radius-button);
+        padding: var(--spacing-4) var(--spacing-12);
+        border-radius: var(--radius-lg);
         text-decoration: none;
         font-weight: var(--font-weight-bold);
-        font-size: var(--font-size-body-regular);
+        font-size: var(--text-body);
         text-align: center;
         transition: all 0.2s ease;
         margin-top: auto;
 
         &:hover {
-          background: var(--color-accent-secondary-dark);
+          background: var(--color-secondary);
           transform: translateY(-1px);
         }
       }
@@ -69,8 +69,8 @@
 
   .expert-summary {
     background: var(--color-surface);
-    border-radius: var(--border-radius-card);
-    padding: var(--spacing-xxl) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-24) var(--spacing-12);
     text-align: center;
 
     .summary-content {
@@ -78,17 +78,17 @@
       margin: 0 auto;
 
       h3 {
-        font-size: var(--font-size-h3);
+        font-size: var(--text-subsection);
         font-weight: var(--font-weight-bold);
         color: var(--color-text-primary);
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-8);
       }
 
       p {
-        font-size: var(--font-size-body-regular);
+        font-size: var(--text-body);
         color: var(--color-text-secondary);
         line-height: var(--line-height-default);
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: var(--spacing-16);
       }
 
       .summary-actions {
@@ -98,40 +98,40 @@
   }
 
   /* Mobile optimizations */
-  @media (max-width: var(--breakpoint-md)) {
+  @media (max-width: var(768px)) {
     .service-card {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
 
       .service-icon {
         font-size: 2.5rem;
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-8);
       }
 
       .service-content {
         h3 {
-          font-size: var(--font-size-body-large);
+          font-size: var(--text-body);
         }
 
         .service-description {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
         }
 
         .service-benefits li {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
         }
       }
     }
 
     .expert-summary {
-      padding: var(--spacing-xl) var(--spacing-lg);
+      padding: var(--spacing-16) var(--spacing-12);
 
       .summary-content {
         h3 {
-          font-size: var(--font-size-body-large);
+          font-size: var(--text-body);
         }
 
         p {
-          font-size: var(--font-size-small);
+          font-size: var(--text-small);
         }
       }
     }

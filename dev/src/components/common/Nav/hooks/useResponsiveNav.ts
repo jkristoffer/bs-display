@@ -14,9 +14,17 @@ interface UseResponsiveNavReturn {
 export const useResponsiveNav = (): UseResponsiveNavReturn => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Set client flag after hydration to prevent SSR mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Responsive behavior - extracted from Nav component lines 44-55
   useEffect(() => {
+    if (!isClient) return;
+
     const checkMobile = () => {
       const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
@@ -34,7 +42,7 @@ export const useResponsiveNav = (): UseResponsiveNavReturn => {
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [isClient]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(prev => !prev);

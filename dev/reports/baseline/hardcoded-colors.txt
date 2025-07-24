@@ -1,0 +1,765 @@
+src/styles/variables.scss:$color-accent-primary: #009688;
+src/styles/variables.scss:$color-accent-secondary: #ffa726;
+src/styles/variables.scss:  --color-background: #ffffff;
+src/styles/variables.scss:  --color-surface: #fafafa;
+src/styles/variables.scss:  --color-text-primary: #333333;
+src/styles/variables.scss:  --color-accent-primary: #009688;
+src/styles/variables.scss:  --color-accent-secondary: #ffa726;
+src/styles/variables.scss:  --color-border: #dddddd;
+src/styles/variables.scss:  --color-button-primary-hover: #007a6b;
+src/styles/variables.scss:  --color-button-primary-active: #006b5d;
+src/styles/variables.scss:  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/styles/variables.scss:  --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+src/styles/variables.scss:  --gradient-premium: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+src/styles/variables.scss:  --gradient-attention: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+src/styles/variables.scss:  --gradient-purple: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+src/styles/variables.scss:  --gradient-pink: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+src/styles/variables.scss:  --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+src/styles/variables.scss:  --gradient-indigo: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+src/styles/variables.scss:  --color-text-secondary: #64748b;
+src/styles/variables.scss:  --color-text-muted: #9ca3af;
+src/styles/variables.scss:  --color-text-subtle: #d1d5db;
+src/styles/variables.scss:  --color-accent-secondary-dark: #f57c00;
+src/styles/variables.scss:  --color-surface: #ffffff;
+src/styles/variables.scss:  --color-background: #f8fafc;
+src/styles/variables.scss:  --color-text-primary: #1e293b;
+src/styles/variables.scss:  --color-text-secondary: #64748b;
+src/styles/variables.scss:  --color-accent-primary-new: #3b82f6;
+src/styles/variables.scss:  --color-accent-secondary-new: #f59e0b;
+src/styles/variables.scss:  --color-success-new: #22c55e;
+src/styles/variables.scss:  --color-warning-new: #f59e0b;
+src/styles/variables.scss:  --color-error-new: #ef4444;
+src/styles/variables.scss:  --color-info-new: #3b82f6;
+src/styles/variables.scss:  --color-surface-elevated: #ffffff;
+src/styles/variables.scss:  --color-surface-muted: #f8fafc;
+src/styles/variables.scss:  --color-surface-subtle: #f1f5f9;
+src/styles/variables.scss:  --color-border-light: #f1f5f9;
+src/styles/variables.scss:  --color-border-muted: #e2e8f0;
+src/styles/variables.scss:  --color-border-default: #d1d5db;
+src/styles/variables.scss:  --color-border-strong: #9ca3af;
+src/styles/_contact-page-mixins.scss:      color: #2e7d32;
+src/styles/_contact-page-mixins.scss:      color: #d32f2f;
+src/styles/_contact-page-mixins.scss:    border-top-color: #fff;
+src/styles/sw-buying-guide.scss:          #4f46e5 100%
+src/styles/admin/admin-global.scss:  --color-admin-bg: #f5f7fa;
+src/styles/admin/admin-global.scss:  --color-admin-surface: #ffffff;
+src/styles/admin/admin-global.scss:  --color-admin-text: #2d3748;
+src/styles/admin/admin-global.scss:  --color-admin-text-secondary: #718096;
+src/styles/admin/admin-global.scss:  --color-admin-border: #e2e8f0;
+src/styles/admin/admin-global.scss:  --color-admin-sidebar-bg: #1a202c;
+src/styles/admin/admin-global.scss:  --color-admin-sidebar-text: #e2e8f0;
+src/styles/admin/admin-global.scss:  --color-admin-sidebar-hover: #2d3748;
+src/styles/admin/admin-global.scss:  --chart-primary: #4299e1;
+src/styles/admin/admin-global.scss:  --chart-secondary: #48bb78;
+src/styles/admin/admin-global.scss:  --chart-tertiary: #ed8936;
+src/styles/admin/admin-global.scss:  --chart-quaternary: #9f7aea;
+src/styles/admin/admin-global.scss:  --chart-danger: #f56565;
+src/styles/admin/admin-global.scss:    --color-admin-bg: #1a202c;
+src/styles/admin/admin-global.scss:    --color-admin-surface: #2d3748;
+src/styles/admin/admin-global.scss:    --color-admin-text: #e2e8f0;
+src/styles/admin/admin-global.scss:    --color-admin-text-secondary: #a0aec0;
+src/styles/admin/admin-global.scss:    --color-admin-border: #4a5568;
+src/styles/admin/admin-global.scss:        background: #3182ce;
+src/styles/global.scss:  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+src/styles/global.scss:  color: #3b82f6;
+src/styles/global.scss:  border-color: #3b82f6;
+src/styles/global.scss:  color: #606060;
+src/styles/global.scss:  background-color: #eee;
+src/styles/_legal-page-mixins.scss:        color: #666;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    color: #3b82f6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    color: #3b82f6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    color: #3b82f6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:      color: #8b5cf6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    color: #3b82f6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:        color: #3b82f6;
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+src/components/home/BlogHighlights/BlogHighlightsModern.astro:    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/home/VideoBanner/VideoBanner.astro:    color: #ffffff;
+src/components/home/UsecasesSection/UsecaseItem.astro:    border: 10px solid #eee;
+src/components/home/UsecasesSection/UsecaseItem.astro:    color: #444;
+src/components/home/UsecasesSection/UsecaseItem.astro:    color: #fff;
+src/components/home/UsecasesSection/UsecasesSection.astro:    background-color: #fff;
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)'
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    gradient: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)'
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    gradient: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%);
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:      color: #3b82f6;
+src/components/home/UsecasesSection/UsecasesSectionModern.astro:    color: #3b82f6;
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    color: #3b82f6;
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    color: #10b981;
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:    color: #64748b;
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:      border-color: #3b82f6;
+src/components/home/QuizPromotion/QuizPromotionSleek.astro:      color: #3b82f6;
+src/components/home/QuizPromotion/QuizPromotion.astro:    border-top: 4px solid #4caf50;
+src/components/home/QuizPromotion/QuizPromotion.astro:    border-top: 4px solid #2196f3;
+src/components/home/QuizPromotion/QuizPromotion.astro:    border-top: 4px solid #ff9800;
+src/components/home/QuizPromotion/QuizPromotionModern.astro:    background: linear-gradient(135deg, #f8fafb 0%, #f0f4f8 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      color: #3b82f6;
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:      background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/home/QuizPromotion/QuizPromotionModern.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    gradient: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    gradient: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    color: #3b82f6;
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    color: #3b82f6;
+src/components/home/CategoryNavigation/CategoryNavigationModern.astro:    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+src/components/home/CategoryNavigation/CategoryNavigation.astro:    color: '#4caf50' // Green
+src/components/home/CategoryNavigation/CategoryNavigation.astro:    color: '#2196f3' // Blue
+src/components/home/CategoryNavigation/CategoryNavigation.astro:    color: '#ff9800' // Orange
+src/components/home/CategoryNavigation/CategoryNavigation.astro:      background-color: #fff;
+src/components/home/BuyingGuideSection/BuyingGuideSection.astro:    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 50%, #e2e8f0 100%);
+src/components/home/BuyingGuideSection/BuyingGuideSection.astro:    color: var(--color-text-primary, #333);
+src/components/home/BuyingGuideSection/BuyingGuideItem.astro:    color: var(--color-text-primary, #333);
+src/components/home/DataTable/DataTable.astro:        background-color: #e6971f;
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+src/components/home/DataTable/DataTableModern.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/home/DataTable/DataTableModern.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(45deg, #10b981, #3b82f6);
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(45deg, #8b5cf6, #ec4899);
+src/components/home/DataTable/DataTableModern.astro:    color: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/home/DataTable/DataTableModern.astro:      color: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:      border-color: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:    color: #ef4444;
+src/components/home/DataTable/DataTableModern.astro:      border-color: #ef4444;
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/home/DataTable/DataTableModern.astro:    color: #10b981;
+src/components/home/DataTable/DataTableModern.astro:    color: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:      background: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:    color: #3b82f6;
+src/components/home/DataTable/DataTableModern.astro:    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+src/components/home/DataTable/DataTableModern.astro:        color: #3b82f6;
+src/components/home/Banner/Banner.astro:    background: linear-gradient(45deg, #3b82f6, #10b981);
+src/components/products/ProductDetails/ProductDetails.module.scss:  color: #666;
+src/components/products/ProductDetails/ProductDetails.module.scss:  background: linear-gradient(135deg, var(--color-accent-primary), #007f75);
+src/components/products/ProductDetails/ProductDetails.module.scss:  border-bottom: 1px solid #eee;
+src/components/products/ProductDetails/ProductDetails.module.scss:  color: #555;
+src/components/products/ProductDetails/ProductDetails.module.scss:  border-bottom: 1px solid #eee;
+src/components/products/ProductDetails/ProductDetails.module.scss:  color: #666;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  background-color: #f0f0f0;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  color: #666;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  color: #666;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  background-color: #f0f0f0;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  background-color: #e0e0e0;
+src/components/products/FilterUI/ModelDisplay/ModelCard.module.scss:  background-color: #007f75;
+src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss:  color: var(--color-text-secondary, #666);
+src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss:  background-color: var(--color-surface-hover, #f5f5f5);
+src/components/products/FilterUI/ModelDisplay/ModelDisplay.module.scss:  color: #666;
+src/components/products/FilterUI/FilterUI.module.scss:  background-color: #007f75;
+src/components/products/FilterUI/FilterUIv2.tsx:    <div style={{ background: '#fff', minHeight: '100vh' }}>
+src/components/products/FilterUI/FilterUIv2.tsx:        borderBottom: '1px solid #ddd',
+src/components/products/FilterUI/FilterUIv2.tsx:                background: drawerOpen ? 'var(--color-accent-primary)' : '#fff',
+src/components/products/FilterUI/FilterUIv2.tsx:            <span style={{ color: '#666', fontSize: '14px', whiteSpace: 'nowrap' }}>
+src/components/products/FilterUI/FilterUIv2.tsx:                border: '1px solid #ddd',
+src/components/products/FilterUI/FilterUIv2.tsx:            <div style={{ display: 'flex', border: '1px solid #ddd', borderRadius: '4px' }}>
+src/components/products/FilterUI/FilterUIv2.tsx:                  color: viewMode === 'grid' ? 'white' : '#666',
+src/components/products/FilterUI/FilterUIv2.tsx:                  color: viewMode === 'list' ? 'white' : '#666',
+src/components/products/FilterUI/FilterUIv2.tsx:                  borderLeft: '1px solid #ddd',
+src/components/products/FilterUI/FilterUIv2.tsx:            borderRight: '1px solid #ddd',
+src/components/products/FilterUI/FilterUIv2.tsx:            <h3 style={{ margin: '0 0 20px 0', color: '#333' }}>Filter Options</h3>
+src/components/products/FilterUI/FilterUIv2.tsx:              color: '#666',
+src/components/products/FilterUI/FilterUIv2.tsx:              background: '#f9f9f9',
+src/components/products/FilterUI/FilterUIv2.tsx:              border: '2px dashed #ddd'
+src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss:  background: #f1f1f1;
+src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss:  background: #ccc;
+src/components/products/FilterUI/FilterPanel/FilterPanel.module.scss:  background: #aaa;
+src/components/products/FilterUI/FilterPanel/FilterOption.module.scss:  background-color: #fff;
+src/components/products/FilterUI/FilterPanel/FilterOption.module.scss:  color: #999;
+src/components/products/FilterUI/FilterPanel/FilterOption.module.scss:  background-color: #f0f0f0;
+src/components/products/FilterUI/FilterPanel/FilterOption.module.scss:  border-color: #ddd;
+src/components/products/FilterUI/FilterPanel/FilterOption.module.scss:  color: #999;
+src/components/admin/ExportModal/ExportModal.module.scss:    background: #3182ce;
+src/components/admin/dashboards/ProductsDashboard.tsx:            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <XAxis dataKey="category" stroke="#718096" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <YAxis stroke="#718096" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <Bar dataKey="totalViews" fill="#4299e1" name="Views" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <Bar dataKey="totalConversions" fill="#48bb78" name="Conversions" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <XAxis dataKey="name" stroke="#718096" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <YAxis stroke="#718096" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <Bar dataKey="views" fill="#9f7aea" name="Views" />
+src/components/admin/dashboards/ProductsDashboard.tsx:            <Bar dataKey="conversions" fill="#ed8936" name="Conversions" />
+src/components/admin/dashboards/DemoOverview.tsx:            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/DemoOverview.tsx:            <XAxis dataKey="date" stroke="#718096" />
+src/components/admin/dashboards/DemoOverview.tsx:            <YAxis stroke="#718096" />
+src/components/admin/dashboards/DemoOverview.tsx:              stroke="#4299e1" 
+src/components/admin/dashboards/DemoOverview.tsx:              dot={{ fill: '#4299e1', r: 4 }}
+src/components/admin/dashboards/DemoOverview.tsx:            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/DemoOverview.tsx:            <XAxis dataKey="date" stroke="#718096" />
+src/components/admin/dashboards/DemoOverview.tsx:            <YAxis stroke="#718096" />
+src/components/admin/dashboards/DemoOverview.tsx:            <Bar dataKey="pageViews" fill="#48bb78" />
+src/components/admin/dashboards/OverviewDashboard.module.scss:      background: #38a169;
+src/components/admin/dashboards/JourneysDashboard.tsx:      'Awareness': '#4299e1',
+src/components/admin/dashboards/JourneysDashboard.tsx:      'Interest': '#48bb78',
+src/components/admin/dashboards/JourneysDashboard.tsx:      'Consideration': '#ed8936',
+src/components/admin/dashboards/JourneysDashboard.tsx:      'Decision': '#9f7aea',
+src/components/admin/dashboards/JourneysDashboard.tsx:      'Customer': '#f56565',
+src/components/admin/dashboards/JourneysDashboard.tsx:    return colors[stage] || '#718096';
+src/components/admin/dashboards/JourneysDashboard.tsx:              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/JourneysDashboard.tsx:              <XAxis dataKey="range" stroke="#718096" />
+src/components/admin/dashboards/JourneysDashboard.tsx:              <YAxis stroke="#718096" />
+src/components/admin/dashboards/JourneysDashboard.tsx:                fill="#4299e1"
+src/components/admin/dashboards/JourneysDashboard.tsx:              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/JourneysDashboard.tsx:              <XAxis dataKey="scoreRange" stroke="#718096" />
+src/components/admin/dashboards/JourneysDashboard.tsx:              <YAxis stroke="#718096" />
+src/components/admin/dashboards/JourneysDashboard.tsx:                fill="#48bb78"
+src/components/admin/dashboards/RealtimeDashboard.tsx:                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/RealtimeDashboard.tsx:                    <XAxis dataKey="time" stroke="#718096" />
+src/components/admin/dashboards/RealtimeDashboard.tsx:                    <YAxis stroke="#718096" />
+src/components/admin/dashboards/RealtimeDashboard.tsx:                      stroke="#48bb78" 
+src/components/admin/dashboards/RealtimeDashboard.tsx:                      dot={{ fill: '#48bb78', r: 4 }}
+src/components/admin/dashboards/ProductsDashboard.module.scss:      background: #38a169;
+src/components/admin/dashboards/OverviewDashboard.tsx:  const COLORS = ['#4299e1', '#48bb78', '#ed8936'];
+src/components/admin/dashboards/OverviewDashboard.tsx:            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+src/components/admin/dashboards/OverviewDashboard.tsx:              stroke="#718096"
+src/components/admin/dashboards/OverviewDashboard.tsx:            <YAxis stroke="#718096" />
+src/components/admin/dashboards/OverviewDashboard.tsx:              stroke="#4299e1" 
+src/components/admin/dashboards/OverviewDashboard.tsx:              dot={{ fill: '#4299e1', r: 4 }}
+src/components/admin/dashboards/OverviewDashboard.tsx:              fill="#8884d8"
+src/components/admin/dashboards/OverviewDashboard.tsx:                      backgroundColor: '#e2e8f0', 
+src/components/admin/dashboards/OverviewDashboard.tsx:                        backgroundColor: '#4299e1' 
+src/components/admin/dashboards/RealtimeDashboard.module.scss:      background: #3182ce;
+src/components/quiz/quiz-styles.scss:  background: #f8f9fa;
+src/components/quiz/quiz-styles.scss:  border: 1px solid #e9ecef;
+src/components/quiz/quiz-styles.scss:    background: #f1f3f4;
+src/components/quiz/quiz-styles.scss:        background-color: #f0f0f0;
+src/components/quiz/quiz-styles.scss:        color: #666;
+src/components/quiz/quiz-styles.scss:      color: #666;
+src/components/quiz/quiz-styles.scss:      background-color: #e97b47; // Corporate orange
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(90deg, #e97b47 0%, #f19968 100%);
+src/components/quiz/quiz-styles.scss:      background-color: #6b7280; // General gray
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(90deg, #6b7280 0%, #9ca3af 100%);
+src/components/quiz/quiz-styles.scss:      background-color: #0891b2; // Education teal
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(90deg, #0891b2 0%, #06b6d4 100%);
+src/components/quiz/quiz-styles.scss:      background-color: #dc2626; // Creative red
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+src/components/quiz/quiz-styles.scss:    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+src/components/quiz/quiz-styles.scss:      color: #3b82f6;
+src/components/quiz/quiz-styles.scss:    background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:      color: #3b82f6;
+src/components/quiz/quiz-styles.scss:      color: #3b82f6;
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:          color: #3b82f6;
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(90deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:          background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:          color: #6b7280;
+src/components/quiz/quiz-styles.scss:          color: #3b82f6;
+src/components/quiz/quiz-styles.scss:          border-color: #3b82f6;
+src/components/quiz/quiz-styles.scss:                background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:                border-color: #3b82f6;
+src/components/quiz/quiz-styles.scss:                border-color: #3b82f6;
+src/components/quiz/quiz-styles.scss:                background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:          background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:              background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+src/components/quiz/quiz-styles.scss:            color: #9ca3af;
+src/components/quiz/quiz-styles.scss:            background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:            color: #d97706;
+src/components/quiz/quiz-styles.scss:    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:          #2563eb 0%,
+src/components/quiz/quiz-styles.scss:          #3b82f6 50%,
+src/components/quiz/quiz-styles.scss:          #8b5cf6 100%
+src/components/quiz/quiz-styles.scss:          background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:            background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:          color: #3b82f6;
+src/components/quiz/quiz-styles.scss:            color: #e5e7eb;
+src/components/quiz/quiz-styles.scss:              color: #fbbf24;
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+src/components/quiz/quiz-styles.scss:        background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+src/components/quiz/quiz-styles.scss:        color: #6b7280;
+src/components/quiz/quiz-styles.scss:      color: #e5e7eb;
+src/components/quiz/quiz-styles.scss:      color: #fbbf24;
+src/components/quiz/components/QuizQuestions.tsx:                ? 'linear-gradient(90deg, #10b981 0%, #22c55e 100%)'
+src/components/quiz/components/QuizQuestions.tsx:                : 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)'
+src/components/sw-buying-guide/TouchComparison/index.tsx:    const color = value >= 4 ? '#48bb78' : value >= 3 ? '#4299e1' : '#ed8936';
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:  background: #f8f9fa;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      color: #1a365d;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      background: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      border: 2px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border-color: #cbd5e0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border-color: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border-color: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #f0f9ff;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          background: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          border-color: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border-bottom: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #48bb78;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #edf2f7;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            border-color: #cbd5e0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            accent-color: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:                color: #ed8936;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #f0fff4;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #22543d;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            border: 1px solid #9ae6b4;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #48bb78;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #fff5f5;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #742a2a;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            border: 1px solid #fc8181;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #f56565;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #fffff0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #744210;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            border: 1px solid #f6e05e;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #d69e2e;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #718096;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border: 2px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #48bb78;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #f56565;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:              color: #48bb78;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        color: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:    border: 2px solid #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        color: #718096;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          background: #e53e3e;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:            background: #c53030;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      background: #4299e1;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #3182ce;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:      color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        background: #f7fafc;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:        border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          background: #edf2f7;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchComparison/TouchComparison.scss:          border: 2px solid #e2e8f0;
+src/components/sw-buying-guide/DisplayTechSection.scss:      color: #1a365d;
+src/components/sw-buying-guide/DisplayTechSection.scss:      color: #4a5568;
+src/components/sw-buying-guide/DisplayTechSection.scss:    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/sw-buying-guide/DisplayTechSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/DisplayTechSection.scss:        border-color: #cbd5e0;
+src/components/sw-buying-guide/DisplayTechSection.scss:        border-bottom: 2px solid #f7fafc;
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:          background: #4299e1;
+src/components/sw-buying-guide/DisplayTechSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:          background: #f8f9fa;
+src/components/sw-buying-guide/DisplayTechSection.scss:          border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/DisplayTechSection.scss:            color: #718096;
+src/components/sw-buying-guide/DisplayTechSection.scss:            color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:            color: #4a5568;
+src/components/sw-buying-guide/DisplayTechSection.scss:        color: #48bb78;
+src/components/sw-buying-guide/DisplayTechSection.scss:        color: #ed8936;
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:          background: #f8f9fa;
+src/components/sw-buying-guide/DisplayTechSection.scss:          border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/DisplayTechSection.scss:            background: #edf2f7;
+src/components/sw-buying-guide/DisplayTechSection.scss:            border-color: #cbd5e0;
+src/components/sw-buying-guide/DisplayTechSection.scss:              color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:              color: #4a5568;
+src/components/sw-buying-guide/DisplayTechSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/DisplayTechSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/DisplayTechSection.scss:          background: #f7fafc;
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/DisplayTechSection.scss:          border-left: 3px solid #4299e1;
+src/components/sw-buying-guide/DisplayTechSection.scss:    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+src/components/sw-buying-guide/DisplayTechSection.scss:          color: #4299e1;
+src/components/sw-buying-guide/DisplayTechSection.scss:            background: #f7fafc;
+src/components/sw-buying-guide/WhatIsSection.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/sw-buying-guide/WhatIsSection.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/sw-buying-guide/UseCasesSection.scss:      color: #1a365d;
+src/components/sw-buying-guide/UseCasesSection.scss:      color: #4a5568;
+src/components/sw-buying-guide/UseCasesSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/UseCasesSection.scss:      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+src/components/sw-buying-guide/UseCasesSection.scss:      border-color: #cbd5e0;
+src/components/sw-buying-guide/UseCasesSection.scss:      border-bottom: 2px solid #f7fafc;
+src/components/sw-buying-guide/UseCasesSection.scss:        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/UseCasesSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/UseCasesSection.scss:            color: #48bb78;
+src/components/sw-buying-guide/UseCasesSection.scss:      background: #f8f9fa;
+src/components/sw-buying-guide/UseCasesSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/UseCasesSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #718096;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:          background: #e6fffa;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #234e52;
+src/components/sw-buying-guide/UseCasesSection.scss:          border: 1px solid #b2f5ea;
+src/components/sw-buying-guide/UseCasesSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/UseCasesSection.scss:            color: #4299e1;
+src/components/sw-buying-guide/UseCasesSection.scss:      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+src/components/sw-buying-guide/UseCasesSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/UseCasesSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:        border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/UseCasesSection.scss:          background: #f8f9fa;
+src/components/sw-buying-guide/UseCasesSection.scss:          border-color: #cbd5e0;
+src/components/sw-buying-guide/UseCasesSection.scss:            color: #2d3748;
+src/components/sw-buying-guide/UseCasesSection.scss:              background: #edf2f7;
+src/components/sw-buying-guide/UseCasesSection.scss:              color: #4a5568;
+src/components/sw-buying-guide/UseCasesSection.scss:              background: #4299e1;
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #4299e1;
+src/components/sw-buying-guide/UseCasesSection.scss:    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+src/components/sw-buying-guide/UseCasesSection.scss:          color: #4299e1;
+src/components/sw-buying-guide/UseCasesSection.scss:            background: #f7fafc;
+src/components/sw-buying-guide/RelatedPostsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/RelatedPostsSection.scss:      color: #64748b;
+src/components/sw-buying-guide/RelatedPostsSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/RelatedPostsSection.scss:      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+src/components/sw-buying-guide/RelatedPostsSection.scss:        background: #eff6ff;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        color: #1d4ed8;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        color: #1e293b;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        color: #475569;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          color: #334155;
+src/components/sw-buying-guide/RelatedPostsSection.scss:            color: #3b82f6;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        background: #f8fafc;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        border-left: 3px solid #3b82f6;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          color: #334155;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          color: #3b82f6;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/RelatedPostsSection.scss:    background: #f8fafc;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        color: #334155;
+src/components/sw-buying-guide/RelatedPostsSection.scss:        color: #475569;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          background: #3b82f6;
+src/components/sw-buying-guide/RelatedPostsSection.scss:            background: #2563eb;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          color: #3b82f6;
+src/components/sw-buying-guide/RelatedPostsSection.scss:          border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/RelatedPostsSection.scss:            background: #f8fafc;
+src/components/sw-buying-guide/RelatedPostsSection.scss:            border-color: #3b82f6;
+src/components/sw-buying-guide/WhatIsSection.scss:      color: #1a365d;
+src/components/sw-buying-guide/WhatIsSection.scss:      color: #4a5568;
+src/components/sw-buying-guide/WhatIsSection.scss:      background: #f8f9fa;
+src/components/sw-buying-guide/WhatIsSection.scss:      border-left: 4px solid #4299e1;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/WhatIsSection.scss:    color: #4c51bf;
+src/components/sw-buying-guide/WhatIsSection.scss:    color: #2c7a7b;
+src/components/sw-buying-guide/WhatIsSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #4299e1;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #718096;
+src/components/sw-buying-guide/WhatIsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/WhatIsSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/WhatIsSection.scss:          background: #e6fffa;
+src/components/sw-buying-guide/WhatIsSection.scss:          color: #234e52;
+src/components/sw-buying-guide/WhatIsSection.scss:          border: 1px solid #b2f5ea;
+src/components/sw-buying-guide/WhatIsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/WhatIsSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/WhatIsSection.scss:        border-top: 4px solid #4299e1;
+src/components/sw-buying-guide/WhatIsSection.scss:        border-top: 4px solid #48bb78;
+src/components/sw-buying-guide/WhatIsSection.scss:        border-top: 4px solid #ed8936;
+src/components/sw-buying-guide/WhatIsSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/WhatIsSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/WhatIsSection.scss:            color: #4299e1;
+src/components/sw-buying-guide/WhatIsSection.scss:    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/sw-buying-guide/WhatIsSection.scss:          color: #667eea;
+src/components/sw-buying-guide/WhatIsSection.scss:            background: #f8f9fa;
+src/components/sw-buying-guide/WhyChooseSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/WhyChooseSection.scss:      color: #64748b;
+src/components/sw-buying-guide/WhyChooseSection.scss:        color: #334155;
+src/components/sw-buying-guide/WhyChooseSection.scss:        color: #64748b;
+src/components/sw-buying-guide/WhyChooseSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/WhyChooseSection.scss:            color: #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:            color: #64748b;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #1e293b;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #475569;
+src/components/sw-buying-guide/WhyChooseSection.scss:        background: #f8fafc;
+src/components/sw-buying-guide/WhyChooseSection.scss:        border-left: 3px solid #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #334155;
+src/components/sw-buying-guide/WhyChooseSection.scss:    background: #f8fafc;
+src/components/sw-buying-guide/WhyChooseSection.scss:      color: #334155;
+src/components/sw-buying-guide/WhyChooseSection.scss:        color: #1e293b;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #475569;
+src/components/sw-buying-guide/WhyChooseSection.scss:            color: #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/WhyChooseSection.scss:        color: #334155;
+src/components/sw-buying-guide/WhyChooseSection.scss:        color: #475569;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #1e293b;
+src/components/sw-buying-guide/WhyChooseSection.scss:            color: #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:            color: #64748b;
+src/components/sw-buying-guide/WhyChooseSection.scss:    background: #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:          color: #3b82f6;
+src/components/sw-buying-guide/WhyChooseSection.scss:            background: #f8fafc;
+src/components/sw-buying-guide/TouchTechSection.scss:      color: #1a365d;
+src/components/sw-buying-guide/TouchTechSection.scss:      color: #4a5568;
+src/components/sw-buying-guide/TouchTechSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchTechSection.scss:      border-color: #cbd5e0;
+src/components/sw-buying-guide/TouchTechSection.scss:    border-bottom: 2px solid #f7fafc;
+src/components/sw-buying-guide/TouchTechSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/TouchTechSection.scss:        background: #4299e1;
+src/components/sw-buying-guide/TouchTechSection.scss:        color: #718096;
+src/components/sw-buying-guide/TouchTechSection.scss:        color: #2d3748;
+src/components/sw-buying-guide/TouchTechSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchTechSection.scss:        color: #48bb78;
+src/components/sw-buying-guide/TouchTechSection.scss:        color: #ed8936;
+src/components/sw-buying-guide/TouchTechSection.scss:    background: #f7fafc;
+src/components/sw-buying-guide/TouchTechSection.scss:    border-left: 4px solid #4299e1;
+src/components/sw-buying-guide/TouchTechSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/TouchTechSection.scss:        background: #e6fffa;
+src/components/sw-buying-guide/TouchTechSection.scss:        color: #234e52;
+src/components/sw-buying-guide/TouchTechSection.scss:        border: 1px solid #b2f5ea;
+src/components/sw-buying-guide/TouchTechSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/TouchTechSection.scss:      background: #f8f9fa;
+src/components/sw-buying-guide/TouchTechSection.scss:      border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/TouchTechSection.scss:        background: #edf2f7;
+src/components/sw-buying-guide/TouchTechSection.scss:        border-color: #cbd5e0;
+src/components/sw-buying-guide/TouchTechSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/TouchTechSection.scss:          background: #e2e8f0;
+src/components/sw-buying-guide/TouchTechSection.scss:          color: #4a5568;
+src/components/sw-buying-guide/TouchTechSection.scss:          background: #4299e1;
+src/components/sw-buying-guide/TouchTechSection.scss:    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/sw-buying-guide/TouchTechSection.scss:          color: #667eea;
+src/components/sw-buying-guide/TouchTechSection.scss:            background: #f7fafc;
+src/components/sw-buying-guide/StickyTableOfContents.scss:      color: #718096;
+src/components/sw-buying-guide/StickyTableOfContents.scss:    background: #007a6b;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #1a365d;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #4a5568;
+src/components/sw-buying-guide/BrandsSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/BrandsSection.scss:    border-bottom: 2px solid #f7fafc;
+src/components/sw-buying-guide/BrandsSection.scss:      background: linear-gradient(135deg, #4299e1, #3182ce);
+src/components/sw-buying-guide/BrandsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #718096;
+src/components/sw-buying-guide/BrandsSection.scss:    background: #f8f9fa;
+src/components/sw-buying-guide/BrandsSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/BrandsSection.scss:      border-color: #cbd5e0;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/BrandsSection.scss:        color: #4299e1;
+src/components/sw-buying-guide/BrandsSection.scss:    border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/BrandsSection.scss:        background: #edf2f7;
+src/components/sw-buying-guide/BrandsSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/BrandsSection.scss:        color: #4a5568;
+src/components/sw-buying-guide/BrandsSection.scss:          color: #48bb78;
+src/components/sw-buying-guide/BrandsSection.scss:        background: #4299e1;
+src/components/sw-buying-guide/BrandsSection.scss:          background: #3182ce;
+src/components/sw-buying-guide/BrandsSection.scss:        color: #4299e1;
+src/components/sw-buying-guide/BrandsSection.scss:        border: 1px solid #4299e1;
+src/components/sw-buying-guide/BrandsSection.scss:          background: #4299e1;
+src/components/sw-buying-guide/BrandsSection.scss:        background: linear-gradient(135deg, #ed8936, #dd6b20);
+src/components/sw-buying-guide/BrandsSection.scss:      color: #718096;
+src/components/sw-buying-guide/BrandsSection.scss:      color: #2d3748;
+src/components/sw-buying-guide/BrandsSection.scss:        background: #f7fafc;
+src/components/sw-buying-guide/BrandsSection.scss:        border: 1px solid #e2e8f0;
+src/components/sw-buying-guide/BrandsSection.scss:          background: #edf2f7;
+src/components/sw-buying-guide/BrandsSection.scss:          border-color: #cbd5e0;
+src/components/sw-buying-guide/BrandsSection.scss:          color: #2d3748;
+src/components/sw-buying-guide/BrandsSection.scss:          color: #718096;
+src/components/sw-buying-guide/BrandsSection.scss:          background: #e2e8f0;
+src/components/sw-buying-guide/BrandsSection.scss:    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/blog/RelatedBlogPosts.astro:    border-top: 1px solid #eee;
+src/components/blog/RelatedBlogPosts.astro:    background-color: #fff;
+src/components/blog/RelatedBlogPosts.astro:    background-color: #f0f0f0;
+src/components/blog/RelatedBlogPosts.astro:    color: #0066cc;
+src/components/blog/RelatedBlogPosts.astro:    color: #666;
+src/components/blog/RelatedBlogPosts.astro:    color: #666;
+src/components/blog/RelatedBlogPosts.astro:    background-color: #0066cc;
+src/components/blog/RelatedBlogPosts.astro:    background-color: #0055aa;
+src/components/common/Footer/Footer.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/common/Footer/Footer.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/common/Nav.backup/NavItem.module.scss:@supports (filter: drop-shadow(0 0 10px #000)) {
+src/components/common/Nav.backup/NavButton.module.scss:  background-color: var(--bg-color, var(--color-surface, #ffffff));
+src/components/common/Nav.backup/NavButton.module.scss:  color: var(--text-color, var(--color-text, #333333));
+src/components/common/Nav.backup/NavButton.module.scss:  background: #ff4757; /* High contrast red background */
+src/components/common/Nav.backup/NavButton.module.scss:  background-color: var(--bg-color, var(--color-surface, #f8f9fa));
+src/components/common/Nav.backup/NavButton.module.scss:  border: 1px solid var(--color-border, #e9ecef);
+src/components/common/Nav.backup/NavButton.module.scss:  color: var(--text-color, var(--color-text, #333333));
+src/components/common/Nav.backup/NavButton.module.scss:    background: var(--gradient, var(--bg-color, var(--color-surface-hover, #e9ecef)));
+src/components/common/Nav.backup/NavButton.module.scss:    border-color: var(--color-border-hover, #dee2e6);
+src/components/common/Nav.backup/NavButton.module.scss:    background: var(--color-primary-subtle, #e3f2fd);
+src/components/common/Nav.backup/NavButton.module.scss:    border-color: var(--color-primary, #1976d2);
+src/components/common/Nav.backup/NavButton.module.scss:    color: var(--color-primary, #1976d2);
+src/components/common/Nav.backup/NavButton.module.scss:  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/components/common/Nav.backup/NavButton.module.scss:  background: var(--gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+src/components/common/Nav.backup/NavButton.module.scss:    background: var(--bg-color, #ffffff);
+src/components/common/Nav.backup/NavButton.module.scss:    background: #667eea;
+src/components/common/Nav.backup/NavButton.module.scss:    background-image: var(--gradient, -webkit-linear-gradient(315deg, #667eea, #764ba2));
+src/components/common/Nav.backup/NavButton.module.scss:    background-image: var(--gradient, linear-gradient(135deg, #667eea, #764ba2));
+src/components/common/Nav.backup/NavSection.module.scss:    color: var(--color-text-dark, #ffffff);
+src/components/common/Nav.backup/ClientNav.tsx:    return <div style={{ height: '60px', backgroundColor: '#fff' }} />;
+src/components/common/ErrorBoundary/ErrorBoundary.module.scss:  color: var(--color-error, #dc3545);
+src/components/common/ErrorBoundary/ErrorBoundary.module.scss:    background-color: var(--color-accent-primary-dark, #007f75);
+src/components/common/ProductCard/ProductCard.module.scss:  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+src/components/common/ProductCard/ProductCard.module.scss:  background: linear-gradient(90deg, #e9ecef 25%, #f8f9fa 50%, #e9ecef 75%);
+src/components/common/ProductCard/ProductCard.module.scss:  background-color: #f0f0f0;
+src/components/common/ProductCard/ProductCard.module.scss:  color: #666;
+src/components/common/ProductCard/ProductCard.module.scss:  color: #666;
+src/components/common/ProductCard/ProductCard.module.scss:  background-color: #f0f0f0;
+src/components/common/ProductCard/ProductCard.module.scss:  background-color: #e0e0e0;
+src/components/common/ProductCard/ProductCard.module.scss:  background-color: #007f75;
+src/components/common/Search/SearchItem.module.scss:    background: #4caf50;
+src/components/common/Search/SearchItem.module.scss:    color: #2e7d32;
+src/components/common/Search/SearchItem.module.scss:    background: #2196f3;
+src/components/common/Search/SearchItem.module.scss:    background: #ff9800;
+src/components/common/Search/SearchItem.module.scss:    background: #9c27b0;
+src/components/common/Search/SearchResults.module.scss:    background: #007a6b;
+src/components/common/Search/SearchResults.module.scss:    border-color: #007a6b;
+src/components/common/Search/SearchResults.module.scss:    background: #007a6b;
+src/components/common/BrochureCard/BrochureCard.module.scss:  background-color: #f8f9fa;
+src/components/common/BrochureCard/BrochureCard.module.scss:  border: 1px solid #e9ecef;
+src/components/common/BrochureCard/BrochureCard.module.scss:    background-color: #007f75;
+src/components/common/BrochureCard/BrochureCard.module.scss:  border: 1px solid #e9ecef;
+src/components/common/BrochureCard/BrochureCard.module.scss:  background-color: #f8f9fa;
+src/components/common/EmptyState/EmptyState.module.scss:    background-color: var(--color-accent-primary-dark, #007f75);
+src/components/common/PageHeaderModern.astro:    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+src/components/common/PageHeaderModern.astro:    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+src/components/common/PageHeaderModern.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/components/common/PageHeaderModern.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/components/common/PageHeaderModern.astro:    background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #3b82f6 100%);
+src/components/common/Nav/NavItem.module.scss:@supports (filter: drop-shadow(0 0 10px #000)) {
+src/components/common/Nav/Nav.module.scss:  background: var(--color-surface-primary, #ffffff);
+src/components/common/Nav/Nav.module.scss:  border: 1px solid var(--color-border-muted, #e5e7eb);
+src/components/common/Nav/Nav.module.scss:  color: var(--color-text-primary, #1f2937);
+src/components/common/Nav/Nav.module.scss:    background: var(--color-surface-muted, #f9fafb);
+src/components/common/Nav/Nav.module.scss:    color: var(--color-accent-primary, #3b82f6);
+src/components/common/Nav/Nav.module.scss:    background: var(--color-surface-hover, #f3f4f6);
+src/components/common/Nav/Nav.module.scss:  color: var(--color-text-muted, #6b7280);
+src/components/common/Nav/Nav.module.scss:    color: var(--color-accent-primary, #3b82f6);
+src/components/common/Nav/Nav.module.scss:  background: var(--color-surface-muted, #f9fafb);
+src/components/common/Nav/Nav.module.scss:  color: var(--color-text-primary, #1f2937);
+src/components/design-system/SpacingGuide.astro:    background-color: #f0f0f0;
+src/components/design-system/SpacingGuide.astro:    border: 1px dashed #ccc;
+src/components/design-system/SpacingGuide.astro:    background-color: #f9f9f9;
+src/components/design-system/SpacingGuide.astro:    background-color: #f0f8ff;
+src/components/design-system/SpacingGuide.astro:    background-color: #e6f7ff;
+src/components/design-system/SpacingGuide.astro:    background-color: #fff0f0;
+src/components/design-system/SpacingGuide.astro:    background-color: #f0fff0;
+src/components/design-system/SpacingGuide.astro:    background-color: #f0f0ff;
+src/components/design-system/SpacingGuide.astro:    background-color: #f0f8ff;
+src/components/design-system/SpacingGuide.astro:    border: 1px dashed #ccc;
+src/components/design-system/SpacingGuide.astro:    background-color: #f9f9f9;
+src/components/design-system/SpacingGuide.astro:    background-color: #e6e6e6;
+src/components/design-system/SpacingGuide.astro:    background-color: #c5e1a5;
+src/components/design-system/SpacingGuide.astro:    background-color: #bbdefb;
+src/layouts/UseCaseLayout.astro:      background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/layouts/UseCaseLayout.astro:      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/layouts/UseCaseLayout.astro:      border-left: 4px solid #ddd;
+src/layouts/UseCaseLayout.astro:      color: #555;
+src/layouts/UseCaseLayout.astro:      background-color: #f5f5f5;
+src/layouts/BlogLayout.astro:      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/layouts/BlogLayout.astro:      background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/layouts/BlogLayout.astro:      background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+src/layouts/BlogLayout.astro:              color: #3b82f6;
+src/layouts/BlogLayout.astro:        color: #3b82f6;
+src/layouts/BlogLayout.astro:        color: #3b82f6;
+src/pages/404.astro:    background: radial-gradient(circle, #ef4444 0%, transparent 70%);
+src/pages/404.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/pages/404.astro:      background: linear-gradient(90deg, #ef4444 0%, #3b82f6 100%);
+src/pages/404.astro:      color: #ef4444;
+src/pages/404.astro:    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+src/pages/terms-and-conditions.astro:            <li><a href="#acceptance">Acceptance of Terms</a></li>
+src/pages/terms-and-conditions.astro:            <li><a href="#definitions">Definitions</a></li>
+src/pages/test-gradients.astro:            <div class="glass-examples" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); padding: 2rem; border-radius: 1rem;">
+src/pages/test-gradients.astro:            border: 1px solid #e2e8f0;
+src/pages/products/collaboration/index.astro:    color: #666;
+src/pages/products/collaboration/index.astro:    background-color: #f5f7fa;
+src/pages/products/collaboration/index.astro:      background-color: #007a6b;
+src/pages/products/accessories/index.astro:    color: #666;
+src/pages/products/accessories/index.astro:    background-color: #fff;
+src/pages/products/accessories/index.astro:      background-color: #007a6b;
+src/pages/products/accessories/index.astro:    background-color: #f5f7fa;
+src/pages/products/accessories/index.astro:      background-color: #007a6b;
+src/pages/products/smartboards/[brand]/index.astro:    color: #666;
+src/pages/products/lecterns/[brand]/index.astro:    color: #666;
+src/pages/products/lecterns/index.astro:    color: #666;
+src/pages/index.astro:    background: var(--gradient-bg-subtle, linear-gradient(135deg, #ffffff 0%, #f8fafb 100%));
+src/pages/index.astro:    background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+src/pages/flexible-payment.astro:    background: linear-gradient(135deg, var(--color-accent-primary) 0%, #007a6b 100%);
+src/pages/flexible-payment.astro:    background-color: #f8fafb;
+src/pages/flexible-payment.astro:    border-bottom: 1px solid #f0f0f0;
+src/pages/flexible-payment.astro:    background-color: #f8fafb;
+src/pages/flexible-payment.astro:    border-bottom: 1px solid #f0f0f0;
+src/pages/admin/analytics-test.astro:    background: #4299e1;
+src/pages/admin/analytics-test.astro:    background: #3182ce;
+src/pages/admin/analytics-test.astro:    border-top: 1px solid #e2e8f0;
+src/pages/admin/analytics-test.astro:    background: #f7fafc;
+src/pages/admin/analytics-test.astro:    color: #718096;
+src/pages/admin/analytics-test.astro:    color: #2d3748;
+src/pages/admin/analytics-test.astro:    background: #edf2f7;
+src/pages/admin/analytics-test.astro:    color: #2f855a;
+src/pages/admin/analytics-test.astro:    color: #c53030;
+src/pages/blog/index.astro:      background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+src/pages/blog/index.astro:      color: #3b82f6;
+src/pages/blog/index.astro:      color: #3b82f6;
+src/pages/blog/index.astro:          color: #3b82f6;
+src/pages/contact.astro:    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+src/pages/contact.astro:    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+src/pages/contact.astro:      color: #059669;
+src/pages/contact.astro:      color: #dc2626;
+src/pages/contact.astro:    border-top: 2px solid #3b82f6;
+src/pages/dev/routes.astro:      background: #f5f5f5;
+src/pages/dev/routes.astro:      border-bottom: 2px solid #eee;
+src/pages/dev/routes.astro:      color: #333;
+src/pages/dev/routes.astro:      color: #666;
+src/pages/dev/routes.astro:      background: #f8f9fa;
+src/pages/dev/routes.astro:      border-left: 4px solid #007acc;
+src/pages/dev/routes.astro:      background: #007acc;
+src/pages/dev/routes.astro:      background: #005999;
+src/pages/dev/routes.astro:      background: #6c757d;
+src/pages/dev/routes.astro:      background: #5a6268;
+src/pages/dev/routes.astro:      border: 1px solid #ddd;
+src/pages/dev/routes.astro:      background: #fafafa;
+src/pages/dev/routes.astro:      color: #d73a49;
+src/pages/dev/routes.astro:      color: #666;
+src/pages/dev/routes.astro:      background: #28a745;
+src/pages/dev/routes.astro:      background: #218838;
+src/pages/dev/routes.astro:      border-top: 2px solid #eee;
+src/pages/dev/routes.astro:      background: #f8f8f8;
+src/pages/dev/routes.astro:      background: #f8f8f8;
+src/pages/dev/routes.astro:      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+src/pages/lecterns.astro:    color: #666;
+src/pages/lecterns.astro:    color: #666;
+src/pages/lecterns.astro:    color: #666;
+src/pages/lecterns.astro:    background-color: #f5f5f5;
+src/pages/lecterns.astro:    background-color: #f0f0f0;
+src/pages/lecterns.astro:    border: 2px dashed #ccc;
+src/pages/lecterns.astro:    color: #999;

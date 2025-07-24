@@ -10,7 +10,7 @@
     
     h1 {
       margin: 0;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
     
     @media (max-width: 768px) {
@@ -38,29 +38,29 @@
     
     button {
       padding: 0.5rem 1rem;
-      border: 1px solid var(--color-admin-border);
-      background: var(--color-admin-surface);
-      color: var(--color-admin-text);
+      border: 1px solid var(--color-border-muted);
+      background: var(--color-surface);
+      color: var(--color-text-primary);
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s;
       font-size: 0.875rem;
       
       &:hover {
-        background: var(--color-admin-bg);
+        background: var(--color-background);
       }
       
       &.active {
-        background: var(--chart-primary);
+        background: var(--color-primary);
         color: white;
-        border-color: var(--chart-primary);
+        border-color: var(--color-primary);
       }
     }
   }
   
   .exportButton {
     padding: 0.5rem 1rem;
-    background: var(--chart-secondary);
+    background: var(--color-success);
     color: white;
     border: none;
     border-radius: 4px;
@@ -103,7 +103,7 @@
   }
   
   .tableSection {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -111,16 +111,16 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
   .error {
     padding: 2rem;
     text-align: center;
-    color: var(--chart-danger);
+    color: var(--color-error);
     background: rgba(245, 101, 101, 0.1);
-    border: 1px solid var(--chart-danger);
+    border: 1px solid var(--color-error);
     border-radius: 8px;
     margin: 2rem 0;
   }

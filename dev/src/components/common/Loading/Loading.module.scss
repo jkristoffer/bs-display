@@ -80,7 +80,7 @@
   );
   background-size: 200% 100%;
   animation: skeletonLoading 1.5s infinite;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--radius-md);
   
   &--text {
     height: 1rem;
@@ -93,7 +93,7 @@
   }
   
   &--rectangular {
-    border-radius: var(--border-radius-card);
+    border-radius: var(--radius-xl);
   }
   
   &--circular {
@@ -131,7 +131,7 @@
 .loadingContent {
   text-align: center;
   padding: 2rem;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--color-surface);
   box-shadow: var(--shadow-xl);
   max-width: 300px;
@@ -148,7 +148,7 @@
 .loadingMessage {
   margin: 1rem 0 0 0;
   color: var(--color-text-secondary);
-  font-size: var(--font-size-body-regular);
+  font-size: var(--text-body);
   
   .loadingOverlay--glass & {
     color: white;
@@ -168,7 +168,7 @@
 
 .progressTrack {
   width: 100%;
-  background: var(--color-border-light);
+  background: var(--color-border-muted);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
@@ -197,7 +197,7 @@
 .progressPercentage {
   display: inline-block;
   margin-top: 0.5rem;
-  font-size: var(--font-size-body-small);
+  font-size: var(--text-small);
   font-weight: 600;
   color: var(--color-text-secondary);
 }

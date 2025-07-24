@@ -38,15 +38,15 @@ const { name, logoSrc, path } = Astro.props;
   .brand-card:hover {
     transform: translateY(-5px);
     box-shadow:
-      var(--box-shadow-1),
+      var(--shadow-md),
       0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   header {
     font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     color: var(--color-text-primary);
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
   }
 
   img {
@@ -57,6 +57,6 @@ const { name, logoSrc, path } = Astro.props;
   }
 
   .actions {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-8);
   }
 </style>

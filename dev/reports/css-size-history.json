@@ -1,0 +1,34 @@
+[
+  {
+    "timestamp": "2025-07-24T02:34:04.574Z",
+    "totalSizeKB": 625.29,
+    "fileCount": 20,
+    "files": [
+      {
+        "name": "NavWrapper.BN5M_cTQ.min.css",
+        "size": "96.96",
+        "sizeBytes": 99285
+      },
+      {
+        "name": "quiz.pUkEtrsK.min.css",
+        "size": "84.56",
+        "sizeBytes": 86593
+      },
+      {
+        "name": "index.8epXkTpV.min.css",
+        "size": "56.39",
+        "sizeBytes": 57747
+      },
+      {
+        "name": "smart-whiteboard-buying-guide.CFmz4DX6.min.css",
+        "size": "38.05",
+        "sizeBytes": 38966
+      },
+      {
+        "name": "analytics-test.WFczO8gw.min.css",
+        "size": "33.18",
+        "sizeBytes": 33973
+      }
+    ]
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "analysis_date": "2025-07-24T03:25:07.782Z",
+  "total_variables_analyzed": 327,
+  "category_breakdown": {
+    "colors": {
+      "total": 73,
+      "prefixes": [],
+      "suffixes": [
+        "primary",
+        "rgb",
+        "secondary",
+        "text",
+        "surface",
+        "border",
+        "background",
+        "muted",
+        "bg",
+        "light",
+        "elevated",
+        "new",
+        "default",
+        "color",
+        "hover",
+        "dark",
+        "subtle",
+        "success",
+        "active",
+        "strong",
+        "error",
+        "tertiary",
+        "info",
+        "warning"
+      ],
+      "semantic_colors": 37,
+      "high_usage": 4,
+      "patterns": {
+        "accent_pattern": 11,
+        "button_pattern": 11,
+        "text_pattern": 17,
+        "surface_pattern": 12
+      }
+    },
+    "spacing": {
+      "total": 51,
+      "numeric_system": 16,
+      "semantic_system": 6,
+      "contextual_system": 9,
+      "high_usage": 5
+    },
+    "typography": {
+      "total": 72,
+      "font_sizes": 53,
+      "font_families": 6,
+      "font_weights": 5,
+      "line_heights": 3,
+      "fluid_system": 9,
+      "legacy_system": 15,
+      "high_usage": 3
+    },
+    "effects": {
+      "total": 49,
+      "shadows": 15,
+      "border_radius": 17,
+      "gradients": 17,
+      "high_usage": 12
+    },
+    "layout": {
+      "total": 10,
+      "high_usage": 1
+    },
+    "animation": {
+      "total": 7,
+      "high_usage": 3
+    },
+    "zindex": {
+      "total": 10,
+      "high_usage": 0
+    }
+  },
+  "naming_consistency_issues": {
+    "mixed_naming_conventions": [
+      "spacing: numeric vs semantic (--spacing-8 vs --spacing-md)",
+      "typography: fluid vs legacy (--text-body vs --font-size-body-regular)",
+      "colors: accent vs primary inconsistency"
+    ],
+    "consolidation_opportunities": [
+      "73 color variables can be reduced to ~25",
+      "51 spacing variables can be reduced to ~12",
+      "72 typography variables can be reduced to ~15"
+    ]
+  }
+}

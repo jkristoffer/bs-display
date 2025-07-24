@@ -20,7 +20,7 @@ const { title, image, points } = Astro.props;
   .buying-guide-item {
     background-color: white;
     border-radius: 8px;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     height: 100%;
     display: flex;
@@ -36,10 +36,10 @@ const { title, image, points } = Astro.props;
   }
 
   .item-title {
-    color: var(--color-accent-primary);
-    margin-top: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-h3);
+    color: var(--color-primary);
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+    font-size: var(--text-subsection);
     font-weight: var(--font-weight-bold);
     text-align: center;
   }
@@ -52,10 +52,10 @@ const { title, image, points } = Astro.props;
   }
 
   .item-points li {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     line-height: 1.5;
     position: relative;
-    padding-left: var(--spacing-md);
+    padding-left: var(--spacing-8);
     color: var(--color-text-primary, #333);
   }
   

@@ -8,7 +8,7 @@
 }
 
 .optionLabel:hover {
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 .optionLabel.disabled {
@@ -43,8 +43,8 @@
 }
 
 .input:checked~.checkmark {
-  background-color: var(--color-accent-primary);
-  border-color: var(--color-accent-primary);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .input:checked~.checkmark:after {

@@ -54,27 +54,27 @@
   // Enhanced definitions styling
   .terms-definitions {
     background: var(--color-bg-secondary);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius-card);
-    border: 1px solid var(--color-border-light);
-    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-12);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border-muted);
+    margin: var(--spacing-12) 0;
 
     dt {
-      background: var(--color-accent-primary);
+      background: var(--color-primary);
       color: white;
-      padding: var(--spacing-xs) var(--spacing-sm);
-      border-radius: var(--border-radius-small);
+      padding: var(--spacing-2) var(--spacing-4);
+      border-radius: var(--radius-md);
       display: inline-block;
-      font-size: var(--font-size-body-small);
-      margin-bottom: var(--spacing-sm);
+      font-size: var(--text-small);
+      margin-bottom: var(--spacing-4);
     }
 
     dd {
       background: var(--color-bg-primary);
-      margin: 0 0 var(--spacing-md) 0;
-      padding: var(--spacing-sm);
-      border-radius: var(--border-radius-small);
-      border-left: 3px solid var(--color-accent-primary);
+      margin: 0 0 var(--spacing-8) 0;
+      padding: var(--spacing-4);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--color-primary);
     }
   }
 
@@ -82,13 +82,13 @@
   @media (max-width: 768px) {
     .terms-header {
       h1 {
-        font-size: var(--font-size-h2);
+        font-size: var(--text-section);
       }
     }
 
     .terms-section {
       h2 {
-        font-size: var(--font-size-h4);
+        font-size: var(--text-subsection);
       }
 
       h3 {
@@ -99,20 +99,20 @@
 
   @media (max-width: 480px) {
     .terms-header {
-      margin-bottom: var(--spacing-xl);
-      padding-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-16);
+      padding-bottom: var(--spacing-12);
     }
 
     .terms-content {
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
     }
 
     .terms-article {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-12);
     }
 
     .terms-section {
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
     }
   }
 }

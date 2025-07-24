@@ -6,7 +6,7 @@
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-12) var(--spacing-8);
   
   /* Smooth scrolling for better UX */
   scroll-behavior: smooth;
@@ -41,7 +41,7 @@
 .gridContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-16);
   max-width: 100%;
   margin: 0 auto;
   
@@ -84,7 +84,7 @@
   @media (max-width: 320px) {
     --grid-columns: 2;
     .gridContainer {
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
   }
 }
@@ -129,7 +129,7 @@
 
 /* Smooth scroll behavior for section navigation */
 .gridContainer {
-  scroll-padding-top: var(--spacing-lg);
+  scroll-padding-top: var(--spacing-12);
 }
 
 /* Animation keyframes */
@@ -174,10 +174,10 @@
 /* Landscape orientation adjustments */
 @media screen and (orientation: landscape) and (max-height: 500px) {
   .mobileMenuGrid {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-8) var(--spacing-4);
   }
   
   .gridContainer {
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
 }

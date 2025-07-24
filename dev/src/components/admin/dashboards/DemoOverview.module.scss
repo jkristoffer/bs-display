@@ -4,11 +4,11 @@
     
     h2 {
       margin-bottom: 0.5rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
     
     p {
-      color: var(--color-admin-text-secondary);
+      color: var(--color-text-secondary);
       margin: 0;
     }
   }
@@ -34,7 +34,7 @@
   .tableSection {
     h3 {
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
 }

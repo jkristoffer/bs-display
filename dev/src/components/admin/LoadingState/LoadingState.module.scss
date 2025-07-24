@@ -28,7 +28,7 @@
 .bounce3 {
   width: 12px;
   height: 12px;
-  background-color: var(--chart-primary);
+  background-color: var(--color-primary);
   border-radius: 50%;
   animation: bounce 1.4s infinite ease-in-out both;
 }
@@ -43,7 +43,7 @@
 
 .message {
   margin: 0;
-  color: var(--color-admin-text-secondary);
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   text-align: center;
 }

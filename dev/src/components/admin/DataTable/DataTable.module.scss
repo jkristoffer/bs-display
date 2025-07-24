@@ -1,5 +1,5 @@
 .dataTableWrapper {
-  background: var(--color-admin-surface);
+  background: var(--color-surface);
   border-radius: 8px;
   box-shadow: var(--admin-shadow-sm);
   overflow: hidden;
@@ -14,15 +14,15 @@
   border-collapse: collapse;
   
   thead {
-    background: var(--color-admin-bg);
-    border-bottom: 2px solid var(--color-admin-border);
+    background: var(--color-background);
+    border-bottom: 2px solid var(--color-border-muted);
   }
   
   th {
     padding: 0.75rem 1rem;
     text-align: left;
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -34,7 +34,7 @@
       transition: background 0.2s;
       
       &:hover {
-        background: var(--color-admin-border);
+        background: var(--color-border-muted);
       }
     }
   }
@@ -51,11 +51,11 @@
   }
   
   tbody tr {
-    border-bottom: 1px solid var(--color-admin-border);
+    border-bottom: 1px solid var(--color-border-muted);
     transition: background 0.2s;
     
     &:hover {
-      background: var(--color-admin-bg);
+      background: var(--color-background);
     }
     
     &:last-child {
@@ -65,13 +65,13 @@
   
   td {
     padding: 0.875rem 1rem;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
   }
   
   .noData {
     text-align: center;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
     padding: 2rem;
   }
 }
@@ -81,23 +81,23 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-top: 1px solid var(--color-admin-border);
-  background: var(--color-admin-bg);
+  border-top: 1px solid var(--color-border-muted);
+  background: var(--color-background);
 }
 
 .paginationBtn {
   padding: 0.5rem 1rem;
-  background: var(--color-admin-surface);
-  border: 1px solid var(--color-admin-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-muted);
   border-radius: 4px;
-  color: var(--color-admin-text);
+  color: var(--color-text-primary);
   font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.2s;
   
   &:hover:not(:disabled) {
-    background: var(--color-admin-bg);
-    border-color: var(--chart-primary);
+    background: var(--color-background);
+    border-color: var(--color-primary);
   }
   
   &:disabled {
@@ -108,5 +108,5 @@
 
 .pageInfo {
   font-size: 0.875rem;
-  color: var(--color-admin-text-secondary);
+  color: var(--color-text-secondary);
 }

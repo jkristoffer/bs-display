@@ -1,0 +1,352 @@
+{
+  "total_spacing": 38,
+  "spacing_values": {
+    "--spacing-0": "0",
+    "--spacing-1": "2px",
+    "--spacing-2": "4px",
+    "--spacing-3": "6px",
+    "--spacing-4": "8px",
+    "--spacing-5": "10px",
+    "--spacing-6": "12px",
+    "--spacing-8": "16px",
+    "--spacing-10": "20px",
+    "--spacing-12": "24px",
+    "--spacing-16": "32px",
+    "--spacing-20": "40px",
+    "--spacing-24": "48px",
+    "--spacing-32": "64px",
+    "--spacing-40": "80px",
+    "--spacing-48": "96px",
+    "--spacing-xs": "var(--spacing-2)",
+    "--spacing-sm": "var(--spacing-4)",
+    "--spacing-md": "var(--spacing-8)",
+    "--spacing-lg": "var(--spacing-12)",
+    "--spacing-xl": "var(--spacing-16)",
+    "--spacing-xxl": "var(--spacing-24)",
+    "--spacing-container-max-width": "1200px",
+    "--spacing-container-padding": "clamp(1rem,5vw,2rem)",
+    "--spacing-section-gap": "clamp(2rem,6vw,8rem)",
+    "--spacing-component-gap": "clamp(1rem,3vw,3rem)",
+    "--spacing-dynamic": "clamp(2rem,5vw,6rem)",
+    "--spacing-section": "var(--space-section)",
+    "--spacing-inline": "clamp(1rem,5vw,4rem)",
+    "--spacing-card-padding": "24px",
+    "--spacing-grid-gap": "clamp(1rem,2.5vw,2rem)",
+    "--spacing-list-gap": "clamp(0.5rem,1.5vw,1rem)",
+    "--spacing-button-padding": "clamp(0.75rem,2vw,1rem)",
+    "--spacing-gap-between-blocks": "20px"
+  },
+  "system_compliance": {
+    "follows_8px_grid": [
+      {
+        "variable": "--spacing-4",
+        "value": "8px",
+        "px_equivalent": "8px"
+      },
+      {
+        "variable": "--spacing-8",
+        "value": "16px",
+        "px_equivalent": "16px"
+      },
+      {
+        "variable": "--spacing-12",
+        "value": "24px",
+        "px_equivalent": "24px"
+      },
+      {
+        "variable": "--spacing-16",
+        "value": "32px",
+        "px_equivalent": "32px"
+      },
+      {
+        "variable": "--spacing-20",
+        "value": "40px",
+        "px_equivalent": "40px"
+      },
+      {
+        "variable": "--spacing-24",
+        "value": "48px",
+        "px_equivalent": "48px"
+      },
+      {
+        "variable": "--spacing-32",
+        "value": "64px",
+        "px_equivalent": "64px"
+      },
+      {
+        "variable": "--spacing-40",
+        "value": "80px",
+        "px_equivalent": "80px"
+      },
+      {
+        "variable": "--spacing-48",
+        "value": "96px",
+        "px_equivalent": "96px"
+      },
+      {
+        "variable": "--spacing-container-max-width",
+        "value": "1200px",
+        "px_equivalent": "1200px"
+      },
+      {
+        "variable": "--spacing-card-padding",
+        "value": "24px",
+        "px_equivalent": "24px"
+      }
+    ],
+    "violates_8px_grid": [
+      {
+        "variable": "--spacing-1",
+        "value": "2px",
+        "px_equivalent": "2px",
+        "nearest_8px": "0px"
+      },
+      {
+        "variable": "--spacing-2",
+        "value": "4px",
+        "px_equivalent": "4px",
+        "nearest_8px": "8px"
+      },
+      {
+        "variable": "--spacing-3",
+        "value": "6px",
+        "px_equivalent": "6px",
+        "nearest_8px": "8px"
+      },
+      {
+        "variable": "--spacing-5",
+        "value": "10px",
+        "px_equivalent": "10px",
+        "nearest_8px": "8px"
+      },
+      {
+        "variable": "--spacing-6",
+        "value": "12px",
+        "px_equivalent": "12px",
+        "nearest_8px": "16px"
+      },
+      {
+        "variable": "--spacing-10",
+        "value": "20px",
+        "px_equivalent": "20px",
+        "nearest_8px": "24px"
+      },
+      {
+        "variable": "--spacing-dynamic",
+        "value": "clamp(2rem,5vw,6rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-inline",
+        "value": "clamp(1rem,5vw,4rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-section-gap",
+        "value": "clamp(2rem,6vw,8rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-component-gap",
+        "value": "clamp(1rem,3vw,3rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-container-padding",
+        "value": "clamp(1rem,5vw,2rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-grid-gap",
+        "value": "clamp(1rem,2.5vw,2rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-list-gap",
+        "value": "clamp(0.5rem,1.5vw,1rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-button-padding",
+        "value": "clamp(0.75rem,2vw,1rem)",
+        "px_equivalent": "NaNpx",
+        "nearest_8px": "NaNpx"
+      },
+      {
+        "variable": "--spacing-gap-between-blocks",
+        "value": "20px",
+        "px_equivalent": "20px",
+        "nearest_8px": "24px"
+      }
+    ],
+    "rem_based": [
+      {
+        "variable": "--spacing-dynamic",
+        "value": "clamp(2rem,5vw,6rem)"
+      },
+      {
+        "variable": "--spacing-inline",
+        "value": "clamp(1rem,5vw,4rem)"
+      },
+      {
+        "variable": "--spacing-section-gap",
+        "value": "clamp(2rem,6vw,8rem)"
+      },
+      {
+        "variable": "--spacing-component-gap",
+        "value": "clamp(1rem,3vw,3rem)"
+      },
+      {
+        "variable": "--spacing-container-padding",
+        "value": "clamp(1rem,5vw,2rem)"
+      },
+      {
+        "variable": "--spacing-grid-gap",
+        "value": "clamp(1rem,2.5vw,2rem)"
+      },
+      {
+        "variable": "--spacing-list-gap",
+        "value": "clamp(0.5rem,1.5vw,1rem)"
+      },
+      {
+        "variable": "--spacing-button-padding",
+        "value": "clamp(0.75rem,2vw,1rem)"
+      }
+    ],
+    "px_based": [
+      {
+        "variable": "--spacing-1",
+        "value": "2px"
+      },
+      {
+        "variable": "--spacing-2",
+        "value": "4px"
+      },
+      {
+        "variable": "--spacing-3",
+        "value": "6px"
+      },
+      {
+        "variable": "--spacing-4",
+        "value": "8px"
+      },
+      {
+        "variable": "--spacing-5",
+        "value": "10px"
+      },
+      {
+        "variable": "--spacing-6",
+        "value": "12px"
+      },
+      {
+        "variable": "--spacing-8",
+        "value": "16px"
+      },
+      {
+        "variable": "--spacing-10",
+        "value": "20px"
+      },
+      {
+        "variable": "--spacing-12",
+        "value": "24px"
+      },
+      {
+        "variable": "--spacing-16",
+        "value": "32px"
+      },
+      {
+        "variable": "--spacing-20",
+        "value": "40px"
+      },
+      {
+        "variable": "--spacing-24",
+        "value": "48px"
+      },
+      {
+        "variable": "--spacing-32",
+        "value": "64px"
+      },
+      {
+        "variable": "--spacing-40",
+        "value": "80px"
+      },
+      {
+        "variable": "--spacing-48",
+        "value": "96px"
+      },
+      {
+        "variable": "--spacing-container-max-width",
+        "value": "1200px"
+      },
+      {
+        "variable": "--spacing-card-padding",
+        "value": "24px"
+      },
+      {
+        "variable": "--spacing-gap-between-blocks",
+        "value": "20px"
+      }
+    ]
+  },
+  "duplicates": [
+    {
+      "value": "var(--spacing-8)",
+      "variables": [
+        "--spacing-md",
+        "--spacing-container-padding"
+      ]
+    },
+    {
+      "value": "var(--spacing-24)",
+      "variables": [
+        "--spacing-xxl",
+        "--spacing-section-gap"
+      ]
+    },
+    {
+      "value": "var(--spacing-12)",
+      "variables": [
+        "--spacing-lg",
+        "--spacing-component-gap"
+      ]
+    },
+    {
+      "value": "24px",
+      "variables": [
+        "--spacing-12",
+        "--spacing-card-padding"
+      ]
+    },
+    {
+      "value": "20px",
+      "variables": [
+        "--spacing-10",
+        "--spacing-gap-between-blocks"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "system_consistency",
+      "message": "Only 28.9% of spacing follows 8px grid. Consider standardizing.",
+      "action": "Update non-compliant values to nearest 8px increment"
+    },
+    {
+      "type": "duplicate_consolidation",
+      "message": "5 duplicate spacing values found",
+      "action": "Consolidate duplicates to single variables"
+    },
+    {
+      "type": "unit_consistency",
+      "message": "Mixed units: 8 rem-based, 18 px-based",
+      "action": "Standardize on rem units for better accessibility"
+    }
+  ]
+}

@@ -18,7 +18,7 @@
 }
 
 .contact-header h1 {
-  font-size: var(--font-size-h2);
+  font-size: var(--text-section);
   color: var(--color-text-primary);
   margin-bottom: 20px;
   position: relative;
@@ -34,8 +34,8 @@
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background-color: var(--color-accent-primary);
-  border-radius: var(--border-radius-small);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
 }
 
 .contact-content {
@@ -47,18 +47,18 @@
 
 .contact-form-container {
   background-color: var(--color-surface-elevated);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-xl);
   padding: 30px;
-  box-shadow: var(--box-shadow-card);
-  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-muted);
 }
 
 .contact-info {
   background-color: var(--color-surface-elevated);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-xl);
   padding: 30px;
-  box-shadow: var(--box-shadow-card);
-  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-muted);
 }
 
 .contact-form {
@@ -80,7 +80,7 @@
   margin-bottom: 8px;
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
-  font-size: var(--font-size-body-small);
+  font-size: var(--text-small);
 }
 
 .form-group input,
@@ -88,9 +88,9 @@
 .form-group textarea {
   padding: 12px;
   border: 1px solid var(--color-border-muted);
-  border-radius: var(--border-radius-small);
+  border-radius: var(--radius-md);
   font-family: var(--font-primary);
-  font-size: var(--font-size-body-regular);
+  font-size: var(--text-body);
   background-color: var(--color-background);
   transition: all 0.2s ease;
 }
@@ -99,8 +99,8 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
   background-color: var(--color-surface-elevated);
 }
 
@@ -117,7 +117,7 @@
 }
 
 .info-item h3 {
-  font-size: var(--font-size-body-large);
+  font-size: var(--text-body);
   color: var(--color-text-primary);
   margin: 0 0 8px 0;
   font-weight: var(--font-weight-semibold);
@@ -126,12 +126,12 @@
 .info-item p {
   margin: 0;
   color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
-  font-size: var(--font-size-body-regular);
+  line-height: var(1.6);
+  font-size: var(--text-body);
 }
 
 .info-item a {
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
   text-decoration: none;
   transition: all 0.2s ease;
 }

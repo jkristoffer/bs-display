@@ -1,10 +1,10 @@
 /* NavButton - Simplified dropdown trigger button */
 
 .nav__dropdown_trigger {
-  font-size: var(--font-size-nav-primary);
+  font-size: var(--text-body);
   font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  line-height: var(--line-height-body);
+  letter-spacing: var(0.025em);
+  line-height: var(1.5);
   text-transform: none;
   padding: var(--spacing-5) var(--spacing-8);
   display: flex;
@@ -23,7 +23,7 @@
   
   /* Enhanced interaction states */
   &:hover {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     background: rgba(255, 255, 255, 0.9);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -36,26 +36,26 @@
   &:focus {
     outline: none;
     box-shadow: 
-      0 0 0 2px rgba(var(--color-accent-primary-rgb), 0.3),
-      0 0 8px rgba(var(--color-accent-primary-rgb), 0.2);
+      0 0 0 2px rgba(var(--color-primary), 0.3),
+      0 0 8px rgba(var(--color-primary), 0.2);
   }
 }
 
 .nav__dropdown_trigger_active {
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav__dropdown_trigger_expanded {
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
   
   .nav__dropdown_arrow {
     transform: rotate(180deg);
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
   }
 }
 
@@ -76,7 +76,7 @@
 /* Enhanced dropdown arrow states with smooth rotation */
 .nav__dropdown_trigger:hover .nav__dropdown_arrow {
   transform: rotate(180deg);
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 /* Add subtle pulse effect for dropdown buttons */
@@ -85,8 +85,8 @@
   position: absolute;
   inset: -1px;
   background: linear-gradient(135deg, 
-    rgba(var(--color-accent-primary-rgb), 0.1),
-    rgba(var(--color-accent-secondary-rgb), 0.05));
+    rgba(var(--color-primary), 0.1),
+    rgba(var(--color-secondary), 0.05));
   border-radius: calc(var(--radius-md) + 1px);
   z-index: -1;
   animation: dropdownPulse 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -116,7 +116,7 @@
     border-radius: var(--radius-md);
     
     &:hover {
-      background: rgba(var(--color-accent-primary-rgb), 0.1);
+      background: rgba(var(--color-primary), 0.1);
       transform: translateX(4px);
     }
   }

@@ -14,7 +14,7 @@
     <h2>Spacing Tokens</h2>
     <div class="spacing-tokens">
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-xs);"></div>
+        <div class="token-visual" style="height: var(--spacing-2);"></div>
         <div class="token-details">
           <code>--spacing-xs</code>
           <span>4px</span>
@@ -22,7 +22,7 @@
       </div>
       
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-sm);"></div>
+        <div class="token-visual" style="height: var(--spacing-4);"></div>
         <div class="token-details">
           <code>--spacing-sm</code>
           <span>8px</span>
@@ -30,7 +30,7 @@
       </div>
       
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-md);"></div>
+        <div class="token-visual" style="height: var(--spacing-8);"></div>
         <div class="token-details">
           <code>--spacing-md</code>
           <span>16px</span>
@@ -38,7 +38,7 @@
       </div>
       
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-lg);"></div>
+        <div class="token-visual" style="height: var(--spacing-12);"></div>
         <div class="token-details">
           <code>--spacing-lg</code>
           <span>24px</span>
@@ -46,7 +46,7 @@
       </div>
       
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-xl);"></div>
+        <div class="token-visual" style="height: var(--spacing-16);"></div>
         <div class="token-details">
           <code>--spacing-xl</code>
           <span>32px</span>
@@ -54,7 +54,7 @@
       </div>
       
       <div class="token-item">
-        <div class="token-visual" style="height: var(--spacing-xxl);"></div>
+        <div class="token-visual" style="height: var(--spacing-24);"></div>
         <div class="token-details">
           <code>--spacing-xxl</code>
           <span>48px</span>
@@ -146,7 +146,7 @@
             <code>.u-margin-top-xs</code>
             <div class="utility-visual">
               <div class="base-element"></div>
-              <div class="spacer" style="height: var(--spacing-xs);"></div>
+              <div class="spacer" style="height: var(--spacing-2);"></div>
               <div class="target-element">4px margin-top</div>
             </div>
           </div>
@@ -155,7 +155,7 @@
             <code>.u-margin-top-md</code>
             <div class="utility-visual">
               <div class="base-element"></div>
-              <div class="spacer" style="height: var(--spacing-md);"></div>
+              <div class="spacer" style="height: var(--spacing-8);"></div>
               <div class="target-element">16px margin-top</div>
             </div>
           </div>
@@ -164,7 +164,7 @@
             <code>.u-margin-top-xl</code>
             <div class="utility-visual">
               <div class="base-element"></div>
-              <div class="spacer" style="height: var(--spacing-xl);"></div>
+              <div class="spacer" style="height: var(--spacing-16);"></div>
               <div class="target-element">32px margin-top</div>
             </div>
           </div>
@@ -208,23 +208,23 @@
 
 <style>
   h1 {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
   
   h2 {
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
-    border-bottom: 2px solid var(--color-accent-primary);
-    padding-bottom: var(--spacing-xs);
+    margin-top: var(--spacing-16);
+    margin-bottom: var(--spacing-8);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--spacing-2);
   }
   
   h3 {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
   
   .intro {
-    font-size: var(--font-size-body-large);
-    margin-bottom: var(--spacing-xl);
+    font-size: var(--text-body);
+    margin-bottom: var(--spacing-16);
   }
   
   code {
@@ -239,8 +239,8 @@
   .spacing-tokens {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-12);
   }
   
   .token-item {
@@ -250,8 +250,8 @@
   
   .token-visual {
     width: 100px;
-    background-color: var(--color-accent-primary);
-    margin-right: var(--spacing-md);
+    background-color: var(--color-primary);
+    margin-right: var(--spacing-8);
   }
   
   .token-details {
@@ -263,16 +263,16 @@
   .section-examples {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-lg);
+    gap: var(--spacing-16);
+    margin-top: var(--spacing-12);
   }
   
   .example {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
   
   .example-visual {
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-4);
     border: 1px dashed #ccc;
     background-color: #f9f9f9;
   }
@@ -293,8 +293,8 @@
   
   .section-demo--wide {
     background-color: #f0fff0;
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md);
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
   }
   
   .section-demo--hero {
@@ -302,7 +302,7 @@
   }
   
   .section-demo--mini {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-4);
     text-align: center;
     background-color: #f0f8ff;
   }
@@ -337,7 +337,7 @@
   }
   
   .content {
-    padding: var(--spacing-md);
+    padding: var(--spacing-8);
     text-align: center;
     background-color: white;
   }
@@ -358,26 +358,26 @@
   
   /* Utility Examples */
   .utilities {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-12);
   }
   
   .utility-group {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-16);
   }
   
   .utility-examples {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-md);
+    gap: var(--spacing-12);
+    margin-top: var(--spacing-8);
   }
   
   .utility-item {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
   }
   
   .utility-visual {
-    margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-2);
     border: 1px dashed #ccc;
     padding: 0;
     background-color: #f9f9f9;
@@ -385,7 +385,7 @@
   
   .base-element, .target-element {
     background-color: #e6e6e6;
-    padding: var(--spacing-xs);
+    padding: var(--spacing-2);
     text-align: center;
   }
   
@@ -407,19 +407,19 @@
   }
   
   .padding-sm {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-4);
   }
   
   .padding-lg {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
   }
   
   /* Animation Demo */
   .animation-demo {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-12);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
   
   #animate-trigger {
@@ -430,7 +430,7 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     text-align: center;
   }
   

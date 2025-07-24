@@ -1,0 +1,59 @@
+{
+  "total_variables": 327,
+  "total_usage_instances": 3227,
+  "high_usage_variables": 10,
+  "medium_usage_variables": 66,
+  "low_usage_variables": 251,
+  "top_10_variables": [
+    {
+      "variable": "--color-accent-primary",
+      "count": 191,
+      "files": 41
+    },
+    {
+      "variable": "--spacing-md",
+      "count": 187,
+      "files": 24
+    },
+    {
+      "variable": "--spacing-lg",
+      "count": 133,
+      "files": 19
+    },
+    {
+      "variable": "--spacing-sm",
+      "count": 131,
+      "files": 22
+    },
+    {
+      "variable": "--color-text-primary",
+      "count": 130,
+      "files": 34
+    },
+    {
+      "variable": "--color-accent-primary-rgb",
+      "count": 129,
+      "files": 18
+    },
+    {
+      "variable": "--spacing-xl",
+      "count": 81,
+      "files": 15
+    },
+    {
+      "variable": "--spacing-xs",
+      "count": 78,
+      "files": 17
+    },
+    {
+      "variable": "--color-text-secondary",
+      "count": 59,
+      "files": 26
+    },
+    {
+      "variable": "--font-size-body-regular",
+      "count": 54,
+      "files": 18
+    }
+  ]
+}

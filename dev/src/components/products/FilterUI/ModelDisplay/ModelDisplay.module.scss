@@ -17,7 +17,7 @@
 
 .count {
   font-weight: bold;
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 .controlsContainer {
@@ -52,9 +52,9 @@
 }
 
 .displayBtn.active {
-  background-color: var(--color-accent-primary);
+  background-color: var(--color-primary);
   color: white;
-  border-color: var(--color-accent-primary);
+  border-color: var(--color-primary);
 }
 
 .sortContainer {
@@ -109,7 +109,7 @@
   padding: 40px 20px;
   background-color: var(--color-surface);
   border-radius: 8px;
-  box-shadow: var(--box-shadow-1);
+  box-shadow: var(--shadow-md);
 }
 
 .noResults h3 {

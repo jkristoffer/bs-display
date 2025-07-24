@@ -327,7 +327,7 @@ const structuredData =
       font-size: var(--text-body);
       font-weight: var(--font-weight-semibold);
       text-transform: uppercase;
-      letter-spacing: var(--letter-spacing-wide);
+      letter-spacing: var(0.025em);
       box-shadow: var(--shadow-md);
       
       svg {
@@ -439,7 +439,7 @@ const structuredData =
     .hero-image {
       max-width: 900px;
       margin: 0 auto;
-      border-radius: var(--border-radius-lg);
+      border-radius: var(--radius-xl);
       overflow: hidden;
       box-shadow: var(--shadow-2xl);
       position: relative;
@@ -485,7 +485,7 @@ const structuredData =
       background: var(--glass-bg);
       backdrop-filter: var(--glass-backdrop);
       border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-card);
+      border-radius: var(--radius-xl);
       padding: var(--space-card);
       max-height: 70vh;
       overflow-y: auto;
@@ -495,7 +495,7 @@ const structuredData =
         font-weight: var(--font-weight-bold);
         color: var(--color-text-primary);
         margin: 0 0 var(--space-md) 0;
-        border-bottom: 2px solid var(--color-border-light);
+        border-bottom: 2px solid var(--color-border-muted);
         padding-bottom: var(--space-sm);
       }
       
@@ -538,7 +538,7 @@ const structuredData =
       background: var(--glass-bg);
       backdrop-filter: var(--glass-backdrop);
       border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-lg);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow-xl);
       overflow: hidden;
       
@@ -566,7 +566,7 @@ const structuredData =
       :global(h2) {
         font-size: var(--text-section);
         padding-bottom: var(--space-sm);
-        border-bottom: 2px solid var(--color-border-light);
+        border-bottom: 2px solid var(--color-border-muted);
       }
       
       :global(h3) {
@@ -584,7 +584,7 @@ const structuredData =
       :global(img) {
         max-width: 100%;
         height: auto;
-        border-radius: var(--border-radius-card);
+        border-radius: var(--radius-xl);
         margin: var(--space-xl) 0;
         box-shadow: var(--shadow-lg);
       }
@@ -594,7 +594,7 @@ const structuredData =
         border-left: 4px solid var(--gradient-primary);
         padding: var(--space-lg);
         margin: var(--space-xl) 0;
-        border-radius: 0 var(--border-radius-card) var(--border-radius-card) 0;
+        border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         font-style: italic;
         color: var(--color-text-secondary);
         box-shadow: var(--shadow-md);
@@ -607,10 +607,10 @@ const structuredData =
       :global(pre) {
         background: var(--color-surface-muted);
         padding: var(--space-lg);
-        border-radius: var(--border-radius-card);
+        border-radius: var(--radius-xl);
         overflow-x: auto;
         margin: var(--space-xl) 0;
-        border: 1px solid var(--color-border-light);
+        border: 1px solid var(--color-border-muted);
         
         code {
           font-family: var(--font-mono);
@@ -647,7 +647,7 @@ const structuredData =
     /* Article Actions */
     .article-actions {
       padding: var(--space-card);
-      border-top: 1px solid var(--color-border-light);
+      border-top: 1px solid var(--color-border-muted);
       background: var(--color-surface-muted);
       display: flex;
       justify-content: space-between;
@@ -725,7 +725,7 @@ const structuredData =
       background: var(--glass-bg);
       backdrop-filter: var(--glass-backdrop);
       border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-card);
+      border-radius: var(--radius-xl);
       padding: var(--space-card);
       position: sticky;
       top: var(--space-lg);
@@ -735,7 +735,7 @@ const structuredData =
         font-weight: var(--font-weight-bold);
         color: var(--color-text-primary);
         margin: 0 0 var(--space-md) 0;
-        border-bottom: 2px solid var(--color-border-light);
+        border-bottom: 2px solid var(--color-border-muted);
         padding-bottom: var(--space-sm);
       }
     }

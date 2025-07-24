@@ -138,17 +138,17 @@ const seoProps = {
 
   /* Add subtle animations on scroll using Phase 1 system */
   .section > .container > * {
-    animation: fadeInUp var(--duration-slow) var(--ease-smooth);
+    animation: fadeInUp var(600ms) var(--ease-smooth);
   }
 
   .section.animate-fade-up {
     opacity: 0;
     transform: translateY(2rem);
-    animation: fadeInUp var(--duration-slow) var(--ease-smooth) forwards;
+    animation: fadeInUp var(600ms) var(--ease-smooth) forwards;
   }
 
   .section.stagger-children > * {
-    animation: fadeInUp var(--duration-slow) var(--ease-smooth) forwards;
+    animation: fadeInUp var(600ms) var(--ease-smooth) forwards;
   }
 
   /* Section-specific styles */
@@ -206,10 +206,10 @@ const seoProps = {
   /* Testimonial component styles */
   .testimonial {
     background-color: var(--color-surface);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     border-radius: 8px;
-    margin: var(--spacing-xl) 0;
-    box-shadow: var(--box-shadow-1);
+    margin: var(--spacing-16) 0;
+    box-shadow: var(--shadow-md);
   }
 
   .testimonial-content {
@@ -219,7 +219,7 @@ const seoProps = {
   }
 
   .testimonial p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     line-height: 1.6;
     color: var(--color-text-primary);
     position: relative;
@@ -229,7 +229,7 @@ const seoProps = {
   .testimonial p::before {
     content: '"';
     font-size: 40px;
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     opacity: 0.3;
     position: absolute;
     left: 0;
@@ -241,7 +241,7 @@ const seoProps = {
     background: var(--gradient-primary);
     padding: var(--space-card);
     text-align: center;
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-xl);
     position: relative;
     overflow: hidden;
@@ -355,7 +355,7 @@ const seoProps = {
     margin: 0 auto;
     position: relative;
 
-    padding: calc(var(--spacing-xl) * 2) 0;
+    padding: calc(var(--spacing-16) * 2) 0;
   }
 
   .flexible-payment-promo h2 {
@@ -381,15 +381,15 @@ const seoProps = {
   .payment-highlights {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-12);
+    margin-bottom: var(--spacing-16);
   }
 
   .payment-option {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-backdrop);
     padding: var(--space-card);
-    border-radius: var(--border-radius-card);
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
     display: flex;
     flex-direction: column;
@@ -452,11 +452,11 @@ const seoProps = {
   @media (max-width: $breakpoint-md) {
     .payment-highlights {
       grid-template-columns: 1fr;
-      gap: var(--spacing-md);
+      gap: var(--spacing-8);
     }
 
     .flexible-payment-promo h2 {
-      font-size: var(--font-size-h3);
+      font-size: var(--text-subsection);
     }
   }
 </style>

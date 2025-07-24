@@ -9,11 +9,11 @@
 @mixin contact-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-40) var(--spacing-lg);
+  padding: var(--spacing-40) var(--spacing-12);
   background-color: var(--color-background);
   
   @media (max-width: 768px) {
-    padding: var(--spacing-24) var(--spacing-md);
+    padding: var(--spacing-24) var(--spacing-8);
   }
 }
 
@@ -23,9 +23,9 @@
   margin-bottom: var(--spacing-48);
   
   h1 {
-    font-size: var(--font-size-h2);
+    font-size: var(--text-section);
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     position: relative;
     display: inline-block;
     font-weight: var(--font-weight-semibold);
@@ -38,17 +38,17 @@
       transform: translateX(-50%);
       width: 100px;
       height: 3px;
-      background-color: var(--color-accent-primary);
-      border-radius: var(--border-radius-small);
+      background-color: var(--color-primary);
+      border-radius: var(--radius-md);
     }
   }
   
   .subtitle {
     max-width: 800px;
     margin: 0 auto;
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
+    line-height: var(1.6);
   }
   
   @media (max-width: 768px) {
@@ -57,7 +57,7 @@
     }
     
     .subtitle {
-      font-size: var(--font-size-body-regular);
+      font-size: var(--text-body);
     }
   }
 }
@@ -78,22 +78,22 @@
 // Contact form container styling
 @mixin contact-form-container {
   background-color: var(--color-surface-elevated);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-32);
-  box-shadow: var(--box-shadow-card);
-  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-muted);
   
   @media (max-width: 768px) {
     padding: var(--spacing-24);
   }
   
   h2 {
-    font-size: var(--font-size-h4);
+    font-size: var(--text-subsection);
     color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     position: relative;
-    padding-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-4);
     font-weight: var(--font-weight-semibold);
     
     &::after {
@@ -103,8 +103,8 @@
       left: 0;
       width: 50px;
       height: 3px;
-      background-color: var(--color-accent-primary);
-      border-radius: var(--border-radius-small);
+      background-color: var(--color-primary);
+      border-radius: var(--radius-md);
     }
   }
 }
@@ -113,11 +113,11 @@
 @mixin contact-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
+  gap: var(--spacing-12);
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
   
   .form-group {
@@ -134,10 +134,10 @@
   }
   
   label {
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-2);
     font-weight: var(--font-weight-medium);
     color: var(--color-text-primary);
-    font-size: var(--font-size-body-small);
+    font-size: var(--text-small);
   }
   
   input,
@@ -145,16 +145,16 @@
   textarea {
     padding: var(--spacing-6);
     border: 1px solid var(--color-border-muted);
-    border-radius: var(--border-radius-small);
+    border-radius: var(--radius-md);
     font-family: var(--font-primary);
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
     background-color: var(--color-background);
     transition: all 0.2s ease;
     
     &:focus {
       outline: none;
-      border-color: var(--color-accent-primary);
-      box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.1);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
       background-color: var(--color-surface-elevated);
     }
     
@@ -175,10 +175,10 @@
   
   .form-actions {
     grid-column: 1 / -1;
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-4);
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
   }
 }
 
@@ -186,10 +186,10 @@
 @mixin contact-form-status {
   .form-status {
     padding: var(--spacing-6) var(--spacing-8);
-    border-radius: var(--border-radius-small);
-    margin-bottom: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-12);
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-body-small);
+    font-size: var(--text-small);
     
     &.success {
       background-color: rgba(76, 175, 80, 0.1);
@@ -208,7 +208,7 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin-left: var(--spacing-sm);
+    margin-left: var(--spacing-4);
     border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: #fff;
@@ -226,22 +226,22 @@
 // Contact information sidebar
 @mixin contact-info-container {
   background-color: var(--color-surface-elevated);
-  border-radius: var(--border-radius-card);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-32);
-  box-shadow: var(--box-shadow-card);
-  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-muted);
   
   @media (max-width: 768px) {
     padding: var(--spacing-24);
   }
   
   h2 {
-    font-size: var(--font-size-h4);
+    font-size: var(--text-subsection);
     color: var(--color-text-primary);
     margin-top: 0;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
     position: relative;
-    padding-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-4);
     font-weight: var(--font-weight-semibold);
     
     &::after {
@@ -251,35 +251,35 @@
       left: 0;
       width: 50px;
       height: 3px;
-      background-color: var(--color-accent-primary);
-      border-radius: var(--border-radius-small);
+      background-color: var(--color-primary);
+      border-radius: var(--radius-md);
     }
   }
 }
 
 // Individual contact information items
 @mixin contact-info-item {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-12);
   
   &:last-child {
     margin-bottom: 0;
   }
   
   h3 {
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     color: var(--color-text-primary);
-    margin: 0 0 var(--spacing-xs) 0;
+    margin: 0 0 var(--spacing-2) 0;
     font-weight: var(--font-weight-semibold);
   }
   
   p {
     margin: 0;
     color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    font-size: var(--font-size-body-regular);
+    line-height: var(1.6);
+    font-size: var(--text-body);
     
     a {
-      color: var(--color-accent-primary);
+      color: var(--color-primary);
       text-decoration: none;
       transition: all 0.2s ease;
       
@@ -289,7 +289,7 @@
       }
       
       &:focus {
-        outline: 2px solid var(--color-accent-primary);
+        outline: 2px solid var(--color-primary);
         outline-offset: 2px;
       }
     }
@@ -301,36 +301,36 @@
   margin-top: var(--spacing-32);
   
   h3 {
-    font-size: var(--font-size-body-large);
+    font-size: var(--text-body);
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     font-weight: var(--font-weight-semibold);
   }
   
   .social-icons {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
     flex-wrap: wrap;
   }
   
   .social-icon {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     text-decoration: none;
     transition: all 0.2s ease;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-small);
-    background-color: rgba(var(--color-accent-primary-rgb), 0.1);
-    font-size: var(--font-size-body-small);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-md);
+    background-color: rgba(var(--color-primary), 0.1);
+    font-size: var(--text-small);
     font-weight: var(--font-weight-medium);
     
     &:hover {
       color: var(--color-accent-secondary);
-      background-color: rgba(var(--color-accent-secondary-rgb), 0.1);
+      background-color: rgba(var(--color-secondary), 0.1);
       transform: translateY(-1px);
     }
     
     &:focus {
-      outline: 2px solid var(--color-accent-primary);
+      outline: 2px solid var(--color-primary);
       outline-offset: 2px;
     }
   }
@@ -343,7 +343,7 @@
     position: absolute;
     top: -40px;
     left: 6px;
-    background: var(--color-accent-primary);
+    background: var(--color-primary);
     color: white;
     padding: 8px;
     text-decoration: none;
@@ -357,7 +357,7 @@
   
   // Enhanced focus styles
   *:focus {
-    outline: 2px solid var(--color-accent-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
   

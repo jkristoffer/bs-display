@@ -316,20 +316,20 @@ function formatPropertyName(prop: string): string {
 <style lang="scss">
   .product-table {
     width: 100%;
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-12) 0;
 
     &__title {
-      font-size: var(--font-size-h2);
+      font-size: var(--text-section);
       color: var(--color-text-primary);
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-4);
       text-align: center;
     }
 
     &__description {
-      font-size: var(--font-size-body-regular);
+      font-size: var(--text-body);
       text-align: center;
       max-width: 700px;
-      margin: 0 auto var(--spacing-lg) auto;
+      margin: 0 auto var(--spacing-12) auto;
     }
 
     &__wrapper {
@@ -337,7 +337,7 @@ function formatPropertyName(prop: string): string {
       overflow-x: auto;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-12);
     }
 
     &__table {
@@ -347,11 +347,11 @@ function formatPropertyName(prop: string): string {
     }
 
     &__head {
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
     }
 
     &__header {
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
       text-align: left;
       color: white;
       font-weight: 500;
@@ -378,19 +378,19 @@ function formatPropertyName(prop: string): string {
       }
       
       &:hover {
-        background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+        background-color: rgba(var(--color-primary), 0.05);
       }
     }
 
     &__cell {
-      padding: var(--spacing-md);
+      padding: var(--spacing-8);
       
       &--action {
         text-align: center;
       }
       
       &--thumbnail {
-        padding: var(--spacing-xs);
+        padding: var(--spacing-2);
         text-align: center;
         width: 80px;
       }
@@ -411,7 +411,7 @@ function formatPropertyName(prop: string): string {
 
     &__link {
       display: inline-block;
-      padding: var(--spacing-xs) var(--spacing-md);
+      padding: var(--spacing-2) var(--spacing-8);
       background-color: var(--color-accent-secondary);
       color: white;
       text-decoration: none;
@@ -427,14 +427,14 @@ function formatPropertyName(prop: string): string {
     &__footer {
       display: flex;
       justify-content: center;
-      margin-top: var(--spacing-lg);
+      margin-top: var(--spacing-12);
     }
 
     &__view-all {
       display: flex;
       align-items: center;
-      gap: var(--spacing-xs);
-      color: var(--color-accent-primary);
+      gap: var(--spacing-2);
+      color: var(--color-primary);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.2s ease-in-out;
@@ -454,8 +454,8 @@ function formatPropertyName(prop: string): string {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-md);
-    margin: var(--spacing-md) 0;
+    gap: var(--spacing-8);
+    margin: var(--spacing-8) 0;
   }
 
   .pagination-button {
@@ -471,8 +471,8 @@ function formatPropertyName(prop: string): string {
     transition: all 0.2s ease;
     
     &:hover:not(:disabled) {
-      background-color: var(--color-accent-primary);
-      border-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
       color: white;
     }
     
@@ -483,7 +483,7 @@ function formatPropertyName(prop: string): string {
   }
 
   .pagination-info {
-    font-size: var(--font-size-body-regular);
+    font-size: var(--text-body);
     color: var(--color-text-primary);
     font-weight: 500;
   }
@@ -491,11 +491,11 @@ function formatPropertyName(prop: string): string {
   @media (max-width: $breakpoint-sm) {
     .product-table {
       &__title {
-        font-size: var(--font-size-h3);
+        font-size: var(--text-subsection);
       }
       
       &__description {
-        font-size: var(--font-size-body-regular);
+        font-size: var(--text-body);
       }
     }
   }

@@ -1,0 +1,33 @@
+#!/bin/sh
+# 🔍 CSS Quality Pre-commit Checks
+
+echo "🔍 Running CSS quality checks..."
+
+# Get staged CSS files
+STAGED_CSS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(css|scss)$')
+
+if [ -n "$STAGED_CSS" ]; then
+    echo "📋 Checking CSS files: $STAGED_CSS"
+    
+    # Run stylelint on staged files
+    npx stylelint $STAGED_CSS
+    if [ $? -ne 0 ]; then
+        echo "❌ CSS linting failed. Please fix the errors before committing."
+        echo "💡 Run 'npm run lint:css:fix' to auto-fix some issues."
+        exit 1
+    fi
+    
+    echo "✅ CSS linting passed"
+else
+    echo "ℹ️  No CSS files to check"
+fi
+
+# TypeScript check
+echo "🔍 Running TypeScript check..."
+npm run check
+if [ $? -ne 0 ]; then
+    echo "❌ TypeScript check failed. Please fix type errors before committing."
+    exit 1
+fi
+
+echo "✅ All pre-commit checks passed!"

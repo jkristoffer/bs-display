@@ -12,24 +12,24 @@
       linear-gradient(rgba(0, 150, 136, 0.9), rgba(0, 150, 136, 0.7)),
       url('/assets/buying-guide-hero-banner.jpeg') center/cover no-repeat;
     color: var(--color-background);
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-24) 0;
     text-align: center;
 
     h1 {
-      font-size: var(--font-size-h1);
+      font-size: var(--text-hero);
       font-weight: var(--font-weight-bold);
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-8);
     }
 
     .subtitle {
-      font-size: var(--font-size-body-large);
+      font-size: var(--text-body);
       max-width: 800px;
       margin: 0 auto;
       opacity: 0.9;
     }
 
-    @media (max-width: var(--breakpoint-md)) {
-      padding: var(--spacing-xl) var(--spacing-md);
+    @media (max-width: var(768px)) {
+      padding: var(--spacing-16) var(--spacing-8);
 
       h1 {
         font-size: 2rem;
@@ -39,10 +39,10 @@
 
   /* Section Layout */
   .content-section {
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-24) 0;
 
-    @media (max-width: var(--breakpoint-md)) {
-      padding: var(--spacing-xl) var(--spacing-md);
+    @media (max-width: var(768px)) {
+      padding: var(--spacing-16) var(--spacing-8);
     }
   }
 
@@ -52,12 +52,12 @@
   }
 
   .bg-accent {
-    background-color: rgba(var(--color-accent-primary-rgb), 0.05);
+    background-color: rgba(var(--color-primary), 0.05);
   }
 
   /* Table of Contents - Modern Design */
   .table-of-contents {
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-24) 0;
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.95) 0%,
@@ -93,20 +93,20 @@
     }
 
     .toc-header {
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-16);
       animation: fadeInUp 0.6s ease-out;
 
       .toc-title {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-sm);
-        font-size: var(--font-size-h2);
+        gap: var(--spacing-4);
+        font-size: var(--text-section);
         font-weight: var(--font-weight-bold);
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: var(--spacing-4);
         background: linear-gradient(
           135deg,
-          var(--color-accent-primary) 0%,
+          var(--color-primary) 0%,
           #4f46e5 100%
         );
         -webkit-background-clip: text;
@@ -137,16 +137,16 @@
       text-align: left;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-lg);
+      gap: var(--spacing-12);
 
-      @media (max-width: var(--breakpoint-lg)) {
+      @media (max-width: var(992px)) {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
       }
 
-      @media (max-width: var(--breakpoint-md)) {
+      @media (max-width: var(768px)) {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-8);
         padding: 0;
       }
     }
@@ -156,7 +156,7 @@
       display: block;
       text-decoration: none;
       color: inherit;
-      border-radius: var(--border-radius-lg);
+      border-radius: var(--radius-xl);
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       background: rgba(255, 255, 255, 0.8);
@@ -183,7 +183,7 @@
 
         .card-arrow {
           transform: translateX(4px);
-          color: var(--color-accent-primary);
+          color: var(--color-primary);
         }
 
         .card-bg-glow {
@@ -195,7 +195,7 @@
         }
 
         .card-number {
-          background: var(--color-accent-primary);
+          background: var(--color-primary);
           color: white;
           transform: scale(1.1);
         }
@@ -208,14 +208,14 @@
       .card-content {
         display: flex;
         align-items: center;
-        padding: var(--spacing-md);
+        padding: var(--spacing-8);
         position: relative;
         z-index: 2;
       }
 
       .card-icon {
         font-size: 2rem;
-        margin-right: var(--spacing-md);
+        margin-right: var(--spacing-8);
         transition: all 0.3s ease;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         flex-shrink: 0;
@@ -229,7 +229,7 @@
       }
 
       .card-title {
-        font-size: var(--font-size-body-large);
+        font-size: var(--text-body);
         font-weight: var(--font-weight-semibold);
         color: var(--color-text-primary);
         margin: 0;
@@ -238,17 +238,17 @@
       }
 
       .card-number {
-        font-size: var(--font-size-body-small);
+        font-size: var(--text-small);
         font-weight: var(--font-weight-bold);
-        background: rgba(var(--color-accent-primary-rgb), 0.1);
-        color: var(--color-accent-primary);
+        background: rgba(var(--color-primary), 0.1);
+        color: var(--color-primary);
         padding: 4px 8px;
         border-radius: var(--radius-full);
-        margin-left: var(--spacing-sm);
+        margin-left: var(--spacing-4);
         transition: all 0.3s ease;
         min-width: 32px;
         text-align: center;
-        margin-right: var(--spacing-md);
+        margin-right: var(--spacing-8);
       }
 
       .card-arrow {
@@ -301,23 +301,23 @@
   /* Responsive Table */
   .table-responsive {
     overflow-x: auto;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
   }
 
   .comparison-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
 
     th,
     td {
-      padding: var(--spacing-sm);
+      padding: var(--spacing-4);
       text-align: center;
       border: 1px solid var(--color-border);
     }
 
     th {
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-primary);
       color: var(--color-background);
       font-weight: var(--font-weight-bold);
     }
@@ -329,7 +329,7 @@
 
   /* Link Styles */
   .text-link {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     font-weight: var(--font-weight-bold);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -346,8 +346,8 @@
   }
 
   .faq-item {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
     border-bottom: 1px solid var(--color-border);
 
     &:last-child {
@@ -355,8 +355,8 @@
     }
 
     h3 {
-      color: var(--color-accent-primary);
-      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-4);
     }
   }
 }

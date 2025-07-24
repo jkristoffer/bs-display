@@ -71,7 +71,7 @@ const guideItems = [
 <style lang="scss">
   .buying-guide-section {
     position: relative;
-    padding: calc(var(--spacing-xl) * 2) 0;
+    padding: calc(var(--spacing-16) * 2) 0;
     background-size: cover;
     background-position: center;
     color: white;
@@ -81,7 +81,7 @@ const guideItems = [
   .buying-guide-container {
     max-width: var(--spacing-container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-8);
     position: relative;
     z-index: 2;
   }
@@ -89,12 +89,12 @@ const guideItems = [
   /* Modern Header Styles */
   .section-header {
     text-align: center;
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   h2 {
-    font-size: clamp(32px, 5vw, 48px);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-hero);
+    margin-bottom: var(--spacing-8);
     font-weight: 700;
   }
 
@@ -121,11 +121,11 @@ const guideItems = [
   .guide-items-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-16);
+    margin-bottom: var(--spacing-16);
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 12px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-16);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
     width: 100%;
     color: var(--color-text-primary, #333);
@@ -139,21 +139,21 @@ const guideItems = [
   @media (max-width: 992px) {
     .guide-items-container {
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-lg);
-      padding: var(--spacing-lg);
+      gap: var(--spacing-12);
+      padding: var(--spacing-12);
     }
   }
 
   @media (max-width: 768px) {
     .guide-items-container {
       grid-template-columns: 1fr;
-      gap: var(--spacing-md);
-      padding: var(--spacing-md);
+      gap: var(--spacing-8);
+      padding: var(--spacing-8);
     }
 
     .intro-text {
       font-size: var(--font-size-base);
-      padding: 0 var(--spacing-md);
+      padding: 0 var(--spacing-8);
     }
   }
 </style>

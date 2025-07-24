@@ -1,0 +1,121 @@
+# CSS Cleanup Requirements Brief
+# Generated: 2025-07-23
+
+project:
+  name: "CSS Architecture Cleanup"
+  description: "Systematic cleanup of CSS architecture to create a single source of truth while maintaining exact visual parity"
+  
+goals:
+  primary: "Create a cleaner, more maintainable CSS codebase that AI agents can easily understand and extend"
+  secondary:
+    - "Establish single source of truth for all styles"
+    - "Reduce CSS bundle size and improve performance"
+    - "Prevent future style proliferation"
+    - "Enable consistent development patterns"
+
+constraints:
+  visual_changes: "ZERO - Website must look exactly the same after cleanup"
+  testing_approach: "Manual verification with clear documentation of affected pages"
+  team_size: "Single developer"
+  rollout_strategy: "Phased approach with progress tracking"
+
+current_issues:
+  variable_proliferation:
+    - "300+ CSS variables with 60-70% unused"
+    - "3-5x redundancy across color, typography, and spacing systems"
+    - "Conflicting definitions and legacy variables"
+  
+  component_problems:
+    - "50+ inline styles in FilterUIv2.tsx"
+    - "Hardcoded values throughout components (#666, 10px, etc.)"
+    - "Mixed styling approaches (CSS modules, global styles, inline)"
+    - "79KB quiz-styles.scss causing global pollution"
+  
+  performance_impact:
+    - "~40KB unused CSS (33% of total)"
+    - "~25KB from duplicate systems"
+    - "PurgeCSS misconfigured"
+    - "No CSS minification"
+  
+  developer_experience:
+    - "AI agents don't follow existing patterns"
+    - "No clear guidelines on which variables to use"
+    - "Multiple conflicting systems confuse developers"
+    - "No enforcement mechanisms"
+
+success_criteria:
+  technical:
+    - "Single, unified design token system"
+    - "100% CSS module adoption for components"
+    - "Zero hardcoded values in styles"
+    - "Automated linting and validation"
+    - "Clear documentation for AI agents"
+  
+  measurable:
+    - "CSS bundle size reduced by 50%+"
+    - "Variable count reduced by 70%"
+    - "CSS quality score > 85"
+    - "Zero visual regressions"
+  
+  process:
+    - "Comprehensive style guide created"
+    - "AI-friendly documentation and examples"
+    - "Tooling prevents future regression"
+    - "Clear migration patterns established"
+
+deliverables:
+  documentation:
+    - "Style guide with clear variable usage"
+    - "AI agent instructions in CLAUDE.md"
+    - "Migration guide for developers"
+    - "Visual testing checklist"
+  
+  tooling:
+    - "CSS linting configuration"
+    - "Variable usage analyzer"
+    - "Build process optimizations"
+    - "Pre-commit hooks"
+  
+  code_changes:
+    - "Consolidated variable system"
+    - "Refactored components"
+    - "Cleaned build configuration"
+    - "Removed unused code"
+
+implementation_preferences:
+  approach: "Conservative - prioritize safety over speed"
+  communication: "Document all changes and affected pages"
+  tooling: "Extend existing tools, add new ones as needed"
+  context_building: "Maximum documentation for future AI agents"
+
+phases:
+  phase_1:
+    name: "Foundation & Quick Wins"
+    duration: "1 week"
+    focus: "Tooling setup, documentation, and immediate optimizations"
+    
+  phase_2:
+    name: "Variable Consolidation"
+    duration: "1 week"
+    focus: "Create unified design token system"
+    
+  phase_3:
+    name: "Component Migration"
+    duration: "2 weeks"
+    focus: "Systematically update all components"
+    
+  phase_4:
+    name: "Validation & Documentation"
+    duration: "1 week"
+    focus: "Testing, documentation, and knowledge transfer"
+
+risk_mitigation:
+  visual_regression:
+    - "Component-by-component approach"
+    - "Detailed before/after documentation"
+    - "Rollback procedures for each change"
+  
+  ai_adoption:
+    - "Clear examples in codebase"
+    - "Comprehensive CLAUDE.md updates"
+    - "Linting rules enforce patterns"

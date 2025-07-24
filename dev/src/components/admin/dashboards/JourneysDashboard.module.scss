@@ -4,7 +4,7 @@
   
   h1 {
     margin-bottom: 2rem;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
   }
   
   .metricsRow {
@@ -26,7 +26,7 @@
   }
   
   .funnelChart {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -34,7 +34,7 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1.5rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -85,17 +85,17 @@
   
   .stagePercentage {
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     font-size: 0.875rem;
   }
   
   .stageDuration {
     font-size: 0.75rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .funnelStats {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -103,7 +103,7 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -115,13 +115,13 @@
       gap: 0.5rem;
       margin-bottom: 0.5rem;
       font-size: 0.875rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
     
     .conversionBar {
       position: relative;
       height: 20px;
-      background: var(--color-admin-bg);
+      background: var(--color-background);
       border-radius: 10px;
       overflow: hidden;
       
@@ -138,7 +138,7 @@
         transform: translateY(-50%);
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--color-admin-text);
+        color: var(--color-text-primary);
       }
     }
   }
@@ -156,7 +156,7 @@
   
   .topPaths,
   .dropOffPoints {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -164,7 +164,7 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -179,14 +179,14 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--color-admin-bg);
+    background: var(--color-background);
     border-radius: 6px;
   }
   
   .pathRank {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--chart-primary);
+    color: var(--color-primary);
     min-width: 2rem;
   }
   
@@ -196,7 +196,7 @@
   
   .pathRoute {
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     margin-bottom: 0.25rem;
   }
   
@@ -204,28 +204,28 @@
     display: flex;
     gap: 1rem;
     font-size: 0.875rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
     
     .convRate {
-      color: var(--chart-secondary);
+      color: var(--color-success);
       font-weight: 600;
     }
     
     .avgDuration {
-      color: var(--chart-tertiary);
+      color: var(--color-warning);
     }
   }
   
   .pathBar {
     width: 100px;
     height: 8px;
-    background: var(--color-admin-border);
+    background: var(--color-border-muted);
     border-radius: 4px;
     overflow: hidden;
     
     .pathFill {
       height: 100%;
-      background: var(--chart-primary);
+      background: var(--color-primary);
       transition: width 0.3s ease;
     }
   }
@@ -238,9 +238,9 @@
   
   .dropOffItem {
     padding: 1rem;
-    background: var(--color-admin-bg);
+    background: var(--color-background);
     border-radius: 6px;
-    border-left: 4px solid var(--chart-danger);
+    border-left: 4px solid var(--color-error);
   }
   
   .dropOffHeader {
@@ -252,7 +252,7 @@
   
   .dropOffPage {
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
   }
   
   .dropOffRate {
@@ -264,24 +264,24 @@
   .rateValue {
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--chart-danger);
+    color: var(--color-error);
   }
   
   .rateLabel {
     font-size: 0.75rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .dropOffDetails {
     font-size: 0.875rem;
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
     
     > div {
       margin-bottom: 0.5rem;
     }
     
     strong {
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
     
     ul {
@@ -307,7 +307,7 @@
   
   .scoreDistribution,
   .scoringFactors {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -315,7 +315,7 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
@@ -327,28 +327,28 @@
   
   .factorItem {
     padding: 1rem;
-    background: var(--color-admin-bg);
+    background: var(--color-background);
     border-radius: 6px;
     font-size: 0.875rem;
   }
   
   .factorName {
     font-weight: 600;
-    color: var(--color-admin-text);
+    color: var(--color-text-primary);
     margin-bottom: 0.25rem;
   }
   
   .factorWeight {
-    color: var(--chart-primary);
+    color: var(--color-primary);
     font-weight: 600;
   }
   
   .factorContribution {
-    color: var(--color-admin-text-secondary);
+    color: var(--color-text-secondary);
   }
   
   .probabilitySection {
-    background: var(--color-admin-surface);
+    background: var(--color-surface);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--admin-shadow-sm);
@@ -356,16 +356,16 @@
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;
-      color: var(--color-admin-text);
+      color: var(--color-text-primary);
     }
   }
   
   .error {
     padding: 2rem;
     text-align: center;
-    color: var(--chart-danger);
+    color: var(--color-error);
     background: rgba(245, 101, 101, 0.1);
-    border: 1px solid var(--chart-danger);
+    border: 1px solid var(--color-error);
     border-radius: 8px;
     margin: 2rem 0;
   }

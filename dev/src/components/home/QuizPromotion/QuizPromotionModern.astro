@@ -101,7 +101,7 @@ import Button from '../../common/Button/Button.astro';
 
 <style lang="scss">
   .quiz-promotion {
-    padding: calc(var(--spacing-xl) * 2) 0;
+    padding: calc(var(--spacing-16) * 2) 0;
     position: relative;
     overflow: visible; /* Allow cards to extend beyond boundaries */
     background: linear-gradient(135deg, #f8fafb 0%, #f0f4f8 100%);
@@ -110,18 +110,18 @@ import Button from '../../common/Button/Button.astro';
   .quiz-promotion__container {
     max-width: var(--spacing-container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-8);
   }
 
   /* Modern Header Styles */
   .quiz-promotion__header {
     text-align: center;
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    margin-bottom: calc(var(--spacing-16) * 1.5);
   }
 
   .quiz-promotion__title {
-    font-size: clamp(32px, 5vw, 48px);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-hero);
+    margin-bottom: var(--spacing-8);
     font-weight: 700;
   }
 
@@ -143,7 +143,7 @@ import Button from '../../common/Button/Button.astro';
   .quiz-promotion__main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: calc(var(--spacing-xl) * 2);
+    gap: calc(var(--spacing-16) * 2);
     align-items: center;
     
     @media (max-width: $breakpoint-lg) {
@@ -165,22 +165,22 @@ import Button from '../../common/Button/Button.astro';
     line-height: 1.7;
     color: var(--color-text-primary);
     opacity: 0.8;
-    margin-bottom: calc(var(--spacing-lg) * 1.5);
+    margin-bottom: calc(var(--spacing-12) * 1.5);
   }
 
   /* Feature Items */
   .quiz-promotion__features {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    margin-bottom: calc(var(--spacing-lg) * 1.5);
+    gap: var(--spacing-8);
+    margin-bottom: calc(var(--spacing-12) * 1.5);
   }
 
   .feature-item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    font-size: var(--font-size-body-regular);
+    gap: var(--spacing-8);
+    font-size: var(--text-body);
     color: var(--color-text-primary);
     
     svg {
@@ -203,7 +203,7 @@ import Button from '../../common/Button/Button.astro';
     
     @media (max-width: $breakpoint-lg) {
       height: 350px;
-      margin-top: var(--spacing-xl);
+      margin-top: var(--spacing-16);
       padding: 40px 20px;
     }
   }
@@ -230,7 +230,7 @@ import Button from '../../common/Button/Button.astro';
     background: white;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-12);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -281,7 +281,7 @@ import Button from '../../common/Button/Button.astro';
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
     
     svg {
       width: 32px;
@@ -347,7 +347,7 @@ import Button from '../../common/Button/Button.astro';
     font-size: 18px;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-4);
   }
   
   .card p {

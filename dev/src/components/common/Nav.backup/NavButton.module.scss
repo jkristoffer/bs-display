@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-4);
   border: none;
   border-radius: var(--border-radius-md, 12px);
   /* Safari-compatible background fallback chain */
@@ -235,7 +235,7 @@
 
 /* Compact variant */
 .variant-compact {
-  padding: var(--spacing-xs);
+  padding: var(--spacing-2);
   background: transparent;
   border: 1px solid transparent;
   
@@ -256,7 +256,7 @@
   --touch-target: 36px;
   --icon-size: 1rem;
   --image-size: 1.5rem;
-  padding: var(--spacing-xs);
+  padding: var(--spacing-2);
   font-size: var(--font-size-xs);
 }
 
@@ -264,7 +264,7 @@
   --touch-target: 44px;
   --icon-size: 1.25rem;
   --image-size: 2rem;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-4);
   font-size: var(--font-size-sm);
 }
 
@@ -272,7 +272,7 @@
   --touch-target: 52px;
   --icon-size: 1.5rem;
   --image-size: 2.5rem;
-  padding: var(--spacing-md);
+  padding: var(--spacing-8);
   font-size: var(--font-size-md);
 }
 
@@ -281,14 +281,14 @@
 .icon-top {
   .content {
     flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-2);
   }
 }
 
 .icon-left {
   .content {
     flex-direction: row;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
   }
   
   .text {
@@ -299,7 +299,7 @@
 .icon-right {
   .content {
     flex-direction: row;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
   }
   
   .text {

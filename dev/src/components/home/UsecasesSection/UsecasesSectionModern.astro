@@ -226,7 +226,7 @@ const usecases: Usecase[] = [
 
 <style lang="scss">
   .usecases-section {
-    padding: calc(var(--spacing-xl) * 2) 0;
+    padding: calc(var(--spacing-16) * 2) 0;
     background: linear-gradient(180deg, #f8fafb 0%, #ffffff 100%);
     position: relative;
     overflow: hidden;
@@ -235,18 +235,18 @@ const usecases: Usecase[] = [
   .container {
     max-width: var(--spacing-container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-8);
   }
 
   /* Section Header */
   .section-header {
     text-align: center;
-    margin-bottom: calc(var(--spacing-xl) * 2);
+    margin-bottom: calc(var(--spacing-16) * 2);
   }
 
   .section-title {
-    font-size: clamp(32px, 5vw, 48px);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--text-hero);
+    margin-bottom: var(--spacing-8);
     font-weight: 700;
   }
 
@@ -267,14 +267,14 @@ const usecases: Usecase[] = [
   /* Use Cases Grid */
   .usecases-grid {
     display: grid;
-    gap: calc(var(--spacing-xl) * 2);
+    gap: calc(var(--spacing-16) * 2);
   }
 
   /* Use Case Card */
   .usecase-card {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: calc(var(--spacing-xl) * 1.5);
+    gap: calc(var(--spacing-16) * 1.5);
     align-items: center;
     animation: fadeInUp 0.8s ease-out both;
     
@@ -362,18 +362,18 @@ const usecases: Usecase[] = [
   .card-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-12);
   }
 
   .content-header {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-8);
   }
 
   .card-title {
     font-size: clamp(28px, 3.5vw, 36px);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: 0 0 var(--spacing-sm) 0;
+    margin: 0 0 var(--spacing-4) 0;
   }
 
   .card-subtitle {
@@ -387,12 +387,12 @@ const usecases: Usecase[] = [
   .features-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
   }
 
   .feature-item {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-8);
     align-items: flex-start;
   }
 
@@ -434,7 +434,7 @@ const usecases: Usecase[] = [
 
   /* Models Section */
   .models-section {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-8) 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -444,12 +444,12 @@ const usecases: Usecase[] = [
     font-weight: 600;
     color: var(--color-text-primary);
     opacity: 0.7;
-    margin: 0 0 var(--spacing-sm) 0;
+    margin: 0 0 var(--spacing-4) 0;
   }
 
   .models-list {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-4);
     flex-wrap: wrap;
   }
 
@@ -465,8 +465,8 @@ const usecases: Usecase[] = [
   /* Card Actions */
   .card-actions {
     display: flex;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-8);
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;

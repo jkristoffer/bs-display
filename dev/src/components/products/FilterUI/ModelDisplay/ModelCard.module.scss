@@ -4,7 +4,7 @@
   background-color: var(--color-surface);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: var(--box-shadow-1);
+  box-shadow: var(--shadow-md);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -22,7 +22,7 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow:
-    var(--box-shadow-1),
+    var(--shadow-md),
     0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +30,7 @@
   position: relative;
   height: 200px;
   overflow: hidden;
-  background-color: rgba(var(--color-accent-primary-rgb), 0.075);
+  background-color: rgba(var(--color-primary), 0.075);
 }
 
 .listImageContainer {
@@ -54,7 +54,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--color-accent-primary);
+  background-color: var(--color-primary);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
@@ -151,12 +151,12 @@
   content: '•';
   position: absolute;
   left: 0;
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
 }
 
 .moreFeatures {
   font-size: 12px;
-  color: var(--color-accent-primary);
+  color: var(--color-primary);
   margin-top: 8px;
   cursor: pointer;
 }
@@ -192,7 +192,7 @@
 }
 
 .quoteButton {
-  background-color: var(--color-accent-primary);
+  background-color: var(--color-primary);
   color: white;
 }
 

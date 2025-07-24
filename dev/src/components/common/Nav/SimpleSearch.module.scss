@@ -82,7 +82,7 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(var(--color-accent-primary-rgb), 0.3);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.3);
   }
   
   svg {
@@ -133,8 +133,8 @@
   }
   
   &:focus {
-    border-color: var(--color-accent-primary);
-    box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
   }
   
   &::-webkit-search-cancel-button {
@@ -164,14 +164,14 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(var(--color-accent-primary-rgb), 0.3);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.3);
   }
 }
 
 .searchSubmit {
   height: 48px;
   padding: 0 var(--spacing-6);
-  background: var(--color-accent-primary);
+  background: var(--color-primary);
   color: white;
   border: none;
   border-radius: var(--radius-md);
@@ -197,7 +197,7 @@
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(var(--color-accent-primary-rgb), 0.3);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.3);
   }
 }
 
@@ -217,7 +217,7 @@
   width: 20px;
   height: 20px;
   border: 2px solid var(--color-border);
-  border-top: 2px solid var(--color-accent-primary);
+  border-top: 2px solid var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -269,7 +269,7 @@
   &:focus {
     outline: none;
     background: var(--color-surface-muted);
-    box-shadow: inset 3px 0 0 var(--color-accent-primary);
+    box-shadow: inset 3px 0 0 var(--color-primary);
   }
 }
 
@@ -323,7 +323,7 @@
   
   .searchResultItem:hover &,
   .searchResultItem.selected & {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
   }
 }
 
@@ -345,7 +345,7 @@
   
   .searchResultItem:hover &,
   .searchResultItem.selected & {
-    color: var(--color-accent-primary);
+    color: var(--color-primary);
     transform: translateX(2px);
   }
 }
@@ -407,15 +407,15 @@
   transition: all 0.2s ease;
   
   &:hover {
-    background: var(--color-accent-primary);
+    background: var(--color-primary);
     color: white;
-    border-color: var(--color-accent-primary);
+    border-color: var(--color-primary);
     transform: translateY(-1px);
   }
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(var(--color-accent-primary-rgb), 0.3);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.3);
   }
 }
 

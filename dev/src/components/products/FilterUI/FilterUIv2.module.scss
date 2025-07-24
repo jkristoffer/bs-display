@@ -1,0 +1,403 @@
+/* FilterUIv2.module.scss - CSS Module for FilterUIv2 component */
+@import '../../../styles/variables';
+
+/* ===== CONTAINER STYLES ===== */
+.container {
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+/* ===== TOOLBAR STYLES ===== */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+  background: var(--color-surface-elevated);
+  border-bottom: 1px solid var(--color-border-default);
+  padding: var(--spacing-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.toolbarContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-default);
+  margin: 0 auto;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Filter Toggle Button */
+.filterToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-8);
+  background: var(--color-surface-elevated);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.filterToggle:hover {
+  background: rgba(var(--color-primary-rgb, 0, 150, 136), 0.1);
+}
+
+.filterToggleActive {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+/* Filter Chips */
+.chipContainer {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-6);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-medium);
+}
+
+.chipRemove {
+  background: none;
+  border: none;
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: var(--text-caption);
+  transition: background var(--duration-normal) var(--ease-smooth);
+}
+
+.chipRemove:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.clearAll {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: var(--text-small);
+  padding: 0;
+}
+
+/* Toolbar Right Controls */
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.productCount {
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  white-space: nowrap;
+}
+
+.sortSelect {
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-small);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+/* View Mode Buttons */
+.viewModeGroup {
+  display: flex;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.viewModeButton {
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-secondary);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.viewModeButton:not(:last-child) {
+  border-right: 1px solid var(--color-border-default);
+}
+
+.viewModeButtonActive {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+/* ===== MAIN LAYOUT ===== */
+.mainLayout {
+  display: flex;
+  max-width: var(--container-default);
+  margin: 0 auto;
+}
+
+/* ===== FILTER DRAWER STYLES ===== */
+.drawer {
+  width: 300px;
+  background: var(--color-surface-elevated);
+  border-right: 1px solid var(--color-border-default);
+  padding: var(--spacing-12);
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  animation: slideIn var(--duration-normal) var(--ease-smooth);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.drawerTitle {
+  margin: 0 0 var(--spacing-12) 0;
+  color: var(--color-text-primary);
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-semibold);
+}
+
+.filterSection {
+  margin-bottom: var(--spacing-12);
+}
+
+.filterSectionTitle {
+  margin: 0 0 var(--spacing-6) 0;
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.filterLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  cursor: pointer;
+  font-size: var(--text-small);
+  color: var(--color-text-primary);
+}
+
+.filterLabel:hover {
+  color: var(--color-primary);
+}
+
+.filterCheckbox {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== PRODUCTS DISPLAY STYLES ===== */
+.productsSection {
+  flex: 1;
+  padding: var(--spacing-12);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-12);
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-16);
+  color: var(--color-text-secondary);
+  background: var(--color-surface-muted);
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--color-border-muted);
+}
+
+.emptyStateTitle {
+  margin: 0 0 var(--spacing-4) 0;
+  color: var(--color-text-primary);
+  font-size: var(--text-subsection);
+  font-weight: var(--font-weight-semibold);
+}
+
+.emptyStateText {
+  margin: 0;
+  font-size: var(--text-body);
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .toolbar {
+    padding: var(--spacing-6);
+  }
+
+  .toolbarContent {
+    gap: var(--spacing-6);
+  }
+
+  .toolbarLeft {
+    width: 100%;
+  }
+
+  .toolbarRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: var(--z-modal);
+    padding: var(--spacing-8);
+    animation: slideUp var(--duration-normal) var(--ease-smooth);
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .drawerTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .drawerClose {
+    background: none;
+    border: none;
+    font-size: var(--text-section);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-2);
+  }
+
+  .productsSection {
+    padding: var(--spacing-6);
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+}
+
+/* ===== DARK MODE SUPPORT (if applicable) ===== */
+@media (prefers-color-scheme: dark) {
+  .drawer {
+    background: var(--color-surface-elevated-dark, var(--color-surface-elevated));
+    border-color: var(--color-border-default-dark, var(--color-border-default));
+  }
+
+  .toolbar {
+    background: var(--color-surface-elevated-dark, var(--color-surface-elevated));
+    border-color: var(--color-border-default-dark, var(--color-border-default));
+  }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+.filterToggle:focus,
+.viewModeButton:focus,
+.chipRemove:focus,
+.clearAll:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.filterCheckbox:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* Ensure proper contrast for all text */
+.filterLabel,
+.drawerTitle,
+.filterSectionTitle {
+  color: var(--color-text-primary);
+}
+
+/* Loading state */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-16);
+  color: var(--color-text-secondary);
+}
+
+/* Scrollbar styling for drawer */
+.drawer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.drawer::-webkit-scrollbar-track {
+  background: var(--color-surface-muted);
+}
+
+.drawer::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.drawer::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}

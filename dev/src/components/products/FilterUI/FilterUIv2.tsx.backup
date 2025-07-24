@@ -6,7 +6,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import type { ProductModel } from '../../../types/product';
 import ProductCard from '../../common/ProductCard/ProductCard';
-import styles from './FilterUIv2.module.scss';
 
 interface FilterUIv2Props {
   allModels: ProductModel[];
@@ -125,32 +124,88 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
   }, [productType]);
 
   return (
-    <div className={styles.container}>
+    <div style={{ background: '#fff', minHeight: '100vh' }}>
       
       {/* TOP TOOLBAR */}
-      <div className={styles.toolbar}>
-        <div className={styles.toolbarContent}>
+      <div style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        background: 'white',
+        borderBottom: '1px solid #ddd',
+        padding: '16px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          gap: '16px',
+          flexWrap: 'wrap'
+        }}>
           
           {/* Left: Filter button and chips */}
-          <div className={styles.toolbarLeft}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1, minWidth: 0 }}>
             <button
               onClick={() => setDrawerOpen(!drawerOpen)}
-              className={`${styles.filterToggle} ${drawerOpen ? styles.filterToggleActive : ''}`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                background: drawerOpen ? 'var(--color-primary)' : '#fff',
+                color: drawerOpen ? 'white' : 'var(--color-primary)',
+                border: '1px solid var(--color-primary)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: '500',
+                transition: 'all 0.2s ease'
+              }}
             >
               🔍 Filters {filterChips.length > 0 && `(${filterChips.length})`}
             </button>
 
             {/* Filter Chips */}
-            <div className={styles.chipContainer}>
+            <div style={{ 
+              display: 'flex', 
+              gap: '8px', 
+              flexWrap: 'wrap',
+              alignItems: 'center'
+            }}>
               {filterChips.map(chip => (
                 <div
                   key={chip.id}
-                  className={styles.chip}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '6px 12px',
+                    background: 'var(--color-primary)',
+                    color: 'white',
+                    borderRadius: '16px',
+                    fontSize: '14px',
+                    fontWeight: '500'
+                  }}
                 >
                   {chip.label}
                   <button
                     onClick={() => removeFilter(chip.category, chip.value)}
-                    className={styles.chipRemove}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'white',
+                      cursor: 'pointer',
+                      padding: '0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      fontSize: '12px'
+                    }}
                   >
                     ×
                   </button>
@@ -160,7 +215,14 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
               {filterChips.length > 0 && (
                 <button
                   onClick={clearAllFilters}
-                  className={styles.clearAll}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--color-primary)',
+                    cursor: 'pointer',
+                    textDecoration: 'underline',
+                    fontSize: '14px'
+                  }}
                 >
                   Clear All
                 </button>
@@ -169,31 +231,49 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
           </div>
 
           {/* Right: Controls */}
-          <div className={styles.toolbarRight}>
-            <span className={styles.productCount}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ color: '#666', fontSize: '14px', whiteSpace: 'nowrap' }}>
               {filteredAndSortedModels.length} products
             </span>
             
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className={styles.sortSelect}
+              style={{
+                padding: '6px 8px',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                fontSize: '14px'
+              }}
             >
               <option value="name">Name A-Z</option>
               <option value="brand">Brand</option>
               <option value="size">Size</option>
             </select>
 
-            <div className={styles.viewModeGroup}>
+            <div style={{ display: 'flex', border: '1px solid #ddd', borderRadius: '4px' }}>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`${styles.viewModeButton} ${viewMode === 'grid' ? styles.viewModeButtonActive : ''}`}
+                style={{
+                  padding: '6px 8px',
+                  background: viewMode === 'grid' ? 'var(--color-primary)' : 'white',
+                  color: viewMode === 'grid' ? 'white' : '#666',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
               >
                 ▦
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`${styles.viewModeButton} ${viewMode === 'list' ? styles.viewModeButtonActive : ''}`}
+                style={{
+                  padding: '6px 8px',
+                  background: viewMode === 'list' ? 'var(--color-primary)' : 'white',
+                  color: viewMode === 'list' ? 'white' : '#666',
+                  border: 'none',
+                  borderLeft: '1px solid #ddd',
+                  cursor: 'pointer'
+                }}
               >
                 ☰
               </button>
@@ -202,44 +282,53 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
         </div>
       </div>
 
-      <div className={styles.mainLayout}>
+      <div style={{ display: 'flex', maxWidth: '1200px', margin: '0 auto' }}>
         
         {/* FILTER DRAWER */}
         {drawerOpen && (
-          <div className={styles.drawer}>
-            <h3 className={styles.drawerTitle}>Filter Options</h3>
+          <div style={{
+            width: '300px',
+            background: 'white',
+            borderRight: '1px solid #ddd',
+            padding: '20px',
+            position: 'sticky',
+            top: '80px',
+            height: 'calc(100vh - 80px)',
+            overflowY: 'auto'
+          }}>
+            <h3 style={{ margin: '0 0 20px 0', color: '#333' }}>Filter Options</h3>
             
             {/* Brand Filter */}
-            <div className={styles.filterSection}>
-              <h4 className={styles.filterSectionTitle}>Brands</h4>
-              <div className={styles.filterOptions}>
+            <div style={{ marginBottom: '24px' }}>
+              <h4 style={{ margin: '0 0 12px 0', fontSize: '16px', fontWeight: '600' }}>Brands</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {filterData.brands.map(brand => (
-                  <label key={brand} className={styles.filterLabel}>
+                  <label key={brand} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                     <input
                       type="checkbox"
                       checked={(activeFilters.brand || []).includes(brand)}
                       onChange={() => toggleFilter('brand', brand)}
-                      className={styles.filterCheckbox}
+                      style={{ cursor: 'pointer' }}
                     />
-                    <span>{brand}</span>
+                    <span style={{ fontSize: '14px' }}>{brand}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             {/* Size Filter */}
-            <div className={styles.filterSection}>
-              <h4 className={styles.filterSectionTitle}>Screen Size</h4>
-              <div className={styles.filterOptions}>
+            <div style={{ marginBottom: '24px' }}>
+              <h4 style={{ margin: '0 0 12px 0', fontSize: '16px', fontWeight: '600' }}>Screen Size</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {filterData.sizes.map(size => (
-                  <label key={size} className={styles.filterLabel}>
+                  <label key={size} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                     <input
                       type="checkbox"
                       checked={(activeFilters.size || []).includes(String(size))}
                       onChange={() => toggleFilter('size', String(size))}
-                      className={styles.filterCheckbox}
+                      style={{ cursor: 'pointer' }}
                     />
-                    <span>{size}" Display</span>
+                    <span style={{ fontSize: '14px' }}>{size}" Display</span>
                   </label>
                 ))}
               </div>
@@ -247,18 +336,18 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
 
             {/* Touch Technology Filter (for smartboards) */}
             {productType === 'smartboards' && filterData.touchTechs.length > 0 && (
-              <div className={styles.filterSection}>
-                <h4 className={styles.filterSectionTitle}>Touch Technology</h4>
-                <div className={styles.filterOptions}>
+              <div style={{ marginBottom: '24px' }}>
+                <h4 style={{ margin: '0 0 12px 0', fontSize: '16px', fontWeight: '600' }}>Touch Technology</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {filterData.touchTechs.map(tech => tech && (
-                    <label key={tech} className={styles.filterLabel}>
+                    <label key={tech} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                       <input
                         type="checkbox"
                         checked={(activeFilters.touchTechnology || []).includes(tech)}
                         onChange={() => toggleFilter('touchTechnology', tech)}
-                        className={styles.filterCheckbox}
+                        style={{ cursor: 'pointer' }}
                       />
-                      <span>{tech}</span>
+                      <span style={{ fontSize: '14px' }}>{tech}</span>
                     </label>
                   ))}
                 </div>
@@ -268,8 +357,13 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
         )}
 
         {/* PRODUCTS DISPLAY */}
-        <div className={styles.productsSection}>
-          <div className={viewMode === 'grid' ? styles.productGrid : styles.productList}>
+        <div style={{ flex: 1, padding: '20px' }}>
+          <div style={{
+            display: viewMode === 'grid' ? 'grid' : 'flex',
+            gridTemplateColumns: viewMode === 'grid' ? 'repeat(auto-fill, minmax(320px, 1fr))' : 'none',
+            flexDirection: viewMode === 'list' ? 'column' : 'row',
+            gap: '24px'
+          }}>
             {filteredAndSortedModels.map((model, index) => (
               <ProductCard
                 key={model.id || index}
@@ -293,9 +387,16 @@ const FilterUIv2: React.FC<FilterUIv2Props> = ({
           </div>
           
           {filteredAndSortedModels.length === 0 && (
-            <div className={styles.emptyState}>
-              <h3 className={styles.emptyStateTitle}>No products match your filters</h3>
-              <p className={styles.emptyStateText}>Try adjusting your filter criteria</p>
+            <div style={{ 
+              textAlign: 'center', 
+              padding: '40px', 
+              color: '#666',
+              background: '#f9f9f9',
+              borderRadius: '8px',
+              border: '2px dashed #ddd'
+            }}>
+              <h3 style={{ margin: '0 0 8px 0' }}>No products match your filters</h3>
+              <p style={{ margin: 0 }}>Try adjusting your filter criteria</p>
             </div>
           )}
         </div>

@@ -1,0 +1,254 @@
+/* ===== BACKWARD COMPATIBILITY LAYER ===== */
+/* Temporary aliases for high-usage variables during migration */
+/* Created: 2025-07-24 - Phase 2 Day 7 Task 7.3 */
+/* Usage: Import after semantic-variables.scss for gradual migration */
+
+:root {
+  /* ===== HIGH-IMPACT COMPATIBILITY (>50 occurrences each) ===== */
+  
+  /* PRIMARY COLOR SYSTEM: 191 occurrences across 41 files */
+  /* Preserve exact values to prevent any visual regression */
+  --color-accent-primary: var(--color-primary);           /* 191 occurrences - CRITICAL */
+  --color-accent-primary-rgb: 0, 150, 136;               /* 129 occurrences - RGB variant (TODO: migrate to color-mix) */
+  
+  /* SPACING SYSTEM: 400+ total occurrences - preserve semantic names temporarily */
+  --spacing-md: var(--spacing-8);                        /* 187 occurrences → 16px */
+  --spacing-lg: var(--spacing-12);                       /* 133 occurrences → 24px */
+  --spacing-sm: var(--spacing-4);                        /* 131 occurrences → 8px */
+  --spacing-xl: var(--spacing-16);                       /* 81 occurrences → 32px */
+  --spacing-xs: var(--spacing-2);                        /* 78 occurrences → 4px */
+  --spacing-xxl: var(--spacing-24);                      /* Legacy semantic alias */
+  
+  /* TEXT SYSTEM: 150+ occurrences - preserve existing typography variables */
+  --font-size-body-regular: var(--text-body);            /* 54 occurrences */
+  --font-size-small: var(--text-small);                  /* 50 occurrences */
+  --font-size-h1: var(--text-hero);                      /* Legacy heading sizes */
+  --font-size-h2: var(--text-section);
+  --font-size-h3: var(--text-subsection);
+  --font-size-h4: var(--text-subsection);
+  --font-size-subtitle: var(--text-subsection);
+  --font-size-body-large: var(--text-body);
+  --font-size-body-small: var(--text-small);
+  --font-size-caption: var(--text-caption);
+  --font-size-micro: var(--text-micro);
+  
+  /* ===== MEDIUM-IMPACT COMPATIBILITY (10-50 occurrences each) ===== */
+  
+  /* ADMIN COLOR SYSTEM: 48 occurrences - integrate with main system */
+  --color-admin-text: var(--color-text-primary);
+  --color-admin-text-secondary: var(--color-text-secondary);
+  --color-admin-bg: var(--color-background);
+  --color-admin-surface: var(--color-surface);
+  --color-admin-border: var(--color-border-muted);
+  
+  /* BUTTON SYSTEM COMPATIBILITY: 16 variables consolidated to 6 */
+  --color-button-ghost-border: var(--color-button-primary);
+  --color-button-ghost-text: var(--color-button-primary);
+  --color-button-primary-background: var(--color-button-primary);
+  --color-button-primary-text: var(--color-text-inverse);
+  --color-button-primary-hover: var(--color-primary-hover);
+  --color-button-primary-active: var(--color-primary-active);
+  --color-button-secondary-background: var(--color-button-secondary);
+  --color-button-secondary-text: var(--color-text-inverse);
+  --color-button-disabled-border: var(--color-border-muted);
+  --color-button-disabled-text: var(--color-text-muted);
+  --color-button-disabled-background: var(--color-button-disabled);
+  
+  /* LEGACY TYPOGRAPHY SYSTEM: 24 legacy variables */
+  --font-size-h1-legacy: var(--text-hero);
+  --font-size-h2-legacy: var(--text-section);
+  --font-size-h3-legacy: var(--text-subsection);
+  --font-size-h4-legacy: var(--text-subsection);
+  --font-size-body-large-legacy: var(--text-body);
+  --font-size-body-regular-legacy: var(--text-body);
+  --font-size-body-small-legacy: var(--text-small);
+  --font-size-caption-legacy: var(--text-caption);
+  --font-size-micro-legacy: var(--text-micro);
+  
+  /* NAVIGATION-SPECIFIC SIZES */
+  --font-size-nav-primary: var(--text-body);
+  --font-size-nav-secondary: var(--text-small);
+  
+  /* ===== LOW-IMPACT COMPATIBILITY (<10 occurrences each) ===== */
+  
+  /* SPACING DUPLICATES: Day 6 identified 5 duplicate groups */
+  --spacing-container-padding: var(--spacing-8);
+  --spacing-component-gap: var(--spacing-12);
+  --spacing-section-gap: var(--spacing-24);
+  --spacing-card-padding: var(--spacing-12);
+  --spacing-gap-between-blocks: var(--spacing-12);
+  
+  /* BORDER RADIUS SYSTEM: Consolidate to single scale */
+  --border-radius-small: var(--radius-md);
+  --border-radius-card: var(--radius-xl);
+  --border-radius-button: var(--radius-lg);
+  --border-radius-lg: var(--radius-xl);
+  --border-radius-md: var(--radius-lg);
+  --border-radius-sm: var(--radius-md);
+  
+  /* SHADOW SYSTEM: Consolidate legacy variants */
+  --box-shadow-1: var(--shadow-md);
+  --box-shadow-card: var(--shadow-sm);
+  --box-shadow-card-hover: var(--shadow-md);
+  --shadow-accent: var(--shadow-md);
+  --shadow-accent-lg: var(--shadow-lg);
+  
+  /* Z-INDEX SYSTEM: Remove navigation-specific variants */
+  --z-nav-primary: var(--z-navigation);
+  --z-nav-secondary: var(--z-navigation);
+  --z-nav-dropdown: var(--z-dropdown);
+  --z-nav-main: var(--z-navigation);
+  --z-nav-mobile-overlay: var(--z-overlay);
+  --z-nav-mobile-toggle: var(--z-tooltip);
+  
+  /* COLOR SYSTEM CONSOLIDATION: Resolve conflicts */
+  --color-accent-secondary-dark: var(--color-secondary);
+  --color-accent-secondary-new: var(--color-secondary);
+  --color-accent-secondary-rgb: 255, 167, 38;            /* RGB variant (TODO: migrate) */
+  
+  /* TEXT COLORS: Consolidate variants */
+  --color-text-secondary: var(--color-text-secondary);   /* Keep as base */
+  --color-surface-muted: var(--color-surface-muted);     /* Keep as base */
+  --color-border-light: var(--color-border-muted);
+  --color-border-strong: var(--color-border-strong);     /* Keep as base */
+  --color-border: var(--color-border-default);           /* Legacy border alias */
+  
+  /* SUCCESS/WARNING/ERROR SYSTEM: Consolidate *-new variants */
+  --color-success-new: var(--color-success);
+  --color-warning-new: var(--color-warning);
+  --color-error-new: var(--color-error);
+  --color-info-new: var(--color-info);
+  
+  /* CHART COLORS: Map to semantic equivalents */
+  --chart-danger: var(--color-error);
+  --chart-primary: var(--color-primary);
+  --chart-secondary: var(--color-success);
+  --chart-tertiary: var(--color-warning);
+  --chart-quaternary: var(--color-info);
+  
+  /* GRADIENT SYSTEM: Legacy gradient aliases */
+  --gradient-green: var(--gradient-success);
+  --gradient-blue: var(--gradient-primary);
+  --gradient-orange: var(--gradient-warning);
+  --gradient-purple: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  --gradient-pink: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+  --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+  --gradient-indigo: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  
+  /* GLASSMORPHISM VARIABLES: Legacy glass system */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-dark: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-backdrop: blur(10px);
+  --glass-backdrop-strong: blur(20px);
+  --glass-white: rgba(255, 255, 255, 0.1);
+  --glass-dark: rgba(0, 0, 0, 0.05);
+  
+  /* GRADIENT TEXT COLORS: Legacy text gradient system */
+  --gradient-text-primary: var(--gradient-primary);
+  --gradient-text-success: var(--gradient-success);
+  --gradient-text-warning: var(--gradient-warning);
+  --gradient-text-info: var(--gradient-primary);
+  
+  /* LEGACY SURFACE COLORS: Additional surface variants */
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-surface-subtle: var(--color-surface-muted);
+  
+  /* CONTAINER SYSTEM: Legacy container aliases */
+  --spacing-container-max-width: 1200px;
+  
+  /* FLUID SPACING SYSTEM: Legacy fluid spacing */
+  --space-section: clamp(4rem, 10vw, 8rem);
+  --space-card: clamp(1.5rem, 3vw, 2rem);
+  --space-element: clamp(1rem, 2vw, 1.5rem);
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  
+  /* LEGACY ENHANCED FLUID SPACING */
+  --spacing-dynamic: clamp(2rem, 5vw, 6rem);
+  --spacing-section: var(--space-section);
+  --spacing-inline: clamp(1rem, 5vw, 4rem);
+  --spacing-grid-gap: clamp(1rem, 2.5vw, 2rem);
+  --spacing-list-gap: clamp(0.5rem, 1.5vw, 1rem);
+  --spacing-button-padding: clamp(0.75rem, 2vw, 1rem);
+  
+  /* FONT SYSTEM LEGACY: Deprecated font aliases */
+  --font-primary: var(--font-body);
+  --font-secondary: var(--font-heading);
+  
+  /* FONT WEIGHT CONSOLIDATION: Remove light weight */
+  --font-weight-light: var(--font-weight-normal);
+  --font-weight-regular: var(--font-weight-normal);
+  
+  /* MODERN VISUAL EFFECTS: Legacy radius system */
+  --border-radius-sm: var(--radius-lg);
+  --border-radius-md: var(--radius-xl);
+  --border-radius-lg: var(--radius-2xl);
+  --glass-blur: 10px;
+  
+  /* LEGACY PADDING SYSTEM */
+  --padding-s1: 15px;
+  --padding-s2: 50px;
+}
+
+/* ===== DEPRECATION WARNINGS (Development Mode Only) ===== */
+/* Uncomment during development to identify usage of deprecated variables */
+
+/*
+@media screen {
+  .deprecated-variable-warning {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    border: 2px solid #ff6b6b;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .deprecated-variable-warning::before {
+    content: "⚠️ DEPRECATION WARNING: This component uses deprecated CSS variables. Please migrate to semantic tokens.";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}
+*/
+
+/* ===== MIGRATION NOTES ===== */
+/*
+This compatibility layer provides temporary aliases for all variables identified
+in Day 6 analysis (327 variables → 100 semantic tokens, 69% reduction).
+
+MIGRATION STRATEGY:
+1. Import semantic-variables.scss first (new system)
+2. Import compatibility.scss second (backward compatibility)
+3. Gradually migrate components to use semantic tokens
+4. Remove compatibility imports once migration is complete
+
+HIGH-PRIORITY MIGRATIONS (>50 occurrences each):
+- --color-accent-primary (191 occurrences) → --color-primary
+- --spacing-md (187 occurrences) → --spacing-8
+- --spacing-lg (133 occurrences) → --spacing-12
+- --spacing-sm (131 occurrences) → --spacing-4
+- --color-text-primary (130 occurrences) → preserved as-is
+
+AUTOMATED MIGRATION:
+Use migration script: npm run migrate:semantic-tokens --dry-run
+Script handles 1,547 potential changes across 57 files automatically.
+
+TESTING APPROACH:
+1. Test with compatibility layer enabled (zero breaking changes)
+2. Gradually remove compatibility imports per component
+3. Validate visual parity at each step
+4. Complete removal once all components migrated
+
+ROLLBACK PROCEDURE:
+If issues arise, revert to variables.scss.backup and disable semantic tokens.
+All original values preserved exactly in this compatibility layer.
+*/

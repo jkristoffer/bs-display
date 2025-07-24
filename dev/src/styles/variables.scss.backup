@@ -1,0 +1,303 @@
+$color-accent-primary: #009688;
+$color-accent-secondary: #ffa726;
+
+/* ===== Color Palette ===== */
+:root {
+  /* Colors */
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-text-primary: #333333;
+  --color-accent-primary: #009688;
+  --color-accent-primary-rgb: 0, 150, 136;
+  /* Teal-Green */
+  --color-accent-secondary: #ffa726;
+  --color-accent-secondary-rgb: 255, 167, 38;
+  /* Playful Orange */
+  --color-border: #dddddd;
+  /* Optional light grey border color */
+
+  /* Enhanced Button Color System */
+  --color-button-ghost-border: var(--color-accent-primary);
+  --color-button-ghost-text: var(--color-accent-primary);
+  --color-button-primary-background: var(--color-accent-primary);
+  --color-button-primary-text: white;
+  --color-button-primary-hover: #007a6b;
+  --color-button-primary-active: #006b5d;
+  --color-button-secondary-background: var(--color-accent-secondary);
+  --color-button-secondary-text: var(--color-background);
+  --color-button-disabled-border: var(--color-border-muted);
+  --color-button-disabled-text: var(--color-text-muted);
+  --color-button-disabled-background: var(--color-surface-muted);
+
+  /* Typography - Enhanced for Redesign */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+  
+  /* Legacy fonts for compatibility */
+  --font-primary: var(--font-body);
+  --font-secondary: var(--font-body);
+  
+  /* Enhanced Fluid Typography for Redesign */
+  --text-hero: clamp(2.5rem, 5vw + 1rem, 4rem);
+  --text-hero-line-height: 1.1;
+  
+  --text-section: clamp(2rem, 4vw + 0.5rem, 3rem);
+  --text-section-line-height: 1.2;
+  
+  --text-subsection: clamp(1.5rem, 3vw + 0.25rem, 2rem);
+  
+  --text-body: clamp(1rem, 2vw, 1.125rem);
+  --text-body-line-height: 1.6;
+  
+  /* Legacy Fluid Type Scale - Responsive Typography */
+  --font-size-h1: clamp(32px, 5vw, 48px);
+  --font-size-h2: clamp(28px, 4vw, 36px);
+  --font-size-h3: clamp(24px, 3.5vw, 32px);
+  --font-size-h4: clamp(20px, 3vw, 24px);
+  --font-size-subtitle: clamp(18px, 2.5vw, 24px);
+  --font-size-body-large: clamp(16px, 2vw, 20px);
+  --font-size-body-regular: clamp(14px, 1.75vw, 16px);
+  --font-size-body-small: clamp(13px, 1.5vw, 14px);
+  --font-size-caption: clamp(12px, 1.25vw, 13px);
+  --font-size-micro: clamp(11px, 1vw, 12px);
+  
+  /* Legacy Fixed Sizes (for gradual migration) */
+  --font-size-h1-legacy: 48px;
+  --font-size-h2-legacy: 38px;
+  --font-size-h3-legacy: 30px;
+  --font-size-h4-legacy: 24px;
+  --font-size-body-large-legacy: 19px;
+  --font-size-body-regular-legacy: 16px;
+  --font-size-body-small-legacy: 14px;
+  --font-size-caption-legacy: 13px;
+  --font-size-micro-legacy: 11px;
+  
+  /* Navigation-specific sizes */
+  --font-size-nav-primary: 15px;
+  --font-size-nav-secondary: 14px;
+  
+  /* Modern Line Heights */
+  --line-height-tight: 1.15;
+  --line-height-headers: 1.25;
+  --line-height-body: 1.5;
+  --line-height-relaxed: 1.6;
+  
+  /* Enhanced Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+
+  /* Modern Spacing System (8px base) */
+  --spacing-0: 0;
+  --spacing-1: 2px;
+  --spacing-2: 4px;
+  --spacing-3: 6px;
+  --spacing-4: 8px;
+  --spacing-5: 10px;
+  --spacing-6: 12px;
+  --spacing-8: 16px;
+  --spacing-10: 20px;
+  --spacing-12: 24px;
+  --spacing-16: 32px;
+  --spacing-20: 40px;
+  --spacing-24: 48px;
+  --spacing-32: 64px;
+  --spacing-40: 80px;
+  --spacing-48: 96px;
+  
+  /* Semantic Spacing */
+  --spacing-xs: var(--spacing-2);
+  --spacing-sm: var(--spacing-4);
+  --spacing-md: var(--spacing-8);
+  --spacing-lg: var(--spacing-12);
+  --spacing-xl: var(--spacing-16);
+  --spacing-xxl: var(--spacing-24);
+  
+  /* Container & Layout */
+  --spacing-container-max-width: 1200px;
+  --spacing-container-padding: var(--spacing-8);
+  --spacing-section-gap: var(--spacing-24);
+  --spacing-component-gap: var(--spacing-12);
+  
+  /* Modern Container System */
+  --container-narrow: 800px;
+  --container-default: 1200px;
+  --container-wide: 1400px;
+  --container-full: 100%;
+  
+  /* Enhanced Fluid Spacing System for Redesign */
+  --space-section: clamp(4rem, 10vw, 8rem);
+  --space-card: clamp(1.5rem, 3vw, 2rem);
+  --space-element: clamp(1rem, 2vw, 1.5rem);
+  
+  /* Micro Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  
+  /* Legacy Enhanced Fluid Spacing System */
+  --spacing-dynamic: clamp(2rem, 5vw, 6rem);
+  --spacing-section: var(--space-section);
+  --spacing-inline: clamp(1rem, 5vw, 4rem);
+  
+  /* Contextual Fluid Spacing */
+  --spacing-section-gap: clamp(2rem, 6vw, 8rem);
+  --spacing-component-gap: clamp(1rem, 3vw, 3rem);
+  --spacing-card-padding: var(--space-card);
+  --spacing-container-padding: clamp(1rem, 5vw, 2rem);
+  --spacing-grid-gap: clamp(1rem, 2.5vw, 2rem);
+  --spacing-list-gap: clamp(0.5rem, 1.5vw, 1rem);
+  --spacing-button-padding: clamp(0.75rem, 2vw, 1rem);
+  
+  /* Modern Visual Effects */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --glass-blur: 10px;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  /* Legacy spacing (for gradual migration) */
+  --padding-s1: 15px;
+  --padding-s2: 50px;
+  --spacing-card-padding: 24px;
+  --spacing-gap-between-blocks: 20px;
+
+  /* Modern Gradient System - Enhanced for Redesign */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --gradient-premium: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  --gradient-attention: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  
+  /* Legacy gradients for backward compatibility */
+  --gradient-green: var(--gradient-success);
+  --gradient-blue: var(--gradient-premium);
+  --gradient-orange: var(--gradient-attention);
+  --gradient-purple: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  --gradient-pink: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+  --gradient-teal: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+  --gradient-indigo: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-dark: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-backdrop: blur(10px);
+  --glass-backdrop-strong: blur(20px);
+
+  /* Gradient Text Colors */
+  --gradient-text-primary: var(--gradient-primary);
+  --gradient-text-success: var(--gradient-green);
+  --gradient-text-warning: var(--gradient-orange);
+  --gradient-text-info: var(--gradient-blue);
+
+  /* Enhanced Color Palette for Redesign */
+  --color-text-secondary: #64748b;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #d1d5db;
+  --color-accent-secondary-dark: #f57c00;
+  
+  /* Redesign Color System */
+  --color-surface: #ffffff;
+  --color-background: #f8fafc;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  
+  /* Glass Effects Enhanced */
+  --glass-white: rgba(255, 255, 255, 0.1);
+  --glass-dark: rgba(0, 0, 0, 0.05);
+  
+  /* Legacy Color System - Modern Blue-based Palette */
+  --color-accent-primary-new: #3b82f6;
+  --color-accent-secondary-new: #f59e0b;
+  --color-success-new: #22c55e;
+  --color-warning-new: #f59e0b;
+  --color-error-new: #ef4444;
+  --color-info-new: #3b82f6;
+  
+  /* Surface Colors */
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-surface-subtle: #f1f5f9;
+  
+  /* Border Colors */
+  --color-border-light: #f1f5f9;
+  --color-border-muted: #e2e8f0;
+  --color-border-default: #d1d5db;
+  --color-border-strong: #9ca3af;
+
+  /* Modern Border Radius System */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Semantic Border Radius */
+  --border-radius-small: var(--radius-md);
+  --border-radius-card: var(--radius-xl);
+  --border-radius-button: var(--radius-lg);
+
+  /* Modern Shadow System */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Colored Shadows */
+  --shadow-accent: 0 4px 14px 0 rgba(var(--color-accent-primary-rgb), 0.15);
+  --shadow-accent-lg: 0 8px 25px 0 rgba(var(--color-accent-primary-rgb), 0.2);
+  
+  /* Legacy shadows (for gradual migration) */
+  --box-shadow-1: -1px 2px 3px 2px rgba(33, 33, 33, 0.15);
+  --box-shadow-card: var(--shadow-sm);
+  --box-shadow-card-hover: var(--shadow-md);
+
+  /* Breakpoints */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  
+  /* Animation Standards for Redesign */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Standard Durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+
+  /* Z-Index System - Consistent Layer Management */
+  --z-base: 1;
+  --z-navigation: 100;
+  --z-dropdown: 1000;
+  --z-modal: 9000;
+  --z-overlay: 9999;
+  --z-tooltip: 10000;
+  
+  /* Navigation-specific z-indices */
+  --z-nav-main: var(--z-navigation);
+  --z-nav-dropdown: var(--z-dropdown);
+  --z-nav-mobile-overlay: var(--z-overlay);
+  --z-nav-mobile-toggle: var(--z-tooltip);
+}

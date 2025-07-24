@@ -1,0 +1,354 @@
+---
+// Test page for Phase 2 semantic token system validation
+// Created: 2025-07-24 - Day 7 Task 7.5
+layout: '../layouts/BaseLayout.astro'
+title: 'Semantic Token System Test'
+---
+
+<head>
+  <title>Semantic Token System Test</title>
+  <style>
+    /* Direct test of semantic tokens */
+    .token-test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-8);
+      padding: var(--spacing-12);
+      max-width: var(--container-wide);
+      margin: 0 auto;
+    }
+    
+    .token-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-8);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .token-section h2 {
+      color: var(--color-primary);
+      font-size: var(--text-section);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .token-section h3 {
+      color: var(--color-text-primary);
+      font-size: var(--text-subsection);
+      font-weight: var(--font-weight-semibold);
+      margin: var(--spacing-6) 0 var(--spacing-2) 0;
+    }
+    
+    .color-swatch {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      margin-right: var(--spacing-2);
+      vertical-align: middle;
+      border: 1px solid var(--color-border-muted);
+    }
+    
+    .spacing-demo {
+      background: var(--color-surface-muted);
+      border-radius: var(--radius-md);
+      margin: var(--spacing-2) 0;
+    }
+    
+    .text-size {
+      margin: var(--spacing-2) 0;
+      color: var(--color-text-primary);
+    }
+    
+    .button-demo {
+      display: inline-block;
+      padding: var(--spacing-4) var(--spacing-8);
+      margin: var(--spacing-2) var(--spacing-2) var(--spacing-2) 0;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: all var(--duration-normal) var(--ease-smooth);
+    }
+    
+    .btn-primary {
+      background: var(--color-button-primary);
+      color: var(--color-text-inverse);
+      border: none;
+    }
+    
+    .btn-secondary {
+      background: var(--color-button-secondary);
+      color: var(--color-text-inverse);
+      border: none;
+    }
+    
+    .btn-success {
+      background: var(--color-button-success);
+      color: var(--color-text-inverse);
+      border: none;
+    }
+    
+    .shadow-demo {
+      background: var(--color-surface-elevated);
+      padding: var(--spacing-4);
+      margin: var(--spacing-2) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .gradient-demo {
+      height: 40px;
+      border-radius: var(--radius-md);
+      margin: var(--spacing-2) 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-inverse);
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .usage-stats {
+      background: var(--color-surface-muted);
+      padding: var(--spacing-4);
+      border-radius: var(--radius-md);
+      margin: var(--spacing-4) 0;
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      color: var(--color-text-secondary);
+    }
+    
+    .compatibility-test {
+      background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--border-radius-card);
+      color: var(--color-text-inverse);
+    }
+    
+    .validation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-4);
+      margin: var(--spacing-4) 0;
+    }
+  </style>
+</head>
+
+<main class="token-test-grid">
+  <!-- Brand Colors Section -->
+  <section class="token-section">
+    <h2>Brand Colors</h2>
+    <div class="usage-stats">High Usage Variables (191+ occurrences)</div>
+    
+    <h3>Primary Colors</h3>
+    <div>
+      <span class="color-swatch" style="background: var(--color-primary);"></span>
+      --color-primary (#009688)
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-primary-hover);"></span>
+      --color-primary-hover
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-primary-active);"></span>
+      --color-primary-active
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-secondary);"></span>
+      --color-secondary
+    </div>
+  </section>
+
+  <!-- Surface Colors Section -->
+  <section class="token-section">
+    <h2>Surface Colors</h2>
+    <div class="usage-stats">Core UI Foundation</div>
+    
+    <div>
+      <span class="color-swatch" style="background: var(--color-background);"></span>
+      --color-background
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-surface);"></span>
+      --color-surface
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-surface-muted);"></span>
+      --color-surface-muted
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-surface-elevated);"></span>
+      --color-surface-elevated
+    </div>
+  </section>
+
+  <!-- Text Colors Section -->
+  <section class="token-section">
+    <h2>Text Colors</h2>
+    <div class="usage-stats">130 occurrences - text-primary</div>
+    
+    <div style="color: var(--color-text-primary);">
+      Primary text (var(--color-text-primary))
+    </div>
+    <div style="color: var(--color-text-secondary);">
+      Secondary text (var(--color-text-secondary))
+    </div>
+    <div style="color: var(--color-text-muted);">
+      Muted text (var(--color-text-muted))
+    </div>
+    <div style="color: var(--color-text-inverse); background: var(--color-primary); padding: var(--spacing-2); border-radius: var(--radius-sm);">
+      Inverse text (var(--color-text-inverse))
+    </div>
+  </section>
+
+  <!-- Typography Scale Section -->
+  <section class="token-section">
+    <h2>Typography Scale</h2>
+    <div class="usage-stats">Fluid clamp() preserved from Day 6 analysis</div>
+    
+    <div class="text-size" style="font-size: var(--text-hero);">Hero Text</div>
+    <div class="text-size" style="font-size: var(--text-section);">Section Text</div>
+    <div class="text-size" style="font-size: var(--text-subsection);">Subsection Text</div>
+    <div class="text-size" style="font-size: var(--text-body);">Body Text (54 occurrences)</div>
+    <div class="text-size" style="font-size: var(--text-small);">Small Text (50 occurrences)</div>
+    <div class="text-size" style="font-size: var(--text-caption);">Caption Text</div>
+    <div class="text-size" style="font-size: var(--text-micro);">Micro Text</div>
+  </section>
+
+  <!-- Spacing System Section -->
+  <section class="token-section">
+    <h2>Spacing System (8px Grid)</h2>
+    <div class="usage-stats">Top usage: md(187), lg(133), sm(131)</div>
+    
+    <div class="spacing-demo" style="padding: var(--spacing-2);">--spacing-2 (4px)</div>
+    <div class="spacing-demo" style="padding: var(--spacing-4);">--spacing-4 (8px)</div>
+    <div class="spacing-demo" style="padding: var(--spacing-8);">--spacing-8 (16px) - Replaces md</div>
+    <div class="spacing-demo" style="padding: var(--spacing-12);">--spacing-12 (24px) - Replaces lg</div>
+    <div class="spacing-demo" style="padding: var(--spacing-16);">--spacing-16 (32px) - Replaces xl</div>
+    <div class="spacing-demo" style="padding: var(--spacing-24);">--spacing-24 (48px)</div>
+  </section>
+
+  <!-- Button System Section -->
+  <section class="token-section">
+    <h2>Button System</h2>
+    <div class="usage-stats">Consolidated from 16 to 6 variables</div>
+    
+    <button class="button-demo btn-primary">Primary Button</button>
+    <button class="button-demo btn-secondary">Secondary Button</button>
+    <button class="button-demo btn-success">Success Button</button>
+    
+    <div style="margin-top: var(--spacing-4);">
+      <button class="button-demo" style="background: var(--color-button-warning); color: var(--color-text-inverse);">Warning</button>
+      <button class="button-demo" style="background: var(--color-button-error); color: var(--color-text-inverse);">Error</button>
+      <button class="button-demo" style="background: var(--color-button-disabled); color: var(--color-text-muted);" disabled>Disabled</button>
+    </div>
+  </section>
+
+  <!-- Shadow System Section -->
+  <section class="token-section">
+    <h2>Shadow System</h2>
+    <div class="usage-stats">Modern layered shadow system</div>
+    
+    <div class="shadow-demo" style="box-shadow: var(--shadow-xs);">Shadow XS</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-sm);">Shadow SM</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-md);">Shadow MD</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-lg);">Shadow LG</div>
+    <div class="shadow-demo" style="box-shadow: var(--shadow-xl);">Shadow XL</div>
+  </section>
+
+  <!-- Border Radius Section -->
+  <section class="token-section">
+    <h2>Border Radius</h2>
+    <div class="usage-stats">Simplified scale system</div>
+    
+    <div class="validation-grid">
+      <div style="background: var(--color-surface-muted); padding: var(--spacing-4); border-radius: var(--radius-sm);">SM</div>
+      <div style="background: var(--color-surface-muted); padding: var(--spacing-4); border-radius: var(--radius-md);">MD</div>
+      <div style="background: var(--color-surface-muted); padding: var(--spacing-4); border-radius: var(--radius-lg);">LG</div>
+      <div style="background: var(--color-surface-muted); padding: var(--spacing-4); border-radius: var(--radius-xl);">XL</div>
+    </div>
+  </section>
+
+  <!-- Gradient System Section -->
+  <section class="token-section">
+    <h2>Gradient System</h2>
+    <div class="usage-stats">47 occurrences - gradient-primary</div>
+    
+    <div class="gradient-demo" style="background: var(--gradient-primary);">Primary Gradient</div>
+    <div class="gradient-demo" style="background: var(--gradient-secondary);">Secondary Gradient</div>
+    <div class="gradient-demo" style="background: var(--gradient-success);">Success Gradient</div>
+    <div class="gradient-demo" style="background: var(--gradient-hero);">Hero Gradient</div>
+  </section>
+
+  <!-- State Colors Section -->
+  <section class="token-section">
+    <h2>State Colors</h2>
+    <div class="usage-stats">Success, Warning, Error, Info</div>
+    
+    <div>
+      <span class="color-swatch" style="background: var(--color-success);"></span>
+      --color-success
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-warning);"></span>
+      --color-warning
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-error);"></span>
+      --color-error
+    </div>
+    <div>
+      <span class="color-swatch" style="background: var(--color-info);"></span>
+      --color-info
+    </div>
+  </section>
+
+  <!-- Backward Compatibility Test -->
+  <section class="token-section">
+    <h2>Backward Compatibility</h2>
+    <div class="usage-stats">Legacy variables still working</div>
+    
+    <div class="compatibility-test">
+      This uses legacy variables:<br>
+      • Background: var(--color-accent-primary) + var(--color-accent-secondary)<br>
+      • Padding: var(--spacing-md)<br>
+      • Margin: var(--spacing-lg)<br>
+      • Border radius: var(--border-radius-card)
+    </div>
+  </section>
+
+  <!-- Animation & Z-Index Section -->
+  <section class="token-section">
+    <h2>Animation & Z-Index</h2>
+    <div class="usage-stats">33 occurrences each - duration/ease</div>
+    
+    <div style="background: var(--color-primary); color: var(--color-text-inverse); padding: var(--spacing-4); border-radius: var(--radius-md); transition: all var(--duration-normal) var(--ease-smooth); margin: var(--spacing-2) 0;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      Hover Animation (duration-normal + ease-smooth)
+    </div>
+    
+    <div style="position: relative;">
+      <div style="background: var(--color-surface-elevated); padding: var(--spacing-4); border-radius: var(--radius-md); z-index: var(--z-base);">Base Layer (z-base)</div>
+      <div style="position: absolute; top: 8px; left: 8px; background: var(--color-primary); color: var(--color-text-inverse); padding: var(--spacing-2); border-radius: var(--radius-sm); z-index: var(--z-dropdown);">Dropdown Layer</div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Test JavaScript access to CSS custom properties
+  console.log('🎨 Semantic Token System Test Results:');
+  console.log('Primary Color:', getComputedStyle(document.documentElement).getPropertyValue('--color-primary'));
+  console.log('Spacing 8:', getComputedStyle(document.documentElement).getPropertyValue('--spacing-8'));
+  console.log('Text Body:', getComputedStyle(document.documentElement).getPropertyValue('--text-body'));
+  
+  // Test backward compatibility
+  console.log('✅ Backward Compatibility Tests:');
+  console.log('Legacy accent-primary:', getComputedStyle(document.documentElement).getPropertyValue('--color-accent-primary'));
+  console.log('Legacy spacing-md:', getComputedStyle(document.documentElement).getPropertyValue('--spacing-md'));
+  console.log('Legacy font-size-body-regular:', getComputedStyle(document.documentElement).getPropertyValue('--font-size-body-regular'));
+  
+  // Validation summary
+  const tokenCount = 101;
+  const compatibilityCount = 150; // Approximate compatibility aliases
+  console.log(`📊 Token System Summary: ${tokenCount} semantic tokens + ${compatibilityCount} compatibility aliases`);
+  console.log('🎯 Status: Ready for component migration (Day 8)');
+</script>

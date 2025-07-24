@@ -1,0 +1,200 @@
+/* Quiz.module.scss - Main quiz container and shared styles */
+@import '../../styles/variables';
+
+.quizContainer {
+  max-width: var(--container-default);
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+  position: relative;
+}
+
+// Hybrid badge styles
+.hybridBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-8);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-8);
+
+  .hybridBadgeLabel {
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-small);
+  }
+}
+
+// Hybrid explanation styles
+.hybridExplanation {
+  background-color: var(--color-surface-muted);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-8) 0;
+  border: 1px solid var(--color-border-muted);
+}
+
+.hybridNote {
+  margin-bottom: var(--spacing-8);
+
+  .categoryHighlight {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+  }
+}
+
+.hybridBalance {
+  margin-top: var(--spacing-8);
+}
+
+.balanceLabel {
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-2);
+  color: var(--color-text-primary);
+}
+
+.balanceBars {
+  display: flex;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.primaryBar,
+.secondaryBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-inverse);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  transition: width var(--duration-normal) var(--ease-smooth);
+}
+
+.barLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 var(--spacing-2);
+}
+
+// Score visualization
+.scoreBreakdown {
+  margin-top: var(--spacing-16);
+  background-color: var(--color-surface-muted);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-muted);
+}
+
+.scoreBars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.scoreBarContainer {
+  margin-bottom: var(--spacing-4);
+}
+
+.scoreLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-2);
+  align-items: center;
+}
+
+.categoryName {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.scoreValue {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.scoreBarWrapper {
+  height: 12px;
+  background-color: rgba(var(--color-primary-rgb, 59, 130, 246), 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.scoreBar {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-smooth);
+
+  &.topScore {
+    background: var(--gradient-success);
+  }
+}
+
+// Alternative recommendation styles
+.alternativeRecommendation {
+  margin-top: var(--spacing-12);
+  padding: var(--spacing-8);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-muted);
+}
+
+.secondaryOption {
+  margin-top: var(--spacing-8);
+
+  h6 {
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-2);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-6);
+  background: transparent;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-md);
+  color: var(--color-secondary);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-smooth);
+
+  &:hover {
+    background: var(--color-secondary);
+    color: var(--color-text-inverse);
+  }
+}
+
+// Product recommendations
+.productRecommendations {
+  margin-top: var(--spacing-12);
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  margin: var(--spacing-8) 0;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .quizContainer {
+    padding: 0 var(--spacing-6);
+  }
+
+  .balanceBars {
+    height: 24px;
+  }
+
+  .productList {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+}

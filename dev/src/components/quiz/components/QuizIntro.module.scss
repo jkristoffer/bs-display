@@ -1,0 +1,118 @@
+/* QuizIntro.module.scss - Quiz introduction page styling */
+@import '../../../styles/variables';
+
+.quizIntro {
+  text-align: center;
+  padding: calc(var(--spacing-16) * 2);
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--spacing-16);
+
+  // Animated top border
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+  }
+}
+
+.introTitle {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-bottom: var(--spacing-12);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.introDescription {
+  font-size: clamp(16px, 2.5vw, 20px);
+  margin-bottom: calc(var(--spacing-16) * 1.5);
+  color: var(--color-text-primary);
+  opacity: 0.8;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.introBenefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-12);
+  margin-bottom: calc(var(--spacing-16) * 1.5);
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefitItem {
+  text-align: center;
+  padding: var(--spacing-12);
+  background: var(--color-surface-muted);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-muted);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  animation: fadeInUp 0.8s ease-out both;
+
+  &:nth-child(1) {
+    animation-delay: 0.4s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-strong);
+  }
+}
+
+.benefitIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-8);
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.benefitTitle {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text-primary);
+  font-size: var(--text-lg);
+}
+
+.benefitDescription {
+  font-size: var(--text-small);
+  color: var(--color-text-primary);
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+// Keyframes for animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

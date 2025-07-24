@@ -1,5 +1,5 @@
 import React, { type FC, memo, useMemo } from 'react';
-import '../quiz-styles.scss';
+import styles from './CategoryScores.module.scss';
 
 interface CategoryScoresProps {
   categoryScores: Record<string, number> | null;
@@ -79,7 +79,7 @@ export const CategoryScores: FC<CategoryScoresProps> = memo(({
   const { sortedScores, maxScore } = scoreData;
 
   return (
-    <div className="modern-category-scores">
+    <div className={styles.modernCategoryScores}>
       <ScoresHeader />
       <ScoreCards 
         sortedScores={sortedScores} 
@@ -94,15 +94,15 @@ export const CategoryScores: FC<CategoryScoresProps> = memo(({
 
 // Header component
 const ScoresHeader: FC = memo(() => (
-  <div className="scores-header">
-    <div className="header-badge">
-      <span className="badge-icon">📊</span>
-      <span className="badge-text">Compatibility Analysis</span>
+  <div className={styles.scoresHeader}>
+    <div className={styles.headerBadge}>
+      <span className={styles.badgeIcon}>📊</span>
+      <span className={styles.badgeText}>Compatibility Analysis</span>
     </div>
-    <h2 className="scores-title">
-      <span className="title-gradient">Your Category Scores</span>
+    <h2 className={styles.scoresTitle}>
+      <span className={styles.titleGradient}>Your Category Scores</span>
     </h2>
-    <p className="scores-subtitle">
+    <p className={styles.scoresSubtitle}>
       Based on your quiz responses, here's how well different display categories match your needs
     </p>
   </div>
@@ -120,7 +120,7 @@ const ScoreCards: FC<ScoreCardsProps> = memo(({
   maxScore, 
   getCategoryColor 
 }) => (
-  <div className="modern-scores-container">
+  <div className={styles.modernScoresContainer}>
     {sortedScores.map(([category, score], index) => {
       const percentage = (score / maxScore) * 100;
       const isTopScore = index === 0;
@@ -128,58 +128,58 @@ const ScoreCards: FC<ScoreCardsProps> = memo(({
       return (
         <div 
           key={category} 
-          className={`modern-score-card ${isTopScore ? 'top-score' : ''}`}
+          className={`${styles.modernScoreCard} ${isTopScore ? styles.topScore : ''}`}
           style={{
             '--animation-delay': `${index * 0.1}s`,
             '--score-percentage': `${percentage}%`,
           } as React.CSSProperties}
         >
-          <div className="score-card-header">
-            <div className="category-info">
-              <span className="category-icon">{getCategoryIcon(category)}</span>
-              <div className="category-details">
-                <h3 className="category-name">
+          <div className={styles.scoreCardHeader}>
+            <div className={styles.categoryInfo}>
+              <span className={styles.categoryIcon}>{getCategoryIcon(category)}</span>
+              <div className={styles.categoryDetails}>
+                <h3 className={styles.categoryName}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </h3>
                 {isTopScore && (
-                  <div className="best-match-badge">
-                    <span className="badge-icon">🏆</span>
-                    <span className="badge-text">Best Match</span>
+                  <div className={styles.bestMatchBadge}>
+                    <span className={styles.badgeIcon}>🏆</span>
+                    <span className={styles.badgeText}>Best Match</span>
                   </div>
                 )}
               </div>
             </div>
-            <div className="score-display">
-              <div className="score-number">{score}</div>
-              <div className="score-label">points</div>
+            <div className={styles.scoreDisplay}>
+              <div className={styles.scoreNumber}>{score}</div>
+              <div className={styles.scoreLabel}>points</div>
             </div>
           </div>
 
-          <div className="modern-progress-container">
-            <div className="progress-track">
+          <div className={styles.progressContainer}>
+            <div className={styles.progressBar}>
               <div 
-                className="progress-fill"
+                className={styles.progressFill}
                 style={{
-                  width: `${percentage}%`,
-                  background: `linear-gradient(90deg, ${getCategoryColor(category)}, ${getCategoryColor(category)}99)`,
-                }}
+                  '--progress-width': `${percentage}%`,
+                  '--progress-color': getCategoryColor(category),
+                } as React.CSSProperties}
               >
-                <div className="progress-shine"></div>
+                <div className={styles.progressShine}></div>
               </div>
             </div>
-            <div className="progress-percentage">{Math.round(percentage)}%</div>
+            <div className={styles.scorePercentage}>{Math.round(percentage)}%</div>
           </div>
 
-          <div className="score-card-footer">
-            <div className="compatibility-level">
-              <span className="compatibility-text">
+          <div className={styles.scoreCardFooter}>
+            <div className={styles.compatibilityLevel}>
+              <span className={styles.compatibilityText}>
                 {getCompatibilityLevel(percentage)}
               </span>
-              <div className="compatibility-stars">
+              <div className={styles.compatibilityStars}>
                 {[...Array(5)].map((_, starIndex) => (
                   <span 
                     key={starIndex}
-                    className={`star ${starIndex < Math.ceil(percentage / 20) ? 'filled' : ''}`}
+                    className={`${styles.star} ${starIndex < Math.ceil(percentage / 20) ? styles.filled : ''}`}
                   >
                     ★
                   </span>
@@ -199,59 +199,59 @@ interface ActionButtonsProps {
 }
 
 const ActionButtons: FC<ActionButtonsProps> = memo(({ sortedScores }) => (
-  <div className="scores-actions">
+  <div className={styles.scoresActions}>
     <button 
-      className="modern-action-btn primary"
+      className={`${styles.actionButton} ${styles.primary}`}
       onClick={() => {
         const topCategory = sortedScores[0][0];
         window.location.href = getCategoryRoute(topCategory);
       }}
     >
-      <span className="btn-icon">🎯</span>
-      <span className="btn-text">Compare {sortedScores[0][0]} Displays</span>
-      <div className="btn-shine"></div>
+      <span className={styles.btnIcon}>🎯</span>
+      <span className={styles.btnText}>Compare {sortedScores[0][0]} Displays</span>
+      <div className={styles.btnShine}></div>
     </button>
 
     <button 
-      className="modern-action-btn secondary"
+      className={`${styles.actionButton} ${styles.secondary}`}
       onClick={() => {
         window.location.href = '/contact?subject=DemoRequest';
       }}
     >
-      <span className="btn-icon">🚀</span>
-      <span className="btn-text">Schedule Demo</span>
-      <div className="btn-shine"></div>
+      <span className={styles.btnIcon}>🚀</span>
+      <span className={styles.btnText}>Schedule Demo</span>
+      <div className={styles.btnShine}></div>
     </button>
 
     <button 
-      className="modern-action-btn secondary"
+      className={`${styles.actionButton} ${styles.secondary}`}
       onClick={() => {
         window.location.href = '/contact?subject=QuoteRequest';
       }}
     >
-      <span className="btn-icon">💰</span>
-      <span className="btn-text">Get Pricing</span>
-      <div className="btn-shine"></div>
+      <span className={styles.btnIcon}>💰</span>
+      <span className={styles.btnText}>Get Pricing</span>
+      <div className={styles.btnShine}></div>
     </button>
 
     <button 
-      className="modern-action-btn outline"
+      className={`${styles.actionButton} ${styles.outline}`}
       onClick={() => {
         window.location.reload();
       }}
     >
-      <span className="btn-icon">🔄</span>
-      <span className="btn-text">Start Over</span>
-      <div className="btn-shine"></div>
+      <span className={styles.btnIcon}>🔄</span>
+      <span className={styles.btnText}>Start Over</span>
+      <div className={styles.btnShine}></div>
     </button>
   </div>
 ));
 
 // Background Elements component  
 const BackgroundElements: FC = memo(() => (
-  <div className="bg-elements">
-    <div className="bg-gradient-1"></div>
-    <div className="bg-gradient-2"></div>
-    <div className="bg-pattern"></div>
+  <div className={styles.bgElements}>
+    <div className={styles.bgGradient1}></div>
+    <div className={styles.bgGradient2}></div>
+    <div className={styles.bgPattern}></div>
   </div>
 ));

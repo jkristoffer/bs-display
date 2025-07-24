@@ -1,0 +1,131 @@
+/* QuizResultHeader.module.scss - Quiz result header styling */
+@import '../../../styles/variables';
+
+.resultHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+  padding-bottom: var(--spacing-16);
+  border-bottom: 1px solid var(--color-border-muted);
+
+  h4 {
+    font-size: var(--text-section);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--spacing-8) 0;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: var(--text-body);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Hybrid badge styles
+.hybridBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-8);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-8);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--badge-color, var(--color-primary));
+}
+
+.hybridBadgeLabel {
+  color: var(--color-text-inverse);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-small);
+}
+
+// Hybrid explanation styles
+.hybridExplanation {
+  background-color: var(--color-surface-muted);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-8) 0;
+  border: 1px solid var(--color-border-muted);
+  text-align: left;
+}
+
+.hybridNote {
+  margin-bottom: var(--spacing-8);
+  font-size: var(--text-body);
+  line-height: 1.6;
+
+  strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+}
+
+.categoryHighlight {
+  font-weight: var(--font-weight-semibold);
+  text-transform: capitalize;
+  color: var(--highlight-color, var(--color-primary));
+}
+
+// Hybrid breakdown visualization
+.hybridBreakdown {
+  display: flex;
+  height: 40px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--spacing-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.hybridSegment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-inverse);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  background-color: var(--segment-color, var(--color-primary));
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+
+  &.primary {
+    flex: 0 0 70%;
+  }
+
+  &.secondary {
+    flex: 0 0 30%;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .resultHeader {
+    text-align: left;
+    padding: var(--spacing-12);
+
+    h4 {
+      font-size: var(--text-lg);
+    }
+
+    p {
+      font-size: var(--text-body);
+    }
+  }
+
+  .hybridBreakdown {
+    height: 32px;
+    margin-top: var(--spacing-6);
+  }
+
+  .hybridSegment {
+    font-size: var(--text-caption);
+  }
+}

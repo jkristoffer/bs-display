@@ -1,5 +1,6 @@
 ---
 import MainLayout from './MainLayout.astro';
+import styles from '../components/layouts/ProductLayout.module.scss';
 
 interface Props {
   title: string;
@@ -10,14 +11,7 @@ const { title, description } = Astro.props;
 ---
 
 <MainLayout title={title} description={description}>
-  <div class="product-page">
+  <div class={styles.productPage}>
     <slot />
   </div>
-  <style>
-    .product-page {
-      padding-top: var(--spacing-4);
-      min-height: 100vh;
-      background: var(--color-background);
-    }
-  </style>
 </MainLayout>

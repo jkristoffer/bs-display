@@ -1,0 +1,17 @@
+/**
+ * ProductLayout CSS Module
+ * 
+ * HYBRID APPROACH: Component-specific layout styling only
+ * Global utilities remain in mixins.scss
+ * 
+ * Migration from: ProductLayout.astro inline styles
+ */
+
+@import '../../styles/variables';
+
+/* Product page container - component-specific styling */
+.productPage {
+  padding-top: var(--spacing-4);
+  min-height: 100vh;
+  background: var(--color-background);
+}

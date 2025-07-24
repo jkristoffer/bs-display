@@ -3,6 +3,7 @@ import SEO from '@components/common/SEO.astro';
 import AdminSidebar from '@components/admin/AdminSidebar/AdminSidebar';
 import AdminHeader from '@components/admin/AdminHeader/AdminHeader';
 import '@styles/admin/admin-global.scss';
+import styles from '../components/layouts/AdminLayout.module.scss';
 
 export interface Props {
   title: string;
@@ -26,57 +27,15 @@ export const prerender = false;
       nofollow={true}
     />
   </head>
-  <body class="admin-layout">
-    <div class="admin-container">
+  <body class={styles.adminLayout}>
+    <div class={styles.adminContainer}>
       <AdminSidebar client:load activeItem={activeItem} />
-      <div class="admin-main">
+      <div class={styles.adminMain}>
         <AdminHeader client:load title={title} />
-        <main class="admin-content">
+        <main class={styles.adminContent}>
           <slot />
         </main>
       </div>
     </div>
   </body>
 </html>
-
-<style>
-  .admin-layout {
-    --sidebar-width: 250px;
-    --header-height: 60px;
-    
-    margin: 0;
-    padding: 0;
-    background: var(--color-background);
-    color: var(--color-text-primary);
-    font-family: var(--font-family-base);
-  }
-  
-  .admin-container {
-    display: flex;
-    min-height: 100vh;
-  }
-  
-  .admin-main {
-    flex: 1;
-    margin-left: var(--sidebar-width);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .admin-content {
-    flex: 1;
-    padding: 2rem;
-    margin-top: var(--header-height);
-    overflow-y: auto;
-  }
-  
-  @media (max-width: 768px) {
-    .admin-layout {
-      --sidebar-width: 0;
-    }
-    
-    .admin-main {
-      margin-left: 0;
-    }
-  }
-</style>

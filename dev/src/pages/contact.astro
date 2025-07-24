@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Button from '../components/common/Button/Button.astro';
+import styles from '../components/pages/ContactPage.module.scss';
 
 // Enhanced SEO configuration
 const seoProps = {
@@ -28,15 +29,15 @@ const seoProps = {
 
 <MainLayout {...seoProps}>
   <!-- Contact Background Elements -->
-  <div class="contact-bg-elements">
-    <div class="bg-pattern"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
+  <div class={styles.contactBgElements}>
+    <div class={styles.bgPattern}></div>
+    <div class={`${styles.bgGlow} ${styles.bgGlow1}`}></div>
+    <div class={`${styles.bgGlow} ${styles.bgGlow2}`}></div>
   </div>
 
-  <div class="contact-container">
-    <div class="contact-header">
-      <div class="header-badge animate-fade-up">
+  <div class={styles.contactContainer}>
+    <div class={styles.contactHeader}>
+      <div class={`${styles.headerBadge} animate-fade-up`}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path
             d="M22 12H18L15 21L9 3L6 12H2"
@@ -48,20 +49,20 @@ const seoProps = {
         Get in Touch
       </div>
       <h1 class="animate-fade-up">Contact Us</h1>
-      <p class="subtitle animate-fade-up">
+      <p class={`${styles.subtitle} animate-fade-up`}>
         Have questions about our interactive displays? Need a quote or want to
         book a demo? We're here to help you find the perfect solution for your
         needs.
       </p>
     </div>
 
-    <div class="contact-content">
+    <div class={styles.contactContent}>
       <div
-        class="contact-form-container glass-light animate-fade-up"
+        class={`${styles.contactFormContainer} glass-light animate-fade-up`}
         id="contact-form"
       >
-        <div class="form-header">
-          <div class="form-icon">
+        <div class={styles.formHeader}>
+          <div class={styles.formIcon}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
@@ -71,26 +72,26 @@ const seoProps = {
                 stroke-linejoin="round"></path>
             </svg>
           </div>
-          <div class="form-header-content">
+          <div class={styles.formHeaderContent}>
             <h2>Send Us a Message</h2>
             <p>We'll get back to you within 24 hours</p>
           </div>
         </div>
         <form
-          class="contact-form"
+          class={styles.contactForm}
           id="contactForm"
           role="form"
           aria-label="Contact form"
         >
           <div
             id="formStatus"
-            class="form-status"
+            class={styles.formStatus}
             style="display: none;"
             role="alert"
             aria-live="polite"
           >
           </div>
-          <div class="form-group">
+          <div class={styles.formGroup}>
             <label for="name">Name *</label>
             <input
               type="text"
@@ -100,10 +101,10 @@ const seoProps = {
               aria-required="true"
               aria-describedby="name-help"
             />
-            <small id="name-help" class="sr-only">Enter your full name</small>
+            <small id="name-help" class={styles.srOnly}>Enter your full name</small>
           </div>
 
-          <div class="form-group">
+          <div class={styles.formGroup}>
             <label for="email">Email *</label>
             <input
               type="email"
@@ -113,22 +114,22 @@ const seoProps = {
               aria-required="true"
               aria-describedby="email-help"
             />
-            <small id="email-help" class="sr-only"
+            <small id="email-help" class={styles.srOnly}
               >Enter a valid email address</small
             >
           </div>
 
-          <div class="form-group">
+          <div class={styles.formGroup}>
             <label for="phone">Phone (Optional)</label>
             <input type="tel" id="phone" name="phone" />
           </div>
 
-          <div class="form-group">
+          <div class={styles.formGroup}>
             <label for="organization">Organization</label>
             <input type="text" id="organization" name="organization" />
           </div>
 
-          <div class="form-group">
+          <div class={styles.formGroup}>
             <label for="inquiry-type">Inquiry Type *</label>
             <select
               id="inquiry-type"
@@ -143,12 +144,12 @@ const seoProps = {
               <option value="support">Technical Support</option>
               <option value="general">General Inquiry</option>
             </select>
-            <small id="inquiry-help" class="sr-only"
+            <small id="inquiry-help" class={styles.srOnly}
               >Select the type of inquiry</small
             >
           </div>
 
-          <div class="form-group full-width">
+          <div class={`${styles.formGroup} ${styles.fullWidth}`}>
             <label for="message">Message *</label>
             <textarea
               id="message"
@@ -159,17 +160,17 @@ const seoProps = {
               aria-describedby="message-help"
               placeholder="Please describe your inquiry in detail..."
             ></textarea>
-            <small id="message-help" class="sr-only"
+            <small id="message-help" class={styles.srOnly}
               >Provide details about your inquiry</small
             >
           </div>
 
-          <div class="form-actions">
+          <div class={styles.formActions}>
             <Button variant="primary" size="lg" type="submit" id="submitButton"
               >Send Message</Button
             >
             <div
-              class="loading-spinner"
+              class={styles.loadingSpinner}
               id="loadingSpinner"
               style="display: none;"
             >
@@ -178,9 +179,9 @@ const seoProps = {
         </form>
       </div>
 
-      <div class="contact-info glass-light animate-fade-up">
-        <div class="info-header">
-          <div class="info-icon">
+      <div class={`${styles.contactInfo} glass-light animate-fade-up`}>
+        <div class={styles.infoHeader}>
+          <div class={styles.infoIcon}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
@@ -197,9 +198,9 @@ const seoProps = {
           <h2 id="contact-info">Contact Information</h2>
         </div>
 
-        <div class="info-items">
-          <div class="info-item">
-            <div class="info-item-icon">
+        <div class={styles.infoItems}>
+          <div class={styles.infoItem}>
+            <div class={styles.infoItemIcon}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
@@ -213,14 +214,14 @@ const seoProps = {
                   stroke-width="2"></circle>
               </svg>
             </div>
-            <div class="info-content">
+            <div class={styles.infoContent}>
               <h3>Address</h3>
               <p>5 Harper Road #07-03 <br />Singapore 369673</p>
             </div>
           </div>
 
-          <div class="info-item">
-            <div class="info-item-icon">
+          <div class={styles.infoItem}>
+            <div class={styles.infoItemIcon}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M22 16.92V19.92C22 20.52 21.52 21.03 20.92 21.03C9.4 21.03 0 11.63 0 0.130005C0 -0.469995 0.48 -0.969995 1.08 -0.969995H4.08C4.68 -0.969995 5.19 -0.479995 5.19 0.120005V3.12C5.19 3.72 4.71 4.22 4.11 4.22H2.63C3.24 7.72 5.28 9.76 8.78 10.37V8.89C8.78 8.29 9.26 7.78 9.86 7.78H12.86C13.46 7.78 13.97 8.26 13.97 8.86V11.86C13.97 12.46 13.49 12.97 12.89 12.97H9.89C9.29 12.97 8.78 13.45 8.78 14.05V17.05C8.78 17.65 9.26 18.16 9.86 18.16H12.86C13.46 18.16 13.97 17.68 13.97 17.08V14.08C17.47 13.47 19.51 11.43 20.12 7.93H18.64C18.04 7.93 17.53 7.45 17.53 6.85V3.85C17.53 3.25 18.01 2.74 18.61 2.74H21.61C22.21 2.74 22.72 3.22 22.72 3.82V6.82C22.72 7.42 22.24 7.93 21.64 7.93H20.16C19.55 11.43 17.51 13.47 14.01 14.08V16.92C14.01 17.52 13.53 18.03 12.93 18.03H9.93C9.33 18.03 8.82 17.55 8.82 16.95V13.95"
@@ -230,14 +231,14 @@ const seoProps = {
                   stroke-linejoin="round"></path>
               </svg>
             </div>
-            <div class="info-content">
+            <div class={styles.infoContent}>
               <h3>Phone</h3>
               <p><a href="tel:+6568586597">+65 6858 6597</a></p>
             </div>
           </div>
 
-          <div class="info-item">
-            <div class="info-item-icon">
+          <div class={styles.infoItem}>
+            <div class={styles.infoItemIcon}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"
@@ -247,7 +248,7 @@ const seoProps = {
                   stroke-linejoin="round"></path>
               </svg>
             </div>
-            <div class="info-content">
+            <div class={styles.infoContent}>
               <h3>Email</h3>
               <p>
                 <a href="mailto:team@bigshine-display.com"
@@ -256,8 +257,8 @@ const seoProps = {
             </div>
           </div>
 
-          <div class="info-item">
-            <div class="info-item-icon">
+          <div class={styles.infoItem}>
+            <div class={styles.infoItemIcon}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <circle
                   cx="12"
@@ -273,7 +274,7 @@ const seoProps = {
                   stroke-linejoin="round"></polyline>
               </svg>
             </div>
-            <div class="info-content">
+            <div class={styles.infoContent}>
               <h3>Business Hours</h3>
               <p>
                 Monday - Friday: 9:00 AM - 6:00 PM<br />
@@ -365,485 +366,3 @@ const seoProps = {
   });
 </script>
 
-<style lang="scss">
-  /* Contact Page Modern Styling with Phase 1 Design System */
-
-  /* Background Elements */
-  .contact-bg-elements {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .bg-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(
-        circle at 25% 75%,
-        rgba(59, 130, 246, 0.03) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 75% 25%,
-        rgba(16, 185, 129, 0.03) 0%,
-        transparent 50%
-      );
-  }
-
-  .bg-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.04;
-  }
-
-  .bg-glow-1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-    top: -250px;
-    right: -250px;
-    animation: glow1Float 25s ease-in-out infinite;
-  }
-
-  .bg-glow-2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, #10b981 0%, transparent 70%);
-    bottom: -200px;
-    left: -200px;
-    animation: glow2Float 20s ease-in-out infinite reverse;
-  }
-
-  /* Container */
-  .contact-container {
-    max-width: var(--container-default);
-    margin: 0 auto;
-    padding: calc(var(--spacing-16) * 3) var(--space-md);
-    position: relative;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(248, 250, 252, 0.98) 100%
-    );
-    backdrop-filter: blur(10px);
-    min-height: 90vh;
-  }
-
-  /* Header */
-  .contact-header {
-    text-align: center;
-    margin-bottom: var(--space-section);
-    position: relative;
-    z-index: 2;
-  }
-
-  .header-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-sm) var(--space-lg);
-    background: var(--gradient-primary);
-    color: white;
-    border-radius: var(--radius-full);
-    font-size: var(--text-body);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-lg);
-    box-shadow: var(--shadow-lg);
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .contact-header h1 {
-    font-size: var(--text-hero);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--text-hero-line-height);
-    color: var(--color-text-primary);
-    margin: 0 0 var(--space-lg) 0;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .subtitle {
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: var(--text-subsection);
-    line-height: var(--text-body-line-height);
-    color: var(--color-text-secondary);
-  }
-
-  /* Content Grid */
-  .contact-content {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: var(--space-xl);
-    align-items: start;
-    position: relative;
-    z-index: 2;
-
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-  }
-
-  /* Form Container */
-  .contact-form-container {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-card-lg);
-    padding: var(--space-xl);
-    box-shadow: var(--shadow-2xl);
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-    }
-  }
-
-  .form-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-    padding-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--glass-border);
-  }
-
-  .form-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: var(--shadow-lg);
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  .form-header-content h2 {
-    font-size: var(--text-section);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin: 0 0 var(--space-xs) 0;
-  }
-
-  .form-header-content p {
-    font-size: var(--text-body);
-    color: var(--color-text-secondary);
-    margin: 0;
-  }
-
-  /* Form Styling */
-  .contact-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-    }
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-
-    &.full-width {
-      grid-column: 1 / -1;
-    }
-  }
-
-  .form-group label {
-    margin-bottom: var(--space-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
-    font-size: var(--text-body);
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: var(--space-sm) var(--space-md);
-    border: 1px solid var(--color-border-muted);
-    border-radius: var(--radius-card);
-    font-family: var(--font-primary);
-    font-size: var(--text-body);
-    background: var(--color-surface-elevated);
-    /* backdrop-filter: var(--glass-backdrop); */
-    transition: all var(--duration-normal) var(--ease-smooth);
-    color: var(--color-text-primary);
-
-    &::placeholder {
-      color: var(--color-text-tertiary);
-    }
-
-    &:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      background: var(--color-surface-elevated);
-      transform: translateY(-1px);
-    }
-  }
-
-  .form-actions {
-    grid-column: 1 / -1;
-    margin-top: var(--space-lg);
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-  }
-
-  /* Contact Info */
-  .contact-info {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-card-lg);
-    padding: var(--space-xl);
-    box-shadow: var(--shadow-2xl);
-    height: fit-content;
-    position: sticky;
-    top: var(--space-lg);
-  }
-
-  .info-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-    padding-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--glass-border);
-  }
-
-  .info-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--gradient-success);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: var(--shadow-lg);
-    flex: 0 0 48px;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  .info-header h2 {
-    font-size: var(--text-section);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin: 0;
-  }
-
-  .info-items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-md);
-    border-radius: var(--radius-card);
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    transition: all var(--duration-normal) var(--ease-smooth);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-  }
-
-  .info-item-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    flex-shrink: 0;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .info-content h3 {
-    font-size: var(--text-subsection);
-    color: var(--color-text-primary);
-    margin: 0 0 var(--space-xs) 0;
-    font-weight: var(--font-weight-semibold);
-  }
-
-  .info-content p {
-    margin: 0;
-    color: var(--color-text-secondary);
-    line-height: var(--text-body-line-height);
-    font-size: var(--text-body);
-  }
-
-  .info-content a {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
-    transition: all var(--duration-normal) var(--ease-smooth);
-
-    &:hover {
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: underline;
-    }
-  }
-
-  /* Form Status */
-  .form-status {
-    grid-column: 1 / -1;
-    padding: var(--space-md);
-    border-radius: var(--radius-card);
-    margin-bottom: var(--space-lg);
-    font-weight: var(--font-weight-medium);
-
-    &.success {
-      background: rgba(34, 197, 94, 0.1);
-      color: #059669;
-      border: 1px solid rgba(34, 197, 94, 0.2);
-    }
-
-    &.error {
-      background: rgba(239, 68, 68, 0.1);
-      color: #dc2626;
-      border: 1px solid rgba(239, 68, 68, 0.2);
-    }
-  }
-
-  /* Loading Spinner */
-  .loading-spinner {
-    width: 24px;
-    height: 24px;
-    border: 2px solid rgba(59, 130, 246, 0.3);
-    border-top: 2px solid #3b82f6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  /* Animations */
-  @keyframes glow1Float {
-    0%,
-    100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    50% {
-      transform: translate(-30px, -20px) rotate(180deg);
-    }
-  }
-
-  @keyframes glow2Float {
-    0%,
-    100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    50% {
-      transform: translate(20px, -15px) rotate(-180deg);
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  /* Accessibility */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .contact-container {
-      padding: var(--space-lg) var(--space-sm);
-    }
-
-    .contact-form-container,
-    .contact-info {
-      padding: var(--space-md);
-    }
-
-    .form-header,
-    .info-header {
-      flex-direction: column;
-      text-align: center;
-      gap: var(--space-sm);
-    }
-
-    .contact-info {
-      position: static;
-    }
-  }
-
-  /* Reduced Motion */
-  @media (prefers-reduced-motion: reduce) {
-    .bg-glow-1,
-    .bg-glow-2 {
-      animation: none !important;
-    }
-
-    .contact-container {
-      backdrop-filter: none;
-    }
-
-    * {
-      transition: none !important;
-    }
-  }
-</style>

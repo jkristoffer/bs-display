@@ -1,0 +1,517 @@
+/**
+ * Contact Page CSS Module
+ * 
+ * HYBRID APPROACH: Migrates component-specific styles to CSS modules
+ * while preserving global utilities (glass-light, animate-fade-up) 
+ * that are defined in src/styles/mixins.scss
+ * 
+ * Strategy: 
+ * - CSS Modules: Page-specific containers, forms, backgrounds
+ * - Global utilities: glass-light, animate-fade-up (keep as-is)
+ */
+
+@import '../../styles/variables';
+
+/* ============================
+   BACKGROUND ELEMENTS 
+   (Page-specific decorative elements)
+   ============================ */
+
+.contactBgElements {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 25% 75%,
+      rgba(59, 130, 246, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 25%,
+      rgba(16, 185, 129, 0.03) 0%,
+      transparent 50%
+    );
+}
+
+.bgGlow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.04;
+}
+
+.bgGlow1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  top: -250px;
+  right: -250px;
+  animation: glow1Float 25s ease-in-out infinite;
+}
+
+.bgGlow2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #10b981 0%, transparent 70%);
+  bottom: -200px;
+  left: -200px;
+  animation: glow2Float 20s ease-in-out infinite reverse;
+}
+
+/* Background animation keyframes */
+@keyframes glow1Float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-30px, -20px) rotate(180deg);
+  }
+}
+
+@keyframes glow2Float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(20px, -15px) rotate(-180deg);
+  }
+}
+
+/* ============================
+   LAYOUT CONTAINERS
+   (Component-specific containers)
+   ============================ */
+
+.contactContainer {
+  max-width: var(--container-default);
+  margin: 0 auto;
+  padding: calc(var(--spacing-16) * 3) var(--space-md);
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.98) 100%
+  );
+  backdrop-filter: blur(10px);
+  min-height: 90vh;
+}
+
+.contactHeader {
+  text-align: center;
+  margin-bottom: var(--space-section);
+  position: relative;
+  z-index: 2;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-xl);
+  align-items: start;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* ============================
+   PAGE-SPECIFIC ELEMENTS
+   (Custom badges, titles, etc.)
+   ============================ */
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.contactHeader h1 {
+  font-size: var(--text-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--text-hero-line-height);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-lg) 0;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: var(--text-subsection);
+  line-height: var(--text-body-line-height);
+  color: var(--color-text-secondary);
+}
+
+/* ============================
+   FORM COMPONENTS
+   (Contact form specific styling)
+   ============================ */
+
+.contactFormContainer {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-2xl);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+  }
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.formIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-lg);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.formHeaderContent h2 {
+  font-size: var(--text-section);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.formHeaderContent p {
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.contactForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.fullWidth {
+    grid-column: 1 / -1;
+  }
+}
+
+.formGroup label {
+  margin-bottom: var(--space-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-size: var(--text-body);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--radius-card);
+  font-family: var(--font-primary);
+  font-size: var(--text-body);
+  background: var(--color-surface-elevated);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  color: var(--color-text-primary);
+
+  &::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: var(--color-surface-elevated);
+    transform: translateY(-1px);
+  }
+}
+
+.formActions {
+  grid-column: 1 / -1;
+  margin-top: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.formStatus {
+  grid-column: 1 / -1;
+  padding: var(--space-md);
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-lg);
+  font-weight: var(--font-weight-medium);
+
+  &.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #059669;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  &.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+}
+
+.loadingSpinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================
+   INFO SECTION COMPONENTS
+   (Contact information styling)
+   ============================ */
+
+.contactInfo {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-2xl);
+  height: fit-content;
+  position: sticky;
+  top: var(--space-lg);
+}
+
+.infoHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.infoIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gradient-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  flex: 0 0 48px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.infoHeader h2 {
+  font-size: var(--text-section);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.infoItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all var(--duration-normal) var(--ease-smooth);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.infoItemIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.infoContent h3 {
+  font-size: var(--text-subsection);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-xs) 0;
+  font-weight: var(--font-weight-semibold);
+}
+
+.infoContent p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: var(--text-body-line-height);
+  font-size: var(--text-body);
+}
+
+.infoContent a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-normal) var(--ease-smooth);
+
+  &:hover {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: underline;
+  }
+}
+
+/* ============================
+   UTILITY CLASSES
+   (Page-specific utilities)
+   ============================ */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+
+@media (max-width: 768px) {
+  .contactContainer {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .contactFormContainer,
+  .contactInfo {
+    padding: var(--space-md);
+  }
+
+  .formHeader,
+  .infoHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+
+  .contactInfo {
+    position: static;
+  }
+}
+
+/* ============================
+   REDUCED MOTION SUPPORT
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .bgGlow1,
+  .bgGlow2 {
+    animation: none !important;
+  }
+
+  .contactContainer {
+    backdrop-filter: none;
+  }
+
+  * {
+    transition: none !important;
+  }
+}

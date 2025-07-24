@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import type { Question, Option } from '../types';
+import styles from './QuizQuestions.module.scss';
 
 interface QuizQuestionsProps {
   questions: Question[];
@@ -52,42 +53,39 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
 
 
   return (
-    <div className="modern-questions-container">
+    <div className={styles.questionsContainer}>
       {/* Modern Progress Bar */}
-      <div className="modern-progress-section">
-        <div className="progress-header">
-          <h3 className="progress-title">Your Progress</h3>
-          <div className="progress-counter">
-            <span className="answered-count">{answeredCount}</span>
-            <span className="total-count">/{questions.length}</span>
+      <div className={styles.progressSection}>
+        <div className={styles.progressHeader}>
+          <h3 className={styles.progressTitle}>Your Progress</h3>
+          <div className={styles.progressCounter}>
+            <span className={styles.answeredCount}>{answeredCount}</span>
+            <span className={styles.totalCount}>/{questions.length}</span>
           </div>
         </div>
         
-        <div className="progress-bar-container">
+        <div className={styles.progressBar}>
           <div 
-            className={`progress-bar-fill ${showProgressAnimation ? 'animate' : ''}`}
+            className={`${styles.progressFill} ${showProgressAnimation ? styles.animate : ''} ${progressPercentage === 100 ? styles.complete : ''}`}
             style={{ 
-              width: `${progressPercentage}%`,
-              background: progressPercentage === 100 
-                ? 'linear-gradient(90deg, #10b981 0%, #22c55e 100%)'
-                : 'linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%)'
-            }}
+              '--progress-width': `${progressPercentage}%`
+            } as React.CSSProperties}
           />
-          <div className="progress-percentage">
+          <div className={styles.progressText}>
             {Math.round(progressPercentage)}%
           </div>
         </div>
         
         {progressPercentage === 100 && (
-          <div className="progress-celebration">
-            <span className="celebration-icon">🎉</span>
-            <span className="celebration-text">All questions answered!</span>
+          <div className={styles.progressCelebration}>
+            <span className={styles.celebrationIcon}>🎉</span>
+            <span className={styles.celebrationText}>All questions answered!</span>
           </div>
         )}
       </div>
 
       {/* All Questions (Vertical Layout) */}
-      <div className="questions-grid">
+      <div className={styles.questionsGrid}>
         {questions.map((question, index) => {
           const isAnswered = getSelectionCount(question.id) > 0;
           const isMulti = question.type === 'multi';
@@ -98,37 +96,37 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
             <div
               key={question.id}
               id={`question-${question.id}`}
-              className={`modern-question-card ${isAnswered ? 'answered' : ''}`}
+              className={`${styles.quizQuestion} ${isAnswered ? styles.questionAnswered : ''}`}
             >
-              <div className="question-card-header">
-                <div className="question-number-badge">
-                  <span className="question-number">{index + 1}</span>
+              <div className={styles.questionHeader}>
+                <div className={styles.questionNumberBadge}>
+                  <span className={styles.questionNumber}>{index + 1}</span>
                 </div>
-                <div className="question-status-indicator">
+                <div className={styles.questionStatus}>
                   {isAnswered ? (
-                    <div className="status-answered">
-                      <span className="check-icon">✓</span>
+                    <div className={styles.statusAnswered}>
+                      <span className={styles.checkIcon}>✓</span>
                       <span>Answered</span>
                     </div>
                   ) : (
-                    <div className="status-pending">
-                      <span className="pending-icon">◯</span>
+                    <div className={styles.statusPending}>
+                      <span className={styles.pendingIcon}>◯</span>
                       <span>Pending</span>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="question-content">
-                <h3 className="question-title">{question.question}</h3>
+              <div className={styles.questionContent}>
+                <h3 className={styles.questionTitle}>{question.question}</h3>
                 
                 {isMulti && (
-                  <div className="selection-guidance">
-                    <span className="selection-text">
+                  <div className={styles.selectionInfo}>
+                    <span className={styles.selectionText}>
                       Select up to {maxSelections} options
                     </span>
                     {selectionCount > 0 && (
-                      <span className="selection-count">
+                      <span className={styles.selectionCount}>
                         ({selectionCount}/{maxSelections} selected)
                       </span>
                     )}
@@ -136,7 +134,7 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
                 )}
               </div>
 
-              <div className="modern-options-container">
+              <div className={styles.optionsContainer}>
                 {question.options.map((option, optionIndex) => {
                   const optionId =
                     option.id || `${question.id}-option-${optionIndex}`;
@@ -145,33 +143,33 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
                   return (
                     <button
                       key={optionId}
-                      className={`modern-option-button ${isSelected ? 'selected' : ''}`}
+                      className={`${styles.optionButton} ${isSelected ? styles.selected : ''}`}
                       onClick={() =>
                         toggleOption(question.id, option, isMulti, maxSelections)
                       }
                       style={{ 
-                        animationDelay: `${optionIndex * 0.1}s` 
-                      }}
+                        '--animation-delay': `${optionIndex * 0.1}s` 
+                      } as React.CSSProperties}
                     >
-                      <div className="option-content">
-                        <div className="option-text">
+                      <div className={styles.optionContent}>
+                        <div className={styles.optionText}>
                           {option.label}
                         </div>
-                        <div className="option-indicator">
+                        <div className={styles.optionIndicator}>
                           {isMulti ? (
-                            <div className={`checkbox-indicator ${isSelected ? 'checked' : ''}`}>
-                              {isSelected && <span className="checkmark">✓</span>}
+                            <div className={`${styles.checkboxIndicator} ${isSelected ? styles.checked : ''}`}>
+                              {isSelected && <span className={styles.checkmark}>✓</span>}
                             </div>
                           ) : (
-                            <div className={`radio-indicator ${isSelected ? 'selected' : ''}`}>
-                              {isSelected && <span className="dot" />}
+                            <div className={`${styles.radioIndicator} ${isSelected ? styles.selected : ''}`}>
+                              {isSelected && <span className={styles.dot} />}
                             </div>
                           )}
                         </div>
                       </div>
                       
                       {isSelected && (
-                        <div className="selection-overlay" />
+                        <div className={styles.selectionOverlay} />
                       )}
                     </button>
                   );
@@ -183,37 +181,37 @@ export const QuizQuestions: FC<QuizQuestionsProps> = ({
       </div>
 
       {/* Modern Submit Section */}
-      <div className="modern-submit-section">
-        <div className="submit-card">
-          <div className="submit-header">
-            <h3 className="submit-title">Ready to See Your Results?</h3>
-            <p className="submit-description">
+      <div className={styles.submitContainer}>
+        <div className={styles.submitCard}>
+          <div className={styles.submitHeader}>
+            <h3 className={styles.submitTitle}>Ready to See Your Results?</h3>
+            <p className={styles.submitDescription}>
               Get personalized recommendations based on your answers
             </p>
           </div>
 
-          <div className="submit-actions">
+          <div className={styles.submitActions}>
             <button
-              className={`modern-submit-button ${allQuestionsAnswered ? 'ready' : 'disabled'} ${isSubmitting ? 'submitting' : ''}`}
+              className={`${styles.submitButton} ${allQuestionsAnswered ? styles.ready : styles.disabled} ${isSubmitting ? styles.submitting : ''}`}
               disabled={!allQuestionsAnswered || isSubmitting}
               onClick={handleSubmit}
             >
-              <span className="submit-text">
+              <span className={styles.submitText}>
                 {isSubmitting ? 'Analyzing Your Answers...' : 'See Your Results'}
               </span>
-              <span className="submit-icon">
+              <span className={styles.submitIcon}>
                 {isSubmitting ? (
-                  <div className="loading-spinner" />
+                  <div className={styles.loadingSpinner} />
                 ) : (
-                  <span className="arrow-icon">→</span>
+                  <span className={styles.arrowIcon}>→</span>
                 )}
               </span>
             </button>
 
             {!allQuestionsAnswered && (
-              <div className="submit-hint">
-                <span className="hint-icon">ℹ️</span>
-                <span className="hint-text">
+              <div className={styles.submitHint}>
+                <span className={styles.hintIcon}>ℹ️</span>
+                <span className={styles.hintText}>
                   Please answer all {questions.length} questions to continue
                 </span>
               </div>

@@ -12,7 +12,7 @@ import {
 } from './index';
 import type { QuizData, Option } from './types';
 import { Analytics } from '@utils/analytics/client';
-import './quiz-styles.scss';
+import styles from './Quiz.module.scss';
 
 /**
  * Utility function to get a consistent color for each category
@@ -109,7 +109,7 @@ export function FinalQuiz({ quizData }: FinalQuizProps) {
 
 
   return (
-    <div className="quiz-container">
+    <div className={styles.quizContainer}>
       {/* Intro Screen */}
       {currentScreen === 'intro' && (
         <QuizIntro

@@ -1,0 +1,15 @@
+/**
+ * MainLayout CSS Module
+ * 
+ * HYBRID APPROACH: Component-specific layout styling only
+ * Global utilities (container, section, glass-light, animate-fade-up) remain in mixins.scss
+ * 
+ * Migration from: MainLayout.astro inline styles
+ */
+
+@import '../../styles/variables';
+
+/* Main content container - component-specific styling */
+.mainContent {
+  min-height: 70vh;
+}

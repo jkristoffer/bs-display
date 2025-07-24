@@ -84,7 +84,7 @@ const handleButtonActivation = (e: KeyboardEvent, activeDropdown: string | null)
   const button = e.target && (e.target as HTMLElement).closest('button[aria-expanded]');
   if (button) {
     e.preventDefault();
-    button.click();
+    (button as HTMLElement).click();
     
     // Focus first dropdown item after opening
     setTimeout(() => {

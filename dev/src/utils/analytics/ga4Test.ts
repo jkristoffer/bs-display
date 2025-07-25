@@ -46,7 +46,7 @@ export async function testGA4Connection() {
   // Test 2: Connection
   if (results.configurationValid) {
     try {
-      const client = getGA4Client();
+      getGA4Client();
       results.connectionSuccessful = true;
     } catch (error: any) {
       results.errors.push(`Connection error: ${error.message}`);

@@ -1,5 +1,5 @@
 /* Quiz.module.scss - Main quiz container and shared styles */
-@import '../../styles/variables';
+@import './styles/quiz-variables';
 
 .quizContainer {
   max-width: var(--container-default);

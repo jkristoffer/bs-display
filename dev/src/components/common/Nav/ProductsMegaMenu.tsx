@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './ProductsMegaMenu.module.scss';
 
 interface ProductCategory {

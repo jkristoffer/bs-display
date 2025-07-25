@@ -318,8 +318,8 @@ const Nav = React.memo<NavProps>(({ currentPath }) => {
                         {item.items?.map((subItem, subIndex) => (
                           <NavItem
                             key={`dropdown-item-${index}-${subIndex}`}
-                            href={subItem.path}
-                            active={isActiveRoute(currentPath, subItem.path || '')}
+                            href={subItem.path ?? ''}
+                            active={isActiveRoute(currentPath || '', subItem.path)}
                           >
                             {subItem.label}
                           </NavItem>

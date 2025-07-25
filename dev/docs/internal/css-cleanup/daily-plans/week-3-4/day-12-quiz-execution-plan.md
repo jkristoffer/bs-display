@@ -1,650 +1,431 @@
-# Day 12 Execution Plan: Quiz System Migration
+# Day 12: Quiz Component CSS Module Migration - EXECUTION PLAN
 
-**Date**: Phase 3 Day 2  
-**Duration**: 8 hours  
-**Priority**: HIGH - Global CSS pollution source (80KB quiz-styles.scss)  
-**Objective**: Modularize quiz-styles.scss and migrate quiz component inline styles
+**Date**: 2025-07-25  
+**Duration**: 8 hours (4 hours morning, 4 hours afternoon)  
+**Priority**: HIGH - Critical bundle size issue (79.56KB quiz bundle)  
+**Objective**: Complete migration from 78KB quiz-styles.scss to individual CSS modules
 
-## 📋 **Pre-Execution Checklist**
+## 🚨 CRITICAL FINDINGS FROM DAY 17 VALIDATION
 
-### **Prerequisites Validation**
-- [x] ✅ Day 11 FilterUIv2 migration completed successfully
-- [x] ✅ CSS module patterns proven and ready for replication
-- [x] ✅ Build system validated with Phase 2 + Day 11 changes
-- [x] ✅ Quiz system analysis complete (80KB global file + 11 inline styles)
+Based on the gap analysis, this day is **ESSENTIAL** for project success:
 
-### **Safety Measures**
-- [ ] Create git checkpoint before starting migration
-- [ ] Backup quiz-styles.scss to quiz-styles.scss.backup
-- [ ] Backup all quiz component files
-- [ ] Test complete quiz flow and capture baseline behavior
+- **Bundle Impact**: Quiz is #2 largest bundle contributor (79.56KB = 11.9% of 668KB total)
+- **Current State**: CSS modules exist but quiz-styles.scss (78KB) is still being bundled
+- **Root Cause**: Quiz components use CSS modules BUT the massive global quiz-styles.scss is still being imported somewhere
+- **Target**: Eliminate quiz-styles.scss from build output entirely
 
-## 🎯 **Task Breakdown**
+## CURRENT ANALYSIS
 
-### **Task 12.1: Quiz System Architecture Analysis (90 minutes)**
-**Objective**: Deep analysis of 80KB quiz-styles.scss structure and quiz component dependencies
+### ✅ Already Completed (Discovered)
+- Individual CSS modules created for all quiz components
+- Components successfully migrated to use CSS modules
+- Quiz functionality working correctly
 
-#### **Subtask 12.1a: Global CSS File Analysis (45 minutes)**
-```bash
-# Analyze quiz-styles.scss structure (3,418 lines)
-wc -l src/components/quiz/quiz-styles.scss
-grep -n "^\.quiz" src/components/quiz/quiz-styles.scss | head -20
+### ❌ Critical Gap Identified
+- **78KB quiz-styles.scss still exists and being bundled**
+- **Global import still active somewhere in build process**  
+- **Bundle optimization not achieved despite component migration**
 
-# Identify major style sections
-grep -n "^/\*" src/components/quiz/quiz-styles.scss
-```
+## EXECUTION STRATEGY
 
-**Expected sections to identify:**
-- Quiz intro/landing styles
-- Question container and layout styles  
-- Answer choice styling (multiple choice, drag-drop, etc.)
-- Progress indicator styles
-- Results and scoring styles
-- Error boundary and loading states
-- Mobile responsive overrides
+This day will focus on **REMOVING** the global quiz-styles.scss from the build rather than creating new modules.
 
-**Deliverables:**
-- Complete section breakdown of 80KB file
-- Style grouping by quiz component/functionality
-- Dependencies between different quiz sections
-- Shared utility classes and mixins identification
+---
 
-#### **Subtask 12.1b: Component Usage Mapping (45 minutes)**
-**Analyze quiz components and their styling needs:**
+## MORNING SESSION (4 hours): Global Import Elimination
 
-**Quiz Components with Inline Styles (11 total):**
-- `QuizResultHeader.tsx`: 7 inline styles
-- `QuizQuestions.tsx`: 2 inline styles  
-- `CategoryScores.tsx`: 2 inline styles
+### Hour 1: Diagnostic Analysis (9:00-10:00 AM)
 
-**Quiz Components without Inline Styles:**
-- `Quiz.tsx` (main container)
-- `QuizIntro.tsx`
-- `QuizProgress.tsx`
-- `QuizError.tsx`
-- Additional quiz-related components
-
-**Deliverables:**
-- Component-to-style mapping
-- Inline style inventory for each component
-- Shared styling patterns identification
-- Component dependency tree for styling
-
-### **Task 12.2: Module Architecture Design (90 minutes)**
-**Objective**: Design optimal modular structure for quiz system CSS
-
-#### **Subtask 12.2a: Module Breakdown Strategy (45 minutes)**
-**Design modular CSS structure:**
-
-```scss
-// Quiz.module.scss - Main container and layout
-.container { /* Quiz main wrapper */ }
-.content { /* Quiz content area */ }
-.background { /* Quiz background/theming */ }
-
-// QuizIntro.module.scss - Landing/intro page
-.intro { /* Intro container */ }
-.title { /* Quiz title styling */ }
-.description { /* Quiz description */ }
-.startButton { /* Start quiz button */ }
-
-// QuizQuestions.module.scss - Question display
-.questionContainer { /* Question wrapper */ }
-.questionText { /* Question text styling */ }
-.questionNumber { /* Question numbering */ }
-.answerGroup { /* Answer choices container */ }
-.answerChoice { /* Individual answer */ }
-.answerSelected { /* Selected answer state */ }
-
-// QuizProgress.module.scss - Progress indicators
-.progress { /* Progress container */ }
-.progressBar { /* Progress bar */ }
-.progressText { /* Progress text */ }
-.stepIndicator { /* Step indicators */ }
-
-// QuizResults.module.scss - Results and scoring
-.results { /* Results container */ }
-.score { /* Score display */ }
-.categoryScores { /* Category breakdown */ }
-.recommendations { /* Result recommendations */ }
-
-// QuizShared.module.scss - Shared utilities
-.button { /* Shared button styles */ }
-.card { /* Shared card styles */ }
-.loading { /* Loading states */ }
-.error { /* Error states */ }
-```
-
-#### **Subtask 12.2b: Semantic Token Integration (45 minutes)**
-**Map quiz-specific values to semantic tokens:**
-
-```scss
-// Color mapping
-.quizPrimary { background: var(--color-primary); }
-.quizSecondary { background: var(--color-secondary); }
-.quizSuccess { background: var(--color-success); }
-.quizWarning { background: var(--color-warning); }
-
-// Spacing mapping  
-.quizSpacing { padding: var(--spacing-12); }
-.quizGap { gap: var(--spacing-8); }
-
-// Typography mapping
-.quizTitle { font-size: var(--text-section); }
-.quizBody { font-size: var(--text-body); }
-```
-
-**Deliverables:**
-- Complete modular architecture plan
-- Semantic token integration strategy
-- Shared utility identification
-- Component-specific styling separation
-
-### **Task 12.3: Global CSS Modularization (150 minutes)**
-**Objective**: Break down 80KB quiz-styles.scss into component-specific modules
-
-#### **Subtask 12.3a: Extract Core Quiz Module (60 minutes)**
-**Create Quiz.module.scss from global styles:**
-
-```scss
-/* Quiz.module.scss - Main container styles */
-@import '../../../styles/variables';
-
-.container {
-  min-height: 100vh;
-  background: var(--gradient-hero);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: var(--container-default);
-  margin: 0 auto;
-  padding: var(--spacing-12);
-  width: 100%;
-}
-
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--gradient-hero);
-  z-index: var(--z-base);
-}
-
-.card {
-  background: var(--color-surface-elevated);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-16);
-  box-shadow: var(--shadow-xl);
-  position: relative;
-  z-index: calc(var(--z-base) + 1);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .content {
-    padding: var(--spacing-8);
-  }
-  
-  .card {
-    padding: var(--spacing-12);
-    border-radius: var(--radius-lg);
-  }
-}
-```
-
-#### **Subtask 12.3b: Extract Questions Module (45 minutes)**
-**Create QuizQuestions.module.scss:**
-
-```scss
-/* QuizQuestions.module.scss */
-@import '../../../styles/variables';
-
-.questionContainer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-12);
-  padding: var(--spacing-8);
-}
-
-.questionText {
-  font-size: var(--text-section);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  line-height: 1.4;
-  margin-bottom: var(--spacing-8);
-}
-
-.questionNumber {
-  font-size: var(--text-small);
-  color: var(--color-text-secondary);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-4);
-}
-
-.answerGroup {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-6);
-}
-
-.answerChoice {
-  padding: var(--spacing-8) var(--spacing-12);
-  border: 2px solid var(--color-border-default);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-smooth);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-6);
-}
-
-.answerChoice:hover {
-  border-color: var(--color-primary);
-  background: var(--color-surface-elevated);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.answerSelected {
-  border-color: var(--color-primary);
-  background: rgba(var(--color-primary), 0.1);
-  color: var(--color-primary);
-}
-
-.answerText {
-  font-size: var(--text-body);
-  color: var(--color-text-primary);
-  flex: 1;
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .questionContainer {
-    gap: var(--spacing-8);
-    padding: var(--spacing-6);
-  }
-  
-  .answerChoice {
-    padding: var(--spacing-6) var(--spacing-8);
-  }
-  
-  .questionText {
-    font-size: var(--text-subsection);
-  }
-}
-```
-
-#### **Subtask 12.3c: Extract Results Module (45 minutes)**
-**Create QuizResults.module.scss and related modules:**
-
-```scss
-/* QuizResults.module.scss */
-@import '../../../styles/variables';
-
-.results {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-12);
-  padding: var(--spacing-12);
-}
-
-.header {
-  text-align: center;
-  padding-bottom: var(--spacing-12);
-  border-bottom: 1px solid var(--color-border-muted);
-}
-
-.title {
-  font-size: var(--text-hero);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-6);
-}
-
-.score {
-  font-size: var(--text-section);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-4);
-}
-
-.categoryScores {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-8);
-  margin: var(--spacing-12) 0;
-}
-
-.categoryScore {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-8);
-  text-align: center;
-}
-
-.categoryName {
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spacing-4);
-}
-
-.categoryValue {
-  font-size: var(--text-subsection);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-.recommendations {
-  background: var(--color-surface-muted);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-12);
-}
-
-.recommendationTitle {
-  font-size: var(--text-subsection);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-8);
-}
-
-.recommendationList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-6);
-}
-
-.recommendationItem {
-  padding: var(--spacing-6);
-  background: var(--color-surface-elevated);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-primary);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .categoryScores {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-6);
-  }
-  
-  .results {
-    padding: var(--spacing-8);
-    gap: var(--spacing-8);
-  }
-  
-  .title {
-    font-size: var(--text-section);
-  }
-}
-```
-
-**Deliverables:**
-- Complete modular CSS structure extracted from 80KB file
-- All quiz components have dedicated CSS modules
-- Shared utilities properly separated
-- Semantic token integration throughout
-
-### **Task 12.4: Component Migration (120 minutes)**
-**Objective**: Update quiz components to use CSS modules and remove inline styles
-
-#### **Subtask 12.4a: Main Quiz Component (30 minutes)**
-**Update Quiz.tsx:**
-```tsx
-// Add CSS module import
-import styles from './Quiz.module.scss';
-
-// Replace any existing global CSS import
-// import './quiz-styles.scss'; // REMOVE
-
-// Update JSX to use CSS module classes
-<div className={styles.container}>
-  <div className={styles.background} />
-  <div className={styles.content}>
-    <div className={styles.card}>
-      {/* Quiz content */}
-    </div>
-  </div>
-</div>
-```
-
-#### **Subtask 12.4b: Quiz Questions Migration (45 minutes)**
-**Update QuizQuestions.tsx:**
-```tsx
-import styles from './QuizQuestions.module.scss';
-
-// Remove inline styles and replace with CSS classes
-// Before: 2 inline styles identified in analysis
-// After: All styling via CSS module classes
-
-const QuizQuestions = ({ question, answers, onAnswer, selectedAnswer }) => {
-  return (
-    <div className={styles.questionContainer}>
-      <div className={styles.questionNumber}>
-        Question {currentQuestion + 1} of {totalQuestions}
-      </div>
-      <div className={styles.questionText}>
-        {question.text}
-      </div>
-      <div className={styles.answerGroup}>
-        {answers.map((answer, index) => (
-          <div
-            key={index}
-            className={`${styles.answerChoice} ${
-              selectedAnswer === index ? styles.answerSelected : ''
-            }`}
-            onClick={() => onAnswer(index)}
-          >
-            <span className={styles.answerText}>{answer.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-```
-
-#### **Subtask 12.4c: Quiz Results Migration (45 minutes)**
-**Update QuizResultHeader.tsx and CategoryScores.tsx:**
-```tsx
-// QuizResultHeader.tsx - Remove 7 inline styles
-import styles from './QuizResults.module.scss';
-
-const QuizResultHeader = ({ score, title }) => {
-  return (
-    <div className={styles.header}>
-      <h1 className={styles.title}>{title}</h1>
-      <div className={styles.score}>Score: {score}%</div>
-    </div>
-  );
-};
-
-// CategoryScores.tsx - Remove 2 inline styles  
-const CategoryScores = ({ categories }) => {
-  return (
-    <div className={styles.categoryScores}>
-      {categories.map((category, index) => (
-        <div key={index} className={styles.categoryScore}>
-          <div className={styles.categoryName}>{category.name}</div>
-          <div className={styles.categoryValue}>{category.score}%</div>
-        </div>
-      ))}
-    </div>
-  );
-};
-```
-
-**Deliverables:**
-- All quiz components updated to use CSS modules
-- Zero inline styles remaining (target: 0 from 11)
-- Global quiz-styles.scss import removed
-- Component functionality preserved
-
-### **Task 12.5: Integration Testing (90 minutes)**
-**Objective**: Validate complete quiz flow with modular CSS
-
-#### **Subtask 12.5a: Quiz Flow Testing (60 minutes)**
-**Test complete quiz journey:**
-- Quiz intro/landing page display
-- Question navigation and answer selection
-- Progress indicator updates
-- Score calculation and results display
-- Category scores breakdown
-- Recommendation display
-- Mobile responsive behavior
-- Error handling and loading states
-
-**Test different quiz types:**
-- Multiple choice quizzes
-- Assessment-style quizzes
-- Any drag-and-drop or interactive elements
-
-#### **Subtask 12.5b: Visual Regression Testing (30 minutes)**
-**Compare before/after:**
-- Quiz intro page styling
-- Question display and answer choices
-- Progress indicators
-- Results page layout
-- Category scores display
-- Mobile responsive design
-- Loading and error states
-
-**Deliverables:**
-- Complete quiz flow testing passed
-- Visual parity confirmed with baseline
-- All quiz functionality working correctly
-- Responsive design validated
-
-### **Task 12.6: Performance & Global CSS Cleanup (60 minutes)**
-**Objective**: Remove global CSS pollution and validate performance
-
-#### **Subtask 12.6a: Global CSS Cleanup (30 minutes)**
-**Remove global quiz CSS:**
-```bash
-# Verify quiz-styles.scss is no longer imported
-grep -r "quiz-styles.scss" src/
-
-# Check for any remaining global quiz CSS classes
-grep -r "\.quiz" src/ --exclude-dir=node_modules
-
-# Remove unused quiz-styles.scss file (after backup)
-mv src/components/quiz/quiz-styles.scss src/components/quiz/quiz-styles.scss.backup
-```
-
-#### **Subtask 12.6b: Performance Validation (30 minutes)**
-**Measure impact:**
-- CSS bundle size before/after (expected: -80KB reduction)
-- Quiz component render performance
-- Memory usage improvement
-- Build time comparison
+**Objective**: Identify exactly where quiz-styles.scss is being imported
 
 ```bash
-# Test build after migration
+# 1. Confirm quiz-styles.scss still being built
+npm run build:fast
+grep -r "quiz.*scss" dist/ || echo "Not found in dist"
+
+# 2. Find all imports of quiz-styles
+grep -r "quiz-styles" src/ --include="*.scss" --include="*.css"
+grep -r "quiz-styles" src/ --include="*.tsx" --include="*.ts" --include="*.astro"
+
+# 3. Check main style imports
+grep -r "@import.*quiz" src/styles/
+grep -r "@use.*quiz" src/styles/
+
+# 4. Check Astro imports
+grep -r "quiz-styles" src/pages/ --include="*.astro"
+grep -r "quiz-styles" src/layouts/ --include="*.astro"
+
+# 5. Check component-level imports
+find src/components/quiz -name "*.tsx" -exec grep -l "import.*quiz-styles" {} \;
+```
+
+**Expected Findings**:
+- Global SCSS import in main stylesheet
+- Possible Astro page-level imports
+- Legacy imports in component files
+
+**Deliverable**: Exact location(s) where quiz-styles.scss is imported
+
+### Hour 2: Import Removal Process (10:00-11:00 AM)
+
+**Objective**: Remove all global imports of quiz-styles.scss
+
+```bash
+# 1. Backup current imports before removal
+cp src/styles/index.scss src/styles/index.scss.backup.day12
+
+# 2. Remove quiz-styles imports from main stylesheet
+# Edit src/styles/index.scss - remove lines like:
+# @import '../components/quiz/quiz-styles';
+# @use '../components/quiz/quiz-styles' as quiz;
+
+# 3. Check for page-specific imports
+# Edit any .astro files that import quiz-styles directly
+
+# 4. Remove component-level global imports
+# Check each quiz component for any remaining quiz-styles imports
+```
+
+**Process**:
+1. **Main Stylesheet**: Remove from `src/styles/index.scss`
+2. **Astro Pages**: Remove from any page-level imports  
+3. **Component Files**: Verify no components import both CSS modules AND global styles
+4. **Build Configuration**: Check for any build-level style imports
+
+**Validation After Each Removal**:
+```bash
+npm run build:fast
+grep -r "quiz.*scss" dist/ | wc -l  # Should decrease with each removal
+```
+
+### Hour 3: Bundle Size Validation (11:00 AM-12:00 PM)
+
+**Objective**: Verify quiz bundle size reduction after import removal
+
+```bash
+# 1. Clean build to ensure fresh bundle analysis
+rm -rf dist/
 npm run build:fast
 
-# Analyze CSS bundle size
-ls -la dist/client/assets/*.css
+# 2. Check CSS bundle for quiz-related files
+find dist/ -name "*.css" -exec ls -la {} \; | grep -i quiz
+find dist/ -name "*.css" -exec du -sh {} \; | sort -hr
 
-# Compare with baseline captured before migration
+# 3. Search for quiz styles in CSS bundles
+find dist/ -name "*.css" -exec grep -l "quiz-" {} \; 2>/dev/null || echo "No quiz styles found"
+
+# 4. Measure total CSS bundle size
+find dist/ -name "*.css" -exec du -c {} \; | tail -1
+
+# 5. Specific size analysis
+for file in dist/**/*.css; do
+  if [[ -f "$file" ]]; then
+    size=$(du -sh "$file" | cut -f1)
+    echo "$file: $size"
+  fi
+done
 ```
 
-**Deliverables:**
-- Global quiz CSS pollution eliminated
-- 80KB reduction in global CSS achieved
-- Performance improvements documented
-- Clean build validation
+**Success Criteria**:
+- ✅ No CSS files contain "quiz-" class references from global styles
+- ✅ Total CSS bundle reduced by ~79KB  
+- ✅ Quiz functionality still working (component CSS modules active)
+- ✅ Build completes without errors
 
-## 📊 **Success Criteria**
+**If Bundle Still Large**:
+- Check for duplicate CSS module imports
+- Verify PurgeCSS is working correctly
+- Look for hidden global style imports
 
-### **Completion Requirements**
-- [x] ✅ Zero inline styles in quiz components (target: 0 from 11)
-- [x] ✅ 80KB quiz-styles.scss eliminated from global scope
-- [x] ✅ Complete modular CSS structure for quiz system
-- [x] ✅ All quiz functionality preserved and tested
-- [x] ✅ Semantic token integration throughout
-- [x] ✅ Clean build with no compilation errors
+### Hour 4: Component Verification (12:00-1:00 PM)
 
-### **Quality Gates**
-- [x] ✅ Complete quiz flow testing passed
-- [x] ✅ Visual parity maintained across all quiz states
-- [x] ✅ Responsive design working on all devices
-- [x] ✅ Performance improvements achieved (80KB CSS reduction)
-- [x] ✅ No global CSS pollution remaining
+**Objective**: Ensure all quiz components still function with only CSS modules
 
-## 🛡️ **Risk Mitigation**
+```bash
+# 1. Start development server
+npm run dev
 
-### **High-Risk Areas**
-1. **Quiz Flow Complexity**: Multiple quiz types and states
-   - **Mitigation**: Test each quiz type individually
-   - **Fallback**: Restore quiz-styles.scss temporarily if issues
+# 2. Manual testing checklist:
+# - Navigate to /quiz
+# - Complete full quiz flow
+# - Check all visual elements render correctly
+# - Verify responsive behavior
+# - Test all interactive states
 
-2. **Dynamic Scoring**: Complex score calculation display
-   - **Mitigation**: Preserve exact styling for score components
-   - **Fallback**: Keep critical styling inline temporarily
+# 3. Console error checking
+# Open browser dev tools, complete quiz
+# Should see no CSS-related errors
+```
 
-3. **Mobile Quiz Experience**: Touch interactions and responsive design
-   - **Mitigation**: Extensive mobile testing
-   - **Fallback**: Mobile-specific CSS modules if needed
+**Component Testing Priority**:
+1. **Quiz.tsx** - Main container and layout
+2. **QuizIntro.tsx** - Start screen styling  
+3. **QuizQuestions.tsx** - Question display and options
+4. **QuizResultHeader.tsx** - Results title and hybrid badges
+5. **ProductRecommendations.tsx** - Product cards and grids
+6. **CategoryScores.tsx** - Score visualization
+7. **AlternativeRecommendations.tsx** - Secondary results
 
-### **Rollback Plan**
-If migration fails:
-1. Restore all quiz component backups
-2. Restore quiz-styles.scss from backup
-3. Re-import global quiz styles in Quiz.tsx
-4. Validate complete quiz flow
-5. Document issues for future retry
-
-## 📋 **Post-Migration Validation**
-
-### **Quiz Flow Checklist**
-- [ ] Quiz intro page displays correctly
-- [ ] Question navigation works smoothly
-- [ ] Answer selection and highlighting functional
-- [ ] Progress indicators update correctly
-- [ ] Score calculation accurate
-- [ ] Results page displays properly
-- [ ] Category scores show correctly
-- [ ] Recommendations display as expected
-- [ ] Mobile experience fully functional
-- [ ] Loading states work properly
-- [ ] Error handling maintains styling
-
-### **Performance Checklist**
-- [ ] CSS bundle reduced by ~80KB
-- [ ] Quiz components render smoothly
-- [ ] No memory leaks from CSS changes
-- [ ] Build time maintained or improved
-- [ ] No console errors or warnings
+**Fix Any Broken Styles**:
+- Ensure CSS module imports are correct
+- Verify all classes referenced in modules exist
+- Check for any missing semantic token usage
 
 ---
 
-## ⏱️ **Time Tracking**
+## AFTERNOON SESSION (4 hours): Optimization & Cleanup
 
-| Task | Estimated | Actual | Notes |
-|------|-----------|--------|-------|
-| 12.1: Architecture Analysis | 90 min | ___ min | |
-| 12.2: Module Design | 90 min | ___ min | |
-| 12.3: CSS Modularization | 150 min | ___ min | |
-| 12.4: Component Migration | 120 min | ___ min | |
-| 12.5: Integration Testing | 90 min | ___ min | |
-| 12.6: Performance & Cleanup | 60 min | ___ min | |
-| **Total** | **8 hours** | **___ hours** | |
+### Hour 5: CSS Module Optimization (2:00-3:00 PM)
+
+**Objective**: Optimize individual CSS modules for minimal bundle impact
+
+```bash
+# 1. Analyze each CSS module size
+find src/components/quiz -name "*.module.scss" -exec du -sh {} \;
+
+# 2. Check for duplicate styles across modules
+# Create temporary comparison file
+cat src/components/quiz/**/*.module.scss > /tmp/all-quiz-modules.scss
+grep -n "\..*{" /tmp/all-quiz-modules.scss | sort | uniq -d
+
+# 3. Look for unused CSS in modules
+# This requires manual review of each module against its component
+```
+
+**Optimization Tasks**:
+1. **Remove Unused CSS**: Each module should only contain styles used by its component
+2. **Consolidate Duplicates**: Move common styles to shared module
+3. **Semantic Token Usage**: Ensure all hardcoded values use tokens
+4. **Minimize Specificity**: Reduce nested selectors where possible
+
+**Module Size Targets**:
+- Quiz.module.scss: ≤8KB (main container)
+- QuizQuestions.module.scss: ≤6KB (complex interactions)
+- QuizResults.module.scss: ≤5KB (results display)
+- Other modules: ≤3KB each
+
+### Hour 6: Shared Styles Extraction (3:00-4:00 PM)
+
+**Objective**: Create shared quiz utilities module for common styles
+
+```bash
+# 1. Create shared utilities module
+touch src/components/quiz/shared/QuizShared.module.scss
+
+# 2. Identify common patterns across all quiz modules:
+# - Button styles (.cta-button, .quiz-option)
+# - Layout utilities (.quiz-container, .question-grid)  
+# - Color schemes (category colors, gradients)
+# - Typography (.quiz-title, .quiz-text)
+```
+
+**QuizShared.module.scss Structure**:
+```scss
+// Quiz Shared Utilities
+@import '../../../styles/variables';
+
+// Common Layout
+.quizContainer {
+  max-width: var(--container-default);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+// Common Buttons
+.ctaButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+// Category Colors (using CSS custom properties)
+.categoryEducation { --category-color: var(--color-category-education); }
+.categoryCorporate { --category-color: var(--color-category-corporate); }
+.categoryCreative { --category-color: var(--color-category-creative); }
+.categoryGeneral { --category-color: var(--color-category-general); }
+
+// Common Typography
+.quizTitle {
+  font-size: var(--text-section);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+```
+
+**Import Pattern for Components**:
+```tsx
+import styles from './ComponentName.module.scss';
+import sharedStyles from '../shared/QuizShared.module.scss';
+
+// Usage
+className={`${styles.localClass} ${sharedStyles.sharedClass}`}
+```
+
+### Hour 7: Build Optimization (4:00-5:00 PM)
+
+**Objective**: Ensure optimal CSS chunking and bundle splitting
+
+```bash
+# 1. Configure CSS optimization in Astro config
+# Check astro.config.mjs for CSS settings
+
+# 2. Test different build configurations
+npm run build:fast
+npm run build  # Full build with optimization
+
+# 3. Analyze final bundle
+npm run build
+find dist/ -name "*.css" | head -10 | xargs du -sh
+```
+
+**Build Configuration Optimization**:
+
+Check `astro.config.mjs` for optimal settings:
+```javascript
+export default defineConfig({
+  vite: {
+    css: {
+      modules: {
+        // Optimize CSS module class names for production
+        generateScopedName: process.env.NODE_ENV === 'production' 
+          ? '[hash:base64:5]' 
+          : '[name]__[local]__[hash:base64:5]'
+      }
+    },
+    build: {
+      cssCodeSplit: true, // Enable CSS code splitting
+      rollupOptions: {
+        output: {
+          // Group quiz CSS into single chunk if beneficial
+          manualChunks: {
+            quiz: ['src/components/quiz/Quiz.tsx']
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+### Hour 8: Final Validation & Documentation (5:00-6:00 PM)
+
+**Objective**: Comprehensive testing and completion documentation
+
+```bash
+# 1. Final build and size check
+rm -rf dist/
+npm run build:fast
+
+# 2. Bundle size analysis
+echo "=== FINAL CSS BUNDLE ANALYSIS ==="
+find dist/ -name "*.css" -exec du -sh {} \; | sort -hr
+echo "=== TOTAL CSS SIZE ==="
+find dist/ -name "*.css" -exec du -c {} \; | tail -1
+
+# 3. Quiz functionality test
+npm run dev &
+# Manual testing in browser
+# Kill dev server: pkill -f "npm run dev"
+
+# 4. TypeScript validation
+npm run check
+
+# 5. Bundle comparison
+echo "Target: Reduce quiz contribution from 79.56KB to <10KB"
+echo "Success: Quiz should no longer appear in top 5 largest CSS files"
+```
 
 ---
 
-**Execution Status**: 📋 **READY TO EXECUTE**  
-**Success Confidence**: 95% (building on Day 11 success + Phase 2 methodology)  
-**Expected Impact**: Eliminate largest global CSS pollution source (80KB reduction)  
-**Next Task**: Navigation components review and final cleanup (Day 13)
+## SUCCESS CRITERIA CHECKLIST
+
+### ✅ Bundle Size Reduction
+- [ ] quiz-styles.scss (78KB) no longer in build output
+- [ ] Quiz-related CSS reduced from 79.56KB to ≤10KB
+- [ ] Total CSS bundle reduced by ~70KB
+- [ ] Quiz no longer in top 5 bundle contributors
+
+### ✅ Functionality Maintained  
+- [ ] All quiz components render correctly
+- [ ] Quiz flow works end-to-end
+- [ ] Responsive behavior preserved
+- [ ] No JavaScript console errors
+- [ ] Visual regression testing passes
+
+### ✅ Code Quality
+- [ ] All CSS modules use semantic tokens
+- [ ] No hardcoded colors or values
+- [ ] TypeScript validation passes
+- [ ] Build completes without warnings
+- [ ] CSS module imports are optimized
+
+### ✅ Documentation
+- [ ] Day 12 completion report created
+- [ ] Bundle size reduction documented
+- [ ] Any issues and solutions documented
+- [ ] Updated component architecture documented
+
+---
+
+## RISK MITIGATION
+
+### High Risk: Quiz Functionality Breaks
+**Backup Plan**: 
+```bash
+# Restore quiz-styles.scss temporarily
+cp src/components/quiz/quiz-styles.scss.backup src/components/quiz/quiz-styles.scss
+# Add back to main import
+echo "@import '../components/quiz/quiz-styles';" >> src/styles/index.scss
+```
+
+### Medium Risk: Build Optimization Issues
+**Backup Plan**: 
+- Keep individual CSS modules 
+- Focus on removing global import only
+- Optimize modules in future iteration
+
+### Low Risk: Style Inconsistencies
+**Solution**: 
+- Use browser dev tools to identify missing styles
+- Add missing styles to appropriate CSS modules
+- Ensure semantic token usage is complete
+
+---
+
+## EXPECTED OUTCOMES
+
+### Bundle Impact
+- **Before**: 79.56KB quiz bundle (11.9% of total)
+- **After**: ≤10KB quiz modules (≤1.5% of total)  
+- **Savings**: ~70KB reduction in CSS bundle
+
+### Architecture Improvement
+- **Before**: Global CSS pollution from 78KB file
+- **After**: Modular, component-scoped CSS only
+- **Maintenance**: Easier component-level style updates
+
+### Performance Impact
+- **Before**: Large CSS payload affecting initial page load
+- **After**: Optimized CSS modules loaded per component
+- **User Experience**: Faster page load times
+
+---
+
+## COMPLETION CHECKLIST
+
+- [ ] quiz-styles.scss removed from all global imports
+- [ ] Bundle analysis shows 70KB+ reduction
+- [ ] All quiz components function correctly
+- [ ] TypeScript validation passes
+- [ ] Visual regression testing complete
+- [ ] Day 12 completion report written
+- [ ] Ready for Day 13 navigation component migration
+
+---
+
+**Next Day**: [Day 13: Navigation Components](./day-13-navigation-execution-plan.md) - Address #1 bundle contributor (97.48KB NavWrapper)
+
+**Success Metric**: Quiz elimination should reduce total CSS bundle from 668KB to ~598KB, moving project significantly closer to 98KB target.

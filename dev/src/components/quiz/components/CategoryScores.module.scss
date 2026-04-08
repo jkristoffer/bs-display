@@ -1,5 +1,5 @@
 /* CategoryScores.module.scss - Category scores visualization */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .modernCategoryScores {
   position: relative;

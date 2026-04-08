@@ -1,5 +1,5 @@
 /* CTAButton.module.scss - Shared CTA button styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .ctaButton {
   display: inline-flex;

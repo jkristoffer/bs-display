@@ -1,0 +1,71 @@
+/* Isolated Product Variables */
+/* Variables specifically needed by product components (FilterUIv2, ProductDetails, ProductCard) */
+
+:root {
+  /* Product Colors */
+  --product-primary: #009688;
+  --product-primary-rgb: 0, 150, 136;
+  --product-background: #ffffff;
+  --product-surface: #fafafa;
+  --product-surface-elevated: #ffffff;
+  --product-surface-muted: #f5f5f5;
+  
+  /* Product Text Colors */
+  --product-text-primary: #1a1a1a;
+  --product-text-secondary: #6b7280;
+  --product-text-inverse: #ffffff;
+  
+  /* Product Borders */
+  --product-border-default: #e5e7eb;
+  --product-border-muted: #f3f4f6;
+  --product-border-strong: #d1d5db;
+  
+  /* Product Spacing */
+  --product-spacing-2: 0.5rem;
+  --product-spacing-4: 1rem;
+  --product-spacing-6: 1.5rem;
+  --product-spacing-8: 2rem;
+  --product-spacing-12: 3rem;
+  --product-spacing-16: 4rem;
+  
+  /* Product Border Radius */
+  --product-radius-sm: 0.25rem;
+  --product-radius-md: 0.5rem;
+  --product-radius-lg: 0.75rem;
+  --product-radius-card: 0.75rem;
+  --product-radius-full: 9999px;
+  
+  /* Product Typography */
+  --product-text-caption: 0.75rem;
+  --product-text-small: 0.875rem;
+  --product-text-body: 1rem;
+  --product-text-subsection: 1.125rem;
+  --product-text-section: 1.5rem;
+  --product-font-weight-medium: 500;
+  --product-font-weight-semibold: 600;
+  
+  /* Product Effects */
+  --product-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --product-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --product-z-dropdown: 1000;
+  --product-z-modal: 1050;
+  
+  /* Product Gradients & Glass */
+  --product-gradient-primary: linear-gradient(135deg, #009688 0%, #00bcd4 100%);
+  --product-glass-bg: rgba(255, 255, 255, 0.1);
+  
+  /* Product Accent Colors */
+  --product-accent-secondary: #ffa726;
+  
+  /* Product Layout */
+  --product-container-default: 1200px;
+  --product-container-wide: 1400px;
+  
+  /* Product Transitions */
+  --product-duration-normal: 0.2s;
+  --product-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Dark mode variants */
+  --product-surface-elevated-dark: var(--product-surface-elevated);
+  --product-border-default-dark: var(--product-border-default);
+}

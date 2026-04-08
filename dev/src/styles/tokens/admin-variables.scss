@@ -1,0 +1,27 @@
+/* Isolated Admin Variables */
+/* Variables for admin dashboard components */
+
+:root {
+  /* Admin Sidebar */
+  --admin-sidebar-bg: #1f2937;
+  --admin-sidebar-text: #f9fafb;
+  --admin-sidebar-hover: #374151;
+  --admin-sidebar-width: 256px;
+  
+  /* Admin Colors */
+  --admin-primary: #06b6d4;
+  --admin-accent: #10b981;
+  --admin-warning: #f59e0b;
+  --admin-danger: #ef4444;
+  --admin-background: #f8fafc;
+  --admin-surface: #ffffff;
+  
+  /* Admin Text Colors */
+  --admin-text-primary: #1f2937;
+  --admin-text-secondary: #6b7280;
+  --admin-text-muted: #9ca3af;
+  
+  /* Admin Gradients */
+  --admin-gradient-primary: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --admin-gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}

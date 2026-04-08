@@ -1,5 +1,5 @@
 /* QuizErrorBoundary.module.scss - Error boundary styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .errorBoundary {
   padding: var(--spacing-16);

@@ -1,5 +1,5 @@
 /* QuizIntro.module.scss - Quiz introduction page styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .quizIntro {
   text-align: center;

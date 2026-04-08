@@ -228,6 +228,8 @@ export default defineConfig({
         scss: {
           additionalData: (source, filename) => {
             if (filename.endsWith('index.scss')) return source;
+            // Skip ALL CSS modules to prevent global pollution
+            if (filename.includes('.module.scss')) return source;
             return `@use "src/styles/index.scss" as *;\n${source}`;
           },
         },

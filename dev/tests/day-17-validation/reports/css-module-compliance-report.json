@@ -1,0 +1,2008 @@
+{
+  "testName": "CSS Module Compliance Testing",
+  "timestamp": "2025-07-25T02:02:53.545Z",
+  "summary": {
+    "totalComponents": 150,
+    "compliantComponents": 45,
+    "moduleAdoption": "30%",
+    "inlineStyles": 46,
+    "globalStyleFiles": 27,
+    "complianceGrade": "F"
+  },
+  "details": {
+    "componentAnalysis": [
+      {
+        "file": "src/components/admin/AdminHeader/AdminHeader.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 12,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/AdminSidebar/AdminSidebar.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 15,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/admin/DataTable/DataTable.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 11,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/ExportModal/ExportModal.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 11,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/LoadingState/LoadingState.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/MetricCard/MetricCard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 8,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/charts/ChartWrapper.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 5,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/dashboards/DemoOverview.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 5,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/dashboards/JourneysDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 55,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/admin/dashboards/OverviewDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 16,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/admin/dashboards/ProductsDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 30,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/admin/dashboards/RealtimeDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 40,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/blog/RelatedBlogPosts.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Breadcrumbs/Breadcrumbs.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found"
+        ]
+      },
+      {
+        "file": "src/components/common/Breadcrumbs/Breadcrumbs.jsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 5,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/BrochureCard/BrochureCard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 9,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Button/Button.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Card/Card.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/CategoryTabs/CategoryTab.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 3,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/CategoryTabs/CategoryTabs.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/EmptyState/EmptyState.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 9,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/ErrorBoundary/ErrorBoundary.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 5,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Footer/Footer.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Form/FormCheckbox.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 8,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Form/FormInput.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 5,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Form/FormSelect.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Form/FormTextarea.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 4,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Icons/Icons.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Loading/Spinner.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 10,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/LoadingSpinner/LoadingSpinner.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/Nav.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 37,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav/NavButton.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 3,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/NavItem.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/NavWrapper.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/ProductsMegaMenu.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 30,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/SimpleSearch.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 30,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav.backup/ClientNav.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav.backup/MobileMenuGrid.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 2,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav.backup/Nav.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 22,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavButton.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 13,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavItem.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavSection.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 2,
+        "classNameUsage": 4,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "2 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavWrapper.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Nav.backup/ProductsMegaMenu.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 30,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Nav.backup/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/PageHeaderModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/ProductCard/ProductCard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 20,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/SEO.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Search/Search.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Search/SearchInput.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Search/SearchItem.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 16,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/Search/SearchResults.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 29,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/common/SmartProductImage/SmartProductImage.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 2,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found"
+        ]
+      },
+      {
+        "file": "src/components/common/page-header/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/design-system/SpacingGuide.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/Banner/Banner.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/BlogHighlights/BlogHighlights.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/BlogHighlights/BlogHighlightsModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/home/BrandsSection/BrandCard.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/BrandsSection/BrandsSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/BuyingGuideSection/BuyingGuideItem.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/BuyingGuideSection/BuyingGuideSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/CategoryNavigation/CategoryNavigation.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/home/CategoryNavigation/CategoryNavigationModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 3,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/home/DataTable/DataTable.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/DataTable/DataTableModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/home/QuizPromotion/QuizPromotion.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/QuizPromotion/QuizPromotionModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/QuizPromotion/QuizPromotionSleek.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/UsecasesSection/UsecaseItem.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/UsecasesSection/UsecasesSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/home/UsecasesSection/UsecasesSectionModern.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 3,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/home/VideoBanner/VideoBanner.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterPanel/DynamicFilterPanel.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 9,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterPanel/FilterOption.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 6,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterPanel/FilterPanel.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterPanel/FilterPanelBackup.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 24,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterUI.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 4,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/FilterUIv2.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 38,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/ModelDisplay/ModelCard.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/FilterUI/ModelDisplay/ModelDisplay.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 14,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/ProductDetails/ProductDetails.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 15,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/products/ProductsNavigationBar/ProductsNavigationBar.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/Quiz.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 3,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/components/AlternativeRecommendations.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/components/CategoryScores.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 2,
+        "classNameUsage": 52,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "2 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/quiz/components/ProductRecommendations.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/components/QuizErrorBoundary.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/components/QuizIntro.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/quiz/components/QuizQuestions.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 2,
+        "classNameUsage": 52,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "2 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/quiz/components/QuizResultHeader.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 7,
+        "classNameUsage": 13,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "7 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/quiz/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/BackToTopButton.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/BrandsSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/ComparisonChartSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/DisplayTechSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/ExpertAdviceSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/FaqsSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/Header.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/MobileTableOfContents.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 1,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 inline styles found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/RelatedPostsSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/SectionLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/StickyTableOfContents.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/TableOfContents.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/TouchComparison/index.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 4,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 inline styles found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/TouchTechSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/UseCasesSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/WhatIsSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/components/sw-buying-guide/WhyChooseSection.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/layouts/AdminLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/layouts/BaseLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/layouts/BlogLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/layouts/MainLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/layouts/ProductLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/layouts/UseCaseLayout.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/pages/404.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/analytics/journeys.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/analytics/overview.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/analytics/products.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/analytics/realtime.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/analytics-test.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/admin/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/blog/[id].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/blog/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/pages/contact.astro",
+        "type": "astro",
+        "cssModuleImports": 1,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": true,
+        "issues": []
+      },
+      {
+        "file": "src/pages/design-system.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/dev/routes.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/flexible-payment.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/lecterns.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/accessories/[brand]/[id].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/accessories/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/collaboration/[brand]/[id].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/collaboration/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/lecterns/[brand]/[id].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/lecterns/[brand]/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/lecterns/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/smartboards/[brand]/[id].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/smartboards/[brand]/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/products/smartboards/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/quiz.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/smart-whiteboard-buying-guide.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 2,
+        "compliant": false,
+        "issues": [
+          "2 global style imports found"
+        ]
+      },
+      {
+        "file": "src/pages/smartboards.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/terms-and-conditions.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/test-gradients.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/test-semantic-tokens.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/use-cases/[slug].astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": []
+      },
+      {
+        "file": "src/pages/use-cases/index.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 0,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      }
+    ],
+    "inlineStyleDetails": [
+      {
+        "file": "src/components/admin/AdminSidebar/AdminSidebar.tsx",
+        "line": 91,
+        "style": "style={{ paddingLeft: `${20 + level * 20}"
+      },
+      {
+        "file": "src/components/admin/dashboards/JourneysDashboard.tsx",
+        "line": 144,
+        "style": "style={{ \n                    width: `${stage.percentage}"
+      },
+      {
+        "file": "src/components/admin/dashboards/JourneysDashboard.tsx",
+        "line": 179,
+        "style": "style={{ \n                      width: `${conversionRate}"
+      },
+      {
+        "file": "src/components/admin/dashboards/JourneysDashboard.tsx",
+        "line": 210,
+        "style": "style={{ width: `${(path.count / data.topPaths[0].count) * 100}"
+      },
+      {
+        "file": "src/components/admin/dashboards/OverviewDashboard.tsx",
+        "line": 224,
+        "style": "style={{ display: 'flex', alignItems: 'center', gap: '8px' }"
+      },
+      {
+        "file": "src/components/admin/dashboards/OverviewDashboard.tsx",
+        "line": 225,
+        "style": "style={{ \n                      width: '60px', \n                      height: '8px', \n              ..."
+      },
+      {
+        "file": "src/components/admin/dashboards/OverviewDashboard.tsx",
+        "line": 232,
+        "style": "style={{ \n                        width: `${value}"
+      },
+      {
+        "file": "src/components/common/BrochureCard/BrochureCard.tsx",
+        "line": 42,
+        "style": "style={{ height: iframeHeight }"
+      },
+      {
+        "file": "src/components/common/Form/FormTextarea.tsx",
+        "line": 46,
+        "style": "style={textareaStyle}"
+      },
+      {
+        "file": "src/components/common/Loading/Spinner.tsx",
+        "line": 52,
+        "style": "style={skeletonStyle}"
+      },
+      {
+        "file": "src/components/common/Loading/Spinner.tsx",
+        "line": 120,
+        "style": "style={{ height: `${height}"
+      },
+      {
+        "file": "src/components/common/Loading/Spinner.tsx",
+        "line": 124,
+        "style": "style={{ \n            width: `${clampedProgress}"
+      },
+      {
+        "file": "src/components/common/Nav/Nav.tsx",
+        "line": 277,
+        "style": "style={{ '--section-index': 0 }"
+      },
+      {
+        "file": "src/components/common/Nav/Nav.tsx",
+        "line": 310,
+        "style": "style={{ '--section-index': 1 }"
+      },
+      {
+        "file": "src/components/common/Nav/Nav.tsx",
+        "line": 349,
+        "style": "style={{ '--section-index': 2 }"
+      },
+      {
+        "file": "src/components/common/Nav.backup/ClientNav.tsx",
+        "line": 19,
+        "style": "style={{ height: '60px', backgroundColor: '#fff' }"
+      },
+      {
+        "file": "src/components/common/Nav.backup/MobileMenuGrid.tsx",
+        "line": 110,
+        "style": "style={animationVars}"
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavButton.tsx",
+        "line": 173,
+        "style": "style={combinedStyle}"
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavSection.tsx",
+        "line": 57,
+        "style": "style={animationStyle}"
+      },
+      {
+        "file": "src/components/common/Nav.backup/NavSection.tsx",
+        "line": 100,
+        "style": "style={{\n              '--item-animation-delay': `${animationDelay + (index * 50)}"
+      }
+    ],
+    "globalStyleFiles": [
+      {
+        "file": "src/components/quiz/quiz-styles.scss",
+        "size": 78194,
+        "sizeKB": "76.36",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/BackToTopButton.scss",
+        "size": 1195,
+        "sizeKB": "1.17",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/BrandsSection.scss",
+        "size": 7785,
+        "sizeKB": "7.60",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/DisplayTechSection.scss",
+        "size": 9834,
+        "sizeKB": "9.60",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/ExpertAdviceSection.scss",
+        "size": 3147,
+        "sizeKB": "3.07",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/FaqsSection.scss",
+        "size": 4791,
+        "sizeKB": "4.68",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/MobileTableOfContents.scss",
+        "size": 5260,
+        "sizeKB": "5.14",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/RelatedPostsSection.scss",
+        "size": 5719,
+        "sizeKB": "5.58",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/StickyTableOfContents.scss",
+        "size": 3581,
+        "sizeKB": "3.50",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/TouchComparison/TouchComparison.scss",
+        "size": 14934,
+        "sizeKB": "14.58",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/TouchTechSection.scss",
+        "size": 6978,
+        "sizeKB": "6.81",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/UseCasesSection.scss",
+        "size": 8860,
+        "sizeKB": "8.65",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/WhatIsSection.scss",
+        "size": 7083,
+        "sizeKB": "6.92",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/components/sw-buying-guide/WhyChooseSection.scss",
+        "size": 7785,
+        "sizeKB": "7.60",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/_breakpoints.scss",
+        "size": 156,
+        "sizeKB": "0.15",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/_buying-guide-mixins.scss",
+        "size": 6580,
+        "sizeKB": "6.43",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/_contact-page-mixins.scss",
+        "size": 9088,
+        "sizeKB": "8.88",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/_legal-page-mixins.scss",
+        "size": 7543,
+        "sizeKB": "7.37",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/admin/admin-global.scss",
+        "size": 3910,
+        "sizeKB": "3.82",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/global.scss",
+        "size": 8770,
+        "sizeKB": "8.56",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/index.scss",
+        "size": 147,
+        "sizeKB": "0.14",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/mixins.scss",
+        "size": 12685,
+        "sizeKB": "12.39",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/sw-buying-guide.scss",
+        "size": 8121,
+        "sizeKB": "7.93",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/terms-and-conditions.scss",
+        "size": 2428,
+        "sizeKB": "2.37",
+        "isTokenFile": false,
+        "acceptable": false
+      },
+      {
+        "file": "src/styles/tokens/compatibility.scss",
+        "size": 10646,
+        "sizeKB": "10.40",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/tokens/semantic-variables.scss",
+        "size": 8207,
+        "sizeKB": "8.01",
+        "isTokenFile": true,
+        "acceptable": true
+      },
+      {
+        "file": "src/styles/variables.scss",
+        "size": 1324,
+        "sizeKB": "1.29",
+        "isTokenFile": true,
+        "acceptable": true
+      }
+    ],
+    "topIssues": [
+      {
+        "file": "src/components/sw-buying-guide/MobileTableOfContents.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 1,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 inline styles found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/TouchComparison/index.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 1,
+        "classNameUsage": 4,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 inline styles found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/sw-buying-guide/StickyTableOfContents.tsx",
+        "type": "react",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 1,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found",
+          "1 global style imports found"
+        ]
+      },
+      {
+        "file": "src/components/admin/AdminSidebar/AdminSidebar.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 15,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/admin/dashboards/JourneysDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 55,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/admin/dashboards/OverviewDashboard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 16,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Breadcrumbs/Breadcrumbs.astro",
+        "type": "astro",
+        "cssModuleImports": 0,
+        "inlineStyles": 0,
+        "classNameUsage": 1,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "Uses className but no CSS module imports found"
+        ]
+      },
+      {
+        "file": "src/components/common/BrochureCard/BrochureCard.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 9,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Form/FormTextarea.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 1,
+        "classNameUsage": 4,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "1 inline styles found"
+        ]
+      },
+      {
+        "file": "src/components/common/Loading/Spinner.tsx",
+        "type": "react",
+        "cssModuleImports": 1,
+        "inlineStyles": 3,
+        "classNameUsage": 10,
+        "globalStyleImports": 0,
+        "compliant": false,
+        "issues": [
+          "3 inline styles found"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    "Migrate remaining components to CSS modules",
+    "Eliminate 46 inline styles by moving to CSS modules",
+    "Convert 20 global SCSS files to CSS modules"
+  ]
+}

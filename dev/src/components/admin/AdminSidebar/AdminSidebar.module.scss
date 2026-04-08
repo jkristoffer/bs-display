@@ -1,11 +1,14 @@
+/* AdminSidebar CSS Module - Isolated Variables */
+@use "../../../styles/tokens/admin-variables.scss";
+
 .mobileToggle {
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 1001;
   display: none;
-  background: var(--color-admin-sidebar-bg);
-  color: var(--color-admin-sidebar-text);
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
   border: none;
   padding: 0.5rem;
   font-size: 1.5rem;
@@ -37,9 +40,9 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: var(--sidebar-width);
-  background: var(--color-admin-sidebar-bg);
-  color: var(--color-admin-sidebar-text);
+  width: var(--admin-sidebar-width);
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease;
@@ -66,7 +69,7 @@
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
-    background: var(--gradient-primary);
+    background: var(--admin-gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -76,7 +79,7 @@
 .collapseToggle {
   background: none;
   border: none;
-  color: var(--color-admin-sidebar-text);
+  color: var(--admin-sidebar-text);
   cursor: pointer;
   padding: 0.25rem;
   font-size: 0.875rem;
@@ -108,19 +111,19 @@
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
-  color: var(--color-admin-sidebar-text);
+  color: var(--admin-sidebar-text);
   text-decoration: none;
   transition: all 0.2s;
   cursor: pointer;
   position: relative;
   
   &:hover {
-    background: var(--color-admin-sidebar-hover);
+    background: var(--admin-sidebar-hover);
     color: white;
   }
   
   &.active {
-    background: var(--color-admin-sidebar-hover);
+    background: var(--admin-sidebar-hover);
     color: white;
     
     &::before {
@@ -130,7 +133,7 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--gradient-primary);
+      background: var(--admin-gradient-primary);
     }
   }
 }
@@ -168,7 +171,7 @@
   .backToSite {
     display: flex;
     align-items: center;
-    color: var(--color-admin-sidebar-text);
+    color: var(--admin-sidebar-text);
     text-decoration: none;
     font-size: 0.875rem;
     opacity: 0.7;

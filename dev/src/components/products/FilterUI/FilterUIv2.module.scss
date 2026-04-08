@@ -1,9 +1,9 @@
-/* FilterUIv2.module.scss - CSS Module for FilterUIv2 component */
-@import '../../../styles/variables';
+/* FilterUIv2.module.scss - CSS Module with Isolated Variables */
+@use "../../../styles/tokens/product-variables.scss";
 
 /* ===== CONTAINER STYLES ===== */
 .container {
-  background: var(--color-background);
+  background: var(--product-background);
   min-height: 100vh;
 }
 
@@ -11,27 +11,27 @@
 .toolbar {
   position: sticky;
   top: 0;
-  z-index: var(--z-dropdown);
-  background: var(--color-surface-elevated);
-  border-bottom: 1px solid var(--color-border-default);
-  padding: var(--spacing-8);
-  box-shadow: var(--shadow-sm);
+  z-index: var(--product-z-dropdown);
+  background: var(--product-surface-elevated);
+  border-bottom: 1px solid var(--product-border-default);
+  padding: var(--product-spacing-8);
+  box-shadow: var(--product-shadow-sm);
 }
 
 .toolbarContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--container-default);
+  max-width: var(--product-container-default);
   margin: 0 auto;
-  gap: var(--spacing-8);
+  gap: var(--product-spacing-8);
   flex-wrap: wrap;
 }
 
 .toolbarLeft {
   display: flex;
   align-items: center;
-  gap: var(--spacing-6);
+  gap: var(--product-spacing-6);
   flex: 1;
   min-width: 0;
 }
@@ -40,30 +40,30 @@
 .filterToggle {
   display: flex;
   align-items: center;
-  gap: var(--spacing-4);
-  padding: var(--spacing-4) var(--spacing-8);
-  background: var(--color-surface-elevated);
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  gap: var(--product-spacing-4);
+  padding: var(--product-spacing-4) var(--product-spacing-8);
+  background: var(--product-surface-elevated);
+  color: var(--product-primary);
+  border: 1px solid var(--product-primary);
+  border-radius: var(--product-radius-md);
   cursor: pointer;
-  font-weight: var(--font-weight-medium);
-  transition: all var(--duration-normal) var(--ease-smooth);
+  font-weight: var(--product-font-weight-medium);
+  transition: all var(--product-duration-normal) var(--product-ease-smooth);
 }
 
 .filterToggle:hover {
-  background: rgba(var(--color-primary-rgb, 0, 150, 136), 0.1);
+  background: rgba(var(--product-primary-rgb), 0.1);
 }
 
 .filterToggleActive {
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
+  background: var(--product-primary);
+  color: var(--product-text-inverse);
 }
 
 /* Filter Chips */
 .chipContainer {
   display: flex;
-  gap: var(--spacing-4);
+  gap: var(--product-spacing-4);
   flex-wrap: wrap;
   align-items: center;
 }
@@ -71,19 +71,19 @@
 .chip {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2) var(--spacing-6);
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
-  border-radius: var(--radius-full);
-  font-size: var(--text-small);
-  font-weight: var(--font-weight-medium);
+  gap: var(--product-spacing-2);
+  padding: var(--product-spacing-2) var(--product-spacing-6);
+  background: var(--product-primary);
+  color: var(--product-text-inverse);
+  border-radius: var(--product-radius-full);
+  font-size: var(--product-text-small);
+  font-weight: var(--product-font-weight-medium);
 }
 
 .chipRemove {
   background: none;
   border: none;
-  color: var(--color-text-inverse);
+  color: var(--product-text-inverse);
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -92,8 +92,8 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  font-size: var(--text-caption);
-  transition: background var(--duration-normal) var(--ease-smooth);
+  font-size: var(--product-text-caption);
+  transition: background var(--product-duration-normal) var(--product-ease-smooth);
 }
 
 .chipRemove:hover {
@@ -103,10 +103,10 @@
 .clearAll {
   background: none;
   border: none;
-  color: var(--color-primary);
+  color: var(--product-primary);
   cursor: pointer;
   text-decoration: underline;
-  font-size: var(--text-small);
+  font-size: var(--product-text-small);
   padding: 0;
 }
 
@@ -114,69 +114,69 @@
 .toolbarRight {
   display: flex;
   align-items: center;
-  gap: var(--spacing-6);
+  gap: var(--product-spacing-6);
 }
 
 .productCount {
-  color: var(--color-text-secondary);
-  font-size: var(--text-small);
+  color: var(--product-text-secondary);
+  font-size: var(--product-text-small);
   white-space: nowrap;
 }
 
 .sortSelect {
-  padding: var(--spacing-2) var(--spacing-4);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-small);
-  background: var(--color-surface-elevated);
-  color: var(--color-text-primary);
+  padding: var(--product-spacing-2) var(--product-spacing-4);
+  border: 1px solid var(--product-border-default);
+  border-radius: var(--product-radius-sm);
+  font-size: var(--product-text-small);
+  background: var(--product-surface-elevated);
+  color: var(--product-text-primary);
   cursor: pointer;
 }
 
 /* View Mode Buttons */
 .viewModeGroup {
   display: flex;
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--product-border-default);
+  border-radius: var(--product-radius-sm);
   overflow: hidden;
 }
 
 .viewModeButton {
-  padding: var(--spacing-2) var(--spacing-4);
-  background: var(--color-surface-elevated);
-  color: var(--color-text-secondary);
+  padding: var(--product-spacing-2) var(--product-spacing-4);
+  background: var(--product-surface-elevated);
+  color: var(--product-text-secondary);
   border: none;
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-smooth);
+  transition: all var(--product-duration-normal) var(--product-ease-smooth);
 }
 
 .viewModeButton:not(:last-child) {
-  border-right: 1px solid var(--color-border-default);
+  border-right: 1px solid var(--product-border-default);
 }
 
 .viewModeButtonActive {
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
+  background: var(--product-primary);
+  color: var(--product-text-inverse);
 }
 
 /* ===== MAIN LAYOUT ===== */
 .mainLayout {
   display: flex;
-  max-width: var(--container-default);
+  max-width: var(--product-container-default);
   margin: 0 auto;
 }
 
 /* ===== FILTER DRAWER STYLES ===== */
 .drawer {
   width: 300px;
-  background: var(--color-surface-elevated);
-  border-right: 1px solid var(--color-border-default);
-  padding: var(--spacing-12);
+  background: var(--product-surface-elevated);
+  border-right: 1px solid var(--product-border-default);
+  padding: var(--product-spacing-12);
   position: sticky;
   top: 80px;
   height: calc(100vh - 80px);
   overflow-y: auto;
-  animation: slideIn var(--duration-normal) var(--ease-smooth);
+  animation: slideIn var(--product-duration-normal) var(--product-ease-smooth);
 }
 
 @keyframes slideIn {
@@ -191,40 +191,40 @@
 }
 
 .drawerTitle {
-  margin: 0 0 var(--spacing-12) 0;
-  color: var(--color-text-primary);
-  font-size: var(--text-subsection);
-  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--product-spacing-12) 0;
+  color: var(--product-text-primary);
+  font-size: var(--product-text-subsection);
+  font-weight: var(--product-font-weight-semibold);
 }
 
 .filterSection {
-  margin-bottom: var(--spacing-12);
+  margin-bottom: var(--product-spacing-12);
 }
 
 .filterSectionTitle {
-  margin: 0 0 var(--spacing-6) 0;
-  font-size: var(--text-body);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  margin: 0 0 var(--product-spacing-6) 0;
+  font-size: var(--product-text-body);
+  font-weight: var(--product-font-weight-semibold);
+  color: var(--product-text-primary);
 }
 
 .filterOptions {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--product-spacing-4);
 }
 
 .filterLabel {
   display: flex;
   align-items: center;
-  gap: var(--spacing-4);
+  gap: var(--product-spacing-4);
   cursor: pointer;
-  font-size: var(--text-small);
-  color: var(--color-text-primary);
+  font-size: var(--product-text-small);
+  color: var(--product-text-primary);
 }
 
 .filterLabel:hover {
-  color: var(--color-primary);
+  color: var(--product-primary);
 }
 
 .filterCheckbox {
@@ -236,51 +236,51 @@
 /* ===== PRODUCTS DISPLAY STYLES ===== */
 .productsSection {
   flex: 1;
-  padding: var(--spacing-12);
+  padding: var(--product-spacing-12);
 }
 
 .productGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--spacing-12);
+  gap: var(--product-spacing-12);
 }
 
 .productList {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-12);
+  gap: var(--product-spacing-12);
 }
 
 /* Empty State */
 .emptyState {
   text-align: center;
-  padding: var(--spacing-16);
-  color: var(--color-text-secondary);
-  background: var(--color-surface-muted);
-  border-radius: var(--radius-lg);
-  border: 2px dashed var(--color-border-muted);
+  padding: var(--product-spacing-16);
+  color: var(--product-text-secondary);
+  background: var(--product-surface-muted);
+  border-radius: var(--product-radius-lg);
+  border: 2px dashed var(--product-border-muted);
 }
 
 .emptyStateTitle {
-  margin: 0 0 var(--spacing-4) 0;
-  color: var(--color-text-primary);
-  font-size: var(--text-subsection);
-  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--product-spacing-4) 0;
+  color: var(--product-text-primary);
+  font-size: var(--product-text-subsection);
+  font-weight: var(--product-font-weight-semibold);
 }
 
 .emptyStateText {
   margin: 0;
-  font-size: var(--text-body);
+  font-size: var(--product-text-body);
 }
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
   .toolbar {
-    padding: var(--spacing-6);
+    padding: var(--product-spacing-6);
   }
 
   .toolbarContent {
-    gap: var(--spacing-6);
+    gap: var(--product-spacing-6);
   }
 
   .toolbarLeft {
@@ -300,9 +300,9 @@
     bottom: 0;
     width: 100%;
     height: 100vh;
-    z-index: var(--z-modal);
-    padding: var(--spacing-8);
-    animation: slideUp var(--duration-normal) var(--ease-smooth);
+    z-index: var(--product-z-modal);
+    padding: var(--product-spacing-8);
+    animation: slideUp var(--product-duration-normal) var(--product-ease-smooth);
   }
 
   @keyframes slideUp {
@@ -325,32 +325,32 @@
   .drawerClose {
     background: none;
     border: none;
-    font-size: var(--text-section);
-    color: var(--color-text-secondary);
+    font-size: var(--product-text-section);
+    color: var(--product-text-secondary);
     cursor: pointer;
-    padding: var(--spacing-2);
+    padding: var(--product-spacing-2);
   }
 
   .productsSection {
-    padding: var(--spacing-6);
+    padding: var(--product-spacing-6);
   }
 
   .productGrid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-8);
+    gap: var(--product-spacing-8);
   }
 }
 
 /* ===== DARK MODE SUPPORT (if applicable) ===== */
 @media (prefers-color-scheme: dark) {
   .drawer {
-    background: var(--color-surface-elevated-dark, var(--color-surface-elevated));
-    border-color: var(--color-border-default-dark, var(--color-border-default));
+    background: var(--color-surface-elevated-dark, var(--product-surface-elevated));
+    border-color: var(--color-border-default-dark, var(--product-border-default));
   }
 
   .toolbar {
-    background: var(--color-surface-elevated-dark, var(--color-surface-elevated));
-    border-color: var(--color-border-default-dark, var(--color-border-default));
+    background: var(--color-surface-elevated-dark, var(--product-surface-elevated));
+    border-color: var(--color-border-default-dark, var(--product-border-default));
   }
 }
 
@@ -359,12 +359,12 @@
 .viewModeButton:focus,
 .chipRemove:focus,
 .clearAll:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--product-primary);
   outline-offset: 2px;
 }
 
 .filterCheckbox:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--product-primary);
   outline-offset: 1px;
 }
 
@@ -372,7 +372,7 @@
 .filterLabel,
 .drawerTitle,
 .filterSectionTitle {
-  color: var(--color-text-primary);
+  color: var(--product-text-primary);
 }
 
 /* Loading state */
@@ -380,8 +380,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-16);
-  color: var(--color-text-secondary);
+  padding: var(--product-spacing-16);
+  color: var(--product-text-secondary);
 }
 
 /* Scrollbar styling for drawer */
@@ -390,14 +390,14 @@
 }
 
 .drawer::-webkit-scrollbar-track {
-  background: var(--color-surface-muted);
+  background: var(--product-surface-muted);
 }
 
 .drawer::-webkit-scrollbar-thumb {
-  background: var(--color-border-strong);
-  border-radius: var(--radius-sm);
+  background: var(--product-border-strong);
+  border-radius: var(--product-radius-sm);
 }
 
 .drawer::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary);
+  background: var(--product-text-secondary);
 }

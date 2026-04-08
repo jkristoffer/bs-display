@@ -1,5 +1,5 @@
 /* QuizQuestions.module.scss - Quiz questions styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .questionsContainer {
   background: var(--color-surface-elevated);

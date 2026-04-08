@@ -1,0 +1,113 @@
+{
+  "timestamp": "2025-07-25T02:00:20.079Z",
+  "summary": {
+    "totalFiles": 21,
+    "totalSize": "668.94KB",
+    "targetSize": "98KB",
+    "overTarget": "582.6%",
+    "avgFileSize": "31.85KB",
+    "compressionRatio": "95.2%"
+  },
+  "largestFiles": [
+    {
+      "file": "client/assets/NavWrapper.gQzlJqso.min.css",
+      "size": "97.48KB"
+    },
+    {
+      "file": "client/assets/quiz.C8v8_P1C.min.css",
+      "size": "79.56KB"
+    },
+    {
+      "file": "client/assets/index.DP0LIUt0.min.css",
+      "size": "75.22KB"
+    },
+    {
+      "file": "client/assets/smart-whiteboard-buying-guide.DNi1nI8M.min.css",
+      "size": "39.52KB"
+    },
+    {
+      "file": "client/assets/analytics-test.CrmWLRbE.min.css",
+      "size": "34.77KB"
+    }
+  ],
+  "issues": [
+    {
+      "type": "excessive-page-splitting",
+      "description": "9 separate CSS files for index pages may indicate over-splitting",
+      "impact": "Increases total bundle size due to duplicate base styles",
+      "recommendation": "Consider consolidating common styles into shared bundles"
+    },
+    {
+      "type": "bundle-too-large",
+      "description": "Total bundle size 668.94KB exceeds 98KB target",
+      "impact": "Performance degradation, slower page loads",
+      "recommendation": "Implement PurgeCSS, consolidate styles, remove unused CSS"
+    },
+    {
+      "type": "too-many-files",
+      "description": "21 separate CSS files may cause HTTP overhead",
+      "impact": "Multiple network requests slow down page loading",
+      "recommendation": "Consolidate files, implement proper chunking strategy"
+    }
+  ],
+  "pageGroups": [
+    {
+      "group": "navigation",
+      "fileCount": 1,
+      "totalSize": "97.48KB"
+    },
+    {
+      "group": "shared",
+      "fileCount": 2,
+      "totalSize": "27.15KB"
+    },
+    {
+      "group": "analytics",
+      "fileCount": 1,
+      "totalSize": "34.77KB"
+    },
+    {
+      "group": "index-pages",
+      "fileCount": 9,
+      "totalSize": "248.89KB"
+    },
+    {
+      "group": "journeys",
+      "fileCount": 2,
+      "totalSize": "48.14KB"
+    },
+    {
+      "group": "overview",
+      "fileCount": 2,
+      "totalSize": "44.33KB"
+    },
+    {
+      "group": "products",
+      "fileCount": 1,
+      "totalSize": "24.02KB"
+    },
+    {
+      "group": "quiz",
+      "fileCount": 1,
+      "totalSize": "79.56KB"
+    },
+    {
+      "group": "realtime",
+      "fileCount": 1,
+      "totalSize": "25.08KB"
+    },
+    {
+      "group": "buying-guide",
+      "fileCount": 1,
+      "totalSize": "39.52KB"
+    }
+  ],
+  "duplicateContent": {},
+  "recommendations": [
+    "Implement PurgeCSS to remove unused styles",
+    "Consolidate page-specific CSS files",
+    "Enable proper CSS minification and compression",
+    "Review build configuration for optimal chunking",
+    "Consider critical CSS extraction for above-fold content"
+  ]
+}

@@ -1,0 +1,26 @@
+/* Isolated Navigation Variables */
+/* Only variables actually used by Nav components */
+
+:root {
+  /* Nav-specific colors */
+  --nav-bg: rgba(255, 255, 255, 0.1);
+  --nav-backdrop-blur: 16px;
+  --nav-border: #e5e7eb;
+  --nav-text: #374151;
+  --nav-text-hover: #1f2937;
+  --nav-primary: #3b82f6;
+  --nav-primary-hover: #2563eb;
+  
+  /* Nav-specific spacing */
+  --nav-padding: 1rem;
+  --nav-gap: 0.5rem;
+  --nav-height: 64px;
+  
+  /* Nav-specific effects */
+  --nav-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --nav-z-index: 1000;
+  --nav-transition: all 0.3s ease;
+  
+  /* Breakpoints needed by Nav */
+  --nav-mobile-breakpoint: 768px;
+}

@@ -1,18 +1,8 @@
 /**
- * BlogLayout CSS Module
- * 
- * HYBRID APPROACH: Migrates layout-specific styles to CSS modules
- * while preserving global utilities (glass-light, animate-fade-up) 
- * that are defined in src/styles/mixins.scss
- * 
- * Strategy: 
- * - CSS Modules: Blog-specific containers, layouts, typography
- * - Global utilities: glass-light, animate-fade-up (keep as-is)
- * 
+ * BlogLayout CSS Module - Isolated Variables
  * Migration from: BlogLayout.astro (700+ lines of inline styles)
  */
-
-@import '../../styles/variables';
+@use "../../styles/tokens/layout-variables.scss";
 
 /* ============================
    BLOG BACKGROUND ELEMENTS 

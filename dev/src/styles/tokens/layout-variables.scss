@@ -1,0 +1,22 @@
+/* Isolated Layout Variables */
+/* Breakpoints and layout variables for components */
+
+/* Breakpoint variables (SCSS format for @media queries) */
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;
+
+/* CSS Custom Properties for layout */
+:root {
+  /* Layout spacing */
+  --layout-padding: 1rem;
+  --layout-gap: 1.5rem;
+  --layout-max-width: 1200px;
+  
+  /* Layout breakpoints (CSS custom properties) */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+}

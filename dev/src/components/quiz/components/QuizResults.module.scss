@@ -1,5 +1,5 @@
 /* QuizResults.module.scss - Quiz results and tabs styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .quizResults {
   background: var(--color-surface-elevated);

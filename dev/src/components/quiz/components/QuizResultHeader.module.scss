@@ -1,5 +1,5 @@
 /* QuizResultHeader.module.scss - Quiz result header styling */
-@import "../styles/quiz-variables";
+@use "../styles/quiz-variables.scss";
 
 .resultHeader {
   text-align: center;
